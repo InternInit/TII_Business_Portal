@@ -1,7 +1,4 @@
 import React from 'react';
-import './App.css';
-import styled from 'styled-components';
-
 
 //Components
 import MainPage from './components/Main_Page/MainPage';
@@ -15,9 +12,13 @@ const { Content } = Layout;
 class App extends React.Component {
   render() {
     return (
-      <React.Fragment>
-
-      </React.Fragment>
+      <Layout>
+        <Layout>
+          <Content>
+            <MainPage />
+          </Content>
+        </Layout>
+      </Layout>
     )
   }
 }
