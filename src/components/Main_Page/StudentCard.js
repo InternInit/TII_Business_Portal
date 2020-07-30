@@ -20,6 +20,8 @@ align-items:center;
 const Col = styled.div`
 display:flex;
 flex-direction:column;
+
+margin-left:6px;
 `
 const Name = styled.div`
 font-size:18px;
@@ -41,7 +43,7 @@ class StudentCard extends React.Component {
                 <Avatar size={28} icon={<UserOutlined />} />
                 <Col>
                     <Name>
-                        Oscar Hong
+                        Oscar Hong (18)
                     </Name>
                     <Applying>
                         Coffee Grinder
