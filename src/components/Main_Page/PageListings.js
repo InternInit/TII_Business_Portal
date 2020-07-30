@@ -10,7 +10,7 @@ width:100%;
 background-color:white;
 min-height:50px;
 min-width:325px;
-height:40%;
+height:7.4vh;
 border-radius:4px;
 margin-bottom:12px;
 `

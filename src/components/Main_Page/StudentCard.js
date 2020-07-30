@@ -11,6 +11,7 @@ min-height:50px;
 margin-bottom:10px;
 min-width:325px;
 border-radius:4px;
+height:7.4vh;
 
 display:flex;
 justify-content:center;

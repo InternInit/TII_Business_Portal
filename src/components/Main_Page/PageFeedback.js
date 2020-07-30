@@ -39,7 +39,7 @@ class PageFeedback extends React.Component {
                      * Intern Name and Job Name
                      * 
                      */}
-                    <div style={{ padding: '8px', marginLeft: '12px' }}>
+                    <div style={{ padding: '4px', marginLeft: '12px' }}>
                         <Position>
                             Position Name
                     </Position>
@@ -54,7 +54,7 @@ class PageFeedback extends React.Component {
                      * 
                      */}
                 <Feedback>
-                    <div style={{ width: '90%', marginTop: '10px', minHeight: '100px', maxHeight: '200px' }}>
+                    <div style={{ width: '90%', marginTop: '10px', minHeight: '12vh', maxHeight: '20vh' }}>
                         Feedback goes here
                     </div>
                 </Feedback>

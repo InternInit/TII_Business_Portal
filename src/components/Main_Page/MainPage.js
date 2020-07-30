@@ -13,7 +13,7 @@ font-weight:500;
 margin-left:12px;
 `
 const Header = styled.div`
-font-size:24px;
+font-size:20px;
 font-weight:500;
 color:#262626;
 margin-bottom:12px;
@@ -32,7 +32,7 @@ flex-direction:row;
 class MainPage extends React.Component {
   render() {
     return (<div style={{
-      backgroundColor: "#f0f0f0",
+      backgroundColor: "green",
       minHeight: '100vh',
     }
     }>
@@ -47,7 +47,7 @@ class MainPage extends React.Component {
          * Column 1
          * 
          */}
-        <Col style={{ marginTop: '8px', marginLeft: '2%', width: '60%' }}>
+        <Col style={{ marginLeft: '2%', width: '60%' }}>
 
 
 
@@ -90,7 +90,7 @@ class MainPage extends React.Component {
          * Column 2
          * 
          */}
-        <Col style={{ marginLeft: '2%', marginTop: '8px', width: '32%' }}>
+        <Col style={{ marginLeft: '2%', width: '32%' }}>
 
           {/**
          * 

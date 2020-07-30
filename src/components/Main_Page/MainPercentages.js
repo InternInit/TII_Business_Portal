@@ -44,7 +44,6 @@ class PercentageBox extends React.Component {
                 </Header>
                 <BoxContainer>
                     <Progress percent={percentage} size="large" type='circle' style={{ backgroundColor: 'red' }} />
-
                 </BoxContainer>
             </div>
         )
