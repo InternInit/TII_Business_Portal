@@ -14,11 +14,11 @@ min-width:325px;
 margin-bottom:12px;
 `
 const ListingName = styled.div`
-font-size:22px;
-font-weight:500;
+font-size:20px;
+font-weight:bold;
  `
 const Industry = styled.div`
-margin-top:-4%;
+margin-top:-5%;
 font-size:14px;
 color:#8c8c8c;
 font-weight:500;

@@ -25,7 +25,7 @@ margin-left:6px;
 `
 const Name = styled.div`
 font-size:18px;
-font-weight:500;
+font-weight:bold;
 color:#434343;
 `
 const Applying = styled.div`

@@ -5,7 +5,7 @@ import { Input } from 'antd';
 const { Search } = Input;
 
 const Header = styled.div`
-font-size:32px;
+font-size:30px;
 font-weight:500;
 color:black;
 margin-left:6vh;

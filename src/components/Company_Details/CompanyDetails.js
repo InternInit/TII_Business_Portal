@@ -21,21 +21,21 @@ color:#000000;
 
 const InfoHeader = styled.div`
 font-size:24px;
-font-weight:500;
+font-weight:bold;
 
 margin-top:4vh;
  
-color:#000000;
+color:#434343;
 `
 
 const UploadHeader = styled.div`
 font-size:18px;
-font-weight:500;
+font-weight:bold;
 
 margin-top:4vh;
 margin-bottom:2vh;
  
-color:#000000;
+color:#434343;
 `
 
 const Col = styled.div`
