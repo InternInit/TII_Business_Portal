@@ -33,7 +33,7 @@ flex-direction:row;
 class MainPage extends React.Component {
   render() {
     return (<div style={{
-      backgroundColor: "#f0f0f0",
+      backgroundColor: "#F0F5FF",
       minHeight: '100vh',
     }
     }>

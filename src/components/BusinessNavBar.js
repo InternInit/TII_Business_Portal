@@ -55,7 +55,8 @@ class BusinessNavBar extends React.Component {
                         <SendOutlined />
                         <span>Message School</span>
                     </Menu.Item>
-                    <Menu.Item key='6'>
+                    <Menu.Item key='6'
+                    >
                         <SettingOutlined />
                         <span>Settings</span>
                     </Menu.Item>

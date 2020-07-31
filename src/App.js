@@ -17,6 +17,7 @@ import {
 
 //Ant Design
 import { Layout } from 'antd';
+import CompanyDetails from './components/Company_Details/CompanyDetails';
 const { Content } = Layout;
 
 
@@ -44,8 +45,7 @@ class App extends React.Component {
         <ReactSwitch>
 
           <div style={{ marginLeft: '6%' }} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */>
-            <Route to='/dashboard' exact component={MainPage} />
-
+            <Route to='/dashboard' exact component={CompanyDetails} />
 
 
             <Route
