@@ -56,7 +56,9 @@ class BusinessNavBar extends React.Component {
                         <span>Message School</span>
                     </Menu.Item>
                     <Menu.Item key='6'
-                    >
+                        onClick={() => {
+                            this.routeChange("/settings");
+                        }}>
                         <SettingOutlined />
                         <span>Settings</span>
                     </Menu.Item>

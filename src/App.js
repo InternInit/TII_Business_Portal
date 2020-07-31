@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 //Components
 import MainPage from './components/Main_Page/MainPage';
@@ -18,8 +18,8 @@ import {
 //Ant Design
 import { Layout } from 'antd';
 import CompanyDetails from './components/Company_Details/CompanyDetails';
+import HirePipeline from './components/Candidates/HirePipeline';
 const { Content } = Layout;
-
 
 class App extends React.Component {
   render() {
@@ -27,7 +27,6 @@ class App extends React.Component {
       <React.Fragment>
         <Router>
           <Layout>
-
             <BusinessNavBar />
             <Content>
               {this.renderPage()}
@@ -45,8 +44,7 @@ class App extends React.Component {
         <ReactSwitch>
 
           <div style={{ marginLeft: '6%' }} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */>
-            <Route to='/dashboard' exact component={MainPage} />
-
+            <Route to='/dashboard' exact component={HirePipeline} />
 
             <Route
               path="/"
