@@ -44,20 +44,43 @@ align-items:center;
 
 class DraggingCard extends React.Component {
     render() {
+        let { name, date, position, avatar } = this.props;
         return (<Container>
+            {/**
+             * 
+             * Row Containing Name + Avatar
+             * 
+             */}
             <Row style={{ marginTop: '2vh' }}>
-                <Avatar src="" size={30} icon={<UserOutlined />} />
-                <Name>Oscar Hong</Name>
+                <Avatar src={avatar} size={30} icon={<UserOutlined />} />
+                <Name>{name}</Name>
             </Row>
             <Col>
+
+                {/**
+             * 
+             * Position Name
+             * 
+             */}
                 <Position style={{ marginTop: '1vh' }}>
-                    Position Name
-            </Position>
+                    {position}
+                </Position>
+
+                {/**
+             * 
+             * Date Applied
+             * 
+             */}
                 <Date>
-                    Date Applied: 1/12/20
+                    Date Applied: {date}
                 </Date>
             </Col>
 
+            {/**
+             * 
+             * View Details Button
+             * 
+             */}
             <Button type="primary" style={{ marginTop: '2vh', width: '60%', marginBottom: '2vh' }}>
                 Details
             </Button>

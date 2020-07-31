@@ -13,11 +13,11 @@ margin-top:4vh;
 
 //Psuedo backend
 const itemsFromBackend = [
-    { id: "1", content: "First task" },
-    { id: "2", content: "Second task" },
-    { id: "3", content: "Third task" },
-    { id: "4", content: "Fourth task" },
-    { id: "5", content: "Fourth task" },
+    { id: "1", name: 'Brandon Lu', date: '01/02/12', position: 'Cheese Grator' },
+    { id: "2", name: 'Oscar Hong', date: '02/03/03', position: 'Cheese Grator' },
+    { id: "3", name: 'Joe Zhang', date: '06/09/20', position: 'Cheese Grator' },
+    { id: "4", name: 'Kevin Tucker', date: '4/12/23', position: 'Cheese Grator' },
+    { id: "5", name: 'Lil Uzi Vert', date: '07/17/13', position: 'Cheese Grator' },
 
 
 ];
@@ -172,7 +172,15 @@ function HirePipeline() {
                                                                           * Student Card
                                                                           * 
                                                                           */}
-                                                                        <DraggingCard />
+                                                                        <DraggingCard
+                                                                            name={item.name}
+                                                                            date={item.date}
+                                                                            position={item.position}
+                                                                            avatar=""
+
+
+
+                                                                        />
                                                                     </div>
                                                                 );
                                                             }}

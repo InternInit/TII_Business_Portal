@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-//Components
-import MainPage from './components/Main_Page/MainPage';
-import BusinessNavBar from './components/BusinessNavBar';
+
 
 //React Routing
 import {
@@ -17,8 +15,16 @@ import {
 
 //Ant Design
 import { Layout } from 'antd';
+
+
+//Components
+import MainPage from './components/Main_Page/MainPage';
+import BusinessNavBar from './components/BusinessNavBar';
 import CompanyDetails from './components/Company_Details/CompanyDetails';
 import HirePipeline from './components/Candidates/HirePipeline';
+import StudentInfo from './components/Candidates/StudentInfo';
+
+
 const { Content } = Layout;
 
 class App extends React.Component {
