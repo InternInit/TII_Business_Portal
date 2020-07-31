@@ -7,8 +7,9 @@ import PageListings from './PageListings';
 import PageFeedback from './PageFeedback';
 import MainPercentages from './MainPercentages';
 import StudentCard from './StudentCard';
+
 const PageHeader = styled.div`
-font-size:36px;
+font-size:28px;
 font-weight:500;
 margin-left:12px;
 `
@@ -32,7 +33,7 @@ flex-direction:row;
 class MainPage extends React.Component {
   render() {
     return (<div style={{
-      backgroundColor: "green",
+      backgroundColor: "#f0f0f0",
       minHeight: '100vh',
     }
     }>

@@ -23,7 +23,7 @@ class BusinessNavBar extends React.Component {
                     height: '100vh',
                     boxShadow: '2px 4px 8px 2px rgba(0,0,0,0.25)',
                 }} >
-                <Avatar size={36} style={{ marginTop: '4vh' }} icon={<UserOutlined />} />
+                <Avatar size={36} style={{ marginTop: '4vh', }} icon={<UserOutlined />} />
 
                 <Menu
                     theme='dark'

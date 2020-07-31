@@ -21,9 +21,9 @@ class MainPercentages extends React.Component {
     render() {
         return (
             <div style={{ display: 'flex', justifyContent: 'center', minWidth: '325px', flexDirection: 'row' }}>
-                <PercentageBox header="Applied to Industry" percentage="2" />
-                <PercentageBox header="Applied to Company" percentage="24" />
-                <PercentageBox header="Percentage Accepted" percentage="97" />
+                <PercentageBox header="Applied to Industry" percentage="2" color="#F5222D" />
+                <PercentageBox header="Applied to Company" percentage="24" color="#1890ff" />
+                <PercentageBox header="Percentage Accepted" percentage="97" color="#52C41A" />
             </div>
         )
     }
@@ -32,7 +32,7 @@ export default MainPercentages;
 
 class PercentageBox extends React.Component {
     render() {
-        let { header, percentage } = this.props;
+        let { header, percentage, } = this.props;
         return (
             <div style={{
                 display: 'flex',
@@ -43,7 +43,7 @@ class PercentageBox extends React.Component {
                     {header}
                 </Header>
                 <BoxContainer>
-                    <Progress percent={percentage} size="large" type='circle' style={{ backgroundColor: 'red' }} />
+                    <Progress type='circle' percent={percentage} strokeColor={{ '0%': this.props.color, '100%': this.props.color, }} />
                 </BoxContainer>
             </div>
         )
