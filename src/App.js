@@ -23,6 +23,7 @@ import BusinessNavBar from './components/BusinessNavBar';
 import CompanyDetails from './components/Company_Details/CompanyDetails';
 import HirePipeline from './components/Candidates/HirePipeline';
 import StudentInfo from './components/Candidates/StudentInfo';
+import NavSearch from './components/NavSearch';
 
 
 const { Content } = Layout;
@@ -35,7 +36,22 @@ class App extends React.Component {
           <Layout>
             <BusinessNavBar />
             <Content>
-              {this.renderPage()}
+              <div style={{ marginLeft: '6%' }} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */>
+                <Route path='/dashboard' exact component={MainPage} />
+                <Route
+                  path="/"
+                  exact
+                  render={props => {
+                    return (
+                      (this.authParam = props.location.search),
+                      <Redirect to='/dashboard' />
+                    );
+                  }}
+                />
+                <Route path='/applicants'>{this.renderPage()}</Route>
+                <Route path='/settings'>{this.renderPage()}</Route>
+              </div>
+
             </Content>
           </Layout>
         </Router>
@@ -47,21 +63,21 @@ class App extends React.Component {
   renderPage = () => {
     return (
       <React.Fragment>
+        <NavSearch />
         <ReactSwitch>
 
-          <div style={{ marginLeft: '6%' }} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */>
-            <Route to='/dashboard' exact component={HirePipeline} />
+          <div style={{
+            backgroundColor: "#F0F5FF",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}>
 
-            <Route
-              path="/"
-              exact
-              render={props => {
-                return (
-                  (this.authParam = props.location.search),
-                  <Redirect to='/dashboard' />
-                );
-              }}
-            />
+            <Route path='/settings' exact component={CompanyDetails} />
+
+            <Route path='/applicants' exact component={HirePipeline} />
+
+
           </div>
         </ReactSwitch>
       </React.Fragment>

@@ -43,7 +43,10 @@ class BusinessNavBar extends React.Component {
                         <DatabaseOutlined />
                         <span>Data</span>
                     </Menu.Item>
-                    <Menu.Item key='3'>
+                    <Menu.Item key='3'
+                        onClick={() => {
+                            this.routeChange("/applicants");
+                        }}>
                         <TeamOutlined />
                         <span>Applicants</span>
                     </Menu.Item>
