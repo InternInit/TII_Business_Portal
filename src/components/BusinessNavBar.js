@@ -1,5 +1,6 @@
 import React from "react";
 import { Layout, Menu, Avatar } from "antd";
+import { withRouter } from 'react-router-dom';
 import {
     PieChartOutlined,
     SettingOutlined,
@@ -29,7 +30,10 @@ class BusinessNavBar extends React.Component {
                     theme='dark'
                     defaultSelectedKeys={'1'}
                     style={{ marginTop: "10vh", }}>
-                    <Menu.Item key='1'>
+                    <Menu.Item key='1'
+                        onClick={() => {
+                            this.routeChange("/dashboard");
+                        }}>
                         <PieChartOutlined />
                         <span>Overview</span>
                     </Menu.Item>
@@ -62,5 +66,9 @@ class BusinessNavBar extends React.Component {
                 </Menu>
             </Sider >
         )
+
     }
-} export default BusinessNavBar;
+    routeChange = path => {
+        this.props.history.push(path);
+    }
+} export default withRouter(BusinessNavBar);
