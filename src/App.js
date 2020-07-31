@@ -76,6 +76,7 @@ class App extends React.Component {
             <Route path='/settings' exact component={CompanyDetails} />
 
             <Route path='/applicants' exact component={HirePipeline} />
+            <Route path={`/applicants/:id`} component={StudentInfo} />
 
 
           </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { Link, withRouter } from 'react-router-dom';
 const Container = styled.div`
 width:100%;
 min-height:12vh;
@@ -44,7 +45,7 @@ align-items:center;
 
 class DraggingCard extends React.Component {
     render() {
-        let { name, date, position, avatar } = this.props;
+        let { name, date, position, avatar, id } = this.props;
         return (<Container>
             {/**
              * 
@@ -82,7 +83,9 @@ class DraggingCard extends React.Component {
              * 
              */}
             <Button type="primary" style={{ marginTop: '2vh', width: '60%', marginBottom: '2vh' }}>
-                Details
+                <Link to={`/applicants/${id}`}>
+                    Details
+                </Link>
             </Button>
         </Container>
         )

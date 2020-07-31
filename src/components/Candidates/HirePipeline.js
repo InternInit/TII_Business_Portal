@@ -176,6 +176,7 @@ function HirePipeline() {
                                                                             name={item.name}
                                                                             date={item.date}
                                                                             position={item.position}
+                                                                            id={item.id}
                                                                             avatar=""
 
 
