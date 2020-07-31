@@ -45,7 +45,7 @@ class App extends React.Component {
         <ReactSwitch>
 
           <div style={{ marginLeft: '6%' }} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */>
-            <Route to='/dashboard' exact component={CompanyDetails} />
+            <Route to='/dashboard' exact component={MainPage} />
 
 
             <Route

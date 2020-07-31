@@ -8,10 +8,9 @@ align-items:center;
 justify-content:center;
 width:100%;
 background-color:white;
-min-height:50px;
+min-height:7.4vh;
 min-width:325px;
-height:7.4vh;
-border-radius:4px;
+ border-radius:4px;
 margin-bottom:12px;
 `
 const ListingName = styled.div`

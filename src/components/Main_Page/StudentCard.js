@@ -7,12 +7,11 @@ import { UserOutlined } from '@ant-design/icons';
 const Container = styled.div`
 width:100%;
 background-color:white;
-min-height:50px;
+min-height:7.4vh;
 margin-bottom:10px;
 min-width:325px;
 border-radius:4px;
-height:7.4vh;
-
+ 
 display:flex;
 justify-content:center;
 align-items:center;

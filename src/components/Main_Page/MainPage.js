@@ -42,7 +42,7 @@ class MainPage extends React.Component {
         Overview
       </PageHeader>
 
-      <Row >
+      <Row style={{ minWidth: '550px' }}>
         {/**
          * 
          * Column 1
