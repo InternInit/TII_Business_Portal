@@ -14,6 +14,8 @@ justify-content:center;
 align-items:center;
  width:90%;
 height:22vh;
+
+border:
 border-radius:4px;
 `
 

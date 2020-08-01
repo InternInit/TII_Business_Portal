@@ -44,7 +44,7 @@ class MainPage extends React.Component {
     return (
       <div
         style={{
-          backgroundColor: "#f9f0ff",
+          backgroundColor: "#ECEFF9",
           minHeight: "100vh"
         }}
       >
