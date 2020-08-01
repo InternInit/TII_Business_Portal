@@ -8,7 +8,7 @@ const Header = styled.span`
   font-size: 48px;
   font-weight: 600;
   color: black;
-  margin-left: 6vh;
+  margin-left: 5%;
 `;
 
 //CSS Constants

@@ -57,14 +57,13 @@ const SelectedMenuItem = styled.h2`
 const SelectedMenuItemWrapper = styled.div`
   width: 270px;
   height: 60px;
-  margin-left: 50px;
+  margin-left: 5%;
   text-align: center;
   display: inline-block;
-  
+  border-bottom: 5px solid #1890ff;
+
   :hover {
     cursor: pointer;
-    transition:.15s;
-  border-bottom: 5px solid #1890ff;
   }
 `;
 
@@ -85,19 +84,19 @@ function CandidatesNavbar(props) {
           </Link>
         </React.Fragment>
       ) : (
-          <React.Fragment>
-            <Link to="/applicants/review-applicants">
-              <MenuItemWrapper>
-                <MenuItem>Review Applicants</MenuItem>
-              </MenuItemWrapper>
-            </Link>
-            <Link to="/applicants/manage-candidates">
-              <SelectedMenuItemWrapper>
-                <SelectedMenuItem>Manage Candidates</SelectedMenuItem>
-              </SelectedMenuItemWrapper>
-            </Link>
-          </React.Fragment>
-        )}
+        <React.Fragment>
+          <Link to="/applicants/review-applicants">
+            <MenuItemWrapper>
+              <MenuItem>Review Applicants</MenuItem>
+            </MenuItemWrapper>
+          </Link>
+          <Link to="/applicants/manage-candidates">
+            <SelectedMenuItemWrapper>
+              <SelectedMenuItem>Manage Candidates</SelectedMenuItem>
+            </SelectedMenuItemWrapper>
+          </Link>
+        </React.Fragment>
+      )}
     </MenuContainer>
   );
 }
