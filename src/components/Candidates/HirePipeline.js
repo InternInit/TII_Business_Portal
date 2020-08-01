@@ -136,7 +136,9 @@ function HirePipeline() {
                           padding: 4,
                           width: "40vh",
                           minHeight: "80vh",
-                          borderRadius: "4px"
+                          borderRadius: "4px",
+                          border: '1px solid #d8def3'
+
                         }}
                       >
                         {/**
@@ -191,7 +193,7 @@ function HirePipeline() {
           );
         })}
       </DragDropContext>
-    </div>
+    </div >
   );
 }
 
