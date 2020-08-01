@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../App.css";
-import "./internshipListing.css";
+import "./candidates.css";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
