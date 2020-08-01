@@ -12,6 +12,13 @@ min-height:7.4vh;
 min-width:325px;
  border-radius:4px;
 margin-bottom:12px;
+
+:hover{
+    transition-duration:.35s;
+    cursor:pointer;
+    box-shadow:  2px 2px 8px 2px rgba(0,0,0,0.10);
+
+}
 `
 const ListingName = styled.div`
 font-size:20px;

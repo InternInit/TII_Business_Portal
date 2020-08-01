@@ -110,10 +110,11 @@ class MainPage extends React.Component {
          * To be Interviewed
          * 
          */}
-          <Header>Incoming Applicants</Header>
+          <Header>To be Interviewed</Header>
           <StudentCard />
           <StudentCard />
           <StudentCard />
+
 
         </Col>
 

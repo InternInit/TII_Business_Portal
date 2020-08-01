@@ -5,6 +5,13 @@ const FeedbackContainer = styled.div`
 width:100%;
 border-radius:4px;
 min-width:325px;
+
+:hover{
+    transition-duration:.35s;
+    cursor:pointer;
+    box-shadow:  2px 2px 8px 2px rgba(0,0,0,0.10);
+
+}
 `
 const Banner = styled.div`
 width:100%;

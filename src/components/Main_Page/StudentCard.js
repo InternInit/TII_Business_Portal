@@ -15,6 +15,14 @@ border-radius:4px;
 display:flex;
 justify-content:center;
 align-items:center;
+
+box-shadow:0;
+:hover{
+    transition-duration:.35s;
+    cursor:pointer;
+    box-shadow:  2px 2px 8px 2px rgba(0,0,0,0.10);
+
+}
 `
 
 const Col = styled.div`
