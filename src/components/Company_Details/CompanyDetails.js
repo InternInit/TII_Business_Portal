@@ -42,24 +42,36 @@ const Col = styled.div`
   flex-direction: column;
 `;
 
+//CSS Constants
+const buttonStyle = {
+  display: "flex",
+  justifyContent: "flex-end",
+  marginTop: "6vh",
+  marginBottom: "6vh"
+}
+
+const marginStyle = {
+  backgroundColor: "#eceff9",
+  width: "80%"
+}
+
+const pageStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  float: "center"
+}
+
 class CompanyDetails extends React.Component {
   render() {
     return (
       <React.Fragment>
         <NavSearch title="Company Information" searchBar={false} />
         <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            float: "center"
-          }}
+          style={pageStyle}
         >
           <div
-            style={{
-              backgroundColor: "#eceff9",
-              width: "80%"
-            }}
+            style={marginStyle}
           >
             {/**
              *
@@ -153,12 +165,7 @@ class CompanyDetails extends React.Component {
             </div>
 
             <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                marginTop: "6vh",
-                marginBottom: "6vh"
-              }}
+              style={buttonStyle}
             >
               <Button type="primary" size="medium" style={{ width: "36vh" }}>
                 Save Changes

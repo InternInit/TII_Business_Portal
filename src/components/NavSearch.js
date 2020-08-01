@@ -11,21 +11,21 @@ const Header = styled.div`
   margin-left: 6vh;
 `;
 
+//CSS Constants
+const containerStyle = {
+  width: "100%",
+  display: "flex",
+  alignItems: "center",
+  paddingTop: "2vh",
+  paddingBottom: "2vh",
+  backgroundColor: "white"
+}
+
 class NavSearch extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          paddingTop: "2vh",
-          paddingBottom: "2vh",
-          backgroundColor: "white"
-        }}
+        style={containerStyle}
       >
         <Header style={{ width: "45%" }}>{this.props.title}</Header>
         {this.props.searchBar ? (

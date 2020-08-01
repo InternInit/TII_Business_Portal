@@ -11,6 +11,29 @@ const Header = styled.div`
   margin-top: 4vh;
 `;
 
+//Styles
+const containerStyle = {
+  display: "flex",
+  justifyContent: "center",
+  minHeight: "100vh",
+  backgroundColor: "#eceff9"
+}
+
+const columnStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center"
+}
+
+const dragStyle = {
+  backgroundColor: "#f5f5f5",
+  padding: 4,
+  width: "40vh",
+  minHeight: "80vh",
+  borderRadius: "4px",
+  border: '1px solid #d8def3'
+
+}
 //Psuedo backend
 const itemsFromBackend = [
   { id: "1", name: "Brandon Lu", date: "01/02/12", position: "Cheese Grator" },
@@ -39,6 +62,12 @@ const columnsFromBackend = {
     items: []
   }
 };
+
+
+
+
+
+
 
 /**
  *
@@ -91,12 +120,7 @@ function HirePipeline() {
      *
      */
     <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        minHeight: "100vh",
-        backgroundColor: "#eceff9"
-      }}
+      style={containerStyle}
     >
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
@@ -109,11 +133,7 @@ function HirePipeline() {
              *
              */
             <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
-              }}
+              style={columnStyle}
               key={columnId}
             >
               <Header>{column.name}</Header>
@@ -129,17 +149,7 @@ function HirePipeline() {
                       <div
                         {...provided.droppableProps}
                         ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver
-                            ? "#f5f5f5"
-                            : "#f5f5f5",
-                          padding: 4,
-                          width: "40vh",
-                          minHeight: "80vh",
-                          borderRadius: "4px",
-                          border: '1px solid #d8def3'
-
-                        }}
+                        style={dragStyle}
                       >
                         {/**
                          *

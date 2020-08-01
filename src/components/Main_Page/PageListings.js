@@ -48,6 +48,16 @@ const StatLabel = styled.div`
   font-weight: 500;
 `;
 
+
+//CSS Constants
+const dividerStyle = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-evenly",
+  marginLeft: "5%",
+  width: "65%"
+}
+
 class PageListings extends React.Component {
   render() {
     return (
@@ -68,13 +78,7 @@ class PageListings extends React.Component {
          *
          */}
         <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            marginLeft: "5%",
-            width: "65%"
-          }}
+          style={dividerStyle}
         >
           <Col>
             <StatNum>12</StatNum>

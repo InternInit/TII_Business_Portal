@@ -16,6 +16,14 @@ display:flex;
 justify-content:center;
 `
 
+//CSS Constants
+const dividerStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '90vh',
+    marginLeft: '25vh',
+}
+
 function InfoBar() {
     return (<Container>
         {/**
@@ -31,12 +39,7 @@ function InfoBar() {
          * Spacing
          * 
          */}
-        <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            width: '90vh',
-            marginLeft: '25vh',
-        }}>
+        <div style={dividerStyle}>
 
             {/**
          * 

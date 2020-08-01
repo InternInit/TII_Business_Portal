@@ -32,19 +32,20 @@ const Backend = [
     '1', '2', '3', '4'
 ]
 
-
+//CSS Constants
+const pageStyle = {
+    display: 'flex',
+    width: '80%',
+    flexDirection: 'column',
+    justifySelf: 'center'
+}
 class PositionPost extends Component {
     render() {
         return (<Container>
             <NavSearch title='My Internship Postings' />
 
 
-            <div style={{
-                display: 'flex',
-                width: '80%',
-                flexDirection: 'column',
-                justifySelf: 'center'
-            }}>
+            <div style={pageStyle}>
 
                 <Row >
                     <Button type='primary' style={{ width: '27vh' }}>

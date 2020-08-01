@@ -43,7 +43,15 @@ font-size:16px;
 font-weight:500;
  `
 
-
+//CSS Constants
+const dividerStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '90vh',
+    marginLeft: '25vh',
+    paddingRight: '1vh',
+    alignItems: 'center'
+}
 
 
 class PostingTab extends Component {
@@ -80,14 +88,7 @@ class PostingTab extends Component {
              * Dividing margin
              * 
              */}
-            <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '90vh',
-                marginLeft: '25vh',
-                paddingRight: '1vh',
-                alignItems: 'center'
-            }}>
+            <div style={dividerStyle}>
 
                 {/**
              * 

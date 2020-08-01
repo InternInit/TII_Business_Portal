@@ -36,6 +36,13 @@ const Feedback = styled.div`
   font-size: 13px;
 `;
 
+//CSS Constants
+const feedbackStyle = {
+  width: "90%",
+  marginTop: "10px",
+  minHeight: "12vh",
+  maxHeight: "20vh"
+}
 class PageFeedback extends React.Component {
   render() {
     return (
@@ -58,12 +65,7 @@ class PageFeedback extends React.Component {
          */}
         <Feedback>
           <div
-            style={{
-              width: "90%",
-              marginTop: "10px",
-              minHeight: "12vh",
-              maxHeight: "20vh"
-            }}
+            style={feedbackStyle}
           >
             Feedback goes here
           </div>

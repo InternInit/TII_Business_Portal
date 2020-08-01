@@ -14,16 +14,19 @@ import {
 
 const { Sider } = Layout;
 
+//CSS Constants
+const navbarStyle = {
+  position: "fixed",
+  height: "100vh",
+  boxShadow: "2px 4px 8px 2px rgba(0,0,0,0.25)"
+}
+
 class BusinessNavBar extends React.Component {
   render() {
     return (
       <Sider
         collapsed="true"
-        style={{
-          position: "fixed",
-          height: "100vh",
-          boxShadow: "2px 4px 8px 2px rgba(0,0,0,0.25)"
-        }}
+        style={navbarStyle}
       >
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Avatar
