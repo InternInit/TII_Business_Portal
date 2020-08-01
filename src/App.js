@@ -20,6 +20,7 @@ import BusinessNavBar from "./components/BusinessNavBar";
 import CompanyDetails from "./components/Company_Details/CompanyDetails";
 import HirePipeline from "./components/Candidates/HirePipeline";
 import StudentInfo from "./components/Candidates/StudentInfo";
+import CandidatesContainer from "./components/Candidates/candidatesContainer";
 import NavSearch from "./components/NavSearch";
 
 const { Content } = Layout;
@@ -48,8 +49,9 @@ class App extends React.Component {
                     );
                   }}
                 />
-                <Route path="/applicants">{this.renderPage()}</Route>
-                <Route path="/settings">{this.renderPage()}</Route>
+                <Route path="/applicants" component={CandidatesContainer} />
+                <Route path="/settings" component={CompanyDetails} />
+                <Route path={`/applicants/:id`} component={StudentInfo} />
               </div>
             </Content>
           </Layout>
@@ -58,7 +60,7 @@ class App extends React.Component {
     );
   }
 
-  renderPage = () => {
+  /**renderPage = () => {
     return (
       <React.Fragment>
         <NavSearch />
@@ -79,6 +81,6 @@ class App extends React.Component {
         </ReactSwitch>
       </React.Fragment>
     );
-  };
+  };*/
 }
 export default App;
