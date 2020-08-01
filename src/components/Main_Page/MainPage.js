@@ -44,7 +44,7 @@ class MainPage extends React.Component {
     return (
       <div
         style={{
-          backgroundColor: "#ECEFF9",
+          backgroundColor: "#eceff9",
           minHeight: "100vh"
         }}
       >
@@ -110,7 +110,7 @@ class MainPage extends React.Component {
              * To be Interviewed
              *
              */}
-            <Header>Incoming Applicants</Header>
+            <Header>To be Interviewed</Header>
             <StudentCard />
             <StudentCard />
             <StudentCard />

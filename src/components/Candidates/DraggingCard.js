@@ -13,6 +13,18 @@ background-color:white;
  display:flex;
  flex-direction:column;
  align-items:center;
+
+ border: 1px solid #d9d9d9;
+
+:hover{
+    transition-duration:.35s;
+    cursor:pointer;
+    box-shadow:  2px 2px 8px 2px rgba(0,0,0,0.10);
+}
+:active{
+    box-shadow:  2px 2px 8px 2px rgba(0,0,0,0.10);
+
+}
 `
 const Position = styled.div`
 font-weight: 500;

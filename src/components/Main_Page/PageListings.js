@@ -12,6 +12,7 @@ min-height:7.4vh;
 min-width:325px;
  border-radius:4px;
 margin-bottom:12px;
+border: 1px solid #d8def3;
 
 :hover{
     transition-duration:.35s;

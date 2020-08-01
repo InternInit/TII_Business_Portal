@@ -15,6 +15,7 @@ border-radius:4px;
 display:flex;
 justify-content:center;
 align-items:center;
+border: 1px solid #d8def3;
 
 box-shadow:0;
 :hover{

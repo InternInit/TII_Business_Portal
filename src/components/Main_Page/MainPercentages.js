@@ -15,7 +15,7 @@ align-items:center;
  width:90%;
 height:22vh;
 
-border:
+border: 1px solid #d8def3;
 border-radius:4px;
 `
 

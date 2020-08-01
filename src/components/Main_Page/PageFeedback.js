@@ -5,6 +5,7 @@ const FeedbackContainer = styled.div`
 width:100%;
 border-radius:4px;
 min-width:325px;
+border: 1px solid #d8def3;
 
 :hover{
     transition-duration:.35s;
