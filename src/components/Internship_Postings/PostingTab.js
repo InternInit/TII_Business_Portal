@@ -77,48 +77,29 @@ class PostingTab extends Component {
          * Listing Name + Industry
          *
          */}
-        <Col style={{ width: "20vh" }}>
+        <Col style={{ width: "42vh" }}>
           <Header>Coffee Getter</Header>
           <Caption>Data Science</Caption>
         </Col>
 
-        {/**
-         *
-         * Dividing margin
-         *
-         */}
-        <div style={dividerStyle}>
-          {/**
-           *
-           * Status
-           *
-           */}
-          <Status style={{ color: statusColor }}>{status}</Status>
+        {/**Status */}
+        <Status style={{ color: statusColor, width: '8vh' }}>{status}</Status>
 
-          {/**
-           *
-           * Number of Applicants
-           *
-           */}
-          <Col style={{ alignItems: "center" }}>
-            <Header>12</Header>
-            <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
-          </Col>
+        {/**Applicants */}
+        <Col style={{ alignItems: "center", width: '50vh' }}>
+          <Header>12</Header>
+          <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
+        </Col>
 
-          {/**
-           *
-           * View Listing Details
-           *
-           */}
-          <Button
-            type="primary"
-            style={{
-              width: "30vh"
-            }}
-          >
-            <Link to={`/internship-listings/${id}`}>Details</Link>
-          </Button>
-        </div>
+        {/**Details */}
+        <Button
+          type="primary"
+          style={{
+            width: "30vh",
+          }}
+        >
+          <Link to={`/internship-listings/${id}`}>Details</Link>
+        </Button>
       </TabContainer>
     );
   }

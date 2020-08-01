@@ -22,6 +22,7 @@ const Banner = styled.div`
 `;
 const Student = styled.span`
   font-size: 12px;
+  margin-left:2vh;
 `;
 const Position = styled.span`
   font-weight: 500;

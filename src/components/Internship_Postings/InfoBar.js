@@ -32,49 +32,11 @@ function InfoBar() {
        * Name
        *
        */}
-      <Info style={{ width: "40vh" }}>Name</Info>
-
-      {/**
-       *
-       * Spacing
-       *
-       */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "90vh",
-          marginLeft: "25vh"
-        }}
-      >
-        {/**
-         *
-         * Name
-         *
-         */}
-        <Info style={{ width: "20vh" }}>Name</Info>
-      </div>
-
-      {/**
-       *
-       * Spacing
-       *
-       */}
-      <div style={dividerStyle}>
-        {/**
-         *
-         * Status, Applicants, and Edit Details
-         *
-         */}
-        <Info>Status</Info>
-        <Info>Applicants</Info>
-        <Info
-          style={{ width: "30vh", justifyContent: "center", display: "flex" }}
-        >
-          Edit Details
-        </Info>
-      </div>
-    </Container>
+      <Info style={{ width: "38vh" }}>Name</Info>
+      <Info style={{ width: '28vh' }}>Status</Info>
+      <Info style={{ width: '36vh' }}>Applicants</Info>
+      <Info style={{ width: "20vh", display: 'flex', justifyContent: 'center' }}>Edit Details</Info>
+    </Container >
   );
 }
 export default InfoBar;
