@@ -95,7 +95,7 @@ function HirePipeline() {
         display: "flex",
         justifyContent: "center",
         minHeight: "100vh",
-        backgroundColor: "#F0F5FF"
+        backgroundColor: "#eceff9"
       }}
     >
       <DragDropContext
