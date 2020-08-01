@@ -31,12 +31,12 @@ const Col = styled.div`
 
   margin-left: 6px;
 `;
-const Name = styled.div`
+const Name = styled.span`
   font-size: 18px;
   font-weight: bold;
   color: #434343;
 `;
-const Applying = styled.div`
+const Applying = styled.span`
   margin-top: -4px;
   font-size: 12px;
   font-weight: 500;

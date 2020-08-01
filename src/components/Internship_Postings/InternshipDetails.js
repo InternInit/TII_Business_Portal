@@ -9,7 +9,7 @@ import NavSearch from "../NavSearch";
 const { TextArea } = Input;
 const { Dragger } = Upload;
 
-const Header = styled.div`
+const Header = styled.span`
   font-size: 36px;
   font-weight: bold;
 
@@ -18,7 +18,7 @@ const Header = styled.div`
   color: #000000;
 `;
 
-const InfoHeader = styled.div`
+const InfoHeader = styled.span`
   font-size: 24px;
   font-weight: bold;
 

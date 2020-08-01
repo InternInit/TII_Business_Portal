@@ -4,7 +4,7 @@ import { Input, Button } from 'antd';
 
 const { TextArea } = Input;
 
-const Header = styled.div`
+const Header = styled.span`
 font-size:36px;
 font-weight:bold;
 
@@ -14,7 +14,7 @@ margin-top:8vh;
 color:#000000;
 `
 
-const InfoHeader = styled.div`
+const InfoHeader = styled.span`
 font-size:24px;
 font-weight:bold;
 
@@ -32,7 +32,7 @@ const Col = styled.div`
  flex-direction:column;
   `
 
-const Info = styled.div`
+const Info = styled.span`
 font-size:18px;
 font-weight:500;
 
@@ -60,14 +60,14 @@ flex-direction:column;
 justify-content:center;
 `
 
-const SchoolName = styled.div`
+const SchoolName = styled.span`
 font-size:18px;
 font-weight:bold;
 
   color:#000000;
 `
 
-const SchoolInfo = styled.div`
+const SchoolInfo = styled.span`
 font-size:16px;
 font-weight:500;
 
@@ -78,7 +78,7 @@ margin-bottom:1vh;
 color:#434343;
 `
 
-const AppInfo = styled.div`
+const AppInfo = styled.span`
 font-size:18px;
  
 margin-top:2vh;
@@ -89,7 +89,7 @@ margin-left:1vh;
 color:#595959;
 `
 
-const ListInfo = styled.div`
+const ListInfo = styled.span`
 font-size:18px;
  
 margin-left:1vh;

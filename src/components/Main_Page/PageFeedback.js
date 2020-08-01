@@ -20,10 +20,10 @@ const Banner = styled.div`
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 `;
-const Student = styled.div`
+const Student = styled.span`
   font-size: 12px;
 `;
-const Position = styled.div`
+const Position = styled.span`
   font-weight: 500;
 `;
 const Feedback = styled.div`

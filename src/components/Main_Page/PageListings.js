@@ -20,11 +20,11 @@ const TabContainer = styled.div`
     box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
   }
 `;
-const ListingName = styled.div`
+const ListingName = styled.span`
   font-size: 20px;
   font-weight: bold;
 `;
-const Industry = styled.div`
+const Industry = styled.span`
   margin-top: -5%;
   font-size: 14px;
   color: #8c8c8c;
@@ -35,13 +35,13 @@ const Col = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
-const StatNum = styled.div`
+const StatNum = styled.span`
   display: flex;
   justify-content: center;
   font-weight: bold;
   font-size: 14px;
 `;
-const StatLabel = styled.div`
+const StatLabel = styled.span`
   margin-top: -4%;
   font-size: 14px;
   color: #8c8c8c;

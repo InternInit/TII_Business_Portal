@@ -23,7 +23,7 @@ const TabContainer = styled.div`
   box-shadow: 1px 1px 5px -4px;
 `;
 
-const Header = styled.div`
+const Header = styled.span`
 font-size:16px;
 font-weight:bold;
 `
@@ -33,12 +33,12 @@ display:flex;
 flex-direction:column;
 `
 
-const Caption = styled.div`
+const Caption = styled.span`
 font-size:12px;
 margin-top:-.5vh;
 `
 
-const Status = styled.div`
+const Status = styled.span`
 font-size:16px;
 font-weight:500;
  `

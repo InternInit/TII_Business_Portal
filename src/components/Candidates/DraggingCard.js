@@ -31,13 +31,13 @@ const Position = styled.div`
   font-size: 14px;
 `;
 
-const Name = styled.div`
+const Name = styled.span`
   font-size: 16px;
   font-weight: bold;
   margin-left: 2vh;
 `;
 
-const Date = styled.div`
+const Date = styled.span`
   font-weight: 500;
   font-size: 12px;
 `;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const Info = styled.div`
+const Info = styled.span`
 font-size:16px;
 font-weight:500;
 color:#B2B2B2;
