@@ -35,22 +35,24 @@ class CandidatesContainer extends Component {
       <div>
         <NavSearch title="Internship Candidates" />
         <CandidatesNavbar defaultSelectedKey={this.findPath()} />
-        <Route
-          path="/applicants"
-          exact
-          render={() => <Redirect to="/applicants/review-applicants" />}
-        />
-        <Route
-          path="/applicants/review-applicants"
-          exact
-          component={ReviewApplicants}
-        />
-        <Route
-          path="/applicants/manage-candidates"
-          exact
-          component={HirePipeline}
-        />
-        {/*<Route path={`/applicants/:id`} component={StudentInfo} />*/}
+        <ReactSwitch>
+          <Route
+            path="/applicants"
+            exact
+            render={() => <Redirect to="/applicants/review-applicants" />}
+          />
+          <Route
+            path="/applicants/review-applicants"
+            exact
+            component={ReviewApplicants}
+          />
+          <Route
+            path="/applicants/manage-candidates"
+            exact
+            component={HirePipeline}
+          />
+          <Route path={`/applicants/:id`} component={StudentInfo} />
+        </ReactSwitch>
       </div>
     );
   }
