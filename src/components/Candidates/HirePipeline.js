@@ -131,7 +131,7 @@ function HirePipeline() {
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "#f0f0f0"
+                            ? "#f5f5f5"
                             : "#f5f5f5",
                           padding: 4,
                           width: "40vh",

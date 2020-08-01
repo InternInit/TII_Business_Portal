@@ -12,15 +12,13 @@ const PageHeader = styled.h1`
   font-size: 36px;
   font-weight: 500;
   margin-left: 25px;
-  padding-top: 10px;
-`;
+ `;
 
 const PageHeaderContainer = styled.div`
   background-color: white;
-  height: 75px;
-  border-bottom: 1px solid #bfbfbf;
-  margin-bottom: 10px;
-`;
+  height:60px;
+   border-bottom: 1px solid #bfbfbf;
+ `;
 
 const Header = styled.div`
   font-size: 20px;
