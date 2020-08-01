@@ -47,7 +47,10 @@ class BusinessNavBar extends React.Component {
             <span>Overview</span>
           </Menu.Item>
           <Menu.Item key="2">
-            <DatabaseOutlined />
+            <DatabaseOutlined
+              onClick={() => {
+                this.routeChange("/internship-listings");
+              }} />
             <span>Internship Listings</span>
           </Menu.Item>
           <Menu.Item

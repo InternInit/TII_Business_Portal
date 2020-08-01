@@ -22,6 +22,8 @@ import HirePipeline from "./components/Candidates/HirePipeline";
 import StudentInfo from "./components/Candidates/StudentInfo";
 import CandidatesContainer from "./components/Candidates/candidatesContainer";
 import NavSearch from "./components/NavSearch";
+import PositionPost from './components/Internship_Postings/PositionPost';
+import InternshipDetails from "./components/Internship_Postings/InternshipDetails";
 
 const { Content } = Layout;
 
@@ -49,6 +51,9 @@ class App extends React.Component {
                     );
                   }}
                 />
+                <Route path="/internship-listings" exact component={PositionPost} />
+                <Route path={`/internship-listings/:id`} component={InternshipDetails} />
+
                 <Route path="/applicants" component={CandidatesContainer} />
                 <Route path="/settings" component={CompanyDetails} />
                 <Route path={`/applicants/:id`} component={StudentInfo} />
@@ -60,27 +65,5 @@ class App extends React.Component {
     );
   }
 
-  /**renderPage = () => {
-    return (
-      <React.Fragment>
-        <NavSearch />
-        <ReactSwitch>
-          <div
-            style={{
-              backgroundColor: "#eceff9",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center"
-            }}
-          >
-            <Route path="/settings" exact component={CompanyDetails} />
-
-            <Route path="/applicants" exact component={HirePipeline} />
-            <Route path={`/applicants/:id`} component={StudentInfo} />
-          </div>
-        </ReactSwitch>
-      </React.Fragment>
-    );
-  };*/
 }
 export default App;

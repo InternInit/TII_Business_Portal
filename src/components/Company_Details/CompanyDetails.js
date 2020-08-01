@@ -155,9 +155,9 @@ class CompanyDetails extends React.Component {
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
-                marginTop: "4vh",
-                marginBottom: "4vh"
+                justifyContent: "flex-end",
+                marginTop: "6vh",
+                marginBottom: "6vh"
               }}
             >
               <Button type="primary" size="medium" style={{ width: "36vh" }}>
