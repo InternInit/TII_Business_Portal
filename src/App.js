@@ -56,7 +56,6 @@ class App extends React.Component {
 
                 <Route path="/applicants" component={CandidatesContainer} />
                 <Route path="/settings" component={CompanyDetails} />
-                <Route path={`/applicants/:id`} component={StudentInfo} />
               </div>
             </Content>
           </Layout>

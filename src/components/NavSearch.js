@@ -9,7 +9,6 @@ const Header = styled.div`
   font-weight: 600;
   color: black;
   margin-left: 6vh;
-  margin-top: -1vh;
 `;
 
 class NavSearch extends Component {

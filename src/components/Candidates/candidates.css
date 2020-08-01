@@ -1,0 +1,11 @@
+.candidates-menu.ant-menu-horizontal > .ant-menu-item:hover,
+.candidates-menu.ant-menu-horizontal > .ant-menu-submenu:hover,
+.candidates-menu.ant-menu-horizontal > .ant-menu-item-active,
+.candidates-menu.ant-menu-horizontal > .ant-menu-submenu-active,
+.candidates-menu.ant-menu-horizontal > .ant-menu-item-open,
+.candidates-menu.ant-menu-horizontal > .ant-menu-submenu-open,
+.candidates-menu.ant-menu-horizontal > .ant-menu-item-selected,
+.candidates-menu.ant-menu-horizontal > .ant-menu-submenu-selected {
+  color: #1890ff;
+  border-bottom: 2px solid #1890ff;
+}
