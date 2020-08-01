@@ -1,20 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-<<<<<<< Updated upstream
 const Info = styled.span`
-font-size:16px;
-font-weight:500;
-color:#B2B2B2;
-`
-=======
-const Info = styled.div`
   font-size: 16px;
   font-weight: 500;
   color: #b2b2b2;
-  text-align: center;
 `;
->>>>>>> Stashed changes
 
 const Container = styled.div`
   width: 100%;
