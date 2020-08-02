@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Switch } from "antd";
 
 import CandidateInfoBar from "./candidateInfoBar";
+import CandidateQuickviewTab from "./CandidateQuickviewTab";
 
 //Ant Design Styles
 const AddFilterStyle = {
@@ -77,6 +78,7 @@ class ReviewApplicants extends Component {
           />
           <HeaderText>Unread Applicants</HeaderText>
           <CandidateInfoBar />
+          <CandidateQuickviewTab />
           <h1>Hello!</h1>
         </div>
       </div>
