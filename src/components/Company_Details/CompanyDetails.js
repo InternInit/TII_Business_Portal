@@ -59,7 +59,9 @@ const pageStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  float: "center"
+  float: "center",
+  backgroundColor: '#eceff9'
+
 }
 
 class CompanyDetails extends React.Component {

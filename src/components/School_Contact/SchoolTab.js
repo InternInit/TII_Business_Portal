@@ -14,7 +14,7 @@ const TabContainer = styled.div`
   background-color: white;
 
   width: 100%;
-  min-height: 9vh;
+  min-height: 11vh;
   min-width: 600px;
 
   margin-top: 2vh;
@@ -25,7 +25,7 @@ const TabContainer = styled.div`
 `;
 
 const Header = styled.span`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
 `;
 
@@ -35,18 +35,18 @@ const Col = styled.div`
 `;
 
 const Caption = styled.span`
-  font-size: 12px;
-  margin-top: -0.5vh;
+  font-size: 14px;
+  margin-top: -.5vh;
 `;
 
 const Contact = styled.span`
-  font-size: 13px;
+  font-size: 14px;
   margin-top: -0.5vh;
   color:#722ED1;
 `;
 
 const EMailHeader = styled.span`
-font-size: 14px;
+font-size: 16px;
 font-weight: 500;
 color:black;
 
@@ -69,16 +69,18 @@ class SchoolTab extends Component {
          * School name and Country
          *
          */}
-                <Col style={{ width: "42vh" }}>
+                <Col style={{ width: "45vh" }}>
                     <Header>Algonquin Regional High School</Header>
                     <Caption>Northborough, Worester County</Caption>
                 </Col>
 
                 {/**Interns */}
-                <Col style={{ alignItems: "center", width: '8vh' }}>
-                    <Header>12</Header>
-                    <Caption style={{ color: "#BFBFBF" }}>Interns</Caption>
-                </Col>
+                <div style={{ width: '35vh', justifyContent: 'center', display: 'flex' }}>
+                    <Col style={{ alignItems: "center" }}>
+                        <Header>12</Header>
+                        <Caption style={{ color: "#BFBFBF" }}>Interns</Caption>
+                    </Col>
+                </div>
 
                 {/**Contact Info */}
                 <Col style={{ alignItems: "center", width: '50vh' }}>

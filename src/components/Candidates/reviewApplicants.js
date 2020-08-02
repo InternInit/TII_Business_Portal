@@ -57,7 +57,7 @@ class ReviewApplicants extends Component {
       <div
         style={{
           display: "flex",
-          width: "90%",
+          width: "85%",
           flexDirection: "column",
           margin: "auto"
         }}
@@ -69,8 +69,8 @@ class ReviewApplicants extends Component {
           {this.state.quickview ? (
             <ViewText>Quickview</ViewText>
           ) : (
-            <ViewText>Detailed View</ViewText>
-          )}
+              <ViewText>Detailed View</ViewText>
+            )}
           <Switch
             defaultChecked
             onChange={() => this.setState({ quickview: !this.state.quickview })}
@@ -78,7 +78,10 @@ class ReviewApplicants extends Component {
           />
           <HeaderText>Unread Applicants</HeaderText>
           <CandidateInfoBar />
-          <CandidateQuickviewTab />
+          <CandidateQuickviewTab industry="Computer Science, Biotechnology,  " />
+          <CandidateQuickviewTab industry="Computer Science, Biotechnology, Business, General Business, " />
+          <CandidateQuickviewTab industry="Computer Science, Biotechnology, Business, General Business,  " />
+
           <h1>Hello!</h1>
         </div>
       </div>

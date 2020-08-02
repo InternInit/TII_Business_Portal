@@ -13,7 +13,7 @@ const TabContainer = styled.div`
   background-color: white;
 
   width: 100%;
-  min-height: 9vh;
+  min-height: 11vh;
   min-width: 600px;
 
   margin-top: 2vh;
@@ -24,7 +24,7 @@ const TabContainer = styled.div`
 `;
 
 const Header = styled.span`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
 `;
 
@@ -34,24 +34,16 @@ const Col = styled.div`
 `;
 
 const Caption = styled.span`
-  font-size: 12px;
-  margin-top: -0.5vh;
+  font-size: 14px;
+  margin-top: -1vh;
 `;
 
 const Status = styled.span`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 `;
 
-//CSS Constants
-const dividerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  width: "90vh",
-  marginLeft: "25vh",
-  paddingRight: "1vh",
-  alignItems: "center"
-};
+
 
 class PostingTab extends Component {
   render() {
@@ -77,25 +69,29 @@ class PostingTab extends Component {
          * Listing Name + Industry
          *
          */}
-        <Col style={{ width: "42vh" }}>
+        <Col style={{ width: "45vh", marginLeft: '-5vh', marginRight: '5vh' }}>
           <Header>Coffee Getter</Header>
           <Caption>Data Science</Caption>
         </Col>
 
         {/**Status */}
-        <Status style={{ color: statusColor, width: '8vh' }}>{status}</Status>
+        <Status style={{ color: statusColor, width: '30vh' }}>{status}</Status>
 
         {/**Applicants */}
-        <Col style={{ alignItems: "center", width: '50vh' }}>
-          <Header>12</Header>
-          <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
-        </Col>
+        <div style={{ width: '35vh', justifyContent: 'flex-start', display: 'flex' }}>
+          <Col style={{ alignItems: "center" }}>
+            <Header>12</Header>
+            <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
+          </Col>
+        </div>
 
         {/**Details */}
         <Button
           type="primary"
           style={{
             width: "30vh",
+            marginLeft: '3vh',
+            marginRight: '-3vh'
           }}
         >
           <Link to={`/internship-listings/${id}`}>Details</Link>

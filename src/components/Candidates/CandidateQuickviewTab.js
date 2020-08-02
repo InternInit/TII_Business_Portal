@@ -16,9 +16,10 @@ const TabContainer = styled.div`
 
   background-color: white;
 
+  padding:1vh;
+
   width: 100%;
-  height: 100px;
-  min-height: 9vh;
+   min-height: 11vh;
   min-width: 600px;
 
   margin-top: 2vh;
@@ -40,7 +41,7 @@ const Col = styled.div`
 
 const Header = styled.span`
   font-family: roboto;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: black;
 `;
@@ -50,11 +51,11 @@ const Caption = styled.span`
 `;
 
 const GPA = styled.span`
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 const AppliedFor = styled.span`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: #722ed1;
 `;
@@ -96,7 +97,7 @@ class CandidateQuickviewTab extends Component {
   }
   render() {
     let { visible } = this.state;
-    let { name } = this.props;
+    let { name, industry } = this.props;
     return (
       <TabContainer>
         {/**
@@ -121,15 +122,15 @@ class CandidateQuickviewTab extends Component {
           {this.props.GPA > this.props.cutOffGPA ? (
             <GPA style={{ color: "green" }}>{this.props.GPA.toFixed(1)}</GPA>
           ) : (
-            <GPA style={{ color: "red" }}>{this.props.GPA.toFixed(1)}</GPA>
-          )}
+              <GPA style={{ color: "red" }}>{this.props.GPA.toFixed(1)}</GPA>
+            )}
         </Col>
 
         {/**Applied For*/}
         <Col style={{ alignItems: "center", width: "50vh" }}>
           <AppliedFor>Front End React Intern</AppliedFor>
           <Industries>
-            Industries: Computer Science, Biotechnology, Business
+            Industries: {industry}
           </Industries>
         </Col>
 

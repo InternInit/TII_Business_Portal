@@ -8,7 +8,7 @@ const TabContainer = styled.div`
   justify-content: center;
   width: 100%;
   background-color: white;
-  min-height: 7.4vh;
+  min-height: 7.75vh;
   min-width: 325px;
   border-radius: 4px;
   margin-bottom: 12px;
@@ -21,11 +21,11 @@ const TabContainer = styled.div`
   }
 `;
 const ListingName = styled.span`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 `;
 const Industry = styled.span`
-  margin-top: -5%;
+  margin-top: -1vh;
   font-size: 14px;
   color: #8c8c8c;
   font-weight: 500;

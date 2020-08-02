@@ -31,7 +31,7 @@ const Row = styled.div`
 //CSS Constants
 const pageStyle = {
   display: "flex",
-  width: "80%",
+  width: "90%",
   flexDirection: "column",
   justifySelf: "center"
 };

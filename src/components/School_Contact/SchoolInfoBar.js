@@ -5,6 +5,9 @@ const Info = styled.span`
   font-size: 16px;
   font-weight: 500;
   color: #b2b2b2;
+  
+  display:flex;
+  justify-content:center;
 `;
 
 const Container = styled.div`
@@ -18,18 +21,18 @@ const Container = styled.div`
 
 
 function SchoolInfoBar() {
-    return (
-        <Container>
-            {/**
+  return (
+    <Container>
+      {/**
        *
        * Name
        *
        */}
-            <Info style={{ width: "38vh" }}>School</Info>
-            <Info style={{ width: '28vh' }}>Interns</Info>
-            <Info style={{ width: '36vh' }}>Contact Info</Info>
-            <Info style={{ width: "20vh", display: 'flex', justifyContent: 'center' }}>Send E-Mail</Info>
-        </Container >
-    );
+      <Info style={{ width: "40vh", justifyContent: 'flex-start', marginLeft: '3vh' }}>School</Info>
+      <Info style={{ width: '20vh', paddingLeft: '2vh' }}>Interns</Info>
+      <Info style={{ width: '40vh', paddingLeft: '25vh' }}>Contact Info</Info>
+      <Info style={{ width: "40vh", paddingLeft: '20vh' }}>Send E-Mail</Info>
+    </Container >
+  );
 }
 export default SchoolInfoBar;

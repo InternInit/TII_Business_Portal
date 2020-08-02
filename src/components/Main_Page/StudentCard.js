@@ -7,7 +7,7 @@ import { UserOutlined } from "@ant-design/icons";
 const Container = styled.div`
   width: 100%;
   background-color: white;
-  min-height: 7.4vh;
+  min-height: 7.75vh;
   margin-bottom: 10px;
   min-width: 325px;
   border-radius: 4px;
