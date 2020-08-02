@@ -36,6 +36,21 @@ const pageStyle = {
     justifySelf: "center"
 };
 
+const AddFilterStyle = {
+    width: "270px",
+    height: "40px",
+    fontFamily: "roboto",
+    fontColor: "#13C2C2",
+    marginTop: "33px",
+    align: "inline-block"
+};
+
+const ButtonText = styled.span`
+  font-family: roboto;
+  color: #13c2c2;
+  font-size: 18px;
+`;
+
 const Backend = [1, 2, 3, 4];
 
 class SchoolContact extends Component {
@@ -46,8 +61,8 @@ class SchoolContact extends Component {
 
                 <div style={pageStyle}>
                     <Row>
-                        <Button type="primary" style={{ width: "27vh" }}>
-                            Add Filter
+                        <Button style={AddFilterStyle}>
+                            <ButtonText> Add Filter</ButtonText>
                         </Button>
                     </Row>
 
