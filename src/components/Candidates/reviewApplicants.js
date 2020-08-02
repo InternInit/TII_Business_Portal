@@ -60,10 +60,9 @@ class ReviewApplicants extends Component {
           width: "90%",
           flexDirection: "column",
           margin: "auto",
-          backgroundColor: '#eceff9'
         }}
       >
-        <div>
+        <div style={{ marginBottom: '4vh' }}>
           <Button style={AddFilterStyle}>
             <ButtonText>Add Filter</ButtonText>
           </Button>
@@ -82,8 +81,7 @@ class ReviewApplicants extends Component {
           <CandidateQuickviewTab industry="Computer Science, Biotechnology,  " />
           <CandidateQuickviewTab industry="Computer Science, Biotechnology, Business, General Business, " />
           <CandidateQuickviewTab industry="Computer Science, Biotechnology, Business, General Business,  " />
-
-          <h1>Hello!</h1>
+          <CandidateQuickviewTab industry="Computer Science, Biotechnology, Business, General Business,  " />
         </div>
       </div>
     );

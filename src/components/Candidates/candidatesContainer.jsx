@@ -32,7 +32,7 @@ class CandidatesContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: '#eceff9' }}>
         <NavSearch title="Internship Candidates" />
         <CandidatesNavbar defaultSelectedKey={this.findPath()} />
         <ReactSwitch>
@@ -53,7 +53,7 @@ class CandidatesContainer extends Component {
           />
           <Route path={`/applicants/:id`} component={StudentInfo} />
         </ReactSwitch>
-      </div>
+      </ div>
     );
   }
 }
