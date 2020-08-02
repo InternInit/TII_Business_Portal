@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Menu, Avatar } from "antd";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import {
   PieChartOutlined,
   SettingOutlined,
@@ -40,50 +40,45 @@ class BusinessNavBar extends React.Component {
           defaultSelectedKeys={"1"}
           style={{ marginTop: "10vh" }}
         >
-          <Menu.Item
-            key="1"
-            onClick={() => {
-              this.routeChange("/dashboard");
-            }}
-          >
-            <PieChartOutlined />
-            <span>Overview</span>
+
+          <Menu.Item key="1">
+            <Link to='/dashboard'>
+              <PieChartOutlined />
+              <span>Overview</span>
+            </Link>
           </Menu.Item>
+
           <Menu.Item key="2">
-            <DatabaseOutlined
-              onClick={() => {
-                this.routeChange("/internship-listings");
-              }} />
-            <span>Internship Listings</span>
+            <Link to='/internship-listings'>
+              <DatabaseOutlined />
+              <span>Internship Listings</span>
+            </Link>
           </Menu.Item>
-          <Menu.Item
-            key="3"
-            onClick={() => {
-              this.routeChange("/applicants");
-            }}
-          >
-            <TeamOutlined />
-            <span>Applicants</span>
+
+          <Menu.Item key="3">
+            <Link to='/applicants'>
+              <TeamOutlined />
+              <span>Applicants</span>
+            </Link>
           </Menu.Item>
+
           <Menu.Item key="4">
             <EditOutlined />
             <span>Feedback</span>
           </Menu.Item>
-          <Menu.Item key="5"
-            onClick={() => {
-              this.routeChange("/contact-schools");
-            }}>
-            <SendOutlined />
-            <span>Message School</span>
+
+          <Menu.Item key="5">
+            <Link to='/contact-schools'>
+              <SendOutlined />
+              <span>Message School</span>
+            </Link>
           </Menu.Item>
-          <Menu.Item
-            key="6"
-            onClick={() => {
-              this.routeChange("/settings");
-            }}
-          >
-            <SettingOutlined />
-            <span>Settings</span>
+
+          <Menu.Item key="6">
+            <Link to='/settings'>
+              <SettingOutlined />
+              <span>Settings</span>
+            </Link>
           </Menu.Item>
 
           <Menu.Item key="7" style={{ marginTop: "20vh" }}>
@@ -91,7 +86,7 @@ class BusinessNavBar extends React.Component {
             <span>Log Out</span>
           </Menu.Item>
         </Menu>
-      </Sider>
+      </Sider >
     );
   }
   routeChange = path => {

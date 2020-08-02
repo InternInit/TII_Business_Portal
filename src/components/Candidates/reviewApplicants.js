@@ -57,9 +57,10 @@ class ReviewApplicants extends Component {
       <div
         style={{
           display: "flex",
-          width: "85%",
+          width: "90%",
           flexDirection: "column",
-          margin: "auto"
+          margin: "auto",
+          backgroundColor: '#eceff9'
         }}
       >
         <div>
