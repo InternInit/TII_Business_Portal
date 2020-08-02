@@ -80,13 +80,21 @@ class BusinessNavBar extends React.Component {
           </Menu.Item>
 
           <Menu.Item key="5">
+            <Link to="/intern-feedback">
+              <EditOutlined />
+              <span>Intern Feedback</span>
+            </Link>
+          </Menu.Item>
+
+
+          <Menu.Item key="6">
             <Link to="/settings">
               <SettingOutlined />
               <span>Settings</span>
             </Link>
           </Menu.Item>
 
-          <Menu.Item key="6" style={{ marginTop: "20vh" }}>
+          <Menu.Item key="7" style={{ marginTop: "20vh" }}>
             <LogoutOutlined />
             <span>Log Out</span>
           </Menu.Item>
