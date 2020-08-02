@@ -112,7 +112,7 @@ class SchoolTab extends Component {
         >
           <EMailHeader>Subject Line</EMailHeader>
           <Input />
-
+          <h1></h1>
           <EMailHeader>Body</EMailHeader>
           <TextArea autoSize={{ minRows: 5, maxRows: 10 }} />
         </Modal>
