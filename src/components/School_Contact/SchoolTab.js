@@ -36,113 +36,106 @@ const Col = styled.div`
 
 const Caption = styled.span`
   font-size: 14px;
-  margin-top: -.5vh;
+  margin-top: -0.5vh;
 `;
 
 const Contact = styled.span`
   font-size: 14px;
   margin-top: -0.5vh;
-  color:#722ED1;
+  color: #722ed1;
 `;
 
 const EMailHeader = styled.span`
-font-size: 16px;
-font-weight: 500;
-color:black;
-
-`
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+`;
 
 class SchoolTab extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            visible: false
-        }
-    }
-    render() {
-        let { visible } = this.state;
-        let { name } = this.props;
-        return (
-            <TabContainer>
-                {/**
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false
+    };
+  }
+  render() {
+    let { visible } = this.state;
+    let { name } = this.props;
+    return (
+      <TabContainer>
+        {/**
          *
          * School name and Country
          *
          */}
-                <Col style={{ width: "45vh" }}>
-                    <Header>Algonquin Regional High School</Header>
-                    <Caption>Northborough, Worester County</Caption>
-                </Col>
+        <Col style={{ width: "40vh", alignItems: "center" }}>
+          <Header>Algonquin Regional High School</Header>
+          <Caption>Northborough, Worester County</Caption>
+        </Col>
 
-                {/**Interns */}
-                <div style={{ width: '35vh', justifyContent: 'center', display: 'flex' }}>
-                    <Col style={{ alignItems: "center" }}>
-                        <Header>12</Header>
-                        <Caption style={{ color: "#BFBFBF" }}>Interns</Caption>
-                    </Col>
-                </div>
+        {/**Interns */}
+        <Col style={{ width: "20vh", alignItems: "center" }}>
+          <Header>12</Header>
+          <Caption style={{ color: "#BFBFBF" }}>Interns</Caption>
+        </Col>
 
-                {/**Contact Info */}
-                <Col style={{ alignItems: "center", width: '50vh' }}>
-                    <Contact>E-Mail: 21212121</Contact>
-                    <Contact>Phone Number: 774 415 4004</Contact>
-                </Col>
+        {/**Contact Info */}
+        <Col style={{ alignItems: "center", width: "40vh" }}>
+          <Contact>E-Mail: 21212121</Contact>
+          <Contact>Phone Number: 774 415 4004</Contact>
+        </Col>
 
-                {/**E-Mail */}
-                <Button
-                    type="primary"
-                    style={{
-                        width: "30vh",
-                    }}
-                    onClick={this.showModal}
-                >
-                    E-Mail
-                </Button>
+        {/**E-Mail */}
+        <Col style={{ alignItems: "center", width: "40vh" }}>
+          <Button
+            type="primary"
+            style={{
+              width: "30vh"
+            }}
+            onClick={this.showModal}
+          >
+            E-Mail
+          </Button>
+        </Col>
 
+        {/**E-Mail Modal */}
 
+        <Modal
+          title={"To " + name}
+          okText="Send"
+          visible={visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          width="100vh"
+        >
+          <EMailHeader>Subject Line</EMailHeader>
+          <Input />
 
-                {/**E-Mail Modal */}
+          <EMailHeader>Body</EMailHeader>
+          <TextArea autoSize={{ minRows: 5, maxRows: 10 }} />
+        </Modal>
+      </TabContainer>
+    );
+  }
 
-                <Modal
-                    title={"To " + name}
-                    okText="Send"
-                    visible={visible}
-                    onOk={this.handleOk}
-                    onCancel={this.handleCancel}
-                    width='100vh'
-                >
-                    <EMailHeader>Subject Line</EMailHeader>
-                    <Input />
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
 
-                    <EMailHeader>Body</EMailHeader>
-                    <TextArea autoSize={{ minRows: 5, maxRows: 10 }} />
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
 
-
-                </Modal>
-
-
-            </TabContainer>
-        );
-    }
-
-    showModal = () => {
-        this.setState({
-            visible: true,
-        });
-    };
-
-    handleOk = e => {
-        console.log(e);
-        this.setState({
-            visible: false,
-        });
-    };
-
-    handleCancel = e => {
-        console.log(e);
-        this.setState({
-            visible: false,
-        });
-    };
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
 }
 export default SchoolTab;

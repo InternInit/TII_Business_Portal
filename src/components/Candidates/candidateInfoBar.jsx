@@ -6,6 +6,7 @@ const Info = styled.span`
   font-weight: 500;
   color: #b2b2b2;
   text-align: center;
+  display: inline-block;
 `;
 
 const Container = styled.div`

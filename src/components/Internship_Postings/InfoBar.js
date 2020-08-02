@@ -6,8 +6,9 @@ const Info = styled.span`
   font-weight: 500;
   color: #b2b2b2;
 
-  display:flex;
-  justify-content:center;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
 `;
 
 const Container = styled.div`
@@ -35,11 +36,17 @@ function InfoBar() {
        * Name
        *
        */}
-      <Info style={{ width: "40vh", justifyContent: 'flex-start', marginLeft: '3vh' }}>Name</Info>
-      <Info style={{ width: '20vh', marginRight: '2vh' }}>Status</Info>
-      <Info style={{ width: '40vh', marginRight: '2vh' }}>Applicants</Info>
-      <Info style={{ width: "40vh", marginLeft: '2vh', paddingLeft: '6vh' }}>Edit Details</Info>
-    </Container >
+      <Info
+        style={{
+          width: "40vh"
+        }}
+      >
+        Name
+      </Info>
+      <Info style={{ width: "20vh" }}>Status</Info>
+      <Info style={{ width: "40vh" }}>Applicants</Info>
+      <Info style={{ width: "40vh" }}>Edit Details</Info>
+    </Container>
   );
 }
 export default InfoBar;

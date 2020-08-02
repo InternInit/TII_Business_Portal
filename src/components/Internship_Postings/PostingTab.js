@@ -26,6 +26,7 @@ const TabContainer = styled.div`
 const Header = styled.span`
   font-size: 18px;
   font-weight: bold;
+  text-align: center;
 `;
 
 const Col = styled.div`
@@ -36,14 +37,13 @@ const Col = styled.div`
 const Caption = styled.span`
   font-size: 14px;
   margin-top: -1vh;
+  text-align: center;
 `;
 
 const Status = styled.span`
   font-size: 18px;
   font-weight: 500;
 `;
-
-
 
 class PostingTab extends Component {
   render() {
@@ -69,33 +69,33 @@ class PostingTab extends Component {
          * Listing Name + Industry
          *
          */}
-        <Col style={{ width: "45vh", marginLeft: '-5vh', marginRight: '5vh' }}>
+        <Col style={{ width: "40vh", alignItems: "center" }}>
           <Header>Coffee Getter</Header>
           <Caption>Data Science</Caption>
         </Col>
 
         {/**Status */}
-        <Status style={{ color: statusColor, width: '30vh' }}>{status}</Status>
+        <Col style={{ width: "20vh", alignItems: "center" }}>
+          <Status style={{ color: statusColor }}>{status}</Status>
+        </Col>
 
         {/**Applicants */}
-        <div style={{ width: '35vh', justifyContent: 'flex-start', display: 'flex' }}>
-          <Col style={{ alignItems: "center" }}>
-            <Header>12</Header>
-            <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
-          </Col>
-        </div>
+        <Col style={{ width: "40vh", alignItems: "center" }}>
+          <Header>12</Header>
+          <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
+        </Col>
 
         {/**Details */}
-        <Button
-          type="primary"
-          style={{
-            width: "30vh",
-            marginLeft: '3vh',
-            marginRight: '-3vh'
-          }}
-        >
-          <Link to={`/internship-listings/${id}`}>Details</Link>
-        </Button>
+        <Col style={{ width: "40vh", alignItems: "center" }}>
+          <Button
+            type="primary"
+            style={{
+              width: "30vh"
+            }}
+          >
+            <Link to={`/internship-listings/${id}`}>Details</Link>
+          </Button>
+        </Col>
       </TabContainer>
     );
   }
