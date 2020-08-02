@@ -69,7 +69,10 @@ class BusinessNavBar extends React.Component {
             <EditOutlined />
             <span>Feedback</span>
           </Menu.Item>
-          <Menu.Item key="5">
+          <Menu.Item key="5"
+            onClick={() => {
+              this.routeChange("/contact-schools");
+            }}>
             <SendOutlined />
             <span>Message School</span>
           </Menu.Item>

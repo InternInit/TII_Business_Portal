@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Input, Upload, Button } from "antd";
-import { InboxOutlined } from "@ant-design/icons";
+import { Input, Button } from "antd";
 
 import NavSearch from "../NavSearch";
 
 const { TextArea } = Input;
-const { Dragger } = Upload;
 
 const Header = styled.div`
   font-size: 36px;

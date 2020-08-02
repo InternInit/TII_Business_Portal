@@ -24,6 +24,7 @@ import CandidatesContainer from "./components/Candidates/candidatesContainer";
 import NavSearch from "./components/NavSearch";
 import PositionPost from './components/Internship_Postings/PositionPost';
 import InternshipDetails from "./components/Internship_Postings/InternshipDetails";
+import SchoolContact from "./components/School_Contact/SchoolContact";
 
 const { Content } = Layout;
 
@@ -54,6 +55,7 @@ class App extends React.Component {
                 <Route path="/internship-listings" exact component={PositionPost} />
                 <Route path={`/internship-listings/:id`} component={InternshipDetails} />
 
+                <Route path="/contact-schools" exact component={SchoolContact} />
                 <Route path="/applicants" component={CandidatesContainer} />
                 <Route path="/settings" component={CompanyDetails} />
               </div>
