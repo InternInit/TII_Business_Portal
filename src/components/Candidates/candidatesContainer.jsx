@@ -56,6 +56,8 @@ class CandidatesContainer extends Component {
       </ div>
     );
   }
+
+
 }
 
 export default withRouter(CandidatesContainer);

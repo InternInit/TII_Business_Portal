@@ -49,10 +49,13 @@ const HeaderText = styled.span`
 `;
 class ReviewApplicants extends Component {
   state = {
-    quickview: true
+    quickview: true,
+    page: '1',
+    students: []
   };
 
   render() {
+    let { students } = this.state;
     return (
       <div
         style={{
@@ -78,13 +81,27 @@ class ReviewApplicants extends Component {
           />
           <HeaderText>Unread Applicants</HeaderText>
           <CandidateInfoBar />
-          <CandidateQuickviewTab industry="Computer Science, Biotechnology,  " />
-          <CandidateQuickviewTab industry="Computer Science, Biotechnology, Business, General Business, " />
-          <CandidateQuickviewTab industry="Computer Science, Biotechnology, Business, General Business,  " />
-          <CandidateQuickviewTab industry="Computer Science, Biotechnology, Business, General Business,  " />
+          {students.map(student => (
+
+            <CandidateQuickviewTab
+              name={student.personal.first_name + " " + student.personal.last_name}
+              school={student.education.school}
+              GPA={student.education.weighted_GPA}
+              industry={"Computer Science, Biotechnology, General Business, Finance or Accounting"} />
+
+          ))}
+
         </div>
       </div>
     );
+
+
+  }
+  componentDidMount() {
+    fetch(`http://localhost:8000/student?_page=${this.state.page}&_limit=10`)
+      .then(response => response.json())
+      .then(json =>
+        this.setState({ students: json }))
   }
 }
 

@@ -38,7 +38,11 @@ const Row = styled.div`
 `;
 
 class MainPage extends React.Component {
+  state = {
+    students: []
+  }
   render() {
+    let { students } = this.state;
     return (
       <div
         style={{
@@ -97,11 +101,15 @@ class MainPage extends React.Component {
              *
              */}
             <Header>Incoming Applicants</Header>
-            <StudentCard />
-            <StudentCard />
-            <StudentCard />
-            <StudentCard />
-            <StudentCard />
+            {students.slice(0, 5).map(student => (
+              <StudentCard
+                firstName={student.personal.first_name}
+                lastName={student.personal.last_name}
+                age={student.personal.age}
+                avatar={student.personal.avatar}
+
+              />
+            ))}
 
             {/**
              *
@@ -109,13 +117,24 @@ class MainPage extends React.Component {
              *
              */}
             <Header>To be Interviewed</Header>
-            <StudentCard />
-            <StudentCard />
-            <StudentCard />
+            {students.slice(5, 8).map(student => (
+              <StudentCard
+                firstName={student.personal.first_name}
+                lastName={student.personal.last_name}
+                age={student.personal.age}
+                avatar={student.personal.avatar}
+              />
+            ))}
           </Col>
         </Row>
       </div>
     );
+  }
+  componentDidMount() {
+    fetch('http://localhost:8000/student?_page=1&_limit=10')
+      .then(response => response.json())
+      .then(json =>
+        this.setState({ students: json }))
   }
 }
 export default MainPage;

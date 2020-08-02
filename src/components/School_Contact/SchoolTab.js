@@ -13,6 +13,8 @@ const TabContainer = styled.div`
 
   background-color: white;
 
+  padding:1vh;
+
   width: 100%;
   min-height: 11vh;
   min-width: 600px;
@@ -68,13 +70,13 @@ class SchoolTab extends Component {
          * School name and Country
          *
          */}
-        <Col style={{ width: "40vh", alignItems: "center" }}>
+        <Col style={{ width: "45vh", alignItems: "center" }}>
           <Header>Algonquin Regional High School</Header>
           <Caption>Northborough, Worester County</Caption>
         </Col>
 
         {/**Interns */}
-        <Col style={{ width: "20vh", alignItems: "center" }}>
+        <Col style={{ width: "18vh", alignItems: "center", paddingRight: '4vh' }}>
           <Header>12</Header>
           <Caption style={{ color: "#BFBFBF" }}>Interns</Caption>
         </Col>

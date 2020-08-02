@@ -97,7 +97,7 @@ class CandidateQuickviewTab extends Component {
   }
   render() {
     let { visible } = this.state;
-    let { name, industry } = this.props;
+    let { name, school, industry, } = this.props;
     return (
       <TabContainer>
         {/**
@@ -106,14 +106,14 @@ class CandidateQuickviewTab extends Component {
          *
          */}
         <Col style={{ width: "40vh", alignItems: "center" }}>
-          <Header>Bruce Lee</Header>
+          <Header>{name}</Header>
         </Col>
 
         {/**School and Region */}
         <Col style={{ alignItems: "center", width: "42vh" }}>
-          <Header>Algonquin Regional High School</Header>
+          <Header>{school.name}</Header>
           <Caption style={{ color: "#BFBFBF" }}>
-            Northborough, Worcester County
+            {school.address}, {school.state}
           </Caption>
         </Col>
 

@@ -7,7 +7,7 @@ import { UserOutlined } from "@ant-design/icons";
 const Container = styled.div`
   width: 100%;
   background-color: white;
-  min-height: 7.75vh;
+  min-height: 8.25vh;
   margin-bottom: 10px;
   min-width: 325px;
   border-radius: 4px;
@@ -45,11 +45,12 @@ const Applying = styled.span`
 
 class StudentCard extends React.Component {
   render() {
+    let { firstName, lastName, age, avatar } = this.props;
     return (
       <Container>
-        <Avatar size={28} icon={<UserOutlined />} />
+        <Avatar src={avatar} size={28} icon={<UserOutlined />} />
         <Col>
-          <Name>Oscar Hong (18)</Name>
+          <Name>{firstName} {lastName}({age})</Name>
           <Applying>Coffee Grinder</Applying>
         </Col>
       </Container>
