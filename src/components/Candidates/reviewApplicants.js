@@ -4,7 +4,8 @@ import "./candidates.css";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
-import { Button, Switch } from "antd";
+import { Button, Switch, Divider } from "antd";
+import QueueAnim from "rc-queue-anim";
 
 import CandidateInfoBar from "./candidateInfoBar";
 import CandidateQuickviewTab from "./CandidateQuickviewTab";
@@ -51,59 +52,120 @@ const HeaderText = styled.span`
 class ReviewApplicants extends Component {
   state = {
     quickview: true,
-    page: '1',
-    students: []
+    page: "1",
+    students: [],
+    reviewStudents: [],
+    review: false
+  };
+
+  handleReview = index => {
+    if (!this.state.review) {
+      this.setState({ review: true });
+    }
+    this.setState({
+      reviewStudents: this.state.reviewStudents.concat(
+        this.state.students[index]
+      )
+    });
+    this.setState({
+      students: this.state.students.filter((item, j) => j !== index)
+    });
   };
 
   render() {
-    let { students } = this.state;
+    let { students, reviewStudents } = this.state;
     return (
       <div
         style={{
           display: "flex",
           width: "90%",
           flexDirection: "column",
-          margin: "auto",
+          margin: "auto"
         }}
       >
-        <div style={{ marginBottom: '4vh' }}>
+        <div style={{ marginBottom: "4vh" }}>
           <Button style={AddFilterStyle}>
             <ButtonText>Add Filter</ButtonText>
           </Button>
           {this.state.quickview ? (
             <ViewText>Quickview</ViewText>
           ) : (
-              <ViewText>Detailed View</ViewText>
-            )}
+            <ViewText>Detailed View</ViewText>
+          )}
           <Switch
             defaultChecked
             onChange={() => this.setState({ quickview: !this.state.quickview })}
             style={{ align: "inline-block" }}
           />
           <HeaderText>Unread Applicants</HeaderText>
-          <CandidateInfoBar />
-	  <CandidateDetailedviewTab />
-          {students.map(student => (
+          {this.state.quickview ? (
+            <React.Fragment>
+              <CandidateInfoBar />
+              {students.map((student, index) => (
+                <CandidateQuickviewTab
+                  key={index}
+                  name={
+                    student.personal.first_name +
+                    " " +
+                    student.personal.last_name
+                  }
+                  school={student.education.school}
+                  GPA={student.education.weighted_GPA}
+                  industry={
+                    "Computer Science, Biotechnology, General Business, Finance or Accounting"
+                  }
+                  onReview={() => this.handleReview(index)}
+                />
+              ))}
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <Divider />
+              {students.map((student, index) => (
+                <CandidateDetailedviewTab key="index" />
+              ))}
+            </React.Fragment>
+          )}
 
-            <CandidateQuickviewTab
-              name={student.personal.first_name + " " + student.personal.last_name}
-              school={student.education.school}
-              GPA={student.education.weighted_GPA}
-              industry={"Computer Science, Biotechnology, General Business, Finance or Accounting"} />
-
-          ))}
-
+          {this.state.review ? (
+            this.state.quickview ? (
+              <React.Fragment>
+                <HeaderText>Marked for Review</HeaderText>
+                <CandidateInfoBar />
+                {reviewStudents.map((student, index) => (
+                  <CandidateQuickviewTab
+                    key={index}
+                    name={
+                      student.personal.first_name +
+                      " " +
+                      student.personal.last_name
+                    }
+                    school={student.education.school}
+                    GPA={student.education.weighted_GPA}
+                    industry={
+                      "Computer Science, Biotechnology, General Business, Finance or Accounting"
+                    }
+                  />
+                ))}
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <HeaderText>Marked for Review</HeaderText>
+                <Divider />
+                {reviewStudents.map((student, index) => (
+                  <CandidateDetailedviewTab key="index" />
+                ))}
+              </React.Fragment>
+            )
+          ) : null}
         </div>
       </div>
     );
-
-
   }
   componentDidMount() {
-    fetch(`http://localhost:8000/student?_page=${this.state.page}&_limit=10`)
+    fetch(`http://localhost:8000/student?_page=${this.state.page}&_limit=5`)
       .then(response => response.json())
-      .then(json =>
-        this.setState({ students: json }))
+      .then(json => this.setState({ students: json }));
   }
 }
 

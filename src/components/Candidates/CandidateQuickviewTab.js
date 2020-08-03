@@ -16,10 +16,10 @@ const TabContainer = styled.div`
 
   background-color: white;
 
-  padding:1vh;
+  padding: 1vh;
 
   width: 100%;
-   min-height: 11vh;
+  min-height: 11vh;
   min-width: 600px;
 
   margin-top: 2vh;
@@ -97,7 +97,7 @@ class CandidateQuickviewTab extends Component {
   }
   render() {
     let { visible } = this.state;
-    let { name, school, industry, } = this.props;
+    let { name, school, industry } = this.props;
     return (
       <TabContainer>
         {/**
@@ -122,16 +122,14 @@ class CandidateQuickviewTab extends Component {
           {this.props.GPA > this.props.cutOffGPA ? (
             <GPA style={{ color: "green" }}>{this.props.GPA.toFixed(1)}</GPA>
           ) : (
-              <GPA style={{ color: "red" }}>{this.props.GPA.toFixed(1)}</GPA>
-            )}
+            <GPA style={{ color: "red" }}>{this.props.GPA.toFixed(1)}</GPA>
+          )}
         </Col>
 
         {/**Applied For*/}
         <Col style={{ alignItems: "center", width: "50vh" }}>
           <AppliedFor>Front End React Intern</AppliedFor>
-          <Industries>
-            Industries: {industry}
-          </Industries>
+          <Industries>Industries: {industry}</Industries>
         </Col>
 
         {/**Mark */}
@@ -153,6 +151,7 @@ class CandidateQuickviewTab extends Component {
             <ReviewIcon
               icon={box}
               style={{ marginLeft: "1vh", marginRight: "1vh" }}
+              onClick={this.props.onReview}
             />
           </Tooltip>
           <Tooltip title="Remove">
