@@ -72,7 +72,7 @@ const ActionButton = styled(Button)`
   }
 `;
 
-class CandidateDetailedviewTab extends Component {
+class CandidateDetailedviewReviewTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,11 +84,9 @@ class CandidateDetailedviewTab extends Component {
       <TabContainer>
         <Row gutter={[16, 16]} style={{ width: "100%", height: "75px" }}>
           <AntCol span={2} style={{ textAlign: "right", alignItems: "center" }}>
-            <Avatar
-              stlye={{ backgroundColor: "#fa541c" }}
-              size={48}
-              src={this.props.avatar}
-            />
+            <Avatar stlye={{ backgroundColor: "#fa541c" }} size={48}>
+              Jason
+            </Avatar>
           </AntCol>
           <AntCol span={22}>
             <NameHeading>{this.props.name}</NameHeading>
@@ -129,16 +127,13 @@ class CandidateDetailedviewTab extends Component {
           </AntCol>
         </Row>
         <Row gutter={[32, 16]} style={{ width: "90%", margin: "auto" }}>
-          <AntCol span={7}>
+          <AntCol span={10}>
             <ActionButton>Read Full Application</ActionButton>
           </AntCol>
-          <AntCol span={7}>
-            <ActionButton>Review for Later</ActionButton>
-          </AntCol>
-          <AntCol span={7}>
+          <AntCol span={10}>
             <ActionButton>Move to Interview</ActionButton>
           </AntCol>
-          <AntCol span={3}>
+          <AntCol span={4}>
             <Button type="danger">Not a fit</Button>
           </AntCol>
         </Row>
@@ -147,8 +142,8 @@ class CandidateDetailedviewTab extends Component {
   }
 }
 
-CandidateDetailedviewTab.defaultProps = {
+CandidateDetailedviewReviewTab.defaultProps = {
   GPA: 4.0,
   cutOffGPA: 3.5
 };
-export default CandidateDetailedviewTab;
+export default CandidateDetailedviewReviewTab;
