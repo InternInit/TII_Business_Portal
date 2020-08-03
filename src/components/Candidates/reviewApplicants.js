@@ -160,19 +160,18 @@ class ReviewApplicants extends Component {
               student.internship.work_end
             }
             industries={
-              student.internship.industries["1"] +
+              student.internship.industries[0] +
               ", " +
-              student.internship.industries["2"] +
+              student.internship.industries[1] +
               ", " +
-              student.internship.industries["3"] +
-              ", "
+              student.internship.industries[2]
             }
-            activityOne={student.personal.extracurriculars["1"]}
-            activityTwo={student.personal.extracurriculars["2"]}
-            activityThree={student.personal.extracurriculars["3"]}
-            classOne={student.education.relevant_courses["1"]}
-            classTwo={student.education.relevant_courses["2"]}
-            classThree={student.education.relevant_courses["3"]}
+            activityOne={student.personal.extracurriculars[0]}
+            activityTwo={student.personal.extracurriculars[1]}
+            activityThree={student.personal.extracurriculars[2]}
+            classOne={student.education.relevant_courses[0]}
+            classTwo={student.education.relevant_courses[1]}
+            classThree={student.education.relevant_courses[2]}
             onReview={() => this.handleReview(index)}
           />
         ))}
@@ -225,19 +224,18 @@ class ReviewApplicants extends Component {
               student.internship.work_end
             }
             industries={
-              student.internship.industries["1"] +
+              student.internship.industries[0] +
               ", " +
-              student.internship.industries["2"] +
+              student.internship.industries[1] +
               ", " +
-              student.internship.industries["3"] +
-              ", "
+              student.internship.industries[2]
             }
-            activityOne={student.personal.extracurriculars["1"]}
-            activityTwo={student.personal.extracurriculars["2"]}
-            activityThree={student.personal.extracurriculars["3"]}
-            classOne={student.education.relevant_courses["1"]}
-            classTwo={student.education.relevant_courses["2"]}
-            classThree={student.education.relevant_courses["3"]}
+            activityOne={student.personal.extracurriculars[0]}
+            activityTwo={student.personal.extracurriculars[1]}
+            activityThree={student.personal.extracurriculars[2]}
+            classOne={student.education.relevant_courses[0]}
+            classTwo={student.education.relevant_courses[1]}
+            classThree={student.education.relevant_courses[2]}
           />
         ))}
       </React.Fragment>
@@ -245,7 +243,7 @@ class ReviewApplicants extends Component {
   };
 
   componentDidMount() {
-    fetch(`http://localhost:8000/student?_page=1&_limit=5`)
+    fetch(`http://localhost:8000/student?_page=1&_limit=15`)
       .then(response => response.json())
       .then(json =>
         this.setState({
