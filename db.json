@@ -31,7 +31,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
+        "unweighted_GPA": 3,
         "weighted_GPA": 3.6,
         "YOG": 2027,
         "relevant_courses": {
@@ -53,7 +53,7 @@
       },
       "company": {
         "name": "Microsoft",
-        "status": null,
+        "status": "review",
         "notes": null
       }
     },
@@ -145,7 +145,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 2.0,
+        "unweighted_GPA": 2,
         "weighted_GPA": 2.9,
         "YOG": 2027,
         "relevant_courses": {
@@ -487,7 +487,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
+        "unweighted_GPA": 3,
         "weighted_GPA": 4.9,
         "YOG": 2023,
         "relevant_courses": {
@@ -1057,7 +1057,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 1.0,
+        "unweighted_GPA": 1,
         "weighted_GPA": 3.4,
         "YOG": 2023,
         "relevant_courses": {
@@ -1285,8 +1285,8 @@
         }
       },
       "education": {
-        "unweighted_GPA": 4.0,
-        "weighted_GPA": 4.0,
+        "unweighted_GPA": 4,
+        "weighted_GPA": 4,
         "YOG": 2027,
         "relevant_courses": {
           "1": "UK Law",
@@ -1571,7 +1571,7 @@
       },
       "education": {
         "unweighted_GPA": 1.6,
-        "weighted_GPA": 2.0,
+        "weighted_GPA": 2,
         "YOG": 2022,
         "relevant_courses": {
           "1": "SAP PP",
@@ -1969,7 +1969,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 1.0,
+        "unweighted_GPA": 1,
         "weighted_GPA": 4.6,
         "YOG": 2024,
         "relevant_courses": {
@@ -2198,7 +2198,7 @@
       },
       "education": {
         "unweighted_GPA": 3.6,
-        "weighted_GPA": 5.0,
+        "weighted_GPA": 5,
         "YOG": 2025,
         "relevant_courses": {
           "1": "Pro-IV",
@@ -2254,7 +2254,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 1.0,
+        "unweighted_GPA": 1,
         "weighted_GPA": 3.3,
         "YOG": 2023,
         "relevant_courses": {
@@ -2312,7 +2312,7 @@
       },
       "education": {
         "unweighted_GPA": 3.2,
-        "weighted_GPA": 4.0,
+        "weighted_GPA": 4,
         "YOG": 2026,
         "relevant_courses": {
           "1": "Urban Economics",
@@ -2425,8 +2425,8 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
-        "weighted_GPA": 3.0,
+        "unweighted_GPA": 3,
+        "weighted_GPA": 3,
         "YOG": 2023,
         "relevant_courses": {
           "1": "Work Very Well with Others",
@@ -3394,7 +3394,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
+        "unweighted_GPA": 3,
         "weighted_GPA": 4.3,
         "YOG": 2025,
         "relevant_courses": {
@@ -4306,7 +4306,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 4.0,
+        "unweighted_GPA": 4,
         "weighted_GPA": 2.1,
         "YOG": 2023,
         "relevant_courses": {
@@ -4933,7 +4933,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
+        "unweighted_GPA": 3,
         "weighted_GPA": 4.8,
         "YOG": 2025,
         "relevant_courses": {
@@ -5788,7 +5788,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 4.0,
+        "unweighted_GPA": 4,
         "weighted_GPA": 2.4,
         "YOG": 2025,
         "relevant_courses": {
@@ -5902,7 +5902,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 2.0,
+        "unweighted_GPA": 2,
         "weighted_GPA": 2.5,
         "YOG": 2023,
         "relevant_courses": {
@@ -6244,7 +6244,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
+        "unweighted_GPA": 3,
         "weighted_GPA": 3.2,
         "YOG": 2023,
         "relevant_courses": {
@@ -6301,7 +6301,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
+        "unweighted_GPA": 3,
         "weighted_GPA": 4.5,
         "YOG": 2022,
         "relevant_courses": {
@@ -6473,7 +6473,7 @@
       },
       "education": {
         "unweighted_GPA": 3.9,
-        "weighted_GPA": 4.0,
+        "weighted_GPA": 4,
         "YOG": 2024,
         "relevant_courses": {
           "1": "CBR",
@@ -6758,7 +6758,7 @@
       },
       "education": {
         "unweighted_GPA": 1.7,
-        "weighted_GPA": 4.0,
+        "weighted_GPA": 4,
         "YOG": 2022,
         "relevant_courses": {
           "1": "Tcpdump",
@@ -6815,7 +6815,7 @@
       },
       "education": {
         "unweighted_GPA": 3.7,
-        "weighted_GPA": 2.0,
+        "weighted_GPA": 2,
         "YOG": 2024,
         "relevant_courses": {
           "1": "RNA Biology",
@@ -6986,7 +6986,7 @@
       },
       "education": {
         "unweighted_GPA": 2.9,
-        "weighted_GPA": 4.0,
+        "weighted_GPA": 4,
         "YOG": 2022,
         "relevant_courses": {
           "1": "Csh",
@@ -7499,7 +7499,7 @@
       },
       "education": {
         "unweighted_GPA": 2.5,
-        "weighted_GPA": 3.0,
+        "weighted_GPA": 3,
         "YOG": 2025,
         "relevant_courses": {
           "1": "PSpice",
@@ -7897,7 +7897,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 1.0,
+        "unweighted_GPA": 1,
         "weighted_GPA": 3.1,
         "YOG": 2027,
         "relevant_courses": {
@@ -8069,7 +8069,7 @@
       },
       "education": {
         "unweighted_GPA": 1.4,
-        "weighted_GPA": 5.0,
+        "weighted_GPA": 5,
         "YOG": 2027,
         "relevant_courses": {
           "1": "Heavy Equipment",
@@ -8239,7 +8239,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 4.0,
+        "unweighted_GPA": 4,
         "weighted_GPA": 3.3,
         "YOG": 2025,
         "relevant_courses": {
@@ -8296,7 +8296,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 2.0,
+        "unweighted_GPA": 2,
         "weighted_GPA": 3.7,
         "YOG": 2027,
         "relevant_courses": {
@@ -8639,7 +8639,7 @@
       },
       "education": {
         "unweighted_GPA": 3.1,
-        "weighted_GPA": 3.0,
+        "weighted_GPA": 3,
         "YOG": 2024,
         "relevant_courses": {
           "1": "Test Equipment",
@@ -9265,7 +9265,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
+        "unweighted_GPA": 3,
         "weighted_GPA": 3.8,
         "YOG": 2025,
         "relevant_courses": {
@@ -9722,7 +9722,7 @@
       },
       "education": {
         "unweighted_GPA": 2.9,
-        "weighted_GPA": 4.0,
+        "weighted_GPA": 4,
         "YOG": 2024,
         "relevant_courses": {
           "1": "UCCE",
@@ -9779,7 +9779,7 @@
       },
       "education": {
         "unweighted_GPA": 2.5,
-        "weighted_GPA": 4.0,
+        "weighted_GPA": 4,
         "YOG": 2022,
         "relevant_courses": {
           "1": "Omegamon",
@@ -10006,7 +10006,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 2.0,
+        "unweighted_GPA": 2,
         "weighted_GPA": 2.4,
         "YOG": 2024,
         "relevant_courses": {
@@ -10120,7 +10120,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 3.0,
+        "unweighted_GPA": 3,
         "weighted_GPA": 3.8,
         "YOG": 2027,
         "relevant_courses": {
@@ -10292,7 +10292,7 @@
       },
       "education": {
         "unweighted_GPA": 2.2,
-        "weighted_GPA": 3.0,
+        "weighted_GPA": 3,
         "YOG": 2024,
         "relevant_courses": {
           "1": "HTML Emails",
@@ -10462,7 +10462,7 @@
         }
       },
       "education": {
-        "unweighted_GPA": 1.0,
+        "unweighted_GPA": 1,
         "weighted_GPA": 3.6,
         "YOG": 2022,
         "relevant_courses": {
@@ -10577,7 +10577,7 @@
       },
       "education": {
         "unweighted_GPA": 1.3,
-        "weighted_GPA": 2.0,
+        "weighted_GPA": 2,
         "YOG": 2024,
         "relevant_courses": {
           "1": "Defect Life Cycle",
@@ -11147,7 +11147,7 @@
       },
       "education": {
         "unweighted_GPA": 2.1,
-        "weighted_GPA": 4.0,
+        "weighted_GPA": 4,
         "YOG": 2022,
         "relevant_courses": {
           "1": "Whisky",
@@ -11375,7 +11375,7 @@
       },
       "education": {
         "unweighted_GPA": 2.3,
-        "weighted_GPA": 2.0,
+        "weighted_GPA": 2,
         "YOG": 2025,
         "relevant_courses": {
           "1": "OEL",

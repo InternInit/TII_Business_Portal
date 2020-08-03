@@ -57,21 +57,25 @@ class ReviewApplicants extends Component {
     page: "1",
     students: [],
     reviewStudents: [],
-    review: false
+    review: true
   };
 
   handleReview = index => {
-    if (!this.state.review) {
-      this.setState({ review: true });
-    }
+    let reviewStudent = { ...this.state.students[index] };
+    reviewStudent.company.status = "review";
     this.setState({
-      reviewStudents: this.state.reviewStudents.concat(
-        this.state.students[index]
-      )
-    });
-    this.setState({
+      reviewStudents: this.state.reviewStudents.concat(reviewStudent),
       students: this.state.students.filter((item, j) => j !== index)
     });
+    fetch(`http://localhost:8000/student/${reviewStudent.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(reviewStudent)
+    })
+      .then(response => response.json())
+      .then(json => console.log(json));
   };
 
   render() {
@@ -142,11 +146,34 @@ class ReviewApplicants extends Component {
             name={
               student.personal.first_name + " " + student.personal.last_name
             }
-            school={student.school.name}
-            schoolAddress={student.school.address + ", " + student.school.state}
+            school={student.education.school.name}
+            schoolAddress={
+              student.education.school.address +
+              ", " +
+              student.education.school.state
+            }
             GPA={student.education.weighted_GPA}
             age={student.personal.age}
-            workDate={student.internship.work_start}
+            workDate={
+              student.internship.work_start +
+              " - " +
+              student.internship.work_end
+            }
+            industries={
+              student.internship.industries["1"] +
+              ", " +
+              student.internship.industries["2"] +
+              ", " +
+              student.internship.industries["3"] +
+              ", "
+            }
+            activityOne={student.personal.extracurriculars["1"]}
+            activityTwo={student.personal.extracurriculars["2"]}
+            activityThree={student.personal.extracurriculars["3"]}
+            classOne={student.education.relevant_courses["1"]}
+            classTwo={student.education.relevant_courses["2"]}
+            classThree={student.education.relevant_courses["3"]}
+            onReview={() => this.handleReview(index)}
           />
         ))}
       </React.Fragment>
@@ -155,41 +182,77 @@ class ReviewApplicants extends Component {
 
   renderReviewApplicants = () => {
     let { students, reviewStudents } = this.state;
-    return this.state.review ? (
-      this.state.quickview ? (
-        <React.Fragment>
-          <HeaderText>Marked for Review</HeaderText>
-          <CandidateInfoBar />
-          {reviewStudents.map((student, index) => (
-            <CandidateQuickviewReviewTab
-              key={index}
-              name={
-                student.personal.first_name + " " + student.personal.last_name
-              }
-              school={student.education.school}
-              GPA={student.education.weighted_GPA}
-              industry={
-                "Computer Science, Biotechnology, General Business, Finance or Accounting"
-              }
-            />
-          ))}
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <HeaderText>Marked for Review</HeaderText>
-          <Divider />
-          {reviewStudents.map((student, index) => (
-            <CandidateDetailedviewReviewTab key="index" />
-          ))}
-        </React.Fragment>
-      )
-    ) : null;
+    return this.state.quickview ? (
+      <React.Fragment>
+        <HeaderText>Marked for Review</HeaderText>
+        <CandidateInfoBar />
+        {reviewStudents.map((student, index) => (
+          <CandidateQuickviewReviewTab
+            key={index}
+            name={
+              student.personal.first_name + " " + student.personal.last_name
+            }
+            school={student.education.school}
+            GPA={student.education.weighted_GPA}
+            industry={
+              "Computer Science, Biotechnology, General Business, Finance or Accounting"
+            }
+          />
+        ))}
+      </React.Fragment>
+    ) : (
+      <React.Fragment>
+        <HeaderText>Marked for Review</HeaderText>
+        <Divider />
+        {reviewStudents.map((student, index) => (
+          <CandidateDetailedviewReviewTab
+            key={index}
+            avatar={student.personal.avatar}
+            name={
+              student.personal.first_name + " " + student.personal.last_name
+            }
+            school={student.education.school.name}
+            schoolAddress={
+              student.education.school.address +
+              ", " +
+              student.education.school.state
+            }
+            GPA={student.education.weighted_GPA}
+            age={student.personal.age}
+            workDate={
+              student.internship.work_start +
+              " - " +
+              student.internship.work_end
+            }
+            industries={
+              student.internship.industries["1"] +
+              ", " +
+              student.internship.industries["2"] +
+              ", " +
+              student.internship.industries["3"] +
+              ", "
+            }
+            activityOne={student.personal.extracurriculars["1"]}
+            activityTwo={student.personal.extracurriculars["2"]}
+            activityThree={student.personal.extracurriculars["3"]}
+            classOne={student.education.relevant_courses["1"]}
+            classTwo={student.education.relevant_courses["2"]}
+            classThree={student.education.relevant_courses["3"]}
+          />
+        ))}
+      </React.Fragment>
+    );
   };
 
   componentDidMount() {
-    fetch(`http://localhost:8000/student?_page=${this.state.page}&_limit=5`)
+    fetch(`http://localhost:8000/student?_page=1&_limit=5`)
       .then(response => response.json())
-      .then(json => this.setState({ students: json }));
+      .then(json =>
+        this.setState({
+          students: json.filter(item => item.company.status !== "review"),
+          reviewStudents: json.filter(item => item.company.status === "review")
+        })
+      );
   }
 }
 

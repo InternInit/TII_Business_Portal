@@ -84,9 +84,11 @@ class CandidateDetailedviewReviewTab extends Component {
       <TabContainer>
         <Row gutter={[16, 16]} style={{ width: "100%", height: "75px" }}>
           <AntCol span={2} style={{ textAlign: "right", alignItems: "center" }}>
-            <Avatar stlye={{ backgroundColor: "#fa541c" }} size={48}>
-              Jason
-            </Avatar>
+            <Avatar
+              stlye={{ backgroundColor: "#fa541c" }}
+              size={48}
+              src={this.props.avatar}
+            />
           </AntCol>
           <AntCol span={22}>
             <NameHeading>{this.props.name}</NameHeading>

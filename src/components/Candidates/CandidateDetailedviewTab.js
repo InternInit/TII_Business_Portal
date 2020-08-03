@@ -133,7 +133,9 @@ class CandidateDetailedviewTab extends Component {
             <ActionButton>Read Full Application</ActionButton>
           </AntCol>
           <AntCol span={7}>
-            <ActionButton>Review for Later</ActionButton>
+            <ActionButton onClick={this.props.onReview}>
+              Review for Later
+            </ActionButton>
           </AntCol>
           <AntCol span={7}>
             <ActionButton>Move to Interview</ActionButton>
