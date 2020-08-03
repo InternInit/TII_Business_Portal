@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
 import { Button, Switch, Divider } from "antd";
-import QueueAnim from "rc-queue-anim";
 
 import CandidateInfoBar from "./candidateInfoBar";
 import CandidateQuickviewTab from "./CandidateQuickviewTab";
@@ -90,8 +89,8 @@ class ReviewApplicants extends Component {
           {this.state.quickview ? (
             <ViewText>Quickview</ViewText>
           ) : (
-            <ViewText>Detailed View</ViewText>
-          )}
+              <ViewText>Detailed View</ViewText>
+            )}
           <Switch
             defaultChecked
             onChange={() => this.setState({ quickview: !this.state.quickview })}
@@ -119,13 +118,13 @@ class ReviewApplicants extends Component {
               ))}
             </React.Fragment>
           ) : (
-            <React.Fragment>
-              <Divider />
-              {students.map((student, index) => (
-                <CandidateDetailedviewTab key="index" />
-              ))}
-            </React.Fragment>
-          )}
+              <React.Fragment>
+                <Divider />
+                {students.map((student, index) => (
+                  <CandidateDetailedviewTab key="index" />
+                ))}
+              </React.Fragment>
+            )}
 
           {this.state.review ? (
             this.state.quickview ? (
@@ -149,14 +148,14 @@ class ReviewApplicants extends Component {
                 ))}
               </React.Fragment>
             ) : (
-              <React.Fragment>
-                <HeaderText>Marked for Review</HeaderText>
-                <Divider />
-                {reviewStudents.map((student, index) => (
-                  <CandidateDetailedviewTab key="index" />
-                ))}
-              </React.Fragment>
-            )
+                <React.Fragment>
+                  <HeaderText>Marked for Review</HeaderText>
+                  <Divider />
+                  {reviewStudents.map((student, index) => (
+                    <CandidateDetailedviewTab key="index" />
+                  ))}
+                </React.Fragment>
+              )
           ) : null}
         </div>
       </div>
