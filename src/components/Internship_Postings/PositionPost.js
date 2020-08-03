@@ -36,10 +36,15 @@ const pageStyle = {
   justifySelf: "center"
 };
 
-const Backend = [1, 2, 3, 4];
-
 class PositionPost extends Component {
+  state = {
+    page: '1',
+    business: []
+  }
   render() {
+    let { business } = this.state;
+    console.log("This is business: ", business[0])
+
     return (
       <Container>
         <NavSearch title="My Internship Postings" />
@@ -56,12 +61,18 @@ class PositionPost extends Component {
 
           <InfoBar />
 
-          {Backend.map(postings => (
+          {business.map(post => (
             <PostingTab status="Active" />
           ))}
         </div>
       </Container>
     );
+  }
+  componentDidMount() {
+    fetch(`http://localhost:8000/business?_page=${this.state.page}&_limit=1`)
+      .then(response => response.json())
+      .then(json =>
+        this.setState({ business: json }))
   }
 }
 export default PositionPost;
