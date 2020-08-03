@@ -76,27 +76,27 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-function HirePipeline() {
-  //Card Drop Zones
-  const columnsFromBackend = {
-    1: {
-      name: "Marked",
-      items: []
-    },
-    2: {
-      name: "Online Interview",
-      items: []
-    },
-    3: {
-      name: "On-Site Interview",
-      items: []
-    },
-    4: {
-      name: "Accepted",
-      items: []
-    }
-  };
+//Card Drop Zones
+const columnsFromBackend = {
+  1: {
+    name: "Marked",
+    items: []
+  },
+  2: {
+    name: "Online Interview",
+    items: []
+  },
+  3: {
+    name: "On-Site Interview",
+    items: []
+  },
+  4: {
+    name: "Accepted",
+    items: []
+  }
+};
 
+function HirePipeline() {
   const [columns, setColumns] = useState(columnsFromBackend);
 
   useEffect(() => {
