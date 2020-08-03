@@ -47,7 +47,7 @@ const Status = styled.span`
 
 class PostingTab extends Component {
   render() {
-    let { status } = this.props;
+    let { status, name, interns } = this.props;
     let statusColor = "";
 
     let { id } = this.props;
@@ -70,7 +70,7 @@ class PostingTab extends Component {
          *
          */}
         <Col style={{ width: "40vh", alignItems: "center" }}>
-          <Header>Coffee Getter</Header>
+          <Header>{name}</Header>
           <Caption>Data Science</Caption>
         </Col>
 
@@ -81,7 +81,7 @@ class PostingTab extends Component {
 
         {/**Applicants */}
         <Col style={{ width: "40vh", alignItems: "center" }}>
-          <Header>12</Header>
+          <Header>{interns}</Header>
           <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
         </Col>
 
