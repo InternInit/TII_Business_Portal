@@ -39,12 +39,15 @@ const pageStyle = {
 class PositionPost extends Component {
   state = {
     page: '1',
-    business: []
+    business: null
   }
   render() {
     let { business } = this.state;
-    console.log("This is business: ", business[0])
 
+    if (business === null) {
+      return null;
+    }
+    console.log("This is business: ", typeof business[0].listings)
     return (
       <Container>
         <NavSearch title="My Internship Postings" />
@@ -61,15 +64,15 @@ class PositionPost extends Component {
 
           <InfoBar />
 
-          {business.map(post => (
-            <PostingTab status="Active" />
+          {business[0].listings.map(post => (
+            <PostingTab status="Active" name={post.name} interns={post.interns} />
           ))}
         </div>
       </Container>
     );
   }
   componentDidMount() {
-    fetch(`http://localhost:8000/business?_page=${this.state.page}&_limit=1`)
+    fetch(`http://localhost:8000/business?_page=${this.state.page}&_limit=2`)
       .then(response => response.json())
       .then(json =>
         this.setState({ business: json }))
