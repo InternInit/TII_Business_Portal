@@ -8,6 +8,7 @@ import { Button, Switch } from "antd";
 
 import CandidateInfoBar from "./candidateInfoBar";
 import CandidateQuickviewTab from "./CandidateQuickviewTab";
+import CandidateDetailedviewTab from "./CandidateDetailedviewTab";
 
 //Ant Design Styles
 const AddFilterStyle = {
@@ -81,6 +82,7 @@ class ReviewApplicants extends Component {
           />
           <HeaderText>Unread Applicants</HeaderText>
           <CandidateInfoBar />
+	  <CandidateDetailedviewTab />
           {students.map(student => (
 
             <CandidateQuickviewTab
