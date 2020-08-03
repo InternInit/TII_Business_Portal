@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import DraggingCard from "./DraggingCard.js";
 import styled from "styled-components";
@@ -17,13 +17,13 @@ const containerStyle = {
   justifyContent: "center",
   minHeight: "100vh",
   backgroundColor: "#eceff9"
-}
+};
 
 const columnStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center"
-}
+};
 
 const dragStyle = {
   backgroundColor: "#f5f5f5",
@@ -31,43 +31,8 @@ const dragStyle = {
   width: "40vh",
   minHeight: "80vh",
   borderRadius: "4px",
-  border: '1px solid #d8def3'
-
-}
-//Psuedo backend
-const itemsFromBackend = [
-  { id: "1", name: "Brandon Lu", date: "01/02/12", position: "Cheese Grator" },
-  { id: "2", name: "Oscar Hong", date: "02/03/03", position: "Cheese Grator" },
-  { id: "3", name: "Joe Zhang", date: "06/09/20", position: "Cheese Grator" },
-  { id: "4", name: "Kevin Tucker", date: "4/12/23", position: "Cheese Grator" },
-  { id: "5", name: "Lil Uzi Vert", date: "07/17/13", position: "Cheese Grator" }
-];
-
-//Card Drop Zones
-const columnsFromBackend = {
-  1: {
-    name: "Marked",
-    items: itemsFromBackend
-  },
-  2: {
-    name: "Online Interview",
-    items: []
-  },
-  3: {
-    name: "On-Site Interview",
-    items: []
-  },
-  4: {
-    name: "Accepted",
-    items: []
-  }
+  border: "1px solid #d8def3"
 };
-
-
-
-
-
-
 
 /**
  *
@@ -112,16 +77,48 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 function HirePipeline() {
+  //Card Drop Zones
+  const columnsFromBackend = {
+    1: {
+      name: "Marked",
+      items: []
+    },
+    2: {
+      name: "Online Interview",
+      items: []
+    },
+    3: {
+      name: "On-Site Interview",
+      items: []
+    },
+    4: {
+      name: "Accepted",
+      items: []
+    }
+  };
+
   const [columns, setColumns] = useState(columnsFromBackend);
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/student?_page=1&_limit=5`)
+      .then(response => response.json())
+      .then(json => {
+        setColumns({
+          ...columns,
+          ["1"]: { ...columns["1"], items: json }
+        });
+        console.log(json);
+      });
+
+    console.log(columns);
+  }, []);
   return (
     /**
      *
      *The page containing drag n drop
      *
      */
-    <div
-      style={containerStyle}
-    >
+    <div style={containerStyle}>
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
@@ -132,10 +129,7 @@ function HirePipeline() {
              *Mapping of Columns (Already defined)
              *
              */
-            <div
-              style={columnStyle}
-              key={columnId}
-            >
+            <div style={columnStyle} key={columnId}>
               <Header>{column.name}</Header>
               <div style={{ margin: 8 }}>
                 <Droppable droppableId={columnId} key={columnId}>
@@ -181,11 +175,11 @@ function HirePipeline() {
                                      *
                                      */}
                                     <DraggingCard
-                                      name={item.name}
-                                      date={item.date}
-                                      position={item.position}
+                                      name={item.personal.first_name}
+                                      date={item.internship.work_start}
+                                      position="Cheese grator"
                                       id={item.id}
-                                      avatar=""
+                                      avatar={item.personal.avatar}
                                     />
                                   </div>
                                 );
@@ -203,7 +197,7 @@ function HirePipeline() {
           );
         })}
       </DragDropContext>
-    </div >
+    </div>
   );
 }
 
