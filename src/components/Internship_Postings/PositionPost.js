@@ -35,7 +35,8 @@ const pageStyle = {
   display: "flex",
   width: "90%",
   flexDirection: "column",
-  justifySelf: "center"
+  justifySelf: "center",
+  marginBottom: '4vh'
 };
 
 //Ant Design Styles
