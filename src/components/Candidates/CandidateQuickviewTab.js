@@ -145,6 +145,7 @@ class CandidateQuickviewTab extends Component {
             <CheckIcon
               icon={check}
               style={{ marginLeft: "1vh", marginRight: "1vh" }}
+              onClick={this.props.onInterview}
             />
           </Tooltip>
           <Tooltip title="Review Later">
