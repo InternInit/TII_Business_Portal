@@ -55,14 +55,14 @@ class ReviewApplicants extends Component {
   state = {
     quickview: true,
     page: "1",
-    students: [],
-    reviewStudents: [],
+    students: null,
+    reviewStudents: null,
     review: true
   };
 
   handleReview = index => {
     let reviewStudent = { ...this.state.students[index] };
-    reviewStudent.company.status = "review";
+    reviewStudent.companies[0].status = "review";
     this.setState({
       reviewStudents: this.state.reviewStudents.concat(reviewStudent),
       students: this.state.students.filter((item, j) => j !== index)
@@ -80,6 +80,7 @@ class ReviewApplicants extends Component {
 
   render() {
     let { students, reviewStudents } = this.state;
+
     return (
       <div
         style={{
@@ -97,8 +98,8 @@ class ReviewApplicants extends Component {
           {this.state.quickview ? (
             <ViewText>Quickview</ViewText>
           ) : (
-            <ViewText>Detailed View</ViewText>
-          )}
+              <ViewText>Detailed View</ViewText>
+            )}
 
           <Switch
             defaultChecked
@@ -137,46 +138,46 @@ class ReviewApplicants extends Component {
         ))}
       </React.Fragment>
     ) : (
-      <React.Fragment>
-        <Divider />
-        {students.map((student, index) => (
-          <CandidateDetailedviewTab
-            key={index}
-            avatar={student.personal.avatar}
-            name={
-              student.personal.first_name + " " + student.personal.last_name
-            }
-            school={student.education.school.name}
-            schoolAddress={
-              student.education.school.address +
-              ", " +
-              student.education.school.state
-            }
-            GPA={student.education.weighted_GPA}
-            age={student.personal.age}
-            workDate={
-              student.internship.work_start +
-              " - " +
-              student.internship.work_end
-            }
-            industries={
-              student.internship.industries[0] +
-              ", " +
-              student.internship.industries[1] +
-              ", " +
-              student.internship.industries[2]
-            }
-            activityOne={student.personal.extracurriculars[0]}
-            activityTwo={student.personal.extracurriculars[1]}
-            activityThree={student.personal.extracurriculars[2]}
-            classOne={student.education.relevant_courses[0]}
-            classTwo={student.education.relevant_courses[1]}
-            classThree={student.education.relevant_courses[2]}
-            onReview={() => this.handleReview(index)}
-          />
-        ))}
-      </React.Fragment>
-    );
+        <React.Fragment>
+          <Divider />
+          {students.map((student, index) => (
+            <CandidateDetailedviewTab
+              key={index}
+              avatar={student.personal.avatar}
+              name={
+                student.personal.first_name + " " + student.personal.last_name
+              }
+              school={student.education.school.name}
+              schoolAddress={
+                student.education.school.address +
+                ", " +
+                student.education.school.state
+              }
+              GPA={student.education.weighted_GPA}
+              age={student.personal.age}
+              workDate={
+                student.internship.work_start +
+                " - " +
+                student.internship.work_end
+              }
+              industries={
+                student.internship.industries[0] +
+                ", " +
+                student.internship.industries[1] +
+                ", " +
+                student.internship.industries[2]
+              }
+              activityOne={student.personal.extracurriculars[0]}
+              activityTwo={student.personal.extracurriculars[1]}
+              activityThree={student.personal.extracurriculars[2]}
+              classOne={student.education.relevant_courses[0]}
+              classTwo={student.education.relevant_courses[1]}
+              classThree={student.education.relevant_courses[2]}
+              onReview={() => this.handleReview(index)}
+            />
+          ))}
+        </React.Fragment>
+      );
   };
 
   renderReviewApplicants = () => {
@@ -200,46 +201,46 @@ class ReviewApplicants extends Component {
         ))}
       </React.Fragment>
     ) : (
-      <React.Fragment>
-        <HeaderText>Marked for Review</HeaderText>
-        <Divider />
-        {reviewStudents.map((student, index) => (
-          <CandidateDetailedviewReviewTab
-            key={index}
-            avatar={student.personal.avatar}
-            name={
-              student.personal.first_name + " " + student.personal.last_name
-            }
-            school={student.education.school.name}
-            schoolAddress={
-              student.education.school.address +
-              ", " +
-              student.education.school.state
-            }
-            GPA={student.education.weighted_GPA}
-            age={student.personal.age}
-            workDate={
-              student.internship.work_start +
-              " - " +
-              student.internship.work_end
-            }
-            industries={
-              student.internship.industries[0] +
-              ", " +
-              student.internship.industries[1] +
-              ", " +
-              student.internship.industries[2]
-            }
-            activityOne={student.personal.extracurriculars[0]}
-            activityTwo={student.personal.extracurriculars[1]}
-            activityThree={student.personal.extracurriculars[2]}
-            classOne={student.education.relevant_courses[0]}
-            classTwo={student.education.relevant_courses[1]}
-            classThree={student.education.relevant_courses[2]}
-          />
-        ))}
-      </React.Fragment>
-    );
+        <React.Fragment>
+          <HeaderText>Marked for Review</HeaderText>
+          <Divider />
+          {reviewStudents.map((student, index) => (
+            <CandidateDetailedviewReviewTab
+              key={index}
+              avatar={student.personal.avatar}
+              name={
+                student.personal.first_name + " " + student.personal.last_name
+              }
+              school={student.education.school.name}
+              schoolAddress={
+                student.education.school.address +
+                ", " +
+                student.education.school.state
+              }
+              GPA={student.education.weighted_GPA}
+              age={student.personal.age}
+              workDate={
+                student.internship.work_start +
+                " - " +
+                student.internship.work_end
+              }
+              industries={
+                student.internship.industries[0] +
+                ", " +
+                student.internship.industries[1] +
+                ", " +
+                student.internship.industries[2]
+              }
+              activityOne={student.personal.extracurriculars[0]}
+              activityTwo={student.personal.extracurriculars[1]}
+              activityThree={student.personal.extracurriculars[2]}
+              classOne={student.education.relevant_courses[0]}
+              classTwo={student.education.relevant_courses[1]}
+              classThree={student.education.relevant_courses[2]}
+            />
+          ))}
+        </React.Fragment>
+      );
   };
 
   componentDidMount() {
@@ -247,8 +248,8 @@ class ReviewApplicants extends Component {
       .then(response => response.json())
       .then(json =>
         this.setState({
-          students: json.filter(item => item.company.status !== "review"),
-          reviewStudents: json.filter(item => item.company.status === "review")
+          students: json.filter(item => item.companies[0].status !== "review"),
+          reviewStudents: json.filter(item => item.companies[0].status === "review")
         })
       );
   }

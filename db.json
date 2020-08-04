@@ -51,11 +51,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": "review",
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 2,
@@ -108,11 +123,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 3,
@@ -165,11 +195,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 4,
@@ -222,11 +267,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 5,
@@ -279,11 +339,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 6,
@@ -336,11 +411,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 7,
@@ -393,11 +483,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 8,
@@ -450,11 +555,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 9,
@@ -507,11 +627,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 10,
@@ -564,11 +699,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 11,
@@ -621,11 +771,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 12,
@@ -678,11 +843,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": "review",
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 13,
@@ -735,11 +915,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": "review",
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 14,
@@ -792,11 +987,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": "review",
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 15,
@@ -849,11 +1059,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": "review",
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 16,
@@ -906,11 +1131,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 17,
@@ -963,11 +1203,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 18,
@@ -1020,11 +1275,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 19,
@@ -1077,11 +1347,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 20,
@@ -1134,11 +1419,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 21,
@@ -1191,11 +1491,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 22,
@@ -1248,11 +1563,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 23,
@@ -1305,11 +1635,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 24,
@@ -1362,11 +1707,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 25,
@@ -1419,11 +1779,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 26,
@@ -1476,11 +1851,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 27,
@@ -1533,11 +1923,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 28,
@@ -1590,11 +1995,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 29,
@@ -1647,11 +2067,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 30,
@@ -1704,11 +2139,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 31,
@@ -1761,11 +2211,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 32,
@@ -1818,11 +2283,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 33,
@@ -1875,11 +2355,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 34,
@@ -1932,11 +2427,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 35,
@@ -1989,11 +2499,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 36,
@@ -2046,11 +2571,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 37,
@@ -2103,11 +2643,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 38,
@@ -2160,11 +2715,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 39,
@@ -2217,11 +2787,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 40,
@@ -2274,11 +2859,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 41,
@@ -2331,11 +2931,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 42,
@@ -2388,11 +3003,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 43,
@@ -2445,11 +3075,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 44,
@@ -2502,11 +3147,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 45,
@@ -2559,11 +3219,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 46,
@@ -2616,11 +3291,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 47,
@@ -2673,11 +3363,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 48,
@@ -2730,11 +3435,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 49,
@@ -2787,11 +3507,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 50,
@@ -2844,11 +3579,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 51,
@@ -2901,11 +3651,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 52,
@@ -2958,11 +3723,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 53,
@@ -3015,11 +3795,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 54,
@@ -3072,11 +3867,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 55,
@@ -3129,11 +3939,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 56,
@@ -3186,11 +4011,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 57,
@@ -3243,11 +4083,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 58,
@@ -3300,11 +4155,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 59,
@@ -3357,11 +4227,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 60,
@@ -3414,11 +4299,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 61,
@@ -3471,11 +4371,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 62,
@@ -3528,11 +4443,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 63,
@@ -3585,11 +4515,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 64,
@@ -3642,11 +4587,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 65,
@@ -3699,11 +4659,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 66,
@@ -3756,11 +4731,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 67,
@@ -3813,11 +4803,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 68,
@@ -3870,11 +4875,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 69,
@@ -3927,11 +4947,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 70,
@@ -3984,11 +5019,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 71,
@@ -4041,11 +5091,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 72,
@@ -4098,11 +5163,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 73,
@@ -4155,11 +5235,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 74,
@@ -4212,11 +5307,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 75,
@@ -4269,11 +5379,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 76,
@@ -4326,11 +5451,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 77,
@@ -4383,11 +5523,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 78,
@@ -4440,11 +5595,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 79,
@@ -4497,11 +5667,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 80,
@@ -4554,11 +5739,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 81,
@@ -4611,11 +5811,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 82,
@@ -4668,11 +5883,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 83,
@@ -4725,11 +5955,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 84,
@@ -4782,11 +6027,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 85,
@@ -4839,11 +6099,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 86,
@@ -4896,11 +6171,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 87,
@@ -4953,11 +6243,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 88,
@@ -5010,11 +6315,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 89,
@@ -5067,11 +6387,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 90,
@@ -5124,11 +6459,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 91,
@@ -5181,11 +6531,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 92,
@@ -5238,11 +6603,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 93,
@@ -5295,11 +6675,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 94,
@@ -5352,11 +6747,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 95,
@@ -5409,11 +6819,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 96,
@@ -5466,11 +6891,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 97,
@@ -5523,11 +6963,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 98,
@@ -5580,11 +7035,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 99,
@@ -5637,11 +7107,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 100,
@@ -5694,11 +7179,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 101,
@@ -5751,11 +7251,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 102,
@@ -5808,11 +7323,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 103,
@@ -5865,11 +7395,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 104,
@@ -5922,11 +7467,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 105,
@@ -5979,11 +7539,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 106,
@@ -6036,11 +7611,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 107,
@@ -6093,11 +7683,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 108,
@@ -6150,11 +7755,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 109,
@@ -6207,11 +7827,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 110,
@@ -6264,11 +7899,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 111,
@@ -6321,11 +7971,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 112,
@@ -6378,11 +8043,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 113,
@@ -6435,11 +8115,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 114,
@@ -6492,11 +8187,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 115,
@@ -6549,11 +8259,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 116,
@@ -6606,11 +8331,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 117,
@@ -6663,11 +8403,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 118,
@@ -6720,11 +8475,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 119,
@@ -6777,11 +8547,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 120,
@@ -6834,11 +8619,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 121,
@@ -6891,11 +8691,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 122,
@@ -6948,11 +8763,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 123,
@@ -7005,11 +8835,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 124,
@@ -7062,11 +8907,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 125,
@@ -7119,11 +8979,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 126,
@@ -7176,11 +9051,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 127,
@@ -7233,11 +9123,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 128,
@@ -7290,11 +9195,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 129,
@@ -7347,11 +9267,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 130,
@@ -7404,11 +9339,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 131,
@@ -7461,11 +9411,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 132,
@@ -7518,11 +9483,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 133,
@@ -7575,11 +9555,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 134,
@@ -7632,11 +9627,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 135,
@@ -7689,11 +9699,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 136,
@@ -7746,11 +9771,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 137,
@@ -7803,11 +9843,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 138,
@@ -7860,11 +9915,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 139,
@@ -7917,11 +9987,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 140,
@@ -7974,11 +10059,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 141,
@@ -8031,11 +10131,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 142,
@@ -8088,11 +10203,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 143,
@@ -8145,11 +10275,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 144,
@@ -8202,11 +10347,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 145,
@@ -8259,11 +10419,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 146,
@@ -8316,11 +10491,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 147,
@@ -8373,11 +10563,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 148,
@@ -8430,11 +10635,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 149,
@@ -8487,11 +10707,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 150,
@@ -8544,11 +10779,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 151,
@@ -8601,11 +10851,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 152,
@@ -8658,11 +10923,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 153,
@@ -8715,11 +10995,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 154,
@@ -8772,11 +11067,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 155,
@@ -8829,11 +11139,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 156,
@@ -8886,11 +11211,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 157,
@@ -8943,11 +11283,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 158,
@@ -9000,11 +11355,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 159,
@@ -9057,11 +11427,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 160,
@@ -9114,11 +11499,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 161,
@@ -9171,11 +11571,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 162,
@@ -9228,11 +11643,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 163,
@@ -9285,11 +11715,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 164,
@@ -9342,11 +11787,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 165,
@@ -9399,11 +11859,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 166,
@@ -9456,11 +11931,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 167,
@@ -9513,11 +12003,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 168,
@@ -9570,11 +12075,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 169,
@@ -9627,11 +12147,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 170,
@@ -9684,11 +12219,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 171,
@@ -9741,11 +12291,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 172,
@@ -9798,11 +12363,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 173,
@@ -9855,11 +12435,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 174,
@@ -9912,11 +12507,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 175,
@@ -9969,11 +12579,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 176,
@@ -10026,11 +12651,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 177,
@@ -10083,11 +12723,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 178,
@@ -10140,11 +12795,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 179,
@@ -10197,11 +12867,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 180,
@@ -10254,11 +12939,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 181,
@@ -10311,11 +13011,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 182,
@@ -10368,11 +13083,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 183,
@@ -10425,11 +13155,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 184,
@@ -10482,11 +13227,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 185,
@@ -10539,11 +13299,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 186,
@@ -10596,11 +13371,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 187,
@@ -10653,11 +13443,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 188,
@@ -10710,11 +13515,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 189,
@@ -10767,11 +13587,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 190,
@@ -10824,11 +13659,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 191,
@@ -10881,11 +13731,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 192,
@@ -10938,11 +13803,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 193,
@@ -10995,11 +13875,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 194,
@@ -11052,11 +13947,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 195,
@@ -11109,11 +14019,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 196,
@@ -11166,11 +14091,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 197,
@@ -11223,11 +14163,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 198,
@@ -11280,11 +14235,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 199,
@@ -11337,11 +14307,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     },
     {
       "id": 200,
@@ -11394,11 +14379,26 @@
           ]
         }
       },
-      "company": {
-        "name": "Microsoft",
-        "status": null,
-        "notes": null
-      }
+      "companies": [
+        {
+          "id": "1",
+          "name": "Microsoft",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "2",
+          "name": "Tesla",
+          "status": "review",
+          "notes": null
+        },
+        {
+          "id": "3",
+          "name": "Facebook",
+          "status": "review",
+          "notes": null
+        }
+      ]
     }
   ],
   "business": [

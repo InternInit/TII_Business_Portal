@@ -6,6 +6,7 @@ import NavSearch from "../NavSearch";
 import InfoBar from "./InfoBar";
 import QueueAnim from "rc-queue-anim";
 
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -67,14 +68,15 @@ class PositionPost extends Component {
     if (business === null) {
       return null;
     }
-    console.log("This is business: ", typeof business[0].listings)
     return (
       <Container>
         <NavSearch title="My Internship Postings" />
 
         <div style={pageStyle}>
           <Row>
-            <Button style={ButtonStyle}><ButtonText>New Internship</ButtonText></Button>
+            <Link to='/internship-listings/add-listing'>
+              <Button style={ButtonStyle}><ButtonText>New Internship</ButtonText></Button>
+            </Link>
             <Button style={ButtonStyle} ><ButtonText>Edit Filter</ButtonText></Button>
           </Row>
           {/**
@@ -82,8 +84,8 @@ class PositionPost extends Component {
            */}
           <InfoBar />
 
-          {business[0].listings.map(post => (
-            <PostingTab status="Active" name={post.name} interns={post.interns} />
+          {business[0].listings.map((post, index) => (
+            <PostingTab status="Active" name={post.name} interns={post.interns} id={post.name} />
           ))}
         </div>
       </Container>
@@ -95,5 +97,27 @@ class PositionPost extends Component {
       .then(json =>
         this.setState({ business: json }))
   }
+
+
+
+  handlePost = index => {
+    let newPost = { ...this.state.business[index] };
+    newPost.companies[0].status = "review";
+    this.setState({
+      newPost: this.state.newPost.concat(newPost),
+    });
+    fetch(`http://localhost:8000/business/${newPost.id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newPost)
+    })
+      .then(response => response.json())
+      .then(json => console.log(json));
+  };
+
+
+
 }
 export default PositionPost;

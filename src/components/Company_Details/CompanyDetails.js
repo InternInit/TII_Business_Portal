@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Input, Upload, Button } from "antd";
+import {
+  Input,
+  Upload,
+  Button,
+  Form
+} from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 
 import NavSearch from "../NavSearch";
@@ -64,8 +69,49 @@ const pageStyle = {
 
 }
 
+//Form Props
+const FormProps = {
+  TotalForm: {
+    name: "Company Details"
+  },
+  name: {
+    key: "name",
+    name: "Name",
+  },
+  Description: {
+    key: "description",
+    name: "Description",
+  },
+  Website: {
+    key: "website",
+    name: "Website"
+  },
+  EMail: {
+    key: "email",
+    name: "E-Mail"
+  },
+  Phone: {
+    key: "phone",
+    name: "Phone Number"
+  },
+  Visual: {
+    key: "visual",
+    name: "Visual"
+  },
+  Avatar: {
+    key: "avatar",
+    name: "Avatar"
+  }
+}
+
+
 class CompanyDetails extends React.Component {
+  state = { business: null }
   render() {
+    let { business } = this.state;
+    if (business === null) {
+      return null;
+    }
     return (
       <React.Fragment>
         <NavSearch title="Company Information" searchBar={false} />
@@ -80,96 +126,113 @@ class CompanyDetails extends React.Component {
              * Company Name
              *
              */}
-            <Header>XYZ Corporation</Header>
-            <Input
-              placeholder="Change Company Name"
-              style={{ marginTop: "2vh" }}
-            />
-
-            {/**
+            <Header>{business[0].name}</Header>
+            <Form {...FormProps.TotalForm}>
+              <Form.Item {...FormProps.name}>
+                <Input
+                  placeholder="Change Company Name"
+                  defaultValue={business[0].name}
+                  style={{ marginTop: "2vh" }}
+                />
+              </Form.Item>
+              {/**
              *
              * Company Description
              *
              */}
-            <InfoHeader>Company Description</InfoHeader>
-            <TextArea
-              placeholder="Company Description"
-              autoSize={{ minRows: 5, maxRows: 10 }}
-              style={{ marginTop: "2vh" }}
-            />
-
-            {/**
+              <InfoHeader>Company Description</InfoHeader>
+              <Form.Item {...FormProps.Description}>
+                <TextArea
+                  placeholder="Company Description"
+                  defaultValue={business[0].description}
+                  autoSize={{ minRows: 5, maxRows: 10 }}
+                  style={{ marginTop: "2vh" }}
+                />
+              </Form.Item>
+              {/**
              *
              * Company Website
              *
              */}
-            <InfoHeader>Website</InfoHeader>
-            <Input
-              placeholder="https://www.interninit.com"
-              style={{ marginTop: "2vh" }}
-            />
-
-            {/**
+              <InfoHeader>Website</InfoHeader>
+              <Form.Item {...FormProps.Website}>
+                <Input
+                  placeholder="https://www.interninit.com"
+                  defaultValue={business[0].website}
+                  style={{ marginTop: "2vh" }}
+                />
+              </Form.Item>
+              {/**
              *
              * E-Mail
              *
              */}
-            <InfoHeader>E-Mail</InfoHeader>
-            <Input
-              placeholder="company@email.com"
-              style={{ marginTop: "2vh" }}
-            />
-
-            {/**
+              <InfoHeader>E-Mail</InfoHeader>
+              <Form.Item {...FormProps.EMail}>
+                <Input
+                  placeholder="company@email.com"
+                  defaultValue={business[0].email}
+                  style={{ marginTop: "2vh" }}
+                />
+              </Form.Item>
+              {/**
              *
              * Phone Number
              *
              */}
-            <InfoHeader>Phone Number</InfoHeader>
-            <Input placeholder="123 456 7891" style={{ marginTop: "2vh" }} />
+              <InfoHeader>Phone Number</InfoHeader>
+              <Form.Item {...FormProps.Phone}>
+                <Input placeholder="123 456 7891"
+                  defaultValue={business[0].phone}
+                  style={{ marginTop: "2vh" }} />
+              </Form.Item>
 
-            {/**Row for Upload files */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly"
-              }}
-            >
-              {/**
+              {/**Row for Upload files */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly"
+                }}
+              >
+                {/**
                *
                * Company Visual
                *
                */}
-              <Col>
-                <UploadHeader>Upload Company Visual</UploadHeader>
-                <Dragger style={{ width: "50vh", height: "30px" }}>
-                  <h1 style={{ color: "#69c0ff" }}>
-                    <InboxOutlined />
-                  </h1>
-                  <h5>Click or Drag Files to Upload Here</h5>
-                </Dragger>
-              </Col>
+                <Col>
+                  <UploadHeader>Upload Company Visual</UploadHeader>
+                  <Form.Item {...FormProps.Visual}>
+                    <Dragger style={{ width: "50vh", height: "30px" }}>
+                      <h1 style={{ color: "#69c0ff" }}>
+                        <InboxOutlined />
+                      </h1>
+                      <h5>Click or Drag Files to Upload Here</h5>
+                    </Dragger>
+                  </Form.Item>
+                </Col>
 
-              {/**
+                {/**
                *
                * Company Avatar
                *
                */}
-              <Col>
-                <UploadHeader>Upload Company Visual</UploadHeader>
-                <Dragger style={{ width: "50vh", height: "30px" }}>
-                  <h1 style={{ color: "#69c0ff" }}>
-                    <InboxOutlined />
-                  </h1>
-                  <h5>Click or Drag Files to Upload Here</h5>
-                </Dragger>
-              </Col>
-            </div>
-
+                <Col>
+                  <UploadHeader>Upload Company Visual</UploadHeader>
+                  <Form.Item {...FormProps.Avatar}>
+                    <Dragger style={{ width: "50vh", height: "30px" }}>
+                      <h1 style={{ color: "#69c0ff" }}>
+                        <InboxOutlined />
+                      </h1>
+                      <h5>Click or Drag Files to Upload Here</h5>
+                    </Dragger>
+                  </Form.Item>
+                </Col>
+              </div>
+            </Form>
             <div
               style={buttonStyle}
             >
-              <Button type="primary" size="medium" style={{ width: "36vh" }}>
+              <Button type="primary" size="medium" style={{ width: "36vh" }} htmlType="submit">
                 Save Changes
               </Button>
             </div>
@@ -177,6 +240,27 @@ class CompanyDetails extends React.Component {
         </div>
       </React.Fragment>
     );
+  }
+  componentDidMount() {
+    let variable = null;
+    fetch('http://localhost:8000/business?_page=1&_limit=1')
+      .then(response => response.json())
+      .then(json =>
+        this.setState({ business: json }))
+  }
+
+  handleSave = (values) => {
+    console.log("This is the finished form", values)
+    /*fetch(`http://localhost:8000/business`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(values)
+    })
+      .then(response => response.json())
+      .then(json => console.log(json));
+      */
   }
 }
 export default CompanyDetails;
