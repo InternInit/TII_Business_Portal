@@ -3,6 +3,7 @@ import "../../App.css";
 import "./candidates.css";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { Button, Switch, Divider } from "antd";
 
@@ -51,6 +52,12 @@ const HeaderText = styled.span`
   margin-top: 3vh;
 `;
 
+const mapStateToProps = state => {
+  return {
+    companyInfo: state.companyInfo
+  };
+};
+
 class ReviewApplicants extends Component {
   state = {
     quickview: true,
@@ -76,6 +83,42 @@ class ReviewApplicants extends Component {
     })
       .then(response => response.json())
       .then(json => console.log(json));
+  };
+
+  handleInterviewUnread = index => {
+    let interviewStudent = { ...this.state.students[index] };
+    interviewStudent.companies[0].status = "marked-for-interview";
+    /*
+    this.setState({
+      students: this.state.students.filter((item, j) => j !== index)
+    });
+    fetch(`http://localhost:8000/student/${interviewStudent.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(interviewStudent)
+    })
+      .then(response => response.json())
+      .then(json => console.log(json));*/
+  };
+
+  handleInterviewReview = index => {
+    let interviewStudent = { ...this.state.reviewStudents[index] };
+    interviewStudent.companies[0].status = "marked-for-interview";
+    /*
+    this.setState({
+      reviewStudents: this.state.reviewStudents.filter((item, j) => j !== index)
+    });
+    fetch(`http://localhost:8000/student/${interviewStudent.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(interviewStudent)
+    })
+      .then(response => response.json())
+      .then(json => console.log(json));*/
   };
 
   render() {
@@ -134,6 +177,7 @@ class ReviewApplicants extends Component {
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
             onReview={() => this.handleReview(index)}
+            onInterview={() => this.handleInterviewUnread(index)}
           />
         ))}
       </React.Fragment>
@@ -174,6 +218,7 @@ class ReviewApplicants extends Component {
               classTwo={student.education.relevant_courses[1]}
               classThree={student.education.relevant_courses[2]}
               onReview={() => this.handleReview(index)}
+              onInterview={() => this.handleInterviewUnread(index)}
             />
           ))}
         </React.Fragment>
@@ -197,6 +242,7 @@ class ReviewApplicants extends Component {
             industry={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
+            onInterview={() => this.handleInterviewReview(index)}
           />
         ))}
       </React.Fragment>
@@ -237,6 +283,7 @@ class ReviewApplicants extends Component {
               classOne={student.education.relevant_courses[0]}
               classTwo={student.education.relevant_courses[1]}
               classThree={student.education.relevant_courses[2]}
+              onInterview={() => this.handleInterviewReview(index)}
             />
           ))}
         </React.Fragment>
@@ -244,15 +291,28 @@ class ReviewApplicants extends Component {
   };
 
   componentDidMount() {
-    fetch(`http://localhost:8000/student?_page=1&_limit=15`)
+    const { companyName } = this.props.companyInfo;
+    fetch(
+      `http://localhost:8000/student?q=${this.props.companyInfo.companyName}&_page=1&_limit=15`
+    )
       .then(response => response.json())
-      .then(json =>
+      .then(json => {
+        let newArray = json;
+        for (var i = 0; i < newArray.length; i++) {
+          newArray[i].companies = newArray[i].companies.filter(
+            company => company.name === companyName
+          );
+        }
         this.setState({
-          students: json.filter(item => item.companies[0].status !== "review"),
-          reviewStudents: json.filter(item => item.companies[0].status === "review")
-        })
-      );
+          students: newArray.filter(
+            student => student.companies[0].status === null
+          ),
+          reviewStudents: newArray.filter(
+            student => student.companies[0].status === "review"
+          )
+        });
+      });
   }
 }
 
-export default withRouter(ReviewApplicants);
+export default withRouter(connect(mapStateToProps)(ReviewApplicants));
