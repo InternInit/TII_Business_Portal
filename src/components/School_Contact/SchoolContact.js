@@ -23,7 +23,7 @@ const Row = styled.div`
   margin-top: 4vh;
   margin-bottom: 4vh;
 
-  width: 60vh;
+  width: 85vh;
   justify-content: space-between;
   align-self: flex-start;
 `;
@@ -54,7 +54,11 @@ const ButtonText = styled.span`
 const Backend = [1, 2, 3, 4];
 
 class SchoolContact extends Component {
+    state = {
+        students: []
+    }
     render() {
+        let { students } = this.state;
         return (
             <Container>
                 <NavSearch title="Contact Schools" />
@@ -64,14 +68,32 @@ class SchoolContact extends Component {
                         <Button style={AddFilterStyle}>
                             <ButtonText> Add Filter</ButtonText>
                         </Button>
+                        <Button style={AddFilterStyle}>
+                            <ButtonText> E-Mail All</ButtonText>
+                        </Button>
                     </Row>
 
                     <SchoolInfoBar />
+                    {students.map(student => (
+                        <SchoolTab
+                            key={student.id}
+                            name={student.education.school.name}
+                            address={student.education.school.address + ", " + student.education.school.state}
+                            interns={"12"} //Not part of db.json
+                            email={"brandonbl2021@gmail.com"} //Not part of db.json
+                            phone={"774 415 4004"} //Not part of db.json
+                        />
 
-                    <SchoolTab name="Algonquin Regional High School" />
+                    ))}
                 </div>
             </Container>
         );
+    }
+    componentDidMount() {
+        fetch('http://localhost:8000/student?_page=1&_limit=10')
+            .then(response => response.json())
+            .then(json =>
+                this.setState({ students: json }))
     }
 }
 export default SchoolContact;
