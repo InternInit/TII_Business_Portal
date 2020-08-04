@@ -39,10 +39,15 @@ const Row = styled.div`
 
 class MainPage extends React.Component {
   state = {
-    students: []
+    students: [],
+    business: null
   }
   render() {
-    let { students } = this.state;
+    let { students, business } = this.state;
+
+    if (business === null) {
+      return null;
+    }
     return (
       <div
         style={{
@@ -67,9 +72,14 @@ class MainPage extends React.Component {
              *
              */}
             <Header> Listings</Header>
-            <PageListings />
-            <PageListings />
-            <PageListings />
+            {business[0].listings.slice(0, 3).map(post => (
+              <PageListings
+                name={post.name}
+                interns={post.interns}
+                accepted={post.interns}
+                total={post.interns + post.interns}
+              />
+            ))}
 
             {/**
              *
@@ -135,6 +145,10 @@ class MainPage extends React.Component {
       .then(response => response.json())
       .then(json =>
         this.setState({ students: json }))
+    fetch('http://localhost:8000/business?_page=1&_limit=1')
+      .then(response => response.json())
+      .then(json =>
+        this.setState({ business: json }))
   }
 }
 export default MainPage;

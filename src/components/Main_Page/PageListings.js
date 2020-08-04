@@ -23,6 +23,7 @@ const TabContainer = styled.div`
 const ListingName = styled.span`
   font-size: 18px;
   font-weight: bold;
+  width:49vh;
 `;
 const Industry = styled.span`
   margin-top: -1vh;
@@ -54,12 +55,12 @@ const dividerStyle = {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-evenly",
-  marginLeft: "5%",
   width: "65%"
 }
 
 class PageListings extends React.Component {
   render() {
+    let { name, interns, accepted, total } = this.props;
     return (
       <TabContainer>
         {/**
@@ -68,7 +69,7 @@ class PageListings extends React.Component {
          *
          */}
         <Col style={{ marginLeft: "5%" }}>
-          <ListingName>Cheese Grator</ListingName>
+          <ListingName>{name}</ListingName>
           <Industry>Data Science</Industry>
         </Col>
 
@@ -81,17 +82,17 @@ class PageListings extends React.Component {
           style={dividerStyle}
         >
           <Col>
-            <StatNum>12</StatNum>
+            <StatNum>{interns}</StatNum>
             <StatLabel>Applicants</StatLabel>
           </Col>
 
           <Col>
-            <StatNum>12</StatNum>
+            <StatNum>{accepted}</StatNum>
             <StatLabel>Accepted</StatLabel>
           </Col>
 
           <Col>
-            <StatNum>24</StatNum>
+            <StatNum>{total}</StatNum>
             <StatLabel>Total</StatLabel>
           </Col>
         </div>
