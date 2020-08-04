@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, Modal, Input } from "antd";
+import {
+  Button,
+  Modal,
+  Input,
+  message
+} from "antd";
 
 const { TextArea } = Input;
 
@@ -29,6 +34,8 @@ const TabContainer = styled.div`
 const Header = styled.span`
   font-size: 18px;
   font-weight: bold;
+
+  text-align:center;
 `;
 
 const Col = styled.div`
@@ -57,12 +64,30 @@ class SchoolTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
+      confirmLoading: false,
+
+      subjectLine: "",
+      body: "",
+      currentSubject: "",
+      currentBody: "",
+
+      okText: "Send",
+      cancelText: "Save Draft"
     };
   }
   render() {
-    let { visible } = this.state;
-    let { name } = this.props;
+    let { visible,
+      confirmLoading,
+
+      currentSubject,
+      currentBody,
+
+      okText,
+      cancelText } = this.state;
+
+    //Props
+    let { name, address, interns, email, phone } = this.props;
     return (
       <TabContainer>
         {/**
@@ -71,20 +96,20 @@ class SchoolTab extends Component {
          *
          */}
         <Col style={{ width: "45vh", alignItems: "center" }}>
-          <Header>Algonquin Regional High School</Header>
-          <Caption>Northborough, Worester County</Caption>
+          <Header>{name}</Header>
+          <Caption>{address}</Caption>
         </Col>
 
         {/**Interns */}
         <Col style={{ width: "18vh", alignItems: "center", paddingRight: '4vh' }}>
-          <Header>12</Header>
+          <Header>{interns}</Header>
           <Caption style={{ color: "#BFBFBF" }}>Interns</Caption>
         </Col>
 
         {/**Contact Info */}
         <Col style={{ alignItems: "center", width: "40vh" }}>
-          <Contact>E-Mail: 21212121</Contact>
-          <Contact>Phone Number: 774 415 4004</Contact>
+          <Contact>E-Mail: {email}</Contact>
+          <Contact>Phone Number: {phone}</Contact>
         </Col>
 
         {/**E-Mail */}
@@ -104,22 +129,36 @@ class SchoolTab extends Component {
 
         <Modal
           title={"To " + name}
-          okText="Send"
+          okText={okText}
+          cancelText={cancelText}
+
           visible={visible}
+          confirmLoading={confirmLoading}
+
           onOk={this.handleOk}
           onCancel={this.handleCancel}
+
           width="100vh"
         >
           <EMailHeader>Subject Line</EMailHeader>
-          <Input />
+          <Input value={currentSubject}
+            onChange={this.changeSubject}
+          />
           <h1></h1>
           <EMailHeader>Body</EMailHeader>
-          <TextArea autoSize={{ minRows: 5, maxRows: 10 }} />
+          <TextArea autoSize={{ minRows: 5, maxRows: 10 }}
+            value={currentBody}
+            onChange={this.changeBody} />
         </Modal>
       </TabContainer>
     );
   }
-
+  /**
+   * 
+   * 
+   * MODAL FUNCTIONS
+   * 
+   */
   showModal = () => {
     this.setState({
       visible: true
@@ -127,17 +166,56 @@ class SchoolTab extends Component {
   };
 
   handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false
-    });
+    let { currentSubject, currentBody } = this.state;
+
+    if (currentBody === "") {
+      message.error("Body text is missing!")
+    }
+    else {
+      //Lets loading to true
+      this.setState({ confirmLoading: true, okText: "Sending" })
+
+      //This is where the actual sending of the email would go 
+      this.setState({ subject: this.state.currentSubject, body: this.state.currentBody })
+
+      //Sets loading to false
+      this.setState({
+        visible: false,
+        confirmLoading: false,
+        okText: "Send",
+
+        currentBody: "",
+        currentSubject: ""
+      })
+      message.success("Sent Successfully!")
+    }
   };
 
   handleCancel = e => {
-    console.log(e);
+    this.setState({ confirmLoading: true, })
+    //Loadings for .5 second before closing
     this.setState({
-      visible: false
-    });
+      visible: false,
+      confirmLoading: false
+    })
+
+
   };
+
+
+  /**
+   * 
+   * 
+   * INPUT FUNCTIONS
+   * 
+   */
+  changeSubject = (event) => {
+    this.setState({ currentSubject: event.target.value })
+  }
+
+  changeBody = (event) => {
+    this.setState({ currentBody: event.target.value })
+  }
+
 }
 export default SchoolTab;

@@ -4,6 +4,8 @@ import PostingTab from "./PostingTab";
 import { Button } from "antd";
 import NavSearch from "../NavSearch";
 import InfoBar from "./InfoBar";
+import QueueAnim from "rc-queue-anim";
+
 
 const Container = styled.div`
   display: flex;
@@ -23,7 +25,7 @@ const Row = styled.div`
   margin-top: 4vh;
   margin-bottom: 4vh;
 
-  width: 60vh;
+  width: 85vh;
   justify-content: space-between;
   align-self: flex-start;
 `;
@@ -33,12 +35,30 @@ const pageStyle = {
   display: "flex",
   width: "90%",
   flexDirection: "column",
-  justifySelf: "center"
+  justifySelf: "center",
+  marginBottom: '4vh'
 };
+
+//Ant Design Styles
+const ButtonStyle = {
+  width: "270px",
+  height: "40px",
+  fontFamily: "roboto",
+  fontColor: "#13C2C2",
+  marginTop: "33px",
+  align: "inline-block"
+};
+
+const ButtonText = styled.span`
+  font-family: roboto;
+  color: #13c2c2;
+  font-size: 18px;
+`;
+
 
 class PositionPost extends Component {
   state = {
-    page: '1',
+    page: '5',
     business: null
   }
   render() {
@@ -54,14 +74,12 @@ class PositionPost extends Component {
 
         <div style={pageStyle}>
           <Row>
-            <Button type="primary" style={{ width: "27vh" }}>
-              New Internship
-            </Button>
-            <Button type="primary" style={{ width: "27vh" }}>
-              Edit Filter
-            </Button>
+            <Button style={ButtonStyle}><ButtonText>New Internship</ButtonText></Button>
+            <Button style={ButtonStyle} ><ButtonText>Edit Filter</ButtonText></Button>
           </Row>
-
+          {/**
+           * Info Bar
+           */}
           <InfoBar />
 
           {business[0].listings.map(post => (

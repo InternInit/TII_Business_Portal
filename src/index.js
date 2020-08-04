@@ -5,8 +5,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import "antd/dist/antd.css";
 import "./index.css";
+
+import { createStore } from 'redux';
+import rootReducer from './redux/reducers'
+
+//REDUX STORE
+const store = createStore(rootReducer)
+
+
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode store={store}>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
