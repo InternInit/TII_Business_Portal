@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Layout } from "antd";
+import { Layout, Skeleton } from "antd";
 import BusinessNavBar from "../BusinessNavBar";
 import PageListings from "./PageListings";
 import PageFeedback from "./PageFeedback";
 import MainPercentages from "./MainPercentages";
 import StudentCard from "./StudentCard";
+
+
 
 const PageHeader = styled.h1`
   font-size: 36px;
@@ -46,7 +48,7 @@ class MainPage extends React.Component {
     let { students, business } = this.state;
 
     if (business === null) {
-      return null;
+      return null
     }
     return (
       <div
@@ -115,7 +117,7 @@ class MainPage extends React.Component {
               <StudentCard
                 firstName={student.personal.first_name}
                 lastName={student.personal.last_name}
-                age={student.personal.age}
+                age={" (" + student.personal.age + ")"}
                 avatar={student.personal.avatar}
 
               />
@@ -131,13 +133,13 @@ class MainPage extends React.Component {
               <StudentCard
                 firstName={student.personal.first_name}
                 lastName={student.personal.last_name}
-                age={student.personal.age}
+                age={" (" + student.personal.age + ")"}
                 avatar={student.personal.avatar}
               />
             ))}
           </Col>
         </Row>
-      </div>
+      </div >
     );
   }
   componentDidMount() {

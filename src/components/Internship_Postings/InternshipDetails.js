@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Input, Button } from "antd";
+import { Input, Button, Form } from "antd";
 
 import NavSearch from "../NavSearch";
 
@@ -52,11 +52,53 @@ const buttonStyle = {
     marginBottom: "6vh"
 }
 
+//Form Props
+const FormProps = {
+    TotalForm: {
+        name: "Internship Post"
+    },
+    Title: {
+        key: "title",
+        name: "Title",
+    },
+    Description: {
+        key: "description",
+        name: "Description",
+    },
+    Address: {
+        key: "address",
+        name: "Address",
+    },
+    City: {
+        key: "city",
+        name: "City",
+    },
+    State: {
+        key: "state",
+        name: "State",
+    },
+    Zipcode: {
+        key: "zipcode",
+        name: "Zipecode"
+    },
+    Industries: {
+        key: "industries",
+        name: "Industries"
+    },
+    Additional: {
+        key: "additional",
+        name: "additional"
+    }
+}
+
+
+
 class InternshipDetails extends React.Component {
     render() {
+        let { buttonText, title } = this.props;
         return (
             <React.Fragment>
-                <NavSearch title="Posting Information" searchBar={false} />
+                <NavSearch title={title} searchBar={false} />
                 <div
                     style={pageStyle}
                 >
@@ -73,71 +115,80 @@ class InternshipDetails extends React.Component {
              * Listing Name
              *
              */}
-                        <Header>Post Title</Header>
-                        <Input
-                            placeholder="Edit Posting Name"
-                            style={{ marginTop: "2vh" }}
-                        />
+                        <Form {...FormProps.TotalForm}>
+                            <Header>Post Title</Header>
+                            <Form.Item {...FormProps.Title}>
+                                <Input
+                                    placeholder="Edit Posting Name"
+                                    style={{ marginTop: "2vh" }}
+                                />
+                            </Form.Item>
 
-
-                        {/**
+                            {/**
              *
              * Post Description
              *
              */}
-                        <InfoHeader>Post Description</InfoHeader>
-                        <TextArea
-                            placeholder="Post Description"
-                            autoSize={{ minRows: 5, maxRows: 10 }}
-                            style={{ marginTop: "2vh" }}
-                        />
+                            <InfoHeader>Post Description</InfoHeader>
+                            <Form.Item {...FormProps.Description}>
+                                <TextArea
+                                    placeholder="Post Description"
+                                    autoSize={{ minRows: 5, maxRows: 10 }}
+                                    style={{ marginTop: "2vh" }}
+                                />
+                            </Form.Item>
 
-
-                        {/**
+                            {/**
              *
              * Location and Industries
              *
              */}
-                        <Row>
-                            <Col style={{ width: '45%' }}>
-                                <InfoHeader>Location</InfoHeader>
-                                <Input
-                                    placeholder="Location here"
-                                    style={{ marginTop: "2vh" }}
-                                />
-                            </Col>
-                            <Col style={{ width: '45%' }}>
-                                <InfoHeader>Relevant Industries</InfoHeader>
-                                <Input
-                                    placeholder=""
-                                    style={{ marginTop: "2vh" }}
-                                />
-                            </Col>
-                        </Row>
+                            <Row style={{ justifyContent: 'space-between' }}>
+                                <Col style={{ width: '47%' }}>
+                                    <InfoHeader>Location</InfoHeader>
+                                    <Form.Item {...FormProps.Address}>
+                                        <Input
+                                            placeholder="Location here"
+                                            style={{ marginTop: "2vh" }}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                                <Col style={{ width: '47%' }}>
+                                    <Form.Item {...FormProps.Industries}>
+                                        <InfoHeader>Relevant Industries</InfoHeader>
+                                        <Input
+                                            placeholder=""
+                                            style={{ marginTop: "2vh" }}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            </Row>
 
-                        {/**
+                            {/**
              *
              * Additional Information
              *
              */}
-                        <InfoHeader>Additional Information</InfoHeader>
-                        <TextArea
-                            autoSize={{ minRows: 5, maxRows: 10 }}
-                            style={{ marginTop: "2vh" }}
-                        />
-
-                        {/**
+                            <InfoHeader>Additional Information</InfoHeader>
+                            <Form.Item {...FormProps.Additional}>
+                                <TextArea
+                                    autoSize={{ minRows: 5, maxRows: 10 }}
+                                    style={{ marginTop: "2vh" }}
+                                />
+                            </Form.Item>
+                            {/**
              *
              * Save Changes Button
              *
              */}
-                        <div
-                            style={buttonStyle}
-                        >
-                            <Button type="primary" size="medium" style={{ width: "36vh" }}>
-                                Save Changes
-                            </Button>
-                        </div>
+                            <div
+                                style={buttonStyle}
+                            >
+                                <Button type="primary" size="medium" style={{ width: "36vh" }}>
+                                    {buttonText}
+                                </Button>
+                            </div>
+                        </Form>
                     </div>
                 </div>
             </React.Fragment>

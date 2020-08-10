@@ -53,8 +53,12 @@ class App extends React.Component {
                     );
                   }}
                 />
-                <Route path="/internship-listings" exact component={PositionPost} />
-                <Route path={`/internship-listings/:id`} component={InternshipDetails} />
+
+                <ReactSwitch>
+                  <Route path="/internship-listings/add-listing" exact component={() => <InternshipDetails buttonText="Add Post" title="Create New Post" />} />
+                  <Route path="/internship-listings" exact component={PositionPost} />
+                  <Route path={`/internship-listings/:id`} exact component={() => <InternshipDetails buttonText="Save Changes" title="Post Information" />} />
+                </ReactSwitch>
 
                 <Route path="/intern-feedback" exact component={InternFeedback} />
                 <Route path={`/intern-feedback/:id`} exact component={FeedbackResponse} />
