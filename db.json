@@ -61,21 +61,13 @@
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -137,21 +129,6 @@
           "name": "Microsoft",
           "status": "review",
           "notes": null
-<<<<<<< HEAD
-        },
-        {
-          "id": "2",
-          "name": "Tesla",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "3",
-          "name": "Facebook",
-          "status": "review",
-          "notes": null
-=======
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
         }
       ]
     },
@@ -210,31 +187,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -294,31 +259,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -378,31 +331,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -462,31 +403,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -546,31 +475,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -630,31 +547,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -714,31 +619,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -798,31 +691,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -882,31 +763,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -964,26 +833,8 @@
       },
       "companies": [
         {
-<<<<<<< HEAD
-          "id": "1",
-          "name": "Microsoft",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "2",
-          "name": "Tesla",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "3",
-          "name": "Facebook",
-          "status": "review",
-=======
           "name": "Microsoft",
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1041,26 +892,8 @@
       },
       "companies": [
         {
-<<<<<<< HEAD
-          "id": "1",
-          "name": "Microsoft",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "2",
-          "name": "Tesla",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "3",
-          "name": "Facebook",
-          "status": "review",
-=======
           "name": "Microsoft",
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1118,26 +951,8 @@
       },
       "companies": [
         {
-<<<<<<< HEAD
-          "id": "1",
-          "name": "Microsoft",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "2",
-          "name": "Tesla",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "3",
-          "name": "Facebook",
-          "status": "review",
-=======
           "name": "Microsoft",
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1195,26 +1010,8 @@
       },
       "companies": [
         {
-<<<<<<< HEAD
-          "id": "1",
-          "name": "Microsoft",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "2",
-          "name": "Tesla",
-          "status": "review",
-          "notes": null
-        },
-        {
-          "id": "3",
-          "name": "Facebook",
-          "status": "review",
-=======
           "name": "Microsoft",
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1274,31 +1071,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1358,31 +1143,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1442,31 +1215,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1526,31 +1287,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1610,31 +1359,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1694,31 +1431,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1778,31 +1503,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1862,31 +1575,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -1946,31 +1647,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2030,31 +1719,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2114,31 +1791,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2198,31 +1863,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2282,31 +1935,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2366,31 +2007,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2450,31 +2079,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2534,31 +2151,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2618,31 +2223,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2702,31 +2295,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2786,31 +2367,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2870,31 +2439,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -2954,31 +2511,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3038,31 +2583,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3122,31 +2655,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3206,31 +2727,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3290,31 +2799,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3374,31 +2871,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3458,31 +2943,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3542,31 +3015,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3626,31 +3087,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3710,31 +3159,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3794,31 +3231,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3878,31 +3303,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -3962,31 +3375,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4046,31 +3447,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4130,31 +3519,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4214,31 +3591,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4298,31 +3663,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4382,31 +3735,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4466,31 +3807,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4550,31 +3879,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4634,31 +3951,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4718,31 +4023,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4802,31 +4095,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4886,31 +4167,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -4970,31 +4239,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5054,31 +4311,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5138,31 +4383,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5222,31 +4455,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5306,31 +4527,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5390,31 +4599,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5474,31 +4671,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5558,31 +4743,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5642,31 +4815,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5726,31 +4887,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5810,31 +4959,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5894,31 +5031,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -5978,31 +5103,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6062,31 +5175,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6146,31 +5247,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6230,31 +5319,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6314,31 +5391,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6398,31 +5463,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6482,31 +5535,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6566,31 +5607,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6650,31 +5679,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6734,31 +5751,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6818,31 +5823,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6902,31 +5895,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -6986,31 +5967,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7070,31 +6039,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7154,31 +6111,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7238,31 +6183,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7322,31 +6255,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7406,31 +6327,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7490,31 +6399,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7574,31 +6471,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7658,31 +6543,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7742,31 +6615,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7826,31 +6687,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7910,31 +6759,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -7994,31 +6831,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8078,31 +6903,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8162,31 +6975,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8246,31 +7047,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8330,31 +7119,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8414,31 +7191,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8498,31 +7263,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8582,31 +7335,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8666,31 +7407,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8750,31 +7479,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8834,31 +7551,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -8918,31 +7623,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9002,31 +7695,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9086,31 +7767,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9170,31 +7839,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9254,31 +7911,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9338,31 +7983,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9422,31 +8055,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9506,31 +8127,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9590,31 +8199,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9674,31 +8271,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9758,31 +8343,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9842,31 +8415,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -9926,31 +8487,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10010,31 +8559,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10094,31 +8631,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10178,31 +8703,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10262,31 +8775,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10346,31 +8847,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10430,31 +8919,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10514,31 +8991,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10598,31 +9063,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10682,31 +9135,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10766,31 +9207,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10850,31 +9279,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -10934,31 +9351,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11018,31 +9423,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11102,31 +9495,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11186,31 +9567,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11270,31 +9639,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11354,31 +9711,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11438,31 +9783,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11522,31 +9855,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11606,31 +9927,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11690,31 +9999,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11774,31 +10071,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11858,31 +10143,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -11942,31 +10215,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12026,31 +10287,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12110,31 +10359,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12194,31 +10431,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12278,31 +10503,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12362,31 +10575,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12446,31 +10647,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12530,31 +10719,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12614,31 +10791,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12698,31 +10863,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12782,31 +10935,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12866,31 +11007,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -12950,31 +11079,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13034,31 +11151,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13118,31 +11223,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13202,31 +11295,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13286,31 +11367,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13370,31 +11439,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13454,31 +11511,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13538,31 +11583,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13622,31 +11655,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13706,31 +11727,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13790,31 +11799,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13874,31 +11871,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -13958,31 +11943,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14042,31 +12015,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14126,31 +12087,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14210,31 +12159,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14294,31 +12231,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14378,31 +12303,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14462,31 +12375,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14546,31 +12447,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14630,31 +12519,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14714,31 +12591,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14798,31 +12663,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14882,31 +12735,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -14966,31 +12807,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15050,31 +12879,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15134,31 +12951,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15218,31 +13023,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15302,31 +13095,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15386,31 +13167,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15470,31 +13239,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15554,31 +13311,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15638,31 +13383,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15722,31 +13455,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15806,31 +13527,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15890,31 +13599,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -15974,31 +13671,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16058,31 +13743,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16142,31 +13815,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16226,31 +13887,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16310,31 +13959,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16394,31 +14031,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16478,31 +14103,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16562,31 +14175,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16646,31 +14247,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]
@@ -16730,31 +14319,19 @@
         {
           "id": "1",
           "name": "Microsoft",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "2",
           "name": "Tesla",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         },
         {
           "id": "3",
           "name": "Facebook",
-<<<<<<< HEAD
-          "status": "review",
-=======
           "status": null,
->>>>>>> edddabd2419cc18a17f7e79920f34baff694a8c4
           "notes": null
         }
       ]

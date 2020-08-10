@@ -217,7 +217,7 @@ class CompanyDetails extends React.Component {
                *
                */}
                 <Col>
-                  <UploadHeader>Upload Company Visual</UploadHeader>
+                  <UploadHeader>Upload Company Logo</UploadHeader>
                   <Form.Item {...FormProps.Avatar}>
                     <Dragger style={{ width: "50vh", height: "30px" }}>
                       <h1 style={{ color: "#69c0ff" }}>

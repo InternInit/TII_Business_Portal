@@ -50,7 +50,7 @@ class StudentCard extends React.Component {
       <Container>
         <Avatar src={avatar} size={28} icon={<UserOutlined />} />
         <Col>
-          <Name>{firstName} {lastName}({age})</Name>
+          <Name>{firstName} {lastName}{age}</Name>
           <Applying>Coffee Grinder</Applying>
         </Col>
       </Container>
