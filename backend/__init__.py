@@ -23,6 +23,46 @@ def update_business_lisitings():
     return "updated business listings"
 
 
+
+
+#################################
+#                                
+#      INTERNSHIP LISTINGS       
+#                                
+#################################
+ 
+@app.route("/get_internship_listings", methods=["GET"])
+def get_internship_listings():
+    return ""
+
+@app.route("/add_internship_listing", methods=["PUT"])
+def add_internship_listing():
+    return ""
+
+@app.route("/remove_internship_listing", methods=["DELETE"])
+def remove_internship_listing():
+    return ""
+
+@app.route("/update_internship_listings", methods = ["PUT", "POST"])
+def update_internship_listings():
+    return ""
+
+
+
+
+#################################
+#                                
+#        STUDENT FEEDBACK      
+#                                
+#################################
+
+@app.route('/get_student_feedback', methods=["GET"])
+def get_student_feedback():
+    return ""
+
+
+
+
 @app.route('/logout')
 def logout():
     return "logged out"
