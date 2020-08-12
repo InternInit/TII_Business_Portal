@@ -35,7 +35,7 @@ def update_business_lisitings():
 def get_internship_listings():
     return ""
 
-@app.route("/add_internship_listing", methods=["PUT"])
+@app.route("/add_internship_listing", methods=["POST"])
 def add_internship_listing():
     return ""
 
@@ -59,6 +59,25 @@ def update_internship_listings():
 @app.route('/get_student_feedback', methods=["GET"])
 def get_student_feedback():
     return ""
+
+'''
+
+Review Applicants
+
+'''
+
+@app.route('/get_student_candidates', methods=["GET"])
+def get_student_candidates():
+    return ""
+
+@app.route('/update_student_status', methods=["PUT"])
+def update_student_status():
+    return ""
+
+@app.route('/update_student_removed', methods=["DELETE"])
+def update_student_removed():
+    return ""
+
 
 
 
