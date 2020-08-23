@@ -25,3 +25,12 @@ yarn-error.log*
 # database
 *.json
 
+#Python
+/backend/__pycache__
+/env
+/venv
+/virtual-environment
+/backend/env
+/backend/venv
+/backend/virtual-environment
+*.pyc
