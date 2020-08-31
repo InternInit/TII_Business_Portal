@@ -8,19 +8,17 @@ import PageFeedback from "./PageFeedback";
 import MainPercentages from "./MainPercentages";
 import StudentCard from "./StudentCard";
 
-
-
 const PageHeader = styled.h1`
   font-size: 36px;
   font-weight: 500;
   margin-left: 25px;
- `;
+`;
 
 const PageHeaderContainer = styled.div`
   background-color: white;
-  height:60px;
-   border-bottom: 1px solid #bfbfbf;
- `;
+  height: 60px;
+  border-bottom: 1px solid #bfbfbf;
+`;
 
 const Header = styled.div`
   font-size: 20px;
@@ -42,19 +40,29 @@ const Row = styled.div`
 class MainPage extends React.Component {
   state = {
     students: [],
-    business: null
+    business: null,
+  };
+
+  componentDidMount() {
+    fetch("http://localhost:8000/student?_page=1&_limit=10")
+      .then((response) => response.json())
+      .then((json) => this.setState({ students: json }));
+    fetch("http://localhost:8000/business?_page=1&_limit=1")
+      .then((response) => response.json())
+      .then((json) => this.setState({ business: json }));
   }
+
   render() {
     let { students, business } = this.state;
 
     if (business === null) {
-      return null
+      return null;
     }
     return (
       <div
         style={{
           backgroundColor: "#eceff9",
-          minHeight: "100vh"
+          minHeight: "100vh",
         }}
       >
         <PageHeaderContainer>
@@ -74,7 +82,7 @@ class MainPage extends React.Component {
              *
              */}
             <Header> Listings</Header>
-            {business[0].listings.slice(0, 3).map(post => (
+            {business[0].listings.slice(0, 3).map((post) => (
               <PageListings
                 name={post.name}
                 interns={post.interns}
@@ -113,13 +121,12 @@ class MainPage extends React.Component {
              *
              */}
             <Header>Incoming Applicants</Header>
-            {students.slice(0, 5).map(student => (
+            {students.slice(0, 5).map((student) => (
               <StudentCard
                 firstName={student.personal.first_name}
                 lastName={student.personal.last_name}
                 age={" (" + student.personal.age + ")"}
                 avatar={student.personal.avatar}
-
               />
             ))}
 
@@ -129,7 +136,7 @@ class MainPage extends React.Component {
              *
              */}
             <Header>To be Interviewed</Header>
-            {students.slice(5, 8).map(student => (
+            {students.slice(5, 8).map((student) => (
               <StudentCard
                 firstName={student.personal.first_name}
                 lastName={student.personal.last_name}
@@ -139,18 +146,8 @@ class MainPage extends React.Component {
             ))}
           </Col>
         </Row>
-      </div >
+      </div>
     );
-  }
-  componentDidMount() {
-    fetch('http://localhost:8000/student?_page=1&_limit=10')
-      .then(response => response.json())
-      .then(json =>
-        this.setState({ students: json }))
-    fetch('http://localhost:8000/business?_page=1&_limit=1')
-      .then(response => response.json())
-      .then(json =>
-        this.setState({ business: json }))
   }
 }
 export default MainPage;

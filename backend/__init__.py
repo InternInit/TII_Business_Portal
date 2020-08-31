@@ -1,10 +1,8 @@
 from flask import Flask, Response
 import json
 import requests
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
 
 @app.route('/', methods=["GET"])
 def home():
@@ -26,11 +24,11 @@ def update_business_lisitings():
 
 
 #################################
-#                                
-#      INTERNSHIP LISTINGS       
-#                                
+#
+#      INTERNSHIP LISTINGS
+#
 #################################
- 
+
 @app.route("/get_internship_listings", methods=["GET"])
 def get_internship_listings():
     return ""
@@ -51,9 +49,9 @@ def update_internship_listings():
 
 
 #################################
-#                                
-#        STUDENT FEEDBACK      
-#                                
+#
+#        STUDENT FEEDBACK
+#
 #################################
 
 @app.route('/get_student_feedback', methods=["GET"])
