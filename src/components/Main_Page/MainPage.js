@@ -46,7 +46,16 @@ class MainPage extends React.Component {
   componentDidMount() {
     fetch("http://localhost:8000/student?_page=1&_limit=10")
       .then((response) => response.json())
-      .then((json) => this.setState({ students: json }));
+      .then((json) => {
+        this.setState({ students: json });
+        console.log(json);
+      });
+    fetch("/api/get_student_candidates")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Sent: " + data);
+      });
+
     fetch("http://localhost:8000/business?_page=1&_limit=1")
       .then((response) => response.json())
       .then((json) => this.setState({ business: json }));

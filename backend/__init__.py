@@ -1,8 +1,15 @@
-from flask import Flask, Response
+from flask import Flask, Response, jsonify
 import json
 import requests
 
 app = Flask(__name__)
+
+studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/students"
+if(app.config.get("ENV") == "development"):
+    studentApiUrl = studentApiUrl.format(stage="dev")
+elif(app.config.get("ENV") == "production"):
+    studentApiUrl = studentApiUrl.format(stage="prod")
+
 
 @app.route('/', methods=["GET"])
 def home():
@@ -29,19 +36,19 @@ def update_business_lisitings():
 #
 #################################
 
-@app.route("/get_internship_listings", methods=["GET"])
+@app.route("/api/get_internship_listings", methods=["GET"])
 def get_internship_listings():
     return ""
 
-@app.route("/add_internship_listing", methods=["POST"])
+@app.route("/api/add_internship_listing", methods=["POST"])
 def add_internship_listing():
     return ""
 
-@app.route("/remove_internship_listing", methods=["DELETE"])
+@app.route("/api/remove_internship_listing", methods=["DELETE"])
 def remove_internship_listing():
     return ""
 
-@app.route("/update_internship_listings", methods = ["PUT", "POST"])
+@app.route("/api/update_internship_listings", methods = ["PUT", "POST"])
 def update_internship_listings():
     return ""
 
@@ -54,9 +61,10 @@ def update_internship_listings():
 #
 #################################
 
-@app.route('/get_student_feedback', methods=["GET"])
+@app.route('/api/get_student_feedback', methods=["GET"])
 def get_student_feedback():
     return ""
+
 
 '''
 
@@ -64,15 +72,18 @@ Review Applicants
 
 '''
 
-@app.route('/get_student_candidates', methods=["GET"])
+@app.route('/api/get_student_candidates', methods=["GET"])
 def get_student_candidates():
-    return ""
+    print(studentApiUrl)
+    req = requests.get(studentApiUrl, headers={"Authorization": "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d"})
+    print(req.text)
+    return jsonify(json.loads(req.text))
 
-@app.route('/update_student_status', methods=["PUT"])
+@app.route('/api/update_student_status', methods=["PUT"])
 def update_student_status():
     return ""
 
-@app.route('/update_student_removed', methods=["DELETE"])
+@app.route('/api/update_student_removed', methods=["DELETE"])
 def update_student_removed():
     return ""
 
@@ -80,6 +91,9 @@ def update_student_removed():
 
 
 
-@app.route('/logout')
+@app.route('/api/logout')
 def logout():
     return "logged out"
+
+if __name__ == "__main__":
+    app.run(debug=True)
