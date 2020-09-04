@@ -5,6 +5,10 @@ import { Input, Button, Form } from "antd";
 
 import NavSearch from "../NavSearch";
 
+import axios from "axios";
+
+import { v4 as uuidv4 } from "uuid";
+
 const { TextArea } = Input;
 
 const Header = styled.div`
@@ -28,7 +32,7 @@ const InfoHeader = styled.div`
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
 `;
 
 const Col = styled.div`
@@ -38,161 +42,191 @@ const Col = styled.div`
 
 //CSS Constants
 const pageStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    float: "center",
-    backgroundColor: '#eceff9'
-}
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  float: "center",
+  backgroundColor: "#eceff9",
+};
 
 const buttonStyle = {
-    display: "flex",
-    justifyContent: "flex-end",
-    marginTop: "6vh",
-    marginBottom: "6vh"
-}
+  display: "flex",
+  justifyContent: "flex-end",
+  marginTop: "6vh",
+  marginBottom: "6vh",
+};
+
+//Validation Rules (Required questions)
+const validationRules = (required, inputName, type, pattern) => [
+  {
+    required: required,
+    message: "Please input your " + inputName,
+    type: type,
+    pattern: pattern,
+  },
+];
 
 //Form Props
 const FormProps = {
-    TotalForm: {
-        name: "Internship Post"
-    },
-    Title: {
-        key: "title",
-        name: "Title",
-    },
-    Description: {
-        key: "description",
-        name: "Description",
-    },
-    Address: {
-        key: "address",
-        name: "Address",
-    },
-    City: {
-        key: "city",
-        name: "City",
-    },
-    State: {
-        key: "state",
-        name: "State",
-    },
-    Zipcode: {
-        key: "zipcode",
-        name: "Zipecode"
-    },
-    Industries: {
-        key: "industries",
-        name: "Industries"
-    },
-    Additional: {
-        key: "additional",
-        name: "additional"
-    }
-}
-
-
+  TotalForm: {
+    name: "Internship Post",
+  },
+  Title: {
+    key: "title",
+    name: "Title",
+    rules: validationRules(true, "listing title", "string"),
+  },
+  Description: {
+    key: "description",
+    name: "Description",
+    rules: validationRules(true, "listing description", "string"),
+  },
+  Address: {
+    key: "address",
+    name: "Address",
+    rules: validationRules(true, "listing location", "string"),
+  },
+  City: {
+    key: "city",
+    name: "City",
+  },
+  State: {
+    key: "state",
+    name: "State",
+  },
+  Zipcode: {
+    key: "zipcode",
+    name: "Zip Code",
+  },
+  Industries: {
+    key: "industries",
+    name: "Industries",
+    rules: validationRules(true, "relevant industries", "string"),
+  },
+  AdditionalInfo: {
+    key: "additionalInfo",
+    name: "Additional Info",
+  },
+};
 
 class InternshipDetails extends React.Component {
-    render() {
-        let { buttonText, title } = this.props;
-        return (
-            <React.Fragment>
-                <NavSearch title={title} searchBar={false} />
-                <div
-                    style={pageStyle}
-                >
-                    <div
-                        style={{
-                            backgroundColor: "#eceff9",
-                            width: "80%"
-                        }}
-                    >
+  formRef = React.createRef();
 
-
-                        {/**
+  onFinish = (values) => {
+    console.log(values);
+    let uuid = uuidv4();
+    console.log(uuid);
+    const headers = {
+      headers: {
+        Authorization: "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d",
+        ListingId: uuid,
+      },
+    };
+    axios
+      .post("/api/update_internship_listings", values, headers)
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
+  render() {
+    let { buttonText, title } = this.props;
+    return (
+      <React.Fragment>
+        <NavSearch title={title} searchBar={false} />
+        <div style={pageStyle}>
+          <div
+            style={{
+              backgroundColor: "#eceff9",
+              width: "80%",
+            }}
+          >
+            {/**
              *
              * Listing Name
              *
              */}
-                        <Form {...FormProps.TotalForm}>
-                            <Header>Post Title</Header>
-                            <Form.Item {...FormProps.Title}>
-                                <Input
-                                    placeholder="Edit Posting Name"
-                                    style={{ marginTop: "2vh" }}
-                                />
-                            </Form.Item>
+            <Form
+              {...FormProps.TotalForm}
+              onFinish={this.onFinish}
+              ref={this.formRef}
+            >
+              <Header>Post Title</Header>
+              <Form.Item {...FormProps.Title}>
+                <Input
+                  placeholder="Edit Posting Name"
+                  style={{ marginTop: "2vh" }}
+                />
+              </Form.Item>
 
-                            {/**
-             *
-             * Post Description
-             *
-             */}
-                            <InfoHeader>Post Description</InfoHeader>
-                            <Form.Item {...FormProps.Description}>
-                                <TextArea
-                                    placeholder="Post Description"
-                                    autoSize={{ minRows: 5, maxRows: 10 }}
-                                    style={{ marginTop: "2vh" }}
-                                />
-                            </Form.Item>
+              {/**
+               *
+               * Post Description
+               *
+               */}
+              <InfoHeader>Post Description</InfoHeader>
+              <Form.Item {...FormProps.Description}>
+                <TextArea
+                  placeholder="Post Description"
+                  autoSize={{ minRows: 5, maxRows: 10 }}
+                  style={{ marginTop: "2vh" }}
+                />
+              </Form.Item>
 
-                            {/**
-             *
-             * Location and Industries
-             *
-             */}
-                            <Row style={{ justifyContent: 'space-between' }}>
-                                <Col style={{ width: '47%' }}>
-                                    <InfoHeader>Location</InfoHeader>
-                                    <Form.Item {...FormProps.Address}>
-                                        <Input
-                                            placeholder="Location here"
-                                            style={{ marginTop: "2vh" }}
-                                        />
-                                    </Form.Item>
-                                </Col>
-                                <Col style={{ width: '47%' }}>
-                                    <Form.Item {...FormProps.Industries}>
-                                        <InfoHeader>Relevant Industries</InfoHeader>
-                                        <Input
-                                            placeholder=""
-                                            style={{ marginTop: "2vh" }}
-                                        />
-                                    </Form.Item>
-                                </Col>
-                            </Row>
+              {/**
+               *
+               * Location and Industries
+               *
+               */}
+              <Row style={{ justifyContent: "space-between" }}>
+                <Col style={{ width: "47%" }}>
+                  <InfoHeader>Location</InfoHeader>
+                  <Form.Item {...FormProps.Address}>
+                    <Input
+                      placeholder="Location here"
+                      style={{ marginTop: "2vh" }}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col style={{ width: "47%" }}>
+                  <InfoHeader>Relevant Industries</InfoHeader>
+                  <Form.Item {...FormProps.Industries}>
+                    <Input placeholder="" style={{ marginTop: "2vh" }} />
+                  </Form.Item>
+                </Col>
+              </Row>
 
-                            {/**
-             *
-             * Additional Information
-             *
-             */}
-                            <InfoHeader>Additional Information</InfoHeader>
-                            <Form.Item {...FormProps.Additional}>
-                                <TextArea
-                                    autoSize={{ minRows: 5, maxRows: 10 }}
-                                    style={{ marginTop: "2vh" }}
-                                />
-                            </Form.Item>
-                            {/**
-             *
-             * Save Changes Button
-             *
-             */}
-                            <div
-                                style={buttonStyle}
-                            >
-                                <Button type="primary" size="medium" style={{ width: "36vh" }}>
-                                    {buttonText}
-                                </Button>
-                            </div>
-                        </Form>
-                    </div>
-                </div>
-            </React.Fragment>
-        );
-    }
+              {/**
+               *
+               * Additional Information
+               *
+               */}
+              <InfoHeader>Additional Information</InfoHeader>
+              <Form.Item {...FormProps.AdditionalInfo}>
+                <TextArea
+                  autoSize={{ minRows: 5, maxRows: 10 }}
+                  style={{ marginTop: "2vh" }}
+                />
+              </Form.Item>
+              {/**
+               *
+               * Save Changes Button
+               *
+               */}
+              <div style={buttonStyle}>
+                <Button
+                  type="primary"
+                  size="medium"
+                  style={{ width: "36vh" }}
+                  htmlType="submit"
+                >
+                  {buttonText}
+                </Button>
+              </div>
+            </Form>
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 export default InternshipDetails;

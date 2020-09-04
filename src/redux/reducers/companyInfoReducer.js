@@ -3,6 +3,7 @@ const companyInfoReducer = (
     companyName: "Microsoft",
     email: "",
     id: "e149eb67-8016-4d09-aa73-6bab85bdea1d",
+    candidates: [],
   },
   action
 ) => {
@@ -18,6 +19,10 @@ const companyInfoReducer = (
     case "UPDATE_ID":
       return Object.assign({}, state, {
         id: action.id,
+      });
+    case "UPDATE_CANDIDATES":
+      return Object.assign({}, state, {
+        candidates: action.candidates,
       });
     default:
       return state;

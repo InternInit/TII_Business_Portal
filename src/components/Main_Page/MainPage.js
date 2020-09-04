@@ -46,19 +46,6 @@ class MainPage extends React.Component {
   };
 
   componentDidMount() {
-    axios.get(`/api/get_student_candidates`).then((res) => {
-      let candidates = res.data;
-      this.setState({ students: candidates });
-      console.log(candidates);
-    });
-    /*
-    fetch("http://localhost:8000/student?_page=1&_limit=10")
-      .then((response) => response.json())
-      .then((json) => {
-        this.setState({ students: json });
-        console.log(json);
-      });
-    */
     fetch("http://localhost:8000/business?_page=1&_limit=1")
       .then((response) => response.json())
       .then((json) => this.setState({ business: json }));
@@ -66,6 +53,7 @@ class MainPage extends React.Component {
 
   render() {
     let { students, business } = this.state;
+    let { candidates } = this.props;
 
     if (business === null) {
       return null;
@@ -133,16 +121,18 @@ class MainPage extends React.Component {
              *
              */}
             <Header>Incoming Applicants</Header>
-            {students.slice(0, 5).map((student) => (
-              <StudentCard
-                firstName={student.info["First Name"]}
-                lastName={student.info["Last Name"]}
-                age={" (" + student.info["Age"] + ")"}
-                avatar={
-                  "https://previews.123rf.com/images/aquir/aquir1504/aquir150401107/39120040-example-grunge-retro-red-isolated-ribbon-stamp.jpg"
-                }
-              />
-            ))}
+            {candidates
+              .filter((candidate) => candidate.status === "Pending")
+              .map((student) => (
+                <StudentCard
+                  firstName={student.info["First Name"]}
+                  lastName={student.info["Last Name"]}
+                  age={" (" + student.info["Age"] + ")"}
+                  avatar={
+                    "https://previews.123rf.com/images/aquir/aquir1504/aquir150401107/39120040-example-grunge-retro-red-isolated-ribbon-stamp.jpg"
+                  }
+                />
+              ))}
 
             {/**
              *
@@ -150,16 +140,18 @@ class MainPage extends React.Component {
              *
              */}
             <Header>To be Interviewed</Header>
-            {students.slice(5, 8).map((student) => (
-              <StudentCard
-                firstName={student.info["First Name"]}
-                lastName={student.info["Last Name"]}
-                age={" (" + student.info["Age"] + ")"}
-                avatar={
-                  "https://previews.123rf.com/images/aquir/aquir1504/aquir150401107/39120040-example-grunge-retro-red-isolated-ribbon-stamp.jpg"
-                }
-              />
-            ))}
+            {candidates
+              .filter((candidate) => candidate.status === "Review")
+              .map((student) => (
+                <StudentCard
+                  firstName={student.info["First Name"]}
+                  lastName={student.info["Last Name"]}
+                  age={" (" + student.info["Age"] + ")"}
+                  avatar={
+                    "https://previews.123rf.com/images/aquir/aquir1504/aquir150401107/39120040-example-grunge-retro-red-isolated-ribbon-stamp.jpg"
+                  }
+                />
+              ))}
           </Col>
         </Row>
       </div>

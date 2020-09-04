@@ -1,14 +1,18 @@
-from flask import Flask, Response, jsonify
+from flask import Blueprint, Flask, jsonify, request, redirect, make_response
 import json
 import requests
 
 app = Flask(__name__)
 
 studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/students"
+listingsApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/listings"
+
 if(app.config.get("ENV") == "development"):
     studentApiUrl = studentApiUrl.format(stage="dev")
+    listingsApiUrl = listingsApiUrl.format(stage="dev")
 elif(app.config.get("ENV") == "production"):
     studentApiUrl = studentApiUrl.format(stage="prod")
+    listingsApiUrl = listingsApiUrl.format(stage="prod")
 
 
 @app.route('/', methods=["GET"])
@@ -40,17 +44,17 @@ def update_business_lisitings():
 def get_internship_listings():
     return ""
 
-@app.route("/api/add_internship_listing", methods=["POST"])
-def add_internship_listing():
-    return ""
-
 @app.route("/api/remove_internship_listing", methods=["DELETE"])
 def remove_internship_listing():
     return ""
 
 @app.route("/api/update_internship_listings", methods = ["PUT", "POST"])
 def update_internship_listings():
-    return ""
+    body = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(listingsApiUrl, headers={"Authorization": headers.get("Authorization"), "ListingId": headers.get("ListingId")}, json = body)
+    print(req.text)
+    return jsonify(req.text)
 
 
 
@@ -76,7 +80,6 @@ Review Applicants
 def get_student_candidates():
     print(studentApiUrl)
     req = requests.get(studentApiUrl, headers={"Authorization": "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d"})
-    print(req.text)
     return jsonify(json.loads(req.text))
 
 @app.route('/api/update_student_status', methods=["PUT"])

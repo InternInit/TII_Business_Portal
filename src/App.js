@@ -16,6 +16,10 @@ import { Layout } from "antd";
 
 //Redux
 import { connect } from "react-redux";
+import { updateCandidates } from "./redux/actions";
+
+//axios
+import axios from "axios";
 
 //Components
 import MainPage from "./components/Main_Page/MainPage";
@@ -34,17 +38,29 @@ const { Content } = Layout;
 
 const mapStateToProps = (state) => {
   return {
-    id: state.id,
+    companyInfo: state.companyInfo,
   };
+};
+
+const mapDispatchToProps = {
+  updateCandidates,
 };
 
 class App extends React.Component {
   componentDidMount() {
     this.auth();
+    this.getCandidates();
   }
 
   auth = () => {};
 
+  getCandidates = () => {
+    axios.get(`/api/get_student_candidates`).then((res) => {
+      let candidates = res.data;
+      this.props.updateCandidates(candidates);
+      console.log(candidates);
+    });
+  };
   render() {
     return (
       <React.Fragment>
@@ -57,7 +73,13 @@ class App extends React.Component {
                   marginLeft: "6%",
                 }} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */
               >
-                <Route path="/dashboard" exact component={MainPage} />
+                <Route
+                  path="/dashboard"
+                  exact
+                  component={() => (
+                    <MainPage candidates={this.props.companyInfo.candidates} />
+                  )}
+                />
                 <Route
                   path="/"
                   exact
@@ -124,4 +146,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -18,3 +18,10 @@ export const updateId = (id) => {
     id,
   };
 };
+
+export const updateCandidates = (candidates) => {
+  return {
+    type: "UPDATE_CANDIDATES",
+    candidates,
+  };
+};
