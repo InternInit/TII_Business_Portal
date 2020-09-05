@@ -6,7 +6,7 @@ import NavSearch from "../NavSearch";
 import InfoBar from "./InfoBar";
 import QueueAnim from "rc-queue-anim";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const pageStyle = {
   width: "90%",
   flexDirection: "column",
   justifySelf: "center",
-  marginBottom: '4vh'
+  marginBottom: "4vh",
 };
 
 //Ant Design Styles
@@ -47,7 +47,7 @@ const ButtonStyle = {
   fontFamily: "roboto",
   fontColor: "#13C2C2",
   marginTop: "33px",
-  align: "inline-block"
+  align: "inline-block",
 };
 
 const ButtonText = styled.span`
@@ -56,12 +56,11 @@ const ButtonText = styled.span`
   font-size: 18px;
 `;
 
-
 class PositionPost extends Component {
   state = {
-    page: '5',
-    business: null
-  }
+    page: "5",
+    business: null,
+  };
   render() {
     let { business } = this.state;
 
@@ -74,10 +73,14 @@ class PositionPost extends Component {
 
         <div style={pageStyle}>
           <Row>
-            <Link to='/internship-listings/add-listing'>
-              <Button style={ButtonStyle}><ButtonText>New Internship</ButtonText></Button>
+            <Link to="/internship-listings/add-listing">
+              <Button style={ButtonStyle}>
+                <ButtonText>New Internship</ButtonText>
+              </Button>
             </Link>
-            <Button style={ButtonStyle} ><ButtonText>Edit Filter</ButtonText></Button>
+            <Button style={ButtonStyle}>
+              <ButtonText>Edit Filter</ButtonText>
+            </Button>
           </Row>
           {/**
            * Info Bar
@@ -85,7 +88,12 @@ class PositionPost extends Component {
           <InfoBar />
 
           {business[0].listings.map((post, index) => (
-            <PostingTab status="Active" name={post.name} interns={post.interns} id={post.name} />
+            <PostingTab
+              status="Active"
+              name={post.name}
+              interns={post.interns}
+              id={post.name}
+            />
           ))}
         </div>
       </Container>
@@ -93,14 +101,14 @@ class PositionPost extends Component {
   }
   componentDidMount() {
     fetch(`http://localhost:8000/business?_page=${this.state.page}&_limit=2`)
-      .then(response => response.json())
-      .then(json =>
-        this.setState({ business: json }))
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ business: json });
+        console.log(json);
+      });
   }
 
-
-
-  handlePost = index => {
+  handlePost = (index) => {
     let newPost = { ...this.state.business[index] };
     newPost.companies[0].status = "review";
     this.setState({
@@ -109,15 +117,12 @@ class PositionPost extends Component {
     fetch(`http://localhost:8000/business/${newPost.id}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newPost)
+      body: JSON.stringify(newPost),
     })
-      .then(response => response.json())
-      .then(json => console.log(json));
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   };
-
-
-
 }
 export default PositionPost;

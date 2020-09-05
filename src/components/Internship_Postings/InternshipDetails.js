@@ -113,8 +113,8 @@ class InternshipDetails extends React.Component {
   formRef = React.createRef();
 
   onFinish = (values) => {
-    console.log(values);
     let uuid = uuidv4();
+    values.Id = uuid;
     console.log(uuid);
     const headers = {
       headers: {
@@ -125,7 +125,7 @@ class InternshipDetails extends React.Component {
     axios
       .post("/api/update_internship_listings", values, headers)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
       });
   };
   render() {
