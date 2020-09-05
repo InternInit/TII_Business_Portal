@@ -52,10 +52,9 @@ def remove_internship_listing():
 def update_internship_listings():
     body = request.get_data().decode("utf-8")
     headers = request.headers
-    req = requests.post(listingsApiUrl, headers={"Authorization": headers.get("Authorization"), "ListingId": headers.get("ListingId")}, json = body)
+    req = requests.post(listingsApiUrl, headers={"Authorization": headers.get("Authorization"), "ListingId": headers.get("ListingId")}, json = json.loads(body))
     print(req.text)
     return jsonify(req.text)
-
 
 
 
