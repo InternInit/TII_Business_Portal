@@ -42,7 +42,10 @@ def update_business_lisitings():
 
 @app.route("/api/get_internship_listings", methods=["GET"])
 def get_internship_listings():
-    return ""
+    headers = request.headers
+    req = requests.get(listingsApiUrl, headers={"Authorization": headers.get("Authorization")})
+    print(req.text)
+    return jsonify(req.text)
 
 @app.route("/api/remove_internship_listing", methods=["DELETE"])
 def remove_internship_listing():

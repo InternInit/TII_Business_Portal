@@ -8,6 +8,8 @@ import QueueAnim from "rc-queue-anim";
 
 import { Link } from "react-router-dom";
 
+import axios from "axios";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,12 +61,12 @@ const ButtonText = styled.span`
 class PositionPost extends Component {
   state = {
     page: "5",
-    business: null,
+    listings: null,
   };
   render() {
-    let { business } = this.state;
+    let { listings } = this.state;
 
-    if (business === null) {
+    if (listings === null) {
       return null;
     }
     return (
@@ -87,12 +89,12 @@ class PositionPost extends Component {
            */}
           <InfoBar />
 
-          {business[0].listings.map((post, index) => (
+          {listings.map((post, index) => (
             <PostingTab
               status="Active"
-              name={post.name}
-              interns={post.interns}
-              id={post.name}
+              name={post.Title}
+              interns="0"
+              id={post.Id}
             />
           ))}
         </div>
@@ -103,26 +105,19 @@ class PositionPost extends Component {
     fetch(`http://localhost:8000/business?_page=${this.state.page}&_limit=2`)
       .then((response) => response.json())
       .then((json) => {
-        this.setState({ business: json });
         console.log(json);
       });
-  }
 
-  handlePost = (index) => {
-    let newPost = { ...this.state.business[index] };
-    newPost.companies[0].status = "review";
-    this.setState({
-      newPost: this.state.newPost.concat(newPost),
-    });
-    fetch(`http://localhost:8000/business/${newPost.id}`, {
-      method: "POST",
+    const headers = {
       headers: {
-        "Content-Type": "application/json",
+        Authorization: "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d",
       },
-      body: JSON.stringify(newPost),
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-  };
+    };
+
+    axios.get("/api/get_internship_listings", headers).then((response) => {
+      console.log(response.data);
+      this.setState({ listings: JSON.parse(response.data) });
+    });
+  }
 }
 export default PositionPost;
