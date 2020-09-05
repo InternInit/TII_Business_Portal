@@ -29,6 +29,10 @@ import InternFeedback from './components/Intern_Feedback/InternFeedback';
 import FeedbackResponse from './components/Intern_Feedback/FeedbackResponse';
 import Login from "./components/Login_Signup/Login";
 import Signup from './components/Login_Signup/Signup';
+import Employeepage from "./components/Company_Users/Employeepage";
+import CreateUser from "./components/Company_Users/CreateUser";
+import UserDetails from './components/Company_Users/UserDetails';
+
 const { Content } = Layout;
 
 class App extends React.Component {
@@ -73,12 +77,15 @@ class App extends React.Component {
                 <Route path="/applicants" component={CandidatesContainer} />
                 <Route path="/settings" component={CompanyDetails} />
 
+                <Route path="/users" exact component={Employeepage} />
+                <Route path="/users/new-account" exact component={CreateUser} />
+                <Route path={`/users/:id`} exact component={UserDetails} />
 
               </div>
             </Content>
           </Layout>
         </Router>
-      </React.Fragment>
+      </React.Fragment >
     );
 
   }

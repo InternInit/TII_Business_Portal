@@ -9,7 +9,8 @@ import {
   SendOutlined,
   DatabaseOutlined,
   LogoutOutlined,
-  UserOutlined
+  UserOutlined,
+  UserSwitchOutlined
 } from "@ant-design/icons";
 
 const { Sider } = Layout;
@@ -86,15 +87,21 @@ class BusinessNavBar extends React.Component {
             </Link>
           </Menu.Item>
 
-
           <Menu.Item key="6">
+            <Link to="/users">
+              <UserSwitchOutlined />
+              <span>User Accounts</span>
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item key="7">
             <Link to="/settings">
               <SettingOutlined />
               <span>Settings</span>
             </Link>
           </Menu.Item>
 
-          <Menu.Item key="7" style={{ marginTop: "20vh" }}>
+          <Menu.Item key="9" style={{ marginTop: "20vh" }}>
             <LogoutOutlined />
             <span>Log Out</span>
           </Menu.Item>
