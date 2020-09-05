@@ -27,6 +27,8 @@ import InternshipDetails from "./components/Internship_Postings/InternshipDetail
 import SchoolContact from "./components/School_Contact/SchoolContact";
 import InternFeedback from './components/Intern_Feedback/InternFeedback';
 import FeedbackResponse from './components/Intern_Feedback/FeedbackResponse';
+import Login from "./components/Login_Signup/Login";
+import Signup from './components/Login_Signup/Signup';
 const { Content } = Layout;
 
 class App extends React.Component {
@@ -34,6 +36,9 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Router>
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+
           <Layout>
             <BusinessNavBar />
             <Content>
@@ -54,6 +59,7 @@ class App extends React.Component {
                   }}
                 />
 
+
                 <ReactSwitch>
                   <Route path="/internship-listings/add-listing" exact component={() => <InternshipDetails buttonText="Add Post" title="Create New Post" />} />
                   <Route path="/internship-listings" exact component={PositionPost} />
@@ -66,6 +72,8 @@ class App extends React.Component {
                 <Route path="/contact-schools" exact component={SchoolContact} />
                 <Route path="/applicants" component={CandidatesContainer} />
                 <Route path="/settings" component={CompanyDetails} />
+
+
               </div>
             </Content>
           </Layout>
