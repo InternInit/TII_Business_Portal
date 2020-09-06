@@ -77,10 +77,11 @@ class App extends React.Component {
                 <Route path="/applicants" component={CandidatesContainer} />
                 <Route path="/settings" component={CompanyDetails} />
 
-                <Route path="/users" exact component={Employeepage} />
-                <Route path="/users/new-account" exact component={CreateUser} />
-                <Route path={`/users/:id`} exact component={UserDetails} />
-
+                <ReactSwitch>
+                  <Route path="/users" exact component={Employeepage} />
+                  <Route path="/users/new-account" exact component={CreateUser} />
+                  <Route path={`/users/:id`} exact component={UserDetails} />
+                </ReactSwitch>
               </div>
             </Content>
           </Layout>

@@ -175,6 +175,9 @@ class CreateUser extends React.Component {
                                 <Switch />
 
                                 <Label style={{ marginTop: '4vh' }}>Permission 4</Label>
+                                <Switch />
+
+                                <Label style={{ marginTop: '4vh' }}>Permission 5</Label>
                                 <Switch style={{ marginBottom: '4vh' }} />
 
 
