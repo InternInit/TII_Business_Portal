@@ -267,23 +267,10 @@ class CompanyDetails extends React.Component {
   }
   componentDidMount() {
     let variable = null;
-    fetch("http://localhost:8000/business?_page=1&_limit=1")
-      .then((response) => response.json())
-      .then((json) => this.setState({ business: json }));
   }
 
   handleSave = (values) => {
     console.log("This is the finished form", values);
-    /*fetch(`http://localhost:8000/business`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(values)
-    })
-      .then(response => response.json())
-      .then(json => console.log(json));
-      */
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyDetails);
