@@ -118,9 +118,7 @@ class MainPage extends React.Component {
                   firstName={student.info["First Name"]}
                   lastName={student.info["Last Name"]}
                   age={" (" + student.info["Age"] + ")"}
-                  avatar={
-                    "https://previews.123rf.com/images/aquir/aquir1504/aquir150401107/39120040-example-grunge-retro-red-isolated-ribbon-stamp.jpg"
-                  }
+                  avatar={`https://tii-intern-media.s3.amazonaws.com/${student.studentId}/profile_picture`}
                 />
               ))}
 
@@ -137,9 +135,7 @@ class MainPage extends React.Component {
                   firstName={student.info["First Name"]}
                   lastName={student.info["Last Name"]}
                   age={" (" + student.info["Age"] + ")"}
-                  avatar={
-                    "https://previews.123rf.com/images/aquir/aquir1504/aquir150401107/39120040-example-grunge-retro-red-isolated-ribbon-stamp.jpg"
-                  }
+                  avatar={`https://tii-intern-media.s3.amazonaws.com/${student.studentId}/profile_picture`}
                 />
               ))}
           </Col>
