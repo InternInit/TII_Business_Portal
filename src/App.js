@@ -95,7 +95,10 @@ class App extends React.Component {
                   path="/dashboard"
                   exact
                   component={() => (
-                    <MainPage candidates={this.props.companyInfo.candidates} />
+                    <MainPage
+                      candidates={this.props.companyInfo.candidates}
+                      listings={this.props.listings}
+                    />
                   )}
                 />
                 <Route

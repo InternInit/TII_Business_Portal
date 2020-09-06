@@ -53,7 +53,7 @@ class MainPage extends React.Component {
 
   render() {
     let { students, business } = this.state;
-    let { candidates } = this.props;
+    let { candidates, listings } = this.props;
 
     if (business === null) {
       return null;
@@ -82,11 +82,11 @@ class MainPage extends React.Component {
              *
              */}
             <Header> Listings</Header>
-            {business[0].listings.slice(0, 3).map((post) => (
+            {listings.slice(0, 5).map((post) => (
               <PageListings
-                name={post.name}
-                interns={post.interns}
-                accepted={post.interns}
+                name={post.Title}
+                interns={0}
+                accepted={0}
                 total={post.interns + post.interns}
               />
             ))}
