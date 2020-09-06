@@ -45,19 +45,9 @@ class MainPage extends React.Component {
     business: null,
   };
 
-  componentDidMount() {
-    fetch("http://localhost:8000/business?_page=1&_limit=1")
-      .then((response) => response.json())
-      .then((json) => this.setState({ business: json }));
-  }
-
   render() {
-    let { students, business } = this.state;
     let { candidates, listings } = this.props;
 
-    if (business === null) {
-      return null;
-    }
     return (
       <div
         style={{
