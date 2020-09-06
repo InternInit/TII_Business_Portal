@@ -25,3 +25,17 @@ export const updateCandidates = (candidates) => {
     candidates,
   };
 };
+
+export const batchUpdateListings = (listings) => {
+  return {
+    type: "BATCH_UPDATE_LISTINGS",
+    listings,
+  };
+};
+
+export const addListing = (newListing) => {
+  return {
+    type: "ADD_LISTING",
+    newListing,
+  };
+};

@@ -16,7 +16,7 @@ import { Layout } from "antd";
 
 //Redux
 import { connect } from "react-redux";
-import { updateCandidates } from "./redux/actions";
+import { updateCandidates, batchUpdateListings } from "./redux/actions";
 
 //axios
 import axios from "axios";
@@ -39,17 +39,20 @@ const { Content } = Layout;
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    listings: state.listings,
   };
 };
 
 const mapDispatchToProps = {
   updateCandidates,
+  batchUpdateListings,
 };
 
 class App extends React.Component {
   componentDidMount() {
     this.auth();
     this.getCandidates();
+    this.getListings();
   }
 
   auth = () => {};
@@ -61,6 +64,21 @@ class App extends React.Component {
       console.log(candidates);
     });
   };
+
+  getListings = () => {
+    const headers = {
+      headers: {
+        Authorization: "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d",
+      },
+    };
+
+    axios.get("/api/get_internship_listings", headers).then((response) => {
+      console.log(response.data);
+      console.log(JSON.parse(response.data));
+      this.props.batchUpdateListings(JSON.parse(response.data));
+    });
+  };
+
   render() {
     return (
       <React.Fragment>

@@ -10,6 +10,10 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 
+//Redux
+import { connect } from "react-redux";
+import { addListing, batchUpdateListings } from "../../redux/actions";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,17 +62,26 @@ const ButtonText = styled.span`
   font-size: 18px;
 `;
 
-class PositionPost extends Component {
-  state = {
-    page: "5",
-    listings: null,
+const mapStateToProps = (state) => {
+  return {
+    listings: state.listings,
   };
-  render() {
-    let { listings } = this.state;
+};
 
-    if (listings === null) {
-      return null;
-    }
+const mapDispatchToProps = {
+  addListing,
+  batchUpdateListings,
+};
+
+class PositionPost extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: "5",
+    };
+  }
+
+  render() {
     return (
       <Container>
         <NavSearch title="My Internship Postings" />
@@ -89,7 +102,7 @@ class PositionPost extends Component {
            */}
           <InfoBar />
 
-          {listings.map((post, index) => (
+          {this.props.listings.map((post, index) => (
             <PostingTab
               status="Active"
               name={post.Title}
@@ -102,22 +115,7 @@ class PositionPost extends Component {
     );
   }
   componentDidMount() {
-    fetch(`http://localhost:8000/business?_page=${this.state.page}&_limit=2`)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-      });
-
-    const headers = {
-      headers: {
-        Authorization: "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d",
-      },
-    };
-
-    axios.get("/api/get_internship_listings", headers).then((response) => {
-      console.log(response.data);
-      this.setState({ listings: JSON.parse(response.data) });
-    });
+    console.log(this.props);
   }
 }
-export default PositionPost;
+export default connect(mapStateToProps, mapDispatchToProps)(PositionPost);
