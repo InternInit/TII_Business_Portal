@@ -1,20 +1,40 @@
 const companyInfoReducer = (
   state = {
-    companyName: "Microsoft",
+    name: "",
+    description: "",
+    website: "",
     email: "",
-    id: "e149eb67-8016-4d09-aa73-6bab85bdea1d",
+    phoneNumber: "",
+    avatar: "",
+    id: "",
     candidates: [],
   },
   action
 ) => {
   switch (action.type) {
-    case "UPDATE_COMPANY_NAME":
+    case "UPDATE_NAME":
       return Object.assign({}, state, {
-        companyName: action.companyName,
+        name: action.name,
+      });
+    case "UPDATE_DESCRIPTION":
+      return Object.assign({}, state, {
+        description: action.description,
+      });
+    case "UPDATE_WEBSITE":
+      return Object.assign({}, state, {
+        website: action.website,
       });
     case "UPDATE_EMAIL":
       return Object.assign({}, state, {
         email: action.email,
+      });
+    case "UPDATE_PHONE_NUMBER":
+      return Object.assign({}, state, {
+        phoneNumber: action.phoneNumber,
+      });
+    case "UPDATE_AVATAR":
+      return Object.assign({}, state, {
+        avatar: action.avatar,
       });
     case "UPDATE_ID":
       return Object.assign({}, state, {

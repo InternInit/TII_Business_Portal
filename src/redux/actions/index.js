@@ -1,7 +1,21 @@
-export const updateCompanyName = (companyName) => {
+export const updateName = (name) => {
   return {
-    type: "UPDATE_COMPANY_NAME",
-    companyName,
+    type: "UPDATE_NAME",
+    name,
+  };
+};
+
+export const updateDescription = (description) => {
+  return {
+    type: "UPDATE_DESCRIPTION",
+    description,
+  };
+};
+
+export const updateWebsite = (website) => {
+  return {
+    type: "UPDATE_WEBSITE",
+    website,
   };
 };
 
@@ -9,6 +23,20 @@ export const updateEmail = (email) => {
   return {
     type: "UPDATE_EMAIL",
     email,
+  };
+};
+
+export const updatePhoneNumber = (phoneNumber) => {
+  return {
+    type: "UPDATE_PHONE_NUMBER",
+    phoneNumber,
+  };
+};
+
+export const updateAvatar = (avatar) => {
+  return {
+    type: "UPDATE_AVATAR",
+    avatar,
   };
 };
 

@@ -16,7 +16,17 @@ import { Layout } from "antd";
 
 //Redux
 import { connect } from "react-redux";
-import { updateCandidates, batchUpdateListings } from "./redux/actions";
+import {
+  updateCandidates,
+  updateName,
+  updateDescription,
+  updateWebsite,
+  updateEmail,
+  updatePhoneNumber,
+  updateAvatar,
+  updateId,
+  batchUpdateListings,
+} from "./redux/actions";
 
 //axios
 import axios from "axios";
@@ -45,6 +55,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   updateCandidates,
+  updateName,
+  updateDescription,
+  updateWebsite,
+  updateEmail,
+  updatePhoneNumber,
+  updateAvatar,
+  updateId,
   batchUpdateListings,
 };
 
@@ -55,7 +72,23 @@ class App extends React.Component {
     this.getListings();
   }
 
-  auth = () => {};
+  auth = () => {
+    this.props.updateId("e149eb67-8016-4d09-aa73-6bab85bdea1d");
+    this.getBusinessInfo();
+  };
+
+  getBusinessInfo = () => {
+    this.props.updateName("Open Text Corporation");
+    this.props.updateDescription(
+      "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
+    );
+    this.props.updateWebsite("google.nl");
+    this.props.updateEmail("apechell0@cafepress.com");
+    this.props.updatePhoneNumber("810-591-4366");
+    this.props.updateAvatar(
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
+    );
+  };
 
   getCandidates = () => {
     axios.get(`/api/get_student_candidates`).then((res) => {
