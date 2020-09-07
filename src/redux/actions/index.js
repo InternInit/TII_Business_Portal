@@ -54,6 +54,14 @@ export const updateCandidates = (candidates) => {
   };
 };
 
+export const updateReduxCandidateStatus = (index, status) => {
+  return {
+    type: "UPDATE_CANDIDATE_STATUS",
+    index,
+    status,
+  };
+};
+
 export const batchUpdateListings = (listings) => {
   return {
     type: "BATCH_UPDATE_LISTINGS",

@@ -44,6 +44,12 @@ const companyInfoReducer = (
       return Object.assign({}, state, {
         candidates: action.candidates,
       });
+    case "UPDATE_CANDIDATE_STATUS":
+      let newCandidates = state.candidates.slice();
+      newCandidates[action.index].status = action.status;
+      return Object.assign({}, state, {
+        candidates: newCandidates,
+      });
     default:
       return state;
   }

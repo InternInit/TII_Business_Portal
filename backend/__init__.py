@@ -84,9 +84,12 @@ def get_student_candidates():
     req = requests.get(studentApiUrl, headers={"Authorization": "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d"})
     return jsonify(json.loads(req.text))
 
-@app.route('/api/update_student_status', methods=["PUT"])
+@app.route('/api/update_student_status', methods=["POST"])
 def update_student_status():
-    return ""
+    body = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(studentApiUrl, headers={"Authorization": headers.get("Authorization"), "StudentId": headers.get("StudentId")}, json= json.loads(body))
+    return jsonify(req.text)
 
 @app.route('/api/update_student_removed', methods=["DELETE"])
 def update_student_removed():

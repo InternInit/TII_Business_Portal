@@ -4,6 +4,7 @@ import "./candidates.css";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import axios from "axios";
 
 import { Button, Switch, Divider } from "antd";
 
@@ -72,22 +73,8 @@ class ReviewApplicants extends Component {
     console.log(this.props);
   }
 
-  handleReview = (index) => {
-    let reviewStudent = { ...this.state.students[index] };
-    reviewStudent.companies[0].status = "review";
-    this.setState({
-      reviewStudents: this.state.reviewStudents.concat(reviewStudent),
-      students: this.state.students.filter((item, j) => j !== index),
-    });
-    fetch(`http://localhost:8000/student/${reviewStudent.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(reviewStudent),
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+  handleReview = (studentId) => {
+    this.props.updateCandidateStatus(studentId, "Review");
   };
 
   handleInterviewUnread = (index) => {
@@ -182,7 +169,7 @@ class ReviewApplicants extends Component {
             industry={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
-            onReview={() => this.handleReview(index)}
+            onReview={() => this.handleReview(student.studentId)}
             onInterview={() => this.handleInterviewUnread(index)}
           />
         ))}
@@ -217,7 +204,7 @@ class ReviewApplicants extends Component {
             classOne={"Class One"}
             classTwo={"Class Two"}
             classThree={"Class Three"}
-            onReview={() => this.handleReview(index)}
+            onReview={() => this.handleReview(student.studentId)}
             onInterview={() => this.handleInterviewUnread(index)}
           />
         ))}
@@ -243,7 +230,6 @@ class ReviewApplicants extends Component {
             industry={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
-            onReview={() => this.handleReview(index)}
             onInterview={() => this.handleInterviewUnread(index)}
           />
         ))}
@@ -279,7 +265,6 @@ class ReviewApplicants extends Component {
             classOne={"Class One"}
             classTwo={"Class Two"}
             classThree={"Class Three"}
-            onReview={() => this.handleReview(index)}
             onInterview={() => this.handleInterviewUnread(index)}
           />
         ))}
