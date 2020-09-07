@@ -1,13 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-import {
-  Input,
-  Upload,
-  Button,
-  Form
-} from "antd";
+import { Input, Upload, Button, Form } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
+
+//Redux
+import { connect } from "react-redux";
+import {
+  updateCandidates,
+  updateName,
+  updateDescription,
+  updateWebsite,
+  updateEmail,
+  updatePhoneNumber,
+  updateAvatar,
+  updateId,
+  batchUpdateListings,
+} from "../../redux/actions";
 
 import NavSearch from "../NavSearch";
 
@@ -52,27 +61,26 @@ const buttonStyle = {
   display: "flex",
   justifyContent: "flex-end",
   marginTop: "6vh",
-  marginBottom: "6vh"
-}
+  marginBottom: "6vh",
+};
 
 const marginStyle = {
   backgroundColor: "#eceff9",
-  width: "80%"
-}
+  width: "80%",
+};
 
 const pageStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   float: "center",
-  backgroundColor: '#eceff9'
-
-}
+  backgroundColor: "#eceff9",
+};
 
 //Form Props
 const FormProps = {
   TotalForm: {
-    name: "Company Details"
+    name: "Company Details",
   },
   name: {
     key: "name",
@@ -84,121 +92,134 @@ const FormProps = {
   },
   Website: {
     key: "website",
-    name: "Website"
+    name: "Website",
   },
   EMail: {
     key: "email",
-    name: "E-Mail"
+    name: "E-Mail",
   },
   Phone: {
     key: "phone",
-    name: "Phone Number"
+    name: "Phone Number",
   },
   Visual: {
     key: "visual",
-    name: "Visual"
+    name: "Visual",
   },
   Avatar: {
     key: "avatar",
-    name: "Avatar"
-  }
-}
+    name: "Avatar",
+  },
+};
 
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+  };
+};
+
+const mapDispatchToProps = {
+  updateCandidates,
+  updateName,
+  updateDescription,
+  updateWebsite,
+  updateEmail,
+  updatePhoneNumber,
+  updateAvatar,
+  updateId,
+  batchUpdateListings,
+};
 
 class CompanyDetails extends React.Component {
-  state = { business: null }
+  state = { business: null };
   render() {
-    let { business } = this.state;
-    if (business === null) {
-      return null;
-    }
+    let { companyInfo } = this.props;
+
     return (
       <React.Fragment>
         <NavSearch title="Company Information" searchBar={false} />
-        <div
-          style={pageStyle}
-        >
-          <div
-            style={marginStyle}
-          >
+        <div style={pageStyle}>
+          <div style={marginStyle}>
             {/**
              *
              * Company Name
              *
              */}
-            <Header>{business[0].name}</Header>
+            <Header>{companyInfo.name}</Header>
             <Form {...FormProps.TotalForm}>
               <Form.Item {...FormProps.name}>
                 <Input
                   placeholder="Change Company Name"
-                  defaultValue={business[0].name}
+                  defaultValue={companyInfo.name}
                   style={{ marginTop: "2vh" }}
                 />
               </Form.Item>
               {/**
-             *
-             * Company Description
-             *
-             */}
+               *
+               * Company Description
+               *
+               */}
               <InfoHeader>Company Description</InfoHeader>
               <Form.Item {...FormProps.Description}>
                 <TextArea
                   placeholder="Company Description"
-                  defaultValue={business[0].description}
+                  defaultValue={companyInfo.description}
                   autoSize={{ minRows: 5, maxRows: 10 }}
                   style={{ marginTop: "2vh" }}
                 />
               </Form.Item>
               {/**
-             *
-             * Company Website
-             *
-             */}
+               *
+               * Company Website
+               *
+               */}
               <InfoHeader>Website</InfoHeader>
               <Form.Item {...FormProps.Website}>
                 <Input
                   placeholder="https://www.interninit.com"
-                  defaultValue={business[0].website}
+                  defaultValue={companyInfo.website}
                   style={{ marginTop: "2vh" }}
                 />
               </Form.Item>
               {/**
-             *
-             * E-Mail
-             *
-             */}
+               *
+               * E-Mail
+               *
+               */}
               <InfoHeader>E-Mail</InfoHeader>
               <Form.Item {...FormProps.EMail}>
                 <Input
                   placeholder="company@email.com"
-                  defaultValue={business[0].email}
+                  defaultValue={companyInfo.email}
                   style={{ marginTop: "2vh" }}
                 />
               </Form.Item>
               {/**
-             *
-             * Phone Number
-             *
-             */}
+               *
+               * Phone Number
+               *
+               */}
               <InfoHeader>Phone Number</InfoHeader>
               <Form.Item {...FormProps.Phone}>
-                <Input placeholder="123 456 7891"
-                  defaultValue={business[0].phone}
-                  style={{ marginTop: "2vh" }} />
+                <Input
+                  placeholder="123 456 7891"
+                  defaultValue={companyInfo.phoneNumber}
+                  style={{ marginTop: "2vh" }}
+                />
               </Form.Item>
 
               {/**Row for Upload files */}
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-evenly"
+                  justifyContent: "space-evenly",
                 }}
               >
                 {/**
-               *
-               * Company Visual
-               *
-               */}
+                 *
+                 * Company Visual
+                 *
+                 */}
                 <Col>
                   <UploadHeader>Upload Company Visual</UploadHeader>
                   <Form.Item {...FormProps.Visual}>
@@ -212,10 +233,10 @@ class CompanyDetails extends React.Component {
                 </Col>
 
                 {/**
-               *
-               * Company Avatar
-               *
-               */}
+                 *
+                 * Company Avatar
+                 *
+                 */}
                 <Col>
                   <UploadHeader>Upload Company Logo</UploadHeader>
                   <Form.Item {...FormProps.Avatar}>
@@ -229,10 +250,13 @@ class CompanyDetails extends React.Component {
                 </Col>
               </div>
             </Form>
-            <div
-              style={buttonStyle}
-            >
-              <Button type="primary" size="medium" style={{ width: "36vh" }} htmlType="submit">
+            <div style={buttonStyle}>
+              <Button
+                type="primary"
+                size="medium"
+                style={{ width: "36vh" }}
+                htmlType="submit"
+              >
                 Save Changes
               </Button>
             </div>
@@ -243,24 +267,10 @@ class CompanyDetails extends React.Component {
   }
   componentDidMount() {
     let variable = null;
-    fetch('http://localhost:8000/business?_page=1&_limit=1')
-      .then(response => response.json())
-      .then(json =>
-        this.setState({ business: json }))
   }
 
   handleSave = (values) => {
-    console.log("This is the finished form", values)
-    /*fetch(`http://localhost:8000/business`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(values)
-    })
-      .then(response => response.json())
-      .then(json => console.log(json));
-      */
-  }
+    console.log("This is the finished form", values);
+  };
 }
-export default CompanyDetails;
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyDetails);

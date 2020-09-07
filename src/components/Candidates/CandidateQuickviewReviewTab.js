@@ -84,7 +84,7 @@ class CandidateQuickviewReviewTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
     };
   }
   render() {
@@ -130,7 +130,7 @@ class CandidateQuickviewReviewTab extends Component {
             alignItems: "center",
             width: "20vh",
             display: "inline-block",
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           <Tooltip title="Interview">
@@ -144,6 +144,7 @@ class CandidateQuickviewReviewTab extends Component {
             <RemoveIcon
               icon={remove}
               style={{ marginLeft: "1vh", marginRight: "1vh" }}
+              onClick={this.props.onReject}
             />
           </Tooltip>
         </Col>
@@ -159,6 +160,6 @@ class CandidateQuickviewReviewTab extends Component {
 
 CandidateQuickviewReviewTab.defaultProps = {
   GPA: 4.0,
-  cutOffGPA: 3.5
+  cutOffGPA: 3.5,
 };
 export default CandidateQuickviewReviewTab;

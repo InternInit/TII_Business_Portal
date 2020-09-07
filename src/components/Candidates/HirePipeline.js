@@ -16,13 +16,13 @@ const containerStyle = {
   display: "flex",
   justifyContent: "center",
   minHeight: "100vh",
-  backgroundColor: "#eceff9"
+  backgroundColor: "#eceff9",
 };
 
 const columnStyle = {
   display: "flex",
   flexDirection: "column",
-  alignItems: "center"
+  alignItems: "center",
 };
 
 const dragStyle = {
@@ -31,7 +31,7 @@ const dragStyle = {
   width: "40vh",
   minHeight: "80vh",
   borderRadius: "4px",
-  border: "1px solid #d8def3"
+  border: "1px solid #d8def3",
 };
 
 /**
@@ -39,9 +39,29 @@ const dragStyle = {
  *Handles Drag and Drop
  *
  */
-const onDragEnd = (result, columns, setColumns) => {
+const onDragEnd = (result, columns, setColumns, props) => {
   if (!result.destination) return;
   const { source, destination } = result;
+
+  let status = "Review";
+  switch (parseInt(destination.droppableId)) {
+    case 1:
+      status = "Review";
+      break;
+    case 2:
+      status = "Online Interview";
+      break;
+    case 3:
+      status = "On-Site Interview";
+      break;
+    case 4:
+      status = "Accepted";
+      break;
+    default:
+      status = "Review";
+    // code block
+  }
+  props.updateCandidateStatus(result.draggableId, status);
 
   if (source.droppableId !== destination.droppableId) {
     const sourceColumn = columns[source.droppableId];
@@ -54,12 +74,12 @@ const onDragEnd = (result, columns, setColumns) => {
       ...columns,
       [source.droppableId]: {
         ...sourceColumn,
-        items: sourceItems
+        items: sourceItems,
       },
       [destination.droppableId]: {
         ...destColumn,
-        items: destItems
-      }
+        items: destItems,
+      },
     });
   } else {
     const column = columns[source.droppableId];
@@ -70,8 +90,8 @@ const onDragEnd = (result, columns, setColumns) => {
       ...columns,
       [source.droppableId]: {
         ...column,
-        items: copiedItems
-      }
+        items: copiedItems,
+      },
     });
   }
 };
@@ -80,38 +100,47 @@ const onDragEnd = (result, columns, setColumns) => {
 const columnsFromBackend = {
   1: {
     name: "Marked",
-    items: []
+    items: [],
   },
   2: {
     name: "Online Interview",
-    items: []
+    items: [],
   },
   3: {
     name: "On-Site Interview",
-    items: []
+    items: [],
   },
   4: {
     name: "Accepted",
-    items: []
-  }
+    items: [],
+  },
 };
 
-function HirePipeline() {
+function HirePipeline(props) {
   const [columns, setColumns] = useState(columnsFromBackend);
+  let markedCandidates = props.candidates.filter(
+    (candidate) => candidate.status === "Review"
+  );
+  let onlineInterviewCandidates = props.candidates.filter(
+    (candidate) => candidate.status === "Online Interview"
+  );
+  let onSiteInterviewCandidates = props.candidates.filter(
+    (candidate) => candidate.status === "On-Site Interview"
+  );
+  let acceptedCandidates = props.candidates.filter(
+    (candidate) => candidate.status === "Accepted"
+  );
 
   useEffect(() => {
-    fetch(`http://localhost:8000/student?_page=1&_limit=5`)
-      .then(response => response.json())
-      .then(json => {
-        setColumns({
-          ...columns,
-          ["1"]: { ...columns["1"], items: json }
-        });
-        console.log(json);
-      });
-
-    console.log(columns);
+    setColumns({
+      ...columns,
+      ["1"]: { ...columns["1"], items: markedCandidates },
+      ["2"]: { ...columns["2"], items: onlineInterviewCandidates },
+      ["3"]: { ...columns["3"], items: onSiteInterviewCandidates },
+      ["4"]: { ...columns["4"], items: acceptedCandidates },
+    });
   }, []);
+
   return (
     /**
      *
@@ -120,7 +149,7 @@ function HirePipeline() {
      */
     <div style={containerStyle}>
       <DragDropContext
-        onDragEnd={result => onDragEnd(result, columns, setColumns)}
+        onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
       >
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
@@ -153,11 +182,11 @@ function HirePipeline() {
                         {column.items.map((item, index) => {
                           return (
                             <Draggable
-                              key={item.id}
-                              draggableId={item.id.toString()}
+                              key={item.studentId}
+                              draggableId={item.studentId.toString()}
                               index={index}
                             >
-                              {provided => {
+                              {(provided) => {
                                 return (
                                   <div
                                     ref={provided.innerRef}
@@ -166,7 +195,7 @@ function HirePipeline() {
                                     style={{
                                       userSelect: "none",
                                       padding: 8,
-                                      ...provided.draggableProps.style
+                                      ...provided.draggableProps.style,
                                     }}
                                   >
                                     {/**
@@ -175,11 +204,13 @@ function HirePipeline() {
                                      *
                                      */}
                                     <DraggingCard
-                                      name={item.personal.first_name}
-                                      date={item.internship.work_start}
+                                      name={item.info["First Name"]}
+                                      date={
+                                        item.info["Starting/Ending Dates"][0]
+                                      }
                                       position="Cheese grator"
-                                      id={item.id}
-                                      avatar={item.personal.avatar}
+                                      id={item.studentId}
+                                      avatar={`https://tii-intern-media.s3.amazonaws.com/${item.studentId}/profile_picture`}
                                     />
                                   </div>
                                 );

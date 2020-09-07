@@ -6,7 +6,13 @@ import NavSearch from "../NavSearch";
 import InfoBar from "./InfoBar";
 import QueueAnim from "rc-queue-anim";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
+import axios from "axios";
+
+//Redux
+import { connect } from "react-redux";
+import { addListing, batchUpdateListings } from "../../redux/actions";
 
 const Container = styled.div`
   display: flex;
@@ -37,7 +43,7 @@ const pageStyle = {
   width: "90%",
   flexDirection: "column",
   justifySelf: "center",
-  marginBottom: '4vh'
+  marginBottom: "4vh",
 };
 
 //Ant Design Styles
@@ -47,7 +53,7 @@ const ButtonStyle = {
   fontFamily: "roboto",
   fontColor: "#13C2C2",
   marginTop: "33px",
-  align: "inline-block"
+  align: "inline-block",
 };
 
 const ButtonText = styled.span`
@@ -56,68 +62,60 @@ const ButtonText = styled.span`
   font-size: 18px;
 `;
 
+const mapStateToProps = (state) => {
+  return {
+    listings: state.listings,
+  };
+};
+
+const mapDispatchToProps = {
+  addListing,
+  batchUpdateListings,
+};
 
 class PositionPost extends Component {
-  state = {
-    page: '5',
-    business: null
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: "5",
+    };
   }
-  render() {
-    let { business } = this.state;
 
-    if (business === null) {
-      return null;
-    }
+  render() {
     return (
       <Container>
         <NavSearch title="My Internship Postings" />
 
         <div style={pageStyle}>
           <Row>
-            <Link to='/internship-listings/add-listing'>
-              <Button style={ButtonStyle}><ButtonText>New Internship</ButtonText></Button>
+            <Link to="/internship-listings/add-listing">
+              <Button style={ButtonStyle}>
+                <ButtonText>New Internship</ButtonText>
+              </Button>
             </Link>
-            <Button style={ButtonStyle} ><ButtonText>Edit Filter</ButtonText></Button>
+            <Button style={ButtonStyle}>
+              <ButtonText>Edit Filter</ButtonText>
+            </Button>
           </Row>
           {/**
            * Info Bar
            */}
           <InfoBar />
 
-          {business[0].listings.map((post, index) => (
-            <PostingTab status="Active" name={post.name} interns={post.interns} id={post.name} />
+          {this.props.listings.map((post, index) => (
+            <PostingTab
+              status="Active"
+              name={post.Title}
+              interns="0"
+              id={post.Id}
+            />
           ))}
         </div>
       </Container>
     );
   }
   componentDidMount() {
-    fetch(`http://localhost:8000/business?_page=${this.state.page}&_limit=2`)
-      .then(response => response.json())
-      .then(json =>
-        this.setState({ business: json }))
+    console.log(this.props);
   }
-
-
-
-  handlePost = index => {
-    let newPost = { ...this.state.business[index] };
-    newPost.companies[0].status = "review";
-    this.setState({
-      newPost: this.state.newPost.concat(newPost),
-    });
-    fetch(`http://localhost:8000/business/${newPost.id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newPost)
-    })
-      .then(response => response.json())
-      .then(json => console.log(json));
-  };
-
-
-
 }
-export default PositionPost;
+export default connect(mapStateToProps, mapDispatchToProps)(PositionPost);
