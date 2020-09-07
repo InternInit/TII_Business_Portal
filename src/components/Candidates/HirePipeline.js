@@ -39,9 +39,29 @@ const dragStyle = {
  *Handles Drag and Drop
  *
  */
-const onDragEnd = (result, columns, setColumns) => {
+const onDragEnd = (result, columns, setColumns, props) => {
   if (!result.destination) return;
   const { source, destination } = result;
+
+  let status = "Review";
+  switch (parseInt(destination.droppableId)) {
+    case 1:
+      status = "Review";
+      break;
+    case 2:
+      status = "Online Interview";
+      break;
+    case 3:
+      status = "On-Site Interview";
+      break;
+    case 4:
+      status = "Accepted";
+      break;
+    default:
+      status = "Review";
+    // code block
+  }
+  props.updateCandidateStatus(result.draggableId, status);
 
   if (source.droppableId !== destination.droppableId) {
     const sourceColumn = columns[source.droppableId];
@@ -112,17 +132,6 @@ function HirePipeline(props) {
   );
 
   useEffect(() => {
-    /*
-    fetch(`http://localhost:8000/student?_page=1&_limit=5`)
-      .then(response => response.json())
-      .then(json => {
-        setColumns({
-          ...columns,
-          ["1"]: { ...columns["1"], items: json }
-        });
-        console.log(json);
-      });
-      */
     setColumns({
       ...columns,
       ["1"]: { ...columns["1"], items: markedCandidates },
@@ -130,10 +139,8 @@ function HirePipeline(props) {
       ["3"]: { ...columns["3"], items: onSiteInterviewCandidates },
       ["4"]: { ...columns["4"], items: acceptedCandidates },
     });
-
-    console.log(columns);
-    console.log(markedCandidates);
   }, []);
+
   return (
     /**
      *
@@ -142,7 +149,7 @@ function HirePipeline(props) {
      */
     <div style={containerStyle}>
       <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+        onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
       >
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
@@ -175,8 +182,8 @@ function HirePipeline(props) {
                         {column.items.map((item, index) => {
                           return (
                             <Draggable
-                              key={item.assocId}
-                              draggableId={item.assocId.toString()}
+                              key={item.studentId}
+                              draggableId={item.studentId.toString()}
                               index={index}
                             >
                               {(provided) => {
