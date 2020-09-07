@@ -74,43 +74,15 @@ class ReviewApplicants extends Component {
   }
 
   handleReview = (studentId) => {
-    this.props.updateCandidateStatus(studentId, "Review");
+    this.props.updateCandidateStatus(studentId, "Online Interview");
   };
 
-  handleInterviewUnread = (index) => {
-    let interviewStudent = { ...this.state.students[index] };
-    interviewStudent.companies[0].status = "marked-for-interview";
-    /*
-    this.setState({
-      students: this.state.students.filter((item, j) => j !== index)
-    });
-    fetch(`http://localhost:8000/student/${interviewStudent.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(interviewStudent)
-    })
-      .then(response => response.json())
-      .then(json => console.log(json));*/
+  handleInterviewUnread = (studentId) => {
+    this.props.updateCandidateStatus(studentId, "Online Interview");
   };
 
-  handleInterviewReview = (index) => {
-    let interviewStudent = { ...this.state.reviewStudents[index] };
-    interviewStudent.companies[0].status = "marked-for-interview";
-    /*
-    this.setState({
-      reviewStudents: this.state.reviewStudents.filter((item, j) => j !== index)
-    });
-    fetch(`http://localhost:8000/student/${interviewStudent.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(interviewStudent)
-    })
-      .then(response => response.json())
-      .then(json => console.log(json));*/
+  handleInterviewReview = (studentId) => {
+    this.props.updateCandidateStatus(studentId, "Online Interview");
   };
 
   render() {
@@ -170,7 +142,7 @@ class ReviewApplicants extends Component {
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
             onReview={() => this.handleReview(student.studentId)}
-            onInterview={() => this.handleInterviewUnread(index)}
+            onInterview={() => this.handleInterviewUnread(student.studentId)}
           />
         ))}
       </React.Fragment>
@@ -205,7 +177,7 @@ class ReviewApplicants extends Component {
             classTwo={"Class Two"}
             classThree={"Class Three"}
             onReview={() => this.handleReview(student.studentId)}
-            onInterview={() => this.handleInterviewUnread(index)}
+            onInterview={() => this.handleInterviewUnread(student.studentId)}
           />
         ))}
       </React.Fragment>
@@ -230,7 +202,7 @@ class ReviewApplicants extends Component {
             industry={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
-            onInterview={() => this.handleInterviewUnread(index)}
+            onInterview={() => this.handleInterviewReview(student.studentId)}
           />
         ))}
       </React.Fragment>
@@ -265,7 +237,7 @@ class ReviewApplicants extends Component {
             classOne={"Class One"}
             classTwo={"Class Two"}
             classThree={"Class Three"}
-            onInterview={() => this.handleInterviewUnread(index)}
+            onInterview={() => this.handleInterviewReview(student.studentId)}
           />
         ))}
       </React.Fragment>
