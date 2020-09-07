@@ -155,7 +155,7 @@ class ReviewApplicants extends Component {
   renderUnreadApplicants = () => {
     let { candidates } = this.props.companyInfo;
     let unreadCandidates = candidates.filter(
-      (candidate) => candidate.status !== "Review"
+      (candidate) => candidate.status === "Pending"
     );
     return this.state.quickview ? (
       <React.Fragment>

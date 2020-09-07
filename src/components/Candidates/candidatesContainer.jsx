@@ -96,6 +96,7 @@ class CandidatesContainer extends Component {
             exact
             component={() => (
               <HirePipeline
+                candidates={this.props.companyInfo.candidates}
                 updateCandidateStatus={this.updateCandidateStatus}
               />
             )}
