@@ -85,6 +85,10 @@ class ReviewApplicants extends Component {
     this.props.updateCandidateStatus(studentId, "Online Interview");
   };
 
+  handleReject = (studentId) => {
+    this.props.updateCandidateStatus(studentId, "Rejected");
+  };
+
   render() {
     return (
       <div
@@ -143,6 +147,7 @@ class ReviewApplicants extends Component {
             }
             onReview={() => this.handleReview(student.studentId)}
             onInterview={() => this.handleInterviewUnread(student.studentId)}
+            onReject={() => this.handleReject(student.studentId)}
           />
         ))}
       </React.Fragment>
@@ -178,6 +183,7 @@ class ReviewApplicants extends Component {
             classThree={"Class Three"}
             onReview={() => this.handleReview(student.studentId)}
             onInterview={() => this.handleInterviewUnread(student.studentId)}
+            onReject={() => this.handleReject(student.studentId)}
           />
         ))}
       </React.Fragment>
@@ -203,6 +209,7 @@ class ReviewApplicants extends Component {
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
             onInterview={() => this.handleInterviewReview(student.studentId)}
+            onReject={() => this.handleReject(student.studentId)}
           />
         ))}
       </React.Fragment>
@@ -238,6 +245,7 @@ class ReviewApplicants extends Component {
             classTwo={"Class Two"}
             classThree={"Class Three"}
             onInterview={() => this.handleInterviewReview(student.studentId)}
+            onReject={() => this.handleReject(student.studentId)}
           />
         ))}
       </React.Fragment>

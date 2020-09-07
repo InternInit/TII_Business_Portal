@@ -76,7 +76,7 @@ class CandidateDetailedviewTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
     };
   }
   render() {
@@ -143,7 +143,9 @@ class CandidateDetailedviewTab extends Component {
             </ActionButton>
           </AntCol>
           <AntCol span={3}>
-            <Button type="danger">Not a fit</Button>
+            <Button type="danger" onClick={this.props.onReject}>
+              Not a fit
+            </Button>
           </AntCol>
         </Row>
       </TabContainer>
@@ -153,6 +155,6 @@ class CandidateDetailedviewTab extends Component {
 
 CandidateDetailedviewTab.defaultProps = {
   GPA: 4.0,
-  cutOffGPA: 3.5
+  cutOffGPA: 3.5,
 };
 export default CandidateDetailedviewTab;
