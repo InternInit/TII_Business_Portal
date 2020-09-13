@@ -206,7 +206,9 @@ function HirePipeline(props) {
                                     <DraggingCard
                                       name={item.info["First Name"]}
                                       date={
-                                        item.info["Starting/Ending Dates"][0]
+                                        item.info[
+                                          "Starting/Ending Dates"
+                                        ][0].split("T")[0]
                                       }
                                       position="Cheese grator"
                                       id={item.studentId}
