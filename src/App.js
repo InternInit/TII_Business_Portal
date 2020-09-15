@@ -26,6 +26,7 @@ import {
   updateAvatar,
   updateId,
   batchUpdateListings,
+  addListing,
 } from "./redux/actions";
 
 //axios
@@ -66,6 +67,7 @@ const mapDispatchToProps = {
   updateAvatar,
   updateId,
   batchUpdateListings,
+  addListing,
 };
 
 class App extends React.Component {
@@ -161,6 +163,7 @@ class App extends React.Component {
                       <InternshipDetails
                         buttonText="Add Post"
                         title="Create New Post"
+                        addListing={this.props.addListing}
                       />
                     )}
                   />

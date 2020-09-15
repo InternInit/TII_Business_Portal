@@ -125,7 +125,8 @@ class InternshipDetails extends React.Component {
     axios
       .post("/api/update_internship_listings", values, headers)
       .then((response) => {
-        console.log(response);
+        console.log(JSON.parse(response.data));
+        this.props.addListing(JSON.parse(response.data));
       });
   };
   render() {
