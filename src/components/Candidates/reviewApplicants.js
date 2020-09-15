@@ -74,7 +74,7 @@ class ReviewApplicants extends Component {
   }
 
   handleReview = (studentId) => {
-    this.props.updateCandidateStatus(studentId, "Online Interview");
+    this.props.updateCandidateStatus(studentId, "Review");
   };
 
   handleInterviewUnread = (studentId) => {
@@ -168,9 +168,9 @@ class ReviewApplicants extends Component {
             GPA={parseFloat(student.info["Weighted GPA"])}
             age={student.info.Age}
             workDate={
-              student.info["Starting/Ending Dates"][0] +
+              student.info["Starting/Ending Dates"][0].split("T")[0] +
               " - " +
-              student.info["Starting/Ending Dates"][1]
+              student.info["Starting/Ending Dates"][1].split("T")[0]
             }
             industries={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
@@ -231,9 +231,9 @@ class ReviewApplicants extends Component {
             GPA={parseFloat(student.info["Weighted GPA"])}
             age={student.info.Age}
             workDate={
-              student.info["Starting/Ending Dates"][0] +
+              student.info["Starting/Ending Dates"][0].split("T")[0] +
               " - " +
-              student.info["Starting/Ending Dates"][1]
+              student.info["Starting/Ending Dates"][1].split("T")[0]
             }
             industries={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"

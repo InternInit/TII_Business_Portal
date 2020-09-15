@@ -118,14 +118,15 @@ class InternshipDetails extends React.Component {
     console.log(uuid);
     const headers = {
       headers: {
-        Authorization: "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d",
+        Authorization: "Bearer e504bb1e-4d55-48cd-9601-5552f3ad1bd9",
         ListingId: uuid,
       },
     };
     axios
       .post("/api/update_internship_listings", values, headers)
       .then((response) => {
-        console.log(response);
+        console.log(JSON.parse(response.data));
+        this.props.addListing(JSON.parse(response.data));
       });
   };
   render() {
