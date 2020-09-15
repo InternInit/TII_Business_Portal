@@ -74,7 +74,7 @@ class ReviewApplicants extends Component {
   }
 
   handleReview = (studentId) => {
-    this.props.updateCandidateStatus(studentId, "Online Interview");
+    this.props.updateCandidateStatus(studentId, "Review");
   };
 
   handleInterviewUnread = (studentId) => {
