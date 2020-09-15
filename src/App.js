@@ -31,6 +31,9 @@ import {
 //axios
 import axios from "axios";
 
+//Lodash
+import _ from "lodash";
+
 //Components
 import MainPage from "./components/Main_Page/MainPage";
 import BusinessNavBar from "./components/BusinessNavBar";
@@ -73,7 +76,7 @@ class App extends React.Component {
   }
 
   auth = () => {
-    this.props.updateId("e149eb67-8016-4d09-aa73-6bab85bdea1d");
+    this.props.updateId("e504bb1e-4d55-48cd-9601-5552f3ad1bd9");
     this.getBusinessInfo();
   };
 
@@ -101,14 +104,19 @@ class App extends React.Component {
   getListings = () => {
     const headers = {
       headers: {
-        Authorization: "Bearer e149eb67-8016-4d09-aa73-6bab85bdea1d",
+        Authorization: "Bearer e504bb1e-4d55-48cd-9601-5552f3ad1bd9",
       },
     };
 
     axios.get("/api/get_internship_listings", headers).then((response) => {
       console.log(response.data);
-      console.log(JSON.parse(response.data));
-      this.props.batchUpdateListings(JSON.parse(response.data));
+      this.props.batchUpdateListings(
+        _.isEqual(JSON.parse(response.data), {
+          message: "Internal server error",
+        })
+          ? []
+          : JSON.parse(response.data)
+      );
     });
   };
 
