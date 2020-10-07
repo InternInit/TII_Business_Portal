@@ -35,6 +35,10 @@ import axios from "axios";
 //Lodash
 import _ from "lodash";
 
+//Amplify
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "./aws-exports";
+
 //Components
 import MainPage from "./components/Main_Page/MainPage";
 import BusinessNavBar from "./components/BusinessNavBar";
@@ -53,6 +57,8 @@ import Signup from "./components/Login_Signup/Signup";
 import Employeepage from "./components/Company_Users/Employeepage";
 import CreateUser from "./components/Company_Users/CreateUser";
 import UserDetails from "./components/Company_Users/UserDetails";
+
+Amplify.configure(awsconfig);
 
 const { Content } = Layout;
 
