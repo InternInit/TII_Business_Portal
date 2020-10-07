@@ -104,7 +104,9 @@ class App extends React.Component {
   getCandidates = () => {
     axios.get(`/api/get_student_candidates`).then((res) => {
       let candidates = res.data;
-      this.props.updateCandidates(candidates);
+      this.props.updateCandidates(
+        res.data.message === "Internal server error" ? [] : res.data
+      );
       console.log(candidates);
     });
   };
