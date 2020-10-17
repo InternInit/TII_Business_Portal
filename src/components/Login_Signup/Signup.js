@@ -43,6 +43,12 @@ const formItemProps = {
   password: {
     //Implement Custom Validation Rules
   },
+  companyName: {
+    rules: validationRules(true, "company name", "string"),
+  },
+  name: {
+    rules: validationRules(true, "name", "string"),
+  },
   confirmPassword: {
     rules: [
       {
@@ -130,13 +136,18 @@ class SignUp extends React.Component {
                 <Input />
               </Form.Item>
 
-              <Label>Company Name</Label>
+              <Label>Name</Label>
               <Form.Item {...formItemProps.name} name="name">
                 <Input />
               </Form.Item>
 
               <Label>E-Mail</Label>
               <Form.Item {...formItemProps.email} name="email">
+                <Input />
+              </Form.Item>
+
+              <Label>Company Name</Label>
+              <Form.Item {...formItemProps.companyName} name="companyName">
                 <Input />
               </Form.Item>
 
@@ -270,7 +281,7 @@ class SignUp extends React.Component {
   }
 
   handleSubmit = async (values) => {
-    let { username, password, email } = values;
+    let { username, password, email, companyName, name } = values;
     this.setState({ email: email, username: username, password: password });
     try {
       const user = await Auth.signUp({
@@ -278,6 +289,9 @@ class SignUp extends React.Component {
         password,
         attributes: {
           email,
+          name,
+          "custom:company": companyName,
+          "custom:role": "Admin",
         },
       });
       // Dont open the email conf modal just yet
