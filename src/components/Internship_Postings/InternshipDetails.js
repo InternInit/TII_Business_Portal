@@ -118,7 +118,7 @@ class InternshipDetails extends React.Component {
     console.log(uuid);
     const headers = {
       headers: {
-        Authorization: "Bearer e504bb1e-4d55-48cd-9601-5552f3ad1bd9",
+        Authorization: "Bearer 6aa19690-d874-4fdd-a1d8-a1168a7b632c",
         ListingId: uuid,
       },
     };

@@ -81,7 +81,7 @@ Review Applicants
 @app.route('/api/get_student_candidates', methods=["GET"])
 def get_student_candidates():
     print(studentApiUrl)
-    req = requests.get(studentApiUrl, headers={"Authorization": "Bearer e504bb1e-4d55-48cd-9601-5552f3ad1bd9"})
+    req = requests.get(studentApiUrl, headers={"Authorization": "Bearer 6aa19690-d874-4fdd-a1d8-a1168a7b632c"})
     return jsonify(json.loads(req.text))
 
 @app.route('/api/update_student_status', methods=["POST"])
