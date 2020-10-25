@@ -21,6 +21,8 @@ import { Auth } from "aws-amplify";
 
 import { withRouter } from "react-router";
 
+import { v4 as uuidv4 } from "uuid";
+
 const passwordValidator = require("password-validator");
 
 const schema = new passwordValidator();
@@ -291,6 +293,7 @@ class SignUp extends React.Component {
           email,
           name,
           "custom:company": companyName,
+          "custom:companyId": uuidv4(),
           "custom:role": "Admin",
         },
       });
