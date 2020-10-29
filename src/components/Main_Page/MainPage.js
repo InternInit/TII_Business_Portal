@@ -7,6 +7,7 @@ import PageListings from "./PageListings";
 import PageFeedback from "./PageFeedback";
 import MainPercentages from "./MainPercentages";
 import StudentCard from "./StudentCard";
+import NavSearch from "../NavSearch";
 
 import axios from "axios";
 
@@ -55,9 +56,7 @@ class MainPage extends React.Component {
           minHeight: "100vh",
         }}
       >
-        <PageHeaderContainer>
-          <PageHeader>Overview</PageHeader>
-        </PageHeaderContainer>
+        <NavSearch title="Overview" searchBar={false} />
 
         <Row style={{ minWidth: "550px" }}>
           {/**

@@ -60,7 +60,7 @@ import UserDetails from "./components/Company_Users/UserDetails";
 
 Amplify.configure(awsconfig);
 
-const { Content } = Layout;
+const { Content, Sider } = Layout;
 
 const mapStateToProps = (state) => {
   return {
@@ -144,11 +144,12 @@ class App extends React.Component {
           <Route path="/signup" exact component={Signup} />
 
           <Layout>
-            <BusinessNavBar />
+            <Sider width={80}>
+              <BusinessNavBar />
+            </Sider>
             <Content>
               <div
                 style={{
-                  marginLeft: "6%",
                 }} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */
               >
                 <Route
