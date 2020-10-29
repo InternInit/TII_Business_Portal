@@ -1,0 +1,123 @@
+//Margins
+@mixin mt($name, $amount) {
+  .mt-#{$name} {
+    margin-top: #{$amount}vh;
+  }
+}
+@mixin mb($name, $amount) {
+  .mb-#{$name} {
+    margin-bottom: #{$amount}vh;
+  }
+}
+@mixin ml($name, $amount) {
+  .ml-#{$name} {
+    margin-left: #{$amount}vw;
+  }
+}
+@mixin mr($name, $amount) {
+  .mr-#{$name} {
+    margin-right: #{$amount}vw;
+  }
+}
+
+//Padding
+@mixin pt($name, $amount) {
+  .pt-#{$name} {
+    padding-top: #{$amount}vh;
+  }
+}
+@mixin pb($name, $amount) {
+  .pb-#{$name} {
+    padding-bottom: #{$amount}vh;
+  }
+}
+@mixin pl($name, $amount) {
+  .pl-#{$name} {
+    padding-left: #{$amount}vw;
+  }
+}
+@mixin pr($name, $amount) {
+  .pr-#{$name} {
+    padding-right: #{$amount}vw;
+  }
+}
+
+@include mt(1, 1);
+@include mt(2, 2);
+@include mt(3, 3);
+@include mt(4, 4);
+@include mt(5, 5);
+@include mt(6, 6);
+@include mt(7, 7);
+@include mt(8, 8);
+@include mt(9, 9);
+
+@include mb(1, 1);
+@include mb(2, 2);
+@include mb(3, 3);
+@include mb(4, 4);
+@include mb(5, 5);
+@include mb(6, 6);
+@include mb(7, 7);
+@include mb(8, 8);
+@include mb(9, 9);
+
+@include ml(1, 1);
+@include ml(2, 2);
+@include ml(3, 3);
+@include ml(4, 4);
+@include ml(5, 5);
+@include ml(6, 6);
+@include ml(7, 7);
+@include ml(8, 8);
+@include ml(9, 9);
+
+@include mr(1, 1);
+@include mr(2, 2);
+@include mr(3, 3);
+@include mr(4, 4);
+@include mr(5, 5);
+@include mr(6, 6);
+@include mr(7, 7);
+@include mr(8, 8);
+@include mr(9, 9);
+
+@include pt(1, 1);
+@include pt(2, 2);
+@include pt(3, 3);
+@include pt(4, 4);
+@include pt(5, 5);
+@include pt(6, 6);
+@include pt(7, 7);
+@include pt(8, 8);
+@include pt(9, 9);
+
+@include pb(1, 1);
+@include pb(2, 2);
+@include pb(3, 3);
+@include pb(4, 4);
+@include pb(5, 5);
+@include pb(6, 6);
+@include pb(7, 7);
+@include pb(8, 8);
+@include pb(9, 9);
+
+@include pl(1, 1);
+@include pl(2, 2);
+@include pl(3, 3);
+@include pl(4, 4);
+@include pl(5, 5);
+@include pl(6, 6);
+@include pl(7, 7);
+@include pl(8, 8);
+@include pl(9, 9);
+
+@include pr(1, 1);
+@include pr(2, 2);
+@include pr(3, 3);
+@include pr(4, 4);
+@include pr(5, 5);
+@include pr(6, 6);
+@include pr(7, 7);
+@include pr(8, 8);
+@include pr(9, 9);
