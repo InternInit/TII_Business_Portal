@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../App.css";
+import "../../App.scss";
 import "./candidates.css";
 import styled from "styled-components";
 import {

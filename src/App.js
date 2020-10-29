@@ -58,6 +58,8 @@ import Employeepage from "./components/Company_Users/Employeepage";
 import CreateUser from "./components/Company_Users/CreateUser";
 import UserDetails from "./components/Company_Users/UserDetails";
 
+import "./App.scss";
+
 Amplify.configure(awsconfig);
 
 const { Content, Sider } = Layout;

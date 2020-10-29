@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Input } from "antd";
+import "../App.scss";
 
 const { Search } = Input;
 
 const Header = styled.span`
-  font-size: 48px;
   font-weight: 600;
   color: black;
   margin-left: 5%;
@@ -27,7 +27,7 @@ class NavSearch extends Component {
       <div
         style={containerStyle}
       >
-        <Header style={{ width: "45%" }}>{this.props.title}</Header>
+        <Header className="thirtySixFont" style={{ width: "45%" }}>{this.props.title}</Header>
         {this.props.searchBar ? (
           <Search
             style={{
