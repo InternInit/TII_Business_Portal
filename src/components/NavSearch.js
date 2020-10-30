@@ -8,7 +8,6 @@ const { Search } = Input;
 const Header = styled.span`
   font-weight: 600;
   color: black;
-  margin-left: 5%;
 `;
 
 //CSS Constants
@@ -27,7 +26,7 @@ class NavSearch extends Component {
       <div
         style={containerStyle}
       >
-        <Header className="thirtySixFont" style={{ width: "45%" }}>{this.props.title}</Header>
+        <Header className="thirtySixFont ml-1-5" style={{ width: "45%" }}>{this.props.title}</Header>
         {this.props.searchBar ? (
           <Search
             style={{

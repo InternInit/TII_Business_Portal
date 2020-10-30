@@ -43,18 +43,19 @@ const Applying = styled.span`
   color: #8c8c8c;
 `;
 
-class StudentCard extends React.Component {
-  render() {
-    let { firstName, lastName, age, avatar } = this.props;
-    return (
-      <Container>
-        <Avatar src={avatar} size={28} icon={<UserOutlined />} />
-        <Col>
-          <Name>{firstName} {lastName}{age}</Name>
-          <Applying>Coffee Grinder</Applying>
-        </Col>
-      </Container>
-    );
-  }
-}
+const StudentCard = (props) => {
+  let { firstName, lastName, age, avatar } = props;
+  return (
+    <Container>
+      <Avatar src={avatar} size={28} icon={<UserOutlined />} />
+      <Col>
+        <Name>
+          {firstName} {lastName}
+          {age}
+        </Name>
+        <Applying>Coffee Grinder</Applying>
+      </Col>
+    </Container>
+  );
+};
 export default StudentCard;

@@ -44,7 +44,7 @@ class MainPage extends React.Component {
       >
         <NavSearch title="Overview" searchBar={false} />
 
-        <div className="px-3 py-2">
+        <div className="px-4 py-2">
           <AntRow gutter={[32, 16]}>
             <AntCol span={16}>
               <Header className="twentyFont mb-point-5"> Listings</Header>
