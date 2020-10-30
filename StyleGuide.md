@@ -68,3 +68,15 @@ _px_ : X-Padding
 _py_ : Y-Padding
 
 _p_ : Total Padding
+
+## Font Families
+
+The font families used by TII are Lato and Roboto.
+
+### **Headings**
+
+All headings OR large texts above the size of 24 must be displayed using the _Lato_ font family. Main headings must be bolded. Subheadings must have normal weight.
+
+### **Body and Content**
+
+All body and content text must be displayed using the _Roboto_ font family. The main text must always have a normal font weight. Sub-text can use the light font weight. Company names may be bolded.
