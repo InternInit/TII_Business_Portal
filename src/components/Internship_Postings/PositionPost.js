@@ -18,11 +18,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  min-height: 100vh;
   min-width: 600px;
-
-  background-color: #eceff9;
 `;
 
 const Row = styled.div`
@@ -83,7 +79,7 @@ class PositionPost extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="global-container">
         <NavSearch title="My Internship Postings" />
 
         <div style={pageStyle}>

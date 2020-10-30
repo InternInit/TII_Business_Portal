@@ -136,10 +136,8 @@ class InternshipDetails extends React.Component {
         <NavSearch title={title} searchBar={false} />
         <div style={pageStyle}>
           <div
-            style={{
-              backgroundColor: "#eceff9",
-              width: "80%",
-            }}
+             className="global-container px-8"
+             style={{width: "100%"}}
           >
             {/**
              *
