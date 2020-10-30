@@ -47,7 +47,7 @@ const PageListings = (props) => {
        *
        */}
       <AntRow align="middle" gutter={[16, 0]}>
-        <AntCol lg={15}>
+        <AntCol xs={12} sm={12} md={12} lg={15}>
           <AntRow>
             <ListingName className="eighteenFont mb-point-25">
               {name}
@@ -57,7 +57,8 @@ const PageListings = (props) => {
             <Industry>Data Science</Industry>
           </AntRow>
         </AntCol>
-        <AntCol lg={3}>
+
+        <AntCol xs={12} sm={12} md={4} lg={3}>
           <AntRow justify="center">
             <StatNum>{interns}</StatNum>
           </AntRow>
@@ -66,7 +67,7 @@ const PageListings = (props) => {
           </AntRow>
         </AntCol>
 
-        <AntCol lg={3}>
+        <AntCol xs={0} sm={0} md={4} lg={3}>
           <AntRow justify="center">
             <StatNum>{accepted}</StatNum>
           </AntRow>
@@ -75,7 +76,7 @@ const PageListings = (props) => {
           </AntRow>
         </AntCol>
 
-        <AntCol lg={3}>
+        <AntCol xs={0} sm={0} md={4} lg={3}>
           <AntRow justify="center">
             <StatNum>{total}</StatNum>
           </AntRow>
