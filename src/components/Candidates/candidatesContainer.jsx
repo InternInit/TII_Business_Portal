@@ -73,7 +73,7 @@ class CandidatesContainer extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "#eceff9" }}>
+      <div className="global-container">
         <NavSearch title="Internship Candidates" />
         <CandidatesNavbar defaultSelectedKey={this.findPath()} />
         <ReactSwitch>
