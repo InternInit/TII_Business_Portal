@@ -14,10 +14,9 @@ _offset_ : use instead of empty columns
 
 _align_ : top, middle, bottom vertical alignments
 
-
 ### **Sidebar, Topbar, and Content**
 
-The business portal has a standard sidebar size of 80px. This offset is covered in the SideBar component of ant design. 
+The business portal has a standard sidebar size of 80px. This offset is covered in the SideBar component of ant design.
 
 The Topbar is present on every page, and is used as a label/reference what section the user is on. Whenever the user has moved to a new page within the same navbar stack, they _must_ indicate a way to move back through the topbar. Text within the topbar is always padded by 1.5em, as indicated through the className prop.
 
@@ -91,4 +90,7 @@ _Subheadings_ : 20/24
 
 _Text_ : 16 (unless otherwise specified)
 
+## Miscellaneous but Important
 
+- Border radiuses are always 4px.
+- The color scheme is based off cool gray
