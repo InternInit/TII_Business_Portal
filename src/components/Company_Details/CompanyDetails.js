@@ -74,7 +74,6 @@ const pageStyle = {
   flexDirection: "column",
   alignItems: "center",
   float: "center",
-  backgroundColor: "#eceff9",
 };
 
 //Form Props
@@ -138,7 +137,7 @@ class CompanyDetails extends React.Component {
     return (
       <React.Fragment>
         <NavSearch title="Company Information" searchBar={false} />
-        <div style={pageStyle}>
+        <div  className="global-container" style={pageStyle}>
           <div style={marginStyle}>
             {/**
              *

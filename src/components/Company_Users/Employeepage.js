@@ -12,10 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  min-height: 100vh;
   min-width: 600px;
-
-  background-color: #eceff9;
 `;
 
 const Row = styled.div`
@@ -60,7 +57,7 @@ class Employeepage extends Component {
     }
     render() {
         return (
-            <Container>
+            <Container className="global-container">
                 <NavSearch title="Company User Accounts" />
 
                 <div style={pageStyle}>

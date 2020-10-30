@@ -10,10 +10,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  min-height: 100vh;
   min-width: 600px;
-
-  background-color: #eceff9;
 `;
 
 const Row = styled.div`
@@ -60,7 +57,7 @@ class SchoolContact extends Component {
     render() {
         let { students } = this.state;
         return (
-            <Container>
+            <Container className="global-container">
                 <NavSearch title="Contact Schools" />
 
                 <div style={pageStyle}>

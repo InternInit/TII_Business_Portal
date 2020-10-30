@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 const FeedbackContainer = styled.div`
   width: 100%;
   border-radius: 4px;
   border: 1px solid #d8def3;
   min-width: 325px;
 
-  margin-top:4vh;
+  margin-top: 4vh;
 
   box-shadow: 1px 1px 5px -4px;
 
@@ -25,13 +25,13 @@ const Banner = styled.div`
 `;
 const Student = styled.span`
   font-size: 16px;
-  margin-left:2vh;
-  color:#595959;
+  margin-left: 2vh;
+  color: #595959;
 `;
 const Position = styled.span`
   font-weight: 500;
-  font-size:24px;
-  color:#262626;
+  font-size: 24px;
+  color: #262626;
 `;
 const Feedback = styled.div`
   width: 100%;
@@ -45,46 +45,41 @@ const Feedback = styled.div`
 
 //CSS Constants
 const feedbackStyle = {
-    width: "90%",
-    marginTop: "2vh",
-    minHeight: "12vh",
-    maxHeight: "20vh",
-    fontSize: '14px',
-    color: '#434343'
-}
+  width: "90%",
+  marginTop: "2vh",
+  minHeight: "12vh",
+  maxHeight: "20vh",
+  fontSize: "14px",
+  color: "#434343",
+};
 class FeedbackBox extends React.Component {
-    render() {
-        let { id } = this.props;
-        return (
-            <FeedbackContainer>
-                <Link to={`intern-feedback/${id}`}>
-                    <Banner>
-                        {/**
+  render() {
+    let { id } = this.props;
+    return (
+      <FeedbackContainer>
+        <Link to={`intern-feedback/${id}`}>
+          <Banner>
+            {/**
+             *
+             * Intern Name and Job Name
+             *
+             */}
+            <div style={{ padding: "4px", marginLeft: "12px" }}>
+              <Position>Position Name</Position>
+              <Student>Oscar Hong (18)</Student>
+            </div>
+          </Banner>
+          {/**
            *
-           * Intern Name and Job Name
+           * Intern Feedback
            *
            */}
-                        <div style={{ padding: "4px", marginLeft: "12px" }}>
-                            <Position>Position Name</Position>
-                            <Student>Oscar Hong (18)</Student>
-                        </div>
-                    </Banner>
-                    {/**
-         *
-         * Intern Feedback
-         *
-         */}
-                    <Feedback>
-                        <div
-                            style={feedbackStyle}
-                        >
-                            What the intern liked.
-          </div>
-                    </Feedback>
-                </Link>
-            </FeedbackContainer>
-
-        );
-    }
+          <Feedback>
+            <div style={feedbackStyle}>What the intern liked.</div>
+          </Feedback>
+        </Link>
+      </FeedbackContainer>
+    );
+  }
 }
 export default FeedbackBox;
