@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { Button } from "antd";
 import NavSearch from "../NavSearch";
 
-import CompanyAccount from './CompanyAccount';
+import CompanyAccount from "./CompanyAccount";
 
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -29,19 +29,19 @@ const Row = styled.div`
 
 //CSS Constants
 const pageStyle = {
-    display: "flex",
-    width: "90%",
-    flexDirection: "column",
-    justifySelf: "center"
+  display: "flex",
+  width: "90%",
+  flexDirection: "column",
+  justifySelf: "center",
 };
 
 const AddFilterStyle = {
-    width: "270px",
-    height: "40px",
-    fontFamily: "roboto",
-    fontColor: "#13C2C2",
-    marginTop: "33px",
-    align: "inline-block"
+  width: "270px",
+  height: "40px",
+  fontFamily: "roboto",
+  fontColor: "#13C2C2",
+  marginTop: "33px",
+  align: "inline-block",
 };
 
 const ButtonText = styled.span`
@@ -50,35 +50,26 @@ const ButtonText = styled.span`
   font-size: 18px;
 `;
 
-
 class Employeepage extends Component {
-    state = {
+  state = {};
+  render() {
+    return (
+      <Container className="global-container">
+        <NavSearch title="Company User Accounts" />
 
-    }
-    render() {
-        return (
-            <Container className="global-container">
-                <NavSearch title="Company User Accounts" />
+        <div style={pageStyle}>
+          <Row>
+            <Link to="/users/new-account">
+              <Button style={AddFilterStyle}>
+                <ButtonText> Add User Account</ButtonText>
+              </Button>
+            </Link>
+          </Row>
 
-                <div style={pageStyle}>
-                    <Row>
-                        <Link to='/users/new-account'>
-                            <Button style={AddFilterStyle}>
-                                <ButtonText> Add User Account</ButtonText>
-                            </Button>
-                        </Link>
-                    </Row>
-
-                    <CompanyAccount>
-
-                    </CompanyAccount>
-
-
-                </div>
-            </Container>
-        );
-    }
-
-
+          <CompanyAccount />
+        </div>
+      </Container>
+    );
+  }
 }
 export default Employeepage;

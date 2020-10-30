@@ -8,7 +8,7 @@ const Container = styled.div`
   width: 100%;
   background-color: white;
 
-  border-radius: 2vh;
+  border-radius: 4px;
   min-height: 12vh;
 
   display: flex;
