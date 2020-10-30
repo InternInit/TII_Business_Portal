@@ -13,10 +13,18 @@
 ==========================================================================================
 */
 $background-color: #eceff9;
-
+$gray-1: #ebeff2;
+$gray-2: #E2E8Ed;
+$gray-4: #C5D1D8;
+$gray-6: #A3B5Bf;
+$gray-8: #889AA5;
+$gray-10: #677E8C;
+$gray-13: #425866;
+$gray-16: #23343F;
+$gray-18: #121F26;
 
 
 .global-container {
-  background-color: $background-color;
+  background-color: $gray-1;
   min-height: 100vh;
 }
