@@ -28,3 +28,11 @@ $gray-18: #121F26;
   background-color: $gray-1;
   min-height: 100vh;
 }
+
+.universal-left {
+  text-align: left;
+}
+
+.flex-left {
+  justify-content: flex-start;
+}

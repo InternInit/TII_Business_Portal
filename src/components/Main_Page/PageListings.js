@@ -1,14 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { Row as AntRow, Col as AntCol } from "antd";
 
 const TabContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   background-color: white;
-  min-height: 7.75vh;
   min-width: 325px;
   border-radius: 4px;
   margin-bottom: 12px;
@@ -21,9 +17,7 @@ const TabContainer = styled.div`
   }
 `;
 const ListingName = styled.span`
-  font-size: 18px;
   font-weight: bold;
-  width: 49vh;
 `;
 const Industry = styled.span`
   margin-top: -1vh;
@@ -31,14 +25,8 @@ const Industry = styled.span`
   color: #8c8c8c;
   font-weight: 500;
 `;
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
+
 const StatNum = styled.span`
-  display: flex;
-  justify-content: center;
   font-weight: bold;
   font-size: 14px;
 `;
@@ -49,49 +37,53 @@ const StatLabel = styled.span`
   font-weight: 500;
 `;
 
-//CSS Constants
-const dividerStyle = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-evenly",
-  width: "65%",
-};
-
 const PageListings = (props) => {
   let { name, interns, accepted, total } = props;
   return (
-    <TabContainer>
+    <TabContainer className="px-3 py-1">
       {/**
        *
        * Listing name + Industry
        *
        */}
-      <Col style={{ marginLeft: "5%" }}>
-        <ListingName>{name}</ListingName>
-        <Industry>Data Science</Industry>
-      </Col>
+      <AntRow align="middle" gutter={[16, 0]}>
+        <AntCol lg={15}>
+          <AntRow>
+            <ListingName className="eighteenFont universal-left">
+              {name}
+            </ListingName>
+          </AntRow>
+          <AntRow>
+            <Industry>Data Science</Industry>
+          </AntRow>
+        </AntCol>
+        <AntCol lg={3} style={{backgroundColor: "yellow"}}>
+          <AntRow justify="center">
+            <StatNum>{interns}</StatNum>
+          </AntRow>
+          <AntRow justify="center">
+            <StatLabel>Applicants</StatLabel>
+          </AntRow>
+        </AntCol>
 
-      {/**
-       *
-       * Listing Details
-       *
-       */}
-      <div style={dividerStyle}>
-        <Col>
-          <StatNum>{interns}</StatNum>
-          <StatLabel>Applicants</StatLabel>
-        </Col>
+        <AntCol lg={3}>
+          <AntRow justify="center">
+            <StatNum>{accepted}</StatNum>
+          </AntRow>
+          <AntRow justify="center">
+            <StatLabel>Accepted</StatLabel>
+          </AntRow>
+        </AntCol>
 
-        <Col>
-          <StatNum>{accepted}</StatNum>
-          <StatLabel>Accepted</StatLabel>
-        </Col>
-
-        <Col>
-          <StatNum>{total}</StatNum>
-          <StatLabel>Total</StatLabel>
-        </Col>
-      </div>
+        <AntCol lg={3} style={{backgroundColor: "yellow"}}>
+          <AntRow justify="center">
+            <StatNum>{total}</StatNum>
+          </AntRow>
+          <AntRow justify="center">
+            <StatLabel>Total</StatLabel>
+          </AntRow>
+        </AntCol>
+      </AntRow>
     </TabContainer>
   );
 };
