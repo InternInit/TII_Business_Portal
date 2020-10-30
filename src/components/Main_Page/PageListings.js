@@ -49,7 +49,7 @@ const PageListings = (props) => {
       <AntRow align="middle" gutter={[16, 0]}>
         <AntCol lg={15}>
           <AntRow>
-            <ListingName className="eighteenFont universal-left">
+            <ListingName className="eighteenFont mb-point-5">
               {name}
             </ListingName>
           </AntRow>

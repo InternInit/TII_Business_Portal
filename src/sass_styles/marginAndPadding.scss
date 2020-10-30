@@ -76,6 +76,7 @@
   }
 }
 
+@include mt("point-25", .25);
 @include mt("point-5", .5);
 @include mt(1, 1);
 @include mt("1-2", 1.2);
@@ -89,6 +90,7 @@
 @include mt(8, 8);
 @include mt(9, 9);
 
+@include mb("point-25", .25);
 @include mb("point-5", .5);
 @include mb(1, 1);
 @include mb("1-2", 1.2);
@@ -102,6 +104,7 @@
 @include mb(8, 8);
 @include mb(9, 9);
 
+@include ml("point-25", .25);
 @include ml("point-5", .5);
 @include ml(1, 1);
 @include ml("1-2", 1.2);
@@ -115,6 +118,7 @@
 @include ml(8, 8);
 @include ml(9, 9);
 
+@include mr("point-25", .25);
 @include mr("point-5", .5);
 @include mr(1, 1);
 @include mr("1-2", 1.2);
@@ -128,6 +132,7 @@
 @include mr(8, 8);
 @include mr(9, 9);
 
+@include mx("point-25", .25);
 @include mx("point-5", .5);
 @include mx(1, 1);
 @include mx("1-2", 1.2);
@@ -141,6 +146,7 @@
 @include mx(8, 8);
 @include mx(9, 9);
 
+@include my("point-25", .25);
 @include my("point-5", .5);
 @include my(1, 1);
 @include my("1-2", 1.2);
@@ -154,6 +160,7 @@
 @include my(8, 8);
 @include my(9, 9);
 
+@include m("point-25", .25);
 @include m("point-5", .5);
 @include m(1, 1);
 @include m("1-2", 1.2);
@@ -167,6 +174,7 @@
 @include m(8, 8);
 @include m(9, 9);
 
+@include pt("point-25", .25);
 @include pt("point-5", .5);
 @include pt(1, 1);
 @include pt("1-2", 1.2);
@@ -180,6 +188,7 @@
 @include pt(8, 8);
 @include pt(9, 9);
 
+@include pb("point-25", .25);
 @include pb("point-5", .5);
 @include pb(1, 1);
 @include pb("1-2", 1.2);
@@ -193,6 +202,7 @@
 @include pb(8, 8);
 @include pb(9, 9);
 
+@include pl("point-25", .25);
 @include pl("point-5", .5);
 @include pl(1, 1);
 @include pl("1-2", 1.2);
@@ -206,6 +216,7 @@
 @include pl(8, 8);
 @include pl(9, 9);
 
+@include pr("point-25", .25);
 @include pr("point-5", .5);
 @include pr(1, 1);
 @include pr("1-2", 1.2);
@@ -219,6 +230,7 @@
 @include pr(8, 8);
 @include pr(9, 9);
 
+@include px("point-25", .25);
 @include px("point-5", .5);
 @include px(1, 1);
 @include px("1-2", 1.2);
@@ -232,6 +244,7 @@
 @include px(8, 8);
 @include px(9, 9);
 
+@include py("point-25", .25);
 @include py("point-5", .5);
 @include py(1, 1);
 @include py("1-2", 1.2);
@@ -245,6 +258,7 @@
 @include py(8, 8);
 @include py(9, 9);
 
+@include p("point-25", .25);
 @include p("point-5", .5);
 @include p(1, 1);
 @include p("1-2", 1.2);
