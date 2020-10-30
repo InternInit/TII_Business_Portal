@@ -17,51 +17,48 @@ const BoxContainer = styled.div`
   border-radius: 4px;
 `;
 
-class MainPercentages extends React.Component {
-  render() {
-    return (
-      <>
-        <AntCol span={8}>
-          <PercentageBox
-            header="Applied to Industry"
-            percentage="2"
-            color="#F5222D"
-          />
-        </AntCol>
-        <AntCol span={8}>
-          <PercentageBox
-            header="Applied to Company"
-            percentage="24"
-            color="#1890ff"
-          />
-        </AntCol>
-        <AntCol span={8}>
-          <PercentageBox
-            header="Percentage Accepted"
-            percentage="97"
-            color="#52C41A"
-          />
-        </AntCol>
-      </>
-    );
-  }
-}
+const MainPercentages = (props) => {
+  return (
+    <>
+      <AntCol span={8}>
+        <PercentageBox
+          header="Applied to Industry"
+          percentage="2"
+          color="#F5222D"
+        />
+      </AntCol>
+      <AntCol span={8}>
+        <PercentageBox
+          header="Applied to Company"
+          percentage="24"
+          color="#1890ff"
+        />
+      </AntCol>
+      <AntCol span={8}>
+        <PercentageBox
+          header="Percentage Accepted"
+          percentage="97"
+          color="#52C41A"
+        />
+      </AntCol>
+    </>
+  );
+};
 export default MainPercentages;
 
-class PercentageBox extends React.Component {
-  render() {
-    let { header, percentage } = this.props;
-    return (
-      <div>
-        <Header className="twentyFont mb-point-5">{header}</Header>
-        <BoxContainer>
-          <Progress
-            type="circle"
-            percent={percentage}
-            strokeColor={{ "0%": this.props.color, "100%": this.props.color }}
-          />
-        </BoxContainer>
-      </div>
-    );
-  }
-}
+const PercentageBox = (props) => {
+  let { header, percentage, color } = props;
+
+  return (
+    <div>
+      <Header className="twentyFont mb-point-5">{header}</Header>
+      <BoxContainer>
+        <Progress
+          type="circle"
+          percent={percentage}
+          strokeColor={{ "0%": color, "100%": color }}
+        />
+      </BoxContainer>
+    </div>
+  );
+};

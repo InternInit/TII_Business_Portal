@@ -74,7 +74,7 @@ class MainPage extends React.Component {
 
           <AntRow gutter={[32, 16]}>
             <AntCol span={16}>
-              <Header className="twentyFont mb-point-5">Intern Feedback</Header>
+              <Header className="twentyFont mb-point-5">Current Interns</Header>
               <PageFeedback />
             </AntCol>
             <AntCol span={8}>
