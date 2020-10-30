@@ -23,5 +23,48 @@ The Topbar is present on every page, and is used as a label/reference what secti
 
 Content within the main page is always padded by a minimum of 4em on the x axis and 2em on the y axis. Secondary content that is navigable from the first accessible page can have a padding of greater than 4em on the x axis, but the y axis paddding should never change.
 
+## Margins, Padding, and Font Size
 
+Margins, padding, and font sizes should _never_ be determined through inline styles or styled components. Using classnames for margins, padding, and font sizes improved the modularity and debugging process of the application
 
+### **Font Size**
+
+Font sizes are always determined through SCSS, where the rfs library is used for responsive font resizing. Media queries support radical font resizing for medium screen breakpoints and below. If a change needs to be made on font resizing, then that change must be reflected in the scss file. Font size debugging may be performed through inline styles, but once the change has been made completely, the adjustment must be transferred over to the classname system.
+
+**Font Sizes Supported by TII (in px)**: 14, 16, 18, 20, 22, 24, 28, 32, 36, 48
+
+### **Margins**
+
+Margins are always determined through scss. They are, by default, assigned using the em unit. The standard margin classNames are below:
+
+_ml_ : Left Margin
+
+_mr_ : Right Margin
+
+_mt_ : Top Margin
+
+_mb_ : Bottom Margin
+
+_mx_ : X-Margin
+
+_my_ : Y-Margin
+
+_m_ : Total Margin
+
+### **Padding**
+
+Padding is always determined through scss. They are, by default, assigned using the em unit. The standard padding classNames are below:
+
+_pl_ : Left Padding
+
+_pr_ : Right Padding
+
+_pt_ : Top Padding
+
+_pb_ : Bottom Padding
+
+_px_ : X-Padding
+
+_py_ : Y-Padding
+
+_p_ : Total Padding
