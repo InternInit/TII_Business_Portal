@@ -1,18 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { Progress } from "antd";
-const Header = styled.span`
-  font-size: 20px;
+import { Progress, Col as AntCol } from "antd";
+const Header = styled.h1`
   font-weight: 500;
   color: #262626;
-  margin-bottom: 12px;
 `;
 const BoxContainer = styled.div`
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
   height: 22vh;
   box-shadow: 1px 1px 5px -4px;
 
@@ -23,30 +20,29 @@ const BoxContainer = styled.div`
 class MainPercentages extends React.Component {
   render() {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          minWidth: "325px",
-          flexDirection: "row"
-        }}
-      >
-        <PercentageBox
-          header="Applied to Industry"
-          percentage="2"
-          color="#F5222D"
-        />
-        <PercentageBox
-          header="Applied to Company"
-          percentage="24"
-          color="#1890ff"
-        />
-        <PercentageBox
-          header="Percentage Accepted"
-          percentage="97"
-          color="#52C41A"
-        />
-      </div>
+      <>
+        <AntCol span={8}>
+          <PercentageBox
+            header="Applied to Industry"
+            percentage="2"
+            color="#F5222D"
+          />
+        </AntCol>
+        <AntCol span={8}>
+          <PercentageBox
+            header="Applied to Company"
+            percentage="24"
+            color="#1890ff"
+          />
+        </AntCol>
+        <AntCol span={8}>
+          <PercentageBox
+            header="Percentage Accepted"
+            percentage="97"
+            color="#52C41A"
+          />
+        </AntCol>
+      </>
     );
   }
 }
@@ -56,14 +52,8 @@ class PercentageBox extends React.Component {
   render() {
     let { header, percentage } = this.props;
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%"
-        }}
-      >
-        <Header>{header}</Header>
+      <div>
+        <Header className="twentyFont mb-point-5">{header}</Header>
         <BoxContainer>
           <Progress
             type="circle"
