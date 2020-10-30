@@ -1,3 +1,9 @@
 @import "./sass_styles/fontSize.scss";
 @import "./sass_styles/marginAndPadding.scss";
 
+$background-color: #eceff9;
+
+.global-container {
+    background-color: $background-color;
+    min-height: 100vh;
+}

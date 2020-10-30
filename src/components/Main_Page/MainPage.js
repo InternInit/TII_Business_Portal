@@ -36,12 +36,7 @@ class MainPage extends React.Component {
     let { candidates, listings } = this.props;
 
     return (
-      <div
-        style={{
-          backgroundColor: "#eceff9",
-          minHeight: "100vh",
-        }}
-      >
+      <div className="global-container">
         <NavSearch title="Overview" searchBar={false} />
 
         <div className="px-4 py-2">
@@ -58,7 +53,9 @@ class MainPage extends React.Component {
               ))}
             </AntCol>
             <AntCol span={8}>
-              <Header className="twentyFont mb-point-5">Incoming Applicants</Header>
+              <Header className="twentyFont mb-point-5">
+                Incoming Applicants
+              </Header>
               {candidates
                 .filter((candidate) => candidate.status === "Pending")
                 .map((student) => (
@@ -78,7 +75,9 @@ class MainPage extends React.Component {
               <PageFeedback />
             </AntCol>
             <AntCol span={8}>
-              <Header className="twentyFont mb-point-5">Incoming Applicants</Header>
+              <Header className="twentyFont mb-point-5">
+                Incoming Applicants
+              </Header>
               {candidates
                 .filter((candidate) => candidate.status === "Pending")
                 .map((student) => (
