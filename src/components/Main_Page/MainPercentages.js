@@ -10,7 +10,6 @@ const BoxContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 22vh;
   box-shadow: 1px 1px 5px -4px;
 
   border: 1px solid #d8def3;
@@ -20,21 +19,21 @@ const BoxContainer = styled.div`
 const MainPercentages = (props) => {
   return (
     <>
-      <AntCol span={8}>
+      <AntCol xs={24} md={8}>
         <PercentageBox
           header="Applied to Industry"
           percentage="2"
           color="#F5222D"
         />
       </AntCol>
-      <AntCol span={8}>
+      <AntCol xs={24} md={8}>
         <PercentageBox
           header="Applied to Company"
           percentage="24"
           color="#1890ff"
         />
       </AntCol>
-      <AntCol span={8}>
+      <AntCol xs={24} md={8}>
         <PercentageBox
           header="Percentage Accepted"
           percentage="97"
@@ -52,7 +51,7 @@ const PercentageBox = (props) => {
   return (
     <div>
       <Header className="twentyFont mb-point-5">{header}</Header>
-      <BoxContainer>
+      <BoxContainer className="py-2">
         <Progress
           type="circle"
           percent={percentage}
