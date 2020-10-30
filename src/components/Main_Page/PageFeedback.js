@@ -22,7 +22,7 @@ const Banner = styled.div`
 `;
 const Student = styled.span`
   font-size: 12px;
-  margin-left:2vh;
+  margin-left: 2vh;
 `;
 const Position = styled.span`
   font-weight: 500;
@@ -42,37 +42,31 @@ const feedbackStyle = {
   width: "90%",
   marginTop: "10px",
   minHeight: "12vh",
-  maxHeight: "20vh"
-}
-class PageFeedback extends React.Component {
-  render() {
-    return (
-      <FeedbackContainer>
-        <Banner>
-          {/**
-           *
-           * Intern Name and Job Name
-           *
-           */}
-          <div style={{ padding: "4px", marginLeft: "12px" }}>
-            <Position>Position Name</Position>
-            <Student>Oscar Hong (18)</Student>
-          </div>
-        </Banner>
+  maxHeight: "20vh",
+};
+const PageFeedback = (props) => {
+  return (
+    <FeedbackContainer>
+      <Banner>
         {/**
          *
-         * Intern Feedback
+         * Intern Name and Job Name
          *
          */}
-        <Feedback>
-          <div
-            style={feedbackStyle}
-          >
-            Feedback goes here
-          </div>
-        </Feedback>
-      </FeedbackContainer>
-    );
-  }
-}
+        <div style={{ padding: "4px", marginLeft: "12px" }}>
+          <Position>Position Name</Position>
+          <Student>Oscar Hong (18)</Student>
+        </div>
+      </Banner>
+      {/**
+       *
+       * Intern Feedback
+       *
+       */}
+      <Feedback>
+        <div style={feedbackStyle}>Feedback goes here</div>
+      </Feedback>
+    </FeedbackContainer>
+  );
+};
 export default PageFeedback;
