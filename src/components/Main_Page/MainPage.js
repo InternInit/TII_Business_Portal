@@ -17,16 +17,6 @@ const Header = styled.h1`
   color: #262626;
 `;
 
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
 class MainPage extends React.Component {
   state = {
     students: [],
