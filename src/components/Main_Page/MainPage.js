@@ -8,6 +8,7 @@ import PageFeedback from "./PageFeedback";
 import MainPercentages from "./MainPercentages";
 import StudentCard from "./StudentCard";
 import NavSearch from "../NavSearch";
+import "./main_page.scss";
 
 import axios from "axios";
 
@@ -39,9 +40,9 @@ class MainPage extends React.Component {
       <div className="global-container">
         <NavSearch title="Overview" searchBar={false} />
 
-        <div className="px-4 py-2">
+        <div className="dashboard-container px-4 py-2">
           <AntRow gutter={[32, 16]}>
-            <AntCol span={16}>
+            <AntCol lg={16}>
               <Header className="twentyFont mb-point-5"> Listings</Header>
               {listings.slice(0, 5).map((post) => (
                 <PageListings
@@ -52,7 +53,7 @@ class MainPage extends React.Component {
                 />
               ))}
             </AntCol>
-            <AntCol span={8}>
+            <AntCol lg={8}>
               <Header className="twentyFont mb-point-5">
                 Incoming Applicants
               </Header>
@@ -70,13 +71,13 @@ class MainPage extends React.Component {
           </AntRow>
 
           <AntRow gutter={[32, 16]}>
-            <AntCol span={16}>
+            <AntCol lg={16}>
               <Header className="twentyFont mb-point-5">Current Interns</Header>
               <PageFeedback />
             </AntCol>
-            <AntCol span={8}>
+            <AntCol lg={8}>
               <Header className="twentyFont mb-point-5">
-                Incoming Applicants
+                To be Interviewed
               </Header>
               {candidates
                 .filter((candidate) => candidate.status === "Pending")
