@@ -80,3 +80,15 @@ All headings OR large texts above the size of 24 must be displayed using the _La
 ### **Body and Content**
 
 All body and content text must be displayed using the _Roboto_ font family. The main text must always have a normal font weight. Sub-text can use the light font weight. Company names may be bolded.
+
+### **Font family Sizing**
+
+_Topbar headings_ : 36
+
+_Page headings_ : 28
+
+_Subheadings_ : 20/24
+
+_Text_ : 16 (unless otherwise specified)
+
+
