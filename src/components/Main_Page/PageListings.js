@@ -23,7 +23,7 @@ const TabContainer = styled.div`
 const ListingName = styled.span`
   font-size: 18px;
   font-weight: bold;
-  width:49vh;
+  width: 49vh;
 `;
 const Industry = styled.span`
   margin-top: -1vh;
@@ -49,55 +49,50 @@ const StatLabel = styled.span`
   font-weight: 500;
 `;
 
-
 //CSS Constants
 const dividerStyle = {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-evenly",
-  width: "65%"
-}
+  width: "65%",
+};
 
-class PageListings extends React.Component {
-  render() {
-    let { name, interns, accepted, total } = this.props;
-    return (
-      <TabContainer>
-        {/**
-         *
-         * Listing name + Industry
-         *
-         */}
-        <Col style={{ marginLeft: "5%" }}>
-          <ListingName>{name}</ListingName>
-          <Industry>Data Science</Industry>
+const PageListings = (props) => {
+  let { name, interns, accepted, total } = props;
+  return (
+    <TabContainer>
+      {/**
+       *
+       * Listing name + Industry
+       *
+       */}
+      <Col style={{ marginLeft: "5%" }}>
+        <ListingName>{name}</ListingName>
+        <Industry>Data Science</Industry>
+      </Col>
+
+      {/**
+       *
+       * Listing Details
+       *
+       */}
+      <div style={dividerStyle}>
+        <Col>
+          <StatNum>{interns}</StatNum>
+          <StatLabel>Applicants</StatLabel>
         </Col>
 
-        {/**
-         *
-         * Listing Details
-         *
-         */}
-        <div
-          style={dividerStyle}
-        >
-          <Col>
-            <StatNum>{interns}</StatNum>
-            <StatLabel>Applicants</StatLabel>
-          </Col>
+        <Col>
+          <StatNum>{accepted}</StatNum>
+          <StatLabel>Accepted</StatLabel>
+        </Col>
 
-          <Col>
-            <StatNum>{accepted}</StatNum>
-            <StatLabel>Accepted</StatLabel>
-          </Col>
-
-          <Col>
-            <StatNum>{total}</StatNum>
-            <StatLabel>Total</StatLabel>
-          </Col>
-        </div>
-      </TabContainer>
-    );
-  }
-}
+        <Col>
+          <StatNum>{total}</StatNum>
+          <StatLabel>Total</StatLabel>
+        </Col>
+      </div>
+    </TabContainer>
+  );
+};
 export default PageListings;
