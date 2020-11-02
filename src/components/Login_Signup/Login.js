@@ -15,8 +15,6 @@ import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 
 import { withRouter } from "react-router";
 
-import './Login.css'
-
 //Styled Components
 const ForgotPass = styled.a`
   display: flex;

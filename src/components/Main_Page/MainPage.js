@@ -8,7 +8,6 @@ import PageFeedback from "./PageFeedback";
 import MainPercentages from "./MainPercentages";
 import StudentCard from "./StudentCard";
 import NavSearch from "../NavSearch";
-import "./main_page.scss";
 
 import axios from "axios";
 
