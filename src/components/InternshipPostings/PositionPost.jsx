@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import PostingTab from "./PostingTab";
+import PostingTab from "./PostingTab.jsx";
 import { Button } from "antd";
 import NavSearch from "../NavSearch";
-import InfoBar from "./InfoBar";
+import InfoBar from "./InfoBar.jsx";
 import QueueAnim from "rc-queue-anim";
 
 import { Link } from "react-router-dom";
