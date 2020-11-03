@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Button } from "antd";
-import NavSearch from "../NavSearch.jsx";
+import NavSearch from "../General/NavSearch.jsx";
 
 import CompanyAccount from "./CompanyAccount";
 

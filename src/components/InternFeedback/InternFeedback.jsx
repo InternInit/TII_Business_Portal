@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import FeedbackBox from "./FeedbackBox.jsx";
-import NavSearch from "../NavSearch.jsx";
+import NavSearch from "../General/NavSearch.jsx";
 
 const Container = styled.div`
   display: flex;

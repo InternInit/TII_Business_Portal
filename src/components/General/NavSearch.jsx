@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Input } from "antd";
-import "../App.scss";
 
 const { Search } = Input;
 

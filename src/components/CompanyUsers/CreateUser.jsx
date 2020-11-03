@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 
-import NavSearch from "../NavSearch.jsx";
+import NavSearch from "../General/NavSearch.jsx";
 
 import {
     Input,
