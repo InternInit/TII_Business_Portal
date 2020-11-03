@@ -42,7 +42,7 @@ import awsconfig from "./aws-exports";
 //Components
 import MainPage from "./components/Main_Page/MainPage";
 import BusinessNavBar from "./components/BusinessNavBar";
-import CompanyDetails from "./components/Company_Details/CompanyDetails";
+import CompanyDetails from "./components/CompanyDetails/CompanyDetails";
 import HirePipeline from "./components/Candidates/HirePipeline.jsx";
 import StudentInfo from "./components/Candidates/StudentInfo.jsx";
 import CandidatesContainer from "./components/Candidates/CandidatesContainer.jsx";
