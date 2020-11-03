@@ -50,13 +50,13 @@ import NavSearch from "./components/NavSearch";
 import PositionPost from "./components/Internship_Postings/PositionPost";
 import InternshipDetails from "./components/Internship_Postings/InternshipDetails";
 import SchoolContact from "./components/School_Contact/SchoolContact";
-import InternFeedback from "./components/Intern_Feedback/InternFeedback";
-import FeedbackResponse from "./components/Intern_Feedback/FeedbackResponse";
+import InternFeedback from "./components/InternFeedback/InternFeedback.jsx";
+import FeedbackResponse from "./components/InternFeedback/FeedbackResponse.jsx";
 import Login from "./components/Login_Signup/Login";
 import Signup from "./components/Login_Signup/Signup";
-import Employeepage from "./components/Company_Users/Employeepage";
-import CreateUser from "./components/Company_Users/CreateUser";
-import UserDetails from "./components/Company_Users/UserDetails";
+import Employeepage from "./components/CompanyUsers/Employeepage";
+import CreateUser from "./components/CompanyUsers/CreateUser";
+import UserDetails from "./components/CompanyUsers/UserDetails";
 
 import "./App.scss";
 

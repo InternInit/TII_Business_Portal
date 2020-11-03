@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import FeedbackBox from "./FeedbackBox";
+import FeedbackBox from "./FeedbackBox.jsx";
 import NavSearch from "../NavSearch";
 
 const Container = styled.div`
