@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../../App.scss";
-import "./candidates.css";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
