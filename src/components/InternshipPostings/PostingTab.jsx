@@ -1,37 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button } from "antd";
+import { Button, Row as AntRow, Col as AntCol } from "antd";
 import { Link } from "react-router-dom";
-
-const TabContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  align-items: center;
-  justify-content: center;
-
-  background-color: white;
-
-  width: 100%;
-  min-height: 11vh;
-  min-width: 600px;
-
-  margin-top: 2vh;
-
-  border-radius: 4px;
-  border: 1px solid #d8def3;
-  box-shadow: 1px 1px 5px -4px;
-`;
+import { TabContainer } from "../Styled/FundamentalComponents";
 
 const Header = styled.span`
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-`;
-
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 const Caption = styled.span`
@@ -63,30 +39,31 @@ class PostingTab extends Component {
         break;
     }
     return (
-      <TabContainer>
+      <TabContainer className="mt-1-5 py-2">
         {/**
          *
          * Listing Name + Industry
          *
          */}
-        <Col style={{ width: "40vh", alignItems: "center" }}>
+         <AntRow>
+        <AntCol style={{ width: "40vh", alignItems: "center" }}>
           <Header>{name}</Header>
           <Caption>Data Science</Caption>
-        </Col>
+        </AntCol>
 
         {/**Status */}
-        <Col style={{ width: "20vh", alignItems: "center" }}>
+        <AntCol style={{ width: "20vh", alignItems: "center" }}>
           <Status style={{ color: statusColor }}>{status}</Status>
-        </Col>
+        </AntCol>
 
         {/**Applicants */}
-        <Col style={{ width: "40vh", alignItems: "center" }}>
+        <AntCol style={{ width: "40vh", alignItems: "center" }}>
           <Header>{interns}</Header>
           <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
-        </Col>
+        </AntCol>
 
         {/**Details */}
-        <Col style={{ width: "40vh", alignItems: "center" }}>
+        <AntCol style={{ width: "40vh", alignItems: "center" }}>
           <Button
             type="primary"
             style={{
@@ -95,7 +72,8 @@ class PostingTab extends Component {
           >
             <Link to={`/internship-listings/${id}`}>Details</Link>
           </Button>
-        </Col>
+        </AntCol>
+        </AntRow>
       </TabContainer>
     );
   }

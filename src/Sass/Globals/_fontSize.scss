@@ -1,5 +1,9 @@
 @import "../node_modules/rfs/scss";
 
+.twelveFont {
+  @include font-size(12px);
+}
+
 .fourteenFont {
   @include font-size(14px);
 }
