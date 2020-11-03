@@ -60,10 +60,10 @@ class PostingTab extends Component {
 
           {/**Applicants */}
           <AntCol lg={6}>
-            <AntRow>
+            <AntRow justify="center">
               <Header className="eighteenFont">{interns}</Header>
             </AntRow>
-            <AntRow>
+            <AntRow justify="center">
               <Caption className="fourteenFont" style={{ color: "#BFBFBF" }}>
                 Applicants
               </Caption>
@@ -71,7 +71,7 @@ class PostingTab extends Component {
           </AntCol>
 
           {/**Details */}
-          <AntCol lg={6}>
+          <AntCol className="universal-center universal-middle" lg={6}>
             <Button
               type="primary"
               style={{
