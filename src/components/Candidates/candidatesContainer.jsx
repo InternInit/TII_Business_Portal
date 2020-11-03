@@ -24,10 +24,10 @@ import {
 import axios from "axios";
 
 import NavSearch from "../NavSearch";
-import CandidatesNavbar from "./candidatesNavbar";
-import HirePipeline from "./HirePipeline";
-import ReviewApplicants from "./reviewApplicants";
-import StudentInfo from "./StudentInfo";
+import CandidatesNavbar from "./CandidatesNavbar.jsx";
+import HirePipeline from "./HirePipeline.jsx";
+import ReviewApplicants from "./ReviewApplicants.jsx";
+import StudentInfo from "./StudentInfo.jsx";
 
 const mapStateToProps = (state) => {
   return {

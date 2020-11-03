@@ -7,11 +7,11 @@ import axios from "axios";
 
 import { Button, Switch, Divider } from "antd";
 
-import CandidateInfoBar from "./candidateInfoBar";
-import CandidateQuickviewTab from "./CandidateQuickviewTab";
-import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab";
-import CandidateDetailedviewTab from "./CandidateDetailedviewTab";
-import CandidateDetailedviewReviewTab from "./CandidateDetailedviewReviewTab";
+import CandidateInfoBar from "./CandidateInfoBar.jsx";
+import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
+import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
+import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
+import CandidateDetailedviewReviewTab from "./CandidateDetailedviewReviewTab.jsx";
 
 //Ant Design Styles
 const AddFilterStyle = {

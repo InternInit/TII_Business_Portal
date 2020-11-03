@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import "../../App.scss";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-import { Menu } from "antd";
-
-import NavSearch from "../NavSearch";
-
 /*
  ========================================================================
                               Heading Styles

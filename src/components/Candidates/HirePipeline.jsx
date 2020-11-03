@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import DraggingCard from "./DraggingCard.js";
+import DraggingCard from "./DraggingCard.jsx";
 import styled from "styled-components";
 
 //Styled Components
