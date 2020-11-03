@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Button } from "antd";
 import NavSearch from "../NavSearch.jsx";
-import SchoolInfoBar from "./SchoolInfoBar";
-import SchoolTab from './SchoolTab';
+import SchoolInfoBar from "./SchoolInfoBar.jsx";
+import SchoolTab from './SchoolTab.jsx';
 
 const Container = styled.div`
   display: flex;

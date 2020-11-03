@@ -46,7 +46,7 @@ import CompanyDetails from "./components/CompanyDetails/CompanyDetails";
 import CandidatesContainer from "./components/Candidates/CandidatesContainer.jsx";
 import PositionPost from "./components/InternshipPostings/PositionPost.jsx";
 import InternshipDetails from "./components/InternshipPostings/InternshipDetails.jsx";
-import SchoolContact from "./components/School_Contact/SchoolContact";
+import SchoolContact from "./components/SchoolContact/SchoolContact.jsx";
 import InternFeedback from "./components/InternFeedback/InternFeedback.jsx";
 import FeedbackResponse from "./components/InternFeedback/FeedbackResponse.jsx";
 import Login from "./components/LoginSignup/Login";
