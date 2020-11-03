@@ -49,8 +49,8 @@ import InternshipDetails from "./components/InternshipPostings/InternshipDetails
 import SchoolContact from "./components/School_Contact/SchoolContact";
 import InternFeedback from "./components/InternFeedback/InternFeedback.jsx";
 import FeedbackResponse from "./components/InternFeedback/FeedbackResponse.jsx";
-import Login from "./components/Login_Signup/Login";
-import Signup from "./components/Login_Signup/Signup";
+import Login from "./components/LoginSignup/Login";
+import Signup from "./components/LoginSignup/Signup";
 import Employeepage from "./components/CompanyUsers/Employeepage";
 import CreateUser from "./components/CompanyUsers/CreateUser";
 import UserDetails from "./components/CompanyUsers/UserDetails";
