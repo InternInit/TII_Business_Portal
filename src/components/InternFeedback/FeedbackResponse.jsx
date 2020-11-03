@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Button, Modal, Input } from 'antd';
-import NavSearch from "../NavSearch";
+import NavSearch from "../NavSearch.jsx";
 const { TextArea } = Input;
 
 const Container = styled.div`

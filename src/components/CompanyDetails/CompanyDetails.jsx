@@ -18,7 +18,7 @@ import {
   batchUpdateListings,
 } from "../../redux/actions";
 
-import NavSearch from "../NavSearch";
+import NavSearch from "../NavSearch.jsx";
 
 const { TextArea } = Input;
 const { Dragger } = Upload;

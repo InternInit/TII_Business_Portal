@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Input, Button, Form } from "antd";
 
-import NavSearch from "../NavSearch";
+import NavSearch from "../NavSearch.jsx";
 
 import axios from "axios";
 

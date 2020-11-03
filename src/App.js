@@ -40,8 +40,8 @@ import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "./aws-exports";
 
 //Components
-import MainPage from "./components/Main_Page/MainPage";
-import BusinessNavBar from "./components/BusinessNavBar";
+import MainPage from "./components/MainPage/MainPage.jsx";
+import BusinessNavBar from "./components/BusinessNavBar.jsx";
 import CompanyDetails from "./components/CompanyDetails/CompanyDetails";
 import CandidatesContainer from "./components/Candidates/CandidatesContainer.jsx";
 import PositionPost from "./components/InternshipPostings/PositionPost.jsx";

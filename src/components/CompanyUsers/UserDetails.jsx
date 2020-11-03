@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-
-import NavSearch from "../NavSearch";
-
 import {
     Input,
     Button,
@@ -14,7 +11,7 @@ import {
 } from "antd";
 import {
     Label,
-} from "../Login_Signup/SignupLogin";
+} from "../LoginSignup/SignupLogin";
 
 
 export const SignupContainer = styled.div`

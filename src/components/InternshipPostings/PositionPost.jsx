@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import PostingTab from "./PostingTab.jsx";
 import { Button } from "antd";
-import NavSearch from "../NavSearch";
+import NavSearch from "../NavSearch.jsx";
 import InfoBar from "./InfoBar.jsx";
 import QueueAnim from "rc-queue-anim";
 

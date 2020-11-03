@@ -23,7 +23,7 @@ import {
 //axios
 import axios from "axios";
 
-import NavSearch from "../NavSearch";
+import NavSearch from "../NavSearch.jsx";
 import CandidatesNavbar from "./CandidatesNavbar.jsx";
 import HirePipeline from "./HirePipeline.jsx";
 import ReviewApplicants from "./ReviewApplicants.jsx";

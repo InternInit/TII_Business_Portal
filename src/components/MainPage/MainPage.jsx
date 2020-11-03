@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 import { Layout, Skeleton, Row as AntRow, Col as AntCol } from "antd";
-import BusinessNavBar from "../BusinessNavBar";
-import PageListings from "./PageListings";
-import PageFeedback from "./PageFeedback";
-import MainPercentages from "./MainPercentages";
-import StudentCard from "./StudentCard";
-import NavSearch from "../NavSearch";
+import BusinessNavBar from "../BusinessNavBar.jsx";
+import PageListings from "./PageListings.jsx";
+import PageFeedback from "./PageFeedback.jsx";
+import MainPercentages from "./MainPercentages.jsx";
+import StudentCard from "./StudentCard.jsx";
+import NavSearch from "../NavSearch.jsx";
 
 import axios from "axios";
 

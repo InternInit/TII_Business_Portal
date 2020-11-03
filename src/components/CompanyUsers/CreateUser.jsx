@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 
-import NavSearch from "../NavSearch";
+import NavSearch from "../NavSearch.jsx";
 
 import {
     Input,
@@ -16,12 +16,12 @@ import {
     Container,
     Background,
     Label,
-} from "../Login_Signup/SignupLogin";
+} from "../LoginSignup/SignupLogin";
 
 //Ant D Icons
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 
-import EmailConfirmation from "../Login_Signup/EmailConfirmation.jsx";
+import EmailConfirmation from "../LoginSignup/EmailConfirmation.jsx";
 
 
 import { withRouter } from "react-router";
