@@ -5,19 +5,15 @@ import { Link } from "react-router-dom";
 import { TabContainer } from "../Styled/FundamentalComponents";
 
 const Header = styled.span`
-  font-size: 18px;
   font-weight: bold;
   text-align: center;
 `;
 
 const Caption = styled.span`
-  font-size: 14px;
-  margin-top: -1vh;
   text-align: center;
 `;
 
 const Status = styled.span`
-  font-size: 18px;
   font-weight: 500;
 `;
 
@@ -45,34 +41,46 @@ class PostingTab extends Component {
          * Listing Name + Industry
          *
          */}
-         <AntRow>
-        <AntCol style={{ width: "40vh", alignItems: "center" }}>
-          <Header>{name}</Header>
-          <Caption>Data Science</Caption>
-        </AntCol>
+        <AntRow>
+          <AntCol style={{ width: "40vh", alignItems: "center" }}>
+            <AntRow>
+              <Header className="eighteenFont">{name}</Header>
+            </AntRow>
+            <AntRow>
+              <Caption className="fourteenFont">Data Science</Caption>
+            </AntRow>
+          </AntCol>
 
-        {/**Status */}
-        <AntCol style={{ width: "20vh", alignItems: "center" }}>
-          <Status style={{ color: statusColor }}>{status}</Status>
-        </AntCol>
+          {/**Status */}
+          <AntCol>
+            <Status className="eighteenFont" style={{ color: statusColor }}>
+              {status}
+            </Status>
+          </AntCol>
 
-        {/**Applicants */}
-        <AntCol style={{ width: "40vh", alignItems: "center" }}>
-          <Header>{interns}</Header>
-          <Caption style={{ color: "#BFBFBF" }}>Applicants</Caption>
-        </AntCol>
+          {/**Applicants */}
+          <AntCol style={{ width: "40vh", alignItems: "center" }}>
+            <AntRow>
+              <Header className="eighteenFont">{interns}</Header>
+            </AntRow>
+            <AntRow>
+              <Caption className="fourteenFont" style={{ color: "#BFBFBF" }}>
+                Applicants
+              </Caption>
+            </AntRow>
+          </AntCol>
 
-        {/**Details */}
-        <AntCol style={{ width: "40vh", alignItems: "center" }}>
-          <Button
-            type="primary"
-            style={{
-              width: "30vh"
-            }}
-          >
-            <Link to={`/internship-listings/${id}`}>Details</Link>
-          </Button>
-        </AntCol>
+          {/**Details */}
+          <AntCol style={{ width: "40vh", alignItems: "center" }}>
+            <Button
+              type="primary"
+              style={{
+                width: "30vh",
+              }}
+            >
+              <Link to={`/internship-listings/${id}`}>Details</Link>
+            </Button>
+          </AntCol>
         </AntRow>
       </TabContainer>
     );
