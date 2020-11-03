@@ -35,16 +35,16 @@ function InfoBar() {
          * Name
          *
          */}
-        <AntCol className="universal-center" lg={6}>
+        <AntCol className="universal-center" md={6}>
           <Info>Name</Info>
         </AntCol>
-        <AntCol className="universal-center" lg={6}>
+        <AntCol className="universal-center" md={6}>
           <Info>Status</Info>
         </AntCol>
-        <AntCol className="universal-center" lg={6}>
+        <AntCol className="universal-center" md={6}>
           <Info>Applicants</Info>
         </AntCol>
-        <AntCol className="universal-center" lg={6}>
+        <AntCol className="universal-center" md={6}>
           <Info>Edit Details</Info>
         </AntCol>
       </AntRow>
