@@ -35,6 +35,22 @@ $gray-18: #121F26;
   text-align: left;
 }
 
+.universal-center {
+  text-align: center;
+  justify-content: center;
+}
+
+.universal-right {
+  text-align: right;
+  justify-content: right;
+}
+
+.universal-middle {
+  align-items: center;
+  align-self: center;
+  vertical-align: middle;
+}
+
 .flex-left {
   justify-content: flex-start;
 }

@@ -35,28 +35,28 @@ class PostingTab extends Component {
         break;
     }
     return (
-      <TabContainer className="mt-1-5 py-2">
+      <TabContainer className="mt-1-5 py-2 px-6">
         {/**
          *
          * Listing Name + Industry
          *
          */}
-        <AntRow>
-          <AntCol lg={9}>
-            <AntRow>
+        <AntRow justify="center">
+          <AntCol lg={6}>
+            <AntRow justify="start">
               <Header className="eighteenFont">{name}</Header>
             </AntRow>
-            <AntRow>
+            <AntRow justify="start">
               <Caption className="fourteenFont">Data Science</Caption>
             </AntRow>
           </AntCol>
 
           {/**Status */}
-          <AntCol lg={3}>
-            <Status className="eighteenFont" style={{ color: statusColor }}>
-              {status}
-            </Status>
-          </AntCol>
+            <AntCol className="universal-center universal-middle" lg={6}>
+              <Status className="eighteenFont" style={{ color: statusColor }}>
+                {status}
+              </Status>
+            </AntCol>
 
           {/**Applicants */}
           <AntCol lg={6}>

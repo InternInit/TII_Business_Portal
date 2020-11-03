@@ -28,23 +28,23 @@ const dividerStyle = {
 
 function InfoBar() {
   return (
-    <Container>
+    <Container className="px-6 pb-point-5">
       <AntRow>
         {/**
          *
          * Name
          *
          */}
-        <AntCol lg={9}>
+        <AntCol className="universal-center" lg={6}>
           <Info>Name</Info>
         </AntCol>
-        <AntCol lg={3}>
+        <AntCol className="universal-center" lg={6}>
           <Info>Status</Info>
         </AntCol>
-        <AntCol lg={6}>
+        <AntCol className="universal-center" lg={6}>
           <Info>Applicants</Info>
         </AntCol>
-        <AntCol lg={6}>
+        <AntCol className="universal-center" lg={6}>
           <Info>Edit Details</Info>
         </AntCol>
       </AntRow>
