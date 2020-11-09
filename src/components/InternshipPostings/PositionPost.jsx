@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import PostingTab from "./PostingTab.jsx";
-import { Button } from "antd";
+import { Button, Row as AntRow, Col as AntCol } from "antd";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "./InfoBar.jsx";
-import { PageContainer } from "../Styled/FundamentalComponents";
+import { PageContainer, InnerContainer } from "../Styled/FundamentalComponents";
 
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,7 @@ import axios from "axios";
 //Redux
 import { connect } from "react-redux";
 import { addListing, batchUpdateListings } from "../../redux/actions";
+import { actionRow } from "aws-amplify";
 
 const Row = styled.div`
   display: flex;
@@ -27,17 +28,11 @@ const Row = styled.div`
 `;
 
 //CSS Constants
-const pageStyle = {
-  display: "flex",
-  width: "90%",
-  flexDirection: "column",
-  justifySelf: "center",
-  marginBottom: "4vh",
-};
 
 //Ant Design Styles
 const ButtonStyle = {
-  width: "270px",
+  width: "100%",
+  minWidth: "170px",
   height: "40px",
   fontFamily: "roboto",
   fontColor: "#13C2C2",
@@ -75,17 +70,21 @@ class PositionPost extends Component {
       <PageContainer className="global-container">
         <NavSearch title="My Internship Postings" />
 
-        <div style={pageStyle}>
-          <Row>
-            <Link to="/internship-listings/add-listing">
+        <InnerContainer>
+          <AntRow gutter={[32, 16]}>
+            <AntCol xs={24} md={8} lg={5} style={{backgroundColor: "red"}}>
+              <Link to="/internship-listings/add-listing">
+                <Button style={ButtonStyle}>
+                  <ButtonText>New Internship</ButtonText>
+                </Button>
+              </Link>
+            </AntCol>
+            <AntCol xs={24} md={8} lg={5}>
               <Button style={ButtonStyle}>
-                <ButtonText>New Internship</ButtonText>
+                <ButtonText>Edit Filter</ButtonText>
               </Button>
-            </Link>
-            <Button style={ButtonStyle}>
-              <ButtonText>Edit Filter</ButtonText>
-            </Button>
-          </Row>
+            </AntCol>
+          </AntRow>
           {/**
            * Info Bar
            */}
@@ -99,7 +98,7 @@ class PositionPost extends Component {
               id={post.Id}
             />
           ))}
-        </div>
+        </InnerContainer>
       </PageContainer>
     );
   }
