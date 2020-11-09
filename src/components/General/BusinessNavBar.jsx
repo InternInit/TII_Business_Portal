@@ -54,6 +54,7 @@ class BusinessNavBar extends React.Component {
         <Menu
           theme="dark"
           defaultSelectedKeys={this.findPath()}
+          selectedKeys={this.findPath()}
           style={{ marginTop: "10vh" }}
         >
           <Menu.Item key="1">
