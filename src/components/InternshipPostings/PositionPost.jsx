@@ -36,7 +36,6 @@ const ButtonStyle = {
   height: "40px",
   fontFamily: "roboto",
   fontColor: "#13C2C2",
-  marginTop: "33px",
   align: "inline-block",
 };
 
@@ -70,9 +69,9 @@ class PositionPost extends Component {
       <PageContainer className="global-container">
         <NavSearch title="My Internship Postings" />
 
-        <InnerContainer>
+        <InnerContainer className="mt-2">
           <AntRow gutter={[32, 16]}>
-            <AntCol xs={24} md={8} lg={5} style={{backgroundColor: "red"}}>
+            <AntCol xs={24} md={8} lg={5}>
               <Link to="/internship-listings/add-listing">
                 <Button style={ButtonStyle}>
                   <ButtonText>New Internship</ButtonText>
