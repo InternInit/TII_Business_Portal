@@ -4,7 +4,7 @@ import PostingTab from "./PostingTab.jsx";
 import { Button } from "antd";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "./InfoBar.jsx";
-import QueueAnim from "rc-queue-anim";
+import { PageContainer } from "../Styled/FundamentalComponents";
 
 import { Link } from "react-router-dom";
 
@@ -13,13 +13,6 @@ import axios from "axios";
 //Redux
 import { connect } from "react-redux";
 import { addListing, batchUpdateListings } from "../../redux/actions";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 600px;
-`;
 
 const Row = styled.div`
   display: flex;
@@ -79,7 +72,7 @@ class PositionPost extends Component {
 
   render() {
     return (
-      <Container className="global-container">
+      <PageContainer className="global-container">
         <NavSearch title="My Internship Postings" />
 
         <div style={pageStyle}>
@@ -107,7 +100,7 @@ class PositionPost extends Component {
             />
           ))}
         </div>
-      </Container>
+      </PageContainer>
     );
   }
   componentDidMount() {
