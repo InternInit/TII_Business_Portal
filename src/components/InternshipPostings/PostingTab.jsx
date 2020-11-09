@@ -42,7 +42,7 @@ class PostingTab extends Component {
          *
          */}
         <AntRow justify="center">
-          <AntCol xs={9} md={6}>
+          <AntCol xs={9} lg={6}>
             <AntRow justify="start">
               <Header className="eighteenFont">{name}</Header>
             </AntRow>
@@ -52,14 +52,14 @@ class PostingTab extends Component {
           </AntCol>
 
           {/**Status */}
-          <AntCol className="universal-center universal-middle" xs={3} md={6}>
+          <AntCol className="universal-center universal-middle" xs={3} lg={6}>
             <Status className="eighteenFont" style={{ color: statusColor }}>
               {status}
             </Status>
           </AntCol>
 
           {/**Applicants */}
-          <AntCol xs={6} md={6}>
+          <AntCol xs={6}>
             <AntRow justify="center">
               <Header className="eighteenFont">{interns}</Header>
             </AntRow>
@@ -71,7 +71,7 @@ class PostingTab extends Component {
           </AntCol>
 
           {/**Details */}
-          <AntCol className="universal-center universal-middle" xs={6} md={6}>
+          <AntCol className="universal-center universal-middle" xs={6}>
             <Button
               type="primary"
               style={{

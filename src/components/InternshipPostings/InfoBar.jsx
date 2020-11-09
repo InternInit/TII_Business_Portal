@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Row as AntRow, Col as AntCol } from "antd";
 
 const Info = styled.span`
-  font-size: 16px;
   font-weight: 500;
   color: #b2b2b2;
 
@@ -14,7 +13,6 @@ const Info = styled.span`
 
 const Container = styled.div`
   width: 100%;
-  min-width: 600px;
   border-bottom: 1px solid #d1d1d1;
 `;
 
@@ -35,17 +33,17 @@ function InfoBar() {
          * Name
          *
          */}
-        <AntCol className="universal-center" md={6}>
-          <Info>Name</Info>
+        <AntCol className="universal-left" xs={9} lg={6}>
+          <Info className="sixteenFont">Name</Info>
         </AntCol>
-        <AntCol className="universal-center" md={6}>
-          <Info>Status</Info>
+        <AntCol className="universal-center" xs={3} lg={6}>
+          <Info className="sixteenFont">Status</Info>
         </AntCol>
-        <AntCol className="universal-center" md={6}>
-          <Info>Applicants</Info>
+        <AntCol className="universal-center" xs={6}>
+          <Info className="sixteenFont">Applicants</Info>
         </AntCol>
-        <AntCol className="universal-center" md={6}>
-          <Info>Edit Details</Info>
+        <AntCol className="universal-center" xs={6}>
+          <Info className="sixteenFont">Edit Details</Info>
         </AntCol>
       </AntRow>
     </Container>
