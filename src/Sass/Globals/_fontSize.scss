@@ -1,4 +1,5 @@
 @import "../node_modules/rfs/scss";
+@import "./breakpoints";
 
 .twelveFont {
   @include font-size(12px);
@@ -14,6 +15,10 @@
 
 .eighteenFont {
     @include font-size(18px);
+
+    @include lg {
+        @include font-size(16px);
+    }
 }
 
 .twentyFont {

@@ -14,7 +14,6 @@ export const TabContainer = styled.div`
   background-color: white;
 
   width: 100%;
-  min-width: 600px;
 
   border-radius: 4px;
   border: 1px solid #d8def3;

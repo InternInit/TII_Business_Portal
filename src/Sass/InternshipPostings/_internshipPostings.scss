@@ -1,0 +1,14 @@
+@import "../Globals/breakpoints";
+
+.internship-posting {
+  &-responsive-tab-container {
+    @include lg {
+      padding-left: 3em;
+      padding-right: 3em;
+    }
+    @include sm {
+        padding-left: 0em;
+        padding-right: 0em;
+      }
+  }
+}

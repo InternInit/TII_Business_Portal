@@ -35,7 +35,7 @@ class PostingTab extends Component {
         break;
     }
     return (
-      <TabContainer className="mt-1-5 py-2 px-6">
+      <TabContainer className="mt-1-5 py-2 px-6 internship-posting-responsive-tab-container">
         {/**
          *
          * Listing Name + Industry
@@ -52,14 +52,14 @@ class PostingTab extends Component {
           </AntCol>
 
           {/**Status */}
-            <AntCol className="universal-center universal-middle" md={6}>
-              <Status className="eighteenFont" style={{ color: statusColor }}>
-                {status}
-              </Status>
-            </AntCol>
+          <AntCol className="universal-center universal-middle" xs={3} md={6}>
+            <Status className="eighteenFont" style={{ color: statusColor }}>
+              {status}
+            </Status>
+          </AntCol>
 
           {/**Applicants */}
-          <AntCol xs={3} md={6}>
+          <AntCol xs={6} md={6}>
             <AntRow justify="center">
               <Header className="eighteenFont">{interns}</Header>
             </AntRow>
@@ -71,7 +71,7 @@ class PostingTab extends Component {
           </AntCol>
 
           {/**Details */}
-          <AntCol className="universal-center universal-middle" md={6}>
+          <AntCol className="universal-center universal-middle" xs={6} md={6}>
             <Button
               type="primary"
               style={{
