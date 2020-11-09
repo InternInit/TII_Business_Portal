@@ -32,8 +32,12 @@ class BusinessNavBar extends React.Component {
       return "3";
     } else if (this.props.location.pathname.includes("contact-schools")) {
       return "4";
-    } else {
+    } else if (this.props.location.pathname.includes("intern-feedback")) {
       return "5";
+    } else if (this.props.location.pathname.includes("users")) {
+      return "6";
+    } else {
+      return "7";
     }
   };
 
