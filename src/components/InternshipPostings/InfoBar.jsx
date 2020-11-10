@@ -24,7 +24,7 @@ const dividerStyle = {
   marginLeft: "25vh",
 };
 
-function InfoBar() {
+const InfoBar = (props) => {
   return (
     <Container className="px-6 pb-point-5 internship-posting-responsive-tab-container">
       <AntRow>
