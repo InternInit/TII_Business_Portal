@@ -36,10 +36,10 @@ const InfoBar = (props) => {
          <AntCol className="universal-center" xs={24} sm={0}>
           <Info className="twentyFont">Postings</Info>
         </AntCol>
-        <AntCol className="universal-left" xs={0} sm={9} lg={6}>
+        <AntCol className="universal-left" xs={0} sm={9} lg={7}>
           <Info className="sixteenFont">Name</Info>
         </AntCol>
-        <AntCol className="universal-center" xs={0} sm={3} lg={6}>
+        <AntCol className="universal-center" xs={0} sm={3} lg={5}>
           <Info className="sixteenFont">Status</Info>
         </AntCol>
         <AntCol className="universal-center" xs={0} sm={6}>

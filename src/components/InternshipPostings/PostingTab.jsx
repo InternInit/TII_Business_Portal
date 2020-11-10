@@ -51,7 +51,7 @@ const PostingTab = (props) => {
        *
        */}
       <AntRow gutter={[32, 0]} justify="center">
-        <AntCol className="universal-middle" xs={24} sm={9} lg={6}>
+        <AntCol className="universal-middle" xs={24} sm={9} lg={7}>
           {isXs ? (
             <>
               <AntRow justify="center">
@@ -78,7 +78,7 @@ const PostingTab = (props) => {
           className="universal-center universal-middle"
           xs={12}
           sm={3}
-          lg={6}
+          lg={5}
         >
           <Status className="eighteenFont" style={{ color: statusColor }}>
             {status}
