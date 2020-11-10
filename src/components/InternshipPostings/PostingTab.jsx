@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import styled from "styled-components";
 import { Button, Row as AntRow, Col as AntCol, Grid } from "antd";
 import { Link } from "react-router-dom";
@@ -20,10 +20,13 @@ const Status = styled.span`
 `;
 
 const PostingTab = (props) => {
+  //Breakpoint calculator for extrasmall screen sizes
   const screens = useBreakpoint();
 
   const isXs = Object.entries(screens)
-  .filter(screen => !!screen[1]);
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("xs");
 
   let { status, name, interns } = props;
   let statusColor = "";
@@ -49,12 +52,25 @@ const PostingTab = (props) => {
        */}
       <AntRow gutter={[32, 0]} justify="center">
         <AntCol className="universal-middle" xs={24} sm={9} lg={6}>
-          <AntRow justify="start">
-            <Header className="eighteenFont">{name}</Header>
-          </AntRow>
-          <AntRow justify="start">
-            <Caption className="fourteenFont">Data Science</Caption>
-          </AntRow>
+          {isXs ? (
+            <>
+              <AntRow justify="center">
+                <Header className="twentyFont">{name}</Header>
+              </AntRow>
+              <AntRow className="mb-1-5" justify="center">
+                <Caption className="fourteenFont">Data Science</Caption>
+              </AntRow>
+            </>
+          ) : (
+            <>
+              <AntRow justify="start">
+                <Header className="eighteenFont">{name}</Header>
+              </AntRow>
+              <AntRow justify="start">
+                <Caption className="fourteenFont">Data Science</Caption>
+              </AntRow>
+            </>
+          )}
         </AntCol>
 
         {/**Status */}
@@ -83,14 +99,27 @@ const PostingTab = (props) => {
 
         {/**Details */}
         <AntCol xs={24} className="universal-center universal-middle" sm={6}>
-          <Button
-            type="primary"
-            style={{
-              width: "100%",
-            }}
-          >
-            <Link to={`/internship-listings/${id}`}>Details</Link>
-          </Button>
+          {isXs ? (
+            <Button
+              className="mt-1-5"
+              type="primary"
+              style={{
+                width: "100%",
+              }}
+              size="large"
+            >
+              <Link to={`/internship-listings/${id}`}>Details</Link>
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              style={{
+                width: "100%",
+              }}
+            >
+              <Link to={`/internship-listings/${id}`}>Details</Link>
+            </Button>
+          )}
         </AntCol>
       </AntRow>
     </TabContainer>
