@@ -69,7 +69,7 @@ class PositionPost extends Component {
       <PageContainer className="global-container">
         <NavSearch title="My Internship Postings" />
 
-        <InnerContainer className="mt-2">
+        <InnerContainer className="mt-2 mb-4">
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={8} lg={5}>
               <Link to="/internship-listings/add-listing">
