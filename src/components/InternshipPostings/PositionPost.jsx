@@ -35,15 +35,7 @@ const ButtonStyle = {
   minWidth: "170px",
   height: "40px",
   fontFamily: "roboto",
-  fontColor: "#13C2C2",
-  align: "inline-block",
 };
-
-const ButtonText = styled.span`
-  font-family: roboto;
-  color: #13c2c2;
-  font-size: 18px;
-`;
 
 const mapStateToProps = (state) => {
   return {
@@ -73,14 +65,14 @@ class PositionPost extends Component {
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={8} lg={5}>
               <Link to="/internship-listings/add-listing">
-                <Button style={ButtonStyle}>
-                  <ButtonText>New Internship</ButtonText>
+                <Button type="default" style={ButtonStyle}>
+                  <span className="sixteenFont">New Internship</span>
                 </Button>
               </Link>
             </AntCol>
-            <AntCol xs={24} md={8} lg={5}>
-              <Button style={ButtonStyle}>
-                <ButtonText>Edit Filter</ButtonText>
+            <AntCol xs={24} md={6} lg={4}>
+              <Button type="text" style={ButtonStyle}>
+                <span className="sixteenFont">Edit Filter</span>
               </Button>
             </AntCol>
           </AntRow>
