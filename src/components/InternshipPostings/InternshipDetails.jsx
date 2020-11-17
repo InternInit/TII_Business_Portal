@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Input, Button, Form } from "antd";
+import { Input, Button, Form, Row as AntRow, Col as AntCol } from "antd";
 
 import NavSearch from "../General/NavSearch.jsx";
 
@@ -15,8 +15,6 @@ const Header = styled.div`
   font-size: 36px;
   font-weight: bold;
 
-  margin-top: 8vh;
-
   color: #000000;
 `;
 
@@ -24,20 +22,7 @@ const InfoHeader = styled.div`
   font-size: 24px;
   font-weight: bold;
 
-  margin-top: 4vh;
-
   color: #434343;
-`;
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-`;
-
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 //CSS Constants
@@ -129,103 +114,104 @@ class InternshipDetails extends React.Component {
         this.props.addListing(JSON.parse(response.data));
       });
   };
+
   render() {
     let { buttonText, title } = this.props;
     return (
       <React.Fragment>
         <NavSearch title={title} searchBar={false} />
-        <div style={pageStyle}>
-          <div
-             className="global-container px-8"
-             style={{width: "100%"}}
-          >
-            {/**
-             *
-             * Listing Name
-             *
-             */}
-            <Form
-              {...FormProps.TotalForm}
-              onFinish={this.onFinish}
-              ref={this.formRef}
-            >
-              <Header>Post Title</Header>
-              <Form.Item {...FormProps.Title}>
-                <Input
-                  placeholder="Edit Posting Name"
-                  style={{ marginTop: "2vh" }}
-                />
-              </Form.Item>
-
-              {/**
-               *
-               * Post Description
-               *
-               */}
-              <InfoHeader>Post Description</InfoHeader>
-              <Form.Item {...FormProps.Description}>
-                <TextArea
-                  placeholder="Post Description"
-                  autoSize={{ minRows: 5, maxRows: 10 }}
-                  style={{ marginTop: "2vh" }}
-                />
-              </Form.Item>
-
-              {/**
-               *
-               * Location and Industries
-               *
-               */}
-              <Row style={{ justifyContent: "space-between" }}>
-                <Col style={{ width: "47%" }}>
-                  <InfoHeader>Location</InfoHeader>
-                  <Form.Item {...FormProps.Address}>
-                    <Input
-                      placeholder="Location here"
-                      style={{ marginTop: "2vh" }}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col style={{ width: "47%" }}>
-                  <InfoHeader>Relevant Industries</InfoHeader>
-                  <Form.Item {...FormProps.Industries}>
-                    <Input placeholder="" style={{ marginTop: "2vh" }} />
-                  </Form.Item>
-                </Col>
-              </Row>
-
-              {/**
-               *
-               * Additional Information
-               *
-               */}
-              <InfoHeader>Additional Information</InfoHeader>
-              <Form.Item {...FormProps.AdditionalInfo}>
-                <TextArea
-                  autoSize={{ minRows: 5, maxRows: 10 }}
-                  style={{ marginTop: "2vh" }}
-                />
-              </Form.Item>
-              {/**
-               *
-               * Save Changes Button
-               *
-               */}
-              <div style={buttonStyle}>
-                <Button
-                  type="primary"
-                  size="medium"
-                  style={{ width: "36vh" }}
-                  htmlType="submit"
-                >
-                  {buttonText}
-                </Button>
-              </div>
-            </Form>
-          </div>
-        </div>
+        <InternshipDetailForm
+          buttonText={buttonText}
+          title={title}
+          onFinish={this.onFinish}
+        />
       </React.Fragment>
     );
   }
 }
+
+/**
+ * Still want to use React lifecycle functions and such so I will
+ * temporarily plug in the functional component to a class-based container
+ */
+const InternshipDetailForm = (props) => {
+  const { buttonText, title } = props;
+
+  return (
+    <div style={pageStyle}>
+      <div className="global-container px-8" style={{ width: "100%" }}>
+        {/**
+         *
+         * Listing Name
+         *
+         */}
+        <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
+          <Header>Post Title</Header>
+          <Form.Item {...FormProps.Title}>
+            <Input placeholder="Edit Posting Name" />
+          </Form.Item>
+
+          {/**
+           *
+           * Post Description
+           *
+           */}
+          <InfoHeader>Post Description</InfoHeader>
+          <Form.Item {...FormProps.Description}>
+            <TextArea
+              placeholder="Post Description"
+              autoSize={{ minRows: 5, maxRows: 10 }}
+            />
+          </Form.Item>
+
+          {/**
+           *
+           * Location and Industries
+           *
+           */}
+          <AntRow gutter={[32, 16]}>
+            <AntCol span={12}>
+              <InfoHeader>Location</InfoHeader>
+              <Form.Item {...FormProps.Address}>
+                <Input placeholder="Location here" />
+              </Form.Item>
+            </AntCol>
+            <AntCol span={12}>
+              <InfoHeader>Relevant Industries</InfoHeader>
+              <Form.Item {...FormProps.Industries}>
+                <Input placeholder="" />
+              </Form.Item>
+            </AntCol>
+          </AntRow>
+
+          {/**
+           *
+           * Additional Information
+           *
+           */}
+          <InfoHeader>Additional Information</InfoHeader>
+          <Form.Item {...FormProps.AdditionalInfo}>
+            <TextArea autoSize={{ minRows: 5, maxRows: 10 }} />
+          </Form.Item>
+          {/**
+           *
+           * Save Changes Button
+           *
+           */}
+          <div style={buttonStyle}>
+            <Button
+              type="primary"
+              size="medium"
+              style={{ width: "36vh" }}
+              htmlType="submit"
+            >
+              {buttonText}
+            </Button>
+          </div>
+        </Form>
+      </div>
+    </div>
+  );
+};
+
 export default InternshipDetails;
