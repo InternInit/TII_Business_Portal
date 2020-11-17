@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Input, Button, Form, Row as AntRow, Col as AntCol, Grid } from "antd";
+import {
+  Input,
+  Select,
+  Button,
+  Form,
+  Row as AntRow,
+  Col as AntCol,
+  Grid,
+} from "antd";
 import NavSearch from "../General/NavSearch.jsx";
 import { Header } from "../Styled/FundamentalComponents";
 
@@ -9,14 +17,38 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const { TextArea } = Input;
+const { Option, OptGroup } = Select;
 const { useBreakpoint } = Grid;
 
-const InfoHeader = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-
-  color: #262626;
-`;
+const industries = {
+  Business: [
+    "General Business",
+    "Accounting",
+    "Consulting",
+    "Finance",
+    "Hospitality/Tourism",
+    "Insurance",
+    "Marketing",
+    "Operations",
+    "Real Estate",
+  ],
+  "Science and Engineering": [
+    "Computer Science",
+    "Engineering",
+    "Science Research",
+  ],
+  Healthcare: ["Medical", "Pharmaceutical"],
+  "The Arts": ["Art", "Fashion", "Graphic Design"],
+  Communications: ["Journalism", "Media"],
+  "Law, Politics, and Education": [
+    "Legal",
+    "Nonprofit",
+    "Politics",
+    "Education",
+  ],
+  Vocational: ["Vocational"],
+  Research: ["Research"],
+};
 
 //CSS Constants
 const pageStyle = {
@@ -197,7 +229,15 @@ const InternshipDetailForm = (props) => {
                 Relevant Industries
               </Header>
               <Form.Item {...FormProps.Industries}>
-                <Input size={isLg ? "large" : "middle"} placeholder="" />
+                <Select size={isLg ? "large" : "middle"} style={{ width: "100%" }}>
+                  {Object.keys(industries).map((key) => (
+                    <OptGroup label={key}>
+                      {industries[key].map((industry) => (
+                        <Option value={industry}>{industry}</Option>
+                      ))}
+                    </OptGroup>
+                  ))}
+                </Select>
               </Form.Item>
             </AntCol>
           </AntRow>
@@ -225,7 +265,7 @@ const InternshipDetailForm = (props) => {
           <div style={buttonStyle}>
             <Button
               type="primary"
-              size="medium"
+              size={isLg ? "large" : "medium"}
               style={{ width: "36vh" }}
               htmlType="submit"
             >
