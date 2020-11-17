@@ -2,28 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 import { Input, Button, Form, Row as AntRow, Col as AntCol, Grid } from "antd";
-
 import NavSearch from "../General/NavSearch.jsx";
+import { Header } from "../Styled/FundamentalComponents";
 
 import axios from "axios";
-
 import { v4 as uuidv4 } from "uuid";
 
 const { TextArea } = Input;
 const { useBreakpoint } = Grid;
 
-const Header = styled.div`
-  font-size: 36px;
-  font-weight: bold;
-
-  color: #000000;
-`;
-
 const InfoHeader = styled.div`
   font-size: 24px;
   font-weight: bold;
 
-  color: #434343;
+  color: #262626;
 `;
 
 //CSS Constants
@@ -158,7 +150,7 @@ const InternshipDetailForm = (props) => {
          *
          */}
         <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
-          <Header>Post Title</Header>
+          <Header className="thirtySixFont mb-point-5">Post Title</Header>
           <Form.Item {...FormProps.Title}>
             <Input
               size={isLg ? "large" : "middle"}
@@ -171,13 +163,15 @@ const InternshipDetailForm = (props) => {
            * Post Description
            *
            */}
-          <InfoHeader>Post Description</InfoHeader>
+          <Header className="twentyFourFont mb-point-5" subheading>
+            Post Description
+          </Header>
           <Form.Item {...FormProps.Description}>
             <TextArea
               size={isLg ? "large" : "middle"}
               placeholder="Post Description"
               autoSize={{ minRows: 5, maxRows: 10 }}
-              style={isLg ? {fontSize: "16px"} : null}
+              style={isLg ? { fontSize: "16px" } : null}
             />
           </Form.Item>
 
@@ -188,7 +182,9 @@ const InternshipDetailForm = (props) => {
            */}
           <AntRow gutter={[32, 16]}>
             <AntCol span={12}>
-              <InfoHeader>Location</InfoHeader>
+              <Header className="twentyFourFont mb-point-5" subheading>
+                Location
+              </Header>
               <Form.Item {...FormProps.Address}>
                 <Input
                   size={isLg ? "large" : "middle"}
@@ -197,7 +193,9 @@ const InternshipDetailForm = (props) => {
               </Form.Item>
             </AntCol>
             <AntCol span={12}>
-              <InfoHeader>Relevant Industries</InfoHeader>
+              <Header className="twentyFourFont mb-point-5" subheading>
+                Relevant Industries
+              </Header>
               <Form.Item {...FormProps.Industries}>
                 <Input size={isLg ? "large" : "middle"} placeholder="" />
               </Form.Item>
@@ -209,12 +207,14 @@ const InternshipDetailForm = (props) => {
            * Additional Information
            *
            */}
-          <InfoHeader>Additional Information</InfoHeader>
+          <Header className="twentyFourFont mb-point-5" subheading>
+            Additional Information
+          </Header>
           <Form.Item {...FormProps.AdditionalInfo}>
             <TextArea
               size={isLg ? "large" : "middle"}
               autoSize={{ minRows: 5, maxRows: 10 }}
-              style={isLg ? {fontSize: "16px"} : null}
+              style={isLg ? { fontSize: "16px" } : null}
             />
           </Form.Item>
           {/**
