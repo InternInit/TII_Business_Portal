@@ -177,6 +177,7 @@ const InternshipDetailForm = (props) => {
               size={isLg ? "large" : "middle"}
               placeholder="Post Description"
               autoSize={{ minRows: 5, maxRows: 10 }}
+              style={isLg ? {fontSize: "16px"} : null}
             />
           </Form.Item>
 
@@ -213,6 +214,7 @@ const InternshipDetailForm = (props) => {
             <TextArea
               size={isLg ? "large" : "middle"}
               autoSize={{ minRows: 5, maxRows: 10 }}
+              style={isLg ? {fontSize: "16px"} : null}
             />
           </Form.Item>
           {/**
