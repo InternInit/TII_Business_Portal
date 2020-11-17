@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Input, Button, Form, Row as AntRow, Col as AntCol } from "antd";
+import { Input, Button, Form, Row as AntRow, Col as AntCol, Grid } from "antd";
 
 import NavSearch from "../General/NavSearch.jsx";
 
@@ -10,6 +10,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const { TextArea } = Input;
+const { useBreakpoint } = Grid;
 
 const Header = styled.div`
   font-size: 36px;
@@ -136,10 +137,21 @@ class InternshipDetails extends React.Component {
  */
 const InternshipDetailForm = (props) => {
   const { buttonText, title } = props;
+  const screens = useBreakpoint();
+
+  const isXs = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("xs");
+
+  const isLg = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("lg");
 
   return (
     <div style={pageStyle}>
-      <div className="global-container px-8" style={{ width: "100%" }}>
+      <div className="global-container px-8 py-4" style={{ width: "100%" }}>
         {/**
          *
          * Listing Name
@@ -148,7 +160,10 @@ const InternshipDetailForm = (props) => {
         <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
           <Header>Post Title</Header>
           <Form.Item {...FormProps.Title}>
-            <Input placeholder="Edit Posting Name" />
+            <Input
+              size={isLg ? "large" : "middle"}
+              placeholder="Edit Posting Name"
+            />
           </Form.Item>
 
           {/**
@@ -159,6 +174,7 @@ const InternshipDetailForm = (props) => {
           <InfoHeader>Post Description</InfoHeader>
           <Form.Item {...FormProps.Description}>
             <TextArea
+              size={isLg ? "large" : "middle"}
               placeholder="Post Description"
               autoSize={{ minRows: 5, maxRows: 10 }}
             />
@@ -173,13 +189,16 @@ const InternshipDetailForm = (props) => {
             <AntCol span={12}>
               <InfoHeader>Location</InfoHeader>
               <Form.Item {...FormProps.Address}>
-                <Input placeholder="Location here" />
+                <Input
+                  size={isLg ? "large" : "middle"}
+                  placeholder="Location here"
+                />
               </Form.Item>
             </AntCol>
             <AntCol span={12}>
               <InfoHeader>Relevant Industries</InfoHeader>
               <Form.Item {...FormProps.Industries}>
-                <Input placeholder="" />
+                <Input size={isLg ? "large" : "middle"} placeholder="" />
               </Form.Item>
             </AntCol>
           </AntRow>
@@ -191,7 +210,10 @@ const InternshipDetailForm = (props) => {
            */}
           <InfoHeader>Additional Information</InfoHeader>
           <Form.Item {...FormProps.AdditionalInfo}>
-            <TextArea autoSize={{ minRows: 5, maxRows: 10 }} />
+            <TextArea
+              size={isLg ? "large" : "middle"}
+              autoSize={{ minRows: 5, maxRows: 10 }}
+            />
           </Form.Item>
           {/**
            *
