@@ -29,8 +29,8 @@ class MainPage extends React.Component {
       <div className="global-container">
         <NavSearch title="Overview" searchBar={false} />
 
-        <div className="dashboard-container px-4 py-2">
-          <AntRow gutter={[32, 16]}>
+        <div style={{height: "90vh", display: "flex", flexDirection: "column"}}  className="px-4 py-2">
+          <AntRow gutter={[32, 16]} style={{flex: 1}}>
             <AntCol xs={24} sm={{span: 24, order: 1}} lg={16}>
               <Header className="twentyFont mb-point-5"> Listings</Header>
               {listings.slice(0, 5).map((post) => (
@@ -74,7 +74,7 @@ class MainPage extends React.Component {
             </AntCol>
           </AntRow>
 
-          <AntRow gutter={[32, 16]}>
+          <AntRow gutter={[32, 16]} style={{flex: 1}}>
             <AntCol xs={24} sm={24} lg={16}>
               <Header className="twentyFont mb-point-5">Current Interns</Header>
               <PageFeedback />
@@ -96,7 +96,7 @@ class MainPage extends React.Component {
             </AntCol>
           </AntRow>
 
-          <AntRow gutter={[32, 16]}>
+          <AntRow gutter={[32, 16]} style={{flex: 1}}>
             <MainPercentages />
           </AntRow>
         </div>
