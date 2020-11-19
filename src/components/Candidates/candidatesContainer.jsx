@@ -73,7 +73,7 @@ class CandidatesContainer extends Component {
   render() {
     return (
       <div className="global-container">
-        <NavSearch title="Internship Candidates" />
+        <NavSearch title="Internship Candidates" placeholder="Search Applicants"/>
         <CandidatesNavbar defaultSelectedKey={this.findPath()} />
         <ReactSwitch>
           <Route

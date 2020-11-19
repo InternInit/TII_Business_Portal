@@ -31,8 +31,9 @@ class NavSearch extends Component {
             style={{
               width: "40%",
               height: "40px",
-              borderRadius: "24px"
+              borderRadius: "24px",
             }}
+            placeholder={this.props.placeholder}
             size="large"
           />
         ) : null}

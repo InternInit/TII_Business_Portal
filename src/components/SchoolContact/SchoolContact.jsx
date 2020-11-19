@@ -58,7 +58,7 @@ class SchoolContact extends Component {
         let { students } = this.state;
         return (
             <Container className="global-container">
-                <NavSearch title="Contact Schools" />
+                <NavSearch title="Contact Schools" placeholder="Search Schools"/>
 
                 <div style={pageStyle}>
                     <Row>

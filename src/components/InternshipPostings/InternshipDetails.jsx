@@ -9,10 +9,12 @@ import {
   Row as AntRow,
   Col as AntCol,
   Grid,
+  Breadcrumb,
 } from "antd";
 import NavSearch from "../General/NavSearch.jsx";
 import { Header, FormContainer } from "../Styled/FundamentalComponents";
 
+import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
@@ -144,9 +146,20 @@ class InternshipDetails extends React.Component {
     let { buttonText, title } = this.props;
     return (
       <React.Fragment>
-        <NavSearch title={title} searchBar={false} />
+        <NavSearch title={title} searchBar={false}/>
         <div style={pageStyle}>
-          <div className="global-container px-8 py-4" style={{ width: "100%" }}>
+          <div className="global-container px-8 py-2" style={{ width: "100%" }}>
+            <Breadcrumb style={{ paddingBottom: "1em" }}>
+              <Breadcrumb.Item className="twentyFont">
+                <Link to="/internship-listings">Internship Postings</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item className="twentyFont">
+                {this.props.location.pathname.includes("add-listing")
+                  ? "Create Posting"
+                  : "My Post"}
+              </Breadcrumb.Item>
+            </Breadcrumb>
+
             <InternshipDetailForm
               buttonText={buttonText}
               title={title}
@@ -179,7 +192,9 @@ const InternshipDetailForm = (props) => {
        *
        */}
       <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
-        <Header className="thirtySixFont universal-center mb-1">Post Title</Header>
+        <Header className="thirtySixFont universal-center mb-1">
+          Post Title
+        </Header>
         <Form.Item {...FormProps.Title}>
           <Input size="large" placeholder="Edit Posting Name" />
         </Form.Item>
@@ -207,7 +222,7 @@ const InternshipDetailForm = (props) => {
          *
          */}
         <AntRow gutter={[32, 16]}>
-          <AntCol span={12}>
+          <AntCol xs={24} md={12}>
             <Header className="twentyTwoFont mb-point-5" subheading>
               Location
             </Header>
@@ -215,7 +230,7 @@ const InternshipDetailForm = (props) => {
               <Input size="large" placeholder="Location here" />
             </Form.Item>
           </AntCol>
-          <AntCol span={12}>
+          <AntCol xs={24} md={12}>
             <Header className="twentyTwoFont mb-point-5" subheading>
               Relevant Industries
             </Header>
@@ -268,4 +283,4 @@ const InternshipDetailForm = (props) => {
   );
 };
 
-export default InternshipDetails;
+export default withRouter(InternshipDetails);

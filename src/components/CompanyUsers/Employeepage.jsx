@@ -55,7 +55,7 @@ class Employeepage extends Component {
   render() {
     return (
       <Container className="global-container">
-        <NavSearch title="Company User Accounts" />
+        <NavSearch title="Company User Accounts" placeholder="Search Users"/>
 
         <div style={pageStyle}>
           <Row>

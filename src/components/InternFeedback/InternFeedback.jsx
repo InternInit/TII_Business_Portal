@@ -23,7 +23,7 @@ class InternFeedback extends Component {
   render() {
     return (
       <Container className="global-container">
-        <NavSearch title="Intern Feedback" />
+        <NavSearch title="Intern Feedback" placeholder="Search Interns"/>
         <div style={pageStyle}>
           <FeedbackBox style={{ marginTop: "12vh" }} />
           <FeedbackBox style={{ marginTop: "12vh" }} />

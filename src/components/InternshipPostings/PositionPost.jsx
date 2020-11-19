@@ -59,7 +59,7 @@ class PositionPost extends Component {
   render() {
     return (
       <PageContainer className="global-container">
-        <NavSearch title="My Internship Postings" />
+        <NavSearch title="My Internship Postings" placeholder="Search Postings" />
 
         <InnerContainer className="mt-2 mb-4">
           <AntRow gutter={[32, 16]}>
