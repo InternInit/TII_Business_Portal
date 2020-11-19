@@ -11,7 +11,7 @@ import {
   Grid,
 } from "antd";
 import NavSearch from "../General/NavSearch.jsx";
-import { Header } from "../Styled/FundamentalComponents";
+import { Header, FormContainer } from "../Styled/FundamentalComponents";
 
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -145,11 +145,15 @@ class InternshipDetails extends React.Component {
     return (
       <React.Fragment>
         <NavSearch title={title} searchBar={false} />
-        <InternshipDetailForm
-          buttonText={buttonText}
-          title={title}
-          onFinish={this.onFinish}
-        />
+        <div style={pageStyle}>
+          <div className="global-container px-8 py-4" style={{ width: "100%" }}>
+            <InternshipDetailForm
+              buttonText={buttonText}
+              title={title}
+              onFinish={this.onFinish}
+            />
+          </div>
+        </div>
       </React.Fragment>
     );
   }
@@ -168,107 +172,99 @@ const InternshipDetailForm = (props) => {
   });
 
   return (
-    <div style={pageStyle}>
-      <div className="global-container px-8 py-4" style={{ width: "100%" }}>
+    <FormContainer>
+      {/**
+       *
+       * Listing Name
+       *
+       */}
+      <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
+        <Header className="thirtySixFont universal-center mb-1">Post Title</Header>
+        <Form.Item {...FormProps.Title}>
+          <Input size="large" placeholder="Edit Posting Name" />
+        </Form.Item>
+
         {/**
          *
-         * Listing Name
+         * Post Description
          *
          */}
-        <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
-          <Header className="thirtySixFont mb-point-5">Post Title</Header>
-          <Form.Item {...FormProps.Title}>
-            <Input size="large" placeholder="Edit Posting Name" />
-          </Form.Item>
+        <Header className="twentyTwoFont mb-point-5" subheading>
+          Post Description
+        </Header>
+        <Form.Item {...FormProps.Description}>
+          <TextArea
+            size="large"
+            placeholder="Post Description"
+            autoSize={{ minRows: 5, maxRows: 10 }}
+            style={{ fontSize: "16px" }}
+          />
+        </Form.Item>
 
-          {/**
-           *
-           * Post Description
-           *
-           */}
-          <Header className="twentyFourFont mb-point-5" subheading>
-            Post Description
-          </Header>
-          <Form.Item {...FormProps.Description}>
-            <TextArea
-              size="large"
-              placeholder="Post Description"
-              autoSize={{ minRows: 5, maxRows: 10 }}
-              style={{ fontSize: "16px" }}
-            />
-          </Form.Item>
+        {/**
+         *
+         * Location and Industries
+         *
+         */}
+        <AntRow gutter={[32, 16]}>
+          <AntCol span={12}>
+            <Header className="twentyTwoFont mb-point-5" subheading>
+              Location
+            </Header>
+            <Form.Item {...FormProps.Address}>
+              <Input size="large" placeholder="Location here" />
+            </Form.Item>
+          </AntCol>
+          <AntCol span={12}>
+            <Header className="twentyTwoFont mb-point-5" subheading>
+              Relevant Industries
+            </Header>
+            <Form.Item {...FormProps.Industries}>
+              <Select size="large" style={{ width: "100%" }}>
+                {Object.keys(industries).map((key) => (
+                  <OptGroup label={key}>
+                    {industries[key].map((industry) => (
+                      <Option value={industry}>{industry}</Option>
+                    ))}
+                  </OptGroup>
+                ))}
+              </Select>
+            </Form.Item>
+          </AntCol>
+        </AntRow>
 
-          {/**
-           *
-           * Location and Industries
-           *
-           */}
-          <AntRow gutter={[32, 16]}>
-            <AntCol span={12}>
-              <Header className="twentyFourFont mb-point-5" subheading>
-                Location
-              </Header>
-              <Form.Item {...FormProps.Address}>
-                <Input
-                  size="large"
-                  placeholder="Location here"
-                />
-              </Form.Item>
-            </AntCol>
-            <AntCol span={12}>
-              <Header className="twentyFourFont mb-point-5" subheading>
-                Relevant Industries
-              </Header>
-              <Form.Item {...FormProps.Industries}>
-                <Select
-                  size="large"
-                  style={{ width: "100%" }}
-                >
-                  {Object.keys(industries).map((key) => (
-                    <OptGroup label={key}>
-                      {industries[key].map((industry) => (
-                        <Option value={industry}>{industry}</Option>
-                      ))}
-                    </OptGroup>
-                  ))}
-                </Select>
-              </Form.Item>
-            </AntCol>
-          </AntRow>
-
-          {/**
-           *
-           * Additional Information
-           *
-           */}
-          <Header className="twentyFourFont mb-point-5" subheading>
-            Additional Information
-          </Header>
-          <Form.Item {...FormProps.AdditionalInfo}>
-            <TextArea
-              size="large"
-              autoSize={{ minRows: 5, maxRows: 10 }}
-              style={{ fontSize: "16px" }}
-            />
-          </Form.Item>
-          {/**
-           *
-           * Save Changes Button
-           *
-           */}
-          <div style={buttonStyle}>
-            <Button
-              type="primary"
-              size="large"
-              style={{ width: "36vh" }}
-              htmlType="submit"
-            >
-              {buttonText}
-            </Button>
-          </div>
-        </Form>
-      </div>
-    </div>
+        {/**
+         *
+         * Additional Information
+         *
+         */}
+        <Header className="twentyTwoFont mb-point-5" subheading>
+          Additional Information
+        </Header>
+        <Form.Item {...FormProps.AdditionalInfo}>
+          <TextArea
+            size="large"
+            autoSize={{ minRows: 5, maxRows: 10 }}
+            style={{ fontSize: "16px" }}
+          />
+        </Form.Item>
+        {/**
+         *
+         * Save Changes Button
+         *
+         */}
+        <div style={buttonStyle}>
+          <Button
+            type="primary"
+            size="large"
+            style={{ width: "36vh" }}
+            htmlType="submit"
+          >
+            {buttonText}
+          </Button>
+        </div>
+      </Form>
+    </FormContainer>
   );
 };
 

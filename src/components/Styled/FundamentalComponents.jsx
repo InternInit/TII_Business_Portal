@@ -43,6 +43,14 @@ export const InnerContainer = styled.div`
   marginBottom: 4vh;
 `;
 
+export const FormContainer = styled.div`
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 1px 1px 5px -4px;
+  padding: 1em 15%;
+  padding-top: 4em;
+`;
+
 /*============================================================================================================
  * ***********************************************************************************************************
  *
