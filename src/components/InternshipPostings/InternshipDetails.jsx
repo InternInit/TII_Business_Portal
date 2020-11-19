@@ -339,16 +339,21 @@ const InternshipDetailForm = (props) => {
 
         <AntRow gutter={[32, 16]}>
           <AntCol>
-            <Checkbox size="large">
-              <span className="sixteenFont">This Internship is Paid</span>
-            </Checkbox>
+            <Header className="twentyFont mb-point-5 mt-point-5" subheading>
+              Paid or Unpaid?
+            </Header>
+            <Form.Item>
+              <Checkbox size="large">
+                <span className="sixteenFont">This Internship is Paid</span>
+              </Checkbox>
+            </Form.Item>
           </AntCol>
         </AntRow>
 
         <AntRow gutter={[32, 16]}>
           <AntCol>
-            <Header className="twentyFont mb-point-5 mt-point-5" subheading>
-              Add Filters
+            <Header className="twentyFont mb-point-5" subheading>
+              Add Candidate Filters
             </Header>
           </AntCol>
         </AntRow>
