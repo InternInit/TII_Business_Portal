@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import {
@@ -163,15 +163,9 @@ const InternshipDetailForm = (props) => {
   const { buttonText, title } = props;
   const screens = useBreakpoint();
 
-  const isXs = Object.entries(screens)
-    .filter((screen) => !!screen[1])
-    .map((breakpoint) => breakpoint[0])
-    .includes("xs");
-
-  const isLg = Object.entries(screens)
-    .filter((screen) => !!screen[1])
-    .map((breakpoint) => breakpoint[0])
-    .includes("lg");
+  useEffect(() => {
+    console.log("Rendered");
+  });
 
   return (
     <div style={pageStyle}>
@@ -184,10 +178,7 @@ const InternshipDetailForm = (props) => {
         <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
           <Header className="thirtySixFont mb-point-5">Post Title</Header>
           <Form.Item {...FormProps.Title}>
-            <Input
-              size={isLg ? "large" : "middle"}
-              placeholder="Edit Posting Name"
-            />
+            <Input size="large" placeholder="Edit Posting Name" />
           </Form.Item>
 
           {/**
@@ -200,10 +191,10 @@ const InternshipDetailForm = (props) => {
           </Header>
           <Form.Item {...FormProps.Description}>
             <TextArea
-              size={isLg ? "large" : "middle"}
+              size="large"
               placeholder="Post Description"
               autoSize={{ minRows: 5, maxRows: 10 }}
-              style={isLg ? { fontSize: "16px" } : null}
+              style={{ fontSize: "16px" }}
             />
           </Form.Item>
 
@@ -219,7 +210,7 @@ const InternshipDetailForm = (props) => {
               </Header>
               <Form.Item {...FormProps.Address}>
                 <Input
-                  size={isLg ? "large" : "middle"}
+                  size="large"
                   placeholder="Location here"
                 />
               </Form.Item>
@@ -229,7 +220,10 @@ const InternshipDetailForm = (props) => {
                 Relevant Industries
               </Header>
               <Form.Item {...FormProps.Industries}>
-                <Select size={isLg ? "large" : "middle"} style={{ width: "100%" }}>
+                <Select
+                  size="large"
+                  style={{ width: "100%" }}
+                >
                   {Object.keys(industries).map((key) => (
                     <OptGroup label={key}>
                       {industries[key].map((industry) => (
@@ -252,9 +246,9 @@ const InternshipDetailForm = (props) => {
           </Header>
           <Form.Item {...FormProps.AdditionalInfo}>
             <TextArea
-              size={isLg ? "large" : "middle"}
+              size="large"
               autoSize={{ minRows: 5, maxRows: 10 }}
-              style={isLg ? { fontSize: "16px" } : null}
+              style={{ fontSize: "16px" }}
             />
           </Form.Item>
           {/**
@@ -265,7 +259,7 @@ const InternshipDetailForm = (props) => {
           <div style={buttonStyle}>
             <Button
               type="primary"
-              size={isLg ? "large" : "medium"}
+              size="large"
               style={{ width: "36vh" }}
               htmlType="submit"
             >
