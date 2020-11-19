@@ -10,8 +10,9 @@ import {
   Col as AntCol,
   Grid,
   Breadcrumb,
-  pageHeader,
-  PageHeader
+  PageHeader,
+  DatePicker,
+  Checkbox,
 } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
@@ -55,6 +56,18 @@ const industries = {
   Research: ["Research"],
 };
 
+const daysOfTheWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+const timesOfTheDay = ["Mornings", "Afternoons", "Evenings"];
+
 //CSS Constants
 const pageStyle = {
   display: "flex",
@@ -72,7 +85,7 @@ const buttonStyle = {
 };
 
 //Validation Rules (Required questions)
-const validationRules = (required, inputName, type, pattern) => [
+const validationRules = (required, inputName, type = "string", pattern) => [
   {
     required: required,
     message: "Please input your " + inputName,
@@ -101,22 +114,23 @@ const FormProps = {
     name: "Address",
     rules: validationRules(true, "listing location", "string"),
   },
-  City: {
-    key: "city",
-    name: "City",
-  },
-  State: {
-    key: "state",
-    name: "State",
-  },
-  Zipcode: {
-    key: "zipcode",
-    name: "Zip Code",
-  },
   Industries: {
     key: "industries",
     name: "Industries",
     rules: validationRules(true, "relevant industries", "string"),
+  },
+  InternshipDates: {
+    key: "internshipDates",
+    name: "Internship Dates",
+    rules: validationRules(true, "internship dates"),
+  },
+  AvailableWorkDays: {
+    key: "availableWorkDays",
+    name: "Available Work Days",
+  },
+  AvailableWorkTimes: {
+    key: "availableWorkTimes",
+    name: "Available Work Times",
   },
   AdditionalInfo: {
     key: "additionalInfo",
@@ -149,7 +163,7 @@ class InternshipDetails extends React.Component {
     let { buttonText, title } = this.props;
     return (
       <React.Fragment>
-        <NavSearch title={title} searchBar={false}/>
+        <NavSearch title={title} searchBar={false} />
         <div style={pageStyle}>
           <div className="global-container px-8 py-2" style={{ width: "100%" }}>
             <Breadcrumb style={{ paddingBottom: "1em" }}>
@@ -190,10 +204,10 @@ const InternshipDetailForm = (props) => {
   return (
     <FormContainer>
       <PageHeader
-      onBack={() => window.history.back()}
-      title="Create New Post"
-      style={{ position: "absolute", left: "1.5em", top: "1em" }}
-    />
+        onBack={() => window.history.back()}
+        title="Back to Postings"
+        style={{ position: "absolute", left: "1.5em", top: "1em" }}
+      />
       {/**
        *
        * Listing Name
@@ -212,7 +226,7 @@ const InternshipDetailForm = (props) => {
          * Post Description
          *
          */}
-        <Header className="twentyTwoFont mb-point-5" subheading>
+        <Header className="twentyFont mb-point-5" subheading>
           Post Description
         </Header>
         <Form.Item {...FormProps.Description}>
@@ -231,7 +245,7 @@ const InternshipDetailForm = (props) => {
          */}
         <AntRow gutter={[32, 16]}>
           <AntCol xs={24} md={12}>
-            <Header className="twentyTwoFont mb-point-5" subheading>
+            <Header className="twentyFont mb-point-5" subheading>
               Location
             </Header>
             <Form.Item {...FormProps.Address}>
@@ -239,8 +253,8 @@ const InternshipDetailForm = (props) => {
             </Form.Item>
           </AntCol>
           <AntCol xs={24} md={12}>
-            <Header className="twentyTwoFont mb-point-5" subheading>
-              Relevant Industries
+            <Header className="twentyFont mb-point-5" subheading>
+              Relevant Industry
             </Header>
             <Form.Item {...FormProps.Industries}>
               <Select size="large" style={{ width: "100%" }}>
@@ -256,21 +270,88 @@ const InternshipDetailForm = (props) => {
           </AntCol>
         </AntRow>
 
+        <AntRow gutter={[32, 16]}>
+          <AntCol xs={24} lg={8}>
+            <Header className="twentyFont mb-point-5" subheading>
+              Internship Dates
+            </Header>
+            <Form.Item {...FormProps.InternshipDates}>
+              <DatePicker.RangePicker size="large" style={{ width: "100%" }} />
+            </Form.Item>
+          </AntCol>
+          <AntCol xs={24} lg={8}>
+            <Header className="twentyFont mb-point-5" subheading>
+              Available Work Days
+            </Header>
+            <Form.Item
+              {...FormProps.AvailableWorkDays}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your available work days",
+                },
+              ]}
+            >
+              <Select mode="multiple" size="large" style={{ width: "100%" }}>
+                {daysOfTheWeek.map((day) => (
+                  <Option value={day}>{day}</Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </AntCol>
+          <AntCol xs={24} lg={8}>
+            <Header className="twentyFont mb-point-5" subheading>
+              Available Work Times
+            </Header>
+            <Form.Item
+              {...FormProps.AvailableWorkTimes}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your available work times",
+                },
+              ]}
+            >
+              <Select mode="multiple" size="large" style={{ width: "100%" }}>
+                {timesOfTheDay.map((time) => (
+                  <Option value={time}>{time}</Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </AntCol>
+        </AntRow>
+
         {/**
          *
          * Additional Information
          *
          */}
-        <Header className="twentyTwoFont mb-point-5" subheading>
+        <Header className="twentyFont mb-point-5" subheading>
           Additional Information
         </Header>
         <Form.Item {...FormProps.AdditionalInfo}>
           <TextArea
             size="large"
-            autoSize={{ minRows: 5, maxRows: 10 }}
+            autoSize={{ minRows: 3, maxRows: 10 }}
             style={{ fontSize: "16px" }}
           />
         </Form.Item>
+
+        <AntRow gutter={[32, 16]}>
+          <AntCol>
+            <Checkbox size="large">
+              <span className="sixteenFont">This Internship is Paid</span>
+            </Checkbox>
+          </AntCol>
+        </AntRow>
+
+        <AntRow gutter={[32, 16]}>
+          <AntCol>
+            <Header className="twentyFont mb-point-5 mt-point-5" subheading>
+              Add Filters
+            </Header>
+          </AntCol>
+        </AntRow>
         {/**
          *
          * Save Changes Button

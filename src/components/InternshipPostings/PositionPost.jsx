@@ -72,7 +72,7 @@ class PositionPost extends Component {
             </AntCol>
             <AntCol xs={24} md={6} lg={4}>
               <Button type="text" style={ButtonStyle}>
-                <span className="sixteenFont">Edit Filter</span>
+                <span className="sixteenFont">Sort By</span>
               </Button>
             </AntCol>
           </AntRow>

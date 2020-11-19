@@ -65,7 +65,7 @@ export const FormContainer = styled.div`
  */
 
 export const Header = styled.div`
-  font-weight: bold;
+  font-weight: 600;
   font-family: Lato;
   color: ${props => props.subheading ? "#262626" : "#000000"};
 `;
