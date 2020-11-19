@@ -351,10 +351,13 @@ const InternshipDetailForm = (props) => {
         </AntRow>
 
         <AntRow gutter={[32, 16]}>
-          <AntCol>
-            <Header className="twentyFont mb-point-5" subheading>
+          <AntCol span={24}>
+            <Header className="twentyFont" subheading>
               Add Candidate Filters
             </Header>
+          </AntCol>
+          <AntCol>
+            <Button type="dashed">Add a New Filter</Button>
           </AntCol>
         </AntRow>
         {/**
