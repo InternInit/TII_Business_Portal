@@ -10,7 +10,10 @@ import {
   Col as AntCol,
   Grid,
   Breadcrumb,
+  pageHeader,
+  PageHeader
 } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
 import { Header, FormContainer } from "../Styled/FundamentalComponents";
 
@@ -186,6 +189,11 @@ const InternshipDetailForm = (props) => {
 
   return (
     <FormContainer>
+      <PageHeader
+      onBack={() => window.history.back()}
+      title="Create New Post"
+      style={{ position: "absolute", left: "1.5em", top: "1em" }}
+    />
       {/**
        *
        * Listing Name
