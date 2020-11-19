@@ -47,7 +47,9 @@ export const FormContainer = styled.div`
   background-color: white;
   border-radius: 4px;
   box-shadow: 1px 1px 5px -4px;
-  padding: 1em 15%;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-bottom: 1em;
   padding-top: 4em;
 `;
 
