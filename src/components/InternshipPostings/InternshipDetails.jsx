@@ -216,8 +216,12 @@ const InternshipDetailForm = (props) => {
        *
        */}
       <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
-        <Header className="thirtySixFont universal-center mb-1">
-          Post Title
+      <Header className="twentyEightFont universal-center mb-1">
+          Create an Internship Posting
+        </Header>
+
+        <Header className="twentyFont mb-point-5" subheading>
+          Job Title
         </Header>
         <Form.Item {...FormProps.Title}>
           <Input size="large" placeholder="Edit Posting Name" />
@@ -229,7 +233,7 @@ const InternshipDetailForm = (props) => {
          *
          */}
         <Header className="twentyFont mb-point-5" subheading>
-          Post Description
+          Job Description
         </Header>
         <Form.Item {...FormProps.Description}>
           <TextArea
@@ -251,7 +255,7 @@ const InternshipDetailForm = (props) => {
               Location
             </Header>
             <Form.Item {...FormProps.Address}>
-              <Input size="large" placeholder="Location here" />
+              <Input size="large" placeholder="City, State" />
             </Form.Item>
           </AntCol>
           <AntCol xs={24} md={12}>
@@ -376,7 +380,7 @@ const InternshipDetailForm = (props) => {
             <AntRow gutter={[32, 16]}>
               <AntCol flex="150px">
                 <Header className="twentyFont" subheading>
-                  Pick Criteria:
+                  Filter by:
                 </Header>
               </AntCol>
               <AntCol flex="auto">

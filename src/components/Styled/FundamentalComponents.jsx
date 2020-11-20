@@ -52,7 +52,7 @@ export const FormContainer = styled.div`
   padding-left: 15%;
   padding-right: 15%;
   padding-bottom: 1em;
-  padding-top: 4.5em;
+  padding-top: 5em;
 `;
 
 /*============================================================================================================
@@ -65,7 +65,7 @@ export const FormContainer = styled.div`
  */
 
 export const Header = styled.div`
-  font-weight: 600;
+  font-weight: ${props => props.bolded ? "bold" : "normal"};
   font-family: Lato;
   color: ${props => props.subheading ? "#262626" : "#000000"};
 `;
