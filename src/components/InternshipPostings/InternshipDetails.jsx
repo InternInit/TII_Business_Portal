@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import {
@@ -21,6 +21,7 @@ import { Header, FormContainer } from "../Styled/FundamentalComponents";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import Modal from "antd/lib/modal/Modal";
 
 const { TextArea } = Input;
 const { Option, OptGroup } = Select;
@@ -195,6 +196,7 @@ class InternshipDetails extends React.Component {
  */
 const InternshipDetailForm = (props) => {
   const { buttonText, title } = props;
+  const [isModalOn, toggleModal] = useState(false);
   const screens = useBreakpoint();
 
   useEffect(() => {
@@ -357,9 +359,36 @@ const InternshipDetailForm = (props) => {
             </Header>
           </AntCol>
           <AntCol>
-            <Button type="dashed">Add a New Filter</Button>
+            <Button type="dashed" onClick={() => toggleModal(!isModalOn)}>
+              Add a New Filter
+            </Button>
           </AntCol>
         </AntRow>
+
+        <Modal
+          width="45%"
+          onCancel={() => toggleModal(false)}
+          visible={isModalOn}
+          className="px-4 py-2 universal-center"
+        >
+          <Header className="twentyFourFont mb-2"> Edit Filter </Header>
+          <Form>
+            <AntRow gutter={[32, 16]}>
+              <AntCol flex="150px">
+                <Header className="twentyFont" subheading>
+                  Pick Criteria:
+                </Header>
+              </AntCol>
+              <AntCol flex="auto">
+                <Select mode="multiple" size="large" style={{ width: "100%" }}>
+                  {timesOfTheDay.map((time) => (
+                    <Option value={time}>{time}</Option>
+                  ))}
+                </Select>
+              </AntCol>
+            </AntRow>
+          </Form>
+        </Modal>
         {/**
          *
          * Save Changes Button
