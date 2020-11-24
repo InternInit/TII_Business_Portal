@@ -69,6 +69,15 @@ const daysOfTheWeek = [
 
 const timesOfTheDay = ["Mornings", "Afternoons", "Evenings"];
 
+const filters = [
+  "Age",
+  "Courses",
+  "Extracurriculars",
+  "GPA (Unweighted)",
+  "Grade",
+  "Virtual or In Person",
+];
+
 //CSS Constants
 const pageStyle = {
   display: "flex",
@@ -207,8 +216,14 @@ const InternshipDetailForm = (props) => {
     <FormContainer>
       <PageHeader
         onBack={() => window.history.back()}
-        title="Back to Postings"
-        style={{ position: "absolute", left: "1.5em", top: "1em" }}
+        title={
+          <Link to="/internship-listings">
+            <span style={{ fontWeight: "normal", color: "#262626" }}>
+              Back to Postings
+            </span>
+          </Link>
+        }
+        style={{ position: "absolute", left: "3.5em", top: "1em" }}
       />
       {/**
        *
@@ -216,7 +231,7 @@ const InternshipDetailForm = (props) => {
        *
        */}
       <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
-      <Header className="twentyEightFont universal-center mb-1">
+        <Header className="twentyEightFont universal-center mb-1" bolded>
           Create an Internship Posting
         </Header>
 
@@ -384,9 +399,25 @@ const InternshipDetailForm = (props) => {
                 </Header>
               </AntCol>
               <AntCol flex="auto">
-                <Select mode="multiple" size="large" style={{ width: "100%" }}>
-                  {timesOfTheDay.map((time) => (
-                    <Option value={time}>{time}</Option>
+                <Form.Item>
+                  <Select size="large" style={{ width: "100%" }}>
+                    {filters.map((criteria) => (
+                      <Option value={criteria}>{criteria}</Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </AntCol>
+            </AntRow>
+            <AntRow gutter={[32, 16]}>
+              <AntCol flex="150px">
+                <Header className="twentyFont" subheading>
+                  Filter by:
+                </Header>
+              </AntCol>
+              <AntCol flex="auto">
+                <Select size="large" style={{ width: "100%" }}>
+                  {filters.map((criteria) => (
+                    <Option value={criteria}>{criteria}</Option>
                   ))}
                 </Select>
               </AntCol>
