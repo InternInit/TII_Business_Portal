@@ -72,7 +72,7 @@ const timesOfTheDay = ["Mornings", "Afternoons", "Evenings"];
 
 const filters = [
   "Age",
-  "Courses",
+  "Course Levels",
   "Extracurriculars",
   "GPA (Unweighted)",
   "Grade",
@@ -107,6 +107,21 @@ const activityCategories = [
   "Theater or Drama",
   "Work (paid)",
   "Other Club/Activity",
+];
+
+const courseLevels = [
+  "College Prep",
+  "Standard",
+  "Accelerated",
+  "Advanced",
+  "AP",
+  "IB",
+  "Enriched",
+  "Gifted",
+  "Honors",
+  "High Honors",
+  "College Level",
+  "Other",
 ];
 
 //CSS Constants
@@ -239,8 +254,7 @@ const InternshipDetailForm = (props) => {
   const [isModalOn, toggleModal] = useState(false);
   const [isCriteriaOn, toggleCriteria] = useState({ on: false, criteria: "" });
 
-  const renderCriteria = () => {
-    console.log("Render Criteria Called");
+  const RenderCriteria = (props) => {
     switch (isCriteriaOn.criteria) {
       case "Age":
         return (
@@ -269,7 +283,17 @@ const InternshipDetailForm = (props) => {
             </AntCol>
           </AntRow>
         );
-      case "Courses":
+      case "Course Levels":
+        return (
+          <Form.Item>
+            <Select mode="multiple" size="large">
+              {courseLevels.map((activity) => (
+                <Option value={activity}>{activity}</Option>
+              ))}
+            </Select>
+          </Form.Item>
+        );
+      case "Extracurriculars":
         return (
           <Form.Item>
             <Select mode="multiple" size="large">
@@ -500,7 +524,9 @@ const InternshipDetailForm = (props) => {
                     Criteria:
                   </Header>
                 </AntCol>
-                <AntCol xs={24} lg={18} xl={19}>{renderCriteria()}</AntCol>
+                <AntCol xs={24} lg={18} xl={19}>
+                  <RenderCriteria />
+                </AntCol>
               </AntRow>
             )}
           </Form>
