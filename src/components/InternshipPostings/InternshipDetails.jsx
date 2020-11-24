@@ -285,7 +285,10 @@ const InternshipDetailForm = (props) => {
         );
       case "Course Levels":
         return (
-          <Form.Item>
+          <Form.Item
+            className="universal-left"
+            extra="What types of courses would you want applicants to have participated in"
+          >
             <Select mode="multiple" size="large">
               {courseLevels.map((activity) => (
                 <Option value={activity}>{activity}</Option>
@@ -295,11 +298,72 @@ const InternshipDetailForm = (props) => {
         );
       case "Extracurriculars":
         return (
-          <Form.Item>
+          <Form.Item
+            className="universal-left"
+            extra="What extracurricular activities would you want applicants to have participated in"
+          >
             <Select mode="multiple" size="large">
               {activityCategories.map((activity) => (
                 <Option value={activity}>{activity}</Option>
               ))}
+            </Select>
+          </Form.Item>
+        );
+      case "GPA (Unweighted)":
+        return (
+          <Form.Item className="universal-left" extra="Minimum GPA">
+            <InputNumber
+              size="large"
+              style={{ width: "100%" }}
+              min={0}
+              max={100}
+            />
+          </Form.Item>
+        );
+      case "Grade":
+        return (
+          <AntRow gutter={[32, 16]}>
+            <AntCol xs={24} md={12}>
+              <Form.Item>
+                <Select
+                  size="large"
+                  className="universal-left"
+                  style={{ width: "100%" }}
+                >
+                  <Option value="minimum">Minimum</Option>
+                  <Option value="maximum">Maximum</Option>
+                </Select>
+              </Form.Item>
+            </AntCol>
+            <AntCol xs={24} md={12}>
+              <Form.Item>
+                <Select
+                  size="large"
+                  className="universal-left"
+                  style={{ width: "100%" }}
+                >
+                  <Option value="9">Freshman</Option>
+                  <Option value="10">Sophomore</Option>
+                  <Option value="11">Junior</Option>
+                  <Option value="12">Senior</Option>
+                </Select>
+              </Form.Item>
+            </AntCol>
+          </AntRow>
+        );
+      case "Virtual or In Person":
+        return (
+          <Form.Item>
+            <Select
+              size="large"
+              className="universal-left"
+              style={{ width: "100%" }}
+            >
+              <Option value="virtual">Virtual</Option>
+              <Option value="in-person">In Person</Option>
+              <Option value="both-virtual-and-in-person">
+                Both Options Available
+              </Option>
             </Select>
           </Form.Item>
         );
