@@ -52,7 +52,7 @@ export const FormContainer = styled.div`
   padding-left: 15%;
   padding-right: 15%;
   padding-bottom: 1em;
-  padding-top: 5em;
+  padding-top: 5.5em;
 `;
 
 /*============================================================================================================

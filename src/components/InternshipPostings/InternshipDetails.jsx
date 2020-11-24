@@ -13,6 +13,7 @@ import {
   PageHeader,
   DatePicker,
   Checkbox,
+  InputNumber,
 } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
@@ -76,6 +77,36 @@ const filters = [
   "GPA (Unweighted)",
   "Grade",
   "Virtual or In Person",
+];
+
+const activityCategories = [
+  "Academic",
+  "Art",
+  "Athletics-Club",
+  "Athletics",
+  "Career-Oriented",
+  "Community Service",
+  "Technology",
+  "Cultural",
+  "Dance",
+  "Debate and Speech",
+  "Environmental",
+  "Family Responsibilities",
+  "Foreign Exchange",
+  "Journalism or Publication",
+  "Junior R.O.T.C.",
+  "LGBT",
+  "Music-Instrumental",
+  "Music-Vocal",
+  "Religious",
+  "Research",
+  "Robotics",
+  "School Spirit",
+  "Science or Math",
+  "Student Govt or Politics",
+  "Theater or Drama",
+  "Work (paid)",
+  "Other Club/Activity",
 ];
 
 //CSS Constants
@@ -206,11 +237,54 @@ class InternshipDetails extends React.Component {
 const InternshipDetailForm = (props) => {
   const { buttonText, title } = props;
   const [isModalOn, toggleModal] = useState(false);
-  const screens = useBreakpoint();
+  const [isCriteriaOn, toggleCriteria] = useState({ on: false, criteria: "" });
 
-  useEffect(() => {
-    console.log("Rendered");
-  });
+  const renderCriteria = () => {
+    console.log("Render Criteria Called");
+    switch (isCriteriaOn.criteria) {
+      case "Age":
+        return (
+          <AntRow gutter={[32, 16]}>
+            <AntCol xs={24} md={12}>
+              <Form.Item>
+                <Select
+                  size="large"
+                  className="universal-left"
+                  style={{ width: "100%" }}
+                >
+                  <Option value="minimum">Minimum</Option>
+                  <Option value="maximum">Maximum</Option>
+                </Select>
+              </Form.Item>
+            </AntCol>
+            <AntCol xs={24} md={12}>
+              <Form.Item>
+                <InputNumber
+                  size="large"
+                  style={{ width: "100%" }}
+                  min={14}
+                  max={100}
+                />
+              </Form.Item>
+            </AntCol>
+          </AntRow>
+        );
+      case "Courses":
+        return (
+          <Form.Item>
+            <Select mode="multiple" size="large">
+              {activityCategories.map((activity) => (
+                <Option value={activity}>{activity}</Option>
+              ))}
+            </Select>
+          </Form.Item>
+        );
+      default:
+        return null;
+    }
+  };
+
+  useEffect(() => {});
 
   return (
     <FormContainer>
@@ -393,14 +467,25 @@ const InternshipDetailForm = (props) => {
           <Header className="twentyFourFont mb-2"> Edit Filter </Header>
           <Form>
             <AntRow gutter={[32, 16]}>
-              <AntCol flex="150px">
-                <Header className="twentyFont" subheading>
+              <AntCol xs={24} lg={6} xl={5}>
+                <Header className="twentyFont universal-left" subheading>
                   Filter by:
                 </Header>
               </AntCol>
-              <AntCol flex="auto">
+              <AntCol xs={24} lg={18} xl={19}>
                 <Form.Item>
-                  <Select size="large" style={{ width: "100%" }}>
+                  <Select
+                    onChange={(value) =>
+                      toggleCriteria({
+                        ...isCriteriaOn,
+                        on: true,
+                        criteria: value,
+                      })
+                    }
+                    className="universal-left"
+                    size="large"
+                    style={{ width: "100%" }}
+                  >
                     {filters.map((criteria) => (
                       <Option value={criteria}>{criteria}</Option>
                     ))}
@@ -408,20 +493,16 @@ const InternshipDetailForm = (props) => {
                 </Form.Item>
               </AntCol>
             </AntRow>
-            <AntRow gutter={[32, 16]}>
-              <AntCol flex="150px">
-                <Header className="twentyFont" subheading>
-                  Filter by:
-                </Header>
-              </AntCol>
-              <AntCol flex="auto">
-                <Select size="large" style={{ width: "100%" }}>
-                  {filters.map((criteria) => (
-                    <Option value={criteria}>{criteria}</Option>
-                  ))}
-                </Select>
-              </AntCol>
-            </AntRow>
+            {isCriteriaOn.on && (
+              <AntRow gutter={[32, 16]}>
+                <AntCol xs={24} lg={6} xl={5}>
+                  <Header className="twentyFont universal-left" subheading>
+                    Criteria:
+                  </Header>
+                </AntCol>
+                <AntCol xs={24} lg={18} xl={19}>{renderCriteria()}</AntCol>
+              </AntRow>
+            )}
           </Form>
         </Modal>
         {/**
