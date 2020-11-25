@@ -201,7 +201,10 @@ const FormProps = {
 class InternshipDetails extends React.Component {
   formRef = React.createRef();
 
-  onFinish = (values) => {
+  onFinish = (values, allFilters) => {
+    console.log(values);
+    console.log(allFilters);
+    /**
     let uuid = uuidv4();
     values.Id = uuid;
     console.log(uuid);
@@ -217,6 +220,7 @@ class InternshipDetails extends React.Component {
         console.log(JSON.parse(response.data));
         this.props.addListing(JSON.parse(response.data));
       });
+    */
   };
 
   render() {
@@ -450,7 +454,11 @@ const InternshipDetailForm = (props) => {
        * Listing Name
        *
        */}
-      <Form {...FormProps.TotalForm} onFinish={props.onFinish} form={mainForm}>
+      <Form
+        {...FormProps.TotalForm}
+        onFinish={(values) => props.onFinish(values, postFilters)}
+        form={mainForm}
+      >
         <Header className="twentyEightFont universal-center mb-1" bolded>
           Create an Internship Posting
         </Header>
@@ -517,7 +525,7 @@ const InternshipDetailForm = (props) => {
               Internship Dates
             </Header>
             <Form.Item {...FormProps.InternshipDates}>
-              <DatePicker.RangePicker size="large" style={{ width: "100%" }} />
+              <Input size="large" style={{ width: "100%" }} />
             </Form.Item>
           </AntCol>
           <AntCol xs={24} lg={8}>
