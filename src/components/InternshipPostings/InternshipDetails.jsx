@@ -242,6 +242,14 @@ class InternshipDetails extends React.Component {
             </Breadcrumb>
 
             <InternshipDetailForm
+              initialFilters={[
+                {
+                  "Filter By": "Age",
+                  CriteriaRestriction: "Minimum",
+                  Criteria: "12",
+                  Priority: "High",
+                },
+              ]}
               buttonText={buttonText}
               title={title}
               onFinish={this.onFinish}
@@ -258,19 +266,12 @@ class InternshipDetails extends React.Component {
  * temporarily plug in the functional component to a class-based container
  */
 const InternshipDetailForm = (props) => {
-  const { buttonText } = props;
+  const { buttonText, initialFilters } = props;
   const [form] = Form.useForm();
   const [mainForm] = Form.useForm();
   const [isModalOn, toggleModal] = useState(false);
   const [isCriteriaOn, toggleCriteria] = useState({ on: false, criteria: "" });
-  const [postFilters, modifyPostFilters] = useState([
-    {
-      "Filter By": "Age",
-      CriteriaRestriction: "Minimum",
-      Criteria: "12",
-      Priority: "High",
-    },
-  ]);
+  const [postFilters, modifyPostFilters] = useState(initialFilters);
   const [trackFilled, updateFilled] = useState(new Set());
 
   /**
