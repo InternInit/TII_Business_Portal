@@ -69,3 +69,11 @@ export const Header = styled.div`
   font-family: Lato;
   color: ${props => props.subheading ? "#262626" : "#000000"};
 `;
+
+export const FilterTag = styled.div`
+  color: ${props => props.color ? props.color : "gray"};
+  height: 30px;
+  border: 1px solid ${props => props.color ? props.color : "gray"};
+  border-radius: 4px;
+  font-family: Roboto;
+`

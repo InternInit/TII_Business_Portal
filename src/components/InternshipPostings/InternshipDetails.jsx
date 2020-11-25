@@ -14,10 +14,14 @@ import {
   DatePicker,
   Checkbox,
   InputNumber,
+  Tag,
 } from "antd";
-import { ArrowLeftOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
-import { Header, FormContainer } from "../Styled/FundamentalComponents";
+import {
+  Header,
+  FormContainer,
+  FilterTag,
+} from "../Styled/FundamentalComponents";
 
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
@@ -389,7 +393,8 @@ const InternshipDetailForm = (props) => {
   };
 
   const onFinish = (values) => {
-    console.log(JSON.stringify(values));
+    console.log(values);
+    modifyPostFilters(() => [...postFilters, values]);
   };
 
   return (
@@ -557,6 +562,17 @@ const InternshipDetailForm = (props) => {
               Add Candidate Filters
             </Header>
           </AntCol>
+          {postFilters.length > 0 &&
+            postFilters.map((filter) => (
+              <AntCol>
+                <FilterTag
+                  className="sixteenFont px-2 universal-middle universal-center"
+                  color="red"
+                >
+                  {filter.Priority}
+                </FilterTag>
+              </AntCol>
+            ))}
           <AntCol>
             <Button type="dashed" onClick={() => toggleModal(!isModalOn)}>
               Add a New Filter
