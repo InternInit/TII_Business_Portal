@@ -250,9 +250,12 @@ class InternshipDetails extends React.Component {
  * temporarily plug in the functional component to a class-based container
  */
 const InternshipDetailForm = (props) => {
-  const { buttonText, title } = props;
+  const { buttonText } = props;
+  const [form] = Form.useForm();
+  const [mainForm] = Form.useForm();
   const [isModalOn, toggleModal] = useState(false);
   const [isCriteriaOn, toggleCriteria] = useState({ on: false, criteria: "" });
+  const [postFilters, modifyPostFilters] = useState([]);
 
   /**
    * Rerenders different inputs based on what criterias
@@ -264,7 +267,7 @@ const InternshipDetailForm = (props) => {
         return (
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={12}>
-              <Form.Item>
+              <Form.Item name="Age Restriction" key="ageRestriction">
                 <Select
                   size="large"
                   className="universal-left"
@@ -276,7 +279,7 @@ const InternshipDetailForm = (props) => {
               </Form.Item>
             </AntCol>
             <AntCol xs={24} md={12}>
-              <Form.Item>
+              <Form.Item name="Age Number" key="ageNumber">
                 <InputNumber
                   size="large"
                   style={{ width: "100%" }}
@@ -290,6 +293,8 @@ const InternshipDetailForm = (props) => {
       case "Course Levels":
         return (
           <Form.Item
+            name="Course Levels"
+            key="courseLevels"
             className="universal-left"
             extra="What types of courses would you want applicants to have participated in"
           >
@@ -303,6 +308,8 @@ const InternshipDetailForm = (props) => {
       case "Extracurriculars":
         return (
           <Form.Item
+            name="Extracurriculars"
+            key="extracurriculars"
             className="universal-left"
             extra="What extracurricular activities would you want applicants to have participated in"
           >
@@ -315,7 +322,12 @@ const InternshipDetailForm = (props) => {
         );
       case "GPA (Unweighted)":
         return (
-          <Form.Item className="universal-left" extra="Minimum GPA">
+          <Form.Item
+            name="GPA"
+            key="GPA"
+            className="universal-left"
+            extra="Minimum GPA"
+          >
             <InputNumber
               size="large"
               style={{ width: "100%" }}
@@ -328,7 +340,7 @@ const InternshipDetailForm = (props) => {
         return (
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={12}>
-              <Form.Item>
+              <Form.Item name="Grade Restriction" key="gradeRestriction">
                 <Select
                   size="large"
                   className="universal-left"
@@ -340,7 +352,7 @@ const InternshipDetailForm = (props) => {
               </Form.Item>
             </AntCol>
             <AntCol xs={24} md={12}>
-              <Form.Item>
+              <Form.Item name="Grade Number" key="gradeNumber">
                 <Select
                   size="large"
                   className="universal-left"
@@ -357,7 +369,7 @@ const InternshipDetailForm = (props) => {
         );
       case "Virtual or In Person":
         return (
-          <Form.Item>
+          <Form.Item name="Virtual or In Person" key="virtualOrInPerson">
             <Select
               size="large"
               className="universal-left"
@@ -376,7 +388,9 @@ const InternshipDetailForm = (props) => {
     }
   };
 
-  useEffect(() => {});
+  const onFinish = (values) => {
+    console.log(JSON.stringify(values));
+  };
 
   return (
     <FormContainer>
@@ -396,7 +410,7 @@ const InternshipDetailForm = (props) => {
        * Listing Name
        *
        */}
-      <Form {...FormProps.TotalForm} onFinish={props.onFinish}>
+      <Form {...FormProps.TotalForm} onFinish={props.onFinish} form={mainForm}>
         <Header className="twentyEightFont universal-center mb-1" bolded>
           Create an Internship Posting
         </Header>
@@ -550,14 +564,23 @@ const InternshipDetailForm = (props) => {
           </AntCol>
         </AntRow>
 
+        {/**
+         *
+         * Edit Filter Modal
+         *
+         */}
+
         <Modal
           width="45%"
           onCancel={() => toggleModal(false)}
+          onOk={() => form.submit()}
+          okText="Create"
+          okButtonProps={{ htmlType: "submit" }}
           visible={isModalOn}
           className="px-4 py-2 universal-center"
         >
           <Header className="twentyFourFont mb-2"> Edit Filter </Header>
-          <Form>
+          <Form name="edit-filters" form={form} onFinish={onFinish}>
             <AntRow gutter={[32, 16]}>
               <AntCol xs={24} lg={6} xl={5}>
                 <Header className="twentyFont universal-left" subheading>
@@ -565,7 +588,7 @@ const InternshipDetailForm = (props) => {
                 </Header>
               </AntCol>
               <AntCol xs={24} lg={18} xl={19}>
-                <Form.Item>
+                <Form.Item name="Filter By" key="filterBy">
                   <Select
                     onChange={(value) =>
                       toggleCriteria({
@@ -605,15 +628,17 @@ const InternshipDetailForm = (props) => {
                   </Header>
                 </AntCol>
                 <AntCol xs={24} lg={18} xl={19}>
-                  <Select
-                    className="universal-left"
-                    size="large"
-                    style={{ width: "100%" }}
-                  >
-                    <Option value="high">High</Option>
-                    <Option value="medium">Medium</Option>
-                    <Option value="low">Low</Option>
-                  </Select>
+                  <Form.Item name="Priority" key="priority">
+                    <Select
+                      className="universal-left"
+                      size="large"
+                      style={{ width: "100%" }}
+                    >
+                      <Option value="high">High</Option>
+                      <Option value="medium">Medium</Option>
+                      <Option value="low">Low</Option>
+                    </Select>
+                  </Form.Item>
                 </AntCol>
               </AntRow>
             )}
