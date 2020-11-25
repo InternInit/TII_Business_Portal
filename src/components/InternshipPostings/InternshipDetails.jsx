@@ -592,7 +592,7 @@ const InternshipDetailForm = (props) => {
                     ? " Minimum"
                     : null}{" "}
                   {Array.isArray(filter.Criteria)
-                    ? filter.Criteria.length < 3
+                    ? filter.Criteria.length < 4
                       ? filter.Criteria.map((val, index) =>
                           index !== filter.Criteria.length - 1
                             ? " " + val
