@@ -72,7 +72,10 @@ export const Header = styled.div`
 
 export const FilterTag = styled.div`
   color: ${props => props.color ? props.color : "gray"};
-  height: 30px;
+  display: flex;
+  align-contents: center;
+  justify-contents: center;
+  height: 32px;
   border: 1px solid ${props => props.color ? props.color : "gray"};
   border-radius: 4px;
   font-family: Roboto;
