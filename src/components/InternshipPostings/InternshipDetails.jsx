@@ -574,7 +574,7 @@ const InternshipDetailForm = (props) => {
             postFilters.map((filter) => (
               <AntCol>
                 <FilterTag
-                  className="fourteenFont px-2 universal-middle universal-center"
+                  className="fourteenFont px-1-5 universal-middle universal-center"
                   color={filter.Priority}
                 >
                   {filter["Filter By"]} -
