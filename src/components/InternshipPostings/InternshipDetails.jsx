@@ -14,8 +14,9 @@ import {
   DatePicker,
   Checkbox,
   InputNumber,
-  Tag,
+  Modal,
 } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
 import {
   Header,
@@ -26,7 +27,6 @@ import {
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import Modal from "antd/lib/modal/Modal";
 
 const { TextArea } = Input;
 const { Option, OptGroup } = Select;
@@ -402,6 +402,7 @@ const InternshipDetailForm = (props) => {
   const onFinish = (values) => {
     console.log(values);
     form.resetFields();
+    toggleCriteria({ on: false, criteria: "" });
     modifyPostFilters(() => [...postFilters, values]);
   };
 
@@ -574,7 +575,7 @@ const InternshipDetailForm = (props) => {
             postFilters.map((filter) => (
               <AntCol>
                 <FilterTag
-                  className="fourteenFont px-1-5 universal-middle universal-center"
+                  className="fourteenFont pl-1-5 pr-1 universal-middle universal-center"
                   color={filter.Priority}
                 >
                   {filter["Filter By"]} -
@@ -589,11 +590,18 @@ const InternshipDetailForm = (props) => {
                           index !== filter.Criteria.length - 1
                             ? " " + val
                             : null
-                        ) + " " + filter.Criteria[filter.Criteria.length - 1]
-                      : filter.Criteria.slice(0, 2).map((val) => ` ${val}`) + ", " +
+                        ) +
+                        " " +
+                        filter.Criteria[filter.Criteria.length - 1]
+                      : filter.Criteria.slice(0, 2).map((val) => ` ${val}`) +
+                        ", " +
                         filter.Criteria[2] +
                         "..."
                     : " " + filter.Criteria}
+                  <CloseOutlined
+                    className="ml-1-2"
+                    style={{ fontSize: "10px" }}
+                  />
                 </FilterTag>
               </AntCol>
             ))}
