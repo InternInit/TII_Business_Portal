@@ -311,7 +311,7 @@ const InternshipDetailForm = (props) => {
             extra="What types of courses would you want applicants to have participated in"
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
-              {courseLevels.map((course) => (
+              {courseLevels.map((course) => trackFilled.has(course) ? null : (
                 <Option value={course}>{course}</Option>
               ))}
             </Select>
@@ -326,7 +326,7 @@ const InternshipDetailForm = (props) => {
             extra="What extracurricular activities would you want applicants to have participated in"
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
-              {activityCategories.map((activity) => (
+              {activityCategories.map((activity) => trackFilled.has(activity) ? null : (
                 <Option value={activity}>{activity}</Option>
               ))}
             </Select>
