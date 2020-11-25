@@ -262,8 +262,8 @@ const InternshipDetailForm = (props) => {
   const [postFilters, modifyPostFilters] = useState([
     {
       "Filter By": "Age",
-      "Age Restriction": undefined,
-      "Age Number": undefined,
+      CriteriaRestriction: "Minimum",
+      Criteria: "12",
       Priority: "High",
     },
   ]);
@@ -311,7 +311,7 @@ const InternshipDetailForm = (props) => {
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
               {courseLevels.map((course) => (
-                <Option value={`${course}, `}>{course}</Option>
+                <Option value={course}>{course}</Option>
               ))}
             </Select>
           </Form.Item>
@@ -326,7 +326,7 @@ const InternshipDetailForm = (props) => {
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
               {activityCategories.map((activity) => (
-                <Option value={`${activity}, `}>{activity}</Option>
+                <Option value={activity}>{activity}</Option>
               ))}
             </Select>
           </Form.Item>
@@ -583,7 +583,11 @@ const InternshipDetailForm = (props) => {
                     : filter["Filter By"] === "GPA (Unweighted)"
                     ? "Minimum"
                     : null}{" "}
-                  {filter.Criteria}
+                  {Array.isArray(filter.Criteria)
+                    ? filter.Criteria.length < 4
+                      ? filter.Criteria
+                      : filter.Criteria.slice(0,4)
+                    : filter.Criteria}
                 </FilterTag>
               </AntCol>
             ))}
