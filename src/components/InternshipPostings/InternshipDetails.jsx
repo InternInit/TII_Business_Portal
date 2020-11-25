@@ -265,8 +265,7 @@ class InternshipDetails extends React.Component {
  * Still want to use React lifecycle functions and such so I will
  * temporarily plug in the functional component to a class-based container
  */
-const InternshipDetailForm = (props) => {
-  const { buttonText, initialFilters } = props;
+const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
   const [form] = Form.useForm();
   const [mainForm] = Form.useForm();
   const [isModalOn, toggleModal] = useState(false);
@@ -409,7 +408,7 @@ const InternshipDetailForm = (props) => {
     }
   };
 
-  const onFinish = (values) => {
+  const modalFinish = (values) => {
     console.log(values);
     form.resetFields();
     toggleCriteria({ on: false, criteria: "" });
@@ -457,7 +456,7 @@ const InternshipDetailForm = (props) => {
        */}
       <Form
         {...FormProps.TotalForm}
-        onFinish={(values) => props.onFinish(values, postFilters)}
+        onFinish={(values) => onFinish(values, postFilters)}
         form={mainForm}
       >
         <Header className="twentyEightFont universal-center mb-1" bolded>
@@ -670,7 +669,7 @@ const InternshipDetailForm = (props) => {
           className="px-4 py-2 universal-center"
         >
           <Header className="twentyFourFont mb-2"> Edit Filter </Header>
-          <Form name="edit-filters" form={form} onFinish={onFinish}>
+          <Form name="edit-filters" form={form} onFinish={modalFinish}>
             <AntRow gutter={[32, 16]}>
               <AntCol xs={24} lg={6} xl={5}>
                 <Header className="twentyFont universal-left" subheading>
