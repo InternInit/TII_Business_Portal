@@ -254,6 +254,10 @@ const InternshipDetailForm = (props) => {
   const [isModalOn, toggleModal] = useState(false);
   const [isCriteriaOn, toggleCriteria] = useState({ on: false, criteria: "" });
 
+  /**
+   * Rerenders different inputs based on what criterias
+   * the user is filtering by
+   */
   const RenderCriteria = (props) => {
     switch (isCriteriaOn.criteria) {
       case "Age":
@@ -590,6 +594,26 @@ const InternshipDetailForm = (props) => {
                 </AntCol>
                 <AntCol xs={24} lg={18} xl={19}>
                   <RenderCriteria />
+                </AntCol>
+              </AntRow>
+            )}
+            {isCriteriaOn.on && (
+              <AntRow gutter={[32, 16]}>
+                <AntCol xs={24} lg={6} xl={5}>
+                  <Header className="twentyFont universal-left" subheading>
+                    Priority:
+                  </Header>
+                </AntCol>
+                <AntCol xs={24} lg={18} xl={19}>
+                  <Select
+                    className="universal-left"
+                    size="large"
+                    style={{ width: "100%" }}
+                  >
+                    <Option value="high">High</Option>
+                    <Option value="medium">Medium</Option>
+                    <Option value="low">Low</Option>
+                  </Select>
                 </AntCol>
               </AntRow>
             )}
