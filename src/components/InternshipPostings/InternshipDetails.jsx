@@ -311,9 +311,11 @@ const InternshipDetailForm = (props) => {
             extra="What types of courses would you want applicants to have participated in"
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
-              {courseLevels.map((course) => trackFilled.has(course) ? null : (
-                <Option value={course}>{course}</Option>
-              ))}
+              {courseLevels.map((course) =>
+                trackFilled.has(course) ? null : (
+                  <Option value={course}>{course}</Option>
+                )
+              )}
             </Select>
           </Form.Item>
         );
@@ -326,9 +328,11 @@ const InternshipDetailForm = (props) => {
             extra="What extracurricular activities would you want applicants to have participated in"
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
-              {activityCategories.map((activity) => trackFilled.has(activity) ? null : (
-                <Option value={activity}>{activity}</Option>
-              ))}
+              {activityCategories.map((activity) =>
+                trackFilled.has(activity) ? null : (
+                  <Option value={activity}>{activity}</Option>
+                )
+              )}
             </Select>
           </Form.Item>
         );
@@ -411,6 +415,21 @@ const InternshipDetailForm = (props) => {
       updateFilled(new Set([...trackFilled, ...values.Criteria]));
     }
     modifyPostFilters(() => [...postFilters, values]);
+  };
+
+  const removeItem = (removalIndex) => {
+    if (
+      postFilters[removalIndex]["Filter By"] === "Extracurriculars" ||
+      postFilters[removalIndex]["Filter By"] === "Course Levels"
+    ) {
+      const itemsToReplace = postFilters[removalIndex].Criteria;
+      const copyOfFilled = new Set([...trackFilled]);
+      itemsToReplace.forEach(item => copyOfFilled.delete(item));
+      updateFilled(copyOfFilled);
+    }
+    modifyPostFilters(
+      postFilters.filter((filter, index) => index !== removalIndex)
+    );
   };
 
   return (
@@ -579,7 +598,7 @@ const InternshipDetailForm = (props) => {
             </Header>
           </AntCol>
           {postFilters.length > 0 &&
-            postFilters.map((filter) => (
+            postFilters.map((filter, index) => (
               <AntCol>
                 <FilterTag
                   className="fourteenFont pl-1-5 pr-point-75 universal-middle universal-center"
@@ -608,6 +627,7 @@ const InternshipDetailForm = (props) => {
                   <CloseOutlined
                     className="ml-1-2"
                     style={{ fontSize: "10px" }}
+                    onClick={() => removeItem(index)}
                   />
                 </FilterTag>
               </AntCol>
