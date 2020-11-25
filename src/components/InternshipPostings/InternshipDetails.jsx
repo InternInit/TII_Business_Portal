@@ -424,7 +424,7 @@ const InternshipDetailForm = (props) => {
     ) {
       const itemsToReplace = postFilters[removalIndex].Criteria;
       const copyOfFilled = new Set([...trackFilled]);
-      itemsToReplace.forEach(item => copyOfFilled.delete(item));
+      itemsToReplace.forEach((item) => copyOfFilled.delete(item));
       updateFilled(copyOfFilled);
     }
     modifyPostFilters(
@@ -647,7 +647,10 @@ const InternshipDetailForm = (props) => {
 
         <Modal
           width="45%"
-          onCancel={() => toggleModal(false)}
+          onCancel={() => {
+            form.resetFields();
+            toggleModal(false);
+          }}
           onOk={() => {
             form.submit();
             toggleModal(false);
