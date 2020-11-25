@@ -259,7 +259,14 @@ const InternshipDetailForm = (props) => {
   const [mainForm] = Form.useForm();
   const [isModalOn, toggleModal] = useState(false);
   const [isCriteriaOn, toggleCriteria] = useState({ on: false, criteria: "" });
-  const [postFilters, modifyPostFilters] = useState([]);
+  const [postFilters, modifyPostFilters] = useState([
+    {
+      "Filter By": "Age",
+      "Age Restriction": undefined,
+      "Age Number": undefined,
+      Priority: "high",
+    },
+  ]);
 
   /**
    * Rerenders different inputs based on what criterias
@@ -556,28 +563,28 @@ const InternshipDetailForm = (props) => {
           </AntCol>
         </AntRow>
 
-        <AntRow gutter={[32, 16]}>
+        <AntRow gutter={[16, 16]}>
           <AntCol span={24}>
             <Header className="twentyFont" subheading>
               Add Candidate Filters
             </Header>
           </AntCol>
-          {postFilters.length > 0 &&
-            postFilters.map((filter) => (
-              <AntCol>
-                <FilterTag
-                  className="sixteenFont px-2 universal-middle universal-center"
-                  color="red"
-                >
-                  {filter.Priority}
-                </FilterTag>
-              </AntCol>
-            ))}
-          <AntCol>
-            <Button type="dashed" onClick={() => toggleModal(!isModalOn)}>
-              Add a New Filter
-            </Button>
-          </AntCol>
+            {postFilters.length > 0 &&
+              postFilters.map((filter) => (
+                <AntCol>
+                  <FilterTag
+                    className="sixteenFont px-2 universal-middle universal-center"
+                    color="red"
+                  >
+                    {filter.Priority}
+                  </FilterTag>
+                </AntCol>
+              ))}
+            <AntCol>
+              <Button type="dashed" onClick={() => toggleModal(!isModalOn)}>
+                Add a New Filter
+              </Button>
+            </AntCol>
         </AntRow>
 
         {/**
