@@ -264,7 +264,7 @@ const InternshipDetailForm = (props) => {
       "Filter By": "Age",
       "Age Restriction": undefined,
       "Age Number": undefined,
-      Priority: "high",
+      Priority: "High",
     },
   ]);
 
@@ -278,19 +278,19 @@ const InternshipDetailForm = (props) => {
         return (
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={12}>
-              <Form.Item name="Age Restriction" key="ageRestriction">
+              <Form.Item name="CriteriaRestriction" key="criteriaRestriction">
                 <Select
                   size="large"
                   className="universal-left"
                   style={{ width: "100%" }}
                 >
-                  <Option value="minimum">Minimum</Option>
-                  <Option value="maximum">Maximum</Option>
+                  <Option value="Minimum">Minimum</Option>
+                  <Option value="Maximum">Maximum</Option>
                 </Select>
               </Form.Item>
             </AntCol>
             <AntCol xs={24} md={12}>
-              <Form.Item name="Age Number" key="ageNumber">
+              <Form.Item name="Criteria" key="criteria">
                 <InputNumber
                   size="large"
                   style={{ width: "100%" }}
@@ -304,14 +304,14 @@ const InternshipDetailForm = (props) => {
       case "Course Levels":
         return (
           <Form.Item
-            name="Course Levels"
-            key="courseLevels"
+            name="Criteria"
+            key="criteria"
             className="universal-left"
             extra="What types of courses would you want applicants to have participated in"
           >
-            <Select mode="multiple" size="large">
-              {courseLevels.map((activity) => (
-                <Option value={activity}>{activity}</Option>
+            <Select mode="multiple" tokenSeparators={[" "]} size="large">
+              {courseLevels.map((course) => (
+                <Option value={`${course}, `}>{course}</Option>
               ))}
             </Select>
           </Form.Item>
@@ -319,14 +319,14 @@ const InternshipDetailForm = (props) => {
       case "Extracurriculars":
         return (
           <Form.Item
-            name="Extracurriculars"
-            key="extracurriculars"
+            name="Criteria"
+            key="criteria"
             className="universal-left"
             extra="What extracurricular activities would you want applicants to have participated in"
           >
-            <Select mode="multiple" size="large">
+            <Select mode="multiple" tokenSeparators={[" "]} size="large">
               {activityCategories.map((activity) => (
-                <Option value={activity}>{activity}</Option>
+                <Option value={`${activity}, `}>{activity}</Option>
               ))}
             </Select>
           </Form.Item>
@@ -334,8 +334,8 @@ const InternshipDetailForm = (props) => {
       case "GPA (Unweighted)":
         return (
           <Form.Item
-            name="GPA"
-            key="GPA"
+            name="Criteria"
+            key="criteria"
             className="universal-left"
             extra="Minimum GPA"
           >
@@ -351,19 +351,19 @@ const InternshipDetailForm = (props) => {
         return (
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={12}>
-              <Form.Item name="Grade Restriction" key="gradeRestriction">
+              <Form.Item name="CriteriaRestriction" key="criteriaRestriction">
                 <Select
                   size="large"
                   className="universal-left"
                   style={{ width: "100%" }}
                 >
-                  <Option value="minimum">Minimum</Option>
-                  <Option value="maximum">Maximum</Option>
+                  <Option value="Minimum">Minimum</Option>
+                  <Option value="Maximum">Maximum</Option>
                 </Select>
               </Form.Item>
             </AntCol>
             <AntCol xs={24} md={12}>
-              <Form.Item name="Grade Number" key="gradeNumber">
+              <Form.Item name="Criteria" key="criteria">
                 <Select
                   size="large"
                   className="universal-left"
@@ -380,7 +380,7 @@ const InternshipDetailForm = (props) => {
         );
       case "Virtual or In Person":
         return (
-          <Form.Item name="Virtual or In Person" key="virtualOrInPerson">
+          <Form.Item name="Criteria" key="criteria">
             <Select
               size="large"
               className="universal-left"
@@ -401,6 +401,7 @@ const InternshipDetailForm = (props) => {
 
   const onFinish = (values) => {
     console.log(values);
+    form.resetFields();
     modifyPostFilters(() => [...postFilters, values]);
   };
 
@@ -569,22 +570,28 @@ const InternshipDetailForm = (props) => {
               Add Candidate Filters
             </Header>
           </AntCol>
-            {postFilters.length > 0 &&
-              postFilters.map((filter) => (
-                <AntCol>
-                  <FilterTag
-                    className="sixteenFont px-2 universal-middle universal-center"
-                    color="red"
-                  >
-                    {filter.Priority}
-                  </FilterTag>
-                </AntCol>
-              ))}
-            <AntCol>
-              <Button type="dashed" onClick={() => toggleModal(!isModalOn)}>
-                Add a New Filter
-              </Button>
-            </AntCol>
+          {postFilters.length > 0 &&
+            postFilters.map((filter) => (
+              <AntCol>
+                <FilterTag
+                  className="fourteenFont px-2 universal-middle universal-center"
+                  color={filter.Priority}
+                >
+                  {filter["Filter By"]} -{" "}
+                  {filter.CriteriaRestriction
+                    ? filter.CriteriaRestriction
+                    : filter["Filter By"] === "GPA (Unweighted)"
+                    ? "Minimum"
+                    : null}{" "}
+                  {filter.Criteria}
+                </FilterTag>
+              </AntCol>
+            ))}
+          <AntCol>
+            <Button type="dashed" onClick={() => toggleModal(!isModalOn)}>
+              Add a New Filter
+            </Button>
+          </AntCol>
         </AntRow>
 
         {/**
@@ -596,7 +603,10 @@ const InternshipDetailForm = (props) => {
         <Modal
           width="45%"
           onCancel={() => toggleModal(false)}
-          onOk={() => form.submit()}
+          onOk={() => {
+            form.submit();
+            toggleModal(false);
+          }}
           okText="Create"
           okButtonProps={{ htmlType: "submit" }}
           visible={isModalOn}
@@ -657,9 +667,9 @@ const InternshipDetailForm = (props) => {
                       size="large"
                       style={{ width: "100%" }}
                     >
-                      <Option value="high">High</Option>
-                      <Option value="medium">Medium</Option>
-                      <Option value="low">Low</Option>
+                      <Option value="High">High</Option>
+                      <Option value="Medium">Medium</Option>
+                      <Option value="Low">Low</Option>
                     </Select>
                   </Form.Item>
                 </AntCol>

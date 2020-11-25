@@ -20,7 +20,6 @@ export const TabContainer = styled.div`
   box-shadow: 1px 1px 5px -4px;
 `;
 
-
 /*============================================================================================================
  * ***********************************************************************************************************
  *
@@ -40,7 +39,7 @@ export const PageContainer = styled.div`
 
 export const InnerContainer = styled.div`
   width: 90%;
-  marginBottom: 4vh;
+  marginbottom: 4vh;
 `;
 
 export const FormContainer = styled.div`
@@ -65,18 +64,39 @@ export const FormContainer = styled.div`
  */
 
 export const Header = styled.div`
-  font-weight: ${props => props.bolded ? "bold" : "normal"};
+  font-weight: ${(props) => (props.bolded ? "bold" : "normal")};
   font-family: Lato;
-  color: ${props => props.subheading ? "#262626" : "#000000"};
+  color: ${(props) => (props.subheading ? "#262626" : "#000000")};
 `;
 
 export const FilterTag = styled.div`
-  color: ${props => props.color ? props.color : "gray"};
+  color: ${(props) =>
+    props.color === "High"
+      ? "#f5222d"
+      : props.color === "Medium"
+      ? "#fa8c16"
+      : "#52c41a"};
+  background-color: ${(props) =>
+    props.color === "High"
+      ? "#fff1f0"
+      : props.color === "Medium"
+      ? "#fff7e6"
+      : "#f6ffed"};
   display: flex;
   align-contents: center;
   justify-contents: center;
   height: 32px;
-  border: 1px solid ${props => props.color ? props.color : "gray"};
+  border: 1px solid
+    ${(props) =>
+      props.color === "High"
+        ? "#f5222d"
+        : props.color === "Medium"
+        ? "#fa8c16"
+        : "#52c41a"};
   border-radius: 4px;
   font-family: Roboto;
-`
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
