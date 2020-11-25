@@ -267,6 +267,7 @@ const InternshipDetailForm = (props) => {
       Priority: "High",
     },
   ]);
+  const [trackFilled, updateFilled] = useState(new Set());
 
   /**
    * Rerenders different inputs based on what criterias
@@ -403,6 +404,12 @@ const InternshipDetailForm = (props) => {
     console.log(values);
     form.resetFields();
     toggleCriteria({ on: false, criteria: "" });
+    if (
+      values["Filter By"] === "Extracurriculars" ||
+      values["Filter By"] === "Course Levels"
+    ) {
+      updateFilled(new Set([...trackFilled, ...values.Criteria]));
+    }
     modifyPostFilters(() => [...postFilters, values]);
   };
 
