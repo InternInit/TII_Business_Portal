@@ -584,14 +584,14 @@ const InternshipDetailForm = (props) => {
                     ? " Minimum"
                     : null}{" "}
                   {Array.isArray(filter.Criteria)
-                    ? filter.Criteria.length < 4
+                    ? filter.Criteria.length < 3
                       ? filter.Criteria.map((val, index) =>
                           index !== filter.Criteria.length - 1
                             ? " " + val
                             : null
                         ) + " " + filter.Criteria[filter.Criteria.length - 1]
-                      : filter.Criteria.slice(0, 3).map((val) => ` ${val}`) + " " +
-                        filter.Criteria[3] +
+                      : filter.Criteria.slice(0, 2).map((val) => ` ${val}`) + ", " +
+                        filter.Criteria[2] +
                         "..."
                     : " " + filter.Criteria}
                 </FilterTag>
