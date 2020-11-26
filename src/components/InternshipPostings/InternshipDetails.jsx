@@ -203,8 +203,6 @@ const FormProps = {
 };
 
 class InternshipDetails extends React.Component {
-  formRef = React.createRef();
-
   onFinish = (values, allFilters) => {
     console.log(values);
     console.log(allFilters);
@@ -269,12 +267,20 @@ class InternshipDetails extends React.Component {
  * Still want to use React lifecycle functions and such so I will
  * temporarily plug in the functional component to a class-based container
  */
-const InternshipDetailForm = ({ buttonText, initialFilters, onFinish }) => {
+const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) => {
+  //Form Ref for the modal
   const [form] = Form.useForm();
-  const [mainForm] = Form.useForm();
+  
+  //Modal Toggle
   const [isModalOn, toggleModal] = useState(false);
+
+  //Toggles customized input fields for each criteria
   const [isCriteriaOn, toggleCriteria] = useState({ on: false, criteria: "" });
+
+  //Array of current filters
   const [postFilters, modifyPostFilters] = useState(initialFilters);
+
+  //Hash table/Set of used options so that they won't re-appear
   const [trackFilled, updateFilled] = useState(new Set());
 
   /**
@@ -412,9 +418,17 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish }) => {
     }
   };
 
+  //Runs when the user adds a new filter
   const modalFinish = (values) => {
     console.log(values);
     form.resetFields();
+    
+    /**
+     * If the user made a filter submission based on Extracurriculars
+     * or Course Levels, the @var trackFilled in state will update
+     * with whatever options were selected so it won't show them
+     * to the user again
+     */
     toggleCriteria({ on: false, criteria: "" });
     if (
       values["Filter By"] === "Extracurriculars" ||
@@ -422,10 +436,19 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish }) => {
     ) {
       updateFilled(new Set([...trackFilled, ...values.Criteria]));
     }
+
+    //Adds the filter
     modifyPostFilters(() => [...postFilters, values]);
   };
 
   const removeItem = (removalIndex) => {
+    
+    /**
+     * If the user removed a filter based on Extracurriculars
+     * or Course Levels, the @var trackFilled in state will update
+     * with whatever options were removed so it can show them
+     * to the user again
+     */
     if (
       postFilters[removalIndex]["Filter By"] === "Extracurriculars" ||
       postFilters[removalIndex]["Filter By"] === "Course Levels"
@@ -435,6 +458,8 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish }) => {
       itemsToReplace.forEach((item) => copyOfFilled.delete(item));
       updateFilled(copyOfFilled);
     }
+
+    //Removes the fiven filter
     modifyPostFilters(
       postFilters.filter((filter, index) => index !== removalIndex)
     );
@@ -445,10 +470,8 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish }) => {
       <PageHeader
         onBack={() => window.history.back()}
         title={
-          <Link to="/internship-listings">
-            <span style={{ fontWeight: "normal", color: "#262626" }}>
+          <Link to="/internship-listings" style={{ fontWeight: "normal", color: "#262626" }}>
               Back to Postings
-            </span>
           </Link>
         }
         style={{ position: "absolute", left: "3.5em", top: "1em" }}
@@ -461,7 +484,6 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish }) => {
       <Form
         {...FormProps.TotalForm}
         onFinish={(values) => onFinish(values, postFilters)}
-        form={mainForm}
       >
         <Header className="twentyEightFont universal-center mb-1" bolded>
           Create an Internship Posting
