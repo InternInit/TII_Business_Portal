@@ -196,6 +196,7 @@ class App extends React.Component {
                       <InternshipDetails
                         buttonText="Save Changes"
                         title="Post Information"
+                        listings={this.props.listings}
                       />
                     )}
                   />
