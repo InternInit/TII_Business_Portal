@@ -22,7 +22,7 @@ import {
   Header,
   FormContainer,
   FilterTag,
-  RequiredAsterisk
+  RequiredAsterisk,
 } from "../Styled/FundamentalComponents";
 
 import { withRouter, Link } from "react-router-dom";
@@ -183,7 +183,10 @@ const FormProps = {
   InternshipDates: {
     key: "internshipDates",
     name: "Internship Dates",
-    rules: validationRules(true, "internship dates"),
+    rules: [{
+      required: true,
+      message: "Please input your listing internship dates",
+    }],
   },
   AvailableWorkDays: {
     key: "availableWorkDays",
@@ -266,7 +269,7 @@ class InternshipDetails extends React.Component {
  * Still want to use React lifecycle functions and such so I will
  * temporarily plug in the functional component to a class-based container
  */
-const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
+const InternshipDetailForm = ({ buttonText, initialFilters, onFinish }) => {
   const [form] = Form.useForm();
   const [mainForm] = Form.useForm();
   const [isModalOn, toggleModal] = useState(false);
@@ -526,7 +529,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
               Internship Dates <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item {...FormProps.InternshipDates}>
-              <Input size="large" style={{ width: "100%" }} />
+              <DatePicker.RangePicker size="large" style={{ width: "100%" }} />
             </Form.Item>
           </AntCol>
           <AntCol xs={24} lg={8}>
