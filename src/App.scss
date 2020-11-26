@@ -27,6 +27,9 @@ $gray-13: #425866;
 $gray-16: #23343F;
 $gray-18: #121F26;
 
+a:hover {
+  cursor: pointer;
+}
 
 .global-container {
   background-color: $gray-1;
