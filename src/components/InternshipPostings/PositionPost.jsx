@@ -89,7 +89,7 @@ class PositionPost extends Component {
            */}
           <InfoBar />
 
-          {this.props.listings.length === 0 ? (
+          {this.props.listings.length !== 0 ? (
             this.props.listings.map((post, index) => (
               <PostingTab
                 status="Active"
@@ -102,7 +102,7 @@ class PositionPost extends Component {
             <TabContainer className="mt-1-5 py-2 px-6 universal-center">
               <AntRow justify="center" align="middle">
                 <Header className="twentyFourFont">
-                  You Don't Currently Have Any Internship Postings 
+                  You Don't Currently Have Any Internship Postings
                 </Header>
               </AntRow>
             </TabContainer>
