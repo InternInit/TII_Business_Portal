@@ -69,6 +69,10 @@ export const Header = styled.div`
   color: ${(props) => (props.subheading ? "#262626" : "#000000")};
 `;
 
+export const RequiredAsterisk = styled.span`
+  color: #f5222d;
+`;
+
 export const FilterTag = styled.div`
   color: ${(props) =>
     props.color === "High"

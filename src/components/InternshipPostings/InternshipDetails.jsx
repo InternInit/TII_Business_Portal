@@ -22,6 +22,7 @@ import {
   Header,
   FormContainer,
   FilterTag,
+  RequiredAsterisk
 } from "../Styled/FundamentalComponents";
 
 import { withRouter, Link } from "react-router-dom";
@@ -464,7 +465,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
         </Header>
 
         <Header className="twentyFont mb-point-5" subheading>
-          Job Title
+          Job Title <RequiredAsterisk>*</RequiredAsterisk>
         </Header>
         <Form.Item {...FormProps.Title}>
           <Input size="large" placeholder="Edit Posting Name" />
@@ -476,7 +477,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
          *
          */}
         <Header className="twentyFont mb-point-5" subheading>
-          Job Description
+          Job Description <RequiredAsterisk>*</RequiredAsterisk>
         </Header>
         <Form.Item {...FormProps.Description}>
           <TextArea
@@ -495,7 +496,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
         <AntRow gutter={[32, 16]}>
           <AntCol xs={24} md={12}>
             <Header className="twentyFont mb-point-5" subheading>
-              Location
+              Location <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item {...FormProps.Address}>
               <Input size="large" placeholder="City, State" />
@@ -503,7 +504,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
           </AntCol>
           <AntCol xs={24} md={12}>
             <Header className="twentyFont mb-point-5" subheading>
-              Relevant Industry
+              Relevant Industry <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item {...FormProps.Industries}>
               <Select size="large" style={{ width: "100%" }}>
@@ -522,7 +523,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
         <AntRow gutter={[32, 16]}>
           <AntCol xs={24} lg={8}>
             <Header className="twentyFont mb-point-5" subheading>
-              Internship Dates
+              Internship Dates <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item {...FormProps.InternshipDates}>
               <Input size="large" style={{ width: "100%" }} />
@@ -530,7 +531,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
           </AntCol>
           <AntCol xs={24} lg={8}>
             <Header className="twentyFont mb-point-5" subheading>
-              Available Work Days
+              Available Work Days <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item
               {...FormProps.AvailableWorkDays}
@@ -550,7 +551,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
           </AntCol>
           <AntCol xs={24} lg={8}>
             <Header className="twentyFont mb-point-5" subheading>
-              Available Work Times
+              Available Work Times <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item
               {...FormProps.AvailableWorkTimes}
@@ -589,7 +590,7 @@ const InternshipDetailForm = ({buttonText, initialFilters, onFinish}) => {
         <AntRow gutter={[32, 16]}>
           <AntCol>
             <Header className="twentyFont mb-point-5 mt-point-5" subheading>
-              Paid or Unpaid?
+              Paid or Unpaid? <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item>
               <Checkbox size="large">
