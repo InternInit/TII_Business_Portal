@@ -15,6 +15,7 @@ import {
   Checkbox,
   InputNumber,
   Modal,
+  Tooltip,
 } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
@@ -145,7 +146,7 @@ const buttonStyle = {
   marginBottom: "6vh",
 };
 
-const headerClassNames="twentyFont mb-point-5";
+const headerClassNames = "twentyFont mb-point-5";
 
 //Validation Rules (Required questions)
 const validationRules = (required, inputName, type = "string", pattern) => [
@@ -185,10 +186,12 @@ const FormProps = {
   InternshipDates: {
     key: "internshipDates",
     name: "Internship Dates",
-    rules: [{
-      required: true,
-      message: "Please input your listing internship dates",
-    }],
+    rules: [
+      {
+        required: true,
+        message: "Please input your listing internship dates",
+      },
+    ],
   },
   AvailableWorkDays: {
     key: "availableWorkDays",
@@ -269,10 +272,15 @@ class InternshipDetails extends React.Component {
  * Still want to use React lifecycle functions and such so I will
  * temporarily plug in the functional component to a class-based container
  */
-const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) => {
+const InternshipDetailForm = ({
+  buttonText,
+  initialFilters,
+  onFinish,
+  title,
+}) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
-  
+
   //Modal Toggle
   const [isModalOn, toggleModal] = useState(false);
 
@@ -424,7 +432,7 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
   const modalFinish = (values) => {
     console.log(values);
     form.resetFields();
-    
+
     /**
      * If the user made a filter submission based on Extracurriculars
      * or Course Levels, the @var trackFilled in state will update
@@ -444,7 +452,6 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
   };
 
   const removeItem = (removalIndex) => {
-    
     /**
      * If the user removed a filter based on Extracurriculars
      * or Course Levels, the @var trackFilled in state will update
@@ -473,8 +480,11 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
         onBack={() => window.history.back()}
         style={{ position: "absolute", left: "3.5em", top: "1em" }}
         title={
-          <Link to="/internship-listings" style={{ fontWeight: "normal", color: "#262626" }}>
-              Back to Postings
+          <Link
+            to="/internship-listings"
+            style={{ fontWeight: "normal", color: "#262626" }}
+          >
+            Back to Postings
           </Link>
         }
       />
@@ -521,7 +531,6 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
          *
          */}
         <AntRow gutter={[32, 16]}>
-
           <AntCol xs={24} md={12}>
             <Header className={headerClassNames} subheading>
               Location <RequiredAsterisk>*</RequiredAsterisk>
@@ -547,7 +556,6 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
               </Select>
             </Form.Item>
           </AntCol>
-
         </AntRow>
 
         <AntRow gutter={[32, 16]}>
@@ -639,18 +647,9 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
           {postFilters.length > 0 &&
             postFilters.map((filter, index) => (
               <AntCol>
-                <FilterTag
-                  className="fourteenFont pl-1-5 pr-point-75 universal-middle universal-center"
-                  color={filter.Priority}
-                >
-                  {filter["Filter By"]} -
-                  {filter.CriteriaRestriction
-                    ? " " + filter.CriteriaRestriction
-                    : filter["Filter By"] === "GPA (Unweighted)"
-                    ? " Minimum"
-                    : null}{" "}
-                  {Array.isArray(filter.Criteria)
-                    ? filter.Criteria.length < 4
+                <Tooltip
+                  title={
+                    filter.Criteria.length >= 4
                       ? filter.Criteria.map((val, index) =>
                           index !== filter.Criteria.length - 1
                             ? " " + val
@@ -658,17 +657,40 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
                         ) +
                         " " +
                         filter.Criteria[filter.Criteria.length - 1]
-                      : filter.Criteria.slice(0, 2).map((val) => ` ${val}`) +
-                        ", " +
-                        filter.Criteria[2] +
-                        "..."
-                    : " " + filter.Criteria}
-                  <CloseOutlined
-                    className="ml-1-2"
-                    style={{ fontSize: "10px" }}
-                    onClick={() => removeItem(index)}
-                  />
-                </FilterTag>
+                      : null
+                  }
+                >
+                  <FilterTag
+                    className="fourteenFont pl-1-5 pr-point-75 universal-middle universal-center"
+                    color={filter.Priority}
+                  >
+                    {filter["Filter By"]} -
+                    {filter.CriteriaRestriction
+                      ? " " + filter.CriteriaRestriction
+                      : filter["Filter By"] === "GPA (Unweighted)"
+                      ? " Minimum"
+                      : null}{" "}
+                    {Array.isArray(filter.Criteria)
+                      ? filter.Criteria.length < 4
+                        ? filter.Criteria.map((val, index) =>
+                            index !== filter.Criteria.length - 1
+                              ? " " + val
+                              : null
+                          ) +
+                          " " +
+                          filter.Criteria[filter.Criteria.length - 1]
+                        : filter.Criteria.slice(0, 2).map((val) => ` ${val}`) +
+                          ", " +
+                          filter.Criteria[2] +
+                          "..."
+                      : " " + filter.Criteria}
+                    <CloseOutlined
+                      className="ml-1-2"
+                      style={{ fontSize: "10px" }}
+                      onClick={() => removeItem(index)}
+                    />
+                  </FilterTag>
+                </Tooltip>
               </AntCol>
             ))}
           <AntCol>
