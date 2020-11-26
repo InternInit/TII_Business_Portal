@@ -148,8 +148,7 @@ class App extends React.Component {
             </Sider>
             <Content>
               <div
-                style={{
-                }} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */
+                style={{}} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */
               >
                 <Route
                   path="/dashboard"
@@ -181,6 +180,7 @@ class App extends React.Component {
                         buttonText="Add Post"
                         title="Create New Post"
                         addListing={this.props.addListing}
+                        id={this.props.companyInfo.id}
                       />
                     )}
                   />
