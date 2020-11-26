@@ -336,9 +336,7 @@ const InternshipDetailForm = ({
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
               {courseLevels.map((course) =>
-                trackFilled.has(course) ? null : (
-                  <Option value={course}>{course}</Option>
-                )
+                  <Option value={course} disabled={trackFilled.has(course)}>{course}</Option>
               )}
             </Select>
           </Form.Item>
@@ -353,9 +351,7 @@ const InternshipDetailForm = ({
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
               {activityCategories.map((activity) =>
-                trackFilled.has(activity) ? null : (
-                  <Option value={activity}>{activity}</Option>
-                )
+                  <Option value={activity} disabled={trackFilled.has(activity)}>{activity}</Option>
               )}
             </Select>
           </Form.Item>
