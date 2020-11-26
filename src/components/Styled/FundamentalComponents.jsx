@@ -101,7 +101,7 @@ export const FilterTag = styled.div`
   font-family: Roboto;
   box-shadow: 1px 1px 5px -4px #000000;
 
-  &:hover {
+  :hover {
     cursor: pointer;
     box-shadow: 1px 1px 5px -3px #000000;
     transition: .5s ease;

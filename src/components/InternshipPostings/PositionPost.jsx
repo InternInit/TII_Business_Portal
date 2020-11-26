@@ -4,7 +4,12 @@ import PostingTab from "./PostingTab.jsx";
 import { Button, Row as AntRow, Col as AntCol } from "antd";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "./InfoBar.jsx";
-import { PageContainer, InnerContainer } from "../Styled/FundamentalComponents";
+import {
+  PageContainer,
+  InnerContainer,
+  TabContainer,
+  Header,
+} from "../Styled/FundamentalComponents";
 
 import { Link } from "react-router-dom";
 
@@ -59,7 +64,10 @@ class PositionPost extends Component {
   render() {
     return (
       <PageContainer className="global-container">
-        <NavSearch title="My Internship Postings" placeholder="Search Postings" />
+        <NavSearch
+          title="My Internship Postings"
+          placeholder="Search Postings"
+        />
 
         <InnerContainer className="mt-2 mb-4">
           <AntRow gutter={[32, 16]}>
@@ -81,14 +89,24 @@ class PositionPost extends Component {
            */}
           <InfoBar />
 
-          {this.props.listings.map((post, index) => (
-            <PostingTab
-              status="Active"
-              name={post.Title}
-              interns="0"
-              id={post.Id}
-            />
-          ))}
+          {this.props.listings.length === 0 ? (
+            this.props.listings.map((post, index) => (
+              <PostingTab
+                status="Active"
+                name={post.Title}
+                interns="0"
+                id={post.Id}
+              />
+            ))
+          ) : (
+            <TabContainer className="mt-1-5 py-2 px-6 universal-center">
+              <AntRow justify="center" align="middle">
+                <Header className="twentyFourFont">
+                  You Don't Currently Have Any Internship Postings 
+                </Header>
+              </AntRow>
+            </TabContainer>
+          )}
         </InnerContainer>
       </PageContainer>
     );
