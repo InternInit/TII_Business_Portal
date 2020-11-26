@@ -211,23 +211,24 @@ class InternshipDetails extends React.Component {
   onFinish = (values, allFilters) => {
     console.log(values);
     console.log(allFilters);
-    /**
+    values.Filters = allFilters;
+
     let uuid = uuidv4();
     values.Id = uuid;
     console.log(uuid);
     const headers = {
       headers: {
-        Authorization: "Bearer 6aa19690-d874-4fdd-a1d8-a1168a7b632c",
+        Authorization: "Bearer " + this.props.id,
         ListingId: uuid,
       },
     };
+
     axios
       .post("/api/update_internship_listings", values, headers)
       .then((response) => {
         console.log(JSON.parse(response.data));
         this.props.addListing(JSON.parse(response.data));
       });
-    */
   };
 
   render() {
@@ -335,9 +336,11 @@ const InternshipDetailForm = ({
             extra="What types of courses would you want applicants to have participated in"
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
-              {courseLevels.map((course) =>
-                  <Option value={course} disabled={trackFilled.has(course)}>{course}</Option>
-              )}
+              {courseLevels.map((course) => (
+                <Option value={course} disabled={trackFilled.has(course)}>
+                  {course}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
         );
@@ -350,9 +353,11 @@ const InternshipDetailForm = ({
             extra="What extracurricular activities would you want applicants to have participated in"
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
-              {activityCategories.map((activity) =>
-                  <Option value={activity} disabled={trackFilled.has(activity)}>{activity}</Option>
-              )}
+              {activityCategories.map((activity) => (
+                <Option value={activity} disabled={trackFilled.has(activity)}>
+                  {activity}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
         );
