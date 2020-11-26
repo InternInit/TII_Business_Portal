@@ -18,16 +18,9 @@ const AddFilterStyle = {
   width: "270px",
   height: "40px",
   fontFamily: "roboto",
-  fontColor: "#13C2C2",
   marginTop: "33px",
   align: "inline-block",
 };
-
-const ButtonText = styled.span`
-  font-family: roboto;
-  color: #13c2c2;
-  font-size: 18px;
-`;
 
 const ViewText = styled.span`
   font-family: roboto;
@@ -99,8 +92,8 @@ class ReviewApplicants extends Component {
         }}
       >
         <div style={{ marginBottom: "4vh" }}>
-          <Button style={AddFilterStyle}>
-            <ButtonText>Add Filter</ButtonText>
+          <Button type="default" style={AddFilterStyle}>
+            <span className="sixteenFont">Sort By</span>
           </Button>
 
           {this.state.quickview ? (
