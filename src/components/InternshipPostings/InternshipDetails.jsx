@@ -145,6 +145,8 @@ const buttonStyle = {
   marginBottom: "6vh",
 };
 
+const headerClassNames="twentyFont mb-point-5";
+
 //Validation Rules (Required questions)
 const validationRules = (required, inputName, type = "string", pattern) => [
   {
@@ -469,12 +471,12 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
     <FormContainer>
       <PageHeader
         onBack={() => window.history.back()}
+        style={{ position: "absolute", left: "3.5em", top: "1em" }}
         title={
           <Link to="/internship-listings" style={{ fontWeight: "normal", color: "#262626" }}>
               Back to Postings
           </Link>
         }
-        style={{ position: "absolute", left: "3.5em", top: "1em" }}
       />
       {/**
        *
@@ -489,7 +491,7 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
           Create an Internship Posting
         </Header>
 
-        <Header className="twentyFont mb-point-5" subheading>
+        <Header className={headerClassNames} subheading>
           Job Title <RequiredAsterisk>*</RequiredAsterisk>
         </Header>
         <Form.Item {...FormProps.Title}>
@@ -501,7 +503,7 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
          * Post Description
          *
          */}
-        <Header className="twentyFont mb-point-5" subheading>
+        <Header className={headerClassNames} subheading>
           Job Description <RequiredAsterisk>*</RequiredAsterisk>
         </Header>
         <Form.Item {...FormProps.Description}>
@@ -519,16 +521,18 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
          *
          */}
         <AntRow gutter={[32, 16]}>
+
           <AntCol xs={24} md={12}>
-            <Header className="twentyFont mb-point-5" subheading>
+            <Header className={headerClassNames} subheading>
               Location <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item {...FormProps.Address}>
               <Input size="large" placeholder="City, State" />
             </Form.Item>
           </AntCol>
+
           <AntCol xs={24} md={12}>
-            <Header className="twentyFont mb-point-5" subheading>
+            <Header className={headerClassNames} subheading>
               Relevant Industry <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item {...FormProps.Industries}>
@@ -543,11 +547,12 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
               </Select>
             </Form.Item>
           </AntCol>
+
         </AntRow>
 
         <AntRow gutter={[32, 16]}>
           <AntCol xs={24} lg={8}>
-            <Header className="twentyFont mb-point-5" subheading>
+            <Header className={headerClassNames} subheading>
               Internship Dates <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item {...FormProps.InternshipDates}>
@@ -555,7 +560,7 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
             </Form.Item>
           </AntCol>
           <AntCol xs={24} lg={8}>
-            <Header className="twentyFont mb-point-5" subheading>
+            <Header className={headerClassNames} subheading>
               Available Work Days <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item
@@ -575,7 +580,7 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
             </Form.Item>
           </AntCol>
           <AntCol xs={24} lg={8}>
-            <Header className="twentyFont mb-point-5" subheading>
+            <Header className={headerClassNames} subheading>
               Available Work Times <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
             <Form.Item
@@ -601,7 +606,7 @@ const InternshipDetailForm = ({ buttonText, initialFilters, onFinish, title }) =
          * Additional Information
          *
          */}
-        <Header className="twentyFont mb-point-5" subheading>
+        <Header className={headerClassNames} subheading>
           Additional Information
         </Header>
         <Form.Item {...FormProps.AdditionalInfo}>
