@@ -73,7 +73,6 @@ class MainPage extends React.Component {
                 ))}
             </AntCol>
           </AntRow>
-
           <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
             <AntCol xs={24} sm={24} lg={16}>
               <Header className="twentyFont mb-point-5">Current Interns</Header>
@@ -84,7 +83,7 @@ class MainPage extends React.Component {
                 To be Interviewed
               </Header>
               {candidates
-                .filter((candidate) => candidate.status === "Pending")
+                .filter((candidate) => candidate.status === "Review")
                 .map((student) => (
                   <StudentCard
                     firstName={student.info["First Name"]}
@@ -95,7 +94,6 @@ class MainPage extends React.Component {
                 ))}
             </AntCol>
           </AntRow>
-
           <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
             <MainPercentages />
           </AntRow>
