@@ -3,9 +3,21 @@ const listingReducer = (state = [], action) => {
     case "BATCH_UPDATE_LISTINGS":
       return action.listings;
     case "ADD_LISTING":
-      let newState = state.slice();
-      newState.push(action.newListing);
-      return newState;
+      let newAddState = state.slice();
+      newAddState.push(action.newListing);
+      return newAddState;
+    case "UPDATE_LISTING":
+      let newUpdateState = state.slice();
+      let index = -1;
+      newUpdateState.forEach((listing, i) => {
+        if (listing.Id === action.id) {
+          index = i;
+        }
+      });
+      if (index !== -1) {
+        newUpdateState[index] = action.listing;
+      }
+      return newUpdateState;
     default:
       return state;
   }
