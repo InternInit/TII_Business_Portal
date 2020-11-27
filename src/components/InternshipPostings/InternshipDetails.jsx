@@ -209,10 +209,18 @@ const FormProps = {
 };
 
 class InternshipDetails extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isNewListing: true };
+  }
   formRef = React.createRef();
 
   componentDidMount() {
     if (!this.props.location.pathname.includes("add-listing")) {
+      this.setState({ isNewListing: false });
+      console.log(this.props);
+
       let listingData = this.props.listings.filter(
         (listing) => listing.Id === this.props.location.pathname.split("/")[2]
       )[0];
@@ -222,9 +230,7 @@ class InternshipDetails extends React.Component {
           moment(listingData["Internship Dates"][1]),
         ];
       } catch (e) {}
-      console.log(listingData);
       this.formRef.current.setFieldsValue(listingData);
-      console.log(this.formRef.current);
     }
   }
 
@@ -233,13 +239,19 @@ class InternshipDetails extends React.Component {
     console.log(allFilters);
     values.Filters = allFilters;
 
-    let uuid = uuidv4();
-    values.Id = uuid;
-    console.log(uuid);
+    if (this.state.isNewListing === true) {
+      let uuid = uuidv4();
+      values.Id = uuid;
+      this.props.addListing(JSON.parse(values));
+    } else {
+      values.Id = this.props.location.pathname.split("/")[2];
+      this.props.updateListing(values.Id, values);
+    }
+
     const headers = {
       headers: {
         Authorization: "Bearer " + this.props.id,
-        ListingId: uuid,
+        ListingId: values.Id,
       },
     };
 
@@ -247,7 +259,6 @@ class InternshipDetails extends React.Component {
       .post("/api/update_internship_listings", values, headers)
       .then((response) => {
         console.log(JSON.parse(response.data));
-        this.props.addListing(JSON.parse(response.data));
       });
   };
 

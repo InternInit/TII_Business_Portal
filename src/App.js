@@ -27,6 +27,7 @@ import {
   updateId,
   batchUpdateListings,
   addListing,
+  updateListing,
 } from "./redux/actions";
 
 //axios
@@ -79,6 +80,7 @@ const mapDispatchToProps = {
   updateId,
   batchUpdateListings,
   addListing,
+  updateListing,
 };
 
 class App extends React.Component {
@@ -197,6 +199,8 @@ class App extends React.Component {
                         buttonText="Save Changes"
                         title="Post Information"
                         listings={this.props.listings}
+                        updateListing={this.props.updateListing}
+                        id={this.props.companyInfo.id}
                       />
                     )}
                   />
