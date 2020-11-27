@@ -105,7 +105,7 @@ class App extends React.Component {
         console.log(this.inMemoryToken);
         let id = session.idToken.payload.sub;
         this.props.updateId(session.idToken.payload["custom:companyId"]);
-        this.getBusinessInfo();
+        this.getBusinessInfo(session.idToken.payload);
       })
       .catch((error) => {
         console.log("Session Error: " + error);
@@ -117,8 +117,8 @@ class App extends React.Component {
       });
   }
 
-  getBusinessInfo = () => {
-    this.props.updateName("Open Text Corporation");
+  getBusinessInfo = (payload) => {
+    this.props.updateName(payload["custom:company"]);
     this.props.updateDescription(
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
     );
