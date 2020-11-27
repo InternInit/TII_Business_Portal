@@ -16,6 +16,8 @@ const listingReducer = (state = [], action) => {
       });
       if (index !== -1) {
         newUpdateState[index] = action.listing;
+      } else {
+        newUpdateState.push(action.listing);
       }
       return newUpdateState;
     default:
