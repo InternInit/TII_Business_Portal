@@ -10,6 +10,8 @@ import {
 
 import { Link } from "react-router-dom";
 
+import { Auth } from "aws-amplify";
+
 //Ant D Icons
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 
@@ -24,6 +26,27 @@ const ForgotPass = styled.a`
   margin-top: -19px;
 `;
 
+const openSuccessfulNotification = (title, description) => {
+    notification.open({
+      message: title,
+      description: description,
+      icon: <CheckOutlined style={{ color: "green" }} />,
+      onClick: () => {
+        console.log("Notification Clicked!");
+      },
+    });
+  };
+  
+  const openUnsuccessfulNotification = (title, description) => {
+    notification.open({
+      message: title,
+      description: description,
+      icon: <CloseOutlined style={{ color: "red" }} />,
+      onClick: () => {
+        console.log("Notification Clicked!");
+      },
+    });
+  };
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -81,6 +104,22 @@ class LogIn extends React.Component {
         );
     }
 
+    handleSubmit = async (values) => {
+        let { username, password } = values;
+        try {
+          const user = await Auth.signIn(username, password);
+          this.props.auth();
+          openSuccessfulNotification(
+            "Success",
+            "You will be redirected to the dashboard in a bit."
+          );
+    
+          this.props.history.push("/dashboard");
+        } catch (error) {
+          console.log("error signing in:", error);
+          openUnsuccessfulNotification("Login Error", error.message);
+        }
+      };
 
 }
 export default withRouter(LogIn);

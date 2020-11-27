@@ -90,10 +90,32 @@ class App extends React.Component {
     this.getListings();
   }
 
-  auth = () => {
-    this.props.updateId("6aa19690-d874-4fdd-a1d8-a1168a7b632c");
-    this.getBusinessInfo();
-  };
+  inMemoryToken;
+
+  auth = async () => {
+    Auth.currentSession()
+      .then((session) => {
+        console.log(session);
+        this.inMemoryToken = {
+          token: session.idToken.jwtToken,
+          expiry: session.idToken.payload.exp,
+          refresh: session.refreshToken.token,
+          access: session.accessToken.jwtToken,
+        };
+        console.log(this.inMemoryToken);
+        let id = session.idToken.payload.sub;
+        this.props.updateId(session.idToken.payload["custom:companyId"]);
+        this.getBusinessInfo();
+      })
+      .catch((error) => {
+        console.log("Session Error: " + error);
+        if (window.location.href.split("/")[3] !== "login") {
+          window.location.href =
+            window.location.href.split("/").slice(0, 3).join("/") + "/login";
+        }
+        //TODO: Update to a more elegant solution
+      });
+  }
 
   getBusinessInfo = () => {
     this.props.updateName("Open Text Corporation");
@@ -141,7 +163,11 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Router>
-          <Route path="/login" exact component={Login} />
+          <Route path="/login" exact component={() => (
+            <Login
+              auth={this.auth}
+            />)}
+          />
           <Route path="/signup" exact component={Signup} />
 
           <Layout>
