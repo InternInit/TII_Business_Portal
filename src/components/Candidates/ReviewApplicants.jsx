@@ -149,7 +149,7 @@ class ReviewApplicants extends Component {
         {unreadCandidates.map((student, index) => (
           <CandidateDetailedviewTab
             key={index}
-            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.studentId}/profile_picture`}
+            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0].Name}
             schoolAddress={
@@ -212,7 +212,7 @@ class ReviewApplicants extends Component {
         {reviewCandidates.map((student, index) => (
           <CandidateDetailedviewReviewTab
             key={index}
-            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.studentId}/profile_picture`}
+            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0].Name}
             schoolAddress={
