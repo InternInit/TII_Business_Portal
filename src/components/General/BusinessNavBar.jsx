@@ -106,7 +106,12 @@ class BusinessNavBar extends React.Component {
             </Link>
           </Menu.Item>
 
-          <Menu.Item key="9" style={{ marginTop: "20vh" }}>
+          <Menu.Item 
+              key="9" 
+              style={{ marginTop: "20vh" }} 
+              onClick={() => {
+                this.props.logout();
+              }}>
             <LogoutOutlined />
             <span>Log Out</span>
           </Menu.Item>

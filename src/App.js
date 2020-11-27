@@ -109,13 +109,28 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log("Session Error: " + error);
+        /*
         if (window.location.href.split("/")[3] !== "login") {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
+        */
+       this.props.updateId("6aa19690-d874-4fdd-a1d8-a1168a7b632c");
+       this.getBusinessInfo({"custom:company": "The Internship Initiative LLC."});
+
         //TODO: Update to a more elegant solution
       });
   }
+
+  logout = async () => {
+    Auth.signOut()
+      .then(() => console.log("Signed Out"))
+      .catch(() => console.log("Could Not Sign Out"));
+    if (window.location.href.split("/")[3] !== "login") {
+      window.location.href =
+        window.location.href.split("/").slice(0, 3).join("/") + "/login";
+    }
+  };
 
   getBusinessInfo = (payload) => {
     this.props.updateName(payload["custom:company"]);
@@ -172,7 +187,9 @@ class App extends React.Component {
 
           <Layout>
             <Sider width={80}>
-              <BusinessNavBar />
+              <BusinessNavBar 
+                logout={this.logout}
+              />
             </Sider>
             <Content>
               <div
