@@ -88,7 +88,7 @@ def get_student_candidates():
 def update_student_status():
     body = request.get_data().decode("utf-8")
     headers = request.headers
-    req = requests.post(studentApiUrl, headers={"Authorization": headers.get("Authorization"), "StudentId": headers.get("StudentId")}, json= json.loads(body))
+    req = requests.post(studentApiUrl, headers={"Authorization": headers.get("Authorization"), "InternId": headers.get("InternId")}, json= json.loads(body))
     return jsonify(req.text)
 
 @app.route('/api/update_student_removed', methods=["DELETE"])

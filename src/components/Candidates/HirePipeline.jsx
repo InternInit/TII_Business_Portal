@@ -182,8 +182,8 @@ function HirePipeline(props) {
                         {column.items.map((item, index) => {
                           return (
                             <Draggable
-                              key={item.studentId}
-                              draggableId={item.studentId.toString()}
+                              key={item.internId}
+                              draggableId={item.internId.toString()}
                               index={index}
                             >
                               {(provided) => {
@@ -211,8 +211,8 @@ function HirePipeline(props) {
                                         ][0].split("T")[0]
                                       }
                                       position="Cheese grator"
-                                      id={item.studentId}
-                                      avatar={`https://tii-intern-media.s3.amazonaws.com/${item.studentId}/profile_picture`}
+                                      id={item.internId}
+                                      avatar={`https://tii-intern-media.s3.amazonaws.com/${item.internId}/profile_picture`}
                                     />
                                   </div>
                                 );

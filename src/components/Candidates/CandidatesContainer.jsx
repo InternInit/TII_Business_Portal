@@ -49,10 +49,10 @@ class CandidatesContainer extends Component {
     }
   };
 
-  updateCandidateStatus = (studentId, status) => {
+  updateCandidateStatus = (internId, status) => {
     const headers = {
       headers: {
-        StudentId: studentId,
+        InternId: internId,
         Authorization: "Bearer " + this.props.companyInfo.id,
       },
     };
@@ -63,7 +63,7 @@ class CandidatesContainer extends Component {
         console.log(JSON.parse(response.data));
 
         let index = this.props.companyInfo.candidates.findIndex(
-          (item, i) => item.studentId === studentId
+          (item, i) => item.internId === internId
         );
         console.log(index);
         this.props.updateReduxCandidateStatus(index, status);
@@ -73,7 +73,10 @@ class CandidatesContainer extends Component {
   render() {
     return (
       <div className="global-container">
-        <NavSearch title="Internship Candidates" placeholder="Search Applicants"/>
+        <NavSearch
+          title="Internship Candidates"
+          placeholder="Search Applicants"
+        />
         <CandidatesNavbar defaultSelectedKey={this.findPath()} />
         <ReactSwitch>
           <Route

@@ -65,20 +65,21 @@ class ReviewApplicants extends Component {
     console.log(this.props);
   }
 
-  handleReview = (studentId) => {
-    this.props.updateCandidateStatus(studentId, "Review");
+  handleReview = (internId) => {
+    //console.log(internId);
+    this.props.updateCandidateStatus(internId, "Review");
   };
 
-  handleInterviewUnread = (studentId) => {
-    this.props.updateCandidateStatus(studentId, "Online Interview");
+  handleInterviewUnread = (internId) => {
+    this.props.updateCandidateStatus(internId, "Online Interview");
   };
 
-  handleInterviewReview = (studentId) => {
-    this.props.updateCandidateStatus(studentId, "Online Interview");
+  handleInterviewReview = (internId) => {
+    this.props.updateCandidateStatus(internId, "Online Interview");
   };
 
-  handleReject = (studentId) => {
-    this.props.updateCandidateStatus(studentId, "Rejected");
+  handleReject = (internId) => {
+    this.props.updateCandidateStatus(internId, "Rejected");
   };
 
   render() {
@@ -137,9 +138,9 @@ class ReviewApplicants extends Component {
             industry={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
-            onReview={() => this.handleReview(student.studentId)}
-            onInterview={() => this.handleInterviewUnread(student.studentId)}
-            onReject={() => this.handleReject(student.studentId)}
+            onReview={() => this.handleReview(student.internId)}
+            onInterview={() => this.handleInterviewUnread(student.internId)}
+            onReject={() => this.handleReject(student.internId)}
           />
         ))}
       </React.Fragment>
@@ -173,9 +174,9 @@ class ReviewApplicants extends Component {
             classOne={"Class One"}
             classTwo={"Class Two"}
             classThree={"Class Three"}
-            onReview={() => this.handleReview(student.studentId)}
-            onInterview={() => this.handleInterviewUnread(student.studentId)}
-            onReject={() => this.handleReject(student.studentId)}
+            onReview={() => this.handleReview(student.internId)}
+            onInterview={() => this.handleInterviewUnread(student.internId)}
+            onReject={() => this.handleReject(student.internId)}
           />
         ))}
       </React.Fragment>
@@ -200,8 +201,8 @@ class ReviewApplicants extends Component {
             industry={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"
             }
-            onInterview={() => this.handleInterviewReview(student.studentId)}
-            onReject={() => this.handleReject(student.studentId)}
+            onInterview={() => this.handleInterviewReview(student.internId)}
+            onReject={() => this.handleReject(student.internId)}
           />
         ))}
       </React.Fragment>
@@ -236,8 +237,8 @@ class ReviewApplicants extends Component {
             classOne={"Class One"}
             classTwo={"Class Two"}
             classThree={"Class Three"}
-            onInterview={() => this.handleInterviewReview(student.studentId)}
-            onReject={() => this.handleReject(student.studentId)}
+            onInterview={() => this.handleInterviewReview(student.internId)}
+            onReject={() => this.handleReject(student.internId)}
           />
         ))}
       </React.Fragment>
