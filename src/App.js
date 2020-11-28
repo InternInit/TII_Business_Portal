@@ -48,7 +48,7 @@ import CandidatesContainer from "./components/Candidates/CandidatesContainer.jsx
 import PositionPost from "./components/InternshipPostings/PositionPost.jsx";
 import InternshipDetails from "./components/InternshipPostings/InternshipDetails.jsx";
 import SchoolContact from "./components/SchoolContact/SchoolContact.jsx";
-import InternFeedback from "./components/InternFeedback/InternFeedback.jsx";
+import StudentInternPage from "./components/InternFeedback/StudentInternPage.jsx";
 import FeedbackResponse from "./components/InternFeedback/FeedbackResponse.jsx";
 import Login from "./components/LoginSignup/Login";
 import Signup from "./components/LoginSignup/Signup";
@@ -252,7 +252,7 @@ class App extends React.Component {
                 <Route
                   path="/intern-feedback"
                   exact
-                  component={InternFeedback}
+                  component={StudentInternPage}
                 />
                 <Route
                   path={`/intern-feedback/:id`}
