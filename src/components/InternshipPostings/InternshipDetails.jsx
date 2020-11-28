@@ -29,6 +29,7 @@ import {
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 const { TextArea } = Input;
 const { Option, OptGroup } = Select;
@@ -208,18 +209,49 @@ const FormProps = {
 };
 
 class InternshipDetails extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isNewListing: true };
+  }
+  formRef = React.createRef();
+
+  componentDidMount() {
+    if (!this.props.location.pathname.includes("add-listing")) {
+      this.setState({ isNewListing: false });
+      console.log(this.props);
+
+      let listingData = this.props.listings.filter(
+        (listing) => listing.Id === this.props.location.pathname.split("/")[2]
+      )[0];
+      try {
+        listingData["Internship Dates"] = [
+          moment(listingData["Internship Dates"][0]),
+          moment(listingData["Internship Dates"][1]),
+        ];
+      } catch (e) {}
+      this.formRef.current.setFieldsValue(listingData);
+    }
+  }
+
   onFinish = (values, allFilters) => {
     console.log(values);
     console.log(allFilters);
     values.Filters = allFilters;
 
-    let uuid = uuidv4();
-    values.Id = uuid;
-    console.log(uuid);
+    if (this.state.isNewListing === true) {
+      let uuid = uuidv4();
+      values.Id = uuid;
+      this.props.addListing(JSON.parse(values));
+    } else {
+      values.Id = this.props.location.pathname.split("/")[2];
+      this.props.updateListing(values.Id, values);
+    }
+
     const headers = {
       headers: {
         Authorization: "Bearer " + this.props.id,
-        ListingId: uuid,
+        ListingId: values.Id,
       },
     };
 
@@ -227,7 +259,6 @@ class InternshipDetails extends React.Component {
       .post("/api/update_internship_listings", values, headers)
       .then((response) => {
         console.log(JSON.parse(response.data));
-        this.props.addListing(JSON.parse(response.data));
       });
   };
 
@@ -260,6 +291,7 @@ class InternshipDetails extends React.Component {
               ]}
               buttonText={buttonText}
               title={title}
+              formRef={this.formRef}
               onFinish={this.onFinish}
             />
           </div>
@@ -278,6 +310,7 @@ const InternshipDetailForm = ({
   initialFilters,
   onFinish,
   title,
+  formRef,
 }) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
@@ -496,6 +529,7 @@ const InternshipDetailForm = ({
        */}
       <Form
         {...FormProps.TotalForm}
+        ref={formRef}
         onFinish={(values) => onFinish(values, postFilters)}
       >
         <Header className="twentyEightFont universal-center mb-1" bolded>

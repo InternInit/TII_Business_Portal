@@ -27,6 +27,7 @@ import {
   updateId,
   batchUpdateListings,
   addListing,
+  updateListing,
 } from "./redux/actions";
 
 //axios
@@ -79,6 +80,7 @@ const mapDispatchToProps = {
   updateId,
   batchUpdateListings,
   addListing,
+  updateListing,
 };
 
 class App extends React.Component {
@@ -88,13 +90,50 @@ class App extends React.Component {
     this.getListings();
   }
 
-  auth = () => {
-    this.props.updateId("6aa19690-d874-4fdd-a1d8-a1168a7b632c");
-    this.getBusinessInfo();
+  inMemoryToken;
+
+  auth = async () => {
+    Auth.currentSession()
+      .then((session) => {
+        console.log(session);
+        this.inMemoryToken = {
+          token: session.idToken.jwtToken,
+          expiry: session.idToken.payload.exp,
+          refresh: session.refreshToken.token,
+          access: session.accessToken.jwtToken,
+        };
+        console.log(this.inMemoryToken);
+        let id = session.idToken.payload.sub;
+        this.props.updateId(session.idToken.payload["custom:companyId"]);
+        this.getBusinessInfo(session.idToken.payload);
+      })
+      .catch((error) => {
+        console.log("Session Error: " + error);
+        /*
+        if (window.location.href.split("/")[3] !== "login") {
+          window.location.href =
+            window.location.href.split("/").slice(0, 3).join("/") + "/login";
+        }
+        */
+       this.props.updateId("6aa19690-d874-4fdd-a1d8-a1168a7b632c");
+       this.getBusinessInfo({"custom:company": "The Internship Initiative LLC."});
+
+        //TODO: Update to a more elegant solution
+      });
+  }
+
+  logout = async () => {
+    Auth.signOut()
+      .then(() => console.log("Signed Out"))
+      .catch(() => console.log("Could Not Sign Out"));
+    if (window.location.href.split("/")[3] !== "login") {
+      window.location.href =
+        window.location.href.split("/").slice(0, 3).join("/") + "/login";
+    }
   };
 
-  getBusinessInfo = () => {
-    this.props.updateName("Open Text Corporation");
+  getBusinessInfo = (payload) => {
+    this.props.updateName(payload["custom:company"]);
     this.props.updateDescription(
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
     );
@@ -139,12 +178,18 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Router>
-          <Route path="/login" exact component={Login} />
+          <Route path="/login" exact component={() => (
+            <Login
+              auth={this.auth}
+            />)}
+          />
           <Route path="/signup" exact component={Signup} />
 
           <Layout>
             <Sider width={80}>
-              <BusinessNavBar />
+              <BusinessNavBar 
+                logout={this.logout}
+              />
             </Sider>
             <Content>
               <div
@@ -196,6 +241,9 @@ class App extends React.Component {
                       <InternshipDetails
                         buttonText="Save Changes"
                         title="Post Information"
+                        listings={this.props.listings}
+                        updateListing={this.props.updateListing}
+                        id={this.props.companyInfo.id}
                       />
                     )}
                   />

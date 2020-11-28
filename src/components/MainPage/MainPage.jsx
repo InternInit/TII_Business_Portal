@@ -30,8 +30,8 @@ class MainPage extends React.Component {
         <NavSearch title="Overview" searchBar={false} />
 
         <div className="dashboard-container px-4 py-2">
-          <AntRow gutter={[32, 16]} style={{flex: 1}}>
-            <AntCol xs={24} sm={{span: 24, order: 1}} lg={16}>
+          <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
+            <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
               <Header className="twentyFont mb-point-5"> Listings</Header>
               {listings.slice(0, 5).map((post) => (
                 <PageListings
@@ -42,7 +42,7 @@ class MainPage extends React.Component {
                 />
               ))}
             </AntCol>
-            <AntCol xs={24} sm={{span: 12, order: 2}} lg={8}>
+            <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
               <Header className="twentyFont mb-point-5">
                 Incoming Applicants
               </Header>
@@ -53,7 +53,7 @@ class MainPage extends React.Component {
                     firstName={student.info["First Name"]}
                     lastName={student.info["Last Name"]}
                     age={" (" + student.info["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.studentId}/profile_picture`}
+                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
                   />
                 ))}
             </AntCol>
@@ -68,13 +68,12 @@ class MainPage extends React.Component {
                     firstName={student.info["First Name"]}
                     lastName={student.info["Last Name"]}
                     age={" (" + student.info["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.studentId}/profile_picture`}
+                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
                   />
                 ))}
             </AntCol>
           </AntRow>
-
-          <AntRow gutter={[32, 16]} style={{flex: 1}}>
+          <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
             <AntCol xs={24} sm={24} lg={16}>
               <Header className="twentyFont mb-point-5">Current Interns</Header>
               <PageFeedback />
@@ -84,19 +83,18 @@ class MainPage extends React.Component {
                 To be Interviewed
               </Header>
               {candidates
-                .filter((candidate) => candidate.status === "Pending")
+                .filter((candidate) => candidate.status === "Review")
                 .map((student) => (
                   <StudentCard
                     firstName={student.info["First Name"]}
                     lastName={student.info["Last Name"]}
                     age={" (" + student.info["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.studentId}/profile_picture`}
+                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
                   />
                 ))}
             </AntCol>
           </AntRow>
-
-          <AntRow gutter={[32, 16]} style={{flex: 1}}>
+          <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
             <MainPercentages />
           </AntRow>
         </div>

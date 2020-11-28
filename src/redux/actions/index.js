@@ -75,3 +75,11 @@ export const addListing = (newListing) => {
     newListing,
   };
 };
+
+export const updateListing = (id, listing) => {
+  return {
+    type: "UPDATE_LISTING",
+    id,
+    listing,
+  };
+};
