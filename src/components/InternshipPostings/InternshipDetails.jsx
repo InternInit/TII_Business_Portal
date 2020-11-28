@@ -746,10 +746,12 @@ const InternshipDetailForm = ({
           onCancel={() => {
             form.resetFields();
             toggleModal(false);
+            toggleCriteria({...isCriteriaOn, on: false });
           }}
           onOk={() => {
             form.submit();
             toggleModal(false);
+            toggleCriteria({...isCriteriaOn, on: false });
           }}
           okText="Create"
           okButtonProps={{ htmlType: "submit" }}
