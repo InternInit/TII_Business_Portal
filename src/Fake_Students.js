@@ -6,6 +6,7 @@ export const students = [
         "email": "aperrin0@ucla.edu",
         "gender": "Female",
         "position": "Assistant Manager",
+        "image": "https://arhsharbinger.com/wp-content/uploads/2018/11/image1-17-900x675.jpeg",
         "school": {
             "name": "Skippad",
             "address": "46 Hudson Road",
@@ -231,6 +232,7 @@ export const students = [
         "email": "ksalkeld1@columbia.edu",
         "gender": "Male",
         "position": "Assistant Professor",
+        "image": "https://arhsharbinger.com/wp-content/uploads/2019/09/unnamed-7-900x675.jpg",
         "school": {
             "name": "Zooxo",
             "address": "8690 Orin Drive",
@@ -433,6 +435,7 @@ export const students = [
         "email": "jmcclay2@whitehouse.gov",
         "gender": "Male",
         "position": "Staff Scientist",
+        "image": "https://i1.wp.com/interninit.com/wp-content/uploads/2020/10/IMG_8054-2-scaled.jpg?ssl=1",
         "school": {
             "name": "Kazu",
             "address": "2139 Oak Park",
@@ -683,6 +686,7 @@ export const students = [
         "email": "aelias3@mayoclinic.com",
         "gender": "Male",
         "position": "Librarian",
+        "image": "https://i2.wp.com/interninit.com/wp-content/uploads/2020/10/IMG_8014-2-scaled.jpg?ssl=1",
         "school": {
             "name": "Quinu",
             "address": "29674 Leroy Center",
@@ -868,6 +872,7 @@ export const students = [
         "email": "lbarnett4@ebay.com",
         "gender": "Male",
         "position": "Legal Assistant",
+        "image": "https://arhsharbinger.com/wp-content/uploads/2020/03/unnamed-4.jpg",
         "school": {
             "name": "Thoughtbridge",
             "address": "2168 North Terrace",
@@ -1189,6 +1194,7 @@ export const students = [
         "email": "rriding5@ezinearticles.com",
         "gender": "Female",
         "position": "Staff Scientist",
+        "image": "https://www.mercurynews.com/wp-content/uploads/2019/11/Tesla-Pickup.jpg",
         "school": {
             "name": "Omba",
             "address": "24835 Florence Junction",
@@ -1286,6 +1292,7 @@ export const students = [
         "email": "rmenary6@ibm.com",
         "gender": "Female",
         "position": "Senior Cost Accountant",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7WUXXZqJhZqRyG7wvVYkPGXQW4rX5_Gnnw&usqp=CAU",
         "school": {
             "name": "Babbleset",
             "address": "73281 Pepper Wood Hill",
@@ -1617,6 +1624,7 @@ export const students = [
         "email": "rinnot7@google.com.au",
         "gender": "Male",
         "position": "Database Administrator I",
+        "image": "https://c.files.bbci.co.uk/E86F/production/_101130595_hi046470518.jpg",
         "school": {
             "name": "Vinder",
             "address": "80 Anniversary Hill",
@@ -1765,6 +1773,7 @@ export const students = [
         "email": "gnardrup8@indiegogo.com",
         "gender": "Female",
         "position": "Office Assistant IV",
+        "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Teemo_18.jpg",
         "school": {
             "name": "Tagchat",
             "address": "31833 Karstens Place",
@@ -2041,6 +2050,7 @@ export const students = [
         "email": "bzmitrovich9@mayoclinic.com",
         "gender": "Male",
         "position": "Account Coordinator",
+        "image": "https://www.somagnews.com/wp-content/uploads/2020/08/jimin_logra_nuevo_record_en_spotify.jpg_793492074-e1597432656304.jpg",
         "school": {
             "name": "Brightdog",
             "address": "9 Center Way",
