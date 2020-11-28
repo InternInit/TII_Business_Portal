@@ -56,7 +56,7 @@ const InfoBar = (props) => {
           className="universal-center"
           xs={0}
           sm={props.fieldThree.sizeSm ? props.fieldThree.sizeSm : 6}
-          lg={props.fieldTwo.sizeLg ? props.fieldTwo.sizeLg : null}
+          lg={props.fieldThree.sizeLg ? props.fieldThree.sizeLg : null}
         >
           <Info className="sixteenFont">{props.fieldThree.name}</Info>
         </AntCol>
@@ -64,7 +64,7 @@ const InfoBar = (props) => {
           className="universal-center"
           xs={0}
           sm={props.fieldFour.sizeSm ? props.fieldFour.sizeSm : 6}
-          lg={props.fieldTwo.sizeLg ? props.fieldTwo.sizeLg : null}
+          lg={props.fieldFour.sizeLg ? props.fieldFour.sizeLg : null}
         >
           <Info className="sixteenFont">{props.fieldFour.name}</Info>
         </AntCol>

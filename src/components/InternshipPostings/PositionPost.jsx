@@ -87,7 +87,13 @@ class PositionPost extends Component {
           {/**
            * Info Bar
            */}
-          <InfoBar />
+          <InfoBar
+            mobileHeader="Postings"
+            fieldOne={{ name: "Name" }}
+            fieldTwo={{ name: "Status" }}
+            fieldThree={{ name: "Applicants" }}
+            fieldFour={{ name: "Edit Details" }}
+          />
 
           {this.props.listings.length !== 0 ? (
             this.props.listings.map((post, index) => (
