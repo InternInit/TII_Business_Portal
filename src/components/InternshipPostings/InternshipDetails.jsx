@@ -746,12 +746,12 @@ const InternshipDetailForm = ({
           onCancel={() => {
             form.resetFields();
             toggleModal(false);
-            toggleCriteria({...isCriteriaOn, on: false });
+            toggleCriteria({ ...isCriteriaOn, on: false });
           }}
           onOk={() => {
             form.submit();
             toggleModal(false);
-            toggleCriteria({...isCriteriaOn, on: false });
+            toggleCriteria({ ...isCriteriaOn, on: false });
           }}
           okText="Create"
           okButtonProps={{ htmlType: "submit" }}
@@ -769,13 +769,14 @@ const InternshipDetailForm = ({
               <AntCol xs={24} lg={18} xl={19}>
                 <Form.Item name="Filter By" key="filterBy">
                   <Select
-                    onChange={(value) =>
+                    onChange={(value) => {
                       toggleCriteria({
                         ...isCriteriaOn,
                         on: true,
                         criteria: value,
-                      })
-                    }
+                      });
+                      form.resetFields(["Criteria", "Priority", "CriteriaRestriction"]);
+                    }}
                     className="universal-left"
                     size="large"
                     style={{ width: "100%" }}
