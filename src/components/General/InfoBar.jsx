@@ -36,38 +36,46 @@ const InfoBar = (props) => {
         <AntCol className="universal-center" xs={24} sm={0}>
           <Info className="twentyFont">{props.mobileHeader}</Info>
         </AntCol>
-        <AntCol
-          className="universal-left"
-          xs={0}
-          sm={props.fieldOne.sizeSm ? props.fieldOne.sizeSm : 9}
-          lg={props.fieldOne.sizeLg ? props.fieldOne.sizeLg : 7}
-        >
-          <Info className="sixteenFont">{props.fieldOne.name}</Info>
-        </AntCol>
-        <AntCol
-          className="universal-center"
-          xs={0}
-          sm={props.fieldTwo.sizeSm ? props.fieldTwo.sizeSm : 3}
-          lg={props.fieldTwo.sizeLg ? props.fieldTwo.sizeLg : 5}
-        >
-          <Info className="sixteenFont">{props.fieldTwo.name}</Info>
-        </AntCol>
-        <AntCol
-          className="universal-center"
-          xs={0}
-          sm={props.fieldThree.sizeSm ? props.fieldThree.sizeSm : 6}
-          lg={props.fieldThree.sizeLg ? props.fieldThree.sizeLg : null}
-        >
-          <Info className="sixteenFont">{props.fieldThree.name}</Info>
-        </AntCol>
-        <AntCol
-          className="universal-center"
-          xs={0}
-          sm={props.fieldFour.sizeSm ? props.fieldFour.sizeSm : 6}
-          lg={props.fieldFour.sizeLg ? props.fieldFour.sizeLg : null}
-        >
-          <Info className="sixteenFont">{props.fieldFour.name}</Info>
-        </AntCol>
+        {props.fieldOne && (
+          <AntCol
+            className="universal-left"
+            xs={0}
+            sm={props.fieldOne.sizeSm ? props.fieldOne.sizeSm : 9}
+            lg={props.fieldOne.sizeLg ? props.fieldOne.sizeLg : 7}
+          >
+            <Info className="sixteenFont">{props.fieldOne.name}</Info>
+          </AntCol>
+        )}
+        {props.fieldTwo && (
+          <AntCol
+            className="universal-center"
+            xs={0}
+            sm={props.fieldTwo.sizeSm ? props.fieldTwo.sizeSm : 3}
+            lg={props.fieldTwo.sizeLg ? props.fieldTwo.sizeLg : 5}
+          >
+            <Info className="sixteenFont">{props.fieldTwo.name}</Info>
+          </AntCol>
+        )}
+        {props.fieldThree && (
+          <AntCol
+            className="universal-center"
+            xs={0}
+            sm={props.fieldThree.sizeSm ? props.fieldThree.sizeSm : 6}
+            lg={props.fieldThree.sizeLg ? props.fieldThree.sizeLg : null}
+          >
+            <Info className="sixteenFont">{props.fieldThree.name}</Info>
+          </AntCol>
+        )}
+        {props.fieldFour && (
+          <AntCol
+            className="universal-center"
+            xs={0}
+            sm={props.fieldFour.sizeSm ? props.fieldFour.sizeSm : 6}
+            lg={props.fieldFour.sizeLg ? props.fieldFour.sizeLg : null}
+          >
+            <Info className="sixteenFont">{props.fieldFour.name}</Info>
+          </AntCol>
+        )}
       </AntRow>
     </Container>
   );
