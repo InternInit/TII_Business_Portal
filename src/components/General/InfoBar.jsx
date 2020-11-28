@@ -16,18 +16,12 @@ const Container = styled.div`
   border-bottom: 1px solid #d1d1d1;
 `;
 
-//CSS Constants
-const dividerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  width: "90vh",
-  marginLeft: "25vh",
-};
-
 const InfoBar = (props) => {
   return (
     <Container className="px-6 pb-point-5 internship-posting-responsive-tab-container">
-      <AntRow>
+      <AntRow 
+            style={{backgroundColor: "red"}}
+            >
         {/**
          *
          * Name
@@ -40,8 +34,9 @@ const InfoBar = (props) => {
           <AntCol
             className="universal-left"
             xs={0}
-            sm={props.fieldOne.sizeSm ? props.fieldOne.sizeSm : 9}
-            lg={props.fieldOne.sizeLg ? props.fieldOne.sizeLg : 7}
+            sm={props.fieldOne.sm ? props.fieldOne.sm : 9}
+            lg={props.fieldOne.lg ? props.fieldOne.lg : 7}
+            style={{backgroundColor: "blue"}}
           >
             <Info className="sixteenFont">{props.fieldOne.name}</Info>
           </AntCol>
@@ -50,8 +45,8 @@ const InfoBar = (props) => {
           <AntCol
             className="universal-center"
             xs={0}
-            sm={props.fieldTwo.sizeSm ? props.fieldTwo.sizeSm : 3}
-            lg={props.fieldTwo.sizeLg ? props.fieldTwo.sizeLg : 5}
+            sm={props.fieldTwo.sm ? props.fieldTwo.sm : 3}
+            lg={props.fieldTwo.lg ? props.fieldTwo.lg : 5}
           >
             <Info className="sixteenFont">{props.fieldTwo.name}</Info>
           </AntCol>
@@ -60,8 +55,8 @@ const InfoBar = (props) => {
           <AntCol
             className="universal-center"
             xs={0}
-            sm={props.fieldThree.sizeSm ? props.fieldThree.sizeSm : 6}
-            lg={props.fieldThree.sizeLg ? props.fieldThree.sizeLg : null}
+            sm={props.fieldThree.sm ? props.fieldThree.sm : 6}
+            lg={props.fieldThree.lg ? props.fieldThree.lg : 6}
           >
             <Info className="sixteenFont">{props.fieldThree.name}</Info>
           </AntCol>
@@ -70,8 +65,9 @@ const InfoBar = (props) => {
           <AntCol
             className="universal-center"
             xs={0}
-            sm={props.fieldFour.sizeSm ? props.fieldFour.sizeSm : 6}
-            lg={props.fieldFour.sizeLg ? props.fieldFour.sizeLg : null}
+            sm={props.fieldFour.sm ? props.fieldFour.sm : 6}
+            lg={props.fieldFour.lg ? props.fieldFour.lg : 6}
+            style={{backgroundColor: "blue"}}
           >
             <Info className="sixteenFont">{props.fieldFour.name}</Info>
           </AntCol>
