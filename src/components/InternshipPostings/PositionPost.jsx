@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PostingTab from "./PostingTab.jsx";
 import { Button, Row as AntRow, Col as AntCol } from "antd";
 import NavSearch from "../General/NavSearch.jsx";
-import InfoBar from "./InfoBar.jsx";
+import InfoBar from "../General/InfoBar.jsx";
 import {
   PageContainer,
   InnerContainer,
