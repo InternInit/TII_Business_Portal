@@ -19,9 +19,7 @@ const Container = styled.div`
 const InfoBar = (props) => {
   return (
     <Container className="px-6 pb-point-5 internship-posting-responsive-tab-container">
-      <AntRow 
-            style={{backgroundColor: "red"}}
-            >
+      <AntRow>
         {/**
          *
          * Name
@@ -36,7 +34,6 @@ const InfoBar = (props) => {
             xs={0}
             sm={props.fieldOne.sm ? props.fieldOne.sm : 9}
             lg={props.fieldOne.lg ? props.fieldOne.lg : 7}
-            style={{backgroundColor: "blue"}}
           >
             <Info className="sixteenFont">{props.fieldOne.name}</Info>
           </AntCol>
@@ -67,7 +64,6 @@ const InfoBar = (props) => {
             xs={0}
             sm={props.fieldFour.sm ? props.fieldFour.sm : 6}
             lg={props.fieldFour.lg ? props.fieldFour.lg : 6}
-            style={{backgroundColor: "blue"}}
           >
             <Info className="sixteenFont">{props.fieldFour.name}</Info>
           </AntCol>
