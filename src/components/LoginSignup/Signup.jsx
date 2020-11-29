@@ -298,12 +298,52 @@ class SignUp extends React.Component {
         },
       });
       // Dont open the email conf modal just yet
-      //this.setState({ emailConfirmationVisible: true });
+      this.setState({ emailConfirmationVisible: true });
       console.log(user);
     } catch (error) {
       console.log("error signing up:", error);
       openUnsuccessfulNotification("Signup Error", error.message);
     }
+  };
+
+  handleOk = async (e) => {
+    const values = await this.emailFormRef.current.getFieldsValue();
+    const code = values.confirmationCode;
+    console.log(values.confirmationCode);
+    const username = this.state.username;
+    const password = this.state.password;
+    console.log(username);
+    try {
+      const callback = await Auth.confirmSignUp(username, code);
+      console.log(callback);
+      openSuccessfulNotification(
+        "Success",
+        "You will be redirected to the dashboard in a bit."
+      );
+      Auth.signOut()
+        .then(() => console.log("Signed Out"))
+        .catch(() => console.log("Could Not Sign Out"));
+
+      const user = await Auth.signIn(username, password);
+      this.setState({
+        emailConfirmationVisible: false,
+      });
+      //this.props.auth();
+      //this.props.history.push("/dashboard");
+    } catch (error) {
+      console.log(error);
+      openUnsuccessfulNotification(
+        "Confirmation Code Error",
+        "Sorry, we couldnt confirm that code."
+      );
+    }
+  };
+
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      emailConfirmationVisible: false,
+    });
   };
 }
 export default withRouter(SignUp);
