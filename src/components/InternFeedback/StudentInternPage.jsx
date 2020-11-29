@@ -40,16 +40,18 @@ class InternFeedback extends Component {
 
           <InfoBar
             mobileHeader="Interns"
-            fieldOne={{ name: "Name", sm: 10, lg: 8 }}
-            fieldTwo={{ name: "School", sm: 6, lg: 8 }}
-            fieldThree={{ name: "Actions", sm: 8, lg: 8 }}
-            fieldFour={{ name: "", sm: 0, lg: 0 }}
+            fieldOne={{ name: "Name", sm: 10, lg: 6 }}
+            fieldTwo={{ name: "Age", sm: 2, lg: 2 }}
+            fieldThree={{ name: "State", sm: 2, lg: 2 }}
+            fieldFour={{ name: "School", sm: 5, lg: 8 }}
+            fieldFive={{ name: "Actions", sm: 5, lg: 6 }}
           />
 
           {students.map((student) => (
             <StudentInternTab
               firstName={student.firstName}
               lastName={student.lastName}
+              age={student.age}
               id={student.id}
               position={student.position}
               school={student.school}

@@ -68,6 +68,16 @@ const InfoBar = (props) => {
             <Info className="sixteenFont">{props.fieldFour.name}</Info>
           </AntCol>
         )}
+        {props.fieldFive && (
+          <AntCol
+            className="universal-center"
+            xs={0}
+            sm={props.fieldFive.sm && props.fieldFive.sm}
+            lg={props.fieldFive.lg && props.fieldFive.lg}
+          >
+            <Info className="sixteenFont">{props.fieldFive.name}</Info>
+          </AntCol>
+        )}
       </AntRow>
     </Container>
   );

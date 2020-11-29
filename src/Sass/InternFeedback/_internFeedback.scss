@@ -1,5 +1,7 @@
 @import "../Globals/breakpoints";
 @import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
 
 .student-intern-tab {
   &-responsive-tab-container {
@@ -28,6 +30,12 @@
 
   &-action-icon {
       color: #bfbfbf;
+
+      @include lg {
+          margin-left: .1em;
+          margin-right: .1em;
+          @include font-size(20px);
+      }
   }
 
   &-click-more-icon {

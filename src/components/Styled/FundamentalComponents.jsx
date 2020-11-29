@@ -71,6 +71,7 @@ export const Header = styled.div`
 
 export const Caption = styled.span`
   text-align: center;
+  font-family: roboto;
 `;
 
 export const RequiredAsterisk = styled.span`
