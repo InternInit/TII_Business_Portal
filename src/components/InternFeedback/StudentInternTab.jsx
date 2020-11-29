@@ -7,8 +7,7 @@ import {
   Caption,
 } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineRight } from "react-icons/ai";
-import { BiCommentDetail } from "react-icons/bi";
-import { GrScorecard, GrDocumentTime } from "react-icons/gr";
+import { BiMessageSquareDetail, BiTime, BiNotepad } from "react-icons/bi";
 import "../../App.scss";
 
 const { useBreakpoint } = Grid;
@@ -34,7 +33,7 @@ const StudentInternTab = (props) => {
             <AntCol>
               <Avatar size={64} src={props.avatar} />
             </AntCol>
-            <AntCol offset={1}>
+            <AntCol offset={2}>
               {isXs ? (
                 <>
                   <AntRow justify="center">
@@ -73,19 +72,11 @@ const StudentInternTab = (props) => {
         </AntCol>
 
         {/**Applicants */}
-        <AntCol
-          className="universal-middle"
-          xs={0}
-          sm={6}
-          lg={8}
-        >
-          <AntRow
-            justify="center"
-            align="middle"
-          >
-            <BiCommentDetail className="thirtySixFont ml-point-25 mr-point-25" />
-            <GrScorecard className="thirtySixFont ml-point-25 mr-point-25" />
-            <GrDocumentTime className="thirtySixFont ml-point-25 mr-point-25" />
+        <AntCol className="universal-middle" xs={0} sm={6} lg={8}>
+          <AntRow justify="center" align="middle">
+            <BiMessageSquareDetail className="student-intern-tab-action-icon thirtyTwoFont ml-point-25 mr-point-25" />
+            <BiNotepad className="student-intern-tab-action-icon thirtyTwoFont ml-point-25 mr-point-25" />
+            <BiTime className="student-intern-tab-action-icon thirtyTwoFont ml-point-25 mr-point-25" />
           </AntRow>
         </AntCol>
 

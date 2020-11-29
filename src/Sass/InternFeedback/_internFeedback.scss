@@ -1,4 +1,5 @@
 @import "../Globals/breakpoints";
+@import "../Globals/variables";
 
 .student-intern-tab {
   &-responsive-tab-container {
@@ -19,16 +20,20 @@
       cursor: pointer;
 
       .student-intern-tab-click-more-icon {
-          color: green;
+          color: #595959;
           transition: .3s ease;
       }
     }
+  }
+
+  &-action-icon {
+      color: #bfbfbf;
   }
 
   &-click-more-icon {
     position: absolute;
     right: 1em;
     top: calc(50% - 12px);
-    color: #c5d1d8;
+    color: #bfbfbf;
   }
 }
