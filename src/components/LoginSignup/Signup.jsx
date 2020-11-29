@@ -297,7 +297,6 @@ class SignUp extends React.Component {
           "custom:role": "Admin",
         },
       });
-      // Dont open the email conf modal just yet
       this.setState({ emailConfirmationVisible: true });
       console.log(user);
     } catch (error) {
@@ -328,8 +327,8 @@ class SignUp extends React.Component {
       this.setState({
         emailConfirmationVisible: false,
       });
-      //this.props.auth();
-      //this.props.history.push("/dashboard");
+      this.props.auth();
+      this.props.history.push("/dashboard");
     } catch (error) {
       console.log(error);
       openUnsuccessfulNotification(

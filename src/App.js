@@ -183,7 +183,11 @@ class App extends React.Component {
               auth={this.auth}
             />)}
           />
-          <Route path="/signup" exact component={Signup} />
+          <Route path="/signup" exact component={() => (
+            <Signup
+              auth={this.auth}
+            />)} 
+          />
 
           <Layout>
             <Sider width={80}>

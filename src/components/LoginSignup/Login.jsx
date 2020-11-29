@@ -343,8 +343,8 @@ class LogIn extends React.Component {
             "You will be redirected to the dashboard in a bit."
           );
 
-          //this.props.auth();
-          //this.props.history.push("/dashboard");
+          this.props.auth();
+          this.props.history.push("/dashboard");
         }
         
       } catch (error) {
@@ -388,7 +388,7 @@ class LogIn extends React.Component {
           Auth.forgotPasswordSubmit(this.state.username, values["conf-code"], values["new-pass"])
           .then(data => {
             console.log(data)
-            message.success("Your password has been changed")
+            message.success("Your password has been changed. Please login now.")
 
             this.setState({
               forgotPassVisible: false,
@@ -431,8 +431,8 @@ class LogIn extends React.Component {
           })
           message.success("Your password has been changed. You will be redirected soon.");
 
-          //this.props.auth();
-          //this.props.history.push("/dashboard");
+          this.props.auth();
+          this.props.history.push("/dashboard");
         })
         .catch(err => {
           console.log(err)
