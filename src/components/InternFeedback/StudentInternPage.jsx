@@ -40,8 +40,8 @@ class InternFeedback extends Component {
 
           <InfoBar
             mobileHeader="Interns"
-            fieldOne={{ name: "Name", sm: 8, lg: 8 }}
-            fieldTwo={{ name: "School", sm: 8, lg: 8 }}
+            fieldOne={{ name: "Name", sm: 10, lg: 8 }}
+            fieldTwo={{ name: "School", sm: 6, lg: 8 }}
             fieldThree={{ name: "Actions", sm: 6, lg: 6 }}
             fieldFour={{ name: "", sm: 2, lg: 2 }}
           />

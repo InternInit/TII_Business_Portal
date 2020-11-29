@@ -9,6 +9,7 @@ import {
 import { AiOutlineRight } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 import { GrScorecard, GrDocumentTime } from "react-icons/gr";
+import "../../App.scss";
 
 const { useBreakpoint } = Grid;
 
@@ -27,43 +28,59 @@ const StudentInternTab = (props) => {
        * Listing Name + Industry
        *
        */}
-      <AntRow gutter={[32, 0]} justify="center">
-          <AntCol>
-            <Avatar size={64} src={props.avatar} />
-          </AntCol>
-        <AntCol className="universal-middle" xs={24} sm={6}>
-          {isXs ? (
-            <>
-              <AntRow justify="center">
-                <Header className="twentyFont">
-                  {props.firstName} {props.lastName}
-                </Header>
-              </AntRow>
-              <AntRow className="mb-1-5" justify="center">
-                <Caption className="fourteenFont">{props.position}</Caption>
-              </AntRow>
-            </>
-          ) : (
-            <>
-              <AntRow justify="start">
-                <Header className="eighteenFont">
-                  {props.firstName} {props.lastName}
-                </Header>
-              </AntRow>
-              <AntRow justify="start">
-                <Caption className="fourteenFont">{props.position}</Caption>
-              </AntRow>
-            </>
-          )}
+      <AntRow justify="center">
+        <AntCol
+          className="universal-middle"
+          xs={24}
+          sm={10}
+          lg={8}
+          style={{border: "1px solid black"}}
+        >
+          <AntRow>
+            <AntCol>
+              <Avatar size={64} src={props.avatar} />
+            </AntCol>
+            <AntCol offset={1}>
+              {isXs ? (
+                <>
+                  <AntRow justify="center">
+                    <Header className="twentyFont" bolded>
+                      {props.firstName} {props.lastName}
+                    </Header>
+                  </AntRow>
+                  <AntRow className="mb-1-5" justify="center">
+                    <Caption className="fourteenFont">{props.position}</Caption>
+                  </AntRow>
+                </>
+              ) : (
+                <>
+                  <AntRow justify="start">
+                    <Header className="eighteenFont" bolded>
+                      {props.firstName} {props.lastName}
+                    </Header>
+                  </AntRow>
+                  <AntRow justify="start">
+                    <Caption className="fourteenFont">{props.position}</Caption>
+                  </AntRow>
+                </>
+              )}
+            </AntCol>
+          </AntRow>
         </AntCol>
 
         {/**Status */}
-        <AntCol className="universal-center universal-middle" xs={24} sm={8}>
+        <AntCol
+          className="universal-center universal-middle"
+          xs={24}
+          sm={6}
+          lg={8}
+          style={{border: "1px solid black"}}
+        >
           <Header className="eighteenFont">{props.school.name}</Header>
         </AntCol>
 
         {/**Applicants */}
-        <AntCol xs={0} sm={6}>
+        <AntCol xs={0} sm={6} lg={6} style={{border: "1px solid black"}}>
           <AntRow justify="center">
             <BiCommentDetail />
             <GrScorecard />
@@ -72,7 +89,11 @@ const StudentInternTab = (props) => {
         </AntCol>
 
         {/**Details */}
-        <AntCol className="universal-center universal-middle">
+        <AntCol
+          className="universal-center universal-middle"
+          style={{border: "1px solid black"}}
+          sm={2}
+        >
           <AiOutlineRight />
         </AntCol>
       </AntRow>
