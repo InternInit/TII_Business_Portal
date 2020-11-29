@@ -1,0 +1,33 @@
+@import "../Globals/breakpoints";
+
+.student-intern-tab {
+  &-responsive-tab-container {
+    position: relative;
+
+    @include lg {
+      padding-left: 3em;
+      padding-right: 3em;
+    }
+    @include sm {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+
+    &:hover {
+      box-shadow: 1px 1px 5px -3px;
+      transition: .3s ease;
+
+      .student-intern-tab-click-more-icon {
+          color: green;
+          transition: .3s ease;
+      }
+    }
+  }
+
+  &-click-more-icon {
+    position: absolute;
+    right: 1em;
+    top: calc(50% - 12px);
+    color: #c5d1d8;
+  }
+}

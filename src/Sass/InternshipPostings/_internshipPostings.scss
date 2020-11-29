@@ -2,6 +2,8 @@
 
 .internship-posting {
   &-responsive-tab-container {
+    position: relative;
+
     @include lg {
       padding-left: 3em;
       padding-right: 3em;
