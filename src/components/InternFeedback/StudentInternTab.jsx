@@ -28,76 +28,73 @@ const StudentInternTab = (props) => {
        * Listing Name + Industry
        *
        */}
-        <AntRow className="py-1-5 px-6" justify="center">
-          <AntCol
-            className="universal-middle"
-            xs={24}
-            sm={10}
-            lg={8}
-            style={{ border: "1px solid black" }}
+      <AntRow className="py-1-5 px-6" justify="center">
+        <AntCol className="universal-middle" xs={24} sm={10} lg={8}>
+          <AntRow>
+            <AntCol>
+              <Avatar size={64} src={props.avatar} />
+            </AntCol>
+            <AntCol offset={1}>
+              {isXs ? (
+                <>
+                  <AntRow justify="center">
+                    <Header className="twentyFont" bolded>
+                      {props.firstName} {props.lastName}
+                    </Header>
+                  </AntRow>
+                  <AntRow className="mb-1-5" justify="center">
+                    <Caption className="fourteenFont">{props.position}</Caption>
+                  </AntRow>
+                </>
+              ) : (
+                <>
+                  <AntRow justify="start">
+                    <Header className="twentyFont" bolded>
+                      {props.firstName} {props.lastName}
+                    </Header>
+                  </AntRow>
+                  <AntRow justify="start">
+                    <Caption className="fourteenFont">{props.position}</Caption>
+                  </AntRow>
+                </>
+              )}
+            </AntCol>
+          </AntRow>
+        </AntCol>
+
+        {/**Status */}
+        <AntCol
+          className="universal-center universal-middle"
+          xs={24}
+          sm={6}
+          lg={8}
+        >
+          <Header className="eighteenFont">{props.school.name}</Header>
+        </AntCol>
+
+        {/**Applicants */}
+        <AntCol
+          className="universal-middle"
+          xs={0}
+          sm={6}
+          lg={8}
+        >
+          <AntRow
+            justify="center"
+            align="middle"
           >
-            <AntRow>
-              <AntCol>
-                <Avatar size={64} src={props.avatar} />
-              </AntCol>
-              <AntCol offset={1}>
-                {isXs ? (
-                  <>
-                    <AntRow justify="center">
-                      <Header className="twentyFont" bolded>
-                        {props.firstName} {props.lastName}
-                      </Header>
-                    </AntRow>
-                    <AntRow className="mb-1-5" justify="center">
-                      <Caption className="fourteenFont">
-                        {props.position}
-                      </Caption>
-                    </AntRow>
-                  </>
-                ) : (
-                  <>
-                    <AntRow justify="start">
-                      <Header className="eighteenFont" bolded>
-                        {props.firstName} {props.lastName}
-                      </Header>
-                    </AntRow>
-                    <AntRow justify="start">
-                      <Caption className="fourteenFont">
-                        {props.position}
-                      </Caption>
-                    </AntRow>
-                  </>
-                )}
-              </AntCol>
-            </AntRow>
-          </AntCol>
+            <BiCommentDetail className="thirtySixFont ml-point-25 mr-point-25" />
+            <GrScorecard className="thirtySixFont ml-point-25 mr-point-25" />
+            <GrDocumentTime className="thirtySixFont ml-point-25 mr-point-25" />
+          </AntRow>
+        </AntCol>
 
-          {/**Status */}
-          <AntCol
-            className="universal-center universal-middle"
-            xs={24}
-            sm={6}
-            lg={8}
-            style={{ border: "1px solid black" }}
-          >
-            <Header className="eighteenFont">{props.school.name}</Header>
-          </AntCol>
-
-          {/**Applicants */}
-          <AntCol xs={0} sm={6} lg={8} style={{ border: "1px solid black" }}>
-            <AntRow justify="center">
-              <BiCommentDetail />
-              <GrScorecard />
-              <GrDocumentTime />
-            </AntRow>
-          </AntCol>
-
-          {/**Details */}
-          <AiOutlineRight
-            className="student-intern-tab-click-more-icon"
-            style={{ fontSize: "24px" }}
-          />
-        </AntRow>
+        {/**Details */}
+        <AiOutlineRight
+          className="student-intern-tab-click-more-icon"
+          style={{ fontSize: "24px" }}
+        />
+      </AntRow>
     </TabContainer>
   );
 };
