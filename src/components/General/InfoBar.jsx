@@ -32,8 +32,8 @@ const InfoBar = (props) => {
           <AntCol
             className="universal-left"
             xs={0}
-            sm={props.fieldOne.sm ? props.fieldOne.sm : 9}
-            lg={props.fieldOne.lg ? props.fieldOne.lg : 7}
+            sm={props.fieldOne.sm && props.fieldOne.sm}
+            lg={props.fieldOne.lg && props.fieldOne.lg}
           >
             <Info className="sixteenFont">{props.fieldOne.name}</Info>
           </AntCol>
@@ -42,8 +42,8 @@ const InfoBar = (props) => {
           <AntCol
             className="universal-center"
             xs={0}
-            sm={props.fieldTwo.sm ? props.fieldTwo.sm : 3}
-            lg={props.fieldTwo.lg ? props.fieldTwo.lg : 5}
+            sm={props.fieldTwo.sm && props.fieldTwo.sm}
+            lg={props.fieldTwo.lg && props.fieldTwo.lg}
           >
             <Info className="sixteenFont">{props.fieldTwo.name}</Info>
           </AntCol>
@@ -52,8 +52,8 @@ const InfoBar = (props) => {
           <AntCol
             className="universal-center"
             xs={0}
-            sm={props.fieldThree.sm ? props.fieldThree.sm : 6}
-            lg={props.fieldThree.lg ? props.fieldThree.lg : 6}
+            sm={props.fieldThree.sm && props.fieldThree.sm}
+            lg={props.fieldThree.lg && props.fieldThree.lg}
           >
             <Info className="sixteenFont">{props.fieldThree.name}</Info>
           </AntCol>
@@ -62,8 +62,8 @@ const InfoBar = (props) => {
           <AntCol
             className="universal-center"
             xs={0}
-            sm={props.fieldFour.sm ? props.fieldFour.sm : 6}
-            lg={props.fieldFour.lg ? props.fieldFour.lg : 6}
+            sm={props.fieldFour.sm && props.fieldFour.sm}
+            lg={props.fieldFour.lg && props.fieldFour.lg}
           >
             <Info className="sixteenFont">{props.fieldFour.name}</Info>
           </AntCol>

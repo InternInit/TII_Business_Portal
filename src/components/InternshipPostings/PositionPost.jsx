@@ -89,10 +89,10 @@ class PositionPost extends Component {
            */}
           <InfoBar
             mobileHeader="Postings"
-            fieldOne={{ name: "Name" }}
-            fieldTwo={{ name: "Status" }}
-            fieldThree={{ name: "Applicants" }}
-            fieldFour={{ name: "Edit Details" }}
+            fieldOne={{ name: "Name", sm: 9, lg: 7 }}
+            fieldTwo={{ name: "Status",  sm: 3, lg: 5 }}
+            fieldThree={{ name: "Applicants", sm: 6, lg: 6 }}
+            fieldFour={{ name: "Edit Details", sm: 6, lg: 6 }}
           />
 
           {this.props.listings.length !== 0 ? (
