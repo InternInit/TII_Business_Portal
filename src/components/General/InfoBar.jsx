@@ -34,7 +34,6 @@ const InfoBar = (props) => {
             xs={0}
             sm={props.fieldOne.sm && props.fieldOne.sm}
             lg={props.fieldOne.lg && props.fieldOne.lg}
-            style={{border: "1px solid black"}}
           >
             <Info className="sixteenFont">{props.fieldOne.name}</Info>
           </AntCol>
@@ -45,7 +44,6 @@ const InfoBar = (props) => {
             xs={0}
             sm={props.fieldTwo.sm && props.fieldTwo.sm}
             lg={props.fieldTwo.lg && props.fieldTwo.lg}
-            style={{border: "1px solid black"}}
           >
             <Info className="sixteenFont">{props.fieldTwo.name}</Info>
           </AntCol>
@@ -56,7 +54,6 @@ const InfoBar = (props) => {
             xs={0}
             sm={props.fieldThree.sm && props.fieldThree.sm}
             lg={props.fieldThree.lg && props.fieldThree.lg}
-            style={{border: "1px solid black"}}
           >
             <Info className="sixteenFont">{props.fieldThree.name}</Info>
           </AntCol>
@@ -67,7 +64,6 @@ const InfoBar = (props) => {
             xs={0}
             sm={props.fieldFour.sm && props.fieldFour.sm}
             lg={props.fieldFour.lg && props.fieldFour.lg}
-            style={{border: "1px solid black"}}
           >
             <Info className="sixteenFont">{props.fieldFour.name}</Info>
           </AntCol>

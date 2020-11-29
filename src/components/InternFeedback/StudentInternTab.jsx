@@ -21,13 +21,13 @@ const StudentInternTab = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("xs");
   return (
-    <TabContainer className="mt-1-5 student-intern-tab-responsive-tab-container">
+    <TabContainer className="mt-1-5 py-1-5 px-6 student-intern-tab-responsive-tab-container">
       {/**
        *
        * Listing Name + Industry
        *
        */}
-      <AntRow className="py-1-5 px-6" justify="center">
+      <AntRow justify="center">
         <AntCol className="universal-middle" xs={24} sm={10} lg={8}>
           <AntRow>
             <AntCol>
@@ -72,7 +72,7 @@ const StudentInternTab = (props) => {
         </AntCol>
 
         {/**Applicants */}
-        <AntCol className="universal-middle" xs={0} sm={6} lg={8}>
+        <AntCol className="universal-middle" xs={0} sm={8} lg={8}>
           <AntRow justify="center" align="middle">
             <BiMessageSquareDetail className="student-intern-tab-action-icon thirtyTwoFont ml-point-25 mr-point-25" />
             <BiNotepad className="student-intern-tab-action-icon thirtyTwoFont ml-point-25 mr-point-25" />
