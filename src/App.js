@@ -269,11 +269,19 @@ class App extends React.Component {
                 <Route path="/settings" component={CompanyDetails} />
 
                 <ReactSwitch>
-                  <Route path="/users" exact component={Employeepage} />
+                  <Route path="/users" exact component={() => 
+                    <Employeepage
+                      companyInfo={this.props.companyInfo}
+                    />} 
+                  />
                   <Route
                     path="/users/new-account"
                     exact
-                    component={CreateUser}
+                    component={() => 
+                      <CreateUser
+                        companyInfo={this.props.companyInfo}
+                        token={this.inMemoryToken}
+                      />}
                   />
                   <Route path={`/users/:id`} exact component={UserDetails} />
                 </ReactSwitch>

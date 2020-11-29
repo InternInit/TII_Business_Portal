@@ -26,6 +26,14 @@ import EmailConfirmation from "../LoginSignup/EmailConfirmation.jsx";
 
 import { withRouter } from "react-router";
 
+import axios from 'axios';
+
+const passwordValidator = require("password-validator");
+
+const schema = new passwordValidator();
+
+schema.is().min(8).has().uppercase().has().lowercase().has().digits();
+
 export const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -55,7 +63,7 @@ const pageStyle = {
 const validationRules = (required, inputName, type, pattern) => [
     {
         required: required,
-        message: "Please input your " + inputName,
+        message: "Please input a valid " + inputName,
         type: type,
         pattern: pattern,
     },
@@ -65,54 +73,18 @@ const formItemProps = {
     username: {
         rules: validationRules(true, "username", "string"),
     },
-    position: {
-        //Implement Custom Validation Rules
-    },
-    password: {
-        //Implement Custom Validation Rules
-    },
-    confirmPassword: {
-        rules: [
-            {
-                required: true,
-                message: "Please confirm your password!",
-            },
-            ({ getFieldValue }) => ({
-                validator(rule, value) {
-                    if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                    }
-
-                    return Promise.reject(
-                        "The two passwords that you entered do not match!"
-                    );
-                },
-            }),
-        ],
-    },
     email: {
-        rules: validationRules(true, "email", "email"),
+        rules: validationRules(true, "email", "email")
+    },
+    name: {
+        rules: validationRules(true, "name", "string")
     },
 };
 
 
 class CreateUser extends React.Component {
+
     render() {
-
-        const title = "Password Policy";
-        const passwordPolicyContent = (
-            <React.Fragment>
-                <h4>Your password should contain: </h4>
-                <ul>
-                    <li>Minimum length of 8 characters</li>
-                    <li>Numerical characters (0-9)</li>
-                    <li>Special characters</li>
-                    <li>Uppercase letter</li>
-                    <li>Lowercase letter</li>
-                </ul>
-            </React.Fragment>
-        );
-
 
         return (
             <React.Fragment>
@@ -128,45 +100,24 @@ class CreateUser extends React.Component {
                                     <Input />
                                 </Form.Item>
 
-                                <Label>Position Title</Label>
-
-                                <Form.Item {...formItemProps.position} name="position">
+                                <Label>Name</Label>
+                                <Form.Item {...formItemProps.name} name="name">
                                     <Input />
                                 </Form.Item>
 
-                                <Label>Password</Label>
-                                <Popover
-                                    placement="right"
-                                    title={title}
-                                    content={passwordPolicyContent}
-                                    trigger="focus"
-                                >
-                                    <Form.Item
-                                        {...formItemProps.password}
-                                        name="password"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: "Please enter your password",
-                                            },
-
-                                        ]}
-                                    >
-                                        <Input.Password />
-                                    </Form.Item>
-                                </Popover>
-                                <Label>Confirm Password</Label>
-                                <Form.Item
-                                    {...formItemProps.confirmPassword}
-                                    name="confirm-password"
-                                >
-                                    <Input.Password />
+                                <Label>Email</Label>
+                                <Form.Item {...formItemProps.email} name="email">
+                                    <Input />
                                 </Form.Item>
+
+                                
 
                                 <Divider style={{ fontFamily: 'roboto' }}>Permissions</Divider>
 
                                 <Label style={{ marginTop: '4vh' }}>Administrator</Label>
-                                <Switch />
+                                <Form.Item name="admin-state">
+                                    <Switch />
+                                </Form.Item>
 
                                 <Label style={{ marginTop: '4vh' }}>Permission 2</Label>
                                 <Switch />
@@ -207,6 +158,28 @@ class CreateUser extends React.Component {
                 </div>
             </React.Fragment >
         );
+    }
+
+    handleSubmit = (values) => {
+        if(values["admin-state"] === true) {
+            values["custom:role"] = "Admin"
+        } else {
+            values["custom:role"] = "User"
+        }
+        delete values["admin-state"];
+        values["custom:companyId"] = this.props.companyInfo.id
+        values["custom:company"] = this.props.companyInfo.name
+        console.log(values);
+        console.log(this.props.token.access);
+
+        let headers = {headers: {Authorization: "Bearer " + this.props.token.access}}
+
+        axios
+        .post("/api/admin_create_user", values, headers)
+        .then((response) => {
+            console.log(JSON.parse(response.data));
+        });
+
     }
 
 }

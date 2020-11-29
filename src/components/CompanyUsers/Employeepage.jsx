@@ -51,7 +51,12 @@ const ButtonText = styled.span`
 `;
 
 class Employeepage extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+    };
+  }
   render() {
     return (
       <Container className="global-container">

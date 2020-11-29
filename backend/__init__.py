@@ -6,13 +6,16 @@ app = Flask(__name__)
 
 studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/students"
 listingsApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/listings"
+authApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/auth/"
 
 if(app.config.get("ENV") == "development"):
     studentApiUrl = studentApiUrl.format(stage="dev")
     listingsApiUrl = listingsApiUrl.format(stage="dev")
+    authApiUrl = authApiUrl.format(stage="dev")
 elif(app.config.get("ENV") == "production"):
     studentApiUrl = studentApiUrl.format(stage="prod")
     listingsApiUrl = listingsApiUrl.format(stage="prod")
+    authApiUrl = authApiUrl.format(stage="prod")
 
 
 @app.route('/', methods=["GET"])
@@ -95,7 +98,18 @@ def update_student_status():
 def update_student_removed():
     return ""
 
+##############################
+#
+#       USER MANAGEMENT
+#
+##############################
 
+@app.route('/api/admin_create_user', methods=["POST"])
+def admin_create_user():
+    body = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(authApiUrl+"adminCreateUser", headers={"Authorization": headers.get("Authorization")}, json = json.loads(body))
+    return jsonify(req.text)
 
 
 
