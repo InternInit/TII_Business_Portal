@@ -122,6 +122,38 @@ class App extends React.Component {
       });
   }
 
+  getJwt = () => {
+    return new Promise((resolve, reject) => {
+      let app = this;
+      function checkToken() {
+        if (app.inMemoryToken === undefined) {
+          setTimeout(() => {
+            checkToken();
+          }, 10);
+        } else {
+          resolve(app.inMemoryToken.token);
+        }
+      }
+      checkToken();
+    });
+  };
+
+  getAccess = () => {
+    return new Promise((resolve, reject) => {
+      let app = this;
+      function checkToken() {
+        if (app.inMemoryToken === undefined) {
+          setTimeout(() => {
+            checkToken();
+          }, 10);
+        } else {
+          resolve(app.inMemoryToken.access);
+        }
+      }
+      checkToken();
+    });
+  };
+
   logout = async () => {
     Auth.signOut()
       .then(() => console.log("Signed Out"))
@@ -173,6 +205,8 @@ class App extends React.Component {
       );
     });
   };
+
+  
 
   render() {
     return (
@@ -276,6 +310,7 @@ class App extends React.Component {
                   <Route path="/users" exact component={() => 
                     <Employeepage
                       companyInfo={this.props.companyInfo}
+                      getAccess={this.getAccess}
                     />} 
                   />
                   <Route

@@ -66,8 +66,8 @@ class CompanyAccount extends Component {
       <Container>
         <div style={tabStyle}>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <UserName>Kevin Tucker</UserName>
-            <PositionName>Business Outreach Partner</PositionName>
+            <UserName>{this.props.name}</UserName>
+            <PositionName>{this.props.role}</PositionName>
           </div>
           <div
             style={{

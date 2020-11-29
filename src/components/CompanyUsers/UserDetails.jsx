@@ -79,8 +79,8 @@ class UserDetails extends React.Component {
                         <div style={{ width: "70%" }}>
                             <Form onFinish={this.handleSubmit} ref={this.formRef}>
 
-                                <EmployeeName style={{ marginTop: "24px" }}>Kevin Tucker</EmployeeName>
-                                <Info>Regional Manager of Dunder Mifflin</Info>
+                                <EmployeeName style={{ marginTop: "24px" }}>{this.props.name}</EmployeeName>
+                                <Info>{this.props.role}</Info>
 
                                 <Divider style={{ fontFamily: 'roboto' }}>Permissions</Divider>
 

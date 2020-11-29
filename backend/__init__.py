@@ -111,6 +111,11 @@ def admin_create_user():
     req = requests.post(authApiUrl+"adminCreateUser", headers={"Authorization": headers.get("Authorization")}, json = json.loads(body))
     return jsonify(req.text)
 
+@app.route('/api/list_users', methods=["GET"])
+def list_users():
+    headers = request.headers
+    req = requests.get(authApiUrl+"listUsers", headers={"Authorization": headers.get("Authorization"), "companyId": headers.get("companyId")})
+    return jsonify(req.text)
 
 
 @app.route('/api/logout')
