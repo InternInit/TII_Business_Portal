@@ -30,7 +30,9 @@ const InfoBar = (props) => {
         </AntCol>
         {props.fieldOne && (
           <AntCol
-            className="universal-left"
+            className={
+              props.fieldOne.align ? props.fieldOne.align : "universal-left"
+            }
             xs={0}
             sm={props.fieldOne.sm && props.fieldOne.sm}
             lg={props.fieldOne.lg && props.fieldOne.lg}
@@ -40,7 +42,9 @@ const InfoBar = (props) => {
         )}
         {props.fieldTwo && (
           <AntCol
-            className="universal-center"
+            className={
+              props.fieldTwo.align ? props.fieldTwo.align : "universal-center"
+            }
             xs={0}
             sm={props.fieldTwo.sm && props.fieldTwo.sm}
             lg={props.fieldTwo.lg && props.fieldTwo.lg}
@@ -50,7 +54,11 @@ const InfoBar = (props) => {
         )}
         {props.fieldThree && (
           <AntCol
-            className="universal-center"
+            className={
+              props.fieldThree.align
+                ? props.fieldThree.align
+                : "universal-center"
+            }
             xs={0}
             sm={props.fieldThree.sm && props.fieldThree.sm}
             lg={props.fieldThree.lg && props.fieldThree.lg}
@@ -60,7 +68,9 @@ const InfoBar = (props) => {
         )}
         {props.fieldFour && (
           <AntCol
-            className="universal-center"
+            className={
+              props.fieldFour.align ? props.fieldFour.align : "universal-center"
+            }
             xs={0}
             sm={props.fieldFour.sm && props.fieldFour.sm}
             lg={props.fieldFour.lg && props.fieldFour.lg}
@@ -70,7 +80,9 @@ const InfoBar = (props) => {
         )}
         {props.fieldFive && (
           <AntCol
-            className="universal-center"
+            className={
+              props.fieldFive.align ? props.fieldFive.align : "universal-center"
+            }
             xs={0}
             sm={props.fieldFive.sm && props.fieldFive.sm}
             lg={props.fieldFive.lg && props.fieldFive.lg}

@@ -7,6 +7,7 @@ export const students = [
         "email": "aperrin0@ucla.edu",
         "gender": "Female",
         "position": "Assistant Manager",
+        "type": "Hybrid",
         "image": "https://arhsharbinger.com/wp-content/uploads/2018/11/image1-17-900x675.jpeg",
         "school": {
             "name": "Fitchburg Regional High School",
@@ -234,6 +235,7 @@ export const students = [
         "email": "ksalkeld1@columbia.edu",
         "gender": "Male",
         "position": "Assistant Professor",
+        "type": "On-Site",
         "image": "https://arhsharbinger.com/wp-content/uploads/2019/09/unnamed-7-900x675.jpg",
         "school": {
             "name": "Algonquin Regional High School",
@@ -438,6 +440,7 @@ export const students = [
         "email": "jmcclay2@whitehouse.gov",
         "gender": "Male",
         "position": "Staff Scientist",
+        "type": "Hybrid",
         "image": "https://i1.wp.com/interninit.com/wp-content/uploads/2020/10/IMG_8054-2-scaled.jpg?ssl=1",
         "school": {
             "name": "Cobble School of American Studies",
@@ -690,6 +693,7 @@ export const students = [
         "email": "aelias3@mayoclinic.com",
         "gender": "Male",
         "position": "Librarian",
+        "type": "Virtual",
         "image": "https://i2.wp.com/interninit.com/wp-content/uploads/2020/10/IMG_8014-2-scaled.jpg?ssl=1",
         "school": {
             "name": "Compton High School",
@@ -877,6 +881,7 @@ export const students = [
         "email": "lbarnett4@ebay.com",
         "gender": "Male",
         "position": "Legal Assistant",
+        "type": "Hybrid",
         "image": "https://arhsharbinger.com/wp-content/uploads/2020/03/unnamed-4.jpg",
         "school": {
             "name": "Machias Memorial High School",
@@ -1200,6 +1205,7 @@ export const students = [
         "email": "rriding5@ezinearticles.com",
         "gender": "Female",
         "position": "Staff Scientist",
+        "type": "Virtual",
         "image": "https://www.mercurynews.com/wp-content/uploads/2019/11/Tesla-Pickup.jpg",
         "school": {
             "name": "Broken Glass High School",
@@ -1299,6 +1305,7 @@ export const students = [
         "email": "rmenary6@ibm.com",
         "gender": "Female",
         "position": "Senior Cost Accountant",
+        "type": "On-Site",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7WUXXZqJhZqRyG7wvVYkPGXQW4rX5_Gnnw&usqp=CAU",
         "school": {
             "name": "UAE",
@@ -1632,6 +1639,7 @@ export const students = [
         "email": "rinnot7@google.com.au",
         "gender": "Male",
         "position": "Database Administrator I",
+        "type": "Hybrid",
         "image": "https://c.files.bbci.co.uk/E86F/production/_101130595_hi046470518.jpg",
         "school": {
             "name": "Harvard-Westlake Prepatory Academy",
@@ -1782,6 +1790,7 @@ export const students = [
         "email": "gnardrup8@indiegogo.com",
         "gender": "Female",
         "position": "Office Assistant IV",
+        "type": "Virtual",
         "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Teemo_18.jpg",
         "school": {
             "name": "Poly Prepatory Academy",
@@ -2060,6 +2069,7 @@ export const students = [
         "email": "bzmitrovich9@mayoclinic.com",
         "gender": "Male",
         "position": "Account Coordinator",
+        "type": "Hybrid",
         "image": "https://www.somagnews.com/wp-content/uploads/2020/08/jimin_logra_nuevo_record_en_spotify.jpg_793492074-e1597432656304.jpg",
         "school": {
             "name": "Philips Academy Dog Training",

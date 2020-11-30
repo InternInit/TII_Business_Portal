@@ -1,11 +1,11 @@
 import React from "react";
-import { Button, Row as AntRow, Col as AntCol, Grid, Avatar} from "antd";
+import { Button, Row as AntRow, Col as AntCol, Grid, Avatar } from "antd";
 import { Link } from "react-router-dom";
 import {
   TabContainer,
   Header,
   Caption,
-  FilterTag
+  TypeTag,
 } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineRight } from "react-icons/ai";
 import { BiMessageSquareDetail, BiTime, BiNotepad } from "react-icons/bi";
@@ -124,24 +124,23 @@ const StudentInternTab = (props) => {
           </AntRow>
         </AntCol>
 
-        <AntCol className="universal-center universal-middle" sm={2}>
-          <Caption className="sixteenFont">{props.age}</Caption>
-        </AntCol>
-
-        <AntCol className="universal-center universal-middle" sm={2}>
-            <Caption className="universal-middle universal-center sixteenFont">
-              {states[props.school.state]}
-            </Caption>
-        </AntCol>
-
         {/**Status */}
         <AntCol
-          className="universal-center universal-middle"
+          className="universal-left universal-middle"
           xs={24}
           sm={5}
           lg={8}
         >
           <Caption className="sixteenFont">{props.school.name}</Caption>
+        </AntCol>
+
+        <AntCol className="universal-left universal-middle" sm={4}>
+          <TypeTag
+            className="sixteenFont universal-center universal-middle"
+            color={props.type}
+          >
+            {props.type}
+          </TypeTag>
         </AntCol>
 
         {/**Applicants */}
@@ -152,6 +151,7 @@ const StudentInternTab = (props) => {
             <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon" />
           </AntRow>
         </AntCol>
+
 
         {/**Details */}
         <AiOutlineRight

@@ -112,3 +112,20 @@ export const FilterTag = styled.div`
     transition: .5s ease;
   }
 `;
+
+export const TypeTag = styled.div`
+  color: #262626;
+  background-color: #f5f5f5;
+  display: flex;
+  align-contents: center;
+  justify-contents: center;
+  height: 32px;
+  border-radius: 4px;
+  font-family: Roboto;
+  width: 60%;
+
+  :hover {
+    cursor: pointer;
+    transition: .5s ease;
+  }
+`;
