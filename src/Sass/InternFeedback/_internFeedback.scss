@@ -2,7 +2,6 @@
 @import "../Globals/variables";
 @import "../node_modules/rfs/scss";
 
-
 .student-intern-tab {
   &-responsive-tab-container {
     position: relative;
@@ -18,24 +17,45 @@
 
     &:hover {
       box-shadow: 1px 1px 5px -3px;
-      transition: .3s ease;
+      transition: 0.3s ease;
       cursor: pointer;
 
       .student-intern-tab-click-more-icon {
-          color: #595959;
-          transition: .3s ease;
+        color: #595959;
+        transition: 0.3s ease;
       }
     }
   }
 
   &-action-icon {
-      color: #bfbfbf;
+    color: #bfbfbf;
 
-      @include lg {
-          margin-left: .1em;
-          margin-right: .1em;
-          @include font-size(20px);
-      }
+    @include lg {
+      margin-left: 0.1em;
+      margin-right: 0.1em;
+      @include font-size(20px);
+    }
+  }
+
+  &-feedback {
+    &:hover {
+      color: #722ed1;
+      transition: 0.3s ease;
+    }
+  }
+
+  &-grades {
+    &:hover {
+      color: #eb2f96;
+      transition: 0.3s ease;
+    }
+  }
+
+  &-timesheet {
+    &:hover {
+      color: #2f54eb;
+      transition: 0.3s ease;
+    }
   }
 
   &-click-more-icon {

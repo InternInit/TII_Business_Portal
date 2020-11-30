@@ -146,9 +146,10 @@ const StudentInternTab = (props) => {
         {/**Applicants */}
         <AntCol className="universal-middle" xs={0} sm={5} lg={6}>
           <AntRow justify="center" align="middle">
-            <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon" />
-            <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon" />
-            <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon" />
+            
+            <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
+            <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
+            <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
           </AntRow>
         </AntCol>
 
