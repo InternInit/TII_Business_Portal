@@ -84,10 +84,19 @@ const mapDispatchToProps = {
 };
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: []
+    };
+  }
+
   componentDidMount() {
     this.auth();
     this.getCandidates();
     this.getListings();
+    this.getBusinessUsers();
   }
 
   inMemoryToken;
@@ -109,12 +118,12 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log("Session Error: " + error);
-        /*
+        
         if (window.location.href.split("/")[3] !== "login") {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
-        */
+        
        this.props.updateId("6aa19690-d874-4fdd-a1d8-a1168a7b632c");
        this.getBusinessInfo({"custom:company": "The Internship Initiative LLC."});
 
@@ -206,7 +215,21 @@ class App extends React.Component {
     });
   };
 
-  
+  getBusinessUsers = async () => {
+    let token = await this.getAccess();
+
+    const headers = {
+      headers: {
+        Authorization: "Bearer " + token,
+        companyId: this.props.companyInfo.id
+      }
+    }
+
+    axios.get("/api/list_users", headers).then((response) => {
+      this.setState({users:JSON.parse(response.data)})
+      console.log(response.data)
+    });
+  }
 
   render() {
     return (
@@ -309,8 +332,7 @@ class App extends React.Component {
                 <ReactSwitch>
                   <Route path="/users" exact component={() => 
                     <Employeepage
-                      companyInfo={this.props.companyInfo}
-                      getAccess={this.getAccess}
+                      users={this.state.users}
                     />} 
                   />
                   <Route

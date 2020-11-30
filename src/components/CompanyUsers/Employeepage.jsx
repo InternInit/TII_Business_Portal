@@ -52,33 +52,8 @@ const ButtonText = styled.span`
 `;
 
 class Employeepage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    };
-  }
 
-  componentDidMount() {
-    this.listUsers();
-  }
-
-  listUsers = async () => {
-    let token = await this.props.getAccess();
-
-    const headers = {
-      headers: {
-        Authorization: "Bearer " + token,
-        companyId: this.props.companyInfo.id
-      }
-    }
-
-    axios.get("/api/list_users", headers).then((response) => {
-      this.setState({users:JSON.parse(response.data)})
-      console.log(response.data)
-    });
-
-  }
+  
 
   render() {
     return (
@@ -93,7 +68,7 @@ class Employeepage extends Component {
               </Button>
             </Link>
           </Row>
-          {this.state.users.map((user, index) => (
+          {this.props.users.map((user, index) => (
             <CompanyAccount name={user.name} role={user["custom:role"]} id={user.sub}/>
           ))}
         </div>
