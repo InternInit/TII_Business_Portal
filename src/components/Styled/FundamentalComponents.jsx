@@ -64,8 +64,8 @@ export const FormContainer = styled.div`
  */
 
 export const Header = styled.div`
-  font-weight: ${(props) => (props.bolded ? "bold" : "normal")};
-  font-family: Lato;
+  font-weight: ${(props) => (props.bolded ? "600" : "300")};
+  font-family: Roboto;
   color: ${(props) => (props.subheading ? "#262626" : "#000000")};
 `;
 

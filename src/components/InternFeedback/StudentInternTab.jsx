@@ -1,5 +1,12 @@
 import React from "react";
-import { Button, Row as AntRow, Col as AntCol, Grid, Avatar } from "antd";
+import {
+  Button,
+  Row as AntRow,
+  Col as AntCol,
+  Grid,
+  Avatar,
+  Tooltip,
+} from "antd";
 import { Link } from "react-router-dom";
 import {
   TabContainer,
@@ -146,13 +153,17 @@ const StudentInternTab = (props) => {
         {/**Applicants */}
         <AntCol className="universal-middle" xs={0} sm={5} lg={6}>
           <AntRow justify="center" align="middle">
-            
-            <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
-            <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
-            <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
+            <Tooltip title="No Recent Feedback">
+              <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
+            </Tooltip>
+            <Tooltip title="No Grades Due">
+              <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
+            </Tooltip>
+            <Tooltip title="No Timesheet Due">
+              <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
+            </Tooltip>
           </AntRow>
         </AntCol>
-
 
         {/**Details */}
         <AiOutlineRight
