@@ -91,87 +91,93 @@ const StudentInternTab = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("xs");
   return (
-    <TabContainer className="mt-1-5 py-1-5 px-6 student-intern-tab-responsive-tab-container">
-      {/**
-       *
-       * Listing Name + Industry
-       *
-       */}
-      <AntRow justify="center">
-        <AntCol className="universal-middle" xs={24} sm={10} lg={6}>
-          <AntRow>
-            <AntCol>
-              <Avatar size={56} src={props.avatar} />
-            </AntCol>
-            <AntCol offset={1}>
-              {isXs ? (
-                <>
-                  <AntRow justify="center">
-                    <Header className="twentyFont" bolded>
-                      {props.firstName} {props.lastName}
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-1-5" justify="center">
-                    <Caption className="fourteenFont">{props.position}</Caption>
-                  </AntRow>
-                </>
-              ) : (
-                <>
-                  <AntRow justify="start">
-                    <Header className="twentyFont" bolded>
-                      {props.firstName} {props.lastName}
-                    </Header>
-                  </AntRow>
-                  <AntRow justify="start">
-                    <Caption className="fourteenFont">{props.position}</Caption>
-                  </AntRow>
-                </>
-              )}
-            </AntCol>
-          </AntRow>
-        </AntCol>
+    <Link to="/intern-feedback/1" style={{ textDecoration: 'none', color: "inherit" }}>
+      <TabContainer className="mt-1-5 py-1-5 px-6 student-intern-tab-responsive-tab-container">
+        {/**
+         *
+         * Listing Name + Industry
+         *
+         */}
+        <AntRow justify="center">
+          <AntCol className="universal-middle" xs={24} sm={10} lg={6}>
+            <AntRow>
+              <AntCol>
+                <Avatar size={56} src={props.avatar} />
+              </AntCol>
+              <AntCol offset={1}>
+                {isXs ? (
+                  <>
+                    <AntRow justify="center">
+                      <Header className="twentyFont" bolded>
+                        {props.firstName} {props.lastName}
+                      </Header>
+                    </AntRow>
+                    <AntRow className="mb-1-5" justify="center">
+                      <Caption className="fourteenFont">
+                        {props.position}
+                      </Caption>
+                    </AntRow>
+                  </>
+                ) : (
+                  <>
+                    <AntRow justify="start">
+                      <Header className="twentyFont" bolded>
+                        {props.firstName} {props.lastName}
+                      </Header>
+                    </AntRow>
+                    <AntRow justify="start">
+                      <Caption className="fourteenFont">
+                        {props.position}
+                      </Caption>
+                    </AntRow>
+                  </>
+                )}
+              </AntCol>
+            </AntRow>
+          </AntCol>
 
-        {/**Status */}
-        <AntCol
-          className="universal-left universal-middle"
-          xs={24}
-          sm={5}
-          lg={8}
-        >
-          <Caption className="sixteenFont">{props.school.name}</Caption>
-        </AntCol>
-
-        <AntCol className="universal-left universal-middle" sm={4}>
-          <TypeTag
-            className="sixteenFont universal-center universal-middle"
-            color={props.type}
+          {/**Status */}
+          <AntCol
+            className="universal-left universal-middle"
+            xs={24}
+            sm={5}
+            lg={8}
           >
-            {props.type}
-          </TypeTag>
-        </AntCol>
+            <Caption className="sixteenFont">{props.school.name}</Caption>
+          </AntCol>
 
-        {/**Applicants */}
-        <AntCol className="universal-middle" xs={0} sm={5} lg={6}>
-          <AntRow justify="center" align="middle">
-            <Tooltip title="No Recent Feedback">
-              <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
-            </Tooltip>
-            <Tooltip title="No Grades Due">
-              <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
-            </Tooltip>
-            <Tooltip title="No Timesheet Due">
-              <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
-            </Tooltip>
-          </AntRow>
-        </AntCol>
+          <AntCol className="universal-left universal-middle" sm={4}>
+            <TypeTag
+              className="sixteenFont universal-center universal-middle"
+              color={props.type}
+            >
+              {props.type}
+            </TypeTag>
+          </AntCol>
 
-        {/**Details */}
-        <AiOutlineRight
-          className="student-intern-tab-click-more-icon"
-          style={{ fontSize: "24px" }}
-        />
-      </AntRow>
-    </TabContainer>
+          {/**Applicants */}
+          <AntCol className="universal-middle" xs={0} sm={5} lg={6}>
+            <AntRow justify="center" align="middle">
+              <Tooltip title="No Recent Feedback">
+                <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
+              </Tooltip>
+              <Tooltip title="No Grades Due">
+                <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
+              </Tooltip>
+              <Tooltip title="No Timesheet Due">
+                <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
+              </Tooltip>
+            </AntRow>
+          </AntCol>
+
+          {/**Details */}
+          <AiOutlineRight
+            className="student-intern-tab-click-more-icon"
+            style={{ fontSize: "24px" }}
+          />
+        </AntRow>
+      </TabContainer>
+    </Link>
   );
 };
 
