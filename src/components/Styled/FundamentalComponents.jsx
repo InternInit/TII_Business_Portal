@@ -64,13 +64,14 @@ export const FormContainer = styled.div`
  */
 
 export const Header = styled.div`
-  font-weight: ${(props) => (props.bolded ? "600" : "300")};
+  font-weight: ${(props) => (props.bolded ? "500" : "400")};
   font-family: Roboto;
   color: ${(props) => (props.subheading ? "#262626" : "#000000")};
 `;
 
 export const Caption = styled.span`
   text-align: center;
+  font-weight: 400;
   font-family: roboto;
 `;
 

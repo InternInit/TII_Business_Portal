@@ -2,21 +2,12 @@ import React, { Component, useEffect } from "react";
 import styled from "styled-components";
 import { Button, Row as AntRow, Col as AntCol, Grid } from "antd";
 import { Link } from "react-router-dom";
-import { TabContainer } from "../Styled/FundamentalComponents";
+import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
 
 const { useBreakpoint } = Grid;
 
-const Header = styled.span`
-  font-weight: bold;
-  text-align: center;
-`;
-
-const Caption = styled.span`
-  text-align: center;
-`;
-
 const Status = styled.span`
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 const PostingTab = (props) => {
@@ -55,7 +46,7 @@ const PostingTab = (props) => {
           {isXs ? (
             <>
               <AntRow justify="center">
-                <Header className="twentyFont">{name}</Header>
+                <Header className="twentyFont" bolded>{name}</Header>
               </AntRow>
               <AntRow className="mb-1-5" justify="center">
                 <Caption className="fourteenFont">Data Science</Caption>
@@ -64,7 +55,7 @@ const PostingTab = (props) => {
           ) : (
             <>
               <AntRow justify="start">
-                <Header className="eighteenFont">{name}</Header>
+                <Header className="eighteenFont" bolded>{name}</Header>
               </AntRow>
               <AntRow justify="start">
                 <Caption className="fourteenFont">Data Science</Caption>
