@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Row as AntRow, Col as AntCol } from "antd";
+import { Header, Caption } from "../Styled/FundamentalComponents.jsx";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -16,25 +17,16 @@ const TabContainer = styled.div`
     box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
   }
 `;
-const ListingName = styled.span`
-  font-weight: bold;
-`;
+
 const Industry = styled.span`
   margin-top: -1vh;
-  font-size: 14px;
-  color: #8c8c8c;
-  font-weight: 500;
+  color: #262626;
+  font-weight: 400;
 `;
 
 const StatNum = styled.span`
   font-weight: bold;
   font-size: 14px;
-`;
-const StatLabel = styled.span`
-  margin-top: -4%;
-  font-size: 14px;
-  color: #8c8c8c;
-  font-weight: 500;
 `;
 
 const PageListings = (props) => {
@@ -49,12 +41,12 @@ const PageListings = (props) => {
       <AntRow align="middle" gutter={[16, 0]}>
         <AntCol xs={12} md={12} xl={15}>
           <AntRow>
-            <ListingName className="eighteenFont mb-point-25">
+            <Header className="eighteenFont mb-point-25" bolded>
               {name}
-            </ListingName>
+            </Header>
           </AntRow>
           <AntRow>
-            <Industry>Data Science</Industry>
+            <Industry className="fourteenFont">Data Science</Industry>
           </AntRow>
         </AntCol>
 
@@ -63,7 +55,7 @@ const PageListings = (props) => {
             <StatNum>{interns}</StatNum>
           </AntRow>
           <AntRow justify="center">
-            <StatLabel>Applicants</StatLabel>
+            <Caption light>Applicants</Caption>
           </AntRow>
         </AntCol>
 
@@ -72,7 +64,7 @@ const PageListings = (props) => {
             <StatNum>{accepted}</StatNum>
           </AntRow>
           <AntRow justify="center">
-            <StatLabel>Accepted</StatLabel>
+            <Caption light>Accepted</Caption>
           </AntRow>
         </AntCol>
 
@@ -81,7 +73,7 @@ const PageListings = (props) => {
             <StatNum>{total}</StatNum>
           </AntRow>
           <AntRow justify="center">
-            <StatLabel>Total</StatLabel>
+            <Caption light>Total</Caption>
           </AntRow>
         </AntCol>
       </AntRow>

@@ -73,6 +73,7 @@ export const Caption = styled.span`
   text-align: center;
   font-weight: 400;
   font-family: roboto;
+  color: ${props => (props.light ? "#8c8c8c" : "#262626")}
 `;
 
 export const RequiredAsterisk = styled.span`
