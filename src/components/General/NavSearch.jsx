@@ -25,7 +25,7 @@ class NavSearch extends Component {
       <div
         style={containerStyle}
       >
-        <Header className="thirtySixFont ml-1-5" style={{ width: "45%" }}>{this.props.title}</Header>
+        <Header className="thirtySixFont ml-2" style={{ width: "45%" }}>{this.props.title}</Header>
         {this.props.searchBar ? (
           <Search
             style={{
