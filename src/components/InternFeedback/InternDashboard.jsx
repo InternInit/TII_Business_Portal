@@ -70,31 +70,42 @@ class InternDashboard extends Component {
                   </AntRow>
                   <AntRow className="mt-point-5">
                     <AntCol span={12}>
-                      <Caption className="sixteenFont" color="white">Phone: 6179311128</Caption>
+                      <Caption className="sixteenFont" color="white">
+                        <Caption color="#C5D1D8">Phone:</Caption> 6179311128
+                      </Caption>
                     </AntCol>
                     <AntCol span={12}>
                       <Caption className="sixteenFont" color="white">
-                        Counselor Name: {student.school.contact}
+                        <Caption color="#C5D1D8">Counselor Name:</Caption>{" "}
+                        {student.school.contact}
                       </Caption>
                     </AntCol>
                   </AntRow>
                   <AntRow className="mt-point-5">
                     <AntCol span={12}>
-                      <Caption className="sixteenFont" color="white">Email: {student.email}</Caption>
+                      <Caption className="sixteenFont" color="white">
+                        <Caption color="#C5D1D8">Email:</Caption>{" "}
+                        {student.email}
+                      </Caption>
                     </AntCol>
                     <AntCol span={12}>
                       <Caption className="sixteenFont" color="white">
-                        Counselor Email: {student.school.email}
+                        <Caption color="#C5D1D8">Counselor Email:</Caption>{" "}
+                        {student.school.email}
                       </Caption>
                     </AntCol>
                   </AntRow>
                   <AntRow className="mt-point-5">
                     <AntCol span={12}>
-                      <Caption className="sixteenFont" color="white">School: {student.school.name}</Caption>
+                      <Caption className="sixteenFont" color="white">
+                        <Caption color="#C5D1D8">School:</Caption>{" "}
+                        {student.school.name}
+                      </Caption>
                     </AntCol>
                     <AntCol span={12}>
                       <Caption className="sixteenFont" color="white">
-                        Counselor Phone: {student.school.phone}
+                        <Caption color="#C5D1D8">Counselor Phone:</Caption>{" "}
+                        {student.school.phone}
                       </Caption>
                     </AntCol>
                   </AntRow>
