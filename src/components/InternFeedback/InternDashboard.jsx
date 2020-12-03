@@ -42,8 +42,8 @@ class InternDashboard extends Component {
         <PageContainer className="global-container px-6 pt-2">
           <AntRow style={{ width: "100%" }}>
             <TabContainer
-              className="mb-1 py-3 px-4 intern-dashboard-banner"
-              style={{ width: "100%", height: "250px" }}
+              className="mb-1 py-2 px-4 intern-dashboard-banner"
+              style={{ width: "100%", height: "225px" }}
             >
               <AntRow>
                 <AntCol className="universal-middle">
