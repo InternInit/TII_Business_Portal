@@ -46,7 +46,7 @@ class InternDashboard extends Component {
               style={{ width: "100%", height: "250px" }}
             >
               <AntRow>
-                <AntCol>
+                <AntCol className="universal-middle">
                   <Avatar size={128} src={student.image} />
                 </AntCol>
                 <AntCol flex="auto" offset={1}>
@@ -63,10 +63,40 @@ class InternDashboard extends Component {
                       className="eighteenFont intern-dashboard-banner-text"
                       color="white"
                       thin
-                      style={{marginTop: "-.5em"}}
+                      style={{ marginTop: "-.5em" }}
                     >
                       {student.position}
                     </Caption>
+                  </AntRow>
+                  <AntRow className="mt-point-5">
+                    <AntCol span={12}>
+                      <Caption className="sixteenFont" color="white">Phone: 6179311128</Caption>
+                    </AntCol>
+                    <AntCol span={12}>
+                      <Caption className="sixteenFont" color="white">
+                        Counselor Name: {student.school.contact}
+                      </Caption>
+                    </AntCol>
+                  </AntRow>
+                  <AntRow className="mt-point-5">
+                    <AntCol span={12}>
+                      <Caption className="sixteenFont" color="white">Email: {student.email}</Caption>
+                    </AntCol>
+                    <AntCol span={12}>
+                      <Caption className="sixteenFont" color="white">
+                        Counselor Email: {student.school.email}
+                      </Caption>
+                    </AntCol>
+                  </AntRow>
+                  <AntRow className="mt-point-5">
+                    <AntCol span={12}>
+                      <Caption className="sixteenFont" color="white">School: {student.school.name}</Caption>
+                    </AntCol>
+                    <AntCol span={12}>
+                      <Caption className="sixteenFont" color="white">
+                        Counselor Phone: {student.school.phone}
+                      </Caption>
+                    </AntCol>
                   </AntRow>
                 </AntCol>
               </AntRow>
