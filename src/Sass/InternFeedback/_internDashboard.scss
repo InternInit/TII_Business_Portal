@@ -1,0 +1,14 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+.intern-dashboard {
+  &-banner {
+    background: rgb(22, 76, 126);
+    background: linear-gradient(
+      62deg,
+      rgba(22, 76, 126, 1) 0%,
+      rgba(127, 158, 243, 1) 99%
+    );
+  }
+}
