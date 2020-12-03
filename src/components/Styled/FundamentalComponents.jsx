@@ -66,14 +66,16 @@ export const FormContainer = styled.div`
 export const Header = styled.div`
   font-weight: ${(props) => (props.bolded ? "500" : "400")};
   font-family: Roboto;
-  color: ${(props) => (props.subheading ? "#262626" : "#000000")};
+  color: ${(props) =>
+    props.subheading ? "#262626" : props.color ? props.color : "#000000"};
 `;
 
 export const Caption = styled.span`
   text-align: center;
-  font-weight: 400;
+  font-weight: ${(props) => (props.thin ? 300 : 400)};
   font-family: roboto;
-  color: ${props => (props.light ? "#8c8c8c" : "#262626")}
+  color: ${(props) =>
+    props.light ? "#8c8c8c" : props.color ? props.color : "#262626"};
 `;
 
 export const RequiredAsterisk = styled.span`
@@ -111,7 +113,7 @@ export const FilterTag = styled.div`
   :hover {
     cursor: pointer;
     box-shadow: 1px 1px 5px -3px #000000;
-    transition: .5s ease;
+    transition: 0.5s ease;
   }
 `;
 
@@ -128,6 +130,6 @@ export const TypeTag = styled.div`
 
   :hover {
     cursor: pointer;
-    transition: .5s ease;
+    transition: 0.5s ease;
   }
 `;

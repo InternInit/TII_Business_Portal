@@ -14,36 +14,60 @@ class InternDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: null
-    }
+      loading: true,
+      student: null,
+    };
   }
 
   findStudent = () => {
     const id = this.props.location.pathname.split("/");
-    this.setState({student: students.find(student => student.id === Number(id[2]))});
-  }
+    this.setState({
+      student: students.find((student) => student.id === Number(id[2])),
+    });
+    this.setState({ loading: false });
+  };
 
   componentDidMount() {
     this.findStudent();
   }
-  
 
   render() {
-    return (
+    const { student } = this.state;
+
+    return this.state.loading ? (
+      <h1>Hello</h1>
+    ) : (
       <>
         <NavSearch title="Intern Dashboard" />
         <PageContainer className="global-container px-6 pt-2">
           <AntRow style={{ width: "100%" }}>
             <TabContainer
               className="mb-1 py-3 px-4 intern-dashboard-banner"
-              style={{ width: "100%", height: "250px"}}
+              style={{ width: "100%", height: "250px" }}
             >
               <AntRow>
                 <AntCol>
-                  <Avatar size={128} />
+                  <Avatar size={128} src={student.image} />
                 </AntCol>
-                <AntCol>
-
+                <AntCol flex="auto" offset={1}>
+                  <AntRow>
+                    <Header
+                      className="twentyEightFont intern-dashboard-banner-text"
+                      color="white"
+                    >
+                      {student.firstName} {student.lastName}
+                    </Header>
+                  </AntRow>
+                  <AntRow>
+                    <Caption
+                      className="eighteenFont intern-dashboard-banner-text"
+                      color="white"
+                      thin
+                      style={{marginTop: "-.5em"}}
+                    >
+                      {student.position}
+                    </Caption>
+                  </AntRow>
                 </AntCol>
               </AntRow>
             </TabContainer>
