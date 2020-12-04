@@ -3,7 +3,7 @@ import NavSearch from "../General/NavSearch.jsx";
 import {
   Header,
   Caption,
-  NavigationLink,
+  NavigationButton,
   TabContainer,
   PageContainer,
   InnerContainer,
@@ -117,32 +117,47 @@ class InternPageContainer extends Component {
               </AntRow>
               <AntRow className="mt-2" gutter={[16, 0]}>
                 <AntCol span={4}>
-                  <Button
+                  <NavigationButton
+                    active
                     style={{ width: "100%" }}
                     shape="round"
                     size="large"
-                    type={this.props.location.pathname.includes("dashboard") ? "primary" : "default"}
+                    type={
+                      this.props.location.pathname.includes("dashboard")
+                        ? "primary"
+                        : "default"
+                    }
                     ghost={!this.props.location.pathname.includes("dashboard")}
                   >
                     Dashboard
-                  </Button>
+                  </NavigationButton>
                 </AntCol>
                 <AntCol span={4}>
-                  <Button
+                  <NavigationButton
                     style={{ width: "100%" }}
                     shape="round"
                     size="large"
-                    ghost
+                    type={
+                      this.props.location.pathname.includes("attendance")
+                        ? "primary"
+                        : "default"
+                    }
+                    ghost={!this.props.location.pathname.includes("attendance")}
                   >
                     Attendance
-                  </Button>
+                  </NavigationButton>
                 </AntCol>
                 <AntCol span={4}>
                   <Button
                     style={{ width: "100%" }}
                     shape="round"
                     size="large"
-                    ghost
+                    type={
+                      this.props.location.pathname.includes("feedback")
+                        ? "primary"
+                        : "default"
+                    }
+                    ghost={!this.props.location.pathname.includes("feedback")}
                   >
                     Feedback
                   </Button>
@@ -152,52 +167,15 @@ class InternPageContainer extends Component {
                     style={{ width: "100%" }}
                     shape="round"
                     size="large"
-                    ghost
+                    type={
+                      this.props.location.pathname.includes("grades")
+                        ? "primary"
+                        : "default"
+                    }
+                    ghost={!this.props.location.pathname.includes("grades")}
                   >
                     Grades
                   </Button>
-                </AntCol>
-              </AntRow>
-            </TabContainer>
-          </AntRow>
-
-          <AntRow style={{ width: "100%" }}>
-            <TabContainer
-              className="my-1 py-1 universal-center intern-dashboard-navigation"
-              style={{ width: "100%" }}
-            >
-              <AntRow justify="center" align="middle">
-                <AntCol span={6} style={{ borderRight: "2px solid #bfbfbf" }}>
-                  <NavigationLink
-                    className="twentyFont"
-                    active={this.props.location.pathname.includes("dashboard")}
-                  >
-                    Dashboard
-                  </NavigationLink>
-                </AntCol>
-                <AntCol span={6} style={{ borderRight: "2px solid #bfbfbf" }}>
-                  <NavigationLink
-                    className="twentyFont"
-                    active={this.props.location.pathname.includes("attendance")}
-                  >
-                    Attendance
-                  </NavigationLink>
-                </AntCol>
-                <AntCol span={6} style={{ borderRight: "2px solid #bfbfbf" }}>
-                  <NavigationLink
-                    className="twentyFont"
-                    active={this.props.location.pathname.includes("feedback")}
-                  >
-                    Feedback
-                  </NavigationLink>
-                </AntCol>
-                <AntCol span={6}>
-                  <NavigationLink
-                    className="twentyFont"
-                    active={this.props.location.pathname.includes("grades")}
-                  >
-                    Grades
-                  </NavigationLink>
                 </AntCol>
               </AntRow>
             </TabContainer>

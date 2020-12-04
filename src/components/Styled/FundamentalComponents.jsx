@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "antd";
+
 
 const STANDARD_BLUE = "#1890ff";
 
@@ -80,16 +82,14 @@ export const Caption = styled.span`
     props.light ? "#8c8c8c" : props.color ? props.color : "#262626"};
 `;
 
-export const NavigationLink = styled.span`
-  font-weight: 400;
-  font-family: Roboto;
-  color: ${ props => props.active ? STANDARD_BLUE : "#595959"};
+export const NavigationButton = styled(Button)`
+    background-color: ${props => props.active ? "#1890ff" : "transparent"};
 
-  &:hover {
-    cursor: pointer;
-    color: ${STANDARD_BLUE};
-    transition: .3s ease;
-  }
+    &:hover,
+    &:focus {
+      background-color: #1890ff;
+      border: ${props => props.active ? "#1890ff" : "red"};
+    }
 `;
 
 export const RequiredAsterisk = styled.span`
