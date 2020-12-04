@@ -91,7 +91,7 @@ const StudentInternTab = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("xs");
   return (
-    <Link to={`/intern-feedback/${props.id}/dashboard`} style={{ textDecoration: 'none', color: "inherit" }}>
+    <Link to={`/my-interns/${props.id}/dashboard`} style={{ textDecoration: 'none', color: "inherit" }}>
       <TabContainer className="mt-1-5 py-1-5 px-6 student-intern-tab-responsive-tab-container">
         {/**
          *

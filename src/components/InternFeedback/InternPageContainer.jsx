@@ -148,12 +148,12 @@ class InternPageContainer extends Component {
 
           <ReactSwitch>
             <Route
-              path={`/intern-feedback/:id`}
+              path={`/my-interns/:id`}
               exact
-              render={() => <Redirect to={`/intern-feedback/:id/dashboard`} />}
+              render={() => <Redirect to={`/my-interns/:id/dashboard`} />}
             />
             <Route
-              path={`/intern-feedback/:id/dashboard`}
+              path={`/my-interns/:id/dashboard`}
               exact
               component={InternDashboard}
             />

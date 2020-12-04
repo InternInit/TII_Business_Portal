@@ -312,12 +312,12 @@ class App extends React.Component {
                 </ReactSwitch>
 
                 <Route
-                  path="/intern-feedback"
+                  path="/my-interns"
                   exact
                   component={StudentInternPage}
                 />
                 <Route
-                  path={`/intern-feedback/:id`}
+                  path={`/my-interns/:id`}
                   component={InternPageContainer}
                 />
 
