@@ -49,8 +49,8 @@ import PositionPost from "./components/InternshipPostings/PositionPost.jsx";
 import InternshipDetails from "./components/InternshipPostings/InternshipDetails.jsx";
 import SchoolContact from "./components/SchoolContact/SchoolContact.jsx";
 import StudentInternPage from "./components/InternFeedback/StudentInternPage.jsx";
-import FeedbackResponse from "./components/InternFeedback/FeedbackResponse.jsx";
 import InternDashboard from "./components/InternFeedback/InternDashboard.jsx";
+import InternPageContainer from "./components/InternFeedback/InternPageContainer.jsx";
 import Login from "./components/LoginSignup/Login";
 import Signup from "./components/LoginSignup/Signup";
 import Employeepage from "./components/CompanyUsers/Employeepage";
@@ -318,8 +318,7 @@ class App extends React.Component {
                 />
                 <Route
                   path={`/intern-feedback/:id`}
-                  exact
-                  component={InternDashboard}
+                  component={InternPageContainer}
                 />
 
                 <Route
