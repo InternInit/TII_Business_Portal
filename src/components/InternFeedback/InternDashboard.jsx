@@ -15,13 +15,13 @@ const InternDashboard = (props) => {
   return (
     <>
       <AntRow justify="center" style={{ width: "100%" }}>
-        <AntCol className="mt-1 pr-1" span={8}>
+        <AntCol className="mt-1 pr-point-5" span={8}>
           <TabContainer style={{ width: "100%", height: "400px" }} />
         </AntCol>
-        <AntCol className="mt-1 px-1" span={8}>
+        <AntCol className="mt-1 px-point-5" span={8}>
           <TabContainer style={{ width: "100%", height: "400px" }} />
         </AntCol>
-        <AntCol className="mt-1 pl-1" span={8}>
+        <AntCol className="mt-1 pl-point-5" span={8}>
           <TabContainer style={{ width: "100%", height: "400px" }} />
         </AntCol>
       </AntRow>

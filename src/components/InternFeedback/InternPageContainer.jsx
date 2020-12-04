@@ -9,7 +9,7 @@ import {
   InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
 import { students } from "../../Fake_Students.js";
-import { Row as AntRow, Col as AntCol, Avatar } from "antd";
+import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
 import InternDashboard from "./InternDashboard.jsx";
 
 import { Link, Route, Switch as ReactSwitch, Redirect } from "react-router-dom";
@@ -67,7 +67,7 @@ class InternPageContainer extends Component {
                       className="eighteenFont intern-dashboard-banner-text"
                       color="white"
                       thin
-                      style={{ marginTop: "-.5em" }}
+                      style={{ marginTop: "-.5em", fontStyle: "italic" }}
                     >
                       {student.position}
                     </Caption>
@@ -115,6 +115,20 @@ class InternPageContainer extends Component {
                   </AntRow>
                 </AntCol>
               </AntRow>
+              <AntRow className="mt-2" gutter={[32, 0]}>
+                  <AntCol span={4}>
+                      <Button style={{width: "100%"}} ghost>Dashboard</Button>
+                  </AntCol>
+                  <AntCol offset={8} span={4}>
+                      <Button style={{width: "100%"}} ghost>Attendance</Button>
+                  </AntCol>
+                  <AntCol span={4}>
+                      <Button style={{width: "100%"}} ghost>Feedback</Button>
+                  </AntCol>
+                  <AntCol span={4}>
+                      <Button style={{width: "100%"}} ghost>Grades</Button>
+                  </AntCol>
+              </AntRow>
             </TabContainer>
           </AntRow>
 
@@ -125,22 +139,36 @@ class InternPageContainer extends Component {
             >
               <AntRow justify="center" align="middle">
                 <AntCol span={6} style={{ borderRight: "2px solid #bfbfbf" }}>
-                  <NavigationLink className="twentyFont">
+                  <NavigationLink
+                    className="twentyFont"
+                    active={this.props.location.pathname.includes("dashboard")}
+                  >
                     Dashboard
                   </NavigationLink>
                 </AntCol>
                 <AntCol span={6} style={{ borderRight: "2px solid #bfbfbf" }}>
-                  <NavigationLink className="twentyFont">
+                  <NavigationLink
+                    className="twentyFont"
+                    active={this.props.location.pathname.includes("attendance")}
+                  >
                     Attendance
                   </NavigationLink>
                 </AntCol>
                 <AntCol span={6} style={{ borderRight: "2px solid #bfbfbf" }}>
-                  <NavigationLink className="twentyFont">
+                  <NavigationLink
+                    className="twentyFont"
+                    active={this.props.location.pathname.includes("feedback")}
+                  >
                     Feedback
                   </NavigationLink>
                 </AntCol>
                 <AntCol span={6}>
-                  <NavigationLink className="twentyFont">Grades</NavigationLink>
+                  <NavigationLink
+                    className="twentyFont"
+                    active={this.props.location.pathname.includes("grades")}
+                  >
+                    Grades
+                  </NavigationLink>
                 </AntCol>
               </AntRow>
             </TabContainer>

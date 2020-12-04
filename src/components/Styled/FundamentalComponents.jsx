@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const standardBlue = "#1890ff";
+const STANDARD_BLUE = "#1890ff";
 
 /*============================================================================================================
  * ***********************************************************************************************************
@@ -83,11 +83,11 @@ export const Caption = styled.span`
 export const NavigationLink = styled.span`
   font-weight: 400;
   font-family: Roboto;
-  color: #595959;
+  color: ${ props => props.active ? STANDARD_BLUE : "#595959"};
 
   &:hover {
     cursor: pointer;
-    color: ${standardBlue};
+    color: ${STANDARD_BLUE};
     transition: .3s ease;
   }
 `;
