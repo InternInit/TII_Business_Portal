@@ -78,6 +78,12 @@ export const Caption = styled.span`
     props.light ? "#8c8c8c" : props.color ? props.color : "#262626"};
 `;
 
+export const NavigationLink = styled.span`
+  font-weight: 400;
+  font-family: Roboto;
+  color: #595959;
+`;
+
 export const RequiredAsterisk = styled.span`
   color: #f5222d;
 `;

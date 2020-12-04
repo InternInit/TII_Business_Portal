@@ -3,6 +3,7 @@ import NavSearch from "../General/NavSearch.jsx";
 import {
   Header,
   Caption,
+  NavigationLink,
   TabContainer,
   PageContainer,
   InnerContainer,
@@ -47,10 +48,7 @@ class InternDashboard extends Component {
             >
               <AntRow>
                 <AntCol className="universal-middle">
-                  <Avatar
-                    size={150}
-                    src={student.image}
-                  />
+                  <Avatar size={150} src={student.image} />
                 </AntCol>
                 <AntCol flex="auto" offset={1}>
                   <AntRow>
@@ -116,26 +114,35 @@ class InternDashboard extends Component {
               </AntRow>
             </TabContainer>
           </AntRow>
-          
+
           <AntRow style={{ width: "100%" }}>
             <TabContainer
-              className="my-1 intern-dashboard-navigation"
-              style={{ width: "100%" }}>
-                <AntRow>
-                  <AntCol span={6}>
-                    <Header>Dashboard</Header>
-                  </AntCol>
-                  <AntCol span={6}>
-                    <Header>Dashboard</Header>
-                  </AntCol>
-                  <AntCol span={6}>
-                    <Header>Dashboard</Header>
-                  </AntCol>
-                  <AntCol span={6}>
-                    <Header>Dashboard</Header>
-                  </AntCol>
-                </AntRow>
-              </TabContainer>
+              className="my-1 py-1 universal-center intern-dashboard-navigation"
+              style={{ width: "100%" }}
+            >
+              <AntRow justify="center" align="middle">
+                <AntCol span={6} style={{borderRight: "2px solid #bfbfbf"}}>
+                  <NavigationLink className="twentyFont">
+                    Dashboard
+                  </NavigationLink>
+                </AntCol>
+                <AntCol span={6} style={{borderRight: "2px solid #bfbfbf"}}>
+                  <NavigationLink className="twentyFont">
+                    Attendance
+                  </NavigationLink>
+                </AntCol>
+                <AntCol span={6} style={{borderRight: "2px solid #bfbfbf"}}>
+                  <NavigationLink className="twentyFont">
+                    Feedback
+                  </NavigationLink>
+                </AntCol>
+                <AntCol span={6}>
+                  <NavigationLink className="twentyFont">
+                    Grades
+                  </NavigationLink>
+                </AntCol>
+              </AntRow>
+            </TabContainer>
           </AntRow>
           <AntRow justify="center" style={{ width: "100%" }}>
             <AntCol className="mt-1 pr-1" span={8}>
