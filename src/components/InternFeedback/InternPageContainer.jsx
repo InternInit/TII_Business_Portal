@@ -117,65 +117,76 @@ class InternPageContainer extends Component {
               </AntRow>
               <AntRow className="mt-2" gutter={[16, 0]}>
                 <AntCol span={4}>
-                  <NavigationButton
-                    active
-                    style={{ width: "100%" }}
-                    shape="round"
-                    size="large"
-                    type={
-                      this.props.location.pathname.includes("dashboard")
-                        ? "primary"
-                        : "default"
-                    }
-                    ghost={!this.props.location.pathname.includes("dashboard")}
-                  >
-                    Dashboard
-                  </NavigationButton>
+                  <Link to={`/my-interns/${student.id}/dashboard`}>
+                    <NavigationButton
+                      block
+                      shape="round"
+                      size="large"
+                      active={this.props.location.pathname.includes(
+                        "dashboard"
+                      )}
+                      type={
+                        this.props.location.pathname.includes("dashboard")
+                          ? "primary"
+                          : "default"
+                      }
+                    >
+                      Dashboard
+                    </NavigationButton>
+                  </Link>
                 </AntCol>
                 <AntCol span={4}>
-                  <NavigationButton
-                    style={{ width: "100%" }}
-                    shape="round"
-                    size="large"
-                    type={
-                      this.props.location.pathname.includes("attendance")
-                        ? "primary"
-                        : "default"
-                    }
-                    ghost={!this.props.location.pathname.includes("attendance")}
-                  >
-                    Attendance
-                  </NavigationButton>
+                  <Link to={`/my-interns/${student.id}/attendance`}>
+                    <NavigationButton
+                      block
+                      shape="round"
+                      size="large"
+                      active={this.props.location.pathname.includes(
+                        "attendance"
+                      )}
+                      type={
+                        this.props.location.pathname.includes("attendance")
+                          ? "primary"
+                          : "default"
+                      }
+                    >
+                      Attendance
+                    </NavigationButton>
+                  </Link>
                 </AntCol>
                 <AntCol span={4}>
-                  <Button
-                    style={{ width: "100%" }}
-                    shape="round"
-                    size="large"
-                    type={
-                      this.props.location.pathname.includes("feedback")
-                        ? "primary"
-                        : "default"
-                    }
-                    ghost={!this.props.location.pathname.includes("feedback")}
-                  >
-                    Feedback
-                  </Button>
+                  <Link to={`/my-interns/${student.id}/feedback`}>
+                    <NavigationButton
+                      block
+                      shape="round"
+                      size="large"
+                      active={this.props.location.pathname.includes("feedback")}
+                      type={
+                        this.props.location.pathname.includes("feedback")
+                          ? "primary"
+                          : "default"
+                      }
+                    >
+                      Feedback
+                    </NavigationButton>
+                  </Link>
                 </AntCol>
                 <AntCol span={4}>
-                  <Button
-                    style={{ width: "100%" }}
-                    shape="round"
-                    size="large"
-                    type={
-                      this.props.location.pathname.includes("grades")
-                        ? "primary"
-                        : "default"
-                    }
-                    ghost={!this.props.location.pathname.includes("grades")}
-                  >
-                    Grades
-                  </Button>
+                  <Link to={`/my-interns/${student.id}/grades`}>
+                    <NavigationButton
+                      block
+                      shape="round"
+                      size="large"
+                      active={this.props.location.pathname.includes("grades")}
+                      type={
+                        this.props.location.pathname.includes("grades")
+                          ? "primary"
+                          : "default"
+                      }
+                    >
+                      Grades
+                    </NavigationButton>
+                  </Link>
                 </AntCol>
               </AntRow>
             </TabContainer>
@@ -189,6 +200,11 @@ class InternPageContainer extends Component {
             />
             <Route
               path={`/my-interns/:id/dashboard`}
+              exact
+              component={InternDashboard}
+            />
+            <Route
+              path={`/my-interns/:id/attendance`}
               exact
               component={InternDashboard}
             />

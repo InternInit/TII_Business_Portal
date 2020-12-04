@@ -83,12 +83,15 @@ export const Caption = styled.span`
 `;
 
 export const NavigationButton = styled(Button)`
-    background-color: ${props => props.active ? "#1890ff" : "transparent"};
+    background-color: ${props => props.active ? "#1890ff" : "inherit"};
+    color: white;
+    border: ${props => props.active ? "1px solid #1890ff" : "1px solid white"};
 
     &:hover,
     &:focus {
       background-color: #1890ff;
-      border: ${props => props.active ? "#1890ff" : "red"};
+      color: white;
+      border: 1px solid #1890ff;
     }
 `;
 
