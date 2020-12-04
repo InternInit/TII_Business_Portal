@@ -117,16 +117,16 @@ class InternPageContainer extends Component {
               </AntRow>
               <AntRow className="mt-2" gutter={[16, 0]}>
                   <AntCol span={4}>
-                      <Button style={{width: "100%" }} size="large" ghost>Dashboard</Button>
+                      <Button style={{width: "100%" }} shape="round" size="large" ghost>Dashboard</Button>
                   </AntCol>
                   <AntCol span={4}>
-                      <Button style={{width: "100%"}} size="large" ghost>Attendance</Button>
+                      <Button style={{width: "100%"}} shape="round" size="large" ghost>Attendance</Button>
                   </AntCol>
                   <AntCol span={4}>
-                      <Button style={{width: "100%"}} size="large" ghost>Feedback</Button>
+                      <Button style={{width: "100%"}} shape="round" size="large" ghost>Feedback</Button>
                   </AntCol>
                   <AntCol span={4}>
-                      <Button style={{width: "100%"}} size="large" ghost>Grades</Button>
+                      <Button style={{width: "100%"}} shape="round" size="large" ghost>Grades</Button>
                   </AntCol>
               </AntRow>
             </TabContainer>
