@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+const standardBlue = "#1890ff";
+
 /*============================================================================================================
  * ***********************************************************************************************************
  *
@@ -82,6 +84,12 @@ export const NavigationLink = styled.span`
   font-weight: 400;
   font-family: Roboto;
   color: #595959;
+
+  &:hover {
+    cursor: pointer;
+    color: ${standardBlue};
+    transition: .3s ease;
+  }
 `;
 
 export const RequiredAsterisk = styled.span`
