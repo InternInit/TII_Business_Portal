@@ -21,25 +21,23 @@ const InternDashboard = (props) => {
           <Header className="twentyFont mb-point-5" bolded>
             Attendance Sheet
           </Header>
-          <TabContainer className="py-1 px-2">
-            {props.student.hours.length > 5
-              ? props.student.hours
-                  .slice(0, 5)
-                  .map((hour) => (
-                    <AttendanceBox
-                      time={hour.time}
-                      date={hour.date}
-                      review={true}
-                    />
-                  ))
-              : props.student.hours.map((hour) => (
+          {props.student.hours.length > 5
+            ? props.student.hours
+                .slice(0, 5)
+                .map((hour) => (
                   <AttendanceBox
                     time={hour.time}
                     date={hour.date}
                     review={true}
                   />
-                ))}
-          </TabContainer>
+                ))
+            : props.student.hours.map((hour) => (
+                <AttendanceBox
+                  time={hour.time}
+                  date={hour.date}
+                  review={true}
+                />
+              ))}
         </AntCol>
         <AntCol className="mt-1 px-1" span={8}>
           <Header className="twentyFont mb-point-25" bolded>
@@ -87,7 +85,7 @@ const InternDashboard = (props) => {
 const AttendanceBox = (props) => {
   return (
     <AntRow>
-      <TabContainer className="py-1 pr-2 px-2 mb-point-5 universal-middle">
+      <TabContainer className="py-1-2 pr-2 px-2 mb-point-5 universal-middle">
         <AntRow>
           <AntCol span={20}>
             <AntRow>
