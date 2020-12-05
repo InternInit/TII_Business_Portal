@@ -16,13 +16,40 @@ const InternDashboard = (props) => {
     <>
       <AntRow justify="center" style={{ width: "100%" }}>
         <AntCol className="mt-1 pr-point-5" span={8}>
-          <TabContainer style={{ width: "100%", height: "400px" }} />
+          <TabContainer
+            className="py-1 px-2"
+            style={{ width: "100%", height: "400px" }}
+          >
+            <AntRow justify="start" style={{borderBottom: "1px solid #f0f0f0"}}>
+              <Header className="twentyFont mb-point-25" bolded>
+                Attendance Sheet
+              </Header>
+            </AntRow>
+          </TabContainer>
         </AntCol>
-        <AntCol className="mt-1 px-point-5" span={8}>
-          <TabContainer style={{ width: "100%", height: "400px" }} />
+        <AntCol className="mt-1 pr-point-5" span={8}>
+          <TabContainer
+            className="py-1 px-2"
+            style={{ width: "100%", height: "400px" }}
+          >
+            <AntRow justify="start" style={{borderBottom: "1px solid #f0f0f0"}}>
+              <Header className="twentyFont mb-point-25" bolded>
+                Student Feedback
+              </Header>
+            </AntRow>
+          </TabContainer>
         </AntCol>
-        <AntCol className="mt-1 pl-point-5" span={8}>
-          <TabContainer style={{ width: "100%", height: "400px" }} />
+        <AntCol className="mt-1 pr-point-5" span={8}>
+          <TabContainer
+            className="py-1 px-2"
+            style={{ width: "100%", height: "400px" }}
+          >
+            <AntRow justify="start" style={{borderBottom: "1px solid #f0f0f0"}}>
+              <Header className="twentyFont mb-point-25" bolded>
+                Employer Grades
+              </Header>
+            </AntRow>
+          </TabContainer>
         </AntCol>
       </AntRow>
     </>
