@@ -21,23 +21,25 @@ const InternDashboard = (props) => {
           <Header className="twentyFont mb-point-5" bolded>
             Attendance Sheet
           </Header>
-          {props.student.hours.length > 5
-            ? props.student.hours
-                .slice(0, 5)
-                .map((hour) => (
+          <TabContainer className="py-1 px-2">
+            {props.student.hours.length > 5
+              ? props.student.hours
+                  .slice(0, 5)
+                  .map((hour) => (
+                    <AttendanceBox
+                      time={hour.time}
+                      date={hour.date}
+                      review={true}
+                    />
+                  ))
+              : props.student.hours.map((hour) => (
                   <AttendanceBox
                     time={hour.time}
                     date={hour.date}
                     review={true}
                   />
-                ))
-            : props.student.hours.map((hour) => (
-                <AttendanceBox
-                  time={hour.time}
-                  date={hour.date}
-                  review={true}
-                />
-              ))}
+                ))}
+          </TabContainer>
         </AntCol>
         <AntCol className="mt-1 px-1" span={8}>
           <Header className="twentyFont mb-point-25" bolded>
