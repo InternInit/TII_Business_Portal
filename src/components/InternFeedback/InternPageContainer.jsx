@@ -201,7 +201,7 @@ class InternPageContainer extends Component {
             <Route
               path={`/my-interns/:id/dashboard`}
               exact
-              component={InternDashboard}
+              render={() => <InternDashboard student={student} />}
             />
             <Route
               path={`/my-interns/:id/attendance`}
