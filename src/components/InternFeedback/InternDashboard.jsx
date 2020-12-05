@@ -123,7 +123,7 @@ const AttendanceBox = (props) => {
               <Caption className="sixteenFont">Date: {props.date}</Caption>
             </AntRow>
             <AntRow>
-              <Caption className="sixteenFont">Time: {props.time}</Caption>
+              <Caption className="sixteenFont">Time: {props.time} hours </Caption>
             </AntRow>
           </AntCol>
           <AntCol className="universal-middle universal-right" span={4}>
