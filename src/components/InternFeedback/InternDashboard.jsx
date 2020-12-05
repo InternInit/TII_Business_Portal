@@ -47,7 +47,23 @@ const InternDashboard = (props) => {
             className="py-1 px-2"
             style={{ width: "100%", height: "45vh" }}
           >
-            <AntRow justify="center"></AntRow>
+            {props.student.hours.length > 5
+              ? props.student.hours
+                  .slice(0, 5)
+                  .map((hour) => (
+                    <AttendanceRow
+                      time={hour.time}
+                      date={hour.date}
+                      review={true}
+                    />
+                  ))
+              : props.student.hours.map((hour) => (
+                  <AttendanceRow
+                    time={hour.time}
+                    date={hour.date}
+                    review={true}
+                  />
+                ))}
           </TabContainer>
         </AntCol>
         <AntCol className="mt-1 pl-1" span={8}>
@@ -69,22 +85,67 @@ const InternDashboard = (props) => {
 const AttendanceBox = (props) => {
   return (
     <AntRow>
-      <TabContainer className="py-1 pr-2 px-2 mb-1 universal-middle">
+      <TabContainer className="py-1 pr-2 px-2 mb-point-5 universal-middle">
         <AntRow>
           <AntCol span={20}>
             <AntRow>
               <Caption className="sixteenFont">Date: {props.date}</Caption>
             </AntRow>
             <AntRow>
-              <Caption className="sixteenFont">Time: {props.time} hours </Caption>
+              <Caption className="sixteenFont">
+                Time: {props.time} hours{" "}
+              </Caption>
             </AntRow>
           </AntCol>
           <AntCol className="universal-middle universal-right" span={4}>
-            {props.review && <Icon className="mx-point-5" icon={check} />}
-            {props.review && <Icon className="mx-point-5" icon={remove} />}
+            {props.review && (
+              <Icon
+                className="mx-point-5"
+                icon={check}
+                style={{ color: "#bfbfbf" }}
+              />
+            )}
+            {props.review && (
+              <Icon
+                className="mx-point-5"
+                icon={remove}
+                style={{ color: "#bfbfbf" }}
+              />
+            )}
           </AntCol>
         </AntRow>
       </TabContainer>
+    </AntRow>
+  );
+};
+
+const AttendanceRow = (props) => {
+  return (
+    <AntRow className="py-1" style={{ borderBottom: "1px solid #f0f0f0" }}>
+      <AntCol span={20}>
+        <AntRow>
+          <Caption className="sixteenFont">Date: {props.date}</Caption>
+        </AntRow>
+        <AntRow>
+          <Caption className="sixteenFont">Time: {props.time} hours </Caption>
+        </AntRow>
+      </AntCol>
+      <AntCol className="universal-middle universal-right" span={4}>
+        {props.review && (
+          <Icon
+            className="mx-point-5"
+            icon={check}
+            style={{ color: "#bfbfbf" }}
+          />
+        )}
+        {props.review && (
+          <Icon
+            className="mx-point-5"
+            icon={remove}
+            style={{ color: "#bfbfbf" }}
+          />
+        )}
+      </AntCol>
     </AntRow>
   );
 };
