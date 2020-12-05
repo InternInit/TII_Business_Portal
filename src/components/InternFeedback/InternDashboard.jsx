@@ -121,7 +121,7 @@ const AttendanceBox = (props) => {
 
 const AttendanceRow = (props) => {
   return (
-    <AntRow className="py-1" style={{ borderBottom: "1px solid #f0f0f0" }}>
+    <AntRow className="py-1" style={{ borderBottom: "2px solid #f0f0f0" }}>
       <AntCol span={20}>
         <AntRow>
           <Caption className="sixteenFont">Date: {props.date}</Caption>
