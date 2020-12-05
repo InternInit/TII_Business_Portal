@@ -18,7 +18,7 @@ const InternDashboard = (props) => {
     <>
       <AntRow justify="center" style={{ width: "100%" }}>
         <AntCol className="mt-1 pr-1" span={8}>
-          <Header className="twentyFont mb-point-5" bolded>
+          <Header className="twentyTwoFont mb-point-5" bolded>
             Attendance Sheet
           </Header>
           {props.student.hours.length > 5
