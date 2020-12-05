@@ -20,8 +20,8 @@ const InternDashboard = (props) => {
             className="py-1 px-2"
             style={{ width: "100%", height: "45vh" }}
           >
-            <AntRow justify="start" style={{borderBottom: "1px solid #f0f0f0"}}>
-              <Header className="twentyFont mb-point-25" bolded>
+            <AntRow justify="center" style={{borderBottom: "1px solid #f0f0f0"}}>
+              <Header className="twentyTwoFont mb-point-5" bolded>
                 Attendance Sheet
               </Header>
             </AntRow>
@@ -32,8 +32,8 @@ const InternDashboard = (props) => {
             className="py-1 px-2"
             style={{ width: "100%", height: "45vh" }}
           >
-            <AntRow justify="start" style={{borderBottom: "1px solid #f0f0f0"}}>
-              <Header className="twentyFont mb-point-25" bolded>
+            <AntRow justify="center" style={{borderBottom: "1px solid #f0f0f0"}}>
+              <Header className="twentyTwoFont mb-point-25" bolded>
                 Student Feedback
               </Header>
             </AntRow>
@@ -44,8 +44,8 @@ const InternDashboard = (props) => {
             className="py-1 px-2"
             style={{ width: "100%", height: "45vh" }}
           >
-            <AntRow justify="start" style={{borderBottom: "1px solid #f0f0f0"}}>
-              <Header className="twentyFont mb-point-25" bolded>
+            <AntRow justify="center" style={{borderBottom: "1px solid #f0f0f0"}}>
+              <Header className="twentyTwoFont mb-point-25" bolded>
                 Employer Grades
               </Header>
             </AntRow>
