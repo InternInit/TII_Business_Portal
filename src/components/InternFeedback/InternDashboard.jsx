@@ -62,53 +62,6 @@ const InternDashboard = (props) => {
           </TabContainer>
         </AntCol>
       </AntRow>
-      <AntRow justify="center" style={{ width: "100%" }}>
-        <AntCol className="mt-1 pr-1" span={8}>
-          <TabContainer
-            className="py-1 px-2"
-            style={{ width: "100%", height: "45vh" }}
-          >
-            <AntRow
-              justify="center"
-              style={{ borderBottom: "1px solid #f0f0f0" }}
-            >
-              <Header className="twentyFont mb-point-5" bolded>
-                Attendance Sheet
-              </Header>
-            </AntRow>
-          </TabContainer>
-        </AntCol>
-        <AntCol className="mt-1 px-1" span={8}>
-          <TabContainer
-            className="py-1 px-2"
-            style={{ width: "100%", height: "45vh" }}
-          >
-            <AntRow
-              justify="center"
-              style={{ borderBottom: "1px solid #f0f0f0" }}
-            >
-              <Header className="twentyFont mb-point-25" bolded>
-                Student Feedback
-              </Header>
-            </AntRow>
-          </TabContainer>
-        </AntCol>
-        <AntCol className="mt-1 pl-1" span={8}>
-          <TabContainer
-            className="py-1 px-2"
-            style={{ width: "100%", height: "45vh" }}
-          >
-            <AntRow
-              justify="center"
-              style={{ borderBottom: "1px solid #f0f0f0" }}
-            >
-              <Header className="twentyFont mb-point-25" bolded>
-                Employer Grades
-              </Header>
-            </AntRow>
-          </TabContainer>
-        </AntCol>
-      </AntRow>
     </>
   );
 };
