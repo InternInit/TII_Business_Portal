@@ -206,7 +206,7 @@ class InternPageContainer extends Component {
             <Route
               path={`/my-interns/:id/attendance`}
               exact
-              component={InternDashboard}
+              component={() => <InternDashboard student={student} />}
             />
           </ReactSwitch>
         </PageContainer>
