@@ -41,13 +41,23 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Recent Feedback
           </Header>
-          {props.student.feedback.map((feedback) => (
-            <StudentFeedbackCard
-              avatar={props.student.image}
-              name={props.student.firstName}
-              feedback={feedback}
-            />
-          ))}
+          {props.student.feedback.length > 2
+            ? props.student.feedback
+                .splice(0, 2)
+                .map((feedback) => (
+                  <StudentFeedbackCard
+                    avatar={props.student.image}
+                    name={props.student.firstName}
+                    feedback={feedback}
+                  />
+                ))
+            : props.student.feedback.map((feedback) => (
+                <StudentFeedbackCard
+                  avatar={props.student.image}
+                  name={props.student.firstName}
+                  feedback={feedback}
+                />
+              ))}
         </AntCol>
         <AntCol className="mt-1 pl-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
