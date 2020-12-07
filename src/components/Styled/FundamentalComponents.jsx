@@ -19,7 +19,7 @@ export const TabContainer = styled.div`
 
   width: 100%;
 
-  border-radius: 4px;
+  border-radius: 10px;
   border: 1px solid #d8def3;
   box-shadow: 1px 1px 5px -4px;
 `;
