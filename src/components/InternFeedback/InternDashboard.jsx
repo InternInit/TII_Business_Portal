@@ -1,24 +1,20 @@
 import React, { Component } from "react";
-import NavSearch from "../General/NavSearch.jsx";
 import {
   Header,
   Caption,
-  NavigationLink,
   TabContainer,
-  PageContainer,
-  InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
-import { Row as AntRow, Col as AntCol, Avatar } from "antd";
+import { Row as AntRow, Col as AntCol, Avatar, Divider } from "antd";
 
 const InternDashboard = (props) => {
   return (
     <>
       <AntRow justify="center" style={{ width: "100%" }}>
         <AntCol className="mt-1 pr-1" span={8}>
-          <Header className="twentyTwoFont mb-point-5" bolded>
+          <Header className="twentyTwoFont mb-point-25" bolded>
             Attendance Sheet
           </Header>
           {props.student.hours.length > 5
@@ -40,34 +36,17 @@ const InternDashboard = (props) => {
               ))}
         </AntCol>
         <AntCol className="mt-1 px-1" span={8}>
-          <Header className="twentyFont mb-point-25" bolded>
+          <Header className="twentyTwoFont mb-point-25" bolded>
             Student Feedback
           </Header>
           <TabContainer
             className="py-1 px-2"
             style={{ width: "100%", height: "45vh" }}
           >
-            {props.student.hours.length > 5
-              ? props.student.hours
-                  .slice(0, 5)
-                  .map((hour) => (
-                    <AttendanceRow
-                      time={hour.time}
-                      date={hour.date}
-                      review={true}
-                    />
-                  ))
-              : props.student.hours.map((hour) => (
-                  <AttendanceRow
-                    time={hour.time}
-                    date={hour.date}
-                    review={true}
-                  />
-                ))}
           </TabContainer>
         </AntCol>
         <AntCol className="mt-1 pl-1" span={8}>
-          <Header className="twentyFont mb-point-25" bolded>
+          <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
           <TabContainer
@@ -119,34 +98,27 @@ const AttendanceBox = (props) => {
   );
 };
 
-const AttendanceRow = (props) => {
+const StudentFeedbackCard = (props) => {
   return (
-    <AntRow className="py-1" style={{ borderBottom: "2px solid #f0f0f0" }}>
-      <AntCol span={20}>
-        <AntRow>
-          <Caption className="sixteenFont">Date: {props.date}</Caption>
-        </AntRow>
-        <AntRow>
-          <Caption className="sixteenFont">Time: {props.time} hours </Caption>
-        </AntRow>
-      </AntCol>
-      <AntCol className="universal-middle universal-right" span={4}>
-        {props.review && (
-          <Icon
-            className="mx-point-5"
-            icon={check}
-            style={{ color: "#bfbfbf" }}
-          />
-        )}
-        {props.review && (
-          <Icon
-            className="mx-point-5"
-            icon={remove}
-            style={{ color: "#bfbfbf" }}
-          />
-        )}
-      </AntCol>
-    </AntRow>
+    <TabContainer
+      className="py-1 px-2"
+      style={{ width: "100%" }}
+    >
+      <AntRow>
+        <AntCol>
+          <Avatar src={props.avatar} size={32} />
+        </AntCol>
+        <AntCol>
+          <Caption>{props.feedback.date}</Caption>
+        </AntCol>
+      </AntRow>
+      <AntRow>
+        <Header>{props.name}</Header>
+      </AntRow>
+      <AntRow>
+        <Divider />
+      </AntRow>
+    </TabContainer>
   );
 };
 
