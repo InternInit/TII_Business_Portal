@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   Header,
   Caption,
@@ -128,18 +128,27 @@ const StudentFeedbackCard = (props) => {
         </AntCol>
       </AntRow>
       <AntRow className="py-1">
-        <AntCol flex="40px" style={{borderBottom: "2px #91d5ff solid"}}>
-        </AntCol>
+        <AntCol
+          flex="40px"
+          style={{ borderBottom: "2px #91d5ff solid" }}
+        ></AntCol>
       </AntRow>
       <AntRow justify="start">
         <Body className="fourteenFont universal-left">
-          {props.feedback.comment}
+          {props.feedback.comment.length < 300 ? (
+            <div>{props.feedback.comment}</div>
+          ) : (
+            <div
+              className="intern-dashboard-shortened-feedback"
+              style={{ height: "80px", overflow: "hidden" }}
+            >
+              {props.feedback.comment}
+            </div>
+          )}
         </Body>
       </AntRow>
-      <AntRow justify="end">
-        <Button>
-          Continue Reading
-        </Button>
+      <AntRow className="pt-point-5" justify="end">
+        <Button type="link">Continue Reading</Button>
       </AntRow>
     </TabContainer>
   );
