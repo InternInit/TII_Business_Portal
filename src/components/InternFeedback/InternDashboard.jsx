@@ -104,7 +104,7 @@ const AttendanceBox = (props) => {
 
 const StudentFeedbackCard = (props) => {
   return (
-    <TabContainer className="py-1-5 px-2" style={{ width: "100%" }}>
+    <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
       <AntRow>
         <AntCol>
           <Avatar src={props.avatar} size={48} />
@@ -135,7 +135,7 @@ const StudentFeedbackCard = (props) => {
       </AntRow>
       <AntRow justify="start">
         <Body className="fourteenFont universal-left">
-          {props.feedback.comment.length < 300 ? (
+          {props.feedback.comment.length < 200 ? (
             <div>{props.feedback.comment}</div>
           ) : (
             <div
