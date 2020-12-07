@@ -3,6 +3,7 @@ import {
   Header,
   Caption,
   TabContainer,
+  BorderlessTag,
 } from "../Styled/FundamentalComponents.jsx";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
@@ -37,13 +38,15 @@ const InternDashboard = (props) => {
         </AntCol>
         <AntCol className="mt-1 px-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
-            Student Feedback
+            Recent Feedback
           </Header>
-          <TabContainer
-            className="py-1 px-2"
-            style={{ width: "100%", height: "45vh" }}
-          >
-          </TabContainer>
+          {props.student.feedback.map((feedback) => (
+            <StudentFeedbackCard
+              avatar={props.student.image}
+              name={props.student.firstName}
+              feedback={feedback}
+            />
+          ))}
         </AntCol>
         <AntCol className="mt-1 pl-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
@@ -100,23 +103,29 @@ const AttendanceBox = (props) => {
 
 const StudentFeedbackCard = (props) => {
   return (
-    <TabContainer
-      className="py-1 px-2"
-      style={{ width: "100%" }}
-    >
+    <TabContainer className="py-1 px-2" style={{ width: "100%" }}>
       <AntRow>
         <AntCol>
-          <Avatar src={props.avatar} size={32} />
+          <Avatar src={props.avatar} size={48} />
         </AntCol>
-        <AntCol>
-          <Caption>{props.feedback.date}</Caption>
+        <AntCol offset={1}>
+          <Header className="twentyFont">{props.name}</Header>
+          <Caption className="fourteenFont" thin light>
+            {props.feedback.date}
+          </Caption>
+        </AntCol>
+        <AntCol className="universal-middle" flex="auto">
+          <AntRow justify="end">
+          <BorderlessTag className="px-1-5" color="#ad2102" background="#ffd8bf">
+            Unread
+          </BorderlessTag>
+          </AntRow>
         </AntCol>
       </AntRow>
       <AntRow>
-        <Header>{props.name}</Header>
-      </AntRow>
-      <AntRow>
-        <Divider />
+        <AntCol flex="40px">
+          <Divider />
+        </AntCol>
       </AntRow>
     </TabContainer>
   );

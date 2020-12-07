@@ -150,3 +150,17 @@ export const TypeTag = styled.div`
     transition: 0.5s ease;
   }
 `;
+
+export const BorderlessTag = styled.div`
+  color: ${props => props.color ? props.color : "#262626"};
+  background-color: ${props => props.background ? props.background : "#f5f5f5"};
+  display: flex;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  vertical-align: center;
+  justify-content: center;
+  height: 32px;
+  border-radius: 4px;
+  font-family: Roboto;
+`;
