@@ -78,7 +78,7 @@ const InternDashboard = (props) => {
 const AttendanceBox = (props) => {
   return (
     <AntRow>
-      <TabContainer className="py-1-2 pr-2 px-2 mb-point-5 universal-middle">
+      <TabContainer className="py-1-5 pr-2 px-2 mb-point-5 universal-middle">
         <AntRow>
           <AntCol span={20}>
             <AntRow>
