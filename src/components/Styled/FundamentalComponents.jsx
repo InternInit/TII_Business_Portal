@@ -82,6 +82,14 @@ export const Caption = styled.span`
     props.light ? "#8c8c8c" : props.color ? props.color : "#262626"};
 `;
 
+export const Body = styled.span`
+    text-align: left;
+    font-weight: 400;
+    font-family: roboto;
+    color: ${(props) =>
+      props.light ? "#262626" : "black"};
+`;
+
 export const NavigationButton = styled(Button)`
     background-color: ${props => props.active ? "#1890ff" : "inherit"};
     color: white;

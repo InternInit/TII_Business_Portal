@@ -4,11 +4,12 @@ import {
   Caption,
   TabContainer,
   BorderlessTag,
+  Body,
 } from "../Styled/FundamentalComponents.jsx";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
-import { Row as AntRow, Col as AntCol, Avatar, Divider } from "antd";
+import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
 
 const InternDashboard = (props) => {
   return (
@@ -103,7 +104,7 @@ const AttendanceBox = (props) => {
 
 const StudentFeedbackCard = (props) => {
   return (
-    <TabContainer className="py-1 px-2" style={{ width: "100%" }}>
+    <TabContainer className="py-2 px-2" style={{ width: "100%" }}>
       <AntRow>
         <AntCol>
           <Avatar src={props.avatar} size={48} />
@@ -116,16 +117,29 @@ const StudentFeedbackCard = (props) => {
         </AntCol>
         <AntCol className="universal-middle" flex="auto">
           <AntRow justify="end">
-          <BorderlessTag className="px-1-5" color="#ad2102" background="#ffd8bf">
-            Unread
-          </BorderlessTag>
+            <BorderlessTag
+              className="px-1-5"
+              color="#fa541c"
+              background="#ffd8bf"
+            >
+              Unread
+            </BorderlessTag>
           </AntRow>
         </AntCol>
       </AntRow>
-      <AntRow>
-        <AntCol flex="40px">
-          <Divider />
+      <AntRow className="py-1">
+        <AntCol flex="40px" style={{borderBottom: "2px #91d5ff solid"}}>
         </AntCol>
+      </AntRow>
+      <AntRow justify="start">
+        <Body className="fourteenFont universal-left">
+          {props.feedback.comment}
+        </Body>
+      </AntRow>
+      <AntRow justify="end">
+        <Button>
+          Continue Reading
+        </Button>
       </AntRow>
     </TabContainer>
   );
