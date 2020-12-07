@@ -43,7 +43,7 @@ class InternPageContainer extends Component {
     ) : (
       <>
         <NavSearch title="Intern Dashboard" />
-        <PageContainer className="global-container px-6 pt-2">
+        <PageContainer className="px-6 pt-2">
           <AntRow style={{ width: "100%" }}>
             <TabContainer
               className="mb-1 py-2 px-6 intern-dashboard-banner"

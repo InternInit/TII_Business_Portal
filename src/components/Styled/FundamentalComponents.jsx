@@ -37,7 +37,7 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: $gray-1;
+  background-color: #ebeff2;
   min-height: 100vh;
 `;
 
