@@ -176,6 +176,16 @@ const sortReview = (review) => {
   return filteredReviews;
 };
 
+const calculateDays = (oldDate, newDate) => {
+  let diff = Math.abs(oldDate - newDate) / (1000 * 3600 * 24);
+
+  if (diff >= 30) {
+    return { value: Math.round(diff / 30), unit: "months" };
+  }
+
+  return { value: Math.round(diff), unit: "days" };
+};
+
 const GradeCard = (props) => {
   /**
    * So... the way the current date system works is below:
@@ -186,15 +196,9 @@ const GradeCard = (props) => {
    */
   const today = new Date();
 
-  const calculateDays = (oldDate, newDate) => {
-    let diff = Math.abs(oldDate - newDate) / (1000 * 3600 * 24);
-
-    if (diff >= 30) {
-      return { value: Math.round(diff / 30), unit: "months" };
-    }
-
-    return { value: Math.round(diff), unit: "days" };
-  };
+  const [reviewDate, editReviewDate] = useState(
+    calculateDays(today, new Date(props.review.date))
+  );
 
   return (
     <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
@@ -211,18 +215,24 @@ const GradeCard = (props) => {
             >
               Overdue
             </BorderlessTag>
-          ) : (
+          ) : reviewDate.value < 5 && reviewDate.unit == "days" ? (
             <BorderlessTag
               className="px-1-5"
               color="#fa541c"
               background="#ffd8bf"
             >
               <span>
-                Due in{" "}
-                <strong>
-                  {calculateDays(today, new Date(props.review.date)).value}
-                </strong>{" "}
-                {calculateDays(today, new Date(props.review.date)).unit}
+                Due in <strong>{reviewDate.value}</strong> {reviewDate.unit}
+              </span>
+            </BorderlessTag>
+          ) : (
+            <BorderlessTag
+              className="px-1-5"
+              color="#52c41a"
+              background="#d9f7be"
+            >
+              <span>
+                Due in <strong>{reviewDate.value}</strong> {reviewDate.unit}
               </span>
             </BorderlessTag>
           )}
