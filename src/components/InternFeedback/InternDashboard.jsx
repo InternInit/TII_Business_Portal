@@ -73,8 +73,8 @@ const InternDashboard = (props) => {
             Employer Grades
           </Header>
           {sortReview(props.student.review)
-            .slice(0)
             .reverse()
+            .slice(0, 1)
             .map((review) => (
               <GradeCard review={review} />
             ))}
@@ -271,8 +271,19 @@ const GradeCard = (props) => {
             key="additionalComments"
             style={{ width: "100%" }}
           >
-            <Input.TextArea placeholder="Commendations, constructive criticism, message to school" rows={4}/>
+            <Input.TextArea
+              placeholder="Commendations, constructive criticism, message to school"
+              rows={6}
+            />
           </Form.Item>
+        </AntRow>
+        <AntRow gutter={[16, 0]} className="pt-point-5s" justify="end">
+          <AntCol>
+            <Button type="default">More Details</Button>
+          </AntCol>
+          <AntCol>
+            <Button type="primary">Submit</Button>
+          </AntCol>
         </AntRow>
       </Form>
     </TabContainer>
