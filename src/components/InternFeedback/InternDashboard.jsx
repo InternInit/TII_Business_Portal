@@ -171,6 +171,13 @@ const sortReview = (review) => {
 };
 
 const GradeCard = (props) => {
+  /**
+   * So... the way the current date system works is below:
+   * 1) I filter the dates by an arbitrary cut-off date before the current date
+   * 2) I then return that filtered list through sortReview
+   * 3) Any date that is BEFORE the current date is labeled overdue
+   * 4) All other dates are properly labeled
+   */
   const today = new Date();
 
   return (
