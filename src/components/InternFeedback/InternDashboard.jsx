@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Header,
   Caption,
@@ -10,6 +10,7 @@ import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
 import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
+import _ from "underscore";
 
 const InternDashboard = (props) => {
   return (
@@ -63,12 +64,7 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          <TabContainer
-            className="py-1 px-2"
-            style={{ width: "100%", height: "45vh" }}
-          >
-            <AntRow justify="center"></AntRow>
-          </TabContainer>
+          <GradeCard review={props.student.review} />
         </AntCol>
       </AntRow>
     </>
@@ -159,6 +155,45 @@ const StudentFeedbackCard = (props) => {
       </AntRow>
       <AntRow className="pt-point-5s" justify="end">
         <Button type="link">Continue Reading</Button>
+      </AntRow>
+    </TabContainer>
+  );
+};
+
+const sortReview = (review) => {
+  let sortedReviews = _.sortBy(review, (piece) => new Date(piece.date));
+  const today = new Date();
+  const filteredReviews = sortedReviews.filter(
+    (piece) => today - new Date(piece.date) < 21601553606
+  );
+
+  return filteredReviews;
+};
+
+const GradeCard = (props) => {
+  const today = new Date();
+
+  return (
+    <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
+      <AntRow justify="space-between">
+        <AntCol>
+          <Header className="twentyFont">Performance Review</Header>
+        </AntCol>
+        <AntCol>
+          <BorderlessTag
+            className="px-1-5"
+            color="#fa541c"
+            background="#ffd8bf"
+          >
+            {today - new Date(props.review.date) > 0 ? (
+              "Overdue"
+            ) : (
+              <span>
+                Due in <strong>{new Date(props.review.date)}</strong> days
+              </span>
+            )}
+          </BorderlessTag>
+        </AntCol>
       </AntRow>
     </TabContainer>
   );
