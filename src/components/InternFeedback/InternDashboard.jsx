@@ -190,10 +190,10 @@ const GradeCard = (props) => {
     let diff = Math.abs(oldDate - newDate) / (1000 * 3600 * 24);
 
     if (diff >= 30) {
-      return Math.round(diff / 30) + " months";
+      return { value: Math.round(diff / 30), unit: "months" };
     }
 
-    return Math.round(diff) + " days";
+    return { value: Math.round(diff), unit: "days" };
   };
 
   return (
@@ -214,8 +214,9 @@ const GradeCard = (props) => {
               <span>
                 Due in{" "}
                 <strong>
-                  {calculateDays(today, new Date(props.review.date))}
-                </strong>
+                  {calculateDays(today, new Date(props.review.date)).value}
+                </strong>{" "}
+                {calculateDays(today, new Date(props.review.date)).unit}
               </span>
             )}
           </BorderlessTag>
