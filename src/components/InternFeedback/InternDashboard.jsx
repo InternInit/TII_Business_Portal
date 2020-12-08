@@ -271,7 +271,7 @@ const GradeCard = (props) => {
             key="additionalComments"
             style={{ width: "100%" }}
           >
-            <Input.TextArea  />
+            <Input.TextArea placeholder="Commendations, constructive criticism, message to school" rows={4}/>
           </Form.Item>
         </AntRow>
       </Form>
