@@ -9,7 +9,14 @@ import {
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
-import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
+import {
+  Row as AntRow,
+  Col as AntCol,
+  Avatar,
+  Button,
+  Form,
+  Input,
+} from "antd";
 import _ from "underscore";
 import { toInteger } from "lodash";
 
@@ -238,6 +245,36 @@ const GradeCard = (props) => {
           )}
         </AntCol>
       </AntRow>
+      <AntRow className="py-1">
+        <AntCol
+          flex="40px"
+          style={{ borderBottom: "2px #91d5ff solid" }}
+        ></AntCol>
+      </AntRow>
+      <Form>
+        <AntRow>
+          <Header className="sixteenFont">
+            <span style={{ color: "#bfbfbf" }}>Type:</span> Grade
+          </Header>
+        </AntRow>
+        <AntRow className="pt-point-5">
+          <Form.Item name="Grade" key="grade" style={{ width: "100%" }}>
+            <Input />
+          </Form.Item>
+        </AntRow>
+        <AntRow>
+          <Header className="sixteenFont">Additional Comments</Header>
+        </AntRow>
+        <AntRow className="pt-point-5 pb-1">
+          <Form.Item
+            name="Additional Comments"
+            key="additionalComments"
+            style={{ width: "100%" }}
+          >
+            <Input.TextArea  />
+          </Form.Item>
+        </AntRow>
+      </Form>
     </TabContainer>
   );
 };
