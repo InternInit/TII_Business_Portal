@@ -11,6 +11,7 @@ import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
 import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
 import _ from "underscore";
+import { toInteger } from "lodash";
 
 const InternDashboard = (props) => {
   return (
@@ -64,9 +65,12 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          {sortReview(props.student.review).map((review) => (
-            <GradeCard review={review} />
-          ))}
+          {sortReview(props.student.review)
+            .slice(0)
+            .reverse()
+            .map((review) => (
+              <GradeCard review={review} />
+            ))}
         </AntCol>
       </AntRow>
     </>
@@ -183,9 +187,13 @@ const GradeCard = (props) => {
   const today = new Date();
 
   const calculateDays = (oldDate, newDate) => {
-    let diff = Math.abs(oldDate - newDate);
+    let diff = Math.abs(oldDate - newDate) / (1000 * 3600 * 24);
 
-    return diff / (1000 * 3600 * 24);
+    if (diff >= 30) {
+      return Math.round(diff / 30) + " months";
+    }
+
+    return Math.round(diff) + " days";
   };
 
   return (
@@ -207,8 +215,7 @@ const GradeCard = (props) => {
                 Due in{" "}
                 <strong>
                   {calculateDays(today, new Date(props.review.date))}
-                </strong>{" "}
-                days
+                </strong>
               </span>
             )}
           </BorderlessTag>
