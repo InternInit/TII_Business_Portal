@@ -64,7 +64,9 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          <GradeCard review={props.student.review} />
+          {sortReview(props.student.review).map((review) => (
+            <GradeCard review={review} />
+          ))}
         </AntCol>
       </AntRow>
     </>
@@ -180,6 +182,12 @@ const GradeCard = (props) => {
    */
   const today = new Date();
 
+  const calculateDays = (oldDate, newDate) => {
+    let diff = Math.abs(oldDate - newDate);
+
+    return diff / (1000 * 3600 * 24);
+  };
+
   return (
     <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
       <AntRow justify="space-between">
@@ -196,7 +204,11 @@ const GradeCard = (props) => {
               "Overdue"
             ) : (
               <span>
-                Due in <strong>{new Date(props.review.date)}</strong> days
+                Due in{" "}
+                <strong>
+                  {calculateDays(today, new Date(props.review.date))}
+                </strong>{" "}
+                days
               </span>
             )}
           </BorderlessTag>
