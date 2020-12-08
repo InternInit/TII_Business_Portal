@@ -203,14 +203,20 @@ const GradeCard = (props) => {
           <Header className="twentyFont">Performance Review</Header>
         </AntCol>
         <AntCol>
-          <BorderlessTag
-            className="px-1-5"
-            color="#fa541c"
-            background="#ffd8bf"
-          >
-            {today - new Date(props.review.date) > 0 ? (
-              "Overdue"
-            ) : (
+          {today - new Date(props.review.date) > 0 ? (
+            <BorderlessTag
+              className="px-1-5"
+              color="#f5222d"
+              background="#ffccc7"
+            >
+              Overdue
+            </BorderlessTag>
+          ) : (
+            <BorderlessTag
+              className="px-1-5"
+              color="#fa541c"
+              background="#ffd8bf"
+            >
               <span>
                 Due in{" "}
                 <strong>
@@ -218,8 +224,8 @@ const GradeCard = (props) => {
                 </strong>{" "}
                 {calculateDays(today, new Date(props.review.date)).unit}
               </span>
-            )}
-          </BorderlessTag>
+            </BorderlessTag>
+          )}
         </AntCol>
       </AntRow>
     </TabContainer>
