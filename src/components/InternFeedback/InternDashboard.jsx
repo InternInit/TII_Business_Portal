@@ -16,6 +16,7 @@ import {
   Button,
   Form,
   Input,
+  Tooltip,
 } from "antd";
 import _ from "underscore";
 import { toInteger } from "lodash";
@@ -101,18 +102,20 @@ const AttendanceCard = (props) => {
           </AntCol>
           <AntCol className="universal-middle universal-right" span={4}>
             {props.review && (
-              <Icon
-                className="mx-point-5"
-                icon={check}
-                style={{ color: "#bfbfbf" }}
-              />
+              <Tooltip title="Approve">
+                <Icon
+                  className="mx-point-5 intern-dashboard-attendance-approve"
+                  icon={check}
+                />
+              </Tooltip>
             )}
             {props.review && (
-              <Icon
-                className="mx-point-5"
-                icon={remove}
-                style={{ color: "#bfbfbf" }}
-              />
+              <Tooltip title="Reject">
+                <Icon
+                  className="mx-point-5 intern-dashboard-attendance-reject"
+                  icon={remove}
+                />
+              </Tooltip>
             )}
           </AntCol>
         </AntRow>

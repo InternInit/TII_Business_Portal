@@ -43,4 +43,24 @@
       pointer-events: none;
     }
   }
+
+  &-attendance-approve {
+    color: #bfbfbf;
+
+    &:hover {
+      color: #52c41a;
+      cursor: pointer;
+      transition: .3s ease;
+    }
+  }
+
+  &-attendance-reject {
+    color: #bfbfbf;
+
+    &:hover {
+      color: #f5222d;
+      cursor: pointer;
+      transition: .3s ease;
+    }
+  }
 }
