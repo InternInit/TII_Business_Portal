@@ -59,7 +59,8 @@ const InternDashboard = (props) => {
               current={page + 1}
               total={props.student.hours.length}
               pageSize={ATTENDANCE_PER_PAGE}
-              style={{marginTop: "10px"}}
+              onChange={(pageChange) => changePage(pageChange - 1)}
+              style={{ marginTop: "10px" }}
             />
           </AntRow>
         </AntCol>
