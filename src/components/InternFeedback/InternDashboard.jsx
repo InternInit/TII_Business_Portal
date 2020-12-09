@@ -39,15 +39,17 @@ const InternDashboard = (props) => {
                   page * ATTENDANCE_PER_PAGE,
                   (page + 1) * ATTENDANCE_PER_PAGE
                 )
-                .map((hour) => (
+                .map((hour, index) => (
                   <AttendanceCard
+                    key={index}
                     time={hour.time}
                     date={hour.date}
                     review={true}
                   />
                 ))
-            : props.student.hours.map((hour) => (
+            : props.student.hours.map((hour, index) => (
                 <AttendanceCard
+                  key={index}
                   time={hour.time}
                   date={hour.date}
                   review={true}
@@ -57,6 +59,7 @@ const InternDashboard = (props) => {
             <Pagination
               current={page + 1}
               total={props.student.hours.length}
+              showLessItems={true}
               pageSize={ATTENDANCE_PER_PAGE}
               onChange={(pageChange) => changePage(pageChange - 1)}
               hideOnSinglePage={true}
