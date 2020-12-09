@@ -55,11 +55,11 @@ const InternDashboard = (props) => {
               ))}
           <AntRow justify="center">
             <Pagination
-              size="small"
               current={page + 1}
               total={props.student.hours.length}
               pageSize={ATTENDANCE_PER_PAGE}
               onChange={(pageChange) => changePage(pageChange - 1)}
+              hideOnSinglePage={true}
               style={{ marginTop: "10px" }}
             />
           </AntRow>
