@@ -7,9 +7,6 @@ import {
   Body,
 } from "../Styled/FundamentalComponents.jsx";
 import AttendanceCard from "./AttendanceCard.jsx";
-import { check } from "react-icons-kit/fa/check";
-import { remove } from "react-icons-kit/fa/remove";
-import { Icon } from "react-icons-kit";
 import {
   Row as AntRow,
   Col as AntCol,

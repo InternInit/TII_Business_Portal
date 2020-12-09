@@ -38,7 +38,6 @@ export const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #ebeff2;
-  min-height: 100vh;
 `;
 
 export const InnerContainer = styled.div`

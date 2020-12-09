@@ -8,7 +8,7 @@ import { Row as AntRow, Col as AntCol, Tooltip } from "antd";
 const AttendanceCard = (props) => {
   return (
     <AntRow>
-      <TabContainer className="py-1-5 pr-2 px-2 mb-point-5 universal-middle">
+      <TabContainer className="py-1 pr-2 px-2 mb-point-5 universal-middle">
         <AntRow>
           <AntCol span={20}>
             <AntRow>
