@@ -6,6 +6,7 @@ import {
   BorderlessTag,
   Body,
 } from "../Styled/FundamentalComponents.jsx";
+import AttendanceCard from "./AttendanceCard.jsx";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
@@ -19,7 +20,6 @@ import {
   Tooltip,
 } from "antd";
 import _ from "underscore";
-import { toInteger } from "lodash";
 
 const InternDashboard = (props) => {
   return (
@@ -82,45 +82,6 @@ const InternDashboard = (props) => {
         </AntCol>
       </AntRow>
     </>
-  );
-};
-
-const AttendanceCard = (props) => {
-  return (
-    <AntRow>
-      <TabContainer className="py-1-5 pr-2 px-2 mb-point-5 universal-middle">
-        <AntRow>
-          <AntCol span={20}>
-            <AntRow>
-              <Caption className="sixteenFont">Date: {props.date}</Caption>
-            </AntRow>
-            <AntRow>
-              <Caption className="sixteenFont">
-                Time: {props.time} hours{" "}
-              </Caption>
-            </AntRow>
-          </AntCol>
-          <AntCol className="universal-middle universal-right" span={4}>
-            {props.review && (
-              <Tooltip title="Approve">
-                <Icon
-                  className="mx-point-5 intern-dashboard-attendance-approve"
-                  icon={check}
-                />
-              </Tooltip>
-            )}
-            {props.review && (
-              <Tooltip title="Reject">
-                <Icon
-                  className="mx-point-5 intern-dashboard-attendance-reject"
-                  icon={remove}
-                />
-              </Tooltip>
-            )}
-          </AntCol>
-        </AntRow>
-      </TabContainer>
-    </AntRow>
   );
 };
 
