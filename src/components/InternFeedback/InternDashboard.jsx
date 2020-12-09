@@ -17,14 +17,13 @@ import {
   Button,
   Form,
   Input,
-  Pagination
+  Pagination,
 } from "antd";
 import _ from "underscore";
 
 const ATTENDANCE_PER_PAGE = 5;
 
 const InternDashboard = (props) => {
-
   const [page, changePage] = useState(0);
 
   return (
@@ -36,7 +35,10 @@ const InternDashboard = (props) => {
           </Header>
           {props.student.hours.length > 5
             ? props.student.hours
-                .slice(page*ATTENDANCE_PER_PAGE, (page + 1)*ATTENDANCE_PER_PAGE)
+                .slice(
+                  page * ATTENDANCE_PER_PAGE,
+                  (page + 1) * ATTENDANCE_PER_PAGE
+                )
                 .map((hour) => (
                   <AttendanceCard
                     time={hour.time}
@@ -51,6 +53,15 @@ const InternDashboard = (props) => {
                   review={true}
                 />
               ))}
+          <AntRow justify="center">
+            <Pagination
+              size="small"
+              current={page + 1}
+              total={props.student.hours.length}
+              pageSize={ATTENDANCE_PER_PAGE}
+              style={{marginTop: "10px"}}
+            />
+          </AntRow>
         </AntCol>
         <AntCol className="mt-1 px-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
