@@ -32,14 +32,14 @@ const InternDashboard = (props) => {
             ? props.student.hours
                 .slice(0, 5)
                 .map((hour) => (
-                  <AttendanceBox
+                  <AttendanceCard
                     time={hour.time}
                     date={hour.date}
                     review={true}
                   />
                 ))
             : props.student.hours.map((hour) => (
-                <AttendanceBox
+                <AttendanceCard
                   time={hour.time}
                   date={hour.date}
                   review={true}
@@ -84,7 +84,7 @@ const InternDashboard = (props) => {
   );
 };
 
-const AttendanceBox = (props) => {
+const AttendanceCard = (props) => {
   return (
     <AntRow>
       <TabContainer className="py-1-5 pr-2 px-2 mb-point-5 universal-middle">
