@@ -215,8 +215,30 @@ class ReviewApplicants extends Component {
     );
     return this.state.quickview ? (
       <React.Fragment>
-        <HeaderText>Marked for Review</HeaderText>
-        <CandidateInfoBar />
+        <Header className="twentyEightFont mt-2 mb-point-75" bolded>Marked for Review</Header>
+        <InfoBar
+          mobileHeader="Applicants"
+          fieldOne={{ name: "Name", sm: 4, lg: 4, align: "universal-left" }}
+          fieldTwo={{
+            name: "School and Region",
+            sm: 8,
+            lg: 8,
+            align: "universal-center",
+          }}
+          fieldThree={{ name: "GPA", sm: 3, lg: 3, align: "universal-center" }}
+          fieldFour={{
+            name: "Applied For",
+            sm: 6,
+            lg: 6,
+            align: "universal-center",
+          }}
+          fieldFive={{
+            name: "Actions",
+            sm: 3,
+            lg: 3,
+            align: "universal-center",
+          }}
+        />
         {reviewCandidates.map((student, index) => (
           <CandidateQuickviewReviewTab
             key={index}
