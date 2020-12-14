@@ -9,7 +9,6 @@ import { Button, Switch, Divider } from "antd";
 
 import InfoBar from "../General/InfoBar.jsx";
 import { Header } from "../Styled/FundamentalComponents";
-import CandidateInfoBar from "./CandidateInfoBar.jsx";
 import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
 import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
@@ -36,17 +35,6 @@ const ViewText = styled.span`
   text-align: center;
 `;
 
-const HeaderText = styled.span`
-  font-family: lato;
-  font-weight: bold;
-  font-size: 36px;
-  height: 51px;
-  align-items: center;
-  color: black;
-  display: block;
-  margin-top: 3vh;
-`;
-
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
@@ -57,7 +45,7 @@ class ReviewApplicants extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quickview: false,
+      quickview: true,
       page: "1",
       review: true,
     };
