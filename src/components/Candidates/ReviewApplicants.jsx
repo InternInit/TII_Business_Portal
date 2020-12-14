@@ -191,7 +191,7 @@ class ReviewApplicants extends Component {
               ", " +
               student.info.Education[0].State
             }
-            GPA={parseFloat(student.info["Weighted GPA"])}
+            GPA={parseFloat(student.info["Unweighted GPA"])}
             age={student.info.Age}
             workDate={
               student.info["Starting/Ending Dates"][0].split("T")[0] +
@@ -283,7 +283,7 @@ class ReviewApplicants extends Component {
               ", " +
               student.info.Education[0].State
             }
-            GPA={parseFloat(student.info["Weighted GPA"])}
+            GPA={parseFloat(student.info["Unweighted GPA"])}
             age={student.info.Age}
             workDate={
               student.info["Starting/Ending Dates"][0].split("T")[0] +

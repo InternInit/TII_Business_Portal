@@ -80,7 +80,6 @@ class CandidateDetailedviewTab extends Component {
           <AntCol className="universal-right" flex="1">
             <Header
               className="eighteenFont"
-              bolded
               style={{ marginBottom: "-5px", marginTop: "-5px" }}
             >
               {this.props.school}
@@ -92,19 +91,19 @@ class CandidateDetailedviewTab extends Component {
         </AntRow>
         <AntRow gutter={[16, 16]}>
           <AntCol span={3} style={{ textAlign: "right" }}>
-            <Header className="sixteenFont mb-1" subheading>
+            <Header className="sixteenFont mb-1" color="#bfbfbf">
               Applied For:
             </Header>
-            <Header className="sixteenFont my-1" subheading>
+            <Header className="sixteenFont my-1" color="#bfbfbf">
               GPA:
             </Header>
-            <Header className="sixteenFont my-1" subheading>
+            <Header className="sixteenFont my-1" color="#bfbfbf">
               Age:
             </Header>
-            <Header className="sixteenFont my-1" subheading>
+            <Header className="sixteenFont my-1" color="#bfbfbf">
               Work Dates:
             </Header>
-            <Header className="sixteenFont my-1" subheading>
+            <Header className="sixteenFont my-1" color="#bfbfbf">
               Availability:
             </Header>
           </AntCol>
@@ -141,23 +140,65 @@ class CandidateDetailedviewTab extends Component {
               </Caption>
             </AntRow>
           </AntCol>
-          <AntCol span={3} style={{ textAlign: "right" }}>
-            <Label>Top 3 Activities:</Label>
-            <Label style={{ marginTop: "60px" }}>Top 3 Classes:</Label>
-          </AntCol>
-          <AntCol span={9}>
-            <ListResponse style={{ marginTop: "10px" }}>
-              1. {this.props.activityOne}
-            </ListResponse>
-            <ListResponse>2. {this.props.activityTwo}</ListResponse>
-            <ListResponse>3. {this.props.activityThree}</ListResponse>
-            <ListResponse style={{ marginTop: "30px" }}>
-              1. {this.props.classOne}
-            </ListResponse>
-            <ListResponse>2. {this.props.classTwo}</ListResponse>
-            <ListResponse>3. {this.props.classThree}</ListResponse>
+
+          {/**
+           * This col has been split into two rows to make the categorization
+           * easier to design without having to rely on complex margins and
+           * padding
+           */}
+          <AntCol span={12}>
+            <AntRow gutter={[16, 16]}>
+              <AntCol span={6} style={{ textAlign: "right" }}>
+                <Header className="sixteenFont" color="#bfbfbf">
+                  Top Activities:
+                </Header>
+              </AntCol>
+              <AntCol span={18}>
+                <AntRow>
+                  <Caption className="sixteenFont">
+                    1. {this.props.activityOne}{" "}
+                  </Caption>
+                </AntRow>
+                <AntRow>
+                  <Caption className="sixteenFont">
+                    2. {this.props.activityTwo}
+                  </Caption>
+                </AntRow>
+                <AntRow>
+                  <Caption className="sixteenFont">
+                    3. {this.props.activityThree}
+                  </Caption>
+                </AntRow>
+              </AntCol>
+            </AntRow>
+
+            <AntRow gutter={[16, 16]}>
+              <AntCol span={6} style={{ textAlign: "right" }}>
+                <Header className="sixteenFont" color="#bfbfbf">
+                  Top Classes:
+                </Header>
+              </AntCol>
+              <AntCol span={18}>
+                <AntRow>
+                  <Caption className="sixteenFont">
+                    1. {this.props.classOne}
+                  </Caption>
+                </AntRow>
+                <AntRow>
+                  <Caption className="sixteenFont">
+                    2. {this.props.classTwo}
+                  </Caption>
+                </AntRow>
+                <AntRow>
+                  <Caption className="sixteenFont">
+                    3. {this.props.classThree}
+                  </Caption>
+                </AntRow>
+              </AntCol>
+            </AntRow>
           </AntCol>
         </AntRow>
+
         <Row gutter={[32, 16]} style={{ width: "90%", margin: "auto" }}>
           <AntCol span={7}>
             <ActionButton>Read Full Application</ActionButton>
