@@ -172,7 +172,7 @@ const StudentInternTab = (props) => {
 
           {/**Details */}
           <AiOutlineRight
-            className="student-intern-tab-click-more-icon"
+            className="click-more-icon"
             style={{ fontSize: "24px" }}
           />
         </AntRow>
