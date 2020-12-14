@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, Tooltip } from "antd";
+import { Tooltip, Row as AntRow, Col as AntCol } from "antd";
 import { Icon } from "react-icons-kit";
 import { box } from "react-icons-kit/iconic/box";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { ic_keyboard_arrow_right } from "react-icons-kit/md/ic_keyboard_arrow_right";
+import { TabContainer } from "../Styled/FundamentalComponents";
 
+/**
 const TabContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -33,11 +35,7 @@ const TabContainer = styled.div`
     box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
   }
 `;
-
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+ */
 
 const Header = styled.span`
   font-family: roboto;
@@ -94,75 +92,70 @@ const CandidateQuickviewTab = (props) => {
   console.log(props);
 
   return (
-    <TabContainer>
+    <TabContainer className="py-1-5 px-4">
       {/**
        *
        * Name
        *
        */}
-      <Col style={{ width: "40vh", alignItems: "center" }}>
-        <Header>{name}</Header>
-      </Col>
+      <AntRow>
+        <AntCol>
+          <Header>{name}</Header>
+        </AntCol>
 
-      {/**School and Region */}
-      <Col style={{ alignItems: "center", width: "42vh" }}>
-        <Header>{school.Name}</Header>
-        <Caption style={{ color: "#BFBFBF" }}>
-          {school.Address}, {school.State}
-        </Caption>
-      </Col>
+        {/**School and Region */}
+        <AntCol>
+          <Header>{school.Name}</Header>
+          <Caption style={{ color: "#BFBFBF" }}>
+            {school.Address}, {school.State}
+          </Caption>
+        </AntCol>
 
-      {/**GPA */}
-      <Col style={{ alignItems: "center", width: "15vh" }}>
-        {props.GPA >= props.cutOffGPA ? (
-          <GPA style={{ color: "green" }}>{props.GPA.toFixed(1)}</GPA>
-        ) : (
-          <GPA style={{ color: "red" }}>{props.GPA.toFixed(1)}</GPA>
-        )}
-      </Col>
+        {/**GPA */}
+        <AntCol>
+          {props.GPA >= props.cutOffGPA ? (
+            <GPA style={{ color: "green" }}>{props.GPA.toFixed(1)}</GPA>
+          ) : (
+            <GPA style={{ color: "red" }}>{props.GPA.toFixed(1)}</GPA>
+          )}
+        </AntCol>
 
-      {/**Applied For*/}
-      <Col style={{ alignItems: "center", width: "50vh" }}>
-        <AppliedFor>Front End React Intern</AppliedFor>
-        <Industries>Industries: {industry}</Industries>
-      </Col>
+        {/**Applied For*/}
+        <AntCol>
+          <AppliedFor>Front End React Intern</AppliedFor>
+          <Industries>Industries: {industry}</Industries>
+        </AntCol>
 
-      {/**Mark */}
-      <Col
-        style={{
-          alignItems: "center",
-          width: "20vh",
-          display: "inline-block",
-          textAlign: "center",
-        }}
-      >
-        <Tooltip title="Interview">
-          <CheckIcon
-            icon={check}
-            style={{ marginLeft: "1vh", marginRight: "1vh" }}
-            onClick={props.onInterview}
-          />
-        </Tooltip>
-        <Tooltip title="Review Later">
-          <ReviewIcon
-            icon={box}
-            style={{ marginLeft: "1vh", marginRight: "1vh" }}
-            onClick={props.onReview}
-          />
-        </Tooltip>
-        <Tooltip title="Remove">
-          <RemoveIcon
-            icon={remove}
-            style={{ marginLeft: "1vh", marginRight: "1vh" }}
-            onClick={props.onReject}
-          />
-        </Tooltip>
-      </Col>
+        {/**Mark */}
+        <AntCol>
+          <Tooltip title="Interview">
+            <CheckIcon
+              icon={check}
+              style={{ marginLeft: "1vh", marginRight: "1vh" }}
+              onClick={props.onInterview}
+            />
+          </Tooltip>
+          <Tooltip title="Review Later">
+            <ReviewIcon
+              icon={box}
+              style={{ marginLeft: "1vh", marginRight: "1vh" }}
+              onClick={props.onReview}
+            />
+          </Tooltip>
+          <Tooltip title="Remove">
+            <RemoveIcon
+              icon={remove}
+              style={{ marginLeft: "1vh", marginRight: "1vh" }}
+              onClick={props.onReject}
+            />
+          </Tooltip>
+        </AntCol>
 
-      {/**Contact Info */}
-      <Col style={{ alignItems: "center", width: "10vh" }}>
-        <Icon icon={ic_keyboard_arrow_right} size={48} />
-      </Col>
+        {/**Contact Info */}
+        <AntCol>
+          <Icon icon={ic_keyboard_arrow_right} size={48} />
+        </AntCol>
+      </AntRow>
     </TabContainer>
   );
 };
