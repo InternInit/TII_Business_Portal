@@ -5,7 +5,7 @@ import { Icon } from "react-icons-kit";
 import { box } from "react-icons-kit/iconic/box";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
-import { ic_keyboard_arrow_right } from "react-icons-kit/md/ic_keyboard_arrow_right";
+import { AiOutlineRight } from "react-icons/ai";
 import { TabContainer } from "../Styled/FundamentalComponents";
 
 /**
@@ -92,27 +92,31 @@ const CandidateQuickviewTab = (props) => {
   console.log(props);
 
   return (
-    <TabContainer className="py-1-5 px-4">
+    <TabContainer className="py-2 px-4 my-1 responsive-tab-container">
       {/**
        *
        * Name
        *
        */}
-      <AntRow>
-        <AntCol>
+      <AntRow justify="center" align="middle">
+        <AntCol span={5}>
           <Header>{name}</Header>
         </AntCol>
 
         {/**School and Region */}
-        <AntCol>
-          <Header>{school.Name}</Header>
-          <Caption style={{ color: "#BFBFBF" }}>
-            {school.Address}, {school.State}
-          </Caption>
+        <AntCol span={7}>
+          <AntRow className="universal-center" >
+            <Header>{school.Name}</Header>
+          </AntRow>
+          <AntRow className="universal-center" >
+            <Caption style={{ color: "#BFBFBF" }}>
+              {school.Address}, {school.State}
+            </Caption>
+          </AntRow>
         </AntCol>
 
         {/**GPA */}
-        <AntCol>
+        <AntCol span={2}>
           {props.GPA >= props.cutOffGPA ? (
             <GPA style={{ color: "green" }}>{props.GPA.toFixed(1)}</GPA>
           ) : (
@@ -121,13 +125,17 @@ const CandidateQuickviewTab = (props) => {
         </AntCol>
 
         {/**Applied For*/}
-        <AntCol>
-          <AppliedFor>Front End React Intern</AppliedFor>
-          <Industries>Industries: {industry}</Industries>
+        <AntCol span={7}>
+          <AntRow className="universal-center">
+            <AppliedFor>Front End React Intern</AppliedFor>
+          </AntRow>
+          <AntRow>
+            <Industries>Industries: {industry}</Industries>
+          </AntRow>
         </AntCol>
 
         {/**Mark */}
-        <AntCol>
+        <AntCol className="universal-center"  span={3}>
           <Tooltip title="Interview">
             <CheckIcon
               icon={check}
@@ -152,9 +160,10 @@ const CandidateQuickviewTab = (props) => {
         </AntCol>
 
         {/**Contact Info */}
-        <AntCol>
-          <Icon icon={ic_keyboard_arrow_right} size={48} />
-        </AntCol>
+        <AiOutlineRight
+          className="student-intern-tab-click-more-icon"
+          style={{ fontSize: "24px" }}
+        />
       </AntRow>
     </TabContainer>
   );

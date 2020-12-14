@@ -92,7 +92,7 @@ const StudentInternTab = (props) => {
     .includes("xs");
   return (
     <Link to={`/my-interns/${props.id}/dashboard`} style={{ textDecoration: 'none', color: "inherit" }}>
-      <TabContainer className="mt-1-5 py-1-5 px-6 student-intern-tab-responsive-tab-container">
+      <TabContainer className="mt-1-5 py-1-5 px-6 responsive-tab-container">
         {/**
          *
          * Listing Name + Industry
