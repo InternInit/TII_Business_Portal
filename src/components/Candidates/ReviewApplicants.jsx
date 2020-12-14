@@ -133,7 +133,7 @@ class ReviewApplicants extends Component {
           <CandidateQuickviewTab
             key={index}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
-            school={student.info.Education[0].Name}
+            school={student.info.Education[0]}
             GPA={parseFloat(student.info["Unweighted GPA"])}
             industry={
               "Computer Science, Biotechnology, General Business, Finance or Accounting"

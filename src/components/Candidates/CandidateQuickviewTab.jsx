@@ -106,9 +106,9 @@ const CandidateQuickviewTab = (props) => {
 
       {/**School and Region */}
       <Col style={{ alignItems: "center", width: "42vh" }}>
-        <Header>{school.name}</Header>
+        <Header>{school.Name}</Header>
         <Caption style={{ color: "#BFBFBF" }}>
-          {school.address}, {school.state}
+          {school.Address}, {school.State}
         </Caption>
       </Col>
 
