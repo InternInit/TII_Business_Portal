@@ -8,35 +8,6 @@ import { remove } from "react-icons-kit/fa/remove";
 import { AiOutlineRight } from "react-icons/ai";
 import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
 
-/**
-const TabContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  align-items: center;
-  justify-content: center;
-
-  background-color: white;
-
-  padding: 1vh;
-
-  width: 100%;
-  min-height: 11vh;
-  min-width: 600px;
-
-  margin-top: 2vh;
-
-  border-radius: 4px;
-  border: 1px solid #d8def3;
-  box-shadow: 1px 1px 5px -4px;
-
-  :hover {
-    transition-duration: 0.35s;
-    box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
-  }
-`;
- */
-
 const CheckIcon = styled(Icon)`
   color: #bfbfbf;
 
@@ -48,7 +19,7 @@ const CheckIcon = styled(Icon)`
 `;
 const ReviewIcon = styled(Icon)`
   color: #bfbfbf;
-  
+
   :hover {
     transition-duration: 0.35s;
     color: #fa8c16;
