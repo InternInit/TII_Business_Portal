@@ -15,7 +15,6 @@ import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
 import CandidateDetailedviewReviewTab from "./CandidateDetailedviewReviewTab.jsx";
 
-
 //Ant Design Styles
 const AddFilterStyle = {
   width: "270px",
@@ -112,7 +111,9 @@ class ReviewApplicants extends Component {
             style={{ align: "inline-block" }}
           />
 
-          <Header className="twentyEightFont mt-1 mb-point-75" bolded>Unread Applicants</Header>
+          <Header className="twentyEightFont mt-1 mb-point-75" bolded>
+            Unread Applicants
+          </Header>
 
           {this.renderUnreadApplicants()}
 
@@ -179,7 +180,9 @@ class ReviewApplicants extends Component {
              * 
             avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
              */
-            avatar={"https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"}
+            avatar={
+              "https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"
+            }
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             city={student.info.City}
             school={student.info.Education[0].Name}
@@ -195,9 +198,8 @@ class ReviewApplicants extends Component {
               " - " +
               student.info["Starting/Ending Dates"][1].split("T")[0]
             }
-            industries={
-              "Computer Science, Biotechnology, General Business, Finance or Accounting"
-            }
+            workDays={student.info["Willing Work Days"]}
+            workTimes={student.info["Willing Work Times"]} 
             activityOne={"Activity One"}
             activityTwo={"Activity Two"}
             activityThree={"Activity Three"}
@@ -220,7 +222,9 @@ class ReviewApplicants extends Component {
     );
     return this.state.quickview ? (
       <React.Fragment>
-        <Header className="twentyEightFont mt-2 mb-point-75" bolded>Marked for Review</Header>
+        <Header className="twentyEightFont mt-2 mb-point-75" bolded>
+          Marked for Review
+        </Header>
         <InfoBar
           mobileHeader="Applicants"
           fieldOne={{ name: "Name", sm: 4, lg: 4, align: "universal-left" }}
@@ -269,7 +273,9 @@ class ReviewApplicants extends Component {
              * 
             avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
              */
-            avatar={"https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"}
+            avatar={
+              "https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"
+            }
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0].Name}
             schoolAddress={

@@ -74,7 +74,7 @@ export const Header = styled.div`
 `;
 
 export const Caption = styled.span`
-  text-align: center;
+  text-align: ${props => props.left ? "left" : props.right ? "right" : "center"};
   font-weight: ${(props) => (props.thin ? 300 : 400)};
   font-family: roboto;
   color: ${(props) =>

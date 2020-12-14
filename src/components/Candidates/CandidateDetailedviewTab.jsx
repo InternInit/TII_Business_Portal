@@ -56,7 +56,7 @@ class CandidateDetailedviewTab extends Component {
   }
   render() {
     return (
-      <TabContainer className="py-2 px-6 my-1 responsive-tab-container">
+      <TabContainer className="py-3 px-6 my-1 responsive-tab-container">
         <AntRow gutter={[16, 16]}>
           <AntCol className="universal-left">
             <Avatar
@@ -90,20 +90,56 @@ class CandidateDetailedviewTab extends Component {
             </Caption>
           </AntCol>
         </AntRow>
-        <Row gutter={[16, 16]} style={{ width: "100%" }}>
+        <AntRow gutter={[16, 16]}>
           <AntCol span={3} style={{ textAlign: "right" }}>
-            <Label>Applied For:</Label>
-            <Label>GPA:</Label>
-            <Label>Age:</Label>
-            <Label>Work Dates:</Label>
-            <Label>Industries:</Label>
+            <Header className="sixteenFont mb-1" subheading>
+              Applied For:
+            </Header>
+            <Header className="sixteenFont my-1" subheading>
+              GPA:
+            </Header>
+            <Header className="sixteenFont my-1" subheading>
+              Age:
+            </Header>
+            <Header className="sixteenFont my-1" subheading>
+              Work Dates:
+            </Header>
+            <Header className="sixteenFont my-1" subheading>
+              Availability:
+            </Header>
           </AntCol>
           <AntCol span={9}>
-            <Response>React Front End Intern</Response>
-            <Response>{this.props.GPA}</Response>
-            <Response>{this.props.age}</Response>
-            <Response>{this.props.workDate}</Response>
-            <Response>{this.props.industries}</Response>
+            <AntRow>
+              <Caption className="sixteenFont mb-point-5">
+                React Front End Intern
+              </Caption>
+            </AntRow>
+            <AntRow>
+              <Caption className="sixteenFont my-point-5">
+                {this.props.GPA}
+              </Caption>
+            </AntRow>
+            <AntRow>
+              <Caption className="sixteenFont my-point-5">
+                {this.props.age}
+              </Caption>
+            </AntRow>
+            <AntRow>
+              <Caption className="sixteenFont my-point-5">
+                {this.props.workDate}
+              </Caption>
+            </AntRow>
+            <AntRow>
+              <Caption className="sixteenFont my-point-5" left>
+                {this.props.workTimes.length > 1
+                  ? this.props.workTimes
+                      .slice(0, this.props.workTimes.length - 1)
+                      .map((val) => ` ${val}`) +
+                    ", " +
+                    this.props.workTimes[this.props.workTimes.length - 1]
+                  : this.props.workTimes}
+              </Caption>
+            </AntRow>
           </AntCol>
           <AntCol span={3} style={{ textAlign: "right" }}>
             <Label>Top 3 Activities:</Label>
@@ -121,7 +157,7 @@ class CandidateDetailedviewTab extends Component {
             <ListResponse>2. {this.props.classTwo}</ListResponse>
             <ListResponse>3. {this.props.classThree}</ListResponse>
           </AntCol>
-        </Row>
+        </AntRow>
         <Row gutter={[32, 16]} style={{ width: "90%", margin: "auto" }}>
           <AntCol span={7}>
             <ActionButton>Read Full Application</ActionButton>
