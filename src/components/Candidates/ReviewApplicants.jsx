@@ -200,12 +200,8 @@ class ReviewApplicants extends Component {
             }
             workDays={student.info["Willing Work Days"]}
             workTimes={student.info["Willing Work Times"]} 
-            activityOne={"Activity One"}
-            activityTwo={"Activity Two"}
-            activityThree={"Activity Three"}
-            classOne={"Class One"}
-            classTwo={"Class Two"}
-            classThree={"Class Three"}
+            activities={student.info.Extracurriculars}
+            courses={student.info.Courses}
             onReview={() => this.handleReview(student.internId)}
             onInterview={() => this.handleInterviewUnread(student.internId)}
             onReject={() => this.handleReject(student.internId)}

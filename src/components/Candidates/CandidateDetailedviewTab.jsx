@@ -154,21 +154,13 @@ class CandidateDetailedviewTab extends Component {
                 </Header>
               </AntCol>
               <AntCol span={18}>
-                <AntRow>
-                  <Caption className="sixteenFont">
-                    1. {this.props.activityOne}{" "}
-                  </Caption>
-                </AntRow>
-                <AntRow>
-                  <Caption className="sixteenFont">
-                    2. {this.props.activityTwo}
-                  </Caption>
-                </AntRow>
-                <AntRow>
-                  <Caption className="sixteenFont">
-                    3. {this.props.activityThree}
-                  </Caption>
-                </AntRow>
+                {this.props.activities.slice(0,3).map((activity, index) => (
+                  <AntRow>
+                    <Caption className="sixteenFont">
+                      {index + 1}. {activity.activityType}
+                    </Caption>
+                  </AntRow>
+                ))}
               </AntCol>
             </AntRow>
 
@@ -179,21 +171,13 @@ class CandidateDetailedviewTab extends Component {
                 </Header>
               </AntCol>
               <AntCol span={18}>
-                <AntRow>
-                  <Caption className="sixteenFont">
-                    1. {this.props.classOne}
-                  </Caption>
-                </AntRow>
-                <AntRow>
-                  <Caption className="sixteenFont">
-                    2. {this.props.classTwo}
-                  </Caption>
-                </AntRow>
-                <AntRow>
-                  <Caption className="sixteenFont">
-                    3. {this.props.classThree}
-                  </Caption>
-                </AntRow>
+              {this.props.courses.slice(0,3).map((activity, index) => (
+                  <AntRow>
+                    <Caption className="sixteenFont">
+                      {index + 1}. {activity.courseTitle}
+                    </Caption>
+                  </AntRow>
+                ))}
               </AntCol>
             </AntRow>
           </AntCol>
