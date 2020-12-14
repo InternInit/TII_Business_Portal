@@ -1,31 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, Row, Col as AntCol, Row as AntRow, Avatar } from "antd";
+import { Button, Col as AntCol, Row as AntRow, Avatar } from "antd";
 import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
-
-const NameHeading = styled.span`
-  font-family: roboto;
-  font-weight: bold;
-  font-size: 20px;
-  color: black;
-  display: block;
-  margin-top: -5px;
-`;
-
-const Label = styled.p`
-  font-family: Roboto;
-  font-weight: 500;
-  font-size: 16px;
-  color: black;
-`;
-
-const MiniLabel = styled.p`
-  font-family: Roboto;
-  font-weight: 300;
-  font-size: 12px;
-  color: black;
-  margin-top: -20px;
-`;
 
 const Response = styled.p`
   font-family: Roboto;
@@ -34,16 +10,13 @@ const Response = styled.p`
   color: #434343;
 `;
 
-const ListResponse = styled(Response)`
-  line-height: 8px;
-`;
-
 const ActionButton = styled(Button)`
   width: 100%;
-  font-weight: 500;
+
   :hover {
     background-color: #1890ff;
     color: white;
+    transition: .3s ease;
   }
 `;
 
@@ -183,26 +156,26 @@ class CandidateDetailedviewTab extends Component {
           </AntCol>
         </AntRow>
 
-        <Row gutter={[32, 16]} style={{ width: "90%", margin: "auto" }}>
+        <AntRow gutter={[32, 0]} justify="space-between">
           <AntCol span={7}>
-            <ActionButton>Read Full Application</ActionButton>
+            <ActionButton size="large">Read Full Application</ActionButton>
           </AntCol>
           <AntCol span={7}>
-            <ActionButton onClick={this.props.onReview}>
+            <ActionButton size="large" onClick={this.props.onReview}>
               Review for Later
             </ActionButton>
           </AntCol>
           <AntCol span={7}>
-            <ActionButton onClick={this.props.onInterview}>
+            <ActionButton size="large" onClick={this.props.onInterview}>
               Move to Interview
             </ActionButton>
           </AntCol>
           <AntCol span={3}>
-            <Button type="danger" onClick={this.props.onReject}>
+            <Button size="large" type="danger" onClick={this.props.onReject}>
               Not a fit
             </Button>
           </AntCol>
-        </Row>
+        </AntRow>
       </TabContainer>
     );
   }
