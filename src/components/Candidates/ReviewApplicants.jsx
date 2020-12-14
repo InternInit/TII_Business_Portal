@@ -7,11 +7,14 @@ import axios from "axios";
 
 import { Button, Switch, Divider } from "antd";
 
+import InfoBar from "../General/InfoBar.jsx";
+import { Header } from "../Styled/FundamentalComponents";
 import CandidateInfoBar from "./CandidateInfoBar.jsx";
 import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
 import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
 import CandidateDetailedviewReviewTab from "./CandidateDetailedviewReviewTab.jsx";
+
 
 //Ant Design Styles
 const AddFilterStyle = {
@@ -109,7 +112,7 @@ class ReviewApplicants extends Component {
             style={{ align: "inline-block" }}
           />
 
-          <HeaderText>Unread Applicants</HeaderText>
+          <Header className="twentyEightFont mt-1 mb-point-75" bolded>Unread Applicants</Header>
 
           {this.renderUnreadApplicants()}
 
@@ -128,7 +131,29 @@ class ReviewApplicants extends Component {
     );
     return this.state.quickview ? (
       <React.Fragment>
-        <CandidateInfoBar />
+        <InfoBar
+          mobileHeader="Applicants"
+          fieldOne={{ name: "Name", sm: 4, lg: 4, align: "universal-left" }}
+          fieldTwo={{
+            name: "School and Region",
+            sm: 8,
+            lg: 8,
+            align: "universal-center",
+          }}
+          fieldThree={{ name: "GPA", sm: 3, lg: 3, align: "universal-center" }}
+          fieldFour={{
+            name: "Applied For",
+            sm: 6,
+            lg: 6,
+            align: "universal-center",
+          }}
+          fieldFive={{
+            name: "Actions",
+            sm: 3,
+            lg: 3,
+            align: "universal-center",
+          }}
+        />
         {unreadCandidates.map((student, index) => (
           <CandidateQuickviewTab
             key={index}

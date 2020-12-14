@@ -38,6 +38,8 @@ const TabContainer = styled.div`
  */
 
 const CheckIcon = styled(Icon)`
+  color: #bfbfbf;
+
   :hover {
     transition-duration: 0.35s;
     color: #52c41a;
@@ -45,6 +47,8 @@ const CheckIcon = styled(Icon)`
   }
 `;
 const ReviewIcon = styled(Icon)`
+  color: #bfbfbf;
+  
   :hover {
     transition-duration: 0.35s;
     color: #fa8c16;
@@ -52,6 +56,8 @@ const ReviewIcon = styled(Icon)`
   }
 `;
 const RemoveIcon = styled(Icon)`
+  color: #bfbfbf;
+
   :hover {
     transition-duration: 0.35s;
     color: #f5222d;
@@ -73,7 +79,9 @@ const CandidateQuickviewTab = (props) => {
        */}
       <AntRow justify="center" align="middle">
         <AntCol span={4}>
-          <Header className="twentyFont" bolded>{name}</Header>
+          <Header className="twentyFont" bolded>
+            {name}
+          </Header>
         </AntCol>
 
         {/**School and Region */}
