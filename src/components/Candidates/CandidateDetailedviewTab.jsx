@@ -156,7 +156,7 @@ class CandidateDetailedviewTab extends Component {
               <AntCol span={18}>
                 {this.props.activities.slice(0,3).map((activity, index) => (
                   <AntRow>
-                    <Caption className="sixteenFont">
+                    <Caption className="sixteenFont mb-point-25">
                       {index + 1}. {activity.activityType}
                     </Caption>
                   </AntRow>
@@ -173,7 +173,7 @@ class CandidateDetailedviewTab extends Component {
               <AntCol span={18}>
               {this.props.courses.slice(0,3).map((activity, index) => (
                   <AntRow>
-                    <Caption className="sixteenFont">
+                    <Caption className="sixteenFont mb-point-25">
                       {index + 1}. {activity.courseTitle}
                     </Caption>
                   </AntRow>

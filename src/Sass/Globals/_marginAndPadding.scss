@@ -51,6 +51,7 @@
   }
 }
 
+@include margins("point-1", .1);
 @include margins("point-25", .25);
 @include margins("point-5", .5);
 @include margins("point-75", .75);
@@ -71,6 +72,7 @@
 @include margins(13, 13);
 @include margins(14, 14);
 
+@include paddings("point-1", .1);
 @include paddings("point-25", .25);
 @include paddings("point-5", .5);
 @include paddings("point-75", .75);
