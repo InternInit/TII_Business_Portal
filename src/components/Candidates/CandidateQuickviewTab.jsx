@@ -6,7 +6,7 @@ import { box } from "react-icons-kit/iconic/box";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { AiOutlineRight } from "react-icons/ai";
-import { TabContainer } from "../Styled/FundamentalComponents";
+import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
 
 /**
 const TabContainer = styled.div`
@@ -37,33 +37,6 @@ const TabContainer = styled.div`
 `;
  */
 
-const Header = styled.span`
-  font-family: roboto;
-  font-size: 16px;
-  font-weight: 500;
-  color: black;
-`;
-
-const Caption = styled.span`
-  font-size: 12px;
-`;
-
-const GPA = styled.span`
-  font-size: 16px;
-`;
-
-const AppliedFor = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  color: #722ed1;
-`;
-
-const Industries = styled.span`
-  font-size: 12px;
-  font-weight: 300;
-  color: black;
-`;
-
 const CheckIcon = styled(Icon)`
   :hover {
     transition-duration: 0.35s;
@@ -92,50 +65,53 @@ const CandidateQuickviewTab = (props) => {
   console.log(props);
 
   return (
-    <TabContainer className="py-2 px-4 my-1 responsive-tab-container">
+    <TabContainer className="py-2 px-6 my-1 responsive-tab-container">
       {/**
        *
        * Name
        *
        */}
       <AntRow justify="center" align="middle">
-        <AntCol span={5}>
-          <Header>{name}</Header>
+        <AntCol span={4}>
+          <Header className="twentyFont" bolded>{name}</Header>
         </AntCol>
 
         {/**School and Region */}
-        <AntCol span={7}>
-          <AntRow className="universal-center" >
-            <Header>{school.Name}</Header>
+        <AntCol span={8}>
+          <AntRow className="universal-center">
+            <Header className="sixteenFont">{school.Name}</Header>
           </AntRow>
-          <AntRow className="universal-center" >
-            <Caption style={{ color: "#BFBFBF" }}>
+          <AntRow className="universal-center">
+            <Caption className="twelveFont" light thin>
               {school.Address}, {school.State}
             </Caption>
           </AntRow>
         </AntCol>
 
         {/**GPA */}
-        <AntCol span={2}>
+        <AntCol className="universal-center" span={3}>
           {props.GPA >= props.cutOffGPA ? (
-            <GPA style={{ color: "green" }}>{props.GPA.toFixed(1)}</GPA>
+            <Caption className="sixteenFont" style={{ color: "green" }}>
+              {props.GPA.toFixed(1)}
+            </Caption>
           ) : (
-            <GPA style={{ color: "red" }}>{props.GPA.toFixed(1)}</GPA>
+            <Caption className="sixteenFont" style={{ color: "red" }}>
+              {props.GPA.toFixed(1)}
+            </Caption>
           )}
         </AntCol>
 
         {/**Applied For*/}
-        <AntCol span={7}>
+        <AntCol span={6}>
           <AntRow className="universal-center">
-            <AppliedFor>Front End React Intern</AppliedFor>
-          </AntRow>
-          <AntRow>
-            <Industries>Industries: {industry}</Industries>
+            <Header className="sixteenFont" color="#722ed1">
+              Front End React Intern
+            </Header>
           </AntRow>
         </AntCol>
 
         {/**Mark */}
-        <AntCol className="universal-center"  span={3}>
+        <AntCol className="universal-center" span={3}>
           <Tooltip title="Interview">
             <CheckIcon
               icon={check}
