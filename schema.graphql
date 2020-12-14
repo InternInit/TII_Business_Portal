@@ -1,0 +1,99 @@
+input CreateFakeBusinessInternsInput {
+	Id: String!
+}
+
+input DeleteFakeBusinessInternsInput {
+	Id: String!
+}
+
+type FakeBusinessInterns {
+	Id: String!
+}
+
+type FakeBusinessInternsConnection {
+	items: [FakeBusinessInterns]
+	nextToken: String
+}
+
+type Mutation {
+	createFakeBusinessInterns(input: CreateFakeBusinessInternsInput!): FakeBusinessInterns
+	updateFakeBusinessInterns(input: UpdateFakeBusinessInternsInput!): FakeBusinessInterns
+	deleteFakeBusinessInterns(input: DeleteFakeBusinessInternsInput!): FakeBusinessInterns
+}
+
+type Query {
+	getFakeBusinessInterns(Id: String!): FakeBusinessInterns
+	listFakeBusinessInterns(filter: TableFakeBusinessInternsFilterInput, limit: Int, nextToken: String): FakeBusinessInternsConnection
+}
+
+type Subscription {
+	onCreateFakeBusinessInterns(Id: String): FakeBusinessInterns
+		@aws_subscribe(mutations: ["createFakeBusinessInterns"])
+	onUpdateFakeBusinessInterns(Id: String): FakeBusinessInterns
+		@aws_subscribe(mutations: ["updateFakeBusinessInterns"])
+	onDeleteFakeBusinessInterns(Id: String): FakeBusinessInterns
+		@aws_subscribe(mutations: ["deleteFakeBusinessInterns"])
+}
+
+input TableBooleanFilterInput {
+	ne: Boolean
+	eq: Boolean
+}
+
+input TableFakeBusinessInternsFilterInput {
+	Id: TableStringFilterInput
+}
+
+input TableFloatFilterInput {
+	ne: Float
+	eq: Float
+	le: Float
+	lt: Float
+	ge: Float
+	gt: Float
+	contains: Float
+	notContains: Float
+	between: [Float]
+}
+
+input TableIDFilterInput {
+	ne: ID
+	eq: ID
+	le: ID
+	lt: ID
+	ge: ID
+	gt: ID
+	contains: ID
+	notContains: ID
+	between: [ID]
+	beginsWith: ID
+}
+
+input TableIntFilterInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	contains: Int
+	notContains: Int
+	between: [Int]
+}
+
+input TableStringFilterInput {
+	ne: String
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	contains: String
+	notContains: String
+	between: [String]
+	beginsWith: String
+}
+
+input UpdateFakeBusinessInternsInput {
+	Id: String!
+}
