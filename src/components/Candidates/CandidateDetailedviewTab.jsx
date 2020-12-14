@@ -1,14 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Button, Col as AntCol, Row as AntRow, Avatar } from "antd";
 import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
-
-const Response = styled.p`
-  font-family: Roboto;
-  font-weight: normal;
-  font-size: 16px;
-  color: #434343;
-`;
 
 const ActionButton = styled(Button)`
   width: 100%;
@@ -20,14 +13,7 @@ const ActionButton = styled(Button)`
   }
 `;
 
-class CandidateDetailedviewTab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
-  render() {
+const CandidateDetailedviewTab = (props) => {
     return (
       <TabContainer className="py-3 px-6 my-1 responsive-tab-container">
         <AntRow gutter={[16, 16]}>
@@ -35,7 +21,7 @@ class CandidateDetailedviewTab extends Component {
             <Avatar
               stlye={{ backgroundColor: "#fa541c" }}
               size={48}
-              src={this.props.avatar}
+              src={props.avatar}
             />
           </AntCol>
           <AntCol flex="1">
@@ -44,10 +30,10 @@ class CandidateDetailedviewTab extends Component {
               bolded
               style={{ marginBottom: "-5px", marginTop: "-5px" }}
             >
-              {this.props.name}
+              {props.name}
             </Header>
             <Caption className="fourteenFont" thin light>
-              {this.props.city}
+              {props.city}
             </Caption>
           </AntCol>
           <AntCol className="universal-right" flex="1">
@@ -55,10 +41,10 @@ class CandidateDetailedviewTab extends Component {
               className="eighteenFont"
               style={{ marginBottom: "-5px", marginTop: "-5px" }}
             >
-              {this.props.school}
+              {props.school}
             </Header>
             <Caption className="fourteenFont" thin light>
-              {this.props.schoolAddress}
+              {props.schoolAddress}
             </Caption>
           </AntCol>
         </AntRow>
@@ -88,28 +74,28 @@ class CandidateDetailedviewTab extends Component {
             </AntRow>
             <AntRow>
               <Caption className="sixteenFont my-point-5">
-                {this.props.GPA}
+                {props.GPA}
               </Caption>
             </AntRow>
             <AntRow>
               <Caption className="sixteenFont my-point-5">
-                {this.props.age}
+                {props.age}
               </Caption>
             </AntRow>
             <AntRow>
               <Caption className="sixteenFont my-point-5">
-                {this.props.workDate}
+                {props.workDate}
               </Caption>
             </AntRow>
             <AntRow>
               <Caption className="sixteenFont my-point-5" left>
-                {this.props.workTimes.length > 1
-                  ? this.props.workTimes
-                      .slice(0, this.props.workTimes.length - 1)
+                {props.workTimes.length > 1
+                  ? props.workTimes
+                      .slice(0, props.workTimes.length - 1)
                       .map((val) => ` ${val}`) +
                     ", " +
-                    this.props.workTimes[this.props.workTimes.length - 1]
-                  : this.props.workTimes}
+                    props.workTimes[props.workTimes.length - 1]
+                  : props.workTimes}
               </Caption>
             </AntRow>
           </AntCol>
@@ -127,7 +113,7 @@ class CandidateDetailedviewTab extends Component {
                 </Header>
               </AntCol>
               <AntCol span={18}>
-                {this.props.activities.slice(0,3).map((activity, index) => (
+                {props.activities.slice(0,3).map((activity, index) => (
                   <AntRow>
                     <Caption className="sixteenFont mb-point-25">
                       {index + 1}. {activity.activityType}
@@ -144,7 +130,7 @@ class CandidateDetailedviewTab extends Component {
                 </Header>
               </AntCol>
               <AntCol span={18}>
-              {this.props.courses.slice(0,3).map((activity, index) => (
+              {props.courses.slice(0,3).map((activity, index) => (
                   <AntRow>
                     <Caption className="sixteenFont mb-point-25">
                       {index + 1}. {activity.courseTitle}
@@ -161,24 +147,23 @@ class CandidateDetailedviewTab extends Component {
             <ActionButton size="large">Read Full Application</ActionButton>
           </AntCol>
           <AntCol span={7}>
-            <ActionButton size="large" onClick={this.props.onReview}>
+            <ActionButton size="large" onClick={props.onReview}>
               Review for Later
             </ActionButton>
           </AntCol>
           <AntCol span={7}>
-            <ActionButton size="large" onClick={this.props.onInterview}>
+            <ActionButton size="large" onClick={props.onInterview}>
               Move to Interview
             </ActionButton>
           </AntCol>
           <AntCol span={3}>
-            <Button size="large" type="danger" onClick={this.props.onReject}>
+            <Button size="large" type="danger" onClick={props.onReject}>
               Not a fit
             </Button>
           </AntCol>
         </AntRow>
       </TabContainer>
     );
-  }
 }
 
 CandidateDetailedviewTab.defaultProps = {

@@ -199,7 +199,7 @@ class ReviewApplicants extends Component {
               student.info["Starting/Ending Dates"][1].split("T")[0]
             }
             workDays={student.info["Willing Work Days"]}
-            workTimes={student.info["Willing Work Times"]} 
+            workTimes={student.info["Willing Work Times"]}
             activities={student.info.Extracurriculars}
             courses={student.info.Courses}
             onReview={() => this.handleReview(student.internId)}
@@ -258,7 +258,9 @@ class ReviewApplicants extends Component {
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <HeaderText>Marked for Review</HeaderText>
+        <Header className="twentyEightFont mt-2 mb-point-75" bolded>
+          Marked for Review
+        </Header>
         <Divider />
         {reviewCandidates.map((student, index) => (
           <CandidateDetailedviewReviewTab
