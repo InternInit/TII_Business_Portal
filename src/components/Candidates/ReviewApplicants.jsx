@@ -173,7 +173,13 @@ class ReviewApplicants extends Component {
         {unreadCandidates.map((student, index) => (
           <CandidateDetailedviewTab
             key={index}
+            /**
+             * TODO - Tejas
+             * Took this out bc the avatar image wasn't showing up
+             * 
             avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
+             */
+            avatar={"https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0].Name}
             schoolAddress={
@@ -256,7 +262,13 @@ class ReviewApplicants extends Component {
         {reviewCandidates.map((student, index) => (
           <CandidateDetailedviewReviewTab
             key={index}
+            /**
+             * TODO - Tejas
+             * Took this out bc the avatar image wasn't showing up
+             * 
             avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
+             */
+            avatar={"https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0].Name}
             schoolAddress={
