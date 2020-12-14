@@ -88,93 +88,88 @@ const RemoveIcon = styled(Icon)`
   }
 `;
 
-class CandidateQuickviewTab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
-  render() {
-    let { visible } = this.state;
-    let { name, school, industry } = this.props;
-    return (
-      <TabContainer>
-        {/**
-         *
-         * Name
-         *
-         */}
-        <Col style={{ width: "40vh", alignItems: "center" }}>
-          <Header>{name}</Header>
-        </Col>
+const CandidateQuickviewTab = (props) => {
+  let { name, school, industry } = props;
 
-        {/**School and Region */}
-        <Col style={{ alignItems: "center", width: "42vh" }}>
-          <Header>{school.name}</Header>
-          <Caption style={{ color: "#BFBFBF" }}>
-            {school.address}, {school.state}
-          </Caption>
-        </Col>
+  console.log(props);
 
-        {/**GPA */}
-        <Col style={{ alignItems: "center", width: "15vh" }}>
-          {this.props.GPA > this.props.cutOffGPA ? (
-            <GPA style={{ color: "green" }}>{this.props.GPA.toFixed(1)}</GPA>
-          ) : (
-            <GPA style={{ color: "red" }}>{this.props.GPA.toFixed(1)}</GPA>
-          )}
-        </Col>
+  return (
+    <TabContainer>
+      {/**
+       *
+       * Name
+       *
+       */}
+      <Col style={{ width: "40vh", alignItems: "center" }}>
+        <Header>{name}</Header>
+      </Col>
 
-        {/**Applied For*/}
-        <Col style={{ alignItems: "center", width: "50vh" }}>
-          <AppliedFor>Front End React Intern</AppliedFor>
-          <Industries>Industries: {industry}</Industries>
-        </Col>
+      {/**School and Region */}
+      <Col style={{ alignItems: "center", width: "42vh" }}>
+        <Header>{school.name}</Header>
+        <Caption style={{ color: "#BFBFBF" }}>
+          {school.address}, {school.state}
+        </Caption>
+      </Col>
 
-        {/**Mark */}
-        <Col
-          style={{
-            alignItems: "center",
-            width: "20vh",
-            display: "inline-block",
-            textAlign: "center",
-          }}
-        >
-          <Tooltip title="Interview">
-            <CheckIcon
-              icon={check}
-              style={{ marginLeft: "1vh", marginRight: "1vh" }}
-              onClick={this.props.onInterview}
-            />
-          </Tooltip>
-          <Tooltip title="Review Later">
-            <ReviewIcon
-              icon={box}
-              style={{ marginLeft: "1vh", marginRight: "1vh" }}
-              onClick={this.props.onReview}
-            />
-          </Tooltip>
-          <Tooltip title="Remove">
-            <RemoveIcon
-              icon={remove}
-              style={{ marginLeft: "1vh", marginRight: "1vh" }}
-              onClick={this.props.onReject}
-            />
-          </Tooltip>
-        </Col>
+      {/**GPA */}
+      <Col style={{ alignItems: "center", width: "15vh" }}>
+        {props.GPA >= props.cutOffGPA ? (
+          <GPA style={{ color: "green" }}>{props.GPA.toFixed(1)}</GPA>
+        ) : (
+          <GPA style={{ color: "red" }}>{props.GPA.toFixed(1)}</GPA>
+        )}
+      </Col>
 
-        {/**Contact Info */}
-        <Col style={{ alignItems: "center", width: "10vh" }}>
-          <Icon icon={ic_keyboard_arrow_right} size={48} />
-        </Col>
-      </TabContainer>
-    );
-  }
-}
+      {/**Applied For*/}
+      <Col style={{ alignItems: "center", width: "50vh" }}>
+        <AppliedFor>Front End React Intern</AppliedFor>
+        <Industries>Industries: {industry}</Industries>
+      </Col>
+
+      {/**Mark */}
+      <Col
+        style={{
+          alignItems: "center",
+          width: "20vh",
+          display: "inline-block",
+          textAlign: "center",
+        }}
+      >
+        <Tooltip title="Interview">
+          <CheckIcon
+            icon={check}
+            style={{ marginLeft: "1vh", marginRight: "1vh" }}
+            onClick={props.onInterview}
+          />
+        </Tooltip>
+        <Tooltip title="Review Later">
+          <ReviewIcon
+            icon={box}
+            style={{ marginLeft: "1vh", marginRight: "1vh" }}
+            onClick={props.onReview}
+          />
+        </Tooltip>
+        <Tooltip title="Remove">
+          <RemoveIcon
+            icon={remove}
+            style={{ marginLeft: "1vh", marginRight: "1vh" }}
+            onClick={props.onReject}
+          />
+        </Tooltip>
+      </Col>
+
+      {/**Contact Info */}
+      <Col style={{ alignItems: "center", width: "10vh" }}>
+        <Icon icon={ic_keyboard_arrow_right} size={48} />
+      </Col>
+    </TabContainer>
+  );
+};
 
 CandidateQuickviewTab.defaultProps = {
   GPA: 4.0,
-  cutOffGPA: 3.5,
+  cutOffGPA: 0,
 };
+
 export default CandidateQuickviewTab;
