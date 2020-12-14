@@ -58,7 +58,7 @@ class ReviewApplicants extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quickview: true,
+      quickview: false,
       page: "1",
       review: true,
     };
@@ -181,6 +181,7 @@ class ReviewApplicants extends Component {
              */
             avatar={"https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
+            city={student.info.City}
             school={student.info.Education[0].Name}
             schoolAddress={
               student.info.Education[0].Address +

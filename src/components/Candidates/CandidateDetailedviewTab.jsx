@@ -1,32 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, Row, Col as AntCol, Avatar } from "antd";
-import { Icon } from "react-icons-kit";
-import { box } from "react-icons-kit/iconic/box";
-import { check } from "react-icons-kit/fa/check";
-import { remove } from "react-icons-kit/fa/remove";
-import { ic_keyboard_arrow_right } from "react-icons-kit/md/ic_keyboard_arrow_right";
-
-const TabContainer = styled.div`
-  background-color: white;
-
-  padding: 2%;
-
-  width: 100%;
-  min-height: 25vh;
-  min-width: 600px;
-
-  margin-top: 2vh;
-
-  border-radius: 4px;
-  border: 1px solid #d8def3;
-  box-shadow: 1px 1px 5px -4px;
-
-  :hover {
-    transition-duration: 0.35s;
-    box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
-  }
-`;
+import { Button, Row, Col as AntCol, Row as AntRow, Avatar } from "antd";
+import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
 
 const NameHeading = styled.span`
   font-family: roboto;
@@ -81,21 +56,40 @@ class CandidateDetailedviewTab extends Component {
   }
   render() {
     return (
-      <TabContainer>
-        <Row gutter={[16, 16]} style={{ width: "100%", height: "75px" }}>
-          <AntCol span={2} style={{ textAlign: "right", alignItems: "center" }}>
+      <TabContainer className="py-2 px-6 my-1 responsive-tab-container">
+        <AntRow gutter={[16, 16]}>
+          <AntCol className="universal-left">
             <Avatar
               stlye={{ backgroundColor: "#fa541c" }}
               size={48}
               src={this.props.avatar}
             />
           </AntCol>
-          <AntCol span={22}>
-            <NameHeading>{this.props.name}</NameHeading>
-            <Label style={{ display: "block" }}>{this.props.school}</Label>
-            <MiniLabel>{this.props.schoolAddress}</MiniLabel>
+          <AntCol flex="1">
+            <Header
+              className="twentyFourFont"
+              bolded
+              style={{ marginBottom: "-5px", marginTop: "-5px" }}
+            >
+              {this.props.name}
+            </Header>
+            <Caption className="fourteenFont" thin light>
+              {this.props.city}
+            </Caption>
           </AntCol>
-        </Row>
+          <AntCol className="universal-right" flex="1">
+            <Header
+              className="eighteenFont"
+              bolded
+              style={{ marginBottom: "-5px", marginTop: "-5px" }}
+            >
+              {this.props.school}
+            </Header>
+            <Caption className="fourteenFont" thin light>
+              {this.props.schoolAddress}
+            </Caption>
+          </AntCol>
+        </AntRow>
         <Row gutter={[16, 16]} style={{ width: "100%" }}>
           <AntCol span={3} style={{ textAlign: "right" }}>
             <Label>Applied For:</Label>
