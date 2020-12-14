@@ -160,9 +160,7 @@ class ReviewApplicants extends Component {
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0]}
             GPA={parseFloat(student.info["Unweighted GPA"])}
-            industry={
-              "Computer Science, Biotechnology, General Business, Finance or Accounting"
-            }
+            appliedFor={"React Front End Intern"}
             onReview={() => this.handleReview(student.internId)}
             onInterview={() => this.handleInterviewUnread(student.internId)}
             onReject={() => this.handleReject(student.internId)}
@@ -245,9 +243,7 @@ class ReviewApplicants extends Component {
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0]}
             GPA={parseFloat(student.info["Unweighted GPA"])}
-            industry={
-              "Computer Science, Biotechnology, General Business, Finance or Accounting"
-            }
+            appliedFor={"React Front End Intern"}
             onInterview={() => this.handleInterviewReview(student.internId)}
             onReject={() => this.handleReject(student.internId)}
           />

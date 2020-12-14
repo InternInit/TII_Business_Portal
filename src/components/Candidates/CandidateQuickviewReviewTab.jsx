@@ -84,7 +84,7 @@ const CandidateQuickviewTab = (props) => {
         <AntCol span={6}>
           <AntRow className="universal-center">
             <Header className="sixteenFont" color="#722ed1">
-              Front End React Intern
+              {props.appliedFor}
             </Header>
           </AntRow>
         </AntCol>
