@@ -25,7 +25,6 @@ const MenuItem = styled.h2`
 const MenuItemWrapper = styled.div`
   width: 270px;
   height: 60px;
-  margin-left: 50px;
   text-align: center;
   display: inline-block;
   :hover {
@@ -51,7 +50,6 @@ const SelectedMenuItem = styled.h2`
 const SelectedMenuItemWrapper = styled.div`
   width: 270px;
   height: 60px;
-  margin-left: 5%;
   text-align: center;
   display: inline-block;
   border-bottom: 5px solid #1890ff;
@@ -63,16 +61,16 @@ const SelectedMenuItemWrapper = styled.div`
 
 function CandidatesNavbar(props) {
   return (
-    <MenuContainer>
+    <MenuContainer className="px-5">
       {props.defaultSelectedKey === "review-applicants" ? (
         <React.Fragment>
           <Link to="/applicants/review-applicants">
-            <SelectedMenuItemWrapper>
+            <SelectedMenuItemWrapper className="mx-1">
               <SelectedMenuItem>Review Applicants</SelectedMenuItem>
             </SelectedMenuItemWrapper>
           </Link>
           <Link to="/applicants/manage-candidates">
-            <MenuItemWrapper>
+            <MenuItemWrapper className="mx-1">
               <MenuItem>Manage Candidates</MenuItem>
             </MenuItemWrapper>
           </Link>
@@ -80,12 +78,12 @@ function CandidatesNavbar(props) {
       ) : (
         <React.Fragment>
           <Link to="/applicants/review-applicants">
-            <MenuItemWrapper>
+            <MenuItemWrapper className="mx-1">
               <MenuItem>Review Applicants</MenuItem>
             </MenuItemWrapper>
           </Link>
           <Link to="/applicants/manage-candidates">
-            <SelectedMenuItemWrapper>
+            <SelectedMenuItemWrapper className="mx-1">
               <SelectedMenuItem>Manage Candidates</SelectedMenuItem>
             </SelectedMenuItemWrapper>
           </Link>
