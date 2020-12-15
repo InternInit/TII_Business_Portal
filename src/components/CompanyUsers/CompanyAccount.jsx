@@ -20,7 +20,7 @@ class CompanyAccount extends Component {
     let { id } = this.props;
     return (
       <TabContainer
-        className="py-2 px-4 mb-1 responsive-tab-container"
+        className="py-2 px-6 mb-1 responsive-tab-container"
         hoverable
       >
         <AntRow justify="space-between" align="middle">
