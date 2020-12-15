@@ -113,7 +113,7 @@ const StudentInternTab = (props) => {
                       </Header>
                     </AntRow>
                     <AntRow className="mb-1-5" justify="center">
-                      <Caption className="fourteenFont">
+                      <Caption className="fourteenFont" thin light>
                         {props.position}
                       </Caption>
                     </AntRow>
@@ -126,7 +126,7 @@ const StudentInternTab = (props) => {
                       </Header>
                     </AntRow>
                     <AntRow justify="start">
-                      <Caption className="fourteenFont">
+                      <Caption className="fourteenFont" thin light>
                         {props.position}
                       </Caption>
                     </AntRow>
