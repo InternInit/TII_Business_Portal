@@ -5,6 +5,7 @@
 @import "./Sass/MainPage/mainPage";
 @import "./Sass/InternFeedback/internFeedback";
 @import "./Sass/InternFeedback/internDashboard";
+@import "./Sass/Globals/breakpoints";
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap");
@@ -37,6 +38,37 @@ a:hover {
 .global-container {
   background-color: $gray-1;
   height: 100vh;
+}
+
+.responsive-tab-container {
+  position: relative;
+
+    @include lg {
+      padding-left: 3em;
+      padding-right: 3em;
+    }
+    @include sm {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+
+    &:hover {
+      box-shadow: 1px 1px 5px -3px;
+      transition: 0.3s ease;
+      cursor: pointer;
+
+      .click-more-icon {
+        color: #595959;
+        transition: 0.3s ease;
+      }
+    }
+}
+
+.click-more-icon {
+  position: absolute;
+  right: 1em;
+  top: calc(50% - 12px);
+  color: #bfbfbf;
 }
 
 .universal-left {

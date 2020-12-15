@@ -3,30 +3,6 @@
 @import "../node_modules/rfs/scss";
 
 .student-intern-tab {
-  &-responsive-tab-container {
-    position: relative;
-
-    @include lg {
-      padding-left: 3em;
-      padding-right: 3em;
-    }
-    @include sm {
-      padding-left: 1em;
-      padding-right: 1em;
-    }
-
-    &:hover {
-      box-shadow: 1px 1px 5px -3px;
-      transition: 0.3s ease;
-      cursor: pointer;
-
-      .student-intern-tab-click-more-icon {
-        color: #595959;
-        transition: 0.3s ease;
-      }
-    }
-  }
-
   &-action-icon {
     color: #bfbfbf;
 

@@ -7,7 +7,8 @@ import axios from "axios";
 
 import { Button, Switch, Divider } from "antd";
 
-import CandidateInfoBar from "./CandidateInfoBar.jsx";
+import InfoBar from "../General/InfoBar.jsx";
+import { Header } from "../Styled/FundamentalComponents";
 import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
 import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
@@ -32,17 +33,6 @@ const ViewText = styled.span`
   width: 120px;
   color: black;
   text-align: center;
-`;
-
-const HeaderText = styled.span`
-  font-family: lato;
-  font-weight: bold;
-  font-size: 36px;
-  height: 51px;
-  align-items: center;
-  color: black;
-  display: block;
-  margin-top: 3vh;
 `;
 
 const mapStateToProps = (state) => {
@@ -109,7 +99,9 @@ class ReviewApplicants extends Component {
             style={{ align: "inline-block" }}
           />
 
-          <HeaderText>Unread Applicants</HeaderText>
+          <Header className="twentyEightFont mt-1 mb-point-75" bolded>
+            Unread Applicants
+          </Header>
 
           {this.renderUnreadApplicants()}
 
@@ -128,16 +120,36 @@ class ReviewApplicants extends Component {
     );
     return this.state.quickview ? (
       <React.Fragment>
-        <CandidateInfoBar />
+        <InfoBar
+          mobileHeader="Applicants"
+          fieldOne={{ name: "Name", sm: 4, lg: 4, align: "universal-left" }}
+          fieldTwo={{
+            name: "School and Region",
+            sm: 8,
+            lg: 8,
+            align: "universal-center",
+          }}
+          fieldThree={{ name: "GPA", sm: 3, lg: 3, align: "universal-center" }}
+          fieldFour={{
+            name: "Applied For",
+            sm: 6,
+            lg: 6,
+            align: "universal-center",
+          }}
+          fieldFive={{
+            name: "Actions",
+            sm: 3,
+            lg: 3,
+            align: "universal-center",
+          }}
+        />
         {unreadCandidates.map((student, index) => (
           <CandidateQuickviewTab
             key={index}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
-            school={student.info.Education[0].Name}
+            school={student.info.Education[0]}
             GPA={parseFloat(student.info["Unweighted GPA"])}
-            industry={
-              "Computer Science, Biotechnology, General Business, Finance or Accounting"
-            }
+            appliedFor={"React Front End Intern"}
             onReview={() => this.handleReview(student.internId)}
             onInterview={() => this.handleInterviewUnread(student.internId)}
             onReject={() => this.handleReject(student.internId)}
@@ -150,30 +162,34 @@ class ReviewApplicants extends Component {
         {unreadCandidates.map((student, index) => (
           <CandidateDetailedviewTab
             key={index}
+            /**
+             * TODO - Tejas
+             * Took this out bc the avatar image wasn't showing up
+             * 
             avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
+             */
+            avatar={
+              "https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"
+            }
             name={student.info["First Name"] + " " + student.info["Last Name"]}
+            city={student.info.City}
             school={student.info.Education[0].Name}
             schoolAddress={
               student.info.Education[0].Address +
               ", " +
               student.info.Education[0].State
             }
-            GPA={parseFloat(student.info["Weighted GPA"])}
+            GPA={parseFloat(student.info["Unweighted GPA"])}
             age={student.info.Age}
             workDate={
               student.info["Starting/Ending Dates"][0].split("T")[0] +
               " - " +
               student.info["Starting/Ending Dates"][1].split("T")[0]
             }
-            industries={
-              "Computer Science, Biotechnology, General Business, Finance or Accounting"
-            }
-            activityOne={"Activity One"}
-            activityTwo={"Activity Two"}
-            activityThree={"Activity Three"}
-            classOne={"Class One"}
-            classTwo={"Class Two"}
-            classThree={"Class Three"}
+            workDays={student.info["Willing Work Days"]}
+            workTimes={student.info["Willing Work Times"]}
+            activities={student.info.Extracurriculars}
+            courses={student.info.Courses}
             onReview={() => this.handleReview(student.internId)}
             onInterview={() => this.handleInterviewUnread(student.internId)}
             onReject={() => this.handleReject(student.internId)}
@@ -190,17 +206,39 @@ class ReviewApplicants extends Component {
     );
     return this.state.quickview ? (
       <React.Fragment>
-        <HeaderText>Marked for Review</HeaderText>
-        <CandidateInfoBar />
+        <Header className="twentyEightFont mt-2 mb-point-75" bolded>
+          Marked for Review
+        </Header>
+        <InfoBar
+          mobileHeader="Applicants"
+          fieldOne={{ name: "Name", sm: 4, lg: 4, align: "universal-left" }}
+          fieldTwo={{
+            name: "School and Region",
+            sm: 8,
+            lg: 8,
+            align: "universal-center",
+          }}
+          fieldThree={{ name: "GPA", sm: 3, lg: 3, align: "universal-center" }}
+          fieldFour={{
+            name: "Applied For",
+            sm: 6,
+            lg: 6,
+            align: "universal-center",
+          }}
+          fieldFive={{
+            name: "Actions",
+            sm: 3,
+            lg: 3,
+            align: "universal-center",
+          }}
+        />
         {reviewCandidates.map((student, index) => (
           <CandidateQuickviewReviewTab
             key={index}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
-            school={student.info.Education[0].Name}
+            school={student.info.Education[0]}
             GPA={parseFloat(student.info["Unweighted GPA"])}
-            industry={
-              "Computer Science, Biotechnology, General Business, Finance or Accounting"
-            }
+            appliedFor={"React Front End Intern"}
             onInterview={() => this.handleInterviewReview(student.internId)}
             onReject={() => this.handleReject(student.internId)}
           />
@@ -208,37 +246,43 @@ class ReviewApplicants extends Component {
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <HeaderText>Marked for Review</HeaderText>
+        <Header className="twentyEightFont mt-2" bolded>
+          Marked for Review
+        </Header>
         <Divider />
         {reviewCandidates.map((student, index) => (
           <CandidateDetailedviewReviewTab
-            key={index}
-            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
-            name={student.info["First Name"] + " " + student.info["Last Name"]}
-            school={student.info.Education[0].Name}
-            schoolAddress={
-              student.info.Education[0].Address +
-              ", " +
-              student.info.Education[0].State
-            }
-            GPA={parseFloat(student.info["Weighted GPA"])}
-            age={student.info.Age}
-            workDate={
-              student.info["Starting/Ending Dates"][0].split("T")[0] +
-              " - " +
-              student.info["Starting/Ending Dates"][1].split("T")[0]
-            }
-            industries={
-              "Computer Science, Biotechnology, General Business, Finance or Accounting"
-            }
-            activityOne={"Activity One"}
-            activityTwo={"Activity Two"}
-            activityThree={"Activity Three"}
-            classOne={"Class One"}
-            classTwo={"Class Two"}
-            classThree={"Class Three"}
-            onInterview={() => this.handleInterviewReview(student.internId)}
-            onReject={() => this.handleReject(student.internId)}
+          key={index}
+          /**
+           * TODO - Tejas
+           * Took this out bc the avatar image wasn't showing up
+           * 
+          avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
+           */
+          avatar={
+            "https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"
+          }
+          name={student.info["First Name"] + " " + student.info["Last Name"]}
+          city={student.info.City}
+          school={student.info.Education[0].Name}
+          schoolAddress={
+            student.info.Education[0].Address +
+            ", " +
+            student.info.Education[0].State
+          }
+          GPA={parseFloat(student.info["Unweighted GPA"])}
+          age={student.info.Age}
+          workDate={
+            student.info["Starting/Ending Dates"][0].split("T")[0] +
+            " - " +
+            student.info["Starting/Ending Dates"][1].split("T")[0]
+          }
+          workDays={student.info["Willing Work Days"]}
+          workTimes={student.info["Willing Work Times"]}
+          activities={student.info.Extracurriculars}
+          courses={student.info.Courses}
+          onInterview={() => this.handleInterviewUnread(student.internId)}
+          onReject={() => this.handleReject(student.internId)}
           />
         ))}
       </React.Fragment>

@@ -1,78 +1,34 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, Tooltip } from "antd";
+import { Tooltip, Row as AntRow, Col as AntCol } from "antd";
 import { Icon } from "react-icons-kit";
+import { box } from "react-icons-kit/iconic/box";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
-import { ic_keyboard_arrow_right } from "react-icons-kit/md/ic_keyboard_arrow_right";
-
-const TabContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  align-items: center;
-  justify-content: center;
-
-  background-color: white;
-
-  padding: 1vh;
-
-  width: 100%;
-  min-height: 11vh;
-  min-width: 600px;
-
-  margin-top: 2vh;
-
-  border-radius: 4px;
-  border: 1px solid #d8def3;
-  box-shadow: 1px 1px 5px -4px;
-
-  :hover {
-    transition-duration: 0.35s;
-    box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Header = styled.span`
-  font-family: roboto;
-  font-size: 16px;
-  font-weight: 500;
-  color: black;
-`;
-
-const Caption = styled.span`
-  font-size: 12px;
-`;
-
-const GPA = styled.span`
-  font-size: 16px;
-`;
-
-const AppliedFor = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  color: #722ed1;
-`;
-
-const Industries = styled.span`
-  font-size: 12px;
-  font-weight: 300;
-  color: black;
-`;
+import { AiOutlineRight } from "react-icons/ai";
+import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
 
 const CheckIcon = styled(Icon)`
+  color: #bfbfbf;
+
   :hover {
     transition-duration: 0.35s;
     color: #52c41a;
     cursor: pointer;
   }
 `;
+const ReviewIcon = styled(Icon)`
+  color: #bfbfbf;
+
+  :hover {
+    transition-duration: 0.35s;
+    color: #fa8c16;
+    cursor: pointer;
+  }
+`;
 const RemoveIcon = styled(Icon)`
+  color: #bfbfbf;
+
   :hover {
     transition-duration: 0.35s;
     color: #f5222d;
@@ -80,86 +36,90 @@ const RemoveIcon = styled(Icon)`
   }
 `;
 
-class CandidateQuickviewReviewTab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
-  render() {
-    let { visible } = this.state;
-    let { name, school, industry } = this.props;
-    return (
-      <TabContainer>
-        {/**
-         *
-         * Name
-         *
-         */}
-        <Col style={{ width: "40vh", alignItems: "center" }}>
-          <Header>{name}</Header>
-        </Col>
+const CandidateQuickviewTab = (props) => {
+  let { name, school, industry } = props;
+
+  console.log(props);
+
+  return (
+    <TabContainer className="py-2 px-6 my-1 responsive-tab-container">
+      {/**
+       *
+       * Name
+       *
+       */}
+      <AntRow justify="center" align="middle">
+        <AntCol span={4}>
+          <Header className="twentyFont" bolded>
+            {name}
+          </Header>
+        </AntCol>
 
         {/**School and Region */}
-        <Col style={{ alignItems: "center", width: "42vh" }}>
-          <Header>{school.name}</Header>
-          <Caption style={{ color: "#BFBFBF" }}>
-            {school.address}, {school.state}
-          </Caption>
-        </Col>
+        <AntCol span={8}>
+          <AntRow className="universal-center">
+            <Header className="sixteenFont">{school.Name}</Header>
+          </AntRow>
+          <AntRow className="universal-center">
+            <Caption className="twelveFont" light thin>
+              {school.Address}, {school.State}
+            </Caption>
+          </AntRow>
+        </AntCol>
 
         {/**GPA */}
-        <Col style={{ alignItems: "center", width: "15vh" }}>
-          {this.props.GPA > this.props.cutOffGPA ? (
-            <GPA style={{ color: "green" }}>{this.props.GPA.toFixed(1)}</GPA>
+        <AntCol className="universal-center" span={3}>
+          {props.GPA >= props.cutOffGPA ? (
+            <Caption className="sixteenFont" style={{ color: "green" }}>
+              {props.GPA.toFixed(1)}
+            </Caption>
           ) : (
-            <GPA style={{ color: "red" }}>{this.props.GPA.toFixed(1)}</GPA>
+            <Caption className="sixteenFont" style={{ color: "red" }}>
+              {props.GPA.toFixed(1)}
+            </Caption>
           )}
-        </Col>
+        </AntCol>
 
         {/**Applied For*/}
-        <Col style={{ alignItems: "center", width: "50vh" }}>
-          <AppliedFor>Front End React Intern</AppliedFor>
-          <Industries>Industries: {industry}</Industries>
-        </Col>
+        <AntCol span={6}>
+          <AntRow className="universal-center">
+            <Header className="sixteenFont" color="#722ed1">
+              {props.appliedFor}
+            </Header>
+          </AntRow>
+        </AntCol>
 
         {/**Mark */}
-        <Col
-          style={{
-            alignItems: "center",
-            width: "20vh",
-            display: "inline-block",
-            textAlign: "center",
-          }}
-        >
+        <AntCol className="universal-center" span={3}>
           <Tooltip title="Interview">
             <CheckIcon
               icon={check}
               style={{ marginLeft: "1vh", marginRight: "1vh" }}
-              onClick={this.props.onInterview}
+              onClick={props.onInterview}
             />
           </Tooltip>
           <Tooltip title="Remove">
             <RemoveIcon
               icon={remove}
               style={{ marginLeft: "1vh", marginRight: "1vh" }}
-              onClick={this.props.onReject}
+              onClick={props.onReject}
             />
           </Tooltip>
-        </Col>
+        </AntCol>
 
         {/**Contact Info */}
-        <Col style={{ alignItems: "center", width: "10vh" }}>
-          <Icon icon={ic_keyboard_arrow_right} size={48} />
-        </Col>
-      </TabContainer>
-    );
-  }
-}
-
-CandidateQuickviewReviewTab.defaultProps = {
-  GPA: 4.0,
-  cutOffGPA: 3.5,
+        <AiOutlineRight
+          className="click-more-icon"
+          style={{ fontSize: "24px" }}
+        />
+      </AntRow>
+    </TabContainer>
+  );
 };
-export default CandidateQuickviewReviewTab;
+
+CandidateQuickviewTab.defaultProps = {
+  GPA: 4.0,
+  cutOffGPA: 0,
+};
+
+export default CandidateQuickviewTab;

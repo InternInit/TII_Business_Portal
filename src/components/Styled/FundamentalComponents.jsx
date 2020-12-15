@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "antd";
 
-
 const STANDARD_BLUE = "#1890ff";
 
 /*============================================================================================================
@@ -16,6 +15,7 @@ const STANDARD_BLUE = "#1890ff";
 
 export const TabContainer = styled.div`
   background-color: white;
+  position: relative;
 
   width: 100%;
 
@@ -74,7 +74,7 @@ export const Header = styled.div`
 `;
 
 export const Caption = styled.span`
-  text-align: center;
+  text-align: ${props => props.left ? "left" : props.right ? "right" : "center"};
   font-weight: ${(props) => (props.thin ? 300 : 400)};
   font-family: roboto;
   color: ${(props) =>
@@ -82,24 +82,24 @@ export const Caption = styled.span`
 `;
 
 export const Body = styled.span`
-    text-align: left;
-    font-weight: 400;
-    font-family: roboto;
-    color: ${(props) =>
-      props.light ? "#262626" : "black"};
+  text-align: left;
+  font-weight: 400;
+  font-family: roboto;
+  color: ${(props) => (props.light ? "#262626" : "black")};
 `;
 
 export const NavigationButton = styled(Button)`
-    background-color: ${props => props.active ? "#1890ff" : "inherit"};
-    color: white;
-    border: ${props => props.active ? "1px solid #1890ff" : "1px solid white"};
+  background-color: ${(props) => (props.active ? "#1890ff" : "inherit")};
+  color: white;
+  border: ${(props) =>
+    props.active ? "1px solid #1890ff" : "1px solid white"};
 
-    &:hover,
-    &:focus {
-      background-color: #1890ff;
-      color: white;
-      border: 1px solid #1890ff;
-    }
+  &:hover,
+  &:focus {
+    background-color: #1890ff;
+    color: white;
+    border: 1px solid #1890ff;
+  }
 `;
 
 export const RequiredAsterisk = styled.span`
@@ -159,8 +159,9 @@ export const TypeTag = styled.div`
 `;
 
 export const BorderlessTag = styled.div`
-  color: ${props => props.color ? props.color : "#262626"};
-  background-color: ${props => props.background ? props.background : "#f5f5f5"};
+  color: ${(props) => (props.color ? props.color : "#262626")};
+  background-color: ${(props) =>
+    props.background ? props.background : "#f5f5f5"};
   display: flex;
   align-items: center;
   align-self: center;
