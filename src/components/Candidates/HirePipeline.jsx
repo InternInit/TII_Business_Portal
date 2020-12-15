@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Row as AntRow, Col as AntCol } from "antd";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { PageContainer } from "../Styled/FundamentalComponents.jsx";
+import { PageContainer, Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
 import styled from "styled-components";
 
-//Styled Components
-const Header = styled.div`
-  font-size: 20px;
-  font-weight: 500;
-  color: #434343;
-  margin-top: 4vh;
-`;
-
 const dragStyle = {
-  backgroundColor: "#f5f5f5",
+  backgroundColor: "#ebecf0",
   padding: 4,
   width: "100%",
   minHeight: "80vh",
-  borderRadius: "4px",
-  border: "1px solid #d8def3",
+  borderRadius: "10px",
+  boxShadow: "1px 1px 5px -5px",
+  border: "1px solid #C5D1D8"
 };
 
 /**
@@ -135,8 +128,8 @@ function HirePipeline(props) {
      *The page containing drag n drop
      *
      */
-    <PageContainer className="px-4">
-      <AntRow gutter={[24, 0]} style={{width: "100%"}}>
+    <PageContainer className="px-4 py-2">
+      <AntRow gutter={[36, 0]} style={{ width: "100%" }}>
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
         >
@@ -148,8 +141,14 @@ function HirePipeline(props) {
                *
                */
               <AntCol span={6} key={columnId}>
-                <Header>{column.name}</Header>
-                <div style={{ margin: 8 }}>
+                <div>
+                  <Header
+                    className="twentyFont mb-point-25"
+                    subheading
+                    bolded
+                  >
+                    {column.name}
+                  </Header>
                   <Droppable droppableId={columnId} key={columnId}>
                     {(provided, snapshot) => {
                       return (
