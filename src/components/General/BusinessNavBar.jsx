@@ -12,9 +12,7 @@ import {
   UserOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
-import {
-  useLocation
-} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const { Sider } = Layout;
 
@@ -29,7 +27,9 @@ const BusinessNavBar = (props) => {
   let location = useLocation();
 
   const findPath = () => {
-    if (location.pathname.includes("dashboard")) {
+    if (location.pathname.includes("my-interns")) {
+      return "5";
+    } else if (location.pathname.includes("dashboard") || location.pathname === "/") {
       return "1";
     } else if (location.pathname.includes("internship-listings")) {
       return "2";
@@ -37,8 +37,6 @@ const BusinessNavBar = (props) => {
       return "3";
     } else if (location.pathname.includes("contact-schools")) {
       return "4";
-    } else if (location.pathname.includes("my-interns")) {
-      return "5";
     } else if (location.pathname.includes("users")) {
       return "6";
     } else {
