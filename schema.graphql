@@ -13,7 +13,12 @@ type Intern {
 type InternAssoc {
   assocId: String!
   businessId: String
+  feedback: AWSJSON
+  grades: [AWSJSON]
+  hours: [AWSJSON]
   internId: String
+  school: AWSJSON
+  status: String
 }
 
 type InternAssocConnection {
