@@ -53,7 +53,18 @@ a:hover {
     }
 
     &:hover {
-      box-shadow: 1px 1px 5px -3px;
+      box-shadow: 1px 1px 5px -1px #bfbfbf;
+      transition: 0.3s ease;
+      cursor: pointer;
+
+      .click-more-icon {
+        color: #595959;
+        transition: 0.3s ease;
+      }
+    }
+
+    &:active {
+      box-shadow: 1px 1px 10px 0px #bfbfbf;
       transition: 0.3s ease;
       cursor: pointer;
 

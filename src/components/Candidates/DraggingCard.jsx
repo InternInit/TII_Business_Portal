@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Link, withRouter } from "react-router-dom";
+import { TabContainer } from "../Styled/FundamentalComponents.jsx";
 const Container = styled.div`
   width: 100%;
   min-height: 12vh;
@@ -57,7 +58,7 @@ class DraggingCard extends React.Component {
   render() {
     let { name, date, position, avatar, id } = this.props;
     return (
-      <Container>
+      <TabContainer className="responsive-tab-container">
         {/**
          *
          * Row Containing Name + Avatar
@@ -94,7 +95,7 @@ class DraggingCard extends React.Component {
         >
           <Link to={`/applicants/${id}`}>Details</Link>
         </Button>
-      </Container>
+      </TabContainer>
     );
   }
 }
