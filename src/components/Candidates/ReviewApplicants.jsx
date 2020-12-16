@@ -146,6 +146,7 @@ class ReviewApplicants extends Component {
         {unreadCandidates.map((student, index) => (
           <CandidateQuickviewTab
             key={index}
+            id={student.internId}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0]}
             GPA={parseFloat(student.info["Unweighted GPA"])}
@@ -235,6 +236,7 @@ class ReviewApplicants extends Component {
         {reviewCandidates.map((student, index) => (
           <CandidateQuickviewReviewTab
             key={index}
+            id={student.internId}
             name={student.info["First Name"] + " " + student.info["Last Name"]}
             school={student.info.Education[0]}
             GPA={parseFloat(student.info["Unweighted GPA"])}
