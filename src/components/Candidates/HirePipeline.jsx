@@ -12,7 +12,7 @@ const dragStyle = {
   minHeight: "80vh",
   borderRadius: "10px",
   boxShadow: "1px 1px 5px -5px",
-  border: "1px solid #C5D1D8"
+  border: "1px solid #C5D1D8",
 };
 
 /**
@@ -142,11 +142,7 @@ function HirePipeline(props) {
                */
               <AntCol span={6} key={columnId}>
                 <div>
-                  <Header
-                    className="twentyFont mb-point-25"
-                    subheading
-                    bolded
-                  >
+                  <Header className="twentyFont mb-point-25" subheading bolded>
                     {column.name}
                   </Header>
                   <Droppable droppableId={columnId} key={columnId}>
@@ -194,11 +190,11 @@ function HirePipeline(props) {
                                       <DraggingCard
                                         name={item.info["First Name"]}
                                         date={
-                                          item.info[
-                                            "Starting/Ending Dates"
-                                          ][0].split("T")[0]
+                                          item.info["Starting/Ending Dates"]
                                         }
-                                        position="Cheese grator"
+                                        position={"Cheese grator"}
+                                        city={item.info.City}
+                                        stateLocation={item.info.State}
                                         id={item.internId}
                                         avatar={`https://tii-intern-media.s3.amazonaws.com/${item.internId}/profile_picture`}
                                       />
