@@ -7,6 +7,7 @@ app = Flask(__name__)
 studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/students"
 listingsApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/listings"
 authApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/auth/"
+graphQLApiEndpoint = "https://4gxyw7jvnvgbrpgiaxvmgwqydy.appsync-api.us-east-1.amazonaws.com/graphql"
 
 if(app.config.get("ENV") == "development"):
     studentApiUrl = studentApiUrl.format(stage="dev")
@@ -80,12 +81,20 @@ def get_student_feedback():
 Review Applicants
 
 '''
-
+'''
 @app.route('/api/get_student_candidates', methods=["GET"])
 def get_student_candidates():
     print(studentApiUrl)
     req = requests.get(studentApiUrl, headers={"Authorization": "Bearer 6aa19690-d874-4fdd-a1d8-a1168a7b632c"})
     return jsonify(json.loads(req.text))
+'''
+@app.route('/api/get_student_candidates', methods=["GET", "POST"])
+def get_student_candidates():
+    data = request.get_data().decode("utf-8")
+    headers = request.headers
+    #"https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9"
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(data))
+    return jsonify(req.text)
 
 @app.route('/api/update_student_status', methods=["POST"])
 def update_student_status():

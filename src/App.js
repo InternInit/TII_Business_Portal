@@ -187,13 +187,32 @@ class App extends React.Component {
     );
   };
 
-  getCandidates = () => {
-    axios.get(`/api/get_student_candidates`).then((res) => {
-      let candidates = res.data;
-      this.props.updateCandidates(
-        res.data.message === "Internal server error" ? [] : res.data
-      );
-      console.log(candidates);
+  getCandidates = async () => {
+    let access = await this.getAccess();
+    axios({
+      url: '/api/get_student_candidates',
+      method: 'post',
+      headers: {
+        Authorization : access
+      },
+      data: {
+        query: `
+          query {
+                getInternData(businessId: "${this.props.companyInfo.id}", internId: "51ba51e5-dbfb-41b2-af2e-537c50448cd5") {
+                  status
+                  formData
+                  grades
+                  Id
+                  feedback
+                  hours
+                  school
+                  version
+              }
+          }
+          `
+      }
+    }).then((result) => {
+      console.log(JSON.parse(result.data).data)
     });
   };
 
