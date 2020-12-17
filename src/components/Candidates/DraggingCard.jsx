@@ -47,7 +47,7 @@ class DraggingCard extends React.Component {
           </AntCol>
         </AntRow>
 
-        <AntRow className="mt-1 mb-1-5">
+        <AntRow className="mt-1 mb-1">
           <AntCol>
             <Caption className="fourteenFont mr-point-25" light>
               Location:{" "}
@@ -58,9 +58,27 @@ class DraggingCard extends React.Component {
           </AntCol>
         </AntRow>
 
-        <span className="twelveFont dragging-card-button">
+        <AntRow justify="space-between">
+          <AntCol>
+            <Link to={`/applicants/${this.props.id}`}>
+            <Button type="ghost" shape="round" style={{marginLeft: "-3px"}}>
+              Details
+            </Button>
+            </Link>
+          </AntCol>
+          <AntCol>
+            <Button type="danger" shape="round" style={{marginRight: "-7px"}}>
+              Remove
+            </Button>
+          </AntCol>
+        </AntRow>
+        {/*
+        <span className="fourteenFont dragging-card-button-read-application">
           Read Application
         </span>
+        <span className="fourteenFont dragging-card-button-remove">
+          Remove
+</span>*/}
 
         {/**
          *
