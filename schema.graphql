@@ -31,6 +31,17 @@ type InternConnection {
   nextToken: String
 }
 
+type InternData {
+  Id: String!
+  feedback: AWSJSON
+  formData: AWSJSON
+  grades: [AWSJSON]
+  hours: [AWSJSON]
+  school: AWSJSON
+  status: String
+  version: Int
+}
+
 type Mutation {
   createIntern(input: CreateInternInput!): Intern
   createInternAssoc(input: CreateInternAssocInput!): InternAssoc
@@ -43,6 +54,7 @@ type Mutation {
 type Query {
   getIntern(Id: String!): Intern
   getInternAssoc(assocId: String!): InternAssoc
+  getInternData(businessId: String!, internId: String!): InternData
   listInternAssocs(filter: TableInternAssocFilterInput, limit: Int, nextToken: String): InternAssocConnection
   listInterns(filter: TableInternFilterInput, limit: Int, nextToken: String): InternConnection
   queryInternAssocsByBusinessIdIndex(after: String, businessId: String!, first: Int): InternAssocConnection
