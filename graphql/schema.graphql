@@ -4,6 +4,32 @@
   subscription: Subscription
 }
 
+type Feedback {
+  Id: String
+  comment: String
+  date: String
+  isFinished: Boolean
+  isRead: Boolean
+}
+
+type Grade {
+  Id: String
+  additionalComments: String
+  assessment: AWSJSON
+  dueDate: String
+  finishedDate: String
+  isFinished: Boolean
+  type: String
+}
+
+type Hour {
+  Id: String
+  date: String
+  dueDate: String
+  isApproved: Boolean
+  time: Int
+}
+
 type Intern {
   Id: String!
   formData: AWSJSON
@@ -13,11 +39,11 @@ type Intern {
 type InternAssoc {
   assocId: String!
   businessId: String
-  feedback: AWSJSON
-  grades: [AWSJSON]
-  hours: [AWSJSON]
+  feedback: Feedback
+  grades: [Grade]
+  hours: [Hour]
   internId: String
-  school: AWSJSON
+  school: School
   status: String
 }
 
@@ -33,11 +59,11 @@ type InternConnection {
 
 type InternData {
   Id: String!
-  feedback: AWSJSON
+  feedback: Feedback
   formData: AWSJSON
-  grades: [AWSJSON]
-  hours: [AWSJSON]
-  school: AWSJSON
+  grades: [Grade]
+  hours: [Hour]
+  school: School
   status: String
   version: Int
 }
@@ -55,10 +81,19 @@ type Query {
   getIntern(Id: String!): Intern
   getInternAssoc(assocId: String!): InternAssoc
   getInternData(businessId: String!, internId: String!): InternData
+  getInterns(businessId: String!): [InternData]
   listInternAssocs(filter: TableInternAssocFilterInput, limit: Int, nextToken: String): InternAssocConnection
   listInterns(filter: TableInternFilterInput, limit: Int, nextToken: String): InternConnection
   queryInternAssocsByBusinessIdIndex(after: String, businessId: String!, first: Int): InternAssocConnection
   queryInternAssocsByInternIdIndex(after: String, first: Int, internId: String!): InternAssocConnection
+}
+
+type School {
+  address: String
+  email: String
+  name: String
+  phone: String
+  state: String
 }
 
 type Subscription {
