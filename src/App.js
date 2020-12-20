@@ -212,7 +212,8 @@ class App extends React.Component {
           `
       }
     }).then((result) => {
-      console.log(JSON.parse(result.data).data)
+      console.log(result)
+
     });
   };
 

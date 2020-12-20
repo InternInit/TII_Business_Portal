@@ -94,7 +94,7 @@ def get_student_candidates():
     headers = request.headers
     #"https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9"
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(data))
-    return jsonify(req.text)
+    return req.text
 
 @app.route('/api/update_student_status', methods=["POST"])
 def update_student_status():
