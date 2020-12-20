@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button, Col as AntCol, Row as AntRow, Avatar } from "antd";
 import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
+import { Link } from "react-router-dom";
 
 const ActionButton = styled(Button)`
   width: 100%;
@@ -140,7 +141,9 @@ const CandidateDetailedviewTab = (props) => {
 
       <AntRow gutter={[32, 0]} justify="space-between">
         <AntCol span={7}>
+        <Link to={`/applicants/${props.id}`} style={{ textDecoration: 'none', color: "inherit" }}>
           <ActionButton size="large">Read Full Application</ActionButton>
+          </Link>
         </AntCol>
         <AntCol span={7}>
           <ActionButton size="large" onClick={props.onReview}>

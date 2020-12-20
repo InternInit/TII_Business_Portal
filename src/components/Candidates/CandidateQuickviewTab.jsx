@@ -7,6 +7,7 @@ import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { AiOutlineRight } from "react-icons/ai";
 import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
+import { Link } from "react-router-dom";
 
 const CheckIcon = styled(Icon)`
   color: #bfbfbf;
@@ -42,85 +43,87 @@ const CandidateQuickviewTab = (props) => {
   console.log(props);
 
   return (
-    <TabContainer className="py-2 px-6 my-1 responsive-tab-container">
-      {/**
-       *
-       * Name
-       *
-       */}
-      <AntRow justify="center" align="middle">
-        <AntCol span={4}>
-          <Header className="twentyFont" bolded>
-            {name}
-          </Header>
-        </AntCol>
-
-        {/**School and Region */}
-        <AntCol span={8}>
-          <AntRow className="universal-center">
-            <Header className="sixteenFont">{school.Name}</Header>
-          </AntRow>
-          <AntRow className="universal-center">
-            <Caption className="twelveFont" light thin>
-              {school.Address}, {school.State}
-            </Caption>
-          </AntRow>
-        </AntCol>
-
-        {/**GPA */}
-        <AntCol className="universal-center" span={3}>
-          {props.GPA >= props.cutOffGPA ? (
-            <Caption className="sixteenFont" style={{ color: "green" }}>
-              {props.GPA.toFixed(1)}
-            </Caption>
-          ) : (
-            <Caption className="sixteenFont" style={{ color: "red" }}>
-              {props.GPA.toFixed(1)}
-            </Caption>
-          )}
-        </AntCol>
-
-        {/**Applied For*/}
-        <AntCol span={6}>
-          <AntRow className="universal-center">
-            <Header className="sixteenFont" color="#722ed1">
-              {props.appliedFor}
+    <Link to={`/applicants/${props.id}`} style={{ textDecoration: 'none', color: "inherit" }}>
+      <TabContainer className="py-2 px-6 my-1 responsive-tab-container">
+        {/**
+         *
+         * Name
+         *
+         */}
+        <AntRow justify="center" align="middle">
+          <AntCol span={4}>
+            <Header className="twentyFont" bolded>
+              {name}
             </Header>
-          </AntRow>
-        </AntCol>
+          </AntCol>
 
-        {/**Mark */}
-        <AntCol className="universal-center" span={3}>
-          <Tooltip title="Interview">
-            <CheckIcon
-              icon={check}
-              style={{ marginLeft: "1vh", marginRight: "1vh" }}
-              onClick={props.onInterview}
-            />
-          </Tooltip>
-          <Tooltip title="Review Later">
-            <ReviewIcon
-              icon={box}
-              style={{ marginLeft: "1vh", marginRight: "1vh" }}
-              onClick={props.onReview}
-            />
-          </Tooltip>
-          <Tooltip title="Remove">
-            <RemoveIcon
-              icon={remove}
-              style={{ marginLeft: "1vh", marginRight: "1vh" }}
-              onClick={props.onReject}
-            />
-          </Tooltip>
-        </AntCol>
+          {/**School and Region */}
+          <AntCol span={8}>
+            <AntRow className="universal-center">
+              <Header className="sixteenFont">{school.Name}</Header>
+            </AntRow>
+            <AntRow className="universal-center">
+              <Caption className="twelveFont" light thin>
+                {school.Address}, {school.State}
+              </Caption>
+            </AntRow>
+          </AntCol>
 
-        {/**Contact Info */}
-        <AiOutlineRight
-          className="click-more-icon"
-          style={{ fontSize: "24px" }}
-        />
-      </AntRow>
-    </TabContainer>
+          {/**GPA */}
+          <AntCol className="universal-center" span={3}>
+            {props.GPA >= props.cutOffGPA ? (
+              <Caption className="sixteenFont" style={{ color: "green" }}>
+                {props.GPA.toFixed(1)}
+              </Caption>
+            ) : (
+              <Caption className="sixteenFont" style={{ color: "red" }}>
+                {props.GPA.toFixed(1)}
+              </Caption>
+            )}
+          </AntCol>
+
+          {/**Applied For*/}
+          <AntCol span={6}>
+            <AntRow className="universal-center">
+              <Header className="sixteenFont" color="#722ed1">
+                {props.appliedFor}
+              </Header>
+            </AntRow>
+          </AntCol>
+
+          {/**Mark */}
+          <AntCol className="universal-center" span={3}>
+            <Tooltip title="Interview">
+              <CheckIcon
+                icon={check}
+                style={{ marginLeft: "1vh", marginRight: "1vh" }}
+                onClick={props.onInterview}
+              />
+            </Tooltip>
+            <Tooltip title="Review Later">
+              <ReviewIcon
+                icon={box}
+                style={{ marginLeft: "1vh", marginRight: "1vh" }}
+                onClick={props.onReview}
+              />
+            </Tooltip>
+            <Tooltip title="Remove">
+              <RemoveIcon
+                icon={remove}
+                style={{ marginLeft: "1vh", marginRight: "1vh" }}
+                onClick={props.onReject}
+              />
+            </Tooltip>
+          </AntCol>
+
+          {/**Contact Info */}
+          <AiOutlineRight
+            className="click-more-icon"
+            style={{ fontSize: "24px" }}
+          />
+        </AntRow>
+      </TabContainer>
+    </Link>
   );
 };
 

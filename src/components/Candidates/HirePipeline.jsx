@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { Row as AntRow, Col as AntCol } from "antd";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { PageContainer, Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
 import styled from "styled-components";
 
-//Styled Components
-const Header = styled.div`
-  font-size: 20px;
-  font-weight: 500;
-  color: #434343;
-  margin-top: 4vh;
-`;
-
-//Styles
-const containerStyle = {
-  display: "flex",
-  justifyContent: "center",
-  minHeight: "100vh",
-  backgroundColor: "#eceff9",
-};
-
-const columnStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-};
-
 const dragStyle = {
-  backgroundColor: "#f5f5f5",
+  backgroundColor: "#ebecf0",
   padding: 4,
-  width: "40vh",
+  width: "100%",
   minHeight: "80vh",
-  borderRadius: "4px",
-  border: "1px solid #d8def3",
+  borderRadius: "10px",
+  boxShadow: "1px 1px 5px -5px",
+  border: "1px solid #C5D1D8",
 };
 
 /**
@@ -147,90 +128,94 @@ function HirePipeline(props) {
      *The page containing drag n drop
      *
      */
-    <div style={containerStyle}>
-      <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
-      >
-        {Object.entries(columns).map(([columnId, column], index) => {
-          return (
-            /**
-             *
-             *Mapping of Columns (Already defined)
-             *
-             */
-            <div style={columnStyle} key={columnId}>
-              <Header>{column.name}</Header>
-              <div style={{ margin: 8 }}>
-                <Droppable droppableId={columnId} key={columnId}>
-                  {(provided, snapshot) => {
-                    return (
-                      /**
-                       *
-                       *Drop Zone Columns for Student Cards
-                       *
-                       */
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={dragStyle}
-                      >
-                        {/**
+    <PageContainer className="px-4 py-2">
+      <AntRow gutter={[36, 0]} style={{ width: "100%" }}>
+        <DragDropContext
+          onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
+        >
+          {Object.entries(columns).map(([columnId, column], index) => {
+            return (
+              /**
+               *
+               *Mapping of Columns (Already defined)
+               *
+               */
+              <AntCol span={6} key={columnId}>
+                <div>
+                  <Header className="twentyFont mb-point-25" subheading bolded>
+                    {column.name}
+                  </Header>
+                  <Droppable droppableId={columnId} key={columnId}>
+                    {(provided, snapshot) => {
+                      return (
+                        /**
                          *
-                         * Mapping of student cards and draggability
+                         *Drop Zone Columns for Student Cards
                          *
-                         */}
-                        {column.items.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={item.internId}
-                              draggableId={item.internId.toString()}
-                              index={index}
-                            >
-                              {(provided) => {
-                                return (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={{
-                                      userSelect: "none",
-                                      padding: 8,
-                                      ...provided.draggableProps.style,
-                                    }}
-                                  >
-                                    {/**
-                                     *
-                                     * Student Card
-                                     *
-                                     */}
-                                    <DraggingCard
-                                      name={item.info["First Name"]}
-                                      date={
-                                        item.info[
-                                          "Starting/Ending Dates"
-                                        ][0].split("T")[0]
-                                      }
-                                      position="Cheese grator"
-                                      id={item.internId}
-                                      avatar={`https://tii-intern-media.s3.amazonaws.com/${item.internId}/profile_picture`}
-                                    />
-                                  </div>
-                                );
-                              }}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
-                  }}
-                </Droppable>
-              </div>
-            </div>
-          );
-        })}
-      </DragDropContext>
-    </div>
+                         */
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          style={dragStyle}
+                        >
+                          {/**
+                           *
+                           * Mapping of student cards and draggability
+                           *
+                           */}
+                          {column.items.map((item, index) => {
+                            return (
+                              <Draggable
+                                key={item.internId}
+                                draggableId={item.internId.toString()}
+                                index={index}
+                              >
+                                {(provided) => {
+                                  return (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      style={{
+                                        userSelect: "none",
+                                        padding: 8,
+                                        ...provided.draggableProps.style,
+                                      }}
+                                    >
+                                      {/**
+                                       *
+                                       * Student Card
+                                       *
+                                       */}
+                                      <DraggingCard
+                                        name={item.info["First Name"]}
+                                        date={
+                                          item.info["Starting/Ending Dates"]
+                                        }
+                                        position={"Cheese grator"}
+                                        city={item.info.City}
+                                        stateLocation={item.info.State}
+                                        id={item.internId}
+                                        avatar={`https://tii-intern-media.s3.amazonaws.com/${item.internId}/profile_picture`}
+                                      />
+                                    </div>
+                                  );
+                                }}
+                              </Draggable>
+                            );
+                          })}
+                          {provided.placeholder}
+                        </div>
+                      );
+                    }}
+                  </Droppable>
+                </div>
+              </AntCol>
+            );
+          })}
+        </DragDropContext>
+      </AntRow>
+    </PageContainer>
   );
 }
 
