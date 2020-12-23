@@ -107,7 +107,7 @@ class CandidatesContainer extends Component {
               />
             )}
           />
-          <Route path={`/applicants/:id`} component={StudentInfo} />
+          <Route path={`/applicants/:id`} component={() => <StudentInfo />} />
         </ReactSwitch>
       </PageContainer>
     );

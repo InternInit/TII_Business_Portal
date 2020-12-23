@@ -20,7 +20,7 @@ const CandidateDetailedviewTab = (props) => {
       <AntRow gutter={[16, 16]}>
         <AntCol className="universal-left">
           <Avatar
-            stlye={{ backgroundColor: "#fa541c" }}
+            style={{ backgroundColor: "#fa541c" }}
             size={48}
             src={props.avatar}
           />
