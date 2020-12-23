@@ -22,7 +22,8 @@ const StudentInfo = (props) => {
   /**
    * @TejasMaraliga
    *
-   * TODO: This needs to be replaced with an API Call
+   * TODO: UseState find function needs to be replaced with an API Call
+   * TODO: Student objects don't have a grade or race field for the personal information section
    */
 
   const [student, changeStudent] = useState(
@@ -114,6 +115,55 @@ const StudentInfo = (props) => {
                     bolded
                   >
                     Personal
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    State:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info.Age}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Gender:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info.Gender}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Race:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info.race ? student.info.race : "Not filled"}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Grade:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info.Grade ? student.info.Grade : "Not filled"}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Year of Graduation:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info["Year of Graduation"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow justify="center">
+                  <Header
+                    className="twentyEightFont mt-1 mb-point-5"
+                    color="#002766"
+                    bolded
+                  >
+                    Files
                   </Header>
                 </AntRow>
               </AntCol>
