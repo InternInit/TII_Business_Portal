@@ -29,58 +29,104 @@ const StudentInfo = (props) => {
     _.find(props.companyInfo.candidates, (student) => student.internId === id)
   );
 
-
   if (student) {
-  return (
-    <AntRow
-      className="py-2"
-      justify="center"
-      style={{ width: "100%", backgroundColor: "yellow" }}
-    >
-      <InnerContainer>
-        <TabContainer className="px-4 py-3">
-          <AntRow gutter={[32, 0]}>
-            <AntCol
-              className="px-2"
-              span={8}
-              style={{ backgroundColor: "#fafafa" }}
-            >
-              <AntRow justify="center">
-                <Avatar
-                  size={225}
-                  src="https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg"
-                ></Avatar>
-              </AntRow>
-              <AntRow justify="center">
-                <Header
-                  className="twentyEightFont mt-1 mb-point-5"
-                  color="#002766"
-                  bolded
-                >
-                  Contact
-                </Header>
-              </AntRow>
-              <AntRow>
-                <Header className="sixteenFont mr-point-25" bolded>
-                  Full Name:{" "}
-                </Header>
-                <Caption className="sixteenFont">
-                  {student.info["First Name"]} {student.info["Last Name"]}
-                </Caption>
-              </AntRow>
-            </AntCol>
-            <AntCol span={16} style={{ backgroundColor: "#f9f0ff" }}>
-              <h1>HELLO</h1>
-            </AntCol>
-          </AntRow>
-        </TabContainer>
-      </InnerContainer>
-    </AntRow>
-  );
-  } else {
     return (
-      <h1> LOADING! </h1>
-    )
+      <AntRow
+        className="py-2"
+        justify="center"
+        style={{ width: "100%", backgroundColor: "yellow" }}
+      >
+        <InnerContainer>
+          <TabContainer className="px-6 py-3">
+            <AntRow gutter={[32, 0]}>
+              <AntCol
+                className="px-2"
+                span={6}
+                style={{ backgroundColor: "#fafafa" }}
+              >
+                <AntRow justify="center">
+                  <Avatar
+                    size={225}
+                    src="https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg"
+                  ></Avatar>
+                </AntRow>
+                <AntRow justify="center">
+                  <Header
+                    className="twentyEightFont mt-1 mb-point-5"
+                    color="#002766"
+                    bolded
+                  >
+                    Contact
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Full Name:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info["First Name"]} {student.info["Last Name"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Phone:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info["Phone Number"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Email:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info.Email}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Address:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info.Address}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    City:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info.City}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    State:{" "}
+                    <Caption className="sixteenFont">
+                      {student.info.State}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow justify="center">
+                  <Header
+                    className="twentyEightFont mt-1 mb-point-5"
+                    color="#002766"
+                    bolded
+                  >
+                    Personal
+                  </Header>
+                </AntRow>
+              </AntCol>
+              <AntCol span={18} style={{ backgroundColor: "#f9f0ff" }}>
+                <h1>HELLO</h1>
+              </AntCol>
+            </AntRow>
+          </TabContainer>
+        </InnerContainer>
+      </AntRow>
+    );
+  } else {
+    return <h1> LOADING! </h1>;
   }
 };
 export default withRouter(connect(mapStateToProps)(StudentInfo));
