@@ -12,7 +12,7 @@ import {
   withRouter,
 } from "react-router-dom";
 
-import { Menu } from "antd";
+import { Row as AntRow, Col as AntCol } from "antd";
 
 import { connect } from "react-redux";
 import {
@@ -28,6 +28,8 @@ import CandidatesNavbar from "./CandidatesNavbar.jsx";
 import HirePipeline from "./HirePipeline.jsx";
 import ReviewApplicants from "./ReviewApplicants.jsx";
 import StudentInfo from "./StudentInfo.jsx";
+
+import {PageContainer} from "../Styled/FundamentalComponents.jsx";
 
 const mapStateToProps = (state) => {
   return {
@@ -72,11 +74,13 @@ class CandidatesContainer extends Component {
 
   render() {
     return (
-      <div className="global-container">
+      <PageContainer>
+        <AntRow style={{width: "100%"}}>
         <NavSearch
           title="Internship Candidates"
           placeholder="Search Applicants"
         />
+        </AntRow>
         <CandidatesNavbar defaultSelectedKey={this.findPath()} />
         <ReactSwitch>
           <Route
@@ -105,7 +109,7 @@ class CandidatesContainer extends Component {
           />
           <Route path={`/applicants/:id`} component={StudentInfo} />
         </ReactSwitch>
-      </div>
+      </PageContainer>
     );
   }
 }
