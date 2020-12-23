@@ -198,16 +198,33 @@ class App extends React.Component {
       data: {
         query: `
           query {
-                getInternData(businessId: "${this.props.companyInfo.id}", internId: "51ba51e5-dbfb-41b2-af2e-537c50448cd5") {
-                  status
-                  formData
-                  grades
-                  Id
-                  feedback
-                  hours
-                  school
-                  version
+            getInterns(businessId: "6aa19690-d874-4fdd-a1d8-a1168a7b632c") {
+              Id
+              feedback {
+                Id
+                comment
+                date
+                isFinished
+                isRead
               }
+              formData
+              hours {
+                Id
+                date
+                dueDate
+                isApproved
+                time
+              }
+              school {
+                address
+                email
+                name
+                phone
+                state
+              }
+              status
+              version
+            }
           }
           `
       }

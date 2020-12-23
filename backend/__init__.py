@@ -48,7 +48,6 @@ def update_business_lisitings():
 def get_internship_listings():
     headers = request.headers
     req = requests.get(listingsApiUrl, headers={"Authorization": headers.get("Authorization")})
-    print(req.text)
     return jsonify(req.text)
 
 @app.route("/api/remove_internship_listing", methods=["DELETE"])
@@ -60,7 +59,6 @@ def update_internship_listings():
     body = request.get_data().decode("utf-8")
     headers = request.headers
     req = requests.post(listingsApiUrl, headers={"Authorization": headers.get("Authorization"), "ListingId": headers.get("ListingId")}, json = json.loads(body))
-    print(req.text)
     return jsonify(req.text)
 
 
@@ -90,10 +88,12 @@ def get_student_candidates():
 '''
 @app.route('/api/get_student_candidates', methods=["GET", "POST"])
 def get_student_candidates():
-    data = request.get_data().decode("utf-8")
+    query = request.get_data().decode("utf-8")
     headers = request.headers
     #"https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9"
-    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(data))
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    #req = requests.post("https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9", headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    #print(json.loads(req.text))
     return req.text
 
 @app.route('/api/update_student_status', methods=["POST"])
