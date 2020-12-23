@@ -1,7 +1,39 @@
 ## Pass back the result from DynamoDB. **
 #set( $modMap = $ctx.result )
-#set( $millDiff = $util.time.parseISO8601ToEpochMilliSeconds($modMap.dueDate) - $util.time.nowEpochMilliSeconds())
-#set( $millDiv = (1000*60*60*24))
-#set( $daysUntil = $millDiff / $millDiff)
-#set( $dummy = $modMap.put("daysUntil", $daysUntil))
-$util.toJson($ctx.result)
+
+
+#foreach( $intern in $ctx.prev.result )
+	#foreach( $item in $intern.entrySet() )
+    	#if($util.isString($item.value))
+            #set( $millDiff = $util.time.parseISO8601ToEpochMilliSeconds($item.value) - $util.time.nowEpochMilliSeconds())
+            #set( $millDiv = (1000*60*60*24))
+            #set( $daysUntil = $millDiff / $millDiff)
+            $intern.put("Days Until " + $item.key , $daysUntil)
+            ## Resolve the datetime
+        #elseif($util.isList($item.value))
+            #foreach( $entry in $item.value )
+                #if($util.isMap($entry))
+                    #foreach( $subentry in $entry.entrySet() )
+                        #if($util.isString($subentry.value))
+                            ## Resolve the datetime
+                            #set( $millDiff = $util.time.parseISO8601ToEpochMilliSeconds($subentry.value) - $util.time.nowEpochMilliSeconds())
+                            #set( $millDiv = (1000*60*60*24))
+                            #set( $daysUntil = $millDiff / $millDiff)
+                            $entry.put("Days Until " + $subentry.key , $daysUntil)
+                        #end
+                    #end
+                #end
+            #end
+        #elseif($util.isMap($item.value))
+            #foreach( $entry in $item.value.entrySet() )
+                #if($util.isString($entry.value))
+                    ## Resolve the datetime
+                    #set( $millDiff = $util.time.parseISO8601ToEpochMilliSeconds($entry.value) - $util.time.nowEpochMilliSeconds())
+                    #set( $millDiv = (1000*60*60*24))
+                    #set( $daysUntil = $millDiff / $millDiff)
+                    $item.put("Days Until " + $entry.key , $daysUntil)
+                #end
+            #end
+        #end
+    #end
+#end
