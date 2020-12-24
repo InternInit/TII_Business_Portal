@@ -166,8 +166,8 @@ function HirePipeline(props) {
                           {column.items.map((item, index) => {
                             return (
                               <Draggable
-                                key={item.internId}
-                                draggableId={item.internId.toString()}
+                                key={item.Id}
+                                draggableId={item.Id.toString()}
                                 index={index}
                               >
                                 {(provided) => {
@@ -188,15 +188,15 @@ function HirePipeline(props) {
                                        *
                                        */}
                                       <DraggingCard
-                                        name={item.info["First Name"]}
+                                        name={item.formData["0"]["First Name"]}
                                         date={
-                                          item.info["Starting/Ending Dates"]
+                                          item.formData["0"]["Starting/Ending Dates"]
                                         }
                                         position={"Cheese grator"}
-                                        city={item.info.City}
-                                        stateLocation={item.info.State}
-                                        id={item.internId}
-                                        avatar={`https://tii-intern-media.s3.amazonaws.com/${item.internId}/profile_picture`}
+                                        city={item.formData["0"].City}
+                                        stateLocation={item.formData["0"].State}
+                                        id={item.Id}
+                                        avatar={`https://tii-intern-media.s3.amazonaws.com/${item.Id}/profile_picture`}
                                       />
                                     </div>
                                   );

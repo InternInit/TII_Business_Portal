@@ -65,7 +65,7 @@ class CandidatesContainer extends Component {
         console.log(JSON.parse(response.data));
 
         let index = this.props.companyInfo.candidates.findIndex(
-          (item, i) => item.internId === internId
+          (item, i) => item.Id === internId
         );
         console.log(index);
         this.props.updateReduxCandidateStatus(index, status);
