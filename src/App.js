@@ -28,6 +28,7 @@ import {
   batchUpdateListings,
   addListing,
   updateListing,
+  finishLoading
 } from "./redux/actions";
 
 //axios
@@ -82,6 +83,7 @@ const mapDispatchToProps = {
   batchUpdateListings,
   addListing,
   updateListing,
+  finishLoading
 };
 
 class App extends React.Component {
@@ -95,9 +97,10 @@ class App extends React.Component {
 
   componentDidMount() {
     this.auth();
-    this.getCandidates();
+    this.getSparseCandidates();
     this.getListings();
     this.getBusinessUsers();
+    this.props.finishLoading(true);
   }
 
   inMemoryToken;
@@ -187,7 +190,7 @@ class App extends React.Component {
     );
   };
 
-  getCandidates = async () => {
+  getSparseCandidates = async () => {
     let access = await this.getAccess();
     axios({
       url: '/api/get_student_candidates',
@@ -196,41 +199,20 @@ class App extends React.Component {
         Authorization : access
       },
       data: {
-        query: `
-          query {
-            getInterns(businessId: "6aa19690-d874-4fdd-a1d8-a1168a7b632c") {
-              Id
-              feedback {
-                Id
-                comment
-                date
-                isFinished
-                isRead
-              }
-              formData
-              hours {
-                Id
-                date
-                dueDate
-                isApproved
-                time
-              }
-              school {
-                address
-                email
-                name
-                phone
-                state
-              }
-              status
-              version
-            }
+      query: `
+        query {
+          getInterns(businessId: "6aa19690-d874-4fdd-a1d8-a1168a7b632c") {
+            Id
+            formData
+            status
+            version
           }
-          `
+        }
+      `
       }
     }).then((result) => {
       console.log(result)
-
+      this.props.updateCandidates(result.data)
     });
   };
 
@@ -351,7 +333,11 @@ class App extends React.Component {
                 <Route
                   path="/my-interns"
                   exact
-                  component={StudentInternPage}
+                  component={() =>
+                    <StudentInternPage
+                      getAccess={this.getAccess}
+                    />
+                  }
                 />
                 <Route
                   path={`/my-interns/:id`}

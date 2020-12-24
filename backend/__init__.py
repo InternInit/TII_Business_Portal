@@ -74,6 +74,11 @@ def datetime_resolver(intern):
 def home():
     return "Hello World"
 
+@app.route("/api/test", methods=["GET", "POST"])
+def test():
+    req = requests.post("https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9", json = {"Hello" : "World"})
+    return req.text
+
 @app.route('/api/get_business_data', methods=["GET"])
 def get_business_data():
     return "business data"
@@ -143,16 +148,15 @@ def get_student_candidates():
     headers = request.headers
     #"https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9"
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
-    #req = requests.post("https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9", headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
-    '''
-    with open('data.json', 'w') as f:
-        json.dump(json.loads(req.text), f, indent=4)
-    f.close()
-    '''
     resp_json = json.loads(req.text)
     new_interns = []
     for intern in resp_json["data"]["getInterns"]:
-        new_interns.append(datetime_resolver(intern))
+        new_intern = datetime_resolver(intern)
+        try:
+            new_intern["formData"] = json.loads(new_intern["formData"])
+        except ValueError:
+            pass
+        new_interns.append(new_intern)
     return json.dumps(new_interns)
 
 @app.route('/api/update_student_status', methods=["POST"])
