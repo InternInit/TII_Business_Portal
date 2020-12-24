@@ -83,3 +83,17 @@ export const updateListing = (id, listing) => {
     listing,
   };
 };
+
+export const startLoading = (loadingStatus) => {
+  return {
+    type: "START_LOADING",
+    loadingStatus,
+  };
+};
+
+export const finishLoading = (loadingStatus) => {
+  return {
+    type: "FINISH_LOADING",
+    loadingStatus,
+  };
+};
