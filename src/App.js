@@ -28,6 +28,7 @@ import {
   batchUpdateListings,
   addListing,
   updateListing,
+  startLoading,
   finishLoading
 } from "./redux/actions";
 
@@ -83,6 +84,7 @@ const mapDispatchToProps = {
   batchUpdateListings,
   addListing,
   updateListing,
+  startLoading,
   finishLoading
 };
 
@@ -96,11 +98,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.props.startLoading();
     this.auth();
-    this.getSparseCandidates();
+    this.getFullCandidates();
     this.getListings();
     this.getBusinessUsers();
-    this.props.finishLoading(true);
+    this.props.finishLoading();
   }
 
   inMemoryToken;
@@ -204,6 +207,55 @@ class App extends React.Component {
           getInterns(businessId: "6aa19690-d874-4fdd-a1d8-a1168a7b632c") {
             Id
             formData
+            status
+            version
+          }
+        }
+      `
+      }
+    }).then((result) => {
+      console.log(result)
+      this.props.updateCandidates(result.data)
+    });
+  };
+
+  getFullCandidates = async () => {
+    let access = await this.getAccess();
+    axios({
+      url: '/api/get_student_candidates',
+      method: 'post',
+      headers: {
+        Authorization : access
+      },
+      data: {
+      query: `
+        query MyQuery {
+          getInterns(businessId: "6aa19690-d874-4fdd-a1d8-a1168a7b632c") {
+            grades {
+              Id
+              additionalComments
+              assessment
+              dueDate
+              finishedDate
+              isFinished
+              type
+            }
+            formData
+            Id
+            hours {
+              Id
+              date
+              dueDate
+              isApproved
+              time
+            }
+            school {
+              address
+              email
+              name
+              phone
+              state
+            }
             status
             version
           }

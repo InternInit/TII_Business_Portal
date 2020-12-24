@@ -84,16 +84,14 @@ export const updateListing = (id, listing) => {
   };
 };
 
-export const startLoading = (loadingStatus) => {
+export const startLoading = () => {
   return {
     type: "START_LOADING",
-    loadingStatus,
   };
 };
 
-export const finishLoading = (loadingStatus) => {
+export const finishLoading = () => {
   return {
     type: "FINISH_LOADING",
-    loadingStatus,
   };
 };
