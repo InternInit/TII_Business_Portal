@@ -1,4 +1,6 @@
 from flask import Blueprint, Flask, jsonify, request, redirect, make_response
+from dateutil.parser import parse
+from datetime import datetime, date, time, timezone
 import json
 import requests
 
@@ -18,7 +20,56 @@ elif(app.config.get("ENV") == "production"):
     listingsApiUrl = listingsApiUrl.format(stage="prod")
     authApiUrl = authApiUrl.format(stage="prod")
 
+def determine_date_offset(dt_string):
+    dt = parse(dt_string)
+    today = datetime.now(timezone.utc)
+    days = (dt-today).days
+    return days
 
+# Non-recursively resolve datetimes
+# full_intern_map: (dict) contaning full intern data
+# intern_item : Tuple: ((String), (String/Map/List)) sub-item of full_intern_map
+def datetime_resolver(intern):
+    new_intern = {}
+    for sub_item in intern.items():
+        if isinstance(sub_item[1], str):
+            try:
+                days = determine_date_offset(sub_item[1])
+                new_intern["Days Until " + sub_item[0]] = int(days)
+            except ValueError:
+                pass
+            new_intern[sub_item[0]] = sub_item[1]
+        elif isinstance(sub_item[1], dict):
+            new_sub_item = {}
+            for nested_map_item in sub_item[1].items():
+                if isinstance(nested_map_item[1], str):
+                    try:
+                        days = determine_date_offset(nested_map_item[1])
+                        new_sub_item["Days Until " + nested_map_item[0]] = int(days)
+                    except ValueError:
+                        pass
+                new_sub_item[nested_map_item[0]] = nested_map_item[1]
+            new_intern[sub_item[0]] = new_sub_item
+        elif isinstance(sub_item[1], list):
+            new_list = []
+            for nested_list_item in sub_item[1]:
+                if isinstance(nested_list_item, dict):
+                    new_map = {}
+                    for map_item in nested_list_item.items():
+                        if isinstance(map_item[1], str):
+                            try:
+                                days = determine_date_offset(map_item[1])
+                                new_map["Days Until " + map_item[0]] = int(days)
+                            except ValueError:
+                                pass
+                        new_map[map_item[0]] = map_item[1]
+                    new_list.append(new_map)
+                else:
+                    new_list.append(nested_list_item)
+            new_intern[sub_item[0]] = new_list
+
+    return new_intern
+        
 @app.route('/', methods=["GET"])
 def home():
     return "Hello World"
@@ -93,8 +144,16 @@ def get_student_candidates():
     #"https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9"
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     #req = requests.post("https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9", headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
-    #print(json.loads(req.text))
-    return req.text
+    '''
+    with open('data.json', 'w') as f:
+        json.dump(json.loads(req.text), f, indent=4)
+    f.close()
+    '''
+    resp_json = json.loads(req.text)
+    new_interns = []
+    for intern in resp_json["data"]["getInterns"]:
+        new_interns.append(datetime_resolver(intern))
+    return json.dumps(new_interns)
 
 @app.route('/api/update_student_status', methods=["POST"])
 def update_student_status():
