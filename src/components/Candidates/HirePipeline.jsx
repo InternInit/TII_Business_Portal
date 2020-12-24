@@ -128,7 +128,7 @@ function HirePipeline(props) {
      *The page containing drag n drop
      *
      */
-    <PageContainer className="px-4 py-2">
+    <div className="px-4 py-2" style={{ width: "100%" }}>
       <AntRow gutter={[36, 0]} style={{ width: "100%" }}>
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
@@ -215,7 +215,7 @@ function HirePipeline(props) {
           })}
         </DragDropContext>
       </AntRow>
-    </PageContainer>
+    </div>
   );
 }
 
