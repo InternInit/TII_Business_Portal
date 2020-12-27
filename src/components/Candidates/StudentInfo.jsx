@@ -27,7 +27,7 @@ const StudentInfo = (props) => {
    */
 
   const [student, changeStudent] = useState(
-    _.find(props.companyInfo.candidates, (student) => student.internId === id)
+    _.find(props.companyInfo.candidates, (student) => student.Id === id)
   );
 
   if (student) {
@@ -64,7 +64,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Full Name:{" "}
                     <Caption className="sixteenFont">
-                      {student.info["First Name"]} {student.info["Last Name"]}
+                      {student.formData["0"]["First Name"]} {student.formData["0"]["Last Name"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -72,7 +72,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Phone:{" "}
                     <Caption className="sixteenFont">
-                      {student.info["Phone Number"]}
+                      {student.formData["0"]["Phone Number"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -80,7 +80,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Email:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Email}
+                      {student.formData["0"].Email}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -88,7 +88,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Address:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Address}
+                      {student.formData["0"].Address}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -96,7 +96,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     City:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.City}
+                      {student.formData["0"].City}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -104,7 +104,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     State:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.State}
+                      {student.formData["0"].State}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -121,7 +121,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     State:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Age}
+                      {student.formData["1"].Age}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -129,7 +129,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Gender:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Gender}
+                      {student.formData["1"].Gender}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -137,7 +137,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Race:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.race ? student.info.race : "Not filled"}
+                      {student.formData["1"].Race ? student.formData["1"].Race : "Not filled"}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -145,7 +145,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Grade:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Grade ? student.info.Grade : "Not filled"}
+                      {student.formData.Grade ? student.formData.Grade : "Not filled"}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -153,7 +153,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Year of Graduation:{" "}
                     <Caption className="sixteenFont">
-                      {student.info["Year of Graduation"]}
+                      {student.formData["0"]["Year of Graduation"]}
                     </Caption>
                   </Header>
                 </AntRow>
