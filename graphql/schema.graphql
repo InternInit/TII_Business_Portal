@@ -27,7 +27,7 @@ type Hour {
   date: String
   dueDate: String
   isApproved: Boolean
-  time: Int
+  time: Float
 }
 
 type Intern {
