@@ -184,12 +184,12 @@ const StudentInfo = (props) => {
                   </Header>
                 </AntRow>
                 <AntRow className="mt-1 mb-point-5">
-                  <AntCol flex={1}>
+                  <AntCol span={4}>
                     <Header className="sixteenFont" bolded>
                       Available Dates:
                     </Header>
                   </AntCol>
-                  <AntCol flex={20}>
+                  <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
                       {new Date(
                         student.info["Starting/Ending Dates"][0]
@@ -214,6 +214,28 @@ const StudentInfo = (props) => {
                       {new Date(
                         student.info["Starting/Ending Dates"][1]
                       ).getFullYear()}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
+                <AntRow className="mt-1 mb-point-5">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Available Days:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {student.info["Willing Work Days"].length > 1
+                        ? student.info["Willing Work Days"]
+                            .slice(
+                              0,
+                              student.info["Willing Work Days"].length - 1
+                            )
+                            .map((day) => ` ${day}`) + ", " +
+                          student.info["Willing Work Days"][
+                            student.info["Willing Work Days"].length - 1
+                          ]
+                        : student.info["Willing Work Days"]}
                     </Caption>
                   </AntCol>
                 </AntRow>
