@@ -223,6 +223,13 @@ class App extends React.Component {
               isApproved
               time
             }
+            feedback {
+              Id
+              comment
+              date
+              isFinished
+              isRead
+            }
             school {
               address
               email
