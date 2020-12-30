@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import { Button, Row as AntRow, Col as AntCol } from "antd";
 import { students } from "../../Fake_Students.js";
 
+import { connect } from "react-redux";
+
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,6 +25,12 @@ const ButtonStyle = {
   minWidth: "170px",
   height: "40px",
   fontFamily: "roboto",
+};
+
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+  };
 };
 
 class InternFeedback extends Component {
@@ -46,16 +55,16 @@ class InternFeedback extends Component {
             fieldFour={{ name: "Action", sm: 5, lg: 6, align: "universal-center" }}
           />
 
-          {students.map((student) => (
+          {this.props.companyInfo.candidates.map((student) => (
             <StudentInternTab
-              firstName={student.firstName}
-              lastName={student.lastName}
-              age={student.age}
-              type={student.type}
-              id={student.id}
-              position={student.position}
-              school={student.school}
-              avatar={student.image}
+              firstName={student.formData["0"]["First Name"]}
+              lastName={student.formData["0"]["Last Name"]}
+              age={student.formData["1"]["Age"]}
+              type="Hybrid"
+              id={student.Id}
+              position="Position Placeholder"
+              school={student.school.name}
+              avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
             />
           ))}
 
@@ -66,4 +75,4 @@ class InternFeedback extends Component {
     );
   }
 }
-export default InternFeedback;
+export default connect(mapStateToProps)(InternFeedback);
