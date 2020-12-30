@@ -9,6 +9,7 @@ import {
 import _ from "underscore";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { RiSuitcaseLine } from "react-icons/ri";
 
 const mapStateToProps = (state) => {
   return {
@@ -32,19 +33,11 @@ const StudentInfo = (props) => {
 
   if (student) {
     return (
-      <AntRow
-        className="py-2"
-        justify="center"
-        style={{ width: "100%", backgroundColor: "yellow" }}
-      >
+      <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
         <InnerContainer>
           <TabContainer className="px-6 py-3">
             <AntRow gutter={[32, 0]}>
-              <AntCol
-                className="px-2"
-                span={6}
-                style={{ backgroundColor: "#fafafa" }}
-              >
+              <AntCol className="px-2" span={6}>
                 <AntRow justify="center">
                   <Avatar
                     size={225}
@@ -167,8 +160,85 @@ const StudentInfo = (props) => {
                   </Header>
                 </AntRow>
               </AntCol>
-              <AntCol span={18} style={{ backgroundColor: "#f9f0ff" }}>
-                <h1>HELLO</h1>
+              <AntCol span={18}>
+                <AntRow>
+                  <Header className="thirtySixFont" color="#002766" bolded>
+                    {student.info["First Name"]} {student.info["Last Name"]}
+                  </Header>
+                </AntRow>
+                {/**
+                 * @TODO
+                 *  - Phase out negative margins
+                 */}
+                <AntRow style={{ marginTop: "-5px" }}>
+                  <Caption className="twentyFont" light thin>
+                    {student.position
+                      ? student.position
+                      : "Social Media Intern"}
+                  </Caption>
+                </AntRow>
+                <AntRow className="pt-2 student-info-header" align="middle">
+                  <RiSuitcaseLine className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    Internship Information
+                  </Header>
+                </AntRow>
+                <AntRow className="mt-1 mb-point-5">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Available Dates:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {new Date(
+                        student.info["Starting/Ending Dates"][0]
+                      ).getMonth()}
+                      /
+                      {new Date(
+                        student.info["Starting/Ending Dates"][0]
+                      ).getDate()}
+                      /
+                      {new Date(
+                        student.info["Starting/Ending Dates"][0]
+                      ).getFullYear()}{" "}
+                      -{" "}
+                      {new Date(
+                        student.info["Starting/Ending Dates"][1]
+                      ).getMonth()}
+                      /
+                      {new Date(
+                        student.info["Starting/Ending Dates"][1]
+                      ).getDate()}
+                      /
+                      {new Date(
+                        student.info["Starting/Ending Dates"][1]
+                      ).getFullYear()}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
+                <AntRow className="mt-1 mb-point-5">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Available Days:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {student.info["Willing Work Days"].length > 1
+                        ? student.info["Willing Work Days"]
+                            .slice(
+                              0,
+                              student.info["Willing Work Days"].length - 1
+                            )
+                            .map((day) => ` ${day}`) + ", " +
+                          student.info["Willing Work Days"][
+                            student.info["Willing Work Days"].length - 1
+                          ]
+                        : student.info["Willing Work Days"]}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
               </AntCol>
             </AntRow>
           </TabContainer>
@@ -179,4 +249,5 @@ const StudentInfo = (props) => {
     return <h1> LOADING! </h1>;
   }
 };
+
 export default withRouter(connect(mapStateToProps)(StudentInfo));
