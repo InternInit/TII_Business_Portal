@@ -193,32 +193,6 @@ class App extends React.Component {
     );
   };
 
-  getSparseCandidates = async () => {
-    let access = await this.getAccess();
-    axios({
-      url: '/api/get_student_candidates',
-      method: 'post',
-      headers: {
-        Authorization : access
-      },
-      data: {
-      query: `
-        query {
-          getInterns(businessId: "6aa19690-d874-4fdd-a1d8-a1168a7b632c") {
-            Id
-            formData
-            status
-            version
-          }
-        }
-      `
-      }
-    }).then((result) => {
-      console.log(result)
-      this.props.updateCandidates(result.data)
-    });
-  };
-
   getFullCandidates = async () => {
     let access = await this.getAccess();
     axios({
