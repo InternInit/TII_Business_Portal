@@ -40,7 +40,7 @@ const InternDashboard = (props) => {
                   <AttendanceCard
                     key={index}
                     time={hour.time}
-                    date={hour.date}
+                    date={hour.dateFormatted}
                     review={true}
                   />
                 ))
@@ -48,7 +48,7 @@ const InternDashboard = (props) => {
                 <AttendanceCard
                   key={index}
                   time={hour.time}
-                  date={hour.date}
+                  date={hour.dateFormatted}
                   review={true}
                 />
               ))}
@@ -118,7 +118,7 @@ const StudentFeedbackCard = (props) => {
         <AntCol offset={1}>
           <Header className="twentyFont">{props.name}</Header>
           <Caption className="fourteenFont" thin light>
-            {props.feedback.date}
+            {props.feedback.dateFormatted}
           </Caption>
         </AntCol>
         <AntCol className="universal-middle" flex="auto">
