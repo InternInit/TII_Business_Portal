@@ -1,100 +1,91 @@
 import React from "react";
-import styled from "styled-components";
-import { Button, Avatar } from "antd";
+import { Button, Avatar, Row as AntRow, Col as AntCol } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Link, withRouter } from "react-router-dom";
-const Container = styled.div`
-  width: 100%;
-  min-height: 12vh;
-  background-color: white;
-  user-select: none;
-  border-radius: 2px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  border: 1px solid #d9d9d9;
-  box-shadow: 1px 1px 5px -4px;
-
-  :hover {
-    transition-duration: 0.35s;
-    cursor: pointer;
-    box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
-  }
-  :active {
-    box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
-  }
-`;
-const Position = styled.div`
-  font-weight: 500;
-  font-size: 14px;
-`;
-
-const Name = styled.span`
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 2vh;
-`;
-
-const Date = styled.span`
-  font-weight: 500;
-  font-size: 12px;
-`;
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+import {
+  TabContainer,
+  Header,
+  Caption,
+} from "../Styled/FundamentalComponents.jsx";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 class DraggingCard extends React.Component {
   render() {
-    let { name, date, position, avatar, id } = this.props;
+    let { name, date, city, stateLocation, position, avatar, id } = this.props;
     return (
-      <Container>
+      <TabContainer className="py-1-5 px-2 responsive-tab-container">
+        <Caption className="twelveFont dragging-card-date" light right>
+          Applied on <br /> {new Date(date[0]).getMonth()}/
+          {new Date(date[0]).getDate()}/{new Date(date[0]).getFullYear()}
+        </Caption>
         {/**
          *
          * Row Containing Name + Avatar
          *
          */}
-        <Row style={{ marginTop: "2vh" }}>
-          <Avatar src={avatar} size={30} icon={<UserOutlined />} />
-          <Name>{name}</Name>
-        </Row>
-        <Col>
-          {/**
-           *
-           * Position Name
-           *
-           */}
-          <Position style={{ marginTop: "1vh" }}>{position}</Position>
+        <AntRow justify="start" align="middle">
+          <AntCol>
+            <Avatar src={avatar} size={40} icon={<UserOutlined />} />
+          </AntCol>
+          <AntCol offset={1}>
+            <AntRow>
+              <Header className="twentyFont" bolded>
+                {name}
+              </Header>
+            </AntRow>
+            <AntRow>
+              <Caption
+                className="fourteenFont"
+                style={{ marginTop: "-5px" }}
+                light
+                thin
+                left
+              >
+                {position}
+              </Caption>
+            </AntRow>
+          </AntCol>
+        </AntRow>
 
-          {/**
-           *
-           * Date Applied
-           *
-           */}
-          <Date>Date Applied: {date}</Date>
-        </Col>
+        <AntRow className="mt-1 mb-1">
+          <AntCol>
+            <Caption className="fourteenFont mr-point-25" light>
+              Location:{" "}
+            </Caption>
+          </AntCol>
+          <AntCol>
+            <Caption className="fourteenFont">{city}</Caption>
+          </AntCol>
+        </AntRow>
+
+        <AntRow justify="space-between">
+          <AntCol>
+            <Link to={`/applicants/${this.props.id}`}>
+            <Button type="ghost" shape="round" style={{marginLeft: "-3px"}}>
+              Details
+            </Button>
+            </Link>
+          </AntCol>
+          <AntCol>
+            <Button type="danger" shape="round" style={{marginRight: "-7px"}}>
+              Remove
+            </Button>
+          </AntCol>
+        </AntRow>
+        {/*
+        <span className="fourteenFont dragging-card-button-read-application">
+          Read Application
+        </span>
+        <span className="fourteenFont dragging-card-button-remove">
+          Remove
+</span>*/}
 
         {/**
          *
          * View Details Button
          *
          */}
-        <Button
-          type="primary"
-          style={{ marginTop: "2vh", width: "60%", marginBottom: "2vh" }}
-        >
-          <Link to={`/applicants/${id}`}>Details</Link>
-        </Button>
-      </Container>
+      </TabContainer>
     );
   }
 }

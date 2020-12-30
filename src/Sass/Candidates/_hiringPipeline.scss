@@ -1,0 +1,40 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+.dragging-card-date {
+  position: absolute;
+  top: 2.2em;
+  right: 2em;
+}
+
+.dragging-card-menu {
+  position: absolute;
+  top: 1.7em;
+  right: 1.5em;
+}
+
+.dragging-card-button-read-application {
+  position: absolute;
+  bottom: 1em;
+  left: 1.8em;
+
+  color: #1890ff;
+
+  &:hover {
+    color: #40a9ff;
+    transition: 0.3s ease;
+  }
+}
+.dragging-card-button-remove {
+  position: absolute;
+  bottom: 1em;
+  right: 1.8em;
+
+  color: #f5222d;
+
+  &:hover {
+    color: #ff4d4f;
+    transition: 0.3s ease;
+  }
+}

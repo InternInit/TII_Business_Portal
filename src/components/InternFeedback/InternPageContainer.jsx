@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+
 import NavSearch from "../General/NavSearch.jsx";
+
 import {
   Header,
   Caption,
@@ -8,9 +10,13 @@ import {
   PageContainer,
   InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
+
 import { students } from "../../Fake_Students.js";
+
 import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
+
 import InternDashboard from "./InternDashboard.jsx";
+import InternPastFeedback from "./InternPastFeedback.jsx";
 
 import { Link, Route, Switch as ReactSwitch, Redirect } from "react-router-dom";
 
@@ -210,6 +216,11 @@ class InternPageContainer extends Component {
                 path={`/my-interns/:id/attendance`}
                 exact
                 component={() => <InternDashboard student={student} />}
+              />
+              <Route
+                path={`/my-interns/:id/feedback`}
+                exact
+                component={() => <InternPastFeedback student={student}/>}
               />
             </ReactSwitch>
           </InnerContainer>

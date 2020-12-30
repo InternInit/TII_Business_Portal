@@ -12,6 +12,7 @@ const MenuContainer = styled.div`
   background: #f5f5f5;
   border-top: 1px solid #bfbfbf;
   border-bottom: 1px solid #bfbfbf;
+  width: 100%;
 `;
 
 const MenuItem = styled.h2`

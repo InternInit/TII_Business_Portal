@@ -21,7 +21,7 @@ export const TabContainer = styled.div`
 
   border-radius: 10px;
   border: 1px solid #d8def3;
-  box-shadow: 1px 1px 5px -4px;
+  box-shadow: 1px 1px 5px -2px #bfbfbf;
 `;
 
 /*============================================================================================================
@@ -38,6 +38,7 @@ export const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #ebeff2;
+  min-height: 100vh;
 `;
 
 export const InnerContainer = styled.div`
