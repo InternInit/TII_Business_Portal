@@ -10,7 +10,7 @@ const AttendanceCard = (props) => {
     <AntRow>
       <TabContainer className="py-1 pr-2 px-2 mb-point-5 universal-middle">
         <AntRow>
-          <AntCol span={20}>
+          <AntCol flex={2}>
             <AntRow>
               <Caption className="sixteenFont">Date: {props.date}</Caption>
             </AntRow>
@@ -20,7 +20,7 @@ const AttendanceCard = (props) => {
               </Caption>
             </AntRow>
           </AntCol>
-          <AntCol className="universal-middle universal-right" span={4}>
+          <AntCol className="universal-middle universal-right" flex={1}>
             {props.review && (
               <Tooltip title="Approve">
                 <Icon
