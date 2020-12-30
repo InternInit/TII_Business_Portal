@@ -1,6 +1,7 @@
 ## Pass back the result from DynamoDB. **
 #set( $modMap = $ctx.result )
 
+## Yeah idk if this is even worth doing in VTL
 
 #foreach( $intern in $ctx.prev.result )
 	#foreach( $item in $intern.entrySet() )
