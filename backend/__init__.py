@@ -35,6 +35,7 @@ def datetime_resolver(intern):
             try:
                 days = determine_date_offset(sub_item[1])
                 new_intern["Days Until " + sub_item[0]] = int(days)
+                new_intern[sub_item[0] + "Formatted"] = parse(sub_item[1]).strftime("%b %d %Y")
             except ValueError:
                 pass
             new_intern[sub_item[0]] = sub_item[1]
@@ -45,6 +46,7 @@ def datetime_resolver(intern):
                     try:
                         days = determine_date_offset(nested_map_item[1])
                         new_sub_item["Days Until " + nested_map_item[0]] = int(days)
+                        new_sub_item[nested_map_item[0] + "Formatted"] = parse(nested_map_item[1]).strftime("%b %d %Y")
                     except ValueError:
                         pass
                 new_sub_item[nested_map_item[0]] = nested_map_item[1]
@@ -59,6 +61,7 @@ def datetime_resolver(intern):
                             try:
                                 days = determine_date_offset(map_item[1])
                                 new_map["Days Until " + map_item[0]] = int(days)
+                                new_map[map_item[0] + "Formatted"] = parse(map_item[1]).strftime("%b %d %Y")
                             except ValueError:
                                 pass
                         new_map[map_item[0]] = map_item[1]
