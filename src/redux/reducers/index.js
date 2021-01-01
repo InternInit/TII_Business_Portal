@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import companyInfoReducer from "./companyInfoReducer";
 import listingsReducer from "./listingsReducer";
-import loadingReducer from "./loadingReducer";
+import loadingsReducer from "./loadingsReducer";
 
 const rootReducer = combineReducers({
   companyInfo: companyInfoReducer,
   listings: listingsReducer,
-  finishedLoading: loadingReducer,
+  loadingStatuses: loadingsReducer,
 });
 
 export default rootReducer;
