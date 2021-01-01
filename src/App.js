@@ -252,9 +252,11 @@ class App extends React.Component {
   };
 
   getListings = async () => {
+    let token = await this.getJwt();
+    console.log(this.props.companyInfo);
     const headers = {
       headers: {
-        Authorization: "Bearer " + this.props.companyInfo.id,
+        Authorization: `Bearer ${this.props.companyInfo.id}`,
       },
     };
     console.log(headers.headers.Authorization);
