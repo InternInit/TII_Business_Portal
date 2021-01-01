@@ -28,8 +28,10 @@ import {
   batchUpdateListings,
   addListing,
   updateListing,
-  startLoading,
-  finishLoading
+  startGlobalLoading,
+  finishGlobalLoading,
+  startCandidateLoading,
+  finishCandidateLoading,
 } from "./redux/actions";
 
 //axios
@@ -84,6 +86,10 @@ const mapDispatchToProps = {
   batchUpdateListings,
   addListing,
   updateListing,
+  startGlobalLoading,
+  finishGlobalLoading,
+  startCandidateLoading,
+  finishCandidateLoading,
 };
 
 class App extends React.Component {
@@ -96,12 +102,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //this.props.startLoading();
+    this.props.startGlobalLoading();
     this.auth();
     this.getFullCandidates();
     this.getListings();
     this.getBusinessUsers();
-    //this.props.finishLoading();
+    this.props.finishGlobalLoading();
   }
 
   inMemoryToken;
@@ -128,11 +134,11 @@ class App extends React.Component {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
+          //TODO: Update to a more elegant solution
         
        this.props.updateId("6aa19690-d874-4fdd-a1d8-a1168a7b632c");
        this.getBusinessInfo({"custom:company": "The Internship Initiative LLC."});
 
-        //TODO: Update to a more elegant solution
       });
   }
 
@@ -192,6 +198,7 @@ class App extends React.Component {
   };
 
   getFullCandidates = async () => {
+    this.props.startCandidateLoading();
     let access = await this.getAccess();
     axios({
       url: '/api/get_student_candidates',
@@ -242,8 +249,9 @@ class App extends React.Component {
       `
       }
     }).then((result) => {
-      console.log(result)
-      this.props.updateCandidates(result.data)
+      console.log(result);
+      this.props.updateCandidates(result.data);
+      this.props.finishCandidateLoading();
     });
   };
 
