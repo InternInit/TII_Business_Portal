@@ -59,7 +59,7 @@ type InternConnection {
 
 type InternData {
   Id: String!
-  feedback: Feedback
+  feedback: [Feedback]
   formData: AWSJSON
   grades: [Grade]
   hours: [Hour]
