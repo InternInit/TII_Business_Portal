@@ -258,7 +258,7 @@ class App extends React.Component {
   getListings = () => {
     const headers = {
       headers: {
-        Authorization: "Bearer 6aa19690-d874-4fdd-a1d8-a1168a7b632c",
+        Authorization: `Bearer ${this.props.companyInfo.id}`,
       },
     };
 
