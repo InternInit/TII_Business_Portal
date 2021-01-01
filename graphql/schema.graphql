@@ -39,7 +39,7 @@ type Intern {
 type InternAssoc {
   assocId: String!
   businessId: String
-  feedback: Feedback
+  feedback: [Feedback]
   grades: [Grade]
   hours: [Hour]
   internId: String
