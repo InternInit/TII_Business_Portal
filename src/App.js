@@ -97,7 +97,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
     };
   }
 
@@ -123,7 +123,6 @@ class App extends React.Component {
           access: session.accessToken.jwtToken,
         };
         console.log(this.inMemoryToken);
-        let id = session.idToken.payload.sub;
         this.props.updateId(session.idToken.payload["custom:companyId"]);
         this.getBusinessInfo(session.idToken.payload);
       })
@@ -135,9 +134,6 @@ class App extends React.Component {
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
           //TODO: Update to a more elegant solution
-        
-       this.props.updateId("6aa19690-d874-4fdd-a1d8-a1168a7b632c");
-       this.getBusinessInfo({"custom:company": "The Internship Initiative LLC."});
 
       });
   }
@@ -255,12 +251,13 @@ class App extends React.Component {
     });
   };
 
-  getListings = () => {
+  getListings = async () => {
     const headers = {
       headers: {
-        Authorization: `Bearer ${this.props.companyInfo.id}`,
+        Authorization: "Bearer " + this.props.companyInfo.id,
       },
     };
+    console.log(headers.headers.Authorization);
 
     axios.get("/api/get_internship_listings", headers).then((response) => {
       console.log(response.data);
