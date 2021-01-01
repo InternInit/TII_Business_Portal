@@ -209,7 +209,7 @@ class App extends React.Component {
       data: {
       query: `
         query MyQuery {
-          getInterns(businessId: "6aa19690-d874-4fdd-a1d8-a1168a7b632c") {
+          getInterns(businessId: "${this.props.companyInfo.id}") {
             grades {
               Id
               additionalComments
