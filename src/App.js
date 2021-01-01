@@ -84,8 +84,6 @@ const mapDispatchToProps = {
   batchUpdateListings,
   addListing,
   updateListing,
-  startLoading,
-  finishLoading
 };
 
 class App extends React.Component {
@@ -98,12 +96,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.startLoading();
+    //this.props.startLoading();
     this.auth();
     this.getFullCandidates();
     this.getListings();
     this.getBusinessUsers();
-    this.props.finishLoading();
+    //this.props.finishLoading();
   }
 
   inMemoryToken;

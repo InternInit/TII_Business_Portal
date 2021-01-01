@@ -84,14 +84,26 @@ export const updateListing = (id, listing) => {
   };
 };
 
-export const startLoading = () => {
+export const startGlobalLoading = () => {
   return {
-    type: "START_LOADING",
+    type: "START_GLOBAL_LOADING",
   };
 };
 
-export const finishLoading = () => {
+export const finishGlobalLoading = () => {
   return {
-    type: "FINISH_LOADING",
+    type: "FINISH_GLOBAL_LOADING",
+  };
+};
+
+export const startCandidateLoading = () => {
+  return {
+    type: "START_CANDIDATE_LOADING"
+  };
+};
+
+export const finishCandidateLoading = () => {
+  return {
+    type: "FINISH_CANDIDATE_LOADING"
   };
 };
