@@ -22,8 +22,6 @@ const StudentInfo = (props) => {
 
   /**
    * @TejasMaraliga
-   *
-   * TODO: UseState find function needs to be replaced with an API Call
    * TODO: Student objects don't have a grade or race field for the personal information section
    */
 
