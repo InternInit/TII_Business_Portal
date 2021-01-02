@@ -18,6 +18,7 @@ import { Layout } from "antd";
 import { connect } from "react-redux";
 import {
   updateCandidates,
+  updateInterns,
   updateName,
   updateDescription,
   updateWebsite,
@@ -32,6 +33,8 @@ import {
   finishGlobalLoading,
   startCandidateLoading,
   finishCandidateLoading,
+  startInternLoading,
+  finishInternLoading,
 } from "./redux/actions";
 
 //axios
@@ -76,6 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   updateCandidates,
+  updateInterns,
   updateName,
   updateDescription,
   updateWebsite,
@@ -90,6 +94,8 @@ const mapDispatchToProps = {
   finishGlobalLoading,
   startCandidateLoading,
   finishCandidateLoading,
+  startInternLoading,
+  finishInternLoading,
 };
 
 class App extends React.Component {
@@ -195,6 +201,7 @@ class App extends React.Component {
 
   getFullCandidates = async () => {
     this.props.startCandidateLoading();
+    this.props.startInternLoading();
     let access = await this.getAccess();
     axios({
       url: '/api/get_student_candidates',
@@ -245,9 +252,20 @@ class App extends React.Component {
       `
       }
     }).then((result) => {
-      console.log(result);
-      this.props.updateCandidates(result.data);
+      console.log(result.data);
+      let candidates = [];
+      let interns = [];
+      result.data.forEach(candidate => {
+        if (candidate.status === "Accepted") {
+          interns.push(candidate);
+        } else {
+          candidates.push(candidate);
+        }
+      });
+      this.props.updateCandidates(candidates);
+      this.props.updateInterns(interns);
       this.props.finishCandidateLoading();
+      this.props.finishInternLoading();
     });
   };
 
