@@ -76,11 +76,6 @@ def datetime_resolver(intern):
 def home():
     return "Hello World"
 
-@app.route("/api/test", methods=["GET", "POST"])
-def test():
-    req = requests.post("https://webhook.site/84b87408-08ff-477f-8f4a-dee9e61235e9", json = {"Hello" : "World"})
-    return req.text
-
 @app.route('/api/get_business_data', methods=["GET"])
 def get_business_data():
     return "business data"
@@ -139,6 +134,7 @@ def get_student_candidates():
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     new_interns = []
+    
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
     # That's what we get for using a 19 year old language.
     for intern in resp_json["data"]["getInterns"]:
