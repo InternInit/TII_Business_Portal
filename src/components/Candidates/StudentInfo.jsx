@@ -156,7 +156,7 @@ const StudentInfo = (props) => {
               <AntCol span={18}>
                 <AntRow>
                   <Header className="thirtySixFont" color="#002766" bolded>
-                    {student.info["First Name"]} {student.info["Last Name"]}
+                    {student.formData["0"]["First Name"]} {student.formData["0"]["Last Name"]}
                   </Header>
                 </AntRow>
                 {/**
@@ -167,7 +167,7 @@ const StudentInfo = (props) => {
                   <Caption className="twentyFont" light thin>
                     {student.position
                       ? student.position
-                      : "Social Media Intern"}
+                      : "Social Media Intern Placeholder"}
                   </Caption>
                 </AntRow>
                 <AntRow className="pt-2 student-info-header" align="middle">
@@ -183,29 +183,30 @@ const StudentInfo = (props) => {
                     </Header>
                   </AntCol>
                   <AntCol span={20}>
+                    {/*TODO: @Tejas iterate through formdata to transform datetime like how it is with assoc data */}
                     <Caption className="sixteenFont" bolded>
                       {new Date(
-                        student.info["Starting/Ending Dates"][0]
+                        student.formData["0"]["Starting/Ending Dates"][0]
                       ).getMonth()}
                       /
                       {new Date(
-                        student.info["Starting/Ending Dates"][0]
+                        student.formData["0"]["Starting/Ending Dates"][0]
                       ).getDate()}
                       /
                       {new Date(
-                        student.info["Starting/Ending Dates"][0]
+                        student.formData["0"]["Starting/Ending Dates"][0]
                       ).getFullYear()}{" "}
                       -{" "}
                       {new Date(
-                        student.info["Starting/Ending Dates"][1]
+                        student.formData["0"]["Starting/Ending Dates"][1]
                       ).getMonth()}
                       /
                       {new Date(
-                        student.info["Starting/Ending Dates"][1]
+                        student.formData["0"]["Starting/Ending Dates"][1]
                       ).getDate()}
                       /
                       {new Date(
-                        student.info["Starting/Ending Dates"][1]
+                        student.formData["0"]["Starting/Ending Dates"][1]
                       ).getFullYear()}
                     </Caption>
                   </AntCol>
@@ -218,17 +219,17 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.info["Willing Work Days"].length > 1
-                        ? student.info["Willing Work Days"]
+                      {student.formData["0"]["Willing Work Days"].length > 1
+                        ? student.formData["0"]["Willing Work Days"]
                             .slice(
                               0,
-                              student.info["Willing Work Days"].length - 1
+                              student.formData["0"]["Willing Work Days"].length - 1
                             )
                             .map((day) => ` ${day}`) + ", " +
-                          student.info["Willing Work Days"][
-                            student.info["Willing Work Days"].length - 1
+                          student.formData["0"]["Willing Work Days"][
+                            student.formData["0"]["Willing Work Days"].length - 1
                           ]
-                        : student.info["Willing Work Days"]}
+                        : student.formData["0"]["Willing Work Days"]}
                     </Caption>
                   </AntCol>
                 </AntRow>
