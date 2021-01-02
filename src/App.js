@@ -371,11 +371,7 @@ class App extends React.Component {
                 <Route
                   path="/my-interns"
                   exact
-                  component={() =>
-                    <StudentInternPage
-                      getAccess={this.getAccess}
-                    />
-                  }
+                  component={StudentInternPage}
                 />
                 <Route
                   path={`/my-interns/:id`}

@@ -21,12 +21,22 @@ import InternPastFeedback from "./InternPastFeedback.jsx";
 import { Link, Route, Switch as ReactSwitch, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
+import {
+  startCandidateLoading,
+  finishCandidateLoading,
+} from "../../redux/actions";
 
 
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses
   };
+};
+
+const mapDispatchToProps = {
+  startCandidateLoading,
+  finishCandidateLoading,
 };
 
 class InternPageContainer extends Component {
@@ -39,24 +49,37 @@ class InternPageContainer extends Component {
   }
 
   findStudent = () => {
-    const id = this.props.location.pathname.split("/");
-    const foundStudent = this.props.companyInfo.candidates.find((student) => student.Id == id[2]);
-    console.log(foundStudent);
-    this.setState({
-      student: foundStudent,
-    });
-    this.setState({ loading: false });
+    console.log("trying to find");
+    if(!this.props.loadingStatuses.isCandidateLoading){
+      const id = this.props.location.pathname.split("/");
+      const foundStudent = this.props.companyInfo.candidates.find((student) => student.Id == id[2]);
+      console.log(foundStudent);
+      this.setState({
+        student: foundStudent,
+        loading: false,
+      });
+    }
   };
 
   componentDidMount() {
     this.findStudent();
   }
 
-  render() {
-    const { student } = this.state;
+  componentDidUpdate() {
+    if(this.state.student === null){
+      this.findStudent();
+    }
+  }
 
-    return this.state.loading ? (
-      <h1>Hello</h1>
+  render() {
+    const { student, loading } = this.state;
+
+    return (loading || this.props.loadingStatuses.isCandidateLoading) ? (
+      <>
+        <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
+        <h1>{`Loading is currently: ${loading}`}</h1>
+        <h1>{`Candidate is currently: ${this.props.loadingStatuses.isCandidateLoading}`}</h1>
+      </>
     ) : (
       <>
         <PageContainer>
@@ -241,4 +264,4 @@ class InternPageContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps)(InternPageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(InternPageContainer);
