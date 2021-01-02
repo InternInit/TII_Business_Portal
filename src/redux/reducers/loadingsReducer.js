@@ -1,6 +1,6 @@
 const initialState = {
-  finishedGlobalLoading: false,
-  finishedCandidiateLoading: false,
+  isGlobalLoading: true,
+  isCandidateLoading: true,
 }
 
 const loadingsReducer = (state = initialState, action) => {
@@ -8,22 +8,22 @@ const loadingsReducer = (state = initialState, action) => {
       case "START_GLOBAL_LOADING":
         return {
           ...state,
-          finishedGlobalLoading: false
+          isGlobalLoading: true
         };
       case "FINISH_GLOBAL_LOADING":
         return {
           ...state,
-          finishedGlobalLoading: true
+          isGlobalLoading: false
         };
       case "START_CANDIDATE_LOADING":
         return {
           ...state,
-          finishedCandidiateLoading: false
+          isCandidateLoading: true
         };
       case "FINISH_CANDIDATE_LOADING":
         return {
           ...state,
-          finishedCandidiateLoading: true 
+          isCandidateLoading: false 
         };
       default:
         return state;
