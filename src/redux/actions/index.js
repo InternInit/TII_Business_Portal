@@ -54,6 +54,13 @@ export const updateCandidates = (candidates) => {
   };
 };
 
+export const updateInterns = (interns) => {
+  return {
+    type: "UPDATE_INTERNS",
+    interns,
+  }
+}
+
 export const updateReduxCandidateStatus = (index, status) => {
   return {
     type: "UPDATE_CANDIDATE_STATUS",
@@ -105,5 +112,17 @@ export const startCandidateLoading = () => {
 export const finishCandidateLoading = () => {
   return {
     type: "FINISH_CANDIDATE_LOADING"
+  };
+};
+
+export const startInternLoading = () => {
+  return {
+    type: "START_INTERN_LOADING"
+  };
+};
+
+export const finishInternLoading = () => {
+  return {
+    type: "FINISH_INTERN_LOADING"
   };
 };
