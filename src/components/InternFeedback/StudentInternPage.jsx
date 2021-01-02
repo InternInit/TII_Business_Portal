@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
 
 class InternFeedback extends Component {
   render() {
-    return (this.props.loadingStatuses.isCandidateLoading) ? (
+    return (this.props.loadingStatuses.isInternLoading) ? (
       <>
         <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
       </>
@@ -60,7 +60,7 @@ class InternFeedback extends Component {
               fieldFour={{ name: "Action", sm: 5, lg: 6, align: "universal-center" }}
             />
 
-            {this.props.companyInfo.candidates.map((student) => (
+            {this.props.companyInfo.interns.map((student) => (
               <StudentInternTab
                 firstName={student.formData["0"]["First Name"]}
                 lastName={student.formData["0"]["Last Name"]}
