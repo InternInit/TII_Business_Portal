@@ -7,7 +7,6 @@ import InfoBar from "../General/InfoBar.jsx";
 import { InnerContainer } from "../Styled/FundamentalComponents";
 import { Link } from "react-router-dom";
 import { Button, Row as AntRow, Col as AntCol } from "antd";
-import { students } from "../../Fake_Students.js";
 
 import { connect } from "react-redux";
 

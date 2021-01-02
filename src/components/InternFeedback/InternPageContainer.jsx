@@ -11,8 +11,6 @@ import {
   InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
 
-import { students } from "../../Fake_Students.js";
-
 import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
 
 import InternDashboard from "./InternDashboard.jsx";
