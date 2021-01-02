@@ -30,48 +30,55 @@ const ButtonStyle = {
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses,
   };
 };
 
 class InternFeedback extends Component {
   render() {
-    return (
-      <Container className="global-container">
-        <NavSearch title="My Interns" placeholder="Search Interns" />
-        <InnerContainer className="mt-2 mb-4">
-          <AntRow gutter={[32, 16]}>
-            <AntCol xs={24} md={8} lg={5}>
-              <Button type="default" style={ButtonStyle}>
-                <span className="sixteenFont">Sort By</span>
-              </Button>
-            </AntCol>
-          </AntRow>
+    return (this.props.loadingStatuses.isCandidateLoading) ? (
+      <>
+        <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
+      </>
+    ) : (
+      <>
+        <Container className="global-container">
+          <NavSearch title="My Interns" placeholder="Search Interns" />
+          <InnerContainer className="mt-2 mb-4">
+            <AntRow gutter={[32, 16]}>
+              <AntCol xs={24} md={8} lg={5}>
+                <Button type="default" style={ButtonStyle}>
+                  <span className="sixteenFont">Sort By</span>
+                </Button>
+              </AntCol>
+            </AntRow>
 
-          <InfoBar
-            mobileHeader="Interns"
-            fieldOne={{ name: "Name", sm: 10, lg: 6, align: "universal-left" }}
-            fieldTwo={{ name: "School", sm: 5, lg: 8, align: "universal-left" }}
-            fieldThree={{ name: "Internship Type", sm: 4, lg: 4, align: "universal-left" }}
-            fieldFour={{ name: "Action", sm: 5, lg: 6, align: "universal-center" }}
-          />
-
-          {this.props.companyInfo.candidates.map((student) => (
-            <StudentInternTab
-              firstName={student.formData["0"]["First Name"]}
-              lastName={student.formData["0"]["Last Name"]}
-              age={student.formData["1"]["Age"]}
-              type="Hybrid"
-              id={student.Id}
-              position="Position Placeholder"
-              school={student.school.name}
-              avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+            <InfoBar
+              mobileHeader="Interns"
+              fieldOne={{ name: "Name", sm: 10, lg: 6, align: "universal-left" }}
+              fieldTwo={{ name: "School", sm: 5, lg: 8, align: "universal-left" }}
+              fieldThree={{ name: "Internship Type", sm: 4, lg: 4, align: "universal-left" }}
+              fieldFour={{ name: "Action", sm: 5, lg: 6, align: "universal-center" }}
             />
-          ))}
 
-          <FeedbackBox style={{ marginTop: "12vh" }} />
-          <FeedbackBox style={{ marginTop: "12vh" }} />
-        </InnerContainer>
-      </Container>
+            {this.props.companyInfo.candidates.map((student) => (
+              <StudentInternTab
+                firstName={student.formData["0"]["First Name"]}
+                lastName={student.formData["0"]["Last Name"]}
+                age={student.formData["1"]["Age"]}
+                type="Hybrid"
+                id={student.Id}
+                position="Position Placeholder"
+                school={student.school.name}
+                avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+              />
+            ))}
+
+            <FeedbackBox style={{ marginTop: "12vh" }} />
+            <FeedbackBox style={{ marginTop: "12vh" }} />
+          </InnerContainer>
+        </Container>
+      </>
     );
   }
 }
