@@ -19,12 +19,7 @@ const mapStateToProps = (state) => {
 
 const StudentInfo = (props) => {
   const { id } = props.match.params;
-
-  /**
-   * @TejasMaraliga
-   * TODO: Student objects don't have a grade or race field for the personal information section
-   */
-
+  
   const [student, changeStudent] = useState(
     _.find(props.companyInfo.candidates, (student) => student.Id === id)
   );
