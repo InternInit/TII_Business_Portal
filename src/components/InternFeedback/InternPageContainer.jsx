@@ -20,8 +20,8 @@ import { Link, Route, Switch as ReactSwitch, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
 import {
-  startCandidateLoading,
-  finishCandidateLoading,
+  startInternLoading,
+  finishInternLoading,
 } from "../../redux/actions";
 
 
@@ -33,8 +33,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  startCandidateLoading,
-  finishCandidateLoading,
+  startInternLoading,
+  finishInternLoading,
 };
 
 class InternPageContainer extends Component {
@@ -48,9 +48,9 @@ class InternPageContainer extends Component {
 
   findStudent = () => {
     console.log("trying to find");
-    if(!this.props.loadingStatuses.isCandidateLoading){
+    if(!this.props.loadingStatuses.isInternLoading){
       const id = this.props.location.pathname.split("/");
-      const foundStudent = this.props.companyInfo.candidates.find((student) => student.Id == id[2]);
+      const foundStudent = this.props.companyInfo.interns.find((student) => student.Id == id[2]);
       console.log(foundStudent);
       this.setState({
         student: foundStudent,
@@ -72,11 +72,11 @@ class InternPageContainer extends Component {
   render() {
     const { student, loading } = this.state;
 
-    return (loading || this.props.loadingStatuses.isCandidateLoading) ? (
+    return (loading || this.props.loadingStatuses.isInternLoading) ? (
       <>
         <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
         <h1>{`Loading is currently: ${loading}`}</h1>
-        <h1>{`Candidate is currently: ${this.props.loadingStatuses.isCandidateLoading}`}</h1>
+        <h1>{`Intern is currently: ${this.props.loadingStatuses.isInternLoading}`}</h1>
       </>
     ) : (
       <>
