@@ -36,7 +36,7 @@ const StudentInfo = (props) => {
       <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
         <InnerContainer>
           <TabContainer className="px-6 py-3">
-            <AntRow gutter={[32, 0]}>
+            <AntRow gutter={[48, 0]}>
               <AntCol className="px-2" span={6}>
                 <AntRow justify="center">
                   <Avatar
@@ -183,7 +183,7 @@ const StudentInfo = (props) => {
                     Internship Information
                   </Header>
                 </AntRow>
-                <AntRow className="mt-1 mb-point-5">
+                <AntRow className="mt-1">
                   <AntCol span={4}>
                     <Header className="sixteenFont" bolded>
                       Available Dates:
@@ -217,7 +217,7 @@ const StudentInfo = (props) => {
                     </Caption>
                   </AntCol>
                 </AntRow>
-                <AntRow className="mt-1 mb-point-5">
+                <AntRow className="mt-1">
                   <AntCol span={4}>
                     <Header className="sixteenFont" bolded>
                       Available Days:
@@ -231,11 +231,63 @@ const StudentInfo = (props) => {
                               0,
                               student.info["Willing Work Days"].length - 1
                             )
-                            .map((day) => ` ${day}`) + ", " +
+                            .map((day) => ` ${day}`) +
+                          ", " +
                           student.info["Willing Work Days"][
                             student.info["Willing Work Days"].length - 1
                           ]
                         : student.info["Willing Work Days"]}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
+                <AntRow className="mt-1">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Available Times:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {student.info["Willing Work Times"].length > 1
+                        ? student.info["Willing Work Times"]
+                            .slice(
+                              0,
+                              student.info["Willing Work Times"].length - 1
+                            )
+                            .map((time) => ` ${time}`) +
+                          ", " +
+                          student.info["Willing Work Times"][
+                            student.info["Willing Work Times"].length - 1
+                          ]
+                        : student.info["Willing Work Times"]}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
+                <AntRow className="mt-1">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Applied For:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {student.info["Applied For"]
+                        ? student.info["Applied For"]
+                        : "Placeholder"}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
+                <AntRow className="mt-1">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Pay Preference:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {student.info["Paid/Unpaid Preference"] === "Yes"
+                        ? "Paid"
+                        : "No Preference"}
                     </Caption>
                   </AntCol>
                 </AntRow>
