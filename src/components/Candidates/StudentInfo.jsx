@@ -3,6 +3,7 @@ import { Row as AntRow, Col as AntCol, Avatar } from "antd";
 import {
   InnerContainer,
   TabContainer,
+  TabOutlineContainer,
   Header,
   Caption,
 } from "../Styled/FundamentalComponents.jsx";
@@ -10,6 +11,7 @@ import _ from "underscore";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { RiSuitcaseLine } from "react-icons/ri";
+import { BiBook } from "react-icons/bi";
 
 const mapStateToProps = (state) => {
   return {
@@ -291,6 +293,15 @@ const StudentInfo = (props) => {
                     </Caption>
                   </AntCol>
                 </AntRow>
+                <AntRow className="pt-2 student-info-header" align="middle">
+                  <BiBook className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    Education
+                  </Header>
+                </AntRow>
+                {student.info.Education.map((school) => (
+                  <SchoolCard school={school} />
+                ))}
               </AntCol>
             </AntRow>
           </TabContainer>
@@ -300,6 +311,44 @@ const StudentInfo = (props) => {
   } else {
     return <h1> LOADING! </h1>;
   }
+};
+
+const SchoolCard = (props) => {
+  return (
+    <AntRow>
+      <TabOutlineContainer className="px-4 py-1 my-point-5">
+        <AntRow justify="space-between">
+          <AntCol>
+            <Header className="eighteenFont" color="#002766">
+              {props.school.Name}
+            </Header>
+          </AntCol>
+          {/**
+           * @TODO
+           * - Replace the years completed with the actual timeline of how long they were at the school
+           */}
+          <AntCol>
+            <Header className="eighteenFont" color="#002766">
+              {props.school["Years Completed"]} Years
+            </Header>
+          </AntCol>
+        </AntRow>
+        <AntRow className="mb-point-5" style={{ marginTop: "-5px" }}>
+          <Caption className="fourteenFont" light>
+            {props.school.City}, {props.school.State}
+          </Caption>
+        </AntRow>
+        <AntRow>
+          <Header className="fourteenFont" bolded>
+            Course Interests:{" "}
+            <Caption className="fourteenFont">
+              {props.school["Course Concentration"]}
+            </Caption>
+          </Header>
+        </AntRow>
+      </TabOutlineContainer>
+    </AntRow>
+  );
 };
 
 export default withRouter(connect(mapStateToProps)(StudentInfo));

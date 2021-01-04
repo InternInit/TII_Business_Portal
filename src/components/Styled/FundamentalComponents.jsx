@@ -24,6 +24,16 @@ export const TabContainer = styled.div`
   box-shadow: 1px 1px 5px -2px #bfbfbf;
 `;
 
+export const TabOutlineContainer = styled.div`
+  background-color: white;
+  position: relative;
+
+  width: 100%;
+
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+`;
+
 /*============================================================================================================
  * ***********************************************************************************************************
  *
@@ -75,7 +85,8 @@ export const Header = styled.div`
 `;
 
 export const Caption = styled.span`
-  text-align: ${props => props.left ? "left" : props.right ? "right" : "center"};
+  text-align: ${(props) =>
+    props.left ? "left" : props.right ? "right" : "center"};
   font-weight: ${(props) => (props.thin ? 300 : 400)};
   font-family: roboto;
   color: ${(props) =>
