@@ -244,18 +244,18 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.info["Willing Work Times"].length > 1
-                        ? student.info["Willing Work Times"]
+                      {student.formData["0"]["Willing Work Times"].length > 1
+                        ? student.formData["0"]["Willing Work Times"]
                             .slice(
                               0,
-                              student.info["Willing Work Times"].length - 1
+                              student.formData["0"]["Willing Work Times"].length - 1
                             )
                             .map((time) => ` ${time}`) +
                           ", " +
-                          student.info["Willing Work Times"][
-                            student.info["Willing Work Times"].length - 1
+                          student.formData["0"]["Willing Work Times"][
+                            student.formData["0"]["Willing Work Times"].length - 1
                           ]
-                        : student.info["Willing Work Times"]}
+                        : student.formData["0"]["Willing Work Times"]}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -267,9 +267,7 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.info["Applied For"]
-                        ? student.info["Applied For"]
-                        : "Placeholder"}
+                      {"Placeholder"}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -281,7 +279,7 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.info["Paid/Unpaid Preference"] === "Yes"
+                      {student.formData["0"]["Paid/Unpaid Preference"] === "Yes"
                         ? "Paid"
                         : "No Preference"}
                     </Caption>
@@ -296,7 +294,7 @@ const StudentInfo = (props) => {
                     Education
                   </Header>
                 </AntRow>
-                {student.info.Education.map((school) => (
+                {student.formData["1"].Education.map((school) => (
                   <SchoolCard school={school} />
                 ))}
                 <AntRow
@@ -313,7 +311,7 @@ const StudentInfo = (props) => {
                     Course Title
                   </Header>
                 </AntRow>
-                {student.info.Courses.map((course) => (
+                {student.formData["3"].Courses.map((course) => (
                   <CourseRow
                     course={course.courseTitle}
                     level={course.courseLevel}
