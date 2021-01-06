@@ -6,11 +6,12 @@ import {
   TabOutlineContainer,
   Header,
   Caption,
+  BorderlessTag,
 } from "../Styled/FundamentalComponents.jsx";
 import _ from "underscore";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { FaChalkboardTeacher } from "react-icons/fa";
+import { FaChalkboardTeacher, FaRegMap } from "react-icons/fa";
 import { RiSuitcaseLine } from "react-icons/ri";
 import { BiBook } from "react-icons/bi";
 
@@ -326,6 +327,18 @@ const StudentInfo = (props) => {
                     level={course.courseLevel}
                   />
                 ))}
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
+                  <FaRegMap className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    Extracurricular Activities
+                  </Header>
+                </AntRow>
+                {student.info.Extracurriculars.map((activity) => (
+                  <ExtracurricularCard activity={activity} />
+                ))}
               </AntCol>
             </AntRow>
           </TabContainer>
@@ -369,6 +382,73 @@ const SchoolCard = (props) => {
               {props.school["Course Concentration"]}
             </Caption>
           </Header>
+        </AntRow>
+      </TabOutlineContainer>
+    </AntRow>
+  );
+};
+
+const ExtracurricularCard = (props) => {
+  const mapColors = (activity) => {
+    switch (activity.charAt(0)) {
+      case "A":
+        return { background: "#fff2e8", text: "#fa541c" };
+      case "C":
+        return { background: "#fffbe6", text: "#faad14" };
+      case "D":
+      case "E":
+      case "F":
+        return { background: "#fcffe6", text: "#a0d911" };
+      case "J":
+      case "L":
+      case "M":
+        return { background: "#e6fffb", text: "#13c2c2" };
+      case "R":
+        return { background: "#f0f5ff", text: "#2f54eb" };
+      case "S":
+        return { background: "#f9f0ff", text: "#722ed1" };
+      default:
+        return { background: "#fff0f6", text: "#eb2f96" };
+    }
+  };
+
+  return (
+    <AntRow>
+      <TabOutlineContainer className="px-4 py-1-5 my-point-5">
+        <AntRow justify="space-between">
+          <AntCol>
+            <Header className="eighteenFont" color="#002766">
+              {props.activity.title ? props.activity.title : "Placeholder Title"}
+            </Header>
+          </AntCol>
+          {/**
+           * @TODO
+           * - Replace the years completed with the actual timeline of how long they were at the school
+           */}
+          <AntCol>
+            <Header className="eighteenFont" color="#002766">
+              {props.activity.yearsInvolved} Years
+            </Header>
+          </AntCol>
+        </AntRow>
+        <AntRow className="mb-point-5" style={{ marginTop: "-5px" }}>
+          <Caption className="fourteenFont" light>
+            {props.activity["Position/Title"]}
+          </Caption>
+        </AntRow>
+        <AntRow>
+          <Caption className="fourteenFont" left>
+            {props.activity.Description}
+          </Caption>
+        </AntRow>
+        <AntRow>
+          <BorderlessTag
+            className="px-1-5 mt-1"
+            color={mapColors(props.activity.activityType).text}
+            background={mapColors(props.activity.activityType).background}
+          >
+            {props.activity.activityType}
+          </BorderlessTag>
         </AntRow>
       </TabOutlineContainer>
     </AntRow>
