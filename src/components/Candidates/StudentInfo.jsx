@@ -24,20 +24,17 @@ const mapStateToProps = (state) => {
 
 const StudentInfo = (props) => {
   const { id } = props.match.params;
-
-  /**
-   * @TejasMaraliga
-   *
-   * TODO: UseState find function needs to be replaced with an API Call
-   * TODO: Student objects don't have a grade or race field for the personal information section
-   */
-
-  const [student, changeStudent] = useState(
+  
+  const [loadStudent, changeStudent] = useState(
     _.find(props.companyInfo.candidates, (student) => student.Id === id)
-      .formData
   );
 
-  if (student) {
+  if (loadStudent) {
+
+    //SUPER GHETTO SOLUTION
+    //@TODO PLEASE REPLACE LATER LOL
+    const student = loadStudent.formData;
+
     return (
       <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
         <InnerContainer>
@@ -180,7 +177,7 @@ const StudentInfo = (props) => {
                   <Caption className="twentyFont" light thin>
                     {student.position
                       ? student.position
-                      : "Social Media Intern"}
+                      : "Social Media Intern Placeholder"}
                   </Caption>
                 </AntRow>
                 <AntRow className="pt-2 student-info-header" align="middle">
@@ -196,6 +193,7 @@ const StudentInfo = (props) => {
                     </Header>
                   </AntCol>
                   <AntCol span={20}>
+                    {/*TODO: @Tejas iterate through formdata to transform datetime like how it is with assoc data */}
                     <Caption className="sixteenFont" bolded>
                       {new Date(
                         student[0]["Starting/Ending Dates"][0]
@@ -495,21 +493,6 @@ const ExtracurricularCard = (props) => {
           >
             {props.activity.activityType}
           </BorderlessTag>
-        </AntRow>
-      </TabOutlineContainer>
-    </AntRow>
-  );
-};
-
-const ReferenceCard = (props) => {
-  return (
-    <AntRow>
-      <TabOutlineContainer className="px-4 py-1 my-point-5">
-        <AntRow justify="space-between">
-          <AntCol flex={1}>
-            <AntRow></AntRow>
-          </AntCol>
-          <AntCol flex={3}></AntCol>
         </AntRow>
       </TabOutlineContainer>
     </AntRow>
