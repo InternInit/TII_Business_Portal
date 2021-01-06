@@ -10,6 +10,7 @@ import {
 import _ from "underscore";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { FaChalkboardTeacher } from "react-icons/fa";
 import { RiSuitcaseLine } from "react-icons/ri";
 import { BiBook } from "react-icons/bi";
 
@@ -293,7 +294,10 @@ const StudentInfo = (props) => {
                     </Caption>
                   </AntCol>
                 </AntRow>
-                <AntRow className="pt-2 student-info-header" align="middle">
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
                   <BiBook className="student-info-icon" />
                   <Header className="twentyFourFont" color="#002766" bolded>
                     Education
@@ -301,6 +305,26 @@ const StudentInfo = (props) => {
                 </AntRow>
                 {student.info.Education.map((school) => (
                   <SchoolCard school={school} />
+                ))}
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
+                  <FaChalkboardTeacher className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    Relevant Courses
+                  </Header>
+                </AntRow>
+                <AntRow>
+                  <Header className="eighteenFont" color="#002766" bolded>
+                    Course Title
+                  </Header>
+                </AntRow>
+                {student.info.Courses.map((course) => (
+                  <CourseRow
+                    course={course.courseTitle}
+                    level={course.courseLevel}
+                  />
                 ))}
               </AntCol>
             </AntRow>
@@ -347,6 +371,16 @@ const SchoolCard = (props) => {
           </Header>
         </AntRow>
       </TabOutlineContainer>
+    </AntRow>
+  );
+};
+
+const CourseRow = (props) => {
+  return (
+    <AntRow style={{ borderBottom: "1px solid #F5F5F5" }}>
+      <Caption className="py-point-5 sixteenFont">
+        {props.course} ({props.level})
+      </Caption>
     </AntRow>
   );
 };
