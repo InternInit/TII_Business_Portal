@@ -13,6 +13,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { FaChalkboardTeacher, FaRegMap } from "react-icons/fa";
 import { RiSuitcaseLine } from "react-icons/ri";
+import { GrDocumentText } from "react-icons/gr";
 import { BiBook } from "react-icons/bi";
 
 const mapStateToProps = (state) => {
@@ -339,6 +340,50 @@ const StudentInfo = (props) => {
                 {student.info.Extracurriculars.map((activity) => (
                   <ExtracurricularCard activity={activity} />
                 ))}
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
+                  <GrDocumentText className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    Essays
+                  </Header>
+                </AntRow>
+                <AntRow>
+                  <Header className="eighteenFont" color="#002766" bolded>
+                    What industries are you interested in and why?
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-1">
+                  <Caption className="fourteenFont">
+                    {student.info["Why This Industry Essay"]}
+                  </Caption>
+                </AntRow>
+                <AntRow>
+                  <Header className="eighteenFont" color="#002766" bolded>
+                    What are your leadership roles in your extracurriculars and
+                    what have they taught you?
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-1">
+                  <Caption className="fourteenFont">
+                    {student.info["Leadership Roles Essay"]}
+                  </Caption>
+                </AntRow>
+                {student.info["Extra Essay"] && (
+                  <>
+                    <AntRow>
+                      <Header className="eighteenFont" color="#002766" bolded>
+                        Additional Information
+                      </Header>
+                    </AntRow>
+                    <AntRow className="mb-1">
+                      <Caption className="fourteenFont">
+                        {student.info["Extra Essay"]}
+                      </Caption>
+                    </AntRow>
+                  </>
+                )}
               </AntCol>
             </AntRow>
           </TabContainer>
@@ -418,7 +463,7 @@ const ExtracurricularCard = (props) => {
         <AntRow justify="space-between">
           <AntCol>
             <Header className="eighteenFont" color="#002766">
-              {props.activity.title ? props.activity.title : "Placeholder Title"}
+              {props.activity.activityName}
             </Header>
           </AntCol>
           {/**
