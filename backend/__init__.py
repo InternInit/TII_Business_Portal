@@ -133,6 +133,9 @@ def get_student_candidates():
     headers = request.headers
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
+    print("#####################")
+    print(json.dumps(resp_json))
+    print("#####################")
     new_interns = []
     
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
