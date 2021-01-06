@@ -3,13 +3,16 @@ import { Row as AntRow, Col as AntCol, Avatar } from "antd";
 import {
   InnerContainer,
   TabContainer,
+  TabOutlineContainer,
   Header,
   Caption,
 } from "../Styled/FundamentalComponents.jsx";
 import _ from "underscore";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { FaChalkboardTeacher } from "react-icons/fa";
 import { RiSuitcaseLine } from "react-icons/ri";
+import { BiBook } from "react-icons/bi";
 
 const mapStateToProps = (state) => {
   return {
@@ -29,7 +32,7 @@ const StudentInfo = (props) => {
       <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
         <InnerContainer>
           <TabContainer className="px-6 py-3">
-            <AntRow gutter={[32, 0]}>
+            <AntRow gutter={[48, 0]}>
               <AntCol className="px-2" span={6}>
                 <AntRow justify="center">
                   <Avatar
@@ -176,7 +179,7 @@ const StudentInfo = (props) => {
                     Internship Information
                   </Header>
                 </AntRow>
-                <AntRow className="mt-1 mb-point-5">
+                <AntRow className="mt-1">
                   <AntCol span={4}>
                     <Header className="sixteenFont" bolded>
                       Available Dates:
@@ -211,7 +214,7 @@ const StudentInfo = (props) => {
                     </Caption>
                   </AntCol>
                 </AntRow>
-                <AntRow className="mt-1 mb-point-5">
+                <AntRow className="mt-1">
                   <AntCol span={4}>
                     <Header className="sixteenFont" bolded>
                       Available Days:
@@ -233,6 +236,89 @@ const StudentInfo = (props) => {
                     </Caption>
                   </AntCol>
                 </AntRow>
+                <AntRow className="mt-1">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Available Times:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {student.info["Willing Work Times"].length > 1
+                        ? student.info["Willing Work Times"]
+                            .slice(
+                              0,
+                              student.info["Willing Work Times"].length - 1
+                            )
+                            .map((time) => ` ${time}`) +
+                          ", " +
+                          student.info["Willing Work Times"][
+                            student.info["Willing Work Times"].length - 1
+                          ]
+                        : student.info["Willing Work Times"]}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
+                <AntRow className="mt-1">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Applied For:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {student.info["Applied For"]
+                        ? student.info["Applied For"]
+                        : "Placeholder"}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
+                <AntRow className="mt-1">
+                  <AntCol span={4}>
+                    <Header className="sixteenFont" bolded>
+                      Pay Preference:
+                    </Header>
+                  </AntCol>
+                  <AntCol span={20}>
+                    <Caption className="sixteenFont" bolded>
+                      {student.info["Paid/Unpaid Preference"] === "Yes"
+                        ? "Paid"
+                        : "No Preference"}
+                    </Caption>
+                  </AntCol>
+                </AntRow>
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
+                  <BiBook className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    Education
+                  </Header>
+                </AntRow>
+                {student.info.Education.map((school) => (
+                  <SchoolCard school={school} />
+                ))}
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
+                  <FaChalkboardTeacher className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    Relevant Courses
+                  </Header>
+                </AntRow>
+                <AntRow>
+                  <Header className="eighteenFont" color="#002766" bolded>
+                    Course Title
+                  </Header>
+                </AntRow>
+                {student.info.Courses.map((course) => (
+                  <CourseRow
+                    course={course.courseTitle}
+                    level={course.courseLevel}
+                  />
+                ))}
               </AntCol>
             </AntRow>
           </TabContainer>
@@ -242,6 +328,54 @@ const StudentInfo = (props) => {
   } else {
     return <h1> LOADING! </h1>;
   }
+};
+
+const SchoolCard = (props) => {
+  return (
+    <AntRow>
+      <TabOutlineContainer className="px-4 py-1 my-point-5">
+        <AntRow justify="space-between">
+          <AntCol>
+            <Header className="eighteenFont" color="#002766">
+              {props.school.Name}
+            </Header>
+          </AntCol>
+          {/**
+           * @TODO
+           * - Replace the years completed with the actual timeline of how long they were at the school
+           */}
+          <AntCol>
+            <Header className="eighteenFont" color="#002766">
+              {props.school["Years Completed"]} Years
+            </Header>
+          </AntCol>
+        </AntRow>
+        <AntRow className="mb-point-5" style={{ marginTop: "-5px" }}>
+          <Caption className="fourteenFont" light>
+            {props.school.City}, {props.school.State}
+          </Caption>
+        </AntRow>
+        <AntRow>
+          <Header className="fourteenFont" bolded>
+            Course Interests:{" "}
+            <Caption className="fourteenFont">
+              {props.school["Course Concentration"]}
+            </Caption>
+          </Header>
+        </AntRow>
+      </TabOutlineContainer>
+    </AntRow>
+  );
+};
+
+const CourseRow = (props) => {
+  return (
+    <AntRow style={{ borderBottom: "1px solid #F5F5F5" }}>
+      <Caption className="py-point-5 sixteenFont">
+        {props.course} ({props.level})
+      </Caption>
+    </AntRow>
+  );
 };
 
 export default withRouter(connect(mapStateToProps)(StudentInfo));
