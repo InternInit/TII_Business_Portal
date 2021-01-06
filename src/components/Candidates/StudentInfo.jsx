@@ -24,16 +24,9 @@ const mapStateToProps = (state) => {
 
 const StudentInfo = (props) => {
   const { id } = props.match.params;
-
-  /**
-   * @TejasMaraliga
-   *
-   * TODO: UseState find function needs to be replaced with an API Call
-   * TODO: Student objects don't have a grade or race field for the personal information section
-   */
-
+  
   const [student, changeStudent] = useState(
-    _.find(props.companyInfo.candidates, (student) => student.internId === id)
+    _.find(props.companyInfo.candidates, (student) => student.Id === id)
   );
 
   if (student) {
@@ -62,7 +55,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Full Name:{" "}
                     <Caption className="sixteenFont">
-                      {student.info["First Name"]} {student.info["Last Name"]}
+                      {student.formData["0"]["First Name"]} {student.formData["0"]["Last Name"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -70,7 +63,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Phone:{" "}
                     <Caption className="sixteenFont">
-                      {student.info["Phone Number"]}
+                      {student.formData["0"]["Phone Number"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -78,7 +71,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Email:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Email}
+                      {student.formData["0"].Email}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -86,7 +79,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Address:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Address}
+                      {student.formData["0"].Address}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -94,7 +87,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     City:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.City}
+                      {student.formData["0"].City}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -102,7 +95,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     State:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.State}
+                      {student.formData["0"].State}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -119,7 +112,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     State:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Age}
+                      {student.formData["1"].Age}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -127,7 +120,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Gender:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Gender}
+                      {student.formData["1"].Gender}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -135,7 +128,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Race:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.race ? student.info.race : "Not filled"}
+                      {student.formData["1"].Race ? student.formData["1"].Race : "Not filled"}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -143,7 +136,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Grade:{" "}
                     <Caption className="sixteenFont">
-                      {student.info.Grade ? student.info.Grade : "Not filled"}
+                      {student.formData.Grade ? student.formData.Grade : "Not filled"}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -151,7 +144,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Year of Graduation:{" "}
                     <Caption className="sixteenFont">
-                      {student.info["Year of Graduation"]}
+                      {student.formData["0"]["Year of Graduation"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -168,7 +161,7 @@ const StudentInfo = (props) => {
               <AntCol span={18}>
                 <AntRow>
                   <Header className="thirtySixFont" color="#002766" bolded>
-                    {student.info["First Name"]} {student.info["Last Name"]}
+                    {student.formData["0"]["First Name"]} {student.formData["0"]["Last Name"]}
                   </Header>
                 </AntRow>
                 {/**
@@ -179,7 +172,7 @@ const StudentInfo = (props) => {
                   <Caption className="twentyFont" light thin>
                     {student.position
                       ? student.position
-                      : "Social Media Intern"}
+                      : "Social Media Intern Placeholder"}
                   </Caption>
                 </AntRow>
                 <AntRow className="pt-2 student-info-header" align="middle">
@@ -195,29 +188,30 @@ const StudentInfo = (props) => {
                     </Header>
                   </AntCol>
                   <AntCol span={20}>
+                    {/*TODO: @Tejas iterate through formdata to transform datetime like how it is with assoc data */}
                     <Caption className="sixteenFont" bolded>
                       {new Date(
-                        student.info["Starting/Ending Dates"][0]
+                        student.formData["0"]["Starting/Ending Dates"][0]
                       ).getMonth()}
                       /
                       {new Date(
-                        student.info["Starting/Ending Dates"][0]
+                        student.formData["0"]["Starting/Ending Dates"][0]
                       ).getDate()}
                       /
                       {new Date(
-                        student.info["Starting/Ending Dates"][0]
+                        student.formData["0"]["Starting/Ending Dates"][0]
                       ).getFullYear()}{" "}
                       -{" "}
                       {new Date(
-                        student.info["Starting/Ending Dates"][1]
+                        student.formData["0"]["Starting/Ending Dates"][1]
                       ).getMonth()}
                       /
                       {new Date(
-                        student.info["Starting/Ending Dates"][1]
+                        student.formData["0"]["Starting/Ending Dates"][1]
                       ).getDate()}
                       /
                       {new Date(
-                        student.info["Starting/Ending Dates"][1]
+                        student.formData["0"]["Starting/Ending Dates"][1]
                       ).getFullYear()}
                     </Caption>
                   </AntCol>
@@ -230,18 +224,17 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.info["Willing Work Days"].length > 1
-                        ? student.info["Willing Work Days"]
+                      {student.formData["0"]["Willing Work Days"].length > 1
+                        ? student.formData["0"]["Willing Work Days"]
                             .slice(
                               0,
-                              student.info["Willing Work Days"].length - 1
+                              student.formData["0"]["Willing Work Days"].length - 1
                             )
-                            .map((day) => ` ${day}`) +
-                          ", " +
-                          student.info["Willing Work Days"][
-                            student.info["Willing Work Days"].length - 1
+                            .map((day) => ` ${day}`) + ", " +
+                          student.formData["0"]["Willing Work Days"][
+                            student.formData["0"]["Willing Work Days"].length - 1
                           ]
-                        : student.info["Willing Work Days"]}
+                        : student.formData["0"]["Willing Work Days"]}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -253,18 +246,18 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.info["Willing Work Times"].length > 1
-                        ? student.info["Willing Work Times"]
+                      {student.formData["0"]["Willing Work Times"].length > 1
+                        ? student.formData["0"]["Willing Work Times"]
                             .slice(
                               0,
-                              student.info["Willing Work Times"].length - 1
+                              student.formData["0"]["Willing Work Times"].length - 1
                             )
                             .map((time) => ` ${time}`) +
                           ", " +
-                          student.info["Willing Work Times"][
-                            student.info["Willing Work Times"].length - 1
+                          student.formData["0"]["Willing Work Times"][
+                            student.formData["0"]["Willing Work Times"].length - 1
                           ]
-                        : student.info["Willing Work Times"]}
+                        : student.formData["0"]["Willing Work Times"]}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -276,9 +269,7 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.info["Applied For"]
-                        ? student.info["Applied For"]
-                        : "Placeholder"}
+                      {"Placeholder"}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -290,7 +281,7 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.info["Paid/Unpaid Preference"] === "Yes"
+                      {student.formData["0"]["Paid/Unpaid Preference"] === "Yes"
                         ? "Paid"
                         : "No Preference"}
                     </Caption>
@@ -305,7 +296,7 @@ const StudentInfo = (props) => {
                     Education
                   </Header>
                 </AntRow>
-                {student.info.Education.map((school) => (
+                {student.formData["1"].Education.map((school) => (
                   <SchoolCard school={school} />
                 ))}
                 <AntRow
@@ -322,7 +313,7 @@ const StudentInfo = (props) => {
                     Course Title
                   </Header>
                 </AntRow>
-                {student.info.Courses.map((course) => (
+                {student.formData["3"].Courses.map((course) => (
                   <CourseRow
                     course={course.courseTitle}
                     level={course.courseLevel}
@@ -337,7 +328,7 @@ const StudentInfo = (props) => {
                     Extracurricular Activities
                   </Header>
                 </AntRow>
-                {student.info.Extracurriculars.map((activity) => (
+                {student.formData["3"].Extracurriculars.map((activity) => (
                   <ExtracurricularCard activity={activity} />
                 ))}
                 <AntRow

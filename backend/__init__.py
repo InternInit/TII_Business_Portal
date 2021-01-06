@@ -1,4 +1,6 @@
 from flask import Blueprint, Flask, jsonify, request, redirect, make_response
+from dateutil.parser import parse
+from datetime import datetime, date, time, timezone
 import json
 import requests
 
@@ -7,6 +9,7 @@ app = Flask(__name__)
 studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/students"
 listingsApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/listings"
 authApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/auth/"
+graphQLApiEndpoint = "https://4gxyw7jvnvgbrpgiaxvmgwqydy.appsync-api.us-east-1.amazonaws.com/graphql"
 
 if(app.config.get("ENV") == "development"):
     studentApiUrl = studentApiUrl.format(stage="dev")
@@ -17,7 +20,58 @@ elif(app.config.get("ENV") == "production"):
     listingsApiUrl = listingsApiUrl.format(stage="prod")
     authApiUrl = authApiUrl.format(stage="prod")
 
+def determine_date_offset(dt_string):
+    dt = parse(dt_string)
+    today = datetime.now(timezone.utc)
+    days = (dt-today).days
+    return days
 
+# Non-recursively resolve up to level-2 datetimes
+# Yeah ik it looks like shit but thats the price we pay for dealing with JSON.
+def datetime_resolver(intern):
+    new_intern = {}
+    for sub_item in intern.items():
+        if isinstance(sub_item[1], str):
+            try:
+                days = determine_date_offset(sub_item[1])
+                new_intern["Days Until " + sub_item[0]] = int(days)
+                new_intern[sub_item[0] + "Formatted"] = parse(sub_item[1]).strftime("%b %d %Y")
+            except ValueError:
+                pass
+            new_intern[sub_item[0]] = sub_item[1]
+        elif isinstance(sub_item[1], dict):
+            new_sub_item = {}
+            for nested_map_item in sub_item[1].items():
+                if isinstance(nested_map_item[1], str):
+                    try:
+                        days = determine_date_offset(nested_map_item[1])
+                        new_sub_item["Days Until " + nested_map_item[0]] = int(days)
+                        new_sub_item[nested_map_item[0] + "Formatted"] = parse(nested_map_item[1]).strftime("%b %d %Y")
+                    except ValueError:
+                        pass
+                new_sub_item[nested_map_item[0]] = nested_map_item[1]
+            new_intern[sub_item[0]] = new_sub_item
+        elif isinstance(sub_item[1], list):
+            new_list = []
+            for nested_list_item in sub_item[1]:
+                if isinstance(nested_list_item, dict):
+                    new_map = {}
+                    for map_item in nested_list_item.items():
+                        if isinstance(map_item[1], str):
+                            try:
+                                days = determine_date_offset(map_item[1])
+                                new_map["Days Until " + map_item[0]] = int(days)
+                                new_map[map_item[0] + "Formatted"] = parse(map_item[1]).strftime("%b %d %Y")
+                            except ValueError:
+                                pass
+                        new_map[map_item[0]] = map_item[1]
+                    new_list.append(new_map)
+                else:
+                    new_list.append(nested_list_item)
+            new_intern[sub_item[0]] = new_list
+
+    return new_intern
+        
 @app.route('/', methods=["GET"])
 def home():
     return "Hello World"
@@ -47,7 +101,6 @@ def update_business_lisitings():
 def get_internship_listings():
     headers = request.headers
     req = requests.get(listingsApiUrl, headers={"Authorization": headers.get("Authorization")})
-    print(req.text)
     return jsonify(req.text)
 
 @app.route("/api/remove_internship_listing", methods=["DELETE"])
@@ -59,7 +112,6 @@ def update_internship_listings():
     body = request.get_data().decode("utf-8")
     headers = request.headers
     req = requests.post(listingsApiUrl, headers={"Authorization": headers.get("Authorization"), "ListingId": headers.get("ListingId")}, json = json.loads(body))
-    print(req.text)
     return jsonify(req.text)
 
 
@@ -75,17 +127,24 @@ def get_student_feedback():
     return ""
 
 
-'''
-
-Review Applicants
-
-'''
-
-@app.route('/api/get_student_candidates', methods=["GET"])
+@app.route('/api/get_student_candidates', methods=["GET", "POST"])
 def get_student_candidates():
-    print(studentApiUrl)
-    req = requests.get(studentApiUrl, headers={"Authorization": "Bearer 6aa19690-d874-4fdd-a1d8-a1168a7b632c"})
-    return jsonify(json.loads(req.text))
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    resp_json = json.loads(req.text)
+    new_interns = []
+    
+    # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
+    # That's what we get for using a 19 year old language.
+    for intern in resp_json["data"]["getInterns"]:
+        new_intern = datetime_resolver(intern)
+        try:
+            new_intern["formData"] = json.loads(new_intern["formData"])
+        except ValueError:
+            pass
+        new_interns.append(new_intern)
+    return json.dumps(new_interns)
 
 @app.route('/api/update_student_status', methods=["POST"])
 def update_student_status():
@@ -93,10 +152,6 @@ def update_student_status():
     headers = request.headers
     req = requests.post(studentApiUrl, headers={"Authorization": headers.get("Authorization"), "InternId": headers.get("InternId")}, json= json.loads(body))
     return jsonify(req.text)
-
-@app.route('/api/update_student_removed', methods=["DELETE"])
-def update_student_removed():
-    return ""
 
 ##############################
 #

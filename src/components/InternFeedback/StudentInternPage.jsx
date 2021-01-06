@@ -7,7 +7,9 @@ import InfoBar from "../General/InfoBar.jsx";
 import { InnerContainer } from "../Styled/FundamentalComponents";
 import { Link } from "react-router-dom";
 import { Button, Row as AntRow, Col as AntCol } from "antd";
-import { students } from "../../Fake_Students.js";
+
+import { connect } from "react-redux";
+
 
 const Container = styled.div`
   display: flex;
@@ -24,46 +26,59 @@ const ButtonStyle = {
   fontFamily: "roboto",
 };
 
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses,
+  };
+};
+
 class InternFeedback extends Component {
   render() {
-    return (
-      <Container className="global-container">
-        <NavSearch title="My Interns" placeholder="Search Interns" />
-        <InnerContainer className="mt-2 mb-4">
-          <AntRow gutter={[32, 16]}>
-            <AntCol xs={24} md={8} lg={5}>
-              <Button type="default" style={ButtonStyle}>
-                <span className="sixteenFont">Sort By</span>
-              </Button>
-            </AntCol>
-          </AntRow>
+    return (this.props.loadingStatuses.isInternLoading) ? (
+      <>
+        <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
+      </>
+    ) : (
+      <>
+        <Container className="global-container">
+          <NavSearch title="My Interns" placeholder="Search Interns" />
+          <InnerContainer className="mt-2 mb-4">
+            <AntRow gutter={[32, 16]}>
+              <AntCol xs={24} md={8} lg={5}>
+                <Button type="default" style={ButtonStyle}>
+                  <span className="sixteenFont">Sort By</span>
+                </Button>
+              </AntCol>
+            </AntRow>
 
-          <InfoBar
-            mobileHeader="Interns"
-            fieldOne={{ name: "Name", sm: 10, lg: 6, align: "universal-left" }}
-            fieldTwo={{ name: "School", sm: 5, lg: 8, align: "universal-left" }}
-            fieldThree={{ name: "Internship Type", sm: 4, lg: 4, align: "universal-left" }}
-            fieldFour={{ name: "Action", sm: 5, lg: 6, align: "universal-center" }}
-          />
-
-          {students.map((student) => (
-            <StudentInternTab
-              firstName={student.firstName}
-              lastName={student.lastName}
-              age={student.age}
-              type={student.type}
-              id={student.id}
-              position={student.position}
-              school={student.school}
-              avatar={student.image}
+            <InfoBar
+              mobileHeader="Interns"
+              fieldOne={{ name: "Name", sm: 10, lg: 6, align: "universal-left" }}
+              fieldTwo={{ name: "School", sm: 5, lg: 8, align: "universal-left" }}
+              fieldThree={{ name: "Internship Type", sm: 4, lg: 4, align: "universal-left" }}
+              fieldFour={{ name: "Action", sm: 5, lg: 6, align: "universal-center" }}
             />
-          ))}
 
-          <FeedbackBox style={{ marginTop: "12vh" }} />
-          <FeedbackBox style={{ marginTop: "12vh" }} />
-        </InnerContainer>
-      </Container>
+            {this.props.companyInfo.interns.map((student) => (
+              <StudentInternTab
+                firstName={student.formData["0"]["First Name"]}
+                lastName={student.formData["0"]["Last Name"]}
+                age={student.formData["1"]["Age"]}
+                type="Hybrid"
+                id={student.Id}
+                position="Position Placeholder"
+                school={student.school.name}
+                avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+              />
+            ))}
+
+            <FeedbackBox style={{ marginTop: "12vh" }} />
+            <FeedbackBox style={{ marginTop: "12vh" }} />
+          </InnerContainer>
+        </Container>
+      </>
     );
   }
 }
-export default InternFeedback;
+export default connect(mapStateToProps)(InternFeedback);

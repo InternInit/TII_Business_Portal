@@ -18,6 +18,7 @@ import { Layout } from "antd";
 import { connect } from "react-redux";
 import {
   updateCandidates,
+  updateInterns,
   updateName,
   updateDescription,
   updateWebsite,
@@ -28,6 +29,12 @@ import {
   batchUpdateListings,
   addListing,
   updateListing,
+  startGlobalLoading,
+  finishGlobalLoading,
+  startCandidateLoading,
+  finishCandidateLoading,
+  startInternLoading,
+  finishInternLoading,
 } from "./redux/actions";
 
 //axios
@@ -72,6 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   updateCandidates,
+  updateInterns,
   updateName,
   updateDescription,
   updateWebsite,
@@ -82,6 +90,12 @@ const mapDispatchToProps = {
   batchUpdateListings,
   addListing,
   updateListing,
+  startGlobalLoading,
+  finishGlobalLoading,
+  startCandidateLoading,
+  finishCandidateLoading,
+  startInternLoading,
+  finishInternLoading,
 };
 
 class App extends React.Component {
@@ -89,15 +103,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
     };
   }
 
   componentDidMount() {
+    this.props.startGlobalLoading();
     this.auth();
-    this.getCandidates();
+    this.getFullCandidates();
     this.getListings();
     this.getBusinessUsers();
+    this.props.finishGlobalLoading();
   }
 
   inMemoryToken;
@@ -113,7 +129,6 @@ class App extends React.Component {
           access: session.accessToken.jwtToken,
         };
         console.log(this.inMemoryToken);
-        let id = session.idToken.payload.sub;
         this.props.updateId(session.idToken.payload["custom:companyId"]);
         this.getBusinessInfo(session.idToken.payload);
       })
@@ -124,11 +139,8 @@ class App extends React.Component {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
-        
-       this.props.updateId("6aa19690-d874-4fdd-a1d8-a1168a7b632c");
-       this.getBusinessInfo({"custom:company": "The Internship Initiative LLC."});
+          //TODO: Update to a more elegant solution
 
-        //TODO: Update to a more elegant solution
       });
   }
 
@@ -187,22 +199,85 @@ class App extends React.Component {
     );
   };
 
-  getCandidates = () => {
-    axios.get(`/api/get_student_candidates`).then((res) => {
-      let candidates = res.data;
-      this.props.updateCandidates(
-        res.data.message === "Internal server error" ? [] : res.data
-      );
-      console.log(candidates);
+  getFullCandidates = async () => {
+    this.props.startCandidateLoading();
+    this.props.startInternLoading();
+    let access = await this.getAccess();
+    axios({
+      url: '/api/get_student_candidates',
+      method: 'post',
+      headers: {
+        Authorization : access
+      },
+      data: {
+      query: `
+        query MyQuery {
+          getInterns(businessId: "${this.props.companyInfo.id}") {
+            grades {
+              Id
+              additionalComments
+              assessment
+              dueDate
+              finishedDate
+              isFinished
+              type
+            }
+            formData
+            Id
+            hours {
+              Id
+              date
+              dueDate
+              isApproved
+              time
+            }
+            feedback {
+              Id
+              comment
+              date
+              isFinished
+              isRead
+            }
+            school {
+              address
+              email
+              name
+              phone
+              state
+            }
+            status
+            version
+          }
+        }
+      `
+      }
+    }).then((result) => {
+      console.log(result.data);
+      let candidates = [];
+      let interns = [];
+      result.data.forEach(candidate => {
+        if (candidate.status === "Accepted") {
+          interns.push(candidate);
+        } else {
+          candidates.push(candidate);
+        }
+      });
+      this.props.updateCandidates(candidates);
+      this.props.updateInterns(interns);
+      this.props.finishCandidateLoading();
+      this.props.finishInternLoading();
     });
   };
 
-  getListings = () => {
+  getListings = async () => {
+    let token = await this.getJwt();
+    console.log(this.props.companyInfo);
     const headers = {
       headers: {
-        Authorization: "Bearer 6aa19690-d874-4fdd-a1d8-a1168a7b632c",
+        Authorization: `Bearer ${this.props.companyInfo.id}`,
       },
     };
+    console.log(headers.headers.Authorization);
 
     axios.get("/api/get_internship_listings", headers).then((response) => {
       console.log(response.data);

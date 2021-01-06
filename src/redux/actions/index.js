@@ -54,6 +54,13 @@ export const updateCandidates = (candidates) => {
   };
 };
 
+export const updateInterns = (interns) => {
+  return {
+    type: "UPDATE_INTERNS",
+    interns,
+  }
+}
+
 export const updateReduxCandidateStatus = (index, status) => {
   return {
     type: "UPDATE_CANDIDATE_STATUS",
@@ -81,5 +88,41 @@ export const updateListing = (id, listing) => {
     type: "UPDATE_LISTING",
     id,
     listing,
+  };
+};
+
+export const startGlobalLoading = () => {
+  return {
+    type: "START_GLOBAL_LOADING",
+  };
+};
+
+export const finishGlobalLoading = () => {
+  return {
+    type: "FINISH_GLOBAL_LOADING",
+  };
+};
+
+export const startCandidateLoading = () => {
+  return {
+    type: "START_CANDIDATE_LOADING"
+  };
+};
+
+export const finishCandidateLoading = () => {
+  return {
+    type: "FINISH_CANDIDATE_LOADING"
+  };
+};
+
+export const startInternLoading = () => {
+  return {
+    type: "START_INTERN_LOADING"
+  };
+};
+
+export const finishInternLoading = () => {
+  return {
+    type: "FINISH_INTERN_LOADING"
   };
 };
