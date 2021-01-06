@@ -347,7 +347,7 @@ const StudentInfo = (props) => {
                 </AntRow>
                 <AntRow className="mb-1">
                   <Caption className="fourteenFont">
-                    {student.info["Why This Industry Essay"]}
+                    {student.formData["2"]["Why This Industry Essay"]}
                   </Caption>
                 </AntRow>
                 <AntRow>
@@ -358,10 +358,10 @@ const StudentInfo = (props) => {
                 </AntRow>
                 <AntRow className="mb-1">
                   <Caption className="fourteenFont">
-                    {student.info["Leadership Roles Essay"]}
+                    {student.formData["2"]["Leadership Roles Essay"]}
                   </Caption>
                 </AntRow>
-                {student.info["Extra Essay"] && (
+                {student.formData["2"]["Extra Essay"] && (
                   <>
                     <AntRow>
                       <Header className="eighteenFont" color="#002766" bolded>
@@ -370,7 +370,7 @@ const StudentInfo = (props) => {
                     </AntRow>
                     <AntRow className="mb-1">
                       <Caption className="fourteenFont">
-                        {student.info["Extra Essay"]}
+                        {student.formData["2"]["Extra Essay"]}
                       </Caption>
                     </AntRow>
                   </>
