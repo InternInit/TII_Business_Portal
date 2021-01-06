@@ -327,7 +327,7 @@ const StudentInfo = (props) => {
                     Extracurricular Activities
                   </Header>
                 </AntRow>
-                {student.info.Extracurriculars.map((activity) => (
+                {student.formData["3"].Extracurriculars.map((activity) => (
                   <ExtracurricularCard activity={activity} />
                 ))}
               </AntCol>
