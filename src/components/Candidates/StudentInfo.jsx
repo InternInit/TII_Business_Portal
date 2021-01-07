@@ -354,7 +354,7 @@ const StudentInfo = (props) => {
                   </Header>
                 </AntRow>
                 <AntRow className="mb-1">
-                  <Caption className="fourteenFont">
+                  <Caption className="fourteenFont" left>
                     {student[2]["Why This Industry Essay"]}
                   </Caption>
                 </AntRow>
@@ -365,7 +365,7 @@ const StudentInfo = (props) => {
                   </Header>
                 </AntRow>
                 <AntRow className="mb-1">
-                  <Caption className="fourteenFont">
+                  <Caption className="fourteenFont" left>
                     {student[2]["Leadership Roles Essay"]}
                   </Caption>
                 </AntRow>
@@ -377,7 +377,7 @@ const StudentInfo = (props) => {
                       </Header>
                     </AntRow>
                     <AntRow className="mb-1">
-                      <Caption className="fourteenFont">
+                      <Caption className="fourteenFont" left>
                         {student[2]["Extra Essay"]}
                       </Caption>
                     </AntRow>
