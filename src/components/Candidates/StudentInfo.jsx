@@ -39,9 +39,9 @@ const StudentInfo = (props) => {
     return (
       <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
         <InnerContainer>
-          <TabContainer className="px-6 py-3">
+          <TabContainer className="px-6 py-3 responsive-tab-container">
             <AntRow gutter={[48, 0]}>
-              <AntCol className="px-2" span={6}>
+              <AntCol className="px-2" sm={8} lg={6}>
                 <AntRow justify="center">
                   <img
                     className="student-info-avatar"
@@ -173,7 +173,7 @@ const StudentInfo = (props) => {
                   </AntCol>
                 </AntRow>
               </AntCol>
-              <AntCol span={18}>
+              <AntCol sm={16} lg={18}>
                 <AntRow>
                   <Header className="thirtySixFont" color="#002766" bolded>
                     {student[0]["First Name"]} {student[0]["Last Name"]}
