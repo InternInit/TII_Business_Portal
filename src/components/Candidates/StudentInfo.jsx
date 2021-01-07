@@ -43,10 +43,11 @@ const StudentInfo = (props) => {
             <AntRow gutter={[48, 0]}>
               <AntCol className="px-2" span={6}>
                 <AntRow justify="center">
-                  <Avatar
-                    size={225}
+                  <img
+                    className="student-info-avatar"
+                    alt="avatar"
                     src="https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg"
-                  ></Avatar>
+                  />
                 </AntRow>
                 <AntRow justify="center">
                   <Header

@@ -14,6 +14,14 @@
   }
 }
 
+.student-info-avatar {
+  display: flex;
+  border-radius: 50%;
+  width: 15vw;
+  height: 15vw;
+  object-fit: cover;
+}
+
 .reference-card-icon {
   font-size: 25px;
   margin-bottom: 1px;
@@ -49,7 +57,7 @@
     }
 
     .file-card-title {
-        color: #1890ff;
+      color: #1890ff;
     }
   }
 }
