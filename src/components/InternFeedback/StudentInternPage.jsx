@@ -69,7 +69,7 @@ class InternFeedback extends Component {
                 id={student.Id}
                 position="Position Placeholder"
                 school={student.school.name}
-                avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+                avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
               />
             ))}
 

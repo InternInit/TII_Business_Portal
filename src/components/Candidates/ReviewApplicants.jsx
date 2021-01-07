@@ -168,7 +168,7 @@ class ReviewApplicants extends Component {
              * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
              * show up.
              */
-            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+            avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
             name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
             city={student.formData["0"].City}
             school={student.formData["1"]["Education"][0].Name}
@@ -258,7 +258,7 @@ class ReviewApplicants extends Component {
              * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
              * show up.
              */
-            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+            avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
             name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
             city={student.formData["0"].City}
             school={student.formData["1"]["Education"][0].Name}

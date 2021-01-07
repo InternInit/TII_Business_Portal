@@ -196,7 +196,7 @@ function HirePipeline(props) {
                                         city={item.formData["0"].City}
                                         stateLocation={item.formData["0"].State}
                                         id={item.Id}
-                                        avatar={`https://tii-intern-media.s3.amazonaws.com/${item.Id}/profile_picture`}
+                                        avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
                                       />
                                     </div>
                                   );
