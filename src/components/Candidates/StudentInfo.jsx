@@ -392,6 +392,9 @@ const StudentInfo = (props) => {
                     References
                   </Header>
                 </AntRow>
+                {student[4].Reference.map((reference) => (
+                  <ReferenceCard reference={reference} />
+                ))}
               </AntCol>
             </AntRow>
           </TabContainer>
@@ -511,29 +514,38 @@ const ExtracurricularCard = (props) => {
 const ReferenceCard = (props) => {
   return (
     <AntRow>
-      <TabOutlineContainer className="px-4 py-1 my-point-5">
+      <TabOutlineContainer className="px-4 py-1-5 my-point-5">
         <AntRow>
-          <AntCol span={6} style={{ borderRight: "2px solid #F0F0F0" }}>
+          <AntCol className="universal-middle" span={7}>
             <AntRow>
               <Header className="eighteenFont" color="#002766">
-                {props}
+                {props.reference["First Name"]} {props.reference["Last Name"]}
               </Header>
             </AntRow>
             <AntRow>
               <Caption className="fourteenFont" light thin>
-                {props}
+                {props.reference.Title}
               </Caption>
             </AntRow>
           </AntCol>
-          <AntCol span={18}>
-            <AntRow>
-              <BiBuildings className="reference-card-icon" />
+          <AntCol className="pl-3" span={17} style={{ borderLeft: "2px solid #F0F0F0" }}>
+            <AntRow className="mb-point-5">
+              <BiBuildings className="reference-card-icon" />{" "}
+              <Caption className="fourteenFont">
+                {props.reference["School/Company"]}
+              </Caption>
             </AntRow>
-            <AntRow>
+            <AntRow className="mb-point-5">
               <BiPhone className="reference-card-icon" />
+              <Caption className="fourteenFont">
+                {props.reference["Phone Number"]}
+              </Caption>
             </AntRow>
-            <AntRow>
+            <AntRow className="mb-point-5">
               <FiMail className="reference-card-icon" />
+              <Caption className="fourteenFont">
+                {props.reference.Email}
+              </Caption>
             </AntRow>
           </AntCol>
         </AntRow>
