@@ -13,7 +13,9 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { FaChalkboardTeacher, FaRegMap } from "react-icons/fa";
 import { RiSuitcaseLine } from "react-icons/ri";
-import { BiBook } from "react-icons/bi";
+import { GrDocumentText } from "react-icons/gr";
+import { BiBook, BiBuildings, BiPhone } from "react-icons/bi";
+import { FiUsers, FiMail } from "react-icons/fi";
 
 const mapStateToProps = (state) => {
   return {
@@ -23,12 +25,16 @@ const mapStateToProps = (state) => {
 
 const StudentInfo = (props) => {
   const { id } = props.match.params;
-  
-  const [student, changeStudent] = useState(
+
+  const [loadStudent, changeStudent] = useState(
     _.find(props.companyInfo.candidates, (student) => student.Id === id)
   );
 
-  if (student) {
+  if (loadStudent) {
+    //SUPER GHETTO SOLUTION
+    //@TODO PLEASE REPLACE LATER LOL
+    const student = loadStudent.formData;
+
     return (
       <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
         <InnerContainer>
@@ -54,7 +60,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Full Name:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["0"]["First Name"]} {student.formData["0"]["Last Name"]}
+                      {student[0]["First Name"]} {student[0]["Last Name"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -62,7 +68,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Phone:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["0"]["Phone Number"]}
+                      {student[0]["Phone Number"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -70,7 +76,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Email:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["0"].Email}
+                      {student[0]["Email"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -78,7 +84,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Address:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["0"].Address}
+                      {student[0]["Address"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -86,7 +92,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     City:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["0"].City}
+                      {student[0]["City"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -94,7 +100,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     State:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["0"].State}
+                      {student[0]["State"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -109,9 +115,9 @@ const StudentInfo = (props) => {
                 </AntRow>
                 <AntRow className="mb-point-5">
                   <Header className="sixteenFont" bolded>
-                    State:{" "}
+                    Age:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["1"].Age}
+                      {student[1]["Age"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -119,7 +125,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Gender:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["1"].Gender}
+                      {student[1]["Gender"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -127,7 +133,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Race:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["1"].Race ? student.formData["1"].Race : "Not filled"}
+                      {student[0]["race"] ? student[0]["race"] : "Not filled"}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -135,7 +141,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Grade:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData.Grade ? student.formData.Grade : "Not filled"}
+                      {student[0]["Grade"] ? student[0]["Grade"] : "Not filled"}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -143,7 +149,7 @@ const StudentInfo = (props) => {
                   <Header className="sixteenFont" bolded>
                     Year of Graduation:{" "}
                     <Caption className="sixteenFont">
-                      {student.formData["0"]["Year of Graduation"]}
+                      {student[0]["Year of Graduation"]}
                     </Caption>
                   </Header>
                 </AntRow>
@@ -160,7 +166,7 @@ const StudentInfo = (props) => {
               <AntCol span={18}>
                 <AntRow>
                   <Header className="thirtySixFont" color="#002766" bolded>
-                    {student.formData["0"]["First Name"]} {student.formData["0"]["Last Name"]}
+                    {student[0]["First Name"]} {student[0]["Last Name"]}
                   </Header>
                 </AntRow>
                 {/**
@@ -190,27 +196,27 @@ const StudentInfo = (props) => {
                     {/*TODO: @Tejas iterate through formdata to transform datetime like how it is with assoc data */}
                     <Caption className="sixteenFont" bolded>
                       {new Date(
-                        student.formData["0"]["Starting/Ending Dates"][0]
+                        student[0]["Starting/Ending Dates"][0]
                       ).getMonth()}
                       /
                       {new Date(
-                        student.formData["0"]["Starting/Ending Dates"][0]
+                        student[0]["Starting/Ending Dates"][0]
                       ).getDate()}
                       /
                       {new Date(
-                        student.formData["0"]["Starting/Ending Dates"][0]
+                        student[0]["Starting/Ending Dates"][0]
                       ).getFullYear()}{" "}
                       -{" "}
                       {new Date(
-                        student.formData["0"]["Starting/Ending Dates"][1]
+                        student[0]["Starting/Ending Dates"][1]
                       ).getMonth()}
                       /
                       {new Date(
-                        student.formData["0"]["Starting/Ending Dates"][1]
+                        student[0]["Starting/Ending Dates"][1]
                       ).getDate()}
                       /
                       {new Date(
-                        student.formData["0"]["Starting/Ending Dates"][1]
+                        student[0]["Starting/Ending Dates"][1]
                       ).getFullYear()}
                     </Caption>
                   </AntCol>
@@ -223,17 +229,18 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.formData["0"]["Willing Work Days"].length > 1
-                        ? student.formData["0"]["Willing Work Days"]
+                      {student[0]["Willing Work Days"].length > 1
+                        ? student[0]["Willing Work Days"]
                             .slice(
                               0,
-                              student.formData["0"]["Willing Work Days"].length - 1
+                              student[0]["Willing Work Days"].length - 1
                             )
-                            .map((day) => ` ${day}`) + ", " +
-                          student.formData["0"]["Willing Work Days"][
-                            student.formData["0"]["Willing Work Days"].length - 1
+                            .map((day) => ` ${day}`) +
+                          ", " +
+                          student[0]["Willing Work Days"][
+                            student[0]["Willing Work Days"].length - 1
                           ]
-                        : student.formData["0"]["Willing Work Days"]}
+                        : student[0]["Willing Work Days"]}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -245,18 +252,18 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.formData["0"]["Willing Work Times"].length > 1
-                        ? student.formData["0"]["Willing Work Times"]
+                      {student[0]["Willing Work Times"].length > 1
+                        ? student[0]["Willing Work Times"]
                             .slice(
                               0,
-                              student.formData["0"]["Willing Work Times"].length - 1
+                              student[0]["Willing Work Times"].length - 1
                             )
                             .map((time) => ` ${time}`) +
                           ", " +
-                          student.formData["0"]["Willing Work Times"][
-                            student.formData["0"]["Willing Work Times"].length - 1
+                          student[0]["Willing Work Times"][
+                            student[0]["Willing Work Times"].length - 1
                           ]
-                        : student.formData["0"]["Willing Work Times"]}
+                        : student[0]["Willing Work Times"]}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -268,7 +275,9 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {"Placeholder"}
+                      {student[0]["Applied For"]
+                        ? student[0]["Applied For"]
+                        : "Placeholder"}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -280,7 +289,7 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol span={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student.formData["0"]["Paid/Unpaid Preference"] === "Yes"
+                      {student[0]["Paid/Unpaid Preference"] === "Yes"
                         ? "Paid"
                         : "No Preference"}
                     </Caption>
@@ -295,7 +304,7 @@ const StudentInfo = (props) => {
                     Education
                   </Header>
                 </AntRow>
-                {student.formData["1"].Education.map((school) => (
+                {student[1]["Education"].map((school) => (
                   <SchoolCard school={school} />
                 ))}
                 <AntRow
@@ -312,7 +321,7 @@ const StudentInfo = (props) => {
                     Course Title
                   </Header>
                 </AntRow>
-                {student.formData["3"].Courses.map((course) => (
+                {student[3]["Courses"].map((course) => (
                   <CourseRow
                     course={course.courseTitle}
                     level={course.courseLevel}
@@ -327,9 +336,62 @@ const StudentInfo = (props) => {
                     Extracurricular Activities
                   </Header>
                 </AntRow>
-                {student.formData["3"].Extracurriculars.map((activity) => (
+                {student[3]["Extracurriculars"].map((activity) => (
                   <ExtracurricularCard activity={activity} />
                 ))}
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
+                  <GrDocumentText className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    Essays
+                  </Header>
+                </AntRow>
+                <AntRow>
+                  <Header className="eighteenFont" color="#002766" bolded>
+                    What industries are you interested in and why?
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-1">
+                  <Caption className="fourteenFont" left>
+                    {student[2]["Why This Industry Essay"]}
+                  </Caption>
+                </AntRow>
+                <AntRow>
+                  <Header className="eighteenFont" color="#002766" bolded>
+                    What are your leadership roles in your extracurriculars and
+                    what have they taught you?
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-1">
+                  <Caption className="fourteenFont" left>
+                    {student[2]["Leadership Roles Essay"]}
+                  </Caption>
+                </AntRow>
+                {student[2]["Extra Essay"] && (
+                  <>
+                    <AntRow>
+                      <Header className="eighteenFont" color="#002766" bolded>
+                        Additional Information
+                      </Header>
+                    </AntRow>
+                    <AntRow className="mb-1">
+                      <Caption className="fourteenFont" left>
+                        {student[2]["Extra Essay"]}
+                      </Caption>
+                    </AntRow>
+                  </>
+                )}
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
+                  <FiUsers className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    References
+                  </Header>
+                </AntRow>
               </AntCol>
             </AntRow>
           </TabContainer>
@@ -409,7 +471,7 @@ const ExtracurricularCard = (props) => {
         <AntRow justify="space-between">
           <AntCol>
             <Header className="eighteenFont" color="#002766">
-              {props.activity.title ? props.activity.title : "Placeholder Title"}
+              {props.activity.activityName}
             </Header>
           </AntCol>
           {/**
@@ -440,6 +502,40 @@ const ExtracurricularCard = (props) => {
           >
             {props.activity.activityType}
           </BorderlessTag>
+        </AntRow>
+      </TabOutlineContainer>
+    </AntRow>
+  );
+};
+
+const ReferenceCard = (props) => {
+  return (
+    <AntRow>
+      <TabOutlineContainer className="px-4 py-1 my-point-5">
+        <AntRow>
+          <AntCol span={6} style={{ borderRight: "2px solid #F0F0F0" }}>
+            <AntRow>
+              <Header className="eighteenFont" color="#002766">
+                {props}
+              </Header>
+            </AntRow>
+            <AntRow>
+              <Caption className="fourteenFont" light thin>
+                {props}
+              </Caption>
+            </AntRow>
+          </AntCol>
+          <AntCol span={18}>
+            <AntRow>
+              <BiBuildings className="reference-card-icon" />
+            </AntRow>
+            <AntRow>
+              <BiPhone className="reference-card-icon" />
+            </AntRow>
+            <AntRow>
+              <FiMail className="reference-card-icon" />
+            </AntRow>
+          </AntCol>
         </AntRow>
       </TabOutlineContainer>
     </AntRow>

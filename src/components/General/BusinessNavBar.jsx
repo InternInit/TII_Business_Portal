@@ -111,7 +111,7 @@ const BusinessNavBar = (props) => {
           key="9"
           style={{ marginTop: "20vh" }}
           onClick={() => {
-            this.props.logout();
+            props.logout();
           }}
         >
           <LogoutOutlined />
