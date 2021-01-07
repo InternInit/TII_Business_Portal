@@ -90,7 +90,7 @@ class InternPageContainer extends Component {
               >
                 <AntRow>
                   <AntCol className="universal-middle">
-                    <Avatar size={150} src={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`} />
+                    <Avatar size={150} src={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`} />
                   </AntCol>
                   <AntCol flex="auto" offset={1}>
                     <AntRow>

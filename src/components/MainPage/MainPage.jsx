@@ -53,7 +53,7 @@ class MainPage extends React.Component {
                     firstName={student.formData["0"]["First Name"]}
                     lastName={student.formData["0"]["Last Name"]}
                     age={" (" + student.formData["1"]["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+                    avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
                   />
                 ))}
             </AntCol>
@@ -68,7 +68,7 @@ class MainPage extends React.Component {
                     firstName={student.formData["0"]["First Name"]}
                     lastName={student.formData["0"]["Last Name"]}
                     age={" (" + student.formData["1"]["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+                    avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
                   />
                 ))}
             </AntCol>
@@ -89,7 +89,7 @@ class MainPage extends React.Component {
                     firstName={student.formData["0"]["First Name"]}
                     lastName={student.formData["0"]["Last Name"]}
                     age={" (" + student.formData["1"]["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+                    avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
                   />
                 ))}
             </AntCol>
