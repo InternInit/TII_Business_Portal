@@ -14,7 +14,8 @@ import { connect } from "react-redux";
 import { FaChalkboardTeacher, FaRegMap } from "react-icons/fa";
 import { RiSuitcaseLine } from "react-icons/ri";
 import { GrDocumentText } from "react-icons/gr";
-import { BiBook } from "react-icons/bi";
+import { BiBook, BiBuildings, BiPhone } from "react-icons/bi";
+import { FiUsers, FiMail } from "react-icons/fi";
 
 const mapStateToProps = (state) => {
   return {
@@ -24,13 +25,12 @@ const mapStateToProps = (state) => {
 
 const StudentInfo = (props) => {
   const { id } = props.match.params;
-  
+
   const [loadStudent, changeStudent] = useState(
     _.find(props.companyInfo.candidates, (student) => student.Id === id)
   );
 
   if (loadStudent) {
-
     //SUPER GHETTO SOLUTION
     //@TODO PLEASE REPLACE LATER LOL
     const student = loadStudent.formData;
@@ -383,6 +383,15 @@ const StudentInfo = (props) => {
                     </AntRow>
                   </>
                 )}
+                <AntRow
+                  className="pt-2 mb-1 student-info-header"
+                  align="middle"
+                >
+                  <FiUsers className="student-info-icon" />
+                  <Header className="twentyFourFont" color="#002766" bolded>
+                    References
+                  </Header>
+                </AntRow>
               </AntCol>
             </AntRow>
           </TabContainer>
@@ -493,6 +502,40 @@ const ExtracurricularCard = (props) => {
           >
             {props.activity.activityType}
           </BorderlessTag>
+        </AntRow>
+      </TabOutlineContainer>
+    </AntRow>
+  );
+};
+
+const ReferenceCard = (props) => {
+  return (
+    <AntRow>
+      <TabOutlineContainer className="px-4 py-1 my-point-5">
+        <AntRow>
+          <AntCol span={6} style={{ borderRight: "2px solid #F0F0F0" }}>
+            <AntRow>
+              <Header className="eighteenFont" color="#002766">
+                {props}
+              </Header>
+            </AntRow>
+            <AntRow>
+              <Caption className="fourteenFont" light thin>
+                {props}
+              </Caption>
+            </AntRow>
+          </AntCol>
+          <AntCol span={18}>
+            <AntRow>
+              <BiBuildings className="reference-card-icon" />
+            </AntRow>
+            <AntRow>
+              <BiPhone className="reference-card-icon" />
+            </AntRow>
+            <AntRow>
+              <FiMail className="reference-card-icon" />
+            </AntRow>
+          </AntCol>
         </AntRow>
       </TabOutlineContainer>
     </AntRow>

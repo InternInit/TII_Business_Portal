@@ -3,13 +3,20 @@
 @import "../node_modules/rfs/scss";
 
 .student-info-header {
-    border-bottom: 1px solid #D9D9D9;
-    padding-bottom: .25em;
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 0.25em;
 
-    .student-info-icon {
-        font-size: 25px;
-        margin-bottom: 2px;
-        margin-right: .25em;
-        color: #002766;
-    }
+  .student-info-icon {
+    font-size: 25px;
+    margin-bottom: 2px;
+    margin-right: 0.25em;
+    color: #002766;
+  }
+}
+
+.reference-card-icon {
+  font-size: 25px;
+  margin-bottom: 1px;
+  margin-right: 0.25em;
+  color: #bfbfbf;
 }
