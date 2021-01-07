@@ -164,7 +164,10 @@ const StudentInfo = (props) => {
                   </Header>
                 </AntRow>
                 <AntRow>
-                  <AntCol span={4}>
+                  <AntCol span={8}>
+                    <FileCard title="Resume" />
+                  </AntCol>
+                  <AntCol span={8}>
                     <FileCard title="Resume" />
                   </AntCol>
                 </AntRow>
@@ -574,7 +577,7 @@ const FileCard = (props) => {
           </AntRow>
         </div>
       </AntRow>
-      <AntRow>
+      <AntRow justify="center">
         <Caption className="twelveFont file-card-title">{props.title}</Caption>
       </AntRow>
     </div>
