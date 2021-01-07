@@ -197,12 +197,12 @@ const StudentInfo = (props) => {
                   </Header>
                 </AntRow>
                 <AntRow className="mt-1">
-                  <AntCol span={4}>
+                  <AntCol sm={8} lg={4}>
                     <Header className="sixteenFont" bolded>
                       Available Dates:
                     </Header>
                   </AntCol>
-                  <AntCol span={20}>
+                  <AntCol sm={16} lg={20}>
                     {/*TODO: @Tejas iterate through formdata to transform datetime like how it is with assoc data */}
                     <Caption className="sixteenFont" bolded>
                       {new Date(
@@ -232,12 +232,12 @@ const StudentInfo = (props) => {
                   </AntCol>
                 </AntRow>
                 <AntRow className="mt-1">
-                  <AntCol span={4}>
+                  <AntCol sm={8} lg={4}>
                     <Header className="sixteenFont" bolded>
                       Available Days:
                     </Header>
                   </AntCol>
-                  <AntCol span={20}>
+                  <AntCol sm={16} lg={20}>
                     <Caption className="sixteenFont" bolded>
                       {student[0]["Willing Work Days"].length > 1
                         ? student[0]["Willing Work Days"]
@@ -255,12 +255,12 @@ const StudentInfo = (props) => {
                   </AntCol>
                 </AntRow>
                 <AntRow className="mt-1">
-                  <AntCol span={4}>
+                  <AntCol sm={8} lg={4}>
                     <Header className="sixteenFont" bolded>
                       Available Times:
                     </Header>
                   </AntCol>
-                  <AntCol span={20}>
+                  <AntCol sm={16} lg={20}>
                     <Caption className="sixteenFont" bolded>
                       {student[0]["Willing Work Times"].length > 1
                         ? student[0]["Willing Work Times"]
@@ -278,12 +278,12 @@ const StudentInfo = (props) => {
                   </AntCol>
                 </AntRow>
                 <AntRow className="mt-1">
-                  <AntCol span={4}>
+                  <AntCol sm={8} lg={4}>
                     <Header className="sixteenFont" bolded>
                       Applied For:
                     </Header>
                   </AntCol>
-                  <AntCol span={20}>
+                  <AntCol sm={16} lg={20}>
                     <Caption className="sixteenFont" bolded>
                       {student[0]["Applied For"]
                         ? student[0]["Applied For"]
@@ -292,12 +292,12 @@ const StudentInfo = (props) => {
                   </AntCol>
                 </AntRow>
                 <AntRow className="mt-1">
-                  <AntCol span={4}>
+                  <AntCol sm={8} lg={4}>
                     <Header className="sixteenFont" bolded>
                       Pay Preference:
                     </Header>
                   </AntCol>
-                  <AntCol span={20}>
+                  <AntCol sm={16} lg={20}>
                     <Caption className="sixteenFont" bolded>
                       {student[0]["Paid/Unpaid Preference"] === "Yes"
                         ? "Paid"
