@@ -16,6 +16,7 @@ import { RiSuitcaseLine } from "react-icons/ri";
 import { GrDocumentText } from "react-icons/gr";
 import { BiBook, BiBuildings, BiPhone } from "react-icons/bi";
 import { FiUsers, FiMail } from "react-icons/fi";
+import { AiOutlineFileText } from "react-icons/ai";
 
 const mapStateToProps = (state) => {
   return {
@@ -41,129 +42,132 @@ const StudentInfo = (props) => {
           <TabContainer className="px-6 py-3">
             <AntRow gutter={[48, 0]}>
               <AntCol className="px-2" span={6}>
-                  <AntRow justify="center">
-                    <Avatar
-                      size={225}
-                      src="https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg"
-                    ></Avatar>
-                  </AntRow>
-                  <AntRow justify="center">
-                    <Header
-                      className="twentyEightFont mt-1 mb-point-5"
-                      color="#002766"
-                      bolded
-                    >
-                      Contact
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Full Name:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["First Name"]} {student[0]["Last Name"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Phone:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["Phone Number"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Email:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["Email"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Address:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["Address"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      City:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["City"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      State:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["State"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow justify="center">
-                    <Header
-                      className="twentyEightFont mt-1 mb-point-5"
-                      color="#002766"
-                      bolded
-                    >
-                      Personal
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Age:{" "}
-                      <Caption className="sixteenFont">
-                        {student[1]["Age"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Gender:{" "}
-                      <Caption className="sixteenFont">
-                        {student[1]["Gender"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Race:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["race"] ? student[0]["race"] : "Not filled"}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Grade:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["Grade"]
-                          ? student[0]["Grade"]
-                          : "Not filled"}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow className="mb-point-5">
-                    <Header className="sixteenFont" bolded>
-                      Year of Graduation:{" "}
-                      <Caption className="sixteenFont">
-                        {student[0]["Year of Graduation"]}
-                      </Caption>
-                    </Header>
-                  </AntRow>
-                  <AntRow justify="center">
-                    <Header
-                      className="twentyEightFont mt-1 mb-point-5"
-                      color="#002766"
-                      bolded
-                    >
-                      Files
-                    </Header>
-                  </AntRow>
+                <AntRow justify="center">
+                  <Avatar
+                    size={225}
+                    src="https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg"
+                  ></Avatar>
+                </AntRow>
+                <AntRow justify="center">
+                  <Header
+                    className="twentyEightFont mt-1 mb-point-5"
+                    color="#002766"
+                    bolded
+                  >
+                    Contact
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Full Name:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["First Name"]} {student[0]["Last Name"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Phone:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["Phone Number"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Email:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["Email"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Address:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["Address"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    City:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["City"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    State:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["State"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow justify="center">
+                  <Header
+                    className="twentyEightFont mt-1 mb-point-5"
+                    color="#002766"
+                    bolded
+                  >
+                    Personal
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Age:{" "}
+                    <Caption className="sixteenFont">
+                      {student[1]["Age"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Gender:{" "}
+                    <Caption className="sixteenFont">
+                      {student[1]["Gender"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Race:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["race"] ? student[0]["race"] : "Not filled"}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Grade:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["Grade"] ? student[0]["Grade"] : "Not filled"}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow className="mb-point-5">
+                  <Header className="sixteenFont" bolded>
+                    Year of Graduation:{" "}
+                    <Caption className="sixteenFont">
+                      {student[0]["Year of Graduation"]}
+                    </Caption>
+                  </Header>
+                </AntRow>
+                <AntRow justify="center">
+                  <Header
+                    className="twentyEightFont mt-1 mb-point-5"
+                    color="#002766"
+                    bolded
+                  >
+                    Files
+                  </Header>
+                </AntRow>
+                <AntRow>
+                  <AntCol span={4}>
+                    <FileCard title="Resume" />
+                  </AntCol>
+                </AntRow>
               </AntCol>
               <AntCol span={18}>
                 <AntRow>
@@ -557,6 +561,23 @@ const ReferenceCard = (props) => {
         </AntRow>
       </TabOutlineContainer>
     </AntRow>
+  );
+};
+
+const FileCard = (props) => {
+  return (
+    <div className="file-card">
+      <AntRow className="mb-point-25" justify="center">
+        <div className="file-card-container">
+          <AntRow className="py-point-5 px-1">
+            <AiOutlineFileText className="file-card-icon" />
+          </AntRow>
+        </div>
+      </AntRow>
+      <AntRow>
+        <Caption className="twelveFont file-card-title">{props.title}</Caption>
+      </AntRow>
+    </div>
   );
 };
 

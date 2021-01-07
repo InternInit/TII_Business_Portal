@@ -20,3 +20,36 @@
   margin-right: 0.25em;
   color: #bfbfbf;
 }
+
+.file-card {
+  .file-card-container {
+    background-color: white;
+    position: relative;
+    height: 4.5em;
+    width: 4.5em;
+
+    border-radius: 5px;
+    border: 1px solid #f0f0f0;
+
+    .file-card-icon {
+      font-size: 48px;
+      color: #bfbfbf;
+    }
+  }
+
+  &:hover {
+    .file-card-container {
+      cursor: pointer;
+      border: 1px solid #1890ff;
+      transition: 0.3s ease;
+
+      .file-card-icon {
+        color: #1890ff;
+      }
+    }
+
+    .file-card-title {
+        color: #1890ff;
+    }
+  }
+}
