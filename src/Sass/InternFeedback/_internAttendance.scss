@@ -1,0 +1,13 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+.student-attendance{
+  &-list {
+    &:hover {
+      color: #1890ff;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+  }
+}
