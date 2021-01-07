@@ -50,10 +50,10 @@ class MainPage extends React.Component {
                 .filter((candidate) => candidate.status === "Pending")
                 .map((student) => (
                   <StudentCard
-                    firstName={student.info["First Name"]}
-                    lastName={student.info["Last Name"]}
-                    age={" (" + student.info["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
+                    firstName={student.formData["0"]["First Name"]}
+                    lastName={student.formData["0"]["Last Name"]}
+                    age={" (" + student.formData["1"]["Age"] + ")"}
+                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
                   />
                 ))}
             </AntCol>
@@ -65,10 +65,10 @@ class MainPage extends React.Component {
                 .filter((candidate) => candidate.status === "Pending")
                 .map((student) => (
                   <StudentCard
-                    firstName={student.info["First Name"]}
-                    lastName={student.info["Last Name"]}
-                    age={" (" + student.info["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
+                    firstName={student.formData["0"]["First Name"]}
+                    lastName={student.formData["0"]["Last Name"]}
+                    age={" (" + student.formData["1"]["Age"] + ")"}
+                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
                   />
                 ))}
             </AntCol>
@@ -86,10 +86,10 @@ class MainPage extends React.Component {
                 .filter((candidate) => candidate.status === "Review")
                 .map((student) => (
                   <StudentCard
-                    firstName={student.info["First Name"]}
-                    lastName={student.info["Last Name"]}
-                    age={" (" + student.info["Age"] + ")"}
-                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
+                    firstName={student.formData["0"]["First Name"]}
+                    lastName={student.formData["0"]["Last Name"]}
+                    age={" (" + student.formData["1"]["Age"] + ")"}
+                    avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
                   />
                 ))}
             </AntCol>

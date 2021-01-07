@@ -146,14 +146,14 @@ class ReviewApplicants extends Component {
         {unreadCandidates.map((student, index) => (
           <CandidateQuickviewTab
             key={index}
-            id={student.internId}
-            name={student.info["First Name"] + " " + student.info["Last Name"]}
-            school={student.info.Education[0]}
-            GPA={parseFloat(student.info["Unweighted GPA"])}
+            id={student.Id}
+            name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
+            school={student.formData["1"]["Education"][0]}
+            GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
             appliedFor={"React Front End Intern"}
-            onReview={() => this.handleReview(student.internId)}
-            onInterview={() => this.handleInterviewUnread(student.internId)}
-            onReject={() => this.handleReject(student.internId)}
+            onReview={() => this.handleReview(student.Id)}
+            onInterview={() => this.handleInterviewUnread(student.Id)}
+            onReject={() => this.handleReject(student.Id)}
           />
         ))}
       </React.Fragment>
@@ -163,38 +163,34 @@ class ReviewApplicants extends Component {
         {unreadCandidates.map((student, index) => (
           <CandidateDetailedviewTab
             key={index}
-            id={student.internId}
+            id={student.Id} 
             /**
-             * TODO - Tejas
-             * Took this out bc the avatar image wasn't showing up
-             * 
-            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
+             * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
+             * show up.
              */
-            avatar={
-              "https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"
-            }
-            name={student.info["First Name"] + " " + student.info["Last Name"]}
-            city={student.info.City}
-            school={student.info.Education[0].Name}
+            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+            name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
+            city={student.formData["0"].City}
+            school={student.formData["1"]["Education"][0].Name}
             schoolAddress={
-              student.info.Education[0].Address +
+              student.formData["1"]["Education"][0].Address +
               ", " +
-              student.info.Education[0].State
+              student.formData["1"]["Education"][0].State
             }
-            GPA={parseFloat(student.info["Unweighted GPA"])}
-            age={student.info.Age}
+            GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
+            age={student.formData["1"].Age}
             workDate={
-              student.info["Starting/Ending Dates"][0].split("T")[0] +
+              student.formData["0"]["Starting/Ending Dates"][0].split("T")[0] +
               " - " +
-              student.info["Starting/Ending Dates"][1].split("T")[0]
+              student.formData["0"]["Starting/Ending Dates"][1].split("T")[0]
             }
-            workDays={student.info["Willing Work Days"]}
-            workTimes={student.info["Willing Work Times"]}
-            activities={student.info.Extracurriculars}
-            courses={student.info.Courses}
-            onReview={() => this.handleReview(student.internId)}
-            onInterview={() => this.handleInterviewUnread(student.internId)}
-            onReject={() => this.handleReject(student.internId)}
+            workDays={student.formData["0"]["Willing Work Days"]}
+            workTimes={student.formData["0"]["Willing Work Times"]}
+            activities={student.formData["3"].Extracurriculars}
+            courses={student.formData["3"].Courses}
+            onReview={() => this.handleReview(student.Id)}
+            onInterview={() => this.handleInterviewUnread(student.Id)}
+            onReject={() => this.handleReject(student.Id)}
           />
         ))}
       </React.Fragment>
@@ -235,15 +231,16 @@ class ReviewApplicants extends Component {
           }}
         />
         {reviewCandidates.map((student, index) => (
-          <CandidateQuickviewReviewTab
+          <CandidateQuickviewTab
             key={index}
-            id={student.internId}
-            name={student.info["First Name"] + " " + student.info["Last Name"]}
-            school={student.info.Education[0]}
-            GPA={parseFloat(student.info["Unweighted GPA"])}
+            id={student.Id}
+            name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
+            school={student.formData["1"]["Education"][0]}
+            GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
             appliedFor={"React Front End Intern"}
-            onInterview={() => this.handleInterviewReview(student.internId)}
-            onReject={() => this.handleReject(student.internId)}
+            onReview={() => this.handleReview(student.Id)}
+            onInterview={() => this.handleInterviewUnread(student.Id)}
+            onReject={() => this.handleReject(student.Id)}
           />
         ))}
       </React.Fragment>
@@ -254,39 +251,36 @@ class ReviewApplicants extends Component {
         </Header>
         <Divider />
         {reviewCandidates.map((student, index) => (
-          <CandidateDetailedviewReviewTab
+          <CandidateDetailedviewTab
             key={index}
-            id={student.internId}
+            id={student.Id} 
             /**
-           * TODO - Tejas
-           * Took this out bc the avatar image wasn't showing up
-           * 
-          avatar={`https://tii-intern-media.s3.amazonaws.com/${student.internId}/profile_picture`}
-           */
-            avatar={
-              "https://lol-stats.net/uploads/aev8VlUjQ46Grp1IxlKscgswFe83c9hERLZ1fZeR.jpeg"
-            }
-            name={student.info["First Name"] + " " + student.info["Last Name"]}
-            city={student.info.City}
-            school={student.info.Education[0].Name}
+             * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
+             * show up.
+             */
+            avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+            name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
+            city={student.formData["0"].City}
+            school={student.formData["1"]["Education"][0].Name}
             schoolAddress={
-              student.info.Education[0].Address +
+              student.formData["1"]["Education"][0].Address +
               ", " +
-              student.info.Education[0].State
+              student.formData["1"]["Education"][0].State
             }
-            GPA={parseFloat(student.info["Unweighted GPA"])}
-            age={student.info.Age}
+            GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
+            age={student.formData["1"].Age}
             workDate={
-              student.info["Starting/Ending Dates"][0].split("T")[0] +
+              student.formData["0"]["Starting/Ending Dates"][0].split("T")[0] +
               " - " +
-              student.info["Starting/Ending Dates"][1].split("T")[0]
+              student.formData["0"]["Starting/Ending Dates"][1].split("T")[0]
             }
-            workDays={student.info["Willing Work Days"]}
-            workTimes={student.info["Willing Work Times"]}
-            activities={student.info.Extracurriculars}
-            courses={student.info.Courses}
-            onInterview={() => this.handleInterviewUnread(student.internId)}
-            onReject={() => this.handleReject(student.internId)}
+            workDays={student.formData["0"]["Willing Work Days"]}
+            workTimes={student.formData["0"]["Willing Work Times"]}
+            activities={student.formData["3"].Extracurriculars}
+            courses={student.formData["3"].Courses}
+            onReview={() => this.handleReview(student.Id)}
+            onInterview={() => this.handleInterviewUnread(student.Id)}
+            onReject={() => this.handleReject(student.Id)}
           />
         ))}
       </React.Fragment>

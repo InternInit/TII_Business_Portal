@@ -11,8 +11,6 @@ import {
   InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
 
-import { students } from "../../Fake_Students.js";
-
 import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
 
 import InternDashboard from "./InternDashboard.jsx";
@@ -20,6 +18,25 @@ import InternPastFeedback from "./InternPastFeedback.jsx";
 import AttendanceRecord from "./AttendanceRecord.jsx";
 
 import { Link, Route, Switch as ReactSwitch, Redirect } from "react-router-dom";
+
+import { connect } from "react-redux";
+import {
+  startInternLoading,
+  finishInternLoading,
+} from "../../redux/actions";
+
+
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses
+  };
+};
+
+const mapDispatchToProps = {
+  startInternLoading,
+  finishInternLoading,
+};
 
 class InternPageContainer extends Component {
   constructor(props) {
@@ -31,22 +48,37 @@ class InternPageContainer extends Component {
   }
 
   findStudent = () => {
-    const id = this.props.location.pathname.split("/");
-    this.setState({
-      student: students.find((student) => student.id === Number(id[2])),
-    });
-    this.setState({ loading: false });
+    console.log("trying to find");
+    if(!this.props.loadingStatuses.isInternLoading){
+      const id = this.props.location.pathname.split("/");
+      const foundStudent = this.props.companyInfo.interns.find((student) => student.Id == id[2]);
+      console.log(foundStudent);
+      this.setState({
+        student: foundStudent,
+        loading: false,
+      });
+    }
   };
 
   componentDidMount() {
     this.findStudent();
   }
 
-  render() {
-    const { student } = this.state;
+  componentDidUpdate() {
+    if(this.state.student === null){
+      this.findStudent();
+    }
+  }
 
-    return this.state.loading ? (
-      <h1>Hello</h1>
+  render() {
+    const { student, loading } = this.state;
+
+    return (loading || this.props.loadingStatuses.isInternLoading) ? (
+      <>
+        <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
+        <h1>{`Loading is currently: ${loading}`}</h1>
+        <h1>{`Intern is currently: ${this.props.loadingStatuses.isInternLoading}`}</h1>
+      </>
     ) : (
       <>
         <PageContainer>
@@ -59,7 +91,7 @@ class InternPageContainer extends Component {
               >
                 <AntRow>
                   <AntCol className="universal-middle">
-                    <Avatar size={150} src={student.image} />
+                    <Avatar size={150} src={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`} />
                   </AntCol>
                   <AntCol flex="auto" offset={1}>
                     <AntRow>
@@ -67,7 +99,7 @@ class InternPageContainer extends Component {
                         className="twentyEightFont intern-dashboard-banner-text"
                         color="white"
                       >
-                        {student.firstName} {student.lastName}
+                        {student.formData["0"]["First Name"]} {student.formData["0"]["Last Name"]}
                       </Header>
                     </AntRow>
                     <AntRow>
@@ -77,7 +109,7 @@ class InternPageContainer extends Component {
                         thin
                         style={{ marginTop: "-.5em", fontStyle: "italic" }}
                       >
-                        {student.position}
+                        {"Placeholder Position"}
                       </Caption>
                     </AntRow>
                     <AntRow className="mt-point-5">
@@ -89,7 +121,7 @@ class InternPageContainer extends Component {
                       <AntCol span={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Name:</Caption>{" "}
-                          {student.school.contact}
+                          {"Placeholder Contact"}
                         </Caption>
                       </AntCol>
                     </AntRow>
@@ -97,7 +129,7 @@ class InternPageContainer extends Component {
                       <AntCol span={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Email:</Caption>{" "}
-                          {student.email}
+                          {student.formData["0"].Email}
                         </Caption>
                       </AntCol>
                       <AntCol span={12}>
@@ -235,4 +267,4 @@ class InternPageContainer extends Component {
   }
 }
 
-export default InternPageContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(InternPageContainer);

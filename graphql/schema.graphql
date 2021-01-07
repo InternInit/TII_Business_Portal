@@ -1,0 +1,204 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Feedback {
+  Id: String
+  comment: String
+  date: String
+  isFinished: Boolean
+  isRead: Boolean
+}
+
+type Grade {
+  Id: String
+  additionalComments: String
+  assessment: AWSJSON
+  dueDate: String
+  finishedDate: String
+  isFinished: Boolean
+  type: String
+}
+
+type Hour {
+  Id: String
+  date: String
+  dueDate: String
+  isApproved: Boolean
+  time: Float
+}
+
+type Intern {
+  Id: String!
+  formData: AWSJSON
+  version: Int
+}
+
+type InternAssoc {
+  assocId: String!
+  businessId: String
+  feedback: [Feedback]
+  grades: [Grade]
+  hours: [Hour]
+  internId: String
+  school: School
+  status: String
+}
+
+type InternAssocConnection {
+  items: [InternAssoc]
+  nextToken: String
+}
+
+type InternConnection {
+  items: [Intern]
+  nextToken: String
+}
+
+type InternData {
+  Id: String!
+  feedback: [Feedback]
+  formData: AWSJSON
+  grades: [Grade]
+  hours: [Hour]
+  school: School
+  status: String
+  version: Int
+}
+
+type Mutation {
+  createIntern(input: CreateInternInput!): Intern
+  createInternAssoc(input: CreateInternAssocInput!): InternAssoc
+  deleteIntern(input: DeleteInternInput!): Intern
+  deleteInternAssoc(input: DeleteInternAssocInput!): InternAssoc
+  updateIntern(input: UpdateInternInput!): Intern
+  updateInternAssoc(input: UpdateInternAssocInput!): InternAssoc
+}
+
+type Query {
+  getIntern(Id: String!): Intern
+  getInternAssoc(assocId: String!): InternAssoc
+  getInternData(businessId: String!, internId: String!): InternData
+  getInterns(businessId: String!): [InternData]
+  listInternAssocs(filter: TableInternAssocFilterInput, limit: Int, nextToken: String): InternAssocConnection
+  listInterns(filter: TableInternFilterInput, limit: Int, nextToken: String): InternConnection
+  queryInternAssocsByBusinessIdIndex(after: String, businessId: String!, first: Int): InternAssocConnection
+  queryInternAssocsByInternIdIndex(after: String, first: Int, internId: String!): InternAssocConnection
+}
+
+type School {
+  address: String
+  email: String
+  name: String
+  phone: String
+  state: String
+}
+
+type Subscription {
+  onCreateIntern(Id: String, formData: AWSJSON, version: Int): Intern @aws_subscribe(mutations : ["createIntern"])
+  onCreateInternAssoc(assocId: String, businessId: String, internId: String): InternAssoc @aws_subscribe(mutations : ["createInternAssoc"])
+  onDeleteIntern(Id: String, formData: AWSJSON, version: Int): Intern @aws_subscribe(mutations : ["deleteIntern"])
+  onDeleteInternAssoc(assocId: String, businessId: String, internId: String): InternAssoc @aws_subscribe(mutations : ["deleteInternAssoc"])
+  onUpdateIntern(Id: String, formData: AWSJSON, version: Int): Intern @aws_subscribe(mutations : ["updateIntern"])
+  onUpdateInternAssoc(assocId: String, businessId: String, internId: String): InternAssoc @aws_subscribe(mutations : ["updateInternAssoc"])
+}
+
+input CreateInternAssocInput {
+  assocId: String!
+  businessId: String
+  internId: String
+}
+
+input CreateInternInput {
+  Id: String!
+  formData: AWSJSON
+  version: Int
+}
+
+input DeleteInternAssocInput {
+  assocId: String!
+}
+
+input DeleteInternInput {
+  Id: String!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableInternAssocFilterInput {
+  assocId: TableStringFilterInput
+  businessId: TableStringFilterInput
+  internId: TableStringFilterInput
+}
+
+input TableInternFilterInput {
+  Id: TableStringFilterInput
+  version: TableIntFilterInput
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input UpdateInternAssocInput {
+  assocId: String!
+  businessId: String
+  internId: String
+}
+
+input UpdateInternInput {
+  Id: String!
+  formData: AWSJSON
+  version: Int
+}
