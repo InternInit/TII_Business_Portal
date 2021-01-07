@@ -8,6 +8,10 @@ import PageFeedback from "./PageFeedback.jsx";
 import MainPercentages from "./MainPercentages.jsx";
 import StudentCard from "./StudentCard.jsx";
 import NavSearch from "../General/NavSearch.jsx";
+import {
+  PageContainer,
+  InnerContainer,
+} from "../Styled/FundamentalComponents.jsx";
 
 import axios from "axios";
 
@@ -26,10 +30,10 @@ class MainPage extends React.Component {
     let { candidates, listings } = this.props;
 
     return (
-      <div className="global-container">
+      <PageContainer>
         <NavSearch title="Overview" searchBar={false} />
 
-        <div className="dashboard-container px-6 py-2">
+        <InnerContainer className="py-2">
           <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
             <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
               <Header className="twentyFont mb-point-5"> Listings</Header>
@@ -97,8 +101,8 @@ class MainPage extends React.Component {
           <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
             <MainPercentages />
           </AntRow>
-        </div>
-      </div>
+        </InnerContainer>
+      </PageContainer>
     );
   }
 }
