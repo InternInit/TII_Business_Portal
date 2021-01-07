@@ -157,7 +157,7 @@ class InternPageContainer extends Component {
                 </AntRow>
                 <AntRow className="mt-2" gutter={[16, 0]}>
                   <AntCol span={4}>
-                    <Link to={`/my-interns/${student.id}/dashboard`}>
+                    <Link to={`/my-interns/${student.Id}/dashboard`}>
                       <NavigationButton
                         block
                         shape="round"
@@ -176,7 +176,7 @@ class InternPageContainer extends Component {
                     </Link>
                   </AntCol>
                   <AntCol span={4}>
-                    <Link to={`/my-interns/${student.id}/attendance`}>
+                    <Link to={`/my-interns/${student.Id}/attendance`}>
                       <NavigationButton
                         block
                         shape="round"
@@ -195,7 +195,7 @@ class InternPageContainer extends Component {
                     </Link>
                   </AntCol>
                   <AntCol span={4}>
-                    <Link to={`/my-interns/${student.id}/feedback`}>
+                    <Link to={`/my-interns/${student.Id}/feedback`}>
                       <NavigationButton
                         block
                         shape="round"
@@ -214,7 +214,7 @@ class InternPageContainer extends Component {
                     </Link>
                   </AntCol>
                   <AntCol span={4}>
-                    <Link to={`/my-interns/${student.id}/grades`}>
+                    <Link to={`/my-interns/${student.Id}/grades`}>
                       <NavigationButton
                         block
                         shape="round"

@@ -10,6 +10,9 @@ import {
 
 import { Header, Body } from "../Styled/FundamentalComponents.jsx";
 
+import moment from "moment";
+
+
 const { Paragraph } = Typography;
 
 //CSS Constants
@@ -77,7 +80,8 @@ class InternPastFeedback extends React.Component {
                     <Col span={12} offset={12}>
                         <Header bolded style={{"font-size": "26px"}}>Past Feedback</Header>
 
-                            {student.review.map((data) => {
+                            {console.log(student)}
+                            {student.feedback.map((data) => {
                                 return(
                                     <Row style={CardStyle}>
                                         <div style={ContainerStyle}>
@@ -101,11 +105,11 @@ class InternPastFeedback extends React.Component {
                                                 */}
                                                 <div style={FeedbackInfoStyle}>
                                                     <div style={NameStyle}>
-                                                        {student.firstName + " " + student.lastName}
+                                                        {student.formData[0].firstName + " " + student.lastName}
                                                     </div>
 
                                                     <div style={DateStyle}>
-                                                        {data.date}
+                                                        {moment(data.date).format("MM/DD/YYYY")}
                                                     </div>
                                                 </div>
 

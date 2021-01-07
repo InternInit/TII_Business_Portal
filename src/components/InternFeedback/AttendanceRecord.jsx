@@ -205,11 +205,11 @@ class AttendanceRecord extends React.Component {
                               style={ButtonListStyle}
                               type="link"
                               onClick={() => {
-                                this.setState( {date: data.date, dateList: data.date} );
+                                this.setState( {date: moment(data.date).format("MM/DD/YYYY"), dateList: moment(data.date).format("MM/DD/YYYY")} );
                               }}
                             >
                                 <div className="student-attendance-list">
-                                    {data.date}
+                                    {moment(data.date).format("MM/DD/YYYY")}
                                 </div>
                             </Button>
                         
@@ -253,9 +253,9 @@ class AttendanceRecord extends React.Component {
 
                       student.hours.map((data) => {
                         //splits date string into separate variables
-                        let dateWorked = moment(data.date, "MM/DD/YYYY").date();
-                        let monthWorked = moment(data.date, "MM/DD/YYYY").month();
-                        let yearWorked = moment(data.date, "MM/DD/YYYY").year();
+                        let dateWorked = moment(moment(data.date).format("MM/DD/YYYY"), "MM/DD/YYYY").date();
+                        let monthWorked = moment(moment(data.date).format("MM/DD/YYYY"), "MM/DD/YYYY").month();
+                        let yearWorked = moment(moment(data.date).format("MM/DD/YYYY"), "MM/DD/YYYY").year();
                         let hoursWorked = data.time;
 
                         datesWorked.push({
@@ -265,6 +265,8 @@ class AttendanceRecord extends React.Component {
                           time: hoursWorked
                         });
                       });
+
+                      console.log(datesWorked)
 
                       //Compares dates to be displayed against dates worked
                       for (let i = 0; i < datesWorked.length; i++) {
