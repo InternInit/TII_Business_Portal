@@ -39,7 +39,7 @@ const StudentInfo = (props) => {
     return (
       <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
         <InnerContainer>
-          <TabContainer className="px-6 py-3 responsive-tab-container">
+          <TabContainer className="px-6 py-3 student-info-responsive-tab-container">
             <AntRow gutter={[48, 0]}>
               <AntCol className="px-2" sm={8} lg={6}>
                 <AntRow justify="center">

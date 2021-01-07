@@ -14,6 +14,20 @@
   }
 }
 
+.student-info-responsive-tab-container {
+  position: relative;
+
+  @include lg {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  @include sm {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+
 .student-info-avatar {
   display: flex;
   border-radius: 50%;
