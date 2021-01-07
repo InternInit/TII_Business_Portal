@@ -41,7 +41,6 @@ const StudentInfo = (props) => {
           <TabContainer className="px-6 py-3">
             <AntRow gutter={[48, 0]}>
               <AntCol className="px-2" span={6}>
-                <Affix offsetTop={50}>
                   <AntRow justify="center">
                     <Avatar
                       size={225}
@@ -165,7 +164,6 @@ const StudentInfo = (props) => {
                       Files
                     </Header>
                   </AntRow>
-                </Affix>
               </AntCol>
               <AntCol span={18}>
                 <AntRow>
