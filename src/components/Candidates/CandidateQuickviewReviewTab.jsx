@@ -91,14 +91,20 @@ const CandidateQuickviewTab = (props) => {
               <CheckIcon
                 icon={check}
                 style={{ marginLeft: "1vh", marginRight: "1vh" }}
-                onClick={props.onInterview}
+                onClick={(e) => {
+                  e.preventDefault();
+                  props.onInterview();
+                }}
               />
             </Tooltip>
             <Tooltip title="Remove">
               <RemoveIcon
                 icon={remove}
                 style={{ marginLeft: "1vh", marginRight: "1vh" }}
-                onClick={props.onReject}
+                onClick={(e) => {
+                  e.preventDefault();
+                  props.onReject();
+                }}
               />
             </Tooltip>
           </AntCol>

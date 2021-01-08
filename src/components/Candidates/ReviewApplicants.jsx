@@ -147,7 +147,11 @@ class ReviewApplicants extends Component {
           <CandidateQuickviewTab
             key={index}
             id={student.Id}
-            name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
+            name={
+              student.formData["0"]["First Name"] +
+              " " +
+              student.formData["0"]["Last Name"]
+            }
             school={student.formData["1"]["Education"][0]}
             GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
             appliedFor={"React Front End Intern"}
@@ -163,13 +167,17 @@ class ReviewApplicants extends Component {
         {unreadCandidates.map((student, index) => (
           <CandidateDetailedviewTab
             key={index}
-            id={student.Id} 
+            id={student.Id}
             /**
              * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
              * show up.
              */
             avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-            name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
+            name={
+              student.formData["0"]["First Name"] +
+              " " +
+              student.formData["0"]["Last Name"]
+            }
             city={student.formData["0"].City}
             school={student.formData["1"]["Education"][0].Name}
             schoolAddress={
@@ -231,10 +239,14 @@ class ReviewApplicants extends Component {
           }}
         />
         {reviewCandidates.map((student, index) => (
-          <CandidateQuickviewTab
+          <CandidateQuickviewReviewTab
             key={index}
             id={student.Id}
-            name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
+            name={
+              student.formData["0"]["First Name"] +
+              " " +
+              student.formData["0"]["Last Name"]
+            }
             school={student.formData["1"]["Education"][0]}
             GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
             appliedFor={"React Front End Intern"}
@@ -251,15 +263,19 @@ class ReviewApplicants extends Component {
         </Header>
         <Divider />
         {reviewCandidates.map((student, index) => (
-          <CandidateDetailedviewTab
+          <CandidateDetailedviewReviewTab
             key={index}
-            id={student.Id} 
+            id={student.Id}
             /**
              * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
              * show up.
              */
             avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-            name={student.formData["0"]["First Name"] + " " + student.formData["0"]["Last Name"]}
+            name={
+              student.formData["0"]["First Name"] +
+              " " +
+              student.formData["0"]["Last Name"]
+            }
             city={student.formData["0"].City}
             school={student.formData["1"]["Education"][0].Name}
             schoolAddress={
