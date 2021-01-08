@@ -557,18 +557,20 @@ const ReferenceCard = (props) => {
 
 const FileCard = (props) => {
   return (
-    <div className="file-card">
-      <AntRow className="mb-point-25" justify="center">
-        <div className="file-card-container">
-          <AntRow className="py-point-5 px-1">
-            <AiOutlineFileText className="file-card-icon" />
-          </AntRow>
-        </div>
-      </AntRow>
-      <AntRow justify="center">
-        <Caption className="twelveFont file-card-title">{props.title}</Caption>
-      </AntRow>
-    </div>
+    <a href={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/fake-resume/fake-resume.pdf`} target="_blank" rel="noopener noreferrer">
+      <div className="file-card">
+        <AntRow className="mb-point-25" justify="center">
+          <div className="file-card-container">
+            <AntRow className="py-point-5 px-1">
+              <AiOutlineFileText className="file-card-icon" />
+            </AntRow>
+          </div>
+        </AntRow>
+        <AntRow justify="center">
+          <Caption className="twelveFont file-card-title">{props.title}</Caption>
+        </AntRow>
+      </div>
+    </a>
   );
 };
 
