@@ -22,9 +22,12 @@ elif(app.config.get("ENV") == "production"):
 
 def determine_date_offset(dt_string):
     dt = parse(dt_string)
-    today = datetime.now(timezone.utc)
-    days = (dt-today).days
-    return days
+    if(dt.tzinfo is not None):
+        today = datetime.now(timezone.utc)
+        days = (dt-today).days
+        return days
+    else:
+        raise ValueError
 
 # Non-recursively resolve up to level-2 datetimes
 # Yeah ik it looks like shit but thats the price we pay for dealing with JSON.
@@ -72,6 +75,34 @@ def datetime_resolver(intern):
 
     return new_intern
         
+def formdata_datetime_resolver(formData):
+    newFormData = {}
+    for page in formData.items():
+        pageNum = page[0]
+        pageVal = page[1]
+        newFormData[pageNum] = {}
+        for field in pageVal.items():
+            fieldName = field[0]
+            fieldVal = field[1]
+            if(isinstance(fieldVal, list)):
+                print("Trying: " + fieldName)
+                daysList = []
+                formattedList = []
+                errored = False
+                for item in fieldVal:
+                    if(isinstance(item, str)):
+                        try:
+                            days = determine_date_offset(item)
+                            daysList.append(days)
+                            formattedList.append(parse(item).strftime("%b %d %Y"))
+                        except ValueError:
+                            errored = True
+                if((not errored) and ((daysList != []) and (formattedList != []))):
+                    newFormData[pageNum]["Days Until " + fieldName] = daysList
+                    newFormData[pageNum][fieldName + " Formatted"] = formattedList
+            newFormData[pageNum][fieldName] = fieldVal
+    return newFormData
+
 @app.route('/', methods=["GET"])
 def home():
     return "Hello World"
@@ -133,19 +164,13 @@ def get_student_candidates():
     headers = request.headers
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
-    print("#####################")
-    print(json.dumps(resp_json))
-    print("#####################")
     new_interns = []
     
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
     # That's what we get for using a 19 year old language.
     for intern in resp_json["data"]["getInterns"]:
         new_intern = datetime_resolver(intern)
-        try:
-            new_intern["formData"] = json.loads(new_intern["formData"])
-        except ValueError:
-            pass
+        new_intern["formData"] = formdata_datetime_resolver(json.loads(new_intern["formData"]))
         new_interns.append(new_intern)
     return json.dumps(new_interns)
 
