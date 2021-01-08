@@ -323,7 +323,7 @@ class App extends React.Component {
           />
 
           <Layout>
-            <Sider width={80}>
+            <Sider width={80} style={{zIndex: "100"}}>
               <BusinessNavBar 
                 logout={this.logout}
               />

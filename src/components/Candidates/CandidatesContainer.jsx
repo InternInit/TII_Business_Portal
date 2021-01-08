@@ -29,7 +29,7 @@ import HirePipeline from "./HirePipeline.jsx";
 import ReviewApplicants from "./ReviewApplicants.jsx";
 import StudentInfo from "./StudentInfo.jsx";
 
-import {PageContainer} from "../Styled/FundamentalComponents.jsx";
+import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 
 const mapStateToProps = (state) => {
   return {
@@ -74,12 +74,23 @@ class CandidatesContainer extends Component {
 
   render() {
     return (
-      <PageContainer>
-        <AntRow style={{width: "100%"}}>
-        <NavSearch
-          title="Internship Candidates"
-          placeholder="Search Applicants"
-        />
+      <PageContainer
+        style={
+          this.findPath() === "manage-candidates"
+            ? { minWidth: "1500px", position: "relative" }
+            : null
+        }
+      >
+        <AntRow style={{ width: "100%" }}>
+          <NavSearch
+            title="Internship Candidates"
+            placeholder="Search Applicants"
+            style={
+              this.findPath() === "manage-candidates"
+                ? { minWidth: "1500px" }
+                : null
+            }
+          />
         </AntRow>
         <CandidatesNavbar defaultSelectedKey={this.findPath()} />
         <ReactSwitch>

@@ -9,6 +9,7 @@ const dragStyle = {
   backgroundColor: "#ebecf0",
   padding: 4,
   width: "100%",
+  minWidth: "300px",
   minHeight: "80vh",
   borderRadius: "10px",
   boxShadow: "1px 1px 5px -5px",
@@ -129,7 +130,7 @@ function HirePipeline(props) {
      *
      */
     <div className="px-4 py-2" style={{ width: "100%" }}>
-      <AntRow gutter={[36, 0]} style={{ width: "100%" }}>
+      <AntRow gutter={[36, 0]} style={{ width: "100%", minWidth: "1450px" }}>
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
         >
