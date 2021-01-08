@@ -49,6 +49,7 @@ export const PageContainer = styled.div`
   align-items: center;
   background-color: #ebeff2;
   min-height: 100vh;
+  height: auto;
 `;
 
 export const InnerContainer = styled.div`

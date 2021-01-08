@@ -15,6 +15,7 @@ import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
 
 import InternDashboard from "./InternDashboard.jsx";
 import InternPastFeedback from "./InternPastFeedback.jsx";
+import AttendanceRecord from "./AttendanceRecord.jsx";
 
 import { Link, Route, Switch as ReactSwitch, Redirect } from "react-router-dom";
 
@@ -156,7 +157,7 @@ class InternPageContainer extends Component {
                 </AntRow>
                 <AntRow className="mt-2" gutter={[16, 0]}>
                   <AntCol span={4}>
-                    <Link to={`/my-interns/${student.id}/dashboard`}>
+                    <Link to={`/my-interns/${student.Id}/dashboard`}>
                       <NavigationButton
                         block
                         shape="round"
@@ -175,7 +176,7 @@ class InternPageContainer extends Component {
                     </Link>
                   </AntCol>
                   <AntCol span={4}>
-                    <Link to={`/my-interns/${student.id}/attendance`}>
+                    <Link to={`/my-interns/${student.Id}/attendance`}>
                       <NavigationButton
                         block
                         shape="round"
@@ -194,7 +195,7 @@ class InternPageContainer extends Component {
                     </Link>
                   </AntCol>
                   <AntCol span={4}>
-                    <Link to={`/my-interns/${student.id}/feedback`}>
+                    <Link to={`/my-interns/${student.Id}/feedback`}>
                       <NavigationButton
                         block
                         shape="round"
@@ -213,7 +214,7 @@ class InternPageContainer extends Component {
                     </Link>
                   </AntCol>
                   <AntCol span={4}>
-                    <Link to={`/my-interns/${student.id}/grades`}>
+                    <Link to={`/my-interns/${student.Id}/grades`}>
                       <NavigationButton
                         block
                         shape="round"
@@ -247,12 +248,16 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/attendance`}
                 exact
-                component={() => <InternDashboard student={student} />}
+                component={() => <AttendanceRecord student={student} />}
               />
               <Route
                 path={`/my-interns/:id/feedback`}
                 exact
                 component={() => <InternPastFeedback student={student}/>}
+              />
+              <Route
+                path={`/my-interns/:id/attendance`}
+                exact
               />
             </ReactSwitch>
           </InnerContainer>

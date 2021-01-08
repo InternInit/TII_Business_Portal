@@ -68,7 +68,7 @@ class InternFeedback extends Component {
                 type="Hybrid"
                 id={student.Id}
                 position="Position Placeholder"
-                school={student.school.name}
+                school={student.school ? student.school.name : "Placeholder"}
                 avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
               />
             ))}
