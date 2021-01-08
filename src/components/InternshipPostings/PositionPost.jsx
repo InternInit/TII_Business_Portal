@@ -20,18 +20,6 @@ import { connect } from "react-redux";
 import { addListing, batchUpdateListings } from "../../redux/actions";
 import { actionRow } from "aws-amplify";
 
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  margin-top: 4vh;
-  margin-bottom: 4vh;
-
-  width: 85vh;
-  justify-content: space-between;
-  align-self: flex-start;
-`;
-
 //CSS Constants
 
 //Ant Design Styles

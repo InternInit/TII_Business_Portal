@@ -44,10 +44,10 @@ const mapDispatchToProps = {
 
 class CandidatesContainer extends Component {
   findPath = () => {
-    if (this.props.location.pathname.includes("review-applicants")) {
-      return "review-applicants";
-    } else {
+    if (this.props.location.pathname.includes("manage-candidates")) {
       return "manage-candidates";
+    } else {
+      return "review-applicants";
     }
   };
 
