@@ -46,7 +46,7 @@ const StudentInfo = (props) => {
                   <img
                     className="student-info-avatar"
                     alt="avatar"
-                    src="https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg"
+                    src={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${loadStudent.Id}/profile_picture`}
                   />
                 </AntRow>
                 <AntRow justify="center">
@@ -203,31 +203,8 @@ const StudentInfo = (props) => {
                     </Header>
                   </AntCol>
                   <AntCol sm={16} lg={20}>
-                    {/*TODO: @Tejas iterate through formdata to transform datetime like how it is with assoc data */}
                     <Caption className="sixteenFont" bolded>
-                      {new Date(
-                        student[0]["Starting/Ending Dates"][0]
-                      ).getMonth()}
-                      /
-                      {new Date(
-                        student[0]["Starting/Ending Dates"][0]
-                      ).getDate()}
-                      /
-                      {new Date(
-                        student[0]["Starting/Ending Dates"][0]
-                      ).getFullYear()}{" "}
-                      -{" "}
-                      {new Date(
-                        student[0]["Starting/Ending Dates"][1]
-                      ).getMonth()}
-                      /
-                      {new Date(
-                        student[0]["Starting/Ending Dates"][1]
-                      ).getDate()}
-                      /
-                      {new Date(
-                        student[0]["Starting/Ending Dates"][1]
-                      ).getFullYear()}
+                      {student[0]["Starting/Ending Dates Formatted"][0] + " - " + student[0]["Starting/Ending Dates Formatted"][1]}
                     </Caption>
                   </AntCol>
                 </AntRow>

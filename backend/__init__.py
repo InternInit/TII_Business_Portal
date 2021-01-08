@@ -85,7 +85,6 @@ def formdata_datetime_resolver(formData):
             fieldName = field[0]
             fieldVal = field[1]
             if(isinstance(fieldVal, list)):
-                print("Trying: " + fieldName)
                 daysList = []
                 formattedList = []
                 errored = False
