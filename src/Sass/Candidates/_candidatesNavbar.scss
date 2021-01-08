@@ -7,3 +7,10 @@
         @include font-size(16px);
     }
 }
+
+.menu-container {
+    @include sm {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}

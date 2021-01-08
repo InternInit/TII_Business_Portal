@@ -61,11 +61,11 @@ const SelectedMenuItemWrapper = styled.div`
 
 function CandidatesNavbar(props) {
   return (
-    <MenuContainer className="px-5">
+    <>
       {props.defaultSelectedKey === "review-applicants" ? (
-        <React.Fragment>
+        <MenuContainer className="px-5 menu-container">
           <AntRow>
-            <AntCol xs={11} sm={10} lg={7} xl={6}>
+            <AntCol flex={{ xs: "150px", md: "230px" }}>
               <Link to="/applicants/review-applicants">
                 <SelectedMenuItemWrapper className="mx-1">
                   <SelectedMenuItem className="twentyFourFont menu-item-font">
@@ -74,7 +74,7 @@ function CandidatesNavbar(props) {
                 </SelectedMenuItemWrapper>
               </Link>
             </AntCol>
-            <AntCol offset={1} xs={11} sm={10} lg={7} xl={6}>
+            <AntCol className="ml-1" flex={{ xs: "150px", md: "230px" }}>
               <Link to="/applicants/manage-candidates">
                 <MenuItemWrapper className="mx-1">
                   <MenuItem className="twentyFourFont menu-item-font">
@@ -84,32 +84,32 @@ function CandidatesNavbar(props) {
               </Link>
             </AntCol>
           </AntRow>
-        </React.Fragment>
+        </MenuContainer>
       ) : (
-        <React.Fragment>
+        <MenuContainer className="px-5">
           <AntRow>
-            <AntCol xs={11} sm={10} lg={7} xl={6}>
+            <AntCol flex="230px">
               <Link to="/applicants/review-applicants">
                 <MenuItemWrapper className="mx-1">
-                  <MenuItem className="twentyFourFont menu-item-font">
+                  <MenuItem className="twentyFourFont">
                     Review Applicants
                   </MenuItem>
                 </MenuItemWrapper>
               </Link>
             </AntCol>
-            <AntCol offset={1} xs={11} sm={10} lg={7} xl={6}>
+            <AntCol className="ml-1" flex="230px">
               <Link to="/applicants/manage-candidates">
                 <SelectedMenuItemWrapper className="mx-1">
-                  <SelectedMenuItem className="twentyFourFont menu-item-font">
+                  <SelectedMenuItem className="twentyFourFont">
                     Manage Candidates
                   </SelectedMenuItem>
                 </SelectedMenuItemWrapper>
               </Link>
             </AntCol>
           </AntRow>
-        </React.Fragment>
+        </MenuContainer>
       )}
-    </MenuContainer>
+    </>
   );
 }
 
