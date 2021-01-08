@@ -1,0 +1,9 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+.menu-item-font {
+    @include md {
+        @include font-size(16px);
+    }
+}

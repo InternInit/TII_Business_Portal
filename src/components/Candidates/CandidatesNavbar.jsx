@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../App.scss";
+import { Row as AntRow, Col as AntCol } from "antd";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 /*
@@ -18,13 +19,12 @@ const MenuContainer = styled.div`
 const MenuItem = styled.h2`
   font-family: lato;
   font-weight: 600;
-  font-size: 24px;
   align-items: center;
   line-height: 60px;
 `;
 
 const MenuItemWrapper = styled.div`
-  width: 270px;
+  width: 100%;
   height: 60px;
   text-align: center;
   display: inline-block;
@@ -42,14 +42,13 @@ const MenuItemWrapper = styled.div`
 const SelectedMenuItem = styled.h2`
   font-family: lato;
   font-weight: 600;
-  font-size: 24px;
   color: #1890ff;
   align-items: center;
   line-height: 60px;
 `;
 
 const SelectedMenuItemWrapper = styled.div`
-  width: 270px;
+  width: 100%;
   height: 60px;
   text-align: center;
   display: inline-block;
@@ -65,29 +64,49 @@ function CandidatesNavbar(props) {
     <MenuContainer className="px-5">
       {props.defaultSelectedKey === "review-applicants" ? (
         <React.Fragment>
-          <Link to="/applicants/review-applicants">
-            <SelectedMenuItemWrapper className="mx-1">
-              <SelectedMenuItem>Review Applicants</SelectedMenuItem>
-            </SelectedMenuItemWrapper>
-          </Link>
-          <Link to="/applicants/manage-candidates">
-            <MenuItemWrapper className="mx-1">
-              <MenuItem>Manage Candidates</MenuItem>
-            </MenuItemWrapper>
-          </Link>
+          <AntRow>
+            <AntCol xs={11} sm={10} lg={7} xl={6}>
+              <Link to="/applicants/review-applicants">
+                <SelectedMenuItemWrapper className="mx-1">
+                  <SelectedMenuItem className="twentyFourFont menu-item-font">
+                    Review Applicants
+                  </SelectedMenuItem>
+                </SelectedMenuItemWrapper>
+              </Link>
+            </AntCol>
+            <AntCol offset={1} xs={11} sm={10} lg={7} xl={6}>
+              <Link to="/applicants/manage-candidates">
+                <MenuItemWrapper className="mx-1">
+                  <MenuItem className="twentyFourFont menu-item-font">
+                    Manage Candidates
+                  </MenuItem>
+                </MenuItemWrapper>
+              </Link>
+            </AntCol>
+          </AntRow>
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Link to="/applicants/review-applicants">
-            <MenuItemWrapper className="mx-1">
-              <MenuItem>Review Applicants</MenuItem>
-            </MenuItemWrapper>
-          </Link>
-          <Link to="/applicants/manage-candidates">
-            <SelectedMenuItemWrapper className="mx-1">
-              <SelectedMenuItem>Manage Candidates</SelectedMenuItem>
-            </SelectedMenuItemWrapper>
-          </Link>
+          <AntRow>
+            <AntCol xs={11} sm={10} lg={7} xl={6}>
+              <Link to="/applicants/review-applicants">
+                <MenuItemWrapper className="mx-1">
+                  <MenuItem className="twentyFourFont menu-item-font">
+                    Review Applicants
+                  </MenuItem>
+                </MenuItemWrapper>
+              </Link>
+            </AntCol>
+            <AntCol offset={1} xs={11} sm={10} lg={7} xl={6}>
+              <Link to="/applicants/manage-candidates">
+                <SelectedMenuItemWrapper className="mx-1">
+                  <SelectedMenuItem className="twentyFourFont menu-item-font">
+                    Manage Candidates
+                  </SelectedMenuItem>
+                </SelectedMenuItemWrapper>
+              </Link>
+            </AntCol>
+          </AntRow>
         </React.Fragment>
       )}
     </MenuContainer>
