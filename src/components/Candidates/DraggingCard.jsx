@@ -15,8 +15,7 @@ class DraggingCard extends React.Component {
     return (
       <TabContainer className="py-1-5 px-2 responsive-tab-container">
         <Caption className="twelveFont dragging-card-date" light right>
-          Applied on <br /> {new Date(date[0]).getMonth()}/
-          {new Date(date[0]).getDate()}/{new Date(date[0]).getFullYear()}
+          Applied on <br /> {date[0]}
         </Caption>
         {/**
          *
@@ -67,7 +66,7 @@ class DraggingCard extends React.Component {
             </Link>
           </AntCol>
           <AntCol>
-            <Button type="danger" shape="round" style={{marginRight: "-7px"}}>
+            <Button type="danger" shape="round" style={{marginRight: "-7px"}} onClick={() => this.props.updateCandidateStatus(id, "Rejected")}>
               Remove
             </Button>
           </AntCol>
