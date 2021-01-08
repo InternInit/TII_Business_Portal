@@ -79,8 +79,6 @@ class InternPastFeedback extends React.Component {
                 <Row>
                     <Col span={12} offset={12}>
                         <Header bolded style={{"font-size": "26px"}}>Past Feedback</Header>
-
-                            {console.log(student)}
                             {student.feedback.map((data) => {
                                 return(
                                     <Row style={CardStyle}>
@@ -105,7 +103,7 @@ class InternPastFeedback extends React.Component {
                                                 */}
                                                 <div style={FeedbackInfoStyle}>
                                                     <div style={NameStyle}>
-                                                        {student.formData[0].firstName + " " + student.lastName}
+                                                        {student.formData[0]["First Name"] + " " + student.formData[0]["Last Name"]}
                                                     </div>
 
                                                     <div style={DateStyle}>
@@ -126,6 +124,7 @@ class InternPastFeedback extends React.Component {
                                                             style={{ height: "80px", overflow: "hidden" }}
                                                             >
                                                             {data.comment}
+                                                            tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed
                                                             </div>
                                                         )}
                                                     </Body>

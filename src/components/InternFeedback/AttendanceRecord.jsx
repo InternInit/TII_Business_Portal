@@ -266,8 +266,6 @@ class AttendanceRecord extends React.Component {
                         });
                       });
 
-                      console.log(datesWorked)
-
                       //Compares dates to be displayed against dates worked
                       for (let i = 0; i < datesWorked.length; i++) {
                         if (
