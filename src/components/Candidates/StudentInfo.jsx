@@ -19,10 +19,10 @@ import { FiUsers, FiMail } from "react-icons/fi";
 import { AiOutlineFileText } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses,
   };
 };
 
@@ -33,22 +33,22 @@ const StudentInfo = (props) => {
     _.find(props.companyInfo.candidates, (student) => student.Id === id)
   );
 
-  if (loadStudent) {
-    //SUPER GHETTO SOLUTION
-    //@TODO PLEASE REPLACE LATER LOL
+  if (!props.loadingStatuses.isCandidateLoading) {
+    //Loading logic is now handled with redux ^^^
+
     const student = loadStudent.formData;
 
     return (
       <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
         <InnerContainer>
-        <Breadcrumb style={{ paddingBottom: "1em" }}>
-              <Breadcrumb.Item className="twentyFont">
-                <Link to="/applicants/review-applicants">Review Applicants</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item className="twentyFont">
-                {student[0]["First Name"]}'s Application
-              </Breadcrumb.Item>
-            </Breadcrumb>
+          <Breadcrumb style={{ paddingBottom: "1em" }}>
+            <Breadcrumb.Item className="twentyFont">
+              <Link to="/applicants/review-applicants">Review Applicants</Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item className="twentyFont">
+              {student[0]["First Name"]}'s Application
+            </Breadcrumb.Item>
+          </Breadcrumb>
           <TabContainer className="px-6 py-3 student-info-responsive-tab-container">
             <AntRow gutter={[48, 0]}>
               <AntCol className="px-2" sm={8} lg={6}>
@@ -214,7 +214,9 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol sm={16} lg={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student[0]["Starting/Ending Dates Formatted"][0] + " - " + student[0]["Starting/Ending Dates Formatted"][1]}
+                      {student[0]["Starting/Ending Dates Formatted"][0] +
+                        " - " +
+                        student[0]["Starting/Ending Dates Formatted"][1]}
                     </Caption>
                   </AntCol>
                 </AntRow>
@@ -557,7 +559,11 @@ const ReferenceCard = (props) => {
 
 const FileCard = (props) => {
   return (
-    <a href={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/fake-resume/fake-resume.pdf`} target="_blank" rel="noopener noreferrer">
+    <a
+      href={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/fake-resume/fake-resume.pdf`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <div className="file-card">
         <AntRow className="mb-point-25" justify="center">
           <div className="file-card-container">
@@ -567,7 +573,9 @@ const FileCard = (props) => {
           </div>
         </AntRow>
         <AntRow justify="center">
-          <Caption className="twelveFont file-card-title">{props.title}</Caption>
+          <Caption className="twelveFont file-card-title">
+            {props.title}
+          </Caption>
         </AntRow>
       </div>
     </a>
