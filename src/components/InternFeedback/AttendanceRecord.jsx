@@ -1,170 +1,25 @@
 import React from "react";
 
-import styled from "styled-components";
-
 import { Row, Col, Calendar, Select, Button, Tooltip } from "antd";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
-import { Header } from "../Styled/FundamentalComponents.jsx";
+import { Header, TabContainer } from "../Styled/FundamentalComponents.jsx";
 
 import { Scrollbars } from "react-custom-scrollbars";
 
 import moment from "moment";
 
-//CSS Constants
-const CardStyle = {
-  position: "relative",
-
-  backgroundColor: "white",
-  borderRadius: "16px",
-  boxShadow: "1px 1px 5px -4px",
-
-  paddingRight: "5%",
-  paddingBottom: "2em",
-  paddingTop: "2em",
-  paddingLeft: "5%",
-};
-
-const ListContainterStyle = {
-  height: "310px",
-  overflowY: "auto",
-  paddingBottom: "2em",
-};
-
-const AttendanceHeadingStyle = {
-  fontSize: "20px",
-
-  display: "flex",
-  flexDirection: "row",
-
-  paddingBottom: "10px",
-  paddingRight: "20px",
-};
-
-const ListStyle = {
-  display: "flex",
-  flexDirection: "row",
-
-  paddingTop: "7px",
-  paddingBottom: "7px",
-
-  fontSize: "16px",
-  borderBottom: "1px solid #E0E0E0",
-};
-
-const CalendarStyle = {
-  paddingTop: "1em",
-  boxShadow: "1px 3px 4px -4px",
-  border: ".01px solid #E0E0E0",
-  borderRadius: "12px",
-};
-
-const ButtonStyle = {
-  border: "none",
-  color: "#1890ff",
-  fontSize: "14px",
-};
-
-const HoverButtonStyle = styled(Button)`
-  border: none;
-  color: #1890ff;
-  fontsize: 14px;
-
-  &:hover,
-  &:focus {
-    background-color: #1890ff;
-    color: white;
-  }
-`;
-
-const CalHeaderStyle = {
-  paddingTop: "8px",
-  textAlign: "center",
-  fontSize: "18px",
-};
-
-const CalDatesStyle = {
-  width: "32px",
-  textAlign: "center",
-
-  position: "relative",
-  zIndex: "2",
-  display: "inline-block",
-  minWidth: "32px",
-  height: "32px",
-  lineHeight: "32px",
-  borderRadius: "2px",
-};
-
-const DaysWorkedStyle = {
-  width: "32px",
-  textAlign: "center",
-  backgroundColor: "#91d5ff",
-  color: "black",
-
-  position: "relative",
-  zIndex: "2",
-  display: "inline-block",
-  minWidth: "32px",
-  height: "32px",
-  lineHeight: "32px",
-  borderRadius: "2px",
-};
-
-const ButtonListStyle = {
-  border: "none",
-  color: "#000",
-  fontSize: "16px",
-  padding: "0px",
-  paddingRight: "25px",
-  margin: "0px, 0px",
-};
-
-const IsSelectedStyle = {
-  width: "32px",
-  textAlign: "center",
-  backgroundColor: "#002D62",
-  color: "#fff",
-
-  position: "relative",
-  zIndex: "2",
-  display: "inline-block",
-  minWidth: "32px",
-  height: "32px",
-  lineHeight: "32px",
-  borderRadius: "2px",
-  borderWidth: "5px",
-  borderColor: "yellow",
-};
-
-const CurrentDateStyle = {
-  width: "32px",
-  textAlign: "center",
-  backgroundColor: "#D3D3D3",
-  color: "#000",
-
-  position: "relative",
-  zIndex: "2",
-  display: "inline-block",
-  minWidth: "32px",
-  height: "32px",
-  lineHeight: "32px",
-  borderRadius: "2px",
-  borderWidth: "5px",
-  borderColor: "yellow",
-};
-
 class AttendanceRecord extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        date: moment(),
-        dateList: moment(),
-        toolTipDate: moment(),
-        toolTipHour: ""
-        };
-  };
+      date: moment(),
+      dateList: moment(),
+      toolTipDate: moment(),
+      toolTipHour: "",
+    };
+  }
 
   render() {
     let { student } = this.props;
@@ -177,66 +32,79 @@ class AttendanceRecord extends React.Component {
     return (
       <Row>
         <Col offset={10}>
-          <Header bolded style={{ fontSize: "26px" }}>
+          <Header bolded className="twentyEightFont">
             Attendance Record
           </Header>
-          <div style={CardStyle}>
-            <Row gutter={30}>
-                
-              {/* List of attendance dates and times */}
-              <Col span={12}>
 
-                {/* Date and Time headers */}
-                <div style={AttendanceHeadingStyle}>
-                  Date
-                  <div style={{ marginLeft: "auto" }}>Hours Worked</div>
-                </div>
+          <TabContainer className="px-2 py-2">
+            <Row gutter={[16]} justify="center" align="middle">
+              {/* attendance list */}
+              <Col span={12} style={{ paddingLeft: "4px" }}>
+                <Row
+                  justify="space-between"
+                  style={{ paddingBottom: "12px", paddingRight: "23px" }}
+                >
+                  <Header className="twentyFont">Date</Header>
+                  <Header className="twentyFont">Hours Worked</Header>
+                </Row>
 
-                {/* Date and Time detailed data */}
-                <div style={ListContainterStyle}>
+                <Row className="attendance-list-container">
                   {student.hours.map((data) => {
                     return (
                       <Scrollbars
                         autoHide={true}
-                        style={{ width: 280, height: 50 }}
+                        style={{ width: 296, height: 50 }}
                       >
-                        <div style={ListStyle}>
+                        <Col span={24}>
+                          <Row
+                            className="attendance-list-row"
+                            align="middle"
+                            justify="space-between"
+                          >
                             <Button
-                              style={ButtonListStyle}
+                              style={{ padding: "0px" }}
                               type="link"
                               onClick={() => {
-                                this.setState( {date: moment(data.date).format("MM/DD/YYYY"), dateList: moment(data.date).format("MM/DD/YYYY")} );
+                                this.setState({
+                                  date: moment(data.date).format("MM/DD/YYYY"),
+                                  dateList: moment(data.date).format(
+                                    "MM/DD/YYYY"
+                                  ),
+                                });
                               }}
                             >
-                                <div className="student-attendance-list">
-                                    {moment(data.date).format("MM/DD/YYYY")}
-                                </div>
+                              <Header className="student-attendance-list">
+                                {moment(data.date).format("MM/DD/YYYY")}
+                              </Header>
                             </Button>
-                        
-                          <div style={{ marginLeft: "auto", color: "#b2b2b2" }}>
-                            {data.time}
-                          </div></div>
+
+                            <Header
+                              className="sixteenFont"
+                              style={{ color: "#a0a0a0" }}
+                            >
+                              {data.time}
+                            </Header>
+                          </Row>
+                        </Col>
                       </Scrollbars>
                     );
                   })}
-                </div>
+                </Row>
               </Col>
 
               {/* Calendar */}
-              <Col span={12} style={CalendarStyle}>
+              <Col span={12} className="attendance-calendar">
                 <Calendar
                   fullscreen={false}
-
                   //sets date value being displayed
                   value={moment(this.state.date)}
-
                   //updates current date value if new date is selected
                   onSelect={(date) => {
-                    this.setState({date: date})}}
-
+                    this.setState({ date: date });
+                  }}
                   //Fills calendar dates
                   dateFullCellRender={(date) => {
-                    let style = CalDatesStyle;
+                    let style;
                     let toolTipActive = false;
                     let hoursWorked;
 
@@ -247,22 +115,31 @@ class AttendanceRecord extends React.Component {
 
                     //Finds if they worked on a specific date
                     const hasWorked = (dd, mm, yy) => {
-                      let daTruth = false;
-                      let facts = false;
+                      let dateType = false;
+                      let isSelected = false;
                       let datesWorked = [];
 
                       student.hours.map((data) => {
                         //splits date string into separate variables
-                        let dateWorked = moment(moment(data.date).format("MM/DD/YYYY"), "MM/DD/YYYY").date();
-                        let monthWorked = moment(moment(data.date).format("MM/DD/YYYY"), "MM/DD/YYYY").month();
-                        let yearWorked = moment(moment(data.date).format("MM/DD/YYYY"), "MM/DD/YYYY").year();
+                        let dateWorked = moment(
+                          moment(data.date).format("MM/DD/YYYY"),
+                          "MM/DD/YYYY"
+                        ).date();
+                        let monthWorked = moment(
+                          moment(data.date).format("MM/DD/YYYY"),
+                          "MM/DD/YYYY"
+                        ).month();
+                        let yearWorked = moment(
+                          moment(data.date).format("MM/DD/YYYY"),
+                          "MM/DD/YYYY"
+                        ).year();
                         let hoursWorked = data.time;
 
                         datesWorked.push({
                           date: dateWorked,
                           month: monthWorked,
                           year: yearWorked,
-                          time: hoursWorked
+                          time: hoursWorked,
                         });
                       });
 
@@ -271,31 +148,40 @@ class AttendanceRecord extends React.Component {
                         if (
                           dd === datesWorked[i].date &&
                           mm === datesWorked[i].month &&
-                          yy === datesWorked[i].year 
+                          yy === datesWorked[i].year
                         ) {
-                          daTruth = true;
-                          facts = true;
+                          dateType = true;
+                          isSelected = true;
                           toolTipActive = true;
                           hoursWorked = datesWorked[i].time;
                           break;
                         } else {
-                          daTruth = false;
+                          dateType = false;
                         }
                       }
 
                       //Date, month, year chosen from detailed list
-                      let selectedDate = moment(this.state.dateList, "MM/DD/YYYY").date();
-                      let selectedMonth = moment(this.state.dateList,"MM/DD/YYYY").month();
-                      let selectedYear = moment(this.state.dateList,"MM/DD/YYYY").year();
+                      let selectedDate = moment(
+                        this.state.dateList,
+                        "MM/DD/YYYY"
+                      ).date();
+                      let selectedMonth = moment(
+                        this.state.dateList,
+                        "MM/DD/YYYY"
+                      ).month();
+                      let selectedYear = moment(
+                        this.state.dateList,
+                        "MM/DD/YYYY"
+                      ).year();
 
                       // more comparisons– date from list compared against dates being displayed in the calendar
                       if (
                         selectedDate === dd &&
                         selectedMonth === mm &&
                         selectedYear === yy &&
-                        facts 
+                        isSelected
                       ) {
-                        daTruth = "superTruth";
+                        dateType = "fromList";
                       }
 
                       if (
@@ -303,38 +189,37 @@ class AttendanceRecord extends React.Component {
                         mm === new Date().getMonth() &&
                         yy === new Date().getFullYear()
                       )
-                        daTruth = "today";
+                        dateType = "today";
 
-                      return daTruth;
+                      return dateType;
                     };
 
                     switch (hasWorked(day, newMonth, newYear)) {
                       case "today":
-                        style = CurrentDateStyle;
+                        style = "attendance-date-current";
                         break;
-                      case "superTruth":
-                        style = IsSelectedStyle;
+                      case "fromList":
+                        style = "attendance-date-selected";
                         break;
                       case true:
-                        style = DaysWorkedStyle;
+                        style = "attendance-date-worked";
                         break;
                       case false:
-                        style = CalDatesStyle;
+                        style = "attendance-date-default";
                       default:
-                        style = CalDatesStyle;
+                        style = "attendance-date-default";
                     }
 
                     return (
-                      <div style={style}>
+                      <div className={style}>
                         <Tooltip
-                            title={toolTipActive ? hoursWorked + " Hours": ""}
+                          title={toolTipActive ? hoursWorked + " Hours" : ""}
                         >
-                            {day}
+                          {day}
                         </Tooltip>
                       </div>
                     );
                   }}
-
                   //Calendar header
                   headerRender={({ value }) => {
                     const start = 0;
@@ -373,14 +258,19 @@ class AttendanceRecord extends React.Component {
                         propsYear != new Date().getFullYear()
                       ) {
                         return (
-                          <HoverButtonStyle
-                            type="link"
-                            onClick={() => {
-                              this.setState({ date: moment(), dateList: moment() });
-                            }}
-                          >
-                            Today
-                          </HoverButtonStyle>
+                          <Row>
+                            <Button
+                              type="link"
+                              onClick={() => {
+                                this.setState({
+                                  date: moment(),
+                                  dateList: moment(),
+                                });
+                              }}
+                            >
+                              Today
+                            </Button>
+                          </Row>
                         );
                       } else {
                         return;
@@ -389,53 +279,57 @@ class AttendanceRecord extends React.Component {
 
                     //returns new header
                     return (
-                      <div>
+                      <Row>
                         {/* Calendar Arrow Buttons + Month/Year Info */}
-                        <div style={CalHeaderStyle}>
-                          <Button
-                            style={ButtonStyle}
-                            size="large"
-                            type="link"
-                            icon={<LeftOutlined />}
-                            onClick={() => {
-                              const currentMonth = month; //number 0-11
-                              const desiredMonth = currentMonth - 1; //back 1 month
+                        <Col span={24}>
+                          <Row justify="center" align="middle">
+                            <Button
+                              size="large"
+                              type="link"
+                              icon={<LeftOutlined />}
+                              onClick={() => {
+                                const currentMonth = month; //number 0-11
+                                const desiredMonth = currentMonth - 1; //back 1 month
 
-                              const newValue = value.clone();
-                              newValue.month(desiredMonth); //get month data
-                              this.setState({ date: newValue }); //display new month data
-                            }}
-                          />
-                          {monthOptions[month].props.children} {year}
-                          <Button
-                            icon={<RightOutlined />}
-                            style={ButtonStyle}
-                            size="large"
-                            type="link"
-                            onClick={() => {
-                              const currentMonth = month; //number 0-11
-                              const desiredMonth = currentMonth + 1; //back forward month
+                                const newValue = value.clone();
+                                newValue.month(desiredMonth); //get month data
+                                this.setState({ date: newValue }); //display new month data
+                              }}
+                            />
+                            <Header className="eighteenFont">
+                              {monthOptions[month].props.children} {year}
+                            </Header>
 
-                              const newValue = value.clone();
-                              newValue.month(desiredMonth); //get month data
-                              this.setState({ date: newValue }); //display new month data
-                            }}
-                          />
-                        </div>
+                            <Button
+                              icon={<RightOutlined />}
+                              className="fourteenFont"
+                              size="large"
+                              type="link"
+                              onClick={() => {
+                                const currentMonth = month; //number 0-11
+                                const desiredMonth = currentMonth + 1; //back forward month
+
+                                const newValue = value.clone();
+                                newValue.month(desiredMonth); //get month data
+                                this.setState({ date: newValue }); //display new month data
+                              }}
+                            />
+                          </Row>
+                        </Col>
 
                         {/* Return to Today Button */}
-                        {monthChecker(month, year)}
-                      </div>
+                        <Row>{monthChecker(month, year)}</Row>
+                      </Row>
                     );
                   }}
                 />
               </Col>
             </Row>
-          </div>
+          </TabContainer>
         </Col>
       </Row>
     );
-  };
-};
+  }
+}
 
 export default AttendanceRecord;

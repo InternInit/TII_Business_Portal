@@ -73,8 +73,8 @@ class InternFeedback extends Component {
               />
             ))}
 
-            <FeedbackBox style={{ marginTop: "12vh" }} />
-            <FeedbackBox style={{ marginTop: "12vh" }} />
+            {/* <FeedbackBox style={{ marginTop: "12vh" }} />
+            <FeedbackBox style={{ marginTop: "12vh" }} /> */}
           </InnerContainer>
         </Container>
       </>
