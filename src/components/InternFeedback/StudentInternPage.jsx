@@ -69,18 +69,12 @@ class InternFeedback extends Component {
                 id={student.Id}
                 position="Position Placeholder"
                 school={student.school ? student.school.name : "Placeholder"}
-<<<<<<< HEAD
-                avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-              />
-            ))}
-=======
                 avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
               />
             ))}
 
             {/* <FeedbackBox style={{ marginTop: "12vh" }} />
             <FeedbackBox style={{ marginTop: "12vh" }} /> */}
->>>>>>> Oscar
           </InnerContainer>
         </Container>
       </>
