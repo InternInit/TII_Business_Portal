@@ -11,7 +11,8 @@ import {
   InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
 
-import { Row as AntRow, Col as AntCol, Avatar, Button } from "antd";
+import { Row as AntRow, Col as AntCol, Avatar, Dropdown, Menu } from "antd";
+import { AiOutlineMenu } from "react-icons/ai";
 
 import InternDashboard from "./InternDashboard.jsx";
 import InternPastFeedback from "./InternPastFeedback.jsx";
@@ -20,16 +21,12 @@ import AttendanceRecord from "./AttendanceRecord.jsx";
 import { Link, Route, Switch as ReactSwitch, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
-import {
-  startInternLoading,
-  finishInternLoading,
-} from "../../redux/actions";
-
+import { startInternLoading, finishInternLoading } from "../../redux/actions";
 
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
-    loadingStatuses: state.loadingStatuses
+    loadingStatuses: state.loadingStatuses,
   };
 };
 
@@ -47,11 +44,41 @@ class InternPageContainer extends Component {
     };
   }
 
+  MobileMenu = (student) => {
+    return (
+      <Menu>
+        <Menu.Item>
+          <Link to={`/my-interns/${student.Id}/dashboard`}>Dashboard</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/my-interns/${student.Id}/attendance`}
+          >
+            Attendance
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/my-interns/${student.Id}/feedback`}
+          >
+            Feedback
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/my-interns/${student.Id}/grades`}
+          >
+            Grades
+          </Link>
+        </Menu.Item>
+      </Menu>
+    );
+  }
+
   findStudent = () => {
     console.log("trying to find");
-    if(!this.props.loadingStatuses.isInternLoading){
+    if (!this.props.loadingStatuses.isInternLoading) {
       const id = this.props.location.pathname.split("/");
-      const foundStudent = this.props.companyInfo.interns.find((student) => student.Id == id[2]);
+      const foundStudent = this.props.companyInfo.interns.find(
+        (student) => student.Id == id[2]
+      );
       console.log(foundStudent);
       this.setState({
         student: foundStudent,
@@ -65,7 +92,7 @@ class InternPageContainer extends Component {
   }
 
   componentDidUpdate() {
-    if(this.state.student === null){
+    if (this.state.student === null) {
       this.findStudent();
     }
   }
@@ -73,7 +100,7 @@ class InternPageContainer extends Component {
   render() {
     const { student, loading } = this.state;
 
-    return (loading || this.props.loadingStatuses.isInternLoading) ? (
+    return loading || this.props.loadingStatuses.isInternLoading ? (
       <>
         <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
         <h1>{`Loading is currently: ${loading}`}</h1>
@@ -89,9 +116,15 @@ class InternPageContainer extends Component {
                 className="mb-1 py-2 px-6 intern-dashboard-banner"
                 style={{ width: "100%" }}
               >
+                <Dropdown overlay={this.MobileMenu(student)} placement="bottomRight">
+                  <AiOutlineMenu className="intern-dashboard-mobile-menu" />
+                </Dropdown>
                 <AntRow>
                   <AntCol className="universal-middle">
-                    <Avatar size={150} src={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`} />
+                    <Avatar
+                      size={150}
+                      src={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                    />
                   </AntCol>
                   <AntCol flex="auto" offset={1}>
                     <AntRow>
@@ -99,7 +132,8 @@ class InternPageContainer extends Component {
                         className="twentyEightFont intern-dashboard-banner-text"
                         color="white"
                       >
-                        {student.formData["0"]["First Name"]} {student.formData["0"]["Last Name"]}
+                        {student.formData["0"]["First Name"]}{" "}
+                        {student.formData["0"]["Last Name"]}
                       </Header>
                     </AntRow>
                     <AntRow>
@@ -156,7 +190,7 @@ class InternPageContainer extends Component {
                   </AntCol>
                 </AntRow>
                 <AntRow className="mt-2" gutter={[16, 0]}>
-                  <AntCol span={4}>
+                  <AntCol xs={0} md={6} xl={4}>
                     <Link to={`/my-interns/${student.Id}/dashboard`}>
                       <NavigationButton
                         block
@@ -175,7 +209,7 @@ class InternPageContainer extends Component {
                       </NavigationButton>
                     </Link>
                   </AntCol>
-                  <AntCol span={4}>
+                  <AntCol xs={0} md={6} xl={4}>
                     <Link to={`/my-interns/${student.Id}/attendance`}>
                       <NavigationButton
                         block
@@ -194,7 +228,7 @@ class InternPageContainer extends Component {
                       </NavigationButton>
                     </Link>
                   </AntCol>
-                  <AntCol span={4}>
+                  <AntCol xs={0} md={6} xl={4}>
                     <Link to={`/my-interns/${student.Id}/feedback`}>
                       <NavigationButton
                         block
@@ -213,7 +247,7 @@ class InternPageContainer extends Component {
                       </NavigationButton>
                     </Link>
                   </AntCol>
-                  <AntCol span={4}>
+                  <AntCol xs={0} md={6} xl={4}>
                     <Link to={`/my-interns/${student.Id}/grades`}>
                       <NavigationButton
                         block
@@ -253,12 +287,9 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/feedback`}
                 exact
-                component={() => <InternPastFeedback student={student}/>}
+                component={() => <InternPastFeedback student={student} />}
               />
-              <Route
-                path={`/my-interns/:id/attendance`}
-                exact
-              />
+              <Route path={`/my-interns/:id/attendance`} exact />
             </ReactSwitch>
           </InnerContainer>
         </PageContainer>
@@ -267,4 +298,7 @@ class InternPageContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InternPageContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InternPageContainer);
