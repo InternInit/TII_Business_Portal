@@ -72,9 +72,6 @@ class InternFeedback extends Component {
                 avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
               />
             ))}
-
-            <FeedbackBox style={{ marginTop: "12vh" }} />
-            <FeedbackBox style={{ marginTop: "12vh" }} />
           </InnerContainer>
         </Container>
       </>
