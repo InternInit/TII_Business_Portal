@@ -19,19 +19,12 @@ import {
 import { CloseOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
 
-
-
-
 import {
   Header,
   FormContainer,
   FilterTag,
   RequiredAsterisk,
 } from "../Styled/FundamentalComponents";
-
-
-
-
 
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
@@ -782,7 +775,11 @@ const InternshipDetailForm = ({
                         on: true,
                         criteria: value,
                       });
-                      form.resetFields(["Criteria", "Priority", "CriteriaRestriction"]);
+                      form.resetFields([
+                        "Criteria",
+                        "Priority",
+                        "CriteriaRestriction",
+                      ]);
                     }}
                     className="universal-left"
                     size="large"
