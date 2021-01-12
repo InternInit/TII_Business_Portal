@@ -11,7 +11,7 @@ const Status = styled.span`
 `;
 
 const PostingTab = (props) => {
-  //Breakpoint calculator for extrasmall screen sizes
+  //Breakpoint calculator for extra small screen sizes
   const screens = useBreakpoint();
 
   const isXs = Object.entries(screens)
