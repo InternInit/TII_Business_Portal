@@ -8,7 +8,6 @@ import {
   Switch as ReactSwitch,
   Redirect,
   useRouteMatch as match,
-  useParams,
 } from "react-router-dom";
 
 //Ant Design
@@ -54,9 +53,7 @@ import CompanyDetails from "./components/CompanyDetails/CompanyDetails";
 import CandidatesContainer from "./components/Candidates/CandidatesContainer.jsx";
 import PositionPost from "./components/InternshipPostings/PositionPost.jsx";
 import InternshipDetails from "./components/InternshipPostings/InternshipDetails.jsx";
-import SchoolContact from "./components/SchoolContact/SchoolContact.jsx";
 import StudentInternPage from "./components/InternFeedback/StudentInternPage.jsx";
-import InternDashboard from "./components/InternFeedback/InternDashboard.jsx";
 import InternPageContainer from "./components/InternFeedback/InternPageContainer.jsx";
 import Login from "./components/LoginSignup/Login";
 import Signup from "./components/LoginSignup/Signup";
@@ -394,12 +391,6 @@ class App extends React.Component {
                 <Route
                   path={`/my-interns/:id`}
                   component={InternPageContainer}
-                />
-
-                <Route
-                  path="/contact-schools"
-                  exact
-                  component={SchoolContact}
                 />
                 <Route path="/applicants" component={CandidatesContainer} />
                 <Route path="/settings" component={CompanyDetails} />

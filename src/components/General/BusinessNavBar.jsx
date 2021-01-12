@@ -28,19 +28,17 @@ const BusinessNavBar = (props) => {
 
   const findPath = () => {
     if (location.pathname.includes("my-interns")) {
-      return "5";
+      return "6";
     } else if (location.pathname.includes("dashboard") || location.pathname === "/") {
       return "1";
     } else if (location.pathname.includes("internship-listings")) {
       return "2";
     } else if (location.pathname.includes("applicants")) {
       return "3";
-    } else if (location.pathname.includes("contact-schools")) {
-      return "4";
     } else if (location.pathname.includes("users")) {
-      return "6";
+      return "4";
     } else {
-      return "7";
+      return "5";
     }
   };
 
@@ -80,27 +78,20 @@ const BusinessNavBar = (props) => {
         </Menu.Item>
 
         <Menu.Item key="4">
-          <Link to="/contact-schools">
-            <SendOutlined />
-            <span>Message School</span>
-          </Link>
-        </Menu.Item>
-
-        <Menu.Item key="5">
           <Link to="/my-interns">
             <ContactsOutlined />
             <span>My Interns</span>
           </Link>
         </Menu.Item>
 
-        <Menu.Item key="6">
+        <Menu.Item key="5">
           <Link to="/users">
             <UserSwitchOutlined />
             <span>User Accounts</span>
           </Link>
         </Menu.Item>
 
-        <Menu.Item key="7">
+        <Menu.Item key="6">
           <Link to="/settings">
             <SettingOutlined />
             <span>Settings</span>
@@ -108,7 +99,7 @@ const BusinessNavBar = (props) => {
         </Menu.Item>
 
         <Menu.Item
-          key="9"
+          key="7"
           style={{ marginTop: "20vh" }}
           onClick={() => {
             props.logout();
