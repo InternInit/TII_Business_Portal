@@ -25,6 +25,11 @@ const InternPastFeedback = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("xs");
 
+  const isLg = Object.entries(screens)
+  .filter((screen) => !!screen[1])
+  .map((breakpoint) => breakpoint[0])
+  .includes("lg");
+
   return (
     <Row>
       <Col span={12} offset={12}>
@@ -36,7 +41,7 @@ const InternPastFeedback = (props) => {
           return (
             <TabContainer>
               {/* Avatar Column */}
-              {isXs ? (
+              {!isLg ? (
                 <Row className="px-1 py-2" gutter={16} wrap={false}>
                   <Col flex="40px">
                     <Avatar src={student.image} size={40} />
@@ -45,7 +50,7 @@ const InternPastFeedback = (props) => {
                     {/* Name & Date Row */}
                     <Row justify="space-between">
                       <Col xl={20}>
-                        <Header className="sixteenFont">
+                        <Header className="eighteenFont">
                           {student.formData[0]["First Name"] +
                             " " +
                             student.formData[0]["Last Name"]}
@@ -59,15 +64,15 @@ const InternPastFeedback = (props) => {
                         lg={24}
                         xl={4}
                       >
-                        <Caption className="fourteenFont" light>
-                          {moment(data.date).format("MM/DD/YYYY")}
+                        <Caption className="twelveFont" light>
+                          <div style={{padding: "0px 0px 6px 0px"}}>{moment(data.date).format("MM/DD/YYYY")}</div>
                         </Caption>
                       </Col>
                     </Row>
 
                     {/* Feedback Row */}
                     <Row>
-                      <Body className="twelveFont universal-left">
+                      <Body className="fourteenFont universal-left">
                         {data.comment.length < 200 ? (
                           <div>
                             {(readMore = false)}
