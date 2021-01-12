@@ -119,7 +119,7 @@ class InternPageContainer extends Component {
                 <Dropdown overlay={this.MobileMenu(student)} placement="bottomRight">
                   <AiOutlineMenu className="intern-dashboard-mobile-menu" />
                 </Dropdown>
-                <AntRow>
+                <AntRow justify="center">
                   <AntCol className="universal-middle">
                     <Avatar
                       size={150}
@@ -127,7 +127,7 @@ class InternPageContainer extends Component {
                     />
                   </AntCol>
                   <AntCol flex="auto" offset={1}>
-                    <AntRow>
+                    <AntRow className="intern-dashboard-banner-text-row">
                       <Header
                         className="twentyEightFont intern-dashboard-banner-text"
                         color="white"
@@ -136,7 +136,7 @@ class InternPageContainer extends Component {
                         {student.formData["0"]["Last Name"]}
                       </Header>
                     </AntRow>
-                    <AntRow>
+                    <AntRow className="intern-dashboard-banner-text-row">
                       <Caption
                         className="eighteenFont intern-dashboard-banner-text"
                         color="white"
@@ -147,12 +147,12 @@ class InternPageContainer extends Component {
                       </Caption>
                     </AntRow>
                     <AntRow className="mt-point-5">
-                      <AntCol span={12}>
+                      <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Phone:</Caption> 6179311128
                         </Caption>
                       </AntCol>
-                      <AntCol span={12}>
+                      <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Name:</Caption>{" "}
                           {"Placeholder Contact"}
@@ -160,13 +160,13 @@ class InternPageContainer extends Component {
                       </AntCol>
                     </AntRow>
                     <AntRow className="mt-point-5">
-                      <AntCol span={12}>
+                      <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Email:</Caption>{" "}
                           {student.formData["0"].Email}
                         </Caption>
                       </AntCol>
-                      <AntCol span={12}>
+                      <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Email:</Caption>{" "}
                           {student.school.email}
@@ -174,13 +174,13 @@ class InternPageContainer extends Component {
                       </AntCol>
                     </AntRow>
                     <AntRow className="mt-point-5">
-                      <AntCol span={12}>
+                      <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">School:</Caption>{" "}
                           {student.school.name}
                         </Caption>
                       </AntCol>
-                      <AntCol span={12}>
+                      <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Phone:</Caption>{" "}
                           {student.school.phone}

@@ -43,6 +43,12 @@
     color: white;
   }
 
+  &-banner-text-row {
+    @include md {
+      justify-content: center;
+    }
+  }
+
   &-shortened-feedback {
     position: relative;
 
