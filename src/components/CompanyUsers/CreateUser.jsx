@@ -12,7 +12,6 @@ import {
   Switch,
   Select,
   Row as AntRow,
-  Col as AntCol,
 } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Label } from "../LoginSignup/SignupLogin";
@@ -23,6 +22,7 @@ import {
 } from "../Styled/FundamentalComponents.jsx";
 
 import { withRouter, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import axios from "axios";
 
@@ -34,6 +34,12 @@ const schema = new passwordValidator();
 const headerClassNames = "twentyFont mb-point-5";
 
 schema.is().min(8).has().uppercase().has().lowercase().has().digits();
+
+const mapStateToProps = (state) => {
+  return {
+    listings: state.listings,
+  };
+};
 
 const validationRules = (required, inputName, type, pattern) => [
   {
@@ -74,11 +80,15 @@ const formItemProps = {
 class CreateUser extends React.Component {
   state = {
     isAdmin: false,
+    applicantActionValue: "",
   };
+  formRef = React.createRef();
 
   toggleAdmin = (value) => {
-    if (value === "admin") this.setState({ isAdmin: true });
-    else this.setState({ isAdmin: false });
+    if (value === "admin") {
+      this.setState({ isAdmin: true });
+      this.formRef.current.setFieldsValue({ "Applicant Actions": "full" });
+    } else this.setState({ isAdmin: false });
   };
 
   render() {
@@ -95,7 +105,7 @@ class CreateUser extends React.Component {
                 Create User
               </Breadcrumb.Item>
             </Breadcrumb>
-            <FormContainer style={{paddingBottom: "2em"}}>
+            <FormContainer style={{ paddingBottom: "2em" }}>
               <Form onFinish={this.handleSubmit} ref={this.formRef}>
                 <Header
                   className="twentyEightFont universal-center mb-1"
@@ -148,21 +158,31 @@ class CreateUser extends React.Component {
                   </Select>
                 </Form.Item>
 
-                {this.state.isAdmin ? null : (
-                  <>
-                    <Label style={{ marginTop: "4vh" }}>Permission 2</Label>
-                    <Switch />
+                <Header className={headerClassNames}>Listing Access</Header>
+                <Form.Item name="Listing Access" key="listingAccess">
+                  <Select
+                    placeholder="Pick Accessible Listings"
+                    size="large"
+                    mode="multiple"
+                  >
+                    {this.props.listings.map((listing, index) => (
+                      <Option value={listing.Title} key={index}>
+                        {listing.Title}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
 
-                    <Label style={{ marginTop: "4vh" }}>Permission 3</Label>
-                    <Switch />
-
-                    <Label style={{ marginTop: "4vh" }}>Permission 4</Label>
-                    <Switch />
-
-                    <Label style={{ marginTop: "4vh" }}>Permission 5</Label>
-                    <Switch style={{ marginBottom: "4vh" }} />
-                  </>
-                )}
+                <Header className={headerClassNames}>
+                  {this.state.applicantActionValue}
+                </Header>
+                <Header className={headerClassNames}>Applicant Actions</Header>
+                <Form.Item name="Applicant Actions" key="applicantActions">
+                  <Select placeholder="Pick Applicant Actions" size="large">
+                    <Option value="full">Full Access</Option>
+                    <Option value="read">Read only</Option>
+                  </Select>
+                </Form.Item>
                 <AntRow justify="end">
                   <Button type="primary" size="large" htmlType="submit">
                     Create Account
@@ -197,4 +217,4 @@ class CreateUser extends React.Component {
     });
   };
 }
-export default CreateUser;
+export default withRouter(connect(mapStateToProps)(CreateUser));
