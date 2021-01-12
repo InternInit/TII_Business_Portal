@@ -1,146 +1,160 @@
-import React from 'react';
+import React from "react";
 
-import { 
-    Typography,
-    Row, 
-    Col,
-    Avatar,
-    Button
-} from "antd";
+import { Row, Col, Avatar, Button, Grid } from "antd";
 
-import { Header, Body } from "../Styled/FundamentalComponents.jsx";
+import {
+  Header,
+  Body,
+  Caption,
+  TabContainer,
+} from "../Styled/FundamentalComponents.jsx";
 
-const { Paragraph } = Typography;
+import moment from "moment";
 
-//CSS Constants
-const CardStyle = {
-    position: "relative",
+const InternPastFeedback = (props) => {
+  // let filler =
+  //   "tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed";
+  let { student } = props;
+  let readMore = false;
 
-    backgroundColor: "white",
-    borderRadius: "16px",
-    boxShadow: "1px 1px 5px -4px",
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
 
-    paddingRight: "5%",
-    paddingBottom: "1em",
-    paddingTop: "2em",
-    paddingLeft: "3.5%",
+  const isXs = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("xs");
 
-    marginBottom: "1em"
-};
+  return (
+    <Row>
+      <Col span={12} offset={12}>
+        <Header className="twentyEightFont" bolded>
+          Past Feedback
+        </Header>
 
-const AvatarStyle = {
-    paddingLeft: "3.5%"
-};
+        {student.feedback.map((data) => {
+          return (
+            <TabContainer>
+              {/* Avatar Column */}
+              {isXs ? (
+                <Row className="px-1 py-2" gutter={16} wrap={false}>
+                  <Col flex="40px">
+                    <Avatar src={student.image} size={40} />
+                  </Col>
+                  <Col flex="auto">
+                    {/* Name & Date Row */}
+                    <Row justify="space-between">
+                      <Col xl={20}>
+                        <Header className="sixteenFont">
+                          {student.formData[0]["First Name"] +
+                            " " +
+                            student.formData[0]["Last Name"]}
+                        </Header>
+                      </Col>
 
-const NameStyle = {
-    fontSize: "22px", 
-    paddingLeft: "3.5%",
-    paddingBottom: "5px",
+                      <Col
+                        className="universal-middle"
+                        sm={24}
+                        m={24}
+                        lg={24}
+                        xl={4}
+                      >
+                        <Caption className="fourteenFont" light>
+                          {moment(data.date).format("MM/DD/YYYY")}
+                        </Caption>
+                      </Col>
+                    </Row>
 
-    marginTop: "5px"
-};
+                    {/* Feedback Row */}
+                    <Row>
+                      <Body className="twelveFont universal-left">
+                        {data.comment.length < 200 ? (
+                          <div>
+                            {(readMore = false)}
+                            {data.comment}
+                          </div>
+                        ) : (
+                          <div
+                            className="intern-dashboard-shortened-feedback"
+                            style={{ height: "80px", overflow: "hidden" }}
+                          >
+                            {(readMore = true)}
+                            {data.comment}
+                          </div>
+                        )}
+                      </Body>
+                    </Row>
 
-const DateStyle = {
-    color: "#b2b2b2",
-    fontSize: "14px",
-    marginLeft: "auto"
-};
-
-const ContainerStyle = {
-    display: "flex",
-    flexDirection: "row"
-};
-
-const FeedbackStyle = {
-    paddingLeft: "3.5%",
-    text: "justify"
-};
-
-const ButtonStyle = {
-    float: "right", 
-    paddingTop: "3px"
-};
-
-const FeedbackInfoStyle = {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
-};
-
-class InternPastFeedback extends React.Component {
-    render() {
-        let {student} = this.props;
-
-        return(
-            <div>
-                <Row>
-                    <Col span={12} offset={12}>
-                        <Header bolded style={{"font-size": "26px"}}>Past Feedback</Header>
-
-                            {student.review.map((data) => {
-                                return(
-                                    <Row style={CardStyle}>
-                                        <div style={ContainerStyle}>
-
-                                            {/* 
-                                                Avatar Column
-                                            */}
-                                            <Col flex="48px" style={{paddingTop: "7px", marginTop: "1px"}}>
-                                                <div style={AvatarStyle}>
-                                                    <Avatar src={student.image} size={48}/>
-                                                </div>
-                                            </Col>
-
-                                            {/* 
-                                                Name, Date, Comment Column
-                                            */}
-                                            <Col flex="auto">
-
-                                                {/* 
-                                                    Name & Date Row
-                                                */}
-                                                <div style={FeedbackInfoStyle}>
-                                                    <div style={NameStyle}>
-                                                        {student.firstName + " " + student.lastName}
-                                                    </div>
-
-                                                    <div style={DateStyle}>
-                                                        {data.date}
-                                                    </div>
-                                                </div>
-
-                                                {/* 
-                                                    Feedback Row
-                                                */}
-                                                <div style={FeedbackStyle}>
-                                                    <Body className="fourteenFont universal-left">
-                                                        {data.comment < 200 ? (
-                                                            <div>{data.comment}</div>
-                                                        ) : (
-                                                            <div
-                                                            className="intern-dashboard-shortened-feedback"
-                                                            style={{ height: "80px", overflow: "hidden" }}
-                                                            >
-                                                            {data.comment}
-                                                            </div>
-                                                        )}
-                                                    </Body>
-                                                </div>
-
-                                                {/* 
-                                                    Read more Button
-                                                */}
-                                                <Button type="link" style={ButtonStyle}>Read more</Button>
-                                            </Col>
-                                        </div>
-                                    </Row>
-                                );
-                            })}
-                    </Col>
+                    {/* Read more Button */}
+                    <Row justify="end">
+                      {readMore ? <Button type="link">Read more</Button> : null}
+                    </Row>
+                  </Col>
                 </Row>
-            </div>
-        );
-    };
+              ) : (
+                <Row className="px-3 py-2" gutter={16} wrap={false}>
+                  <Col flex="48px">
+                    <Avatar src={student.image} size={48} />
+                  </Col>{" "}
+                  <Col flex="auto">
+                    {/* Name & Date Row */}
+                    <Row justify="space-between">
+                      <Col xl={20}>
+                        <Header className="twentyTwoFont">
+                          {student.formData[0]["First Name"] +
+                            " " +
+                            student.formData[0]["Last Name"]}
+                        </Header>
+                      </Col>
+
+                      <Col
+                        className="universal-middle"
+                        sm={24}
+                        m={24}
+                        lg={24}
+                        xl={4}
+                      >
+                        <Caption className="fourteenFont" light>
+                          {moment(data.date).format("MM/DD/YYYY")}
+                        </Caption>
+                      </Col>
+                    </Row>
+
+                    {/* Feedback Row */}
+                    <Row>
+                      <Body className="fourteenFont universal-left">
+                        {data.comment.length < 200 ? (
+                          <div>
+                            {(readMore = false)}
+                            {data.comment}
+                          </div>
+                        ) : (
+                          <div
+                            className="intern-dashboard-shortened-feedback"
+                            style={{ height: "80px", overflow: "hidden" }}
+                          >
+                            {(readMore = true)}
+                            {data.comment}
+                          </div>
+                        )}
+                      </Body>
+                    </Row>
+
+                    {/* Read more Button */}
+                    <Row justify="end">
+                      {readMore ? <Button type="link">Read more</Button> : null}
+                    </Row>
+                  </Col>
+                </Row>
+              )}
+
+              {/* Name, Date, Comment Column */}
+            </TabContainer>
+          );
+        })}
+      </Col>
+    </Row>
+  );
 };
 
 export default InternPastFeedback;
