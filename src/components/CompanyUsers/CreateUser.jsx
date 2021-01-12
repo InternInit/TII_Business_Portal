@@ -9,12 +9,11 @@ import {
   Form,
   Breadcrumb,
   Divider,
-  Switch,
+  PageHeader,
   Select,
   Row as AntRow,
 } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import { Label } from "../LoginSignup/SignupLogin";
 import {
   PageContainer,
   FormContainer,
@@ -25,6 +24,7 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import axios from "axios";
+import _ from "underscore";
 
 const passwordValidator = require("password-validator");
 const { Option } = Select;
@@ -87,8 +87,14 @@ class CreateUser extends React.Component {
   toggleAdmin = (value) => {
     if (value === "admin") {
       this.setState({ isAdmin: true });
-      this.formRef.current.setFieldsValue({ "Applicant Actions": "full" });
-    } else this.setState({ isAdmin: false });
+      this.formRef.current.setFieldsValue({
+        "Applicant Actions": "full",
+        "Listing Access": _.pluck(this.props.listings, "Title"),
+      });
+    } else {
+      this.setState({ isAdmin: false });
+      this.formRef.current.resetFields(["Applicant Actions", "Listing Access"]);
+    }
   };
 
   render() {
@@ -106,6 +112,18 @@ class CreateUser extends React.Component {
               </Breadcrumb.Item>
             </Breadcrumb>
             <FormContainer style={{ paddingBottom: "2em" }}>
+              <PageHeader
+                onBack={() => this.props.history.push("/users")}
+                style={{ position: "absolute", left: "3.5em", top: "1em" }}
+                title={
+                  <Link
+                    to="/users"
+                    style={{ fontWeight: "normal", color: "#262626" }}
+                  >
+                    Back to Users
+                  </Link>
+                }
+              />
               <Form onFinish={this.handleSubmit} ref={this.formRef}>
                 <Header
                   className="twentyEightFont universal-center mb-1"
@@ -161,6 +179,7 @@ class CreateUser extends React.Component {
                 <Header className={headerClassNames}>Listing Access</Header>
                 <Form.Item name="Listing Access" key="listingAccess">
                   <Select
+                    disabled={this.state.isAdmin}
                     placeholder="Pick Accessible Listings"
                     size="large"
                     mode="multiple"
@@ -178,12 +197,16 @@ class CreateUser extends React.Component {
                 </Header>
                 <Header className={headerClassNames}>Applicant Actions</Header>
                 <Form.Item name="Applicant Actions" key="applicantActions">
-                  <Select placeholder="Pick Applicant Actions" size="large">
+                  <Select
+                    disabled={this.state.isAdmin}
+                    placeholder="Pick Applicant Actions"
+                    size="large"
+                  >
                     <Option value="full">Full Access</Option>
                     <Option value="read">Read only</Option>
                   </Select>
                 </Form.Item>
-                <AntRow justify="end">
+                <AntRow className="mt-3" justify="end">
                   <Button type="primary" size="large" htmlType="submit">
                     Create Account
                   </Button>
