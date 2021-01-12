@@ -50,23 +50,25 @@ const InternPastFeedback = (props) => {
                     {/* Name & Date Row */}
                     <Row justify="space-between">
                       <Col xl={20}>
-                        <Header className="eighteenFont">
+                        <Header className="twentyFont">
                           {student.formData[0]["First Name"] +
                             " " +
                             student.formData[0]["Last Name"]}
                         </Header>
                       </Col>
 
-                      <Col
+                      <Col 
+                      //style={{backgroundColor: "red"}}
                         className="universal-middle"
                         sm={24}
                         m={24}
-                        lg={24}
-                        xl={4}
                       >
+                        <Row justify="start">
                         <Caption className="twelveFont" light>
                           <div style={{padding: "0px 0px 6px 0px"}}>{moment(data.date).format("MM/DD/YYYY")}</div>
                         </Caption>
+                        </Row>
+
                       </Col>
                     </Row>
 
