@@ -3,42 +3,37 @@ import styled from "styled-components";
 
 import NavSearch from "../General/NavSearch.jsx";
 
-import { Input, Button, Form, Popover, Divider, Switch } from "antd";
+import {
+  Input,
+  Button,
+  Form,
+  Breadcrumb,
+  Divider,
+  Switch,
+  Select,
+  Row as AntRow,
+  Col as AntCol,
+} from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Label } from "../LoginSignup/SignupLogin";
 import {
   PageContainer,
-  TabContainer,
-  InnerContainer
+  FormContainer,
+  Header,
 } from "../Styled/FundamentalComponents.jsx";
+
+import { withRouter, Link } from "react-router-dom";
 
 import axios from "axios";
 
 const passwordValidator = require("password-validator");
+const { Option } = Select;
 
 const schema = new passwordValidator();
 
+const headerClassNames = "twentyFont mb-point-5";
+
 schema.is().min(8).has().uppercase().has().lowercase().has().digits();
-
-export const SignupContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  width: 100%;
-  height: auto;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-
-  padding-bottom: 24px;
-`;
-
-const pageStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  float: "center",
-  backgroundColor: "#eceff9",
-};
 
 const validationRules = (required, inputName, type, pattern) => [
   {
@@ -51,87 +46,131 @@ const validationRules = (required, inputName, type, pattern) => [
 
 const formItemProps = {
   username: {
+    name: "Username",
+    key: "username",
+    required: true,
     rules: validationRules(true, "username", "string"),
   },
   email: {
+    name: "Email",
+    key: "email",
+    required: true,
     rules: validationRules(true, "email", "email"),
   },
   name: {
+    name: "Name",
+    key: "name",
+    required: true,
     rules: validationRules(true, "name", "string"),
+  },
+  password: {
+    name: "Password",
+    key: "password",
+    required: true,
+    rules: validationRules(true, "password", "string"),
   },
 };
 
 class CreateUser extends React.Component {
+  state = {
+    isAdmin: false,
+  };
+
+  toggleAdmin = (value) => {
+    if (value === "admin") this.setState({ isAdmin: true });
+    else this.setState({ isAdmin: false });
+  };
+
   render() {
     return (
       <React.Fragment>
         <PageContainer>
           <NavSearch title="Create Company Account" searchBar={false} />
-            <div className="px-8 py-2" style={{ width: "100%"}}>
-            <SignupContainer>
-              <div style={{ width: "70%" }}>
-                <Form onFinish={this.handleSubmit} ref={this.formRef}>
-                  <Label style={{ marginTop: "24px" }}>Username</Label>
-                  <Form.Item {...formItemProps.username} name="username">
-                    <Input />
-                  </Form.Item>
+          <div className="px-8 py-2" style={{ width: "100%" }}>
+            <Breadcrumb style={{ paddingBottom: "1em" }}>
+              <Breadcrumb.Item className="twentyFont">
+                <Link to="/users">Users</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item className="twentyFont">
+                Create User
+              </Breadcrumb.Item>
+            </Breadcrumb>
+            <FormContainer style={{paddingBottom: "2em"}}>
+              <Form onFinish={this.handleSubmit} ref={this.formRef}>
+                <Header
+                  className="twentyEightFont universal-center mb-1"
+                  bolded
+                >
+                  Create a New User
+                </Header>
+                <Header className={headerClassNames}>Username</Header>
+                <Form.Item {...formItemProps.username}>
+                  <Input size="large" placeholder="Username" />
+                </Form.Item>
+                <Header className={headerClassNames}>Name</Header>
+                <Form.Item {...formItemProps.name}>
+                  <Input size="large" placeholder="Name" />
+                </Form.Item>
+                <Header className={headerClassNames}>Email</Header>
+                <Form.Item {...formItemProps.email}>
+                  <Input size="large" placeholder="Email" />
+                </Form.Item>
+                <Header className={headerClassNames}>Temporary Password</Header>
+                <Form.Item {...formItemProps.password}>
+                  <Input.Password
+                    size="large"
+                    placeholder="Temporary Password"
+                    iconRender={(visible) =>
+                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                    }
+                  />
+                </Form.Item>
 
-                  <Label>Name</Label>
-                  <Form.Item {...formItemProps.name} name="name">
-                    <Input />
-                  </Form.Item>
-
-                  <Label>Email</Label>
-                  <Form.Item {...formItemProps.email} name="email">
-                    <Input />
-                  </Form.Item>
-
-                  <Divider style={{ fontFamily: "roboto" }}>
-                    Permissions
+                <AntRow align="middle">
+                  <Divider>
+                    <Header className="twentyFourFont" bolded>
+                      Permissions
+                    </Header>
                   </Divider>
+                </AntRow>
 
-                  <Label style={{ marginTop: "4vh" }}>Administrator</Label>
-                  <Form.Item name="admin-state">
-                    <Switch />
-                  </Form.Item>
-
-                  <Label style={{ marginTop: "4vh" }}>Permission 2</Label>
-                  <Switch />
-
-                  <Label style={{ marginTop: "4vh" }}>Permission 3</Label>
-                  <Switch />
-
-                  <Label style={{ marginTop: "4vh" }}>Permission 4</Label>
-                  <Switch />
-
-                  <Label style={{ marginTop: "4vh" }}>Permission 5</Label>
-                  <Switch style={{ marginBottom: "4vh" }} />
-
-                  <div
-                    style={{
-                      width: "100%",
-                      justifyContent: "center",
-                      display: "flex",
-                    }}
+                <Header className={headerClassNames}>Role</Header>
+                <Form.Item name="Role" key="role">
+                  <Select
+                    placeholder="Choose Site Role"
+                    size="large"
+                    onChange={(value) => this.toggleAdmin(value)}
                   >
-                    <Button
-                      className="profile-button-style"
-                      type="primary"
-                      htmlType="submit"
-                      style={{
-                        width: "50%",
+                    <Option value="admin">Administrator</Option>
+                    <Option value="applicationReader">
+                      Application Reader
+                    </Option>
+                  </Select>
+                </Form.Item>
 
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      Create Account
-                    </Button>
-                  </div>
-                </Form>
-              </div>
-            </SignupContainer>
-            </div>
+                {this.state.isAdmin ? null : (
+                  <>
+                    <Label style={{ marginTop: "4vh" }}>Permission 2</Label>
+                    <Switch />
+
+                    <Label style={{ marginTop: "4vh" }}>Permission 3</Label>
+                    <Switch />
+
+                    <Label style={{ marginTop: "4vh" }}>Permission 4</Label>
+                    <Switch />
+
+                    <Label style={{ marginTop: "4vh" }}>Permission 5</Label>
+                    <Switch style={{ marginBottom: "4vh" }} />
+                  </>
+                )}
+                <AntRow justify="end">
+                  <Button type="primary" size="large" htmlType="submit">
+                    Create Account
+                  </Button>
+                </AntRow>
+              </Form>
+            </FormContainer>
+          </div>
         </PageContainer>
       </React.Fragment>
     );
