@@ -113,6 +113,7 @@ class CreateUser extends React.Component {
             </Breadcrumb>
             <FormContainer style={{ paddingBottom: "2em" }}>
               <PageHeader
+                className="rm-lg"
                 onBack={() => this.props.history.push("/users")}
                 style={{ position: "absolute", left: "3.5em", top: "1em" }}
                 title={

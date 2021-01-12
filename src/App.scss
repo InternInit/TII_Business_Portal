@@ -39,6 +39,27 @@ a:hover {
   cursor: pointer;
 }
 
+.rm-sm {
+  @include sm {
+    display: none;
+  }
+}
+.rm-md {
+  @include md {
+    display: none;
+  }
+}
+.rm-lg {
+  @include lg {
+    display: none;
+  }
+}
+.rm-xl {
+  @include xl {
+    display: none;
+  }
+}
+
 .global-container {
   background-color: $gray-1;
   height: 100vh;
