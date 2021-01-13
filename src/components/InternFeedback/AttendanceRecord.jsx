@@ -57,7 +57,11 @@ const AttendanceRecord = (props) => {
 
   return (
     <Row className="mt-1" justify="end">
-      <Col className="pr-2" sm={{span: 10, order: 1}} xs={{span: 24, order: 2}}>
+      <Col
+        className="pr-2"
+        sm={{ span: 10, order: 1 }}
+        xs={{ span: 24, order: 2 }}
+      >
         <Header bolded className="twentyTwoFont mb-point-25">
           To Be Approved
         </Header>
@@ -71,6 +75,8 @@ const AttendanceRecord = (props) => {
               .map((hour, index) => (
                 <AttendanceCard
                   key={index}
+                  studentId={props.student.Id}
+                  hoursId={hour.Id}
                   time={hour.time}
                   date={hour.dateFormatted}
                   review={true}
@@ -81,6 +87,8 @@ const AttendanceRecord = (props) => {
               .map((hour, index) => (
                 <AttendanceCard
                   key={index}
+                  studentId={props.student.Id}
+                  hoursId={hour.Id}
                   time={hour.time}
                   date={hour.dateFormatted}
                   review={true}
@@ -98,7 +106,7 @@ const AttendanceRecord = (props) => {
           />
         </Row>
       </Col>
-      <Col sm={{span: 14, order: 2}} xs={{span: 24, order: 1}}>
+      <Col sm={{ span: 14, order: 2 }} xs={{ span: 24, order: 1 }}>
         <Header bolded className="twentyTwoFont">
           Attendance Record
         </Header>
@@ -198,7 +206,7 @@ const AttendanceRecord = (props) => {
                               className="sixteenFont mr-point-5"
                               color="#a0a0a0"
                             >
-                                {data.time}
+                              {data.time}
                             </Header>
                           </Row>
                         </Col>

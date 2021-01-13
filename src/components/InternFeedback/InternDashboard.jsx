@@ -40,6 +40,8 @@ const InternDashboard = (props) => {
                 .map((hour, index) => (
                   <AttendanceCard
                     key={index}
+                    studentId={props.student.Id}
+                    hoursId={hour.Id}
                     time={hour.time}
                     date={hour.dateFormatted}
                     review={true}
@@ -50,6 +52,8 @@ const InternDashboard = (props) => {
                 .map((hour, index) => (
                   <AttendanceCard
                     key={index}
+                    studentId={props.student.Id}
+                    hoursId={hour.Id}
                     time={hour.time}
                     date={hour.dateFormatted}
                     review={true}

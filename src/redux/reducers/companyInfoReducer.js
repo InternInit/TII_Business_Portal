@@ -1,3 +1,5 @@
+import _ from "underscore";
+
 const companyInfoReducer = (
   state = {
     name: "",
@@ -64,6 +66,15 @@ const companyInfoReducer = (
       return {
         ...state,
         candidates: newCandidates
+      }
+    case "APPROVE_HOURS":
+      let students = state.interns;
+      let studentIndex = _.findIndex(students, { Id: action.internId });
+      let hoursIndex = _.findIndex(students[studentIndex].hours, { Id: action.hourId });
+      students[studentIndex].hours[hoursIndex].isApproved = true;
+      return {
+        ...state,
+        interns: students
       }
     default:
       return state;
