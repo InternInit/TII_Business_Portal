@@ -1,5 +1,19 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
 .dashboard-container {
     height: 90vh; 
     display: flex; 
     flex-direction: column;
+}
+
+.dashboard-tab{
+    margin-bottom: 12px;
+
+    &:hover {
+        transition-duration: 0.35s;
+        cursor: pointer;
+        box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+      }
 }

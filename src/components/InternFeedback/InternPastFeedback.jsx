@@ -39,7 +39,7 @@ const InternPastFeedback = (props) => {
 
         {student.feedback.map((data) => {
           return (
-            <TabContainer>
+            <TabContainer style={{marginBottom: "1em"}}>
               {/* Avatar Column */}
               {!isLg ? (
                 <Row className="px-1 py-2" gutter={16} wrap={false}>

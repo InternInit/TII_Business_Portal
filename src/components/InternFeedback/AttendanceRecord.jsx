@@ -43,7 +43,7 @@ const AttendanceRecord = (props) => {
     <Row justify="end">
       <Col
         xl={14}
-        sm={14}
+        sm={16}
         xs={24}
       >
         <Header bolded className="twentyEightFont">
@@ -76,8 +76,8 @@ const AttendanceRecord = (props) => {
                   justify="space-between"
                   style={{ paddingBottom: "12px", paddingRight: "23px" }}
                 >
-                  <Header className="eighteenFont">Date</Header>
-                  <Header className="eighteenFont">Time</Header>
+                  <Header className="twentyFont">Date</Header>
+                  <Header className="twentyFont">Hours Worked</Header>
                 </Row>
               )}
 

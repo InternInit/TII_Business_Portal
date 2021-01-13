@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Layout, Skeleton, Row as AntRow, Col as AntCol } from "antd";
@@ -11,23 +11,25 @@ import NavSearch from "../General/NavSearch.jsx";
 import {
   PageContainer,
   InnerContainer,
+  Header
 } from "../Styled/FundamentalComponents.jsx";
 
 import axios from "axios";
 
-const Header = styled.h1`
-  font-weight: 500;
-  color: #262626;
-`;
+// const Header = styled.h1`
+//   font-weight: 500;
+//   color: #262626;
+// `;
 
-class MainPage extends React.Component {
-  state = {
+const MainPage = (props) => {
+   const [state, setState] = useState({
     students: [],
     business: null,
-  };
+  });
 
-  render() {
-    let { candidates, listings } = this.props;
+
+    let { candidates, listings } = props;
+    console.log(candidates)
 
     return (
       <PageContainer>
@@ -35,19 +37,25 @@ class MainPage extends React.Component {
 
         <InnerContainer className="py-2">
           <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
+
+            {/* Listings */}
             <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
-              <Header className="twentyFont mb-point-5"> Listings</Header>
+              <Header className="twentyEightFont mb-point-5"> Listings</Header>
+              {/* Why the slice? only shows first 5 listings */}
               {listings.slice(0, 5).map((post) => (
                 <PageListings
                   name={post.Title}
-                  interns={0}
-                  accepted={0}
-                  total={post.interns + post.interns}
+                  interns={420}
+                  accepted={69}
+                  total={"Total???"}
+                  industry={post.Industries}
                 />
               ))}
             </AntCol>
+
+            {/* Incoming Applicants */}
             <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
-              <Header className="twentyFont mb-point-5">
+              <Header className="twentyEightFont mb-point-5">
                 Incoming Applicants
               </Header>
               {candidates
@@ -56,13 +64,15 @@ class MainPage extends React.Component {
                   <StudentCard
                     firstName={student.formData["0"]["First Name"]}
                     lastName={student.formData["0"]["Last Name"]}
-                    age={" (" + student.formData["1"]["Age"] + ")"}
+                    age={"," + student.formData["1"]["Age"] + ""}
                     avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
                   />
                 ))}
             </AntCol>
+
+            {/* Only appears on small screens */}
             <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
-              <Header className="twentyFont mb-point-5">
+            <Header className="twentyEightFont mb-point-5">
                 To be Interviewed
               </Header>
               {candidates
@@ -79,11 +89,12 @@ class MainPage extends React.Component {
           </AntRow>
           <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
             <AntCol xs={24} sm={24} lg={16}>
-              <Header className="twentyFont mb-point-5">Current Interns</Header>
+              <Header className="twentyEightFont mb-point-5">Current Interns</Header>
               <PageFeedback />
             </AntCol>
+            {/* Only appears on big screens */}
             <AntCol xs={0} lg={8}>
-              <Header className="twentyFont mb-point-5">
+              <Header className="twentyEightFont mb-point-5">
                 To be Interviewed
               </Header>
               {candidates
@@ -104,6 +115,6 @@ class MainPage extends React.Component {
         </InnerContainer>
       </PageContainer>
     );
-  }
+  
 }
 export default MainPage;
