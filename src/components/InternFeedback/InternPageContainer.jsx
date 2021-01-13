@@ -155,7 +155,7 @@ class InternPageContainer extends Component {
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Name:</Caption>{" "}
-                          {"Placeholder Contact"}
+                          {"Placeholder Name"}
                         </Caption>
                       </AntCol>
                     </AntRow>

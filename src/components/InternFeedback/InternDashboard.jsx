@@ -30,8 +30,9 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Attendance Sheet
           </Header>
-          {props.student.hours.length > 5
+          {props.student.hours.filter((day) => !day.isApproved).length > 5
             ? props.student.hours
+                .filter((day) => !day.isApproved)
                 .slice(
                   page * ATTENDANCE_PER_PAGE,
                   (page + 1) * ATTENDANCE_PER_PAGE
@@ -44,18 +45,20 @@ const InternDashboard = (props) => {
                     review={true}
                   />
                 ))
-            : props.student.hours.map((hour, index) => (
-                <AttendanceCard
-                  key={index}
-                  time={hour.time}
-                  date={hour.dateFormatted}
-                  review={true}
-                />
-              ))}
+            : props.student.hours
+                .filter((day) => !day.isApproved)
+                .map((hour, index) => (
+                  <AttendanceCard
+                    key={index}
+                    time={hour.time}
+                    date={hour.dateFormatted}
+                    review={true}
+                  />
+                ))}
           <AntRow justify="center">
             <Pagination
               current={page + 1}
-              total={props.student.hours.length}
+              total={props.student.hours.filter(day => !day.isApproved).length}
               showLessItems={true}
               pageSize={ATTENDANCE_PER_PAGE}
               onChange={(pageChange) => changePage(pageChange - 1)}
@@ -84,7 +87,7 @@ const InternDashboard = (props) => {
                   name={props.student.firstName}
                   feedback={feedback}
                 />
-            ))}
+              ))}
         </AntCol>
         <AntCol className="mt-1 pl-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
@@ -203,7 +206,7 @@ const GradeCard = (props) => {
             >
               Overdue
             </BorderlessTag>
-          ) : reviewDate.value < 5 && reviewDate.unit == "days" ? (
+          ) : reviewDate.value < 5 && reviewDate.unit === "days" ? (
             <BorderlessTag
               className="px-1-5"
               color="#fa541c"
