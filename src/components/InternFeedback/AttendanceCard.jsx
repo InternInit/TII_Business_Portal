@@ -22,6 +22,10 @@ const mapStateToProps = (state) => {
 const AttendanceCard = (props) => {
 
   const handleClick = () => {
+    /**
+     * @TODO
+     * Add graphql call to update database for approved id
+     */
     props.approveHours(props.studentId, props.hoursId);
   }
 
