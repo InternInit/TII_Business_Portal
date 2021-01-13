@@ -195,8 +195,8 @@ const StudentInfo = (props) => {
                  */}
                 <AntRow style={{ marginTop: "-5px" }}>
                   <Caption className="twentyFont" light thin>
-                    {student.position
-                      ? student.position
+                    {loadStudent.appliedFor
+                      ? loadStudent.appliedFor
                       : "Social Media Intern Placeholder"}
                   </Caption>
                 </AntRow>
@@ -274,8 +274,8 @@ const StudentInfo = (props) => {
                   </AntCol>
                   <AntCol sm={16} lg={20}>
                     <Caption className="sixteenFont" bolded>
-                      {student[0]["Applied For"]
-                        ? student[0]["Applied For"]
+                      {loadStudent.appliedFor
+                        ? loadStudent.appliedFor
                         : "Placeholder"}
                     </Caption>
                   </AntCol>

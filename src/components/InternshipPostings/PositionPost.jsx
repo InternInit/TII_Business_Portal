@@ -7,9 +7,10 @@ import InfoBar from "../General/InfoBar.jsx";
 import {
   PageContainer,
   InnerContainer,
-  TabContainer,
+  Caption,
   Header,
 } from "../Styled/FundamentalComponents";
+import { AiOutlineDatabase } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 
@@ -77,7 +78,7 @@ class PositionPost extends Component {
           <InfoBar
             mobileHeader="Postings"
             fieldOne={{ name: "Name", sm: 9, lg: 7 }}
-            fieldTwo={{ name: "Status",  sm: 3, lg: 5 }}
+            fieldTwo={{ name: "Status", sm: 3, lg: 5 }}
             fieldThree={{ name: "Applicants", sm: 6, lg: 6 }}
             fieldFour={{ name: "Edit Details", sm: 6, lg: 6 }}
           />
@@ -89,16 +90,33 @@ class PositionPost extends Component {
                 name={post.Title}
                 interns="0"
                 id={post.Id}
+                industry={post.Industries}
               />
             ))
           ) : (
-            <TabContainer className="mt-1-5 py-2 px-6 universal-center">
+            <div className="py-2-5 universal-center ">
               <AntRow justify="center" align="middle">
-                <Header className="twentyFourFont">
-                  You Don't Currently Have Any Internship Postings
+                <AiOutlineDatabase className="internship-posting-no-content-icon" />
+              </AntRow>
+              <AntRow justify="center" align="middle">
+                <Header className="twentyFourFont" color="#bfbfbf">
+                  No Listings
                 </Header>
               </AntRow>
-            </TabContainer>
+              <AntRow className="mt-1" justify="center" align="middle">
+                <Button
+                  size="large"
+                  type="primary"
+                  style={{
+                    width: "10%",
+                    minWidth: "125px",
+                    boxShadow: "1px 1px 5px 0px #bfbfbf",
+                  }}
+                >
+                  Get Started
+                </Button>
+              </AntRow>
+            </div>
           )}
         </InnerContainer>
       </PageContainer>

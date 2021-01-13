@@ -2,15 +2,27 @@ import { useState } from "react";
 
 import React from "react";
 
-import { Row, Col, Calendar, Select, Button, Tooltip, Grid } from "antd";
+import {
+  Row,
+  Col,
+  Calendar,
+  Select,
+  Button,
+  Tooltip,
+  Grid,
+  Pagination,
+} from "antd";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 import { Header, TabContainer } from "../Styled/FundamentalComponents.jsx";
+import AttendanceCard from "./AttendanceCard.jsx";
 
 import { Scrollbars } from "react-custom-scrollbars";
 
 import moment from "moment";
+
+const ATTENDANCE_PER_PAGE = 5;
 
 const AttendanceRecord = (props) => {
   const [state, setState] = useState({
@@ -19,6 +31,7 @@ const AttendanceRecord = (props) => {
     toolTipDate: moment(),
     toolTipHour: "",
   });
+  const [page, changePage] = useState(0);
 
   let { student } = props;
 
@@ -30,9 +43,12 @@ const AttendanceRecord = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-  console.log(Object.entries(screens)
-  .filter((screen) => !!screen[1])
-  .map((breakpoint) => breakpoint[0]).includes("lg"))
+  console.log(
+    Object.entries(screens)
+      .filter((screen) => !!screen[1])
+      .map((breakpoint) => breakpoint[0])
+      .includes("lg")
+  );
 
   //Changes Day Names (dd -> ddd)
   moment.updateLocale("en", {
@@ -40,17 +56,62 @@ const AttendanceRecord = (props) => {
   });
 
   return (
-    <Row justify="end">
+    <Row className="mt-1" justify="end">
       <Col
-        xl={14}
-        sm={16}
-        xs={24}
+        className="pr-2"
+        sm={{ span: 10, order: 1 }}
+        xs={{ span: 24, order: 2 }}
       >
-        <Header bolded className="twentyEightFont">
+        <Header bolded className="twentyTwoFont mb-point-25">
+          To Be Approved
+        </Header>
+        {props.student.hours.filter((day) => !day.isApproved).length > 5
+          ? props.student.hours
+              .filter((day) => !day.isApproved)
+              .slice(
+                page * ATTENDANCE_PER_PAGE,
+                (page + 1) * ATTENDANCE_PER_PAGE
+              )
+              .map((hour, index) => (
+                <AttendanceCard
+                  key={index}
+                  studentId={props.student.Id}
+                  hoursId={hour.Id}
+                  time={hour.time}
+                  date={hour.dateFormatted}
+                  review={true}
+                />
+              ))
+          : props.student.hours
+              .filter((day) => !day.isApproved)
+              .map((hour, index) => (
+                <AttendanceCard
+                  key={index}
+                  studentId={props.student.Id}
+                  hoursId={hour.Id}
+                  time={hour.time}
+                  date={hour.dateFormatted}
+                  review={true}
+                />
+              ))}
+        <Row justify="center">
+          <Pagination
+            current={page + 1}
+            total={props.student.hours.filter((day) => !day.isApproved).length}
+            showLessItems={true}
+            pageSize={ATTENDANCE_PER_PAGE}
+            onChange={(pageChange) => changePage(pageChange - 1)}
+            hideOnSinglePage={true}
+            style={{ marginTop: "10px" }}
+          />
+        </Row>
+      </Col>
+      <Col sm={{ span: 14, order: 2 }} xs={{ span: 24, order: 1 }}>
+        <Header bolded className="twentyTwoFont">
           Attendance Record
         </Header>
 
-        <TabContainer className="px-2 py-2">
+        <TabContainer className="mt-point-25 px-2 py-2">
           <Row gutter={[16, 16]} justify="center" align="middle">
             {/* attendance list */}
             <Col
@@ -69,8 +130,6 @@ const AttendanceRecord = (props) => {
                   <Header className="twentyFont">Date</Header>
                   <Header className="twentyFont">Hours Worked</Header>
                 </Row>
-
-                
               ) : (
                 <Row
                   justify="space-between"
@@ -104,18 +163,16 @@ const AttendanceRecord = (props) => {
                                 });
                               }}
                             >
-                              <Header
-                                className="student-attendance-list"
-                              >
-                               {moment(data.date).format("MM/DD/YYYY")}
+                              <Header className="student-attendance-list">
+                                {moment(data.date).format("MM/DD/YYYY")}
                               </Header>
                             </Button>
 
                             <Header
-                              className="sixteenFont"
+                              className="sixteenFont mr-point-5"
                               style={{ color: "#a0a0a0" }}
                             >
-                             {data.time}
+                              {data.time}
                             </Header>
                           </Row>
                         </Col>
@@ -139,15 +196,17 @@ const AttendanceRecord = (props) => {
                               }}
                             >
                               <Header className="student-attendance-list">
-                              <div style={{fontSize: "16px"}}>{moment(data.date).format("MM/DD/YYYY")}</div>
+                                <div style={{ fontSize: "16px" }}>
+                                  {moment(data.date).format("MM/DD/YYYY")}
+                                </div>
                               </Header>
                             </Button>
 
                             <Header
-                              className="sixteenFont"
-                              style={{ color: "#a0a0a0" }}
+                              className="sixteenFont mr-point-5"
+                              color="#a0a0a0"
                             >
-                             <div style={{fontSize: "16px"}}>{data.time}</div>
+                              {data.time}
                             </Header>
                           </Row>
                         </Col>

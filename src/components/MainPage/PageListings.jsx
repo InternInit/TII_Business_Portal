@@ -7,11 +7,9 @@ import {
 } from "../Styled/FundamentalComponents.jsx";
 
 const PageListings = (props) => {
-  let { name, interns, accepted, total, industry } = props;
+  let { name, interns, accepted, industry } = props;
   return (
-    <TabContainer
-      className="px-3 py-1 dashboard-tab"
-    >
+    <TabContainer className="px-3 py-1 dashboard-tab">
       {/**
        *
        * Listing name + Industry
@@ -59,7 +57,7 @@ const PageListings = (props) => {
         <AntCol xs={0} md={4} xl={3}>
           <AntRow justify="center">
             <Header bolded className="fourteenFont">
-              {total}
+              {interns + accepted}
             </Header>
           </AntRow>
           <AntRow justify="center">

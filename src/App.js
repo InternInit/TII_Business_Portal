@@ -136,7 +136,6 @@ class App extends React.Component {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
-          //TODO: Update to a more elegant solution
 
       });
   }
@@ -220,6 +219,7 @@ class App extends React.Component {
               type
             }
             formData
+            appliedFor
             Id
             hours {
               Id
@@ -237,6 +237,7 @@ class App extends React.Component {
             }
             school {
               address
+              counselorName
               email
               name
               phone

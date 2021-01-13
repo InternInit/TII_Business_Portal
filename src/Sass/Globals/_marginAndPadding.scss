@@ -59,6 +59,7 @@
 @include margins("1-2", 1.2);
 @include margins("1-5", 1.5);
 @include margins(2, 2);
+@include margins("2-5", 2.5);
 @include margins(3, 3);
 @include margins(4, 4);
 @include margins(5, 5);
@@ -80,6 +81,7 @@
 @include paddings("1-2", 1.2);
 @include paddings("1-5", 1.5);
 @include paddings(2, 2);
+@include paddings("2-5", 2.5);
 @include paddings(3, 3);
 @include paddings(4, 4);
 @include paddings(5, 5);

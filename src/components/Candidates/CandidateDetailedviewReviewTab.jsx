@@ -70,7 +70,7 @@ const CandidateDetailedviewTab = (props) => {
         <AntCol span={9}>
           <AntRow>
             <Caption className="sixteenFont mb-point-5">
-              React Front End Intern
+              {props.appliedFor}
             </Caption>
           </AntRow>
           <AntRow>

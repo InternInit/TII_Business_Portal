@@ -36,27 +36,19 @@ const MainPage = (props) => {
 
       <InnerContainer className="py-2">
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
-          {/* Listings */}
           <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
-            <Header className="twentyEightFont mb-point-5"> Listings</Header>
-            {/*
-@TODO
-Get number of applicants, accepted applicants, and total applications
- */}
+            <Header className="twentyFont mb-point-5"> Listings</Header>
             {listings.slice(0, 3).map((post) => (
               <PageListings
                 name={post.Title}
                 interns={420}
                 accepted={69}
-                total={"Total???"}
                 industry={post.Industries}
               />
             ))}
           </AntCol>
-
-          {/* Incoming Applicants */}
           <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
-            <Header className="twentyEightFont mb-point-5">
+            <Header className="twentyFont mb-point-5">
               Incoming Applicants
             </Header>
             {candidates
@@ -65,17 +57,14 @@ Get number of applicants, accepted applicants, and total applications
                 <StudentCard
                   firstName={student.formData["0"]["First Name"]}
                   lastName={student.formData["0"]["Last Name"]}
-                  age={"," + student.formData["1"]["Age"] + ""}
+                  age={" (" + student.formData["1"]["Age"] + ")"}
                   avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                  appliedFor={student.appliedFor}
                 />
               ))}
           </AntCol>
-
-          {/* Only appears on small screens */}
           <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
-            <Header className="twentyEightFont mb-point-5">
-              To be Interviewed
-            </Header>
+            <Header className="twentyFont mb-point-5">To be Interviewed</Header>
             {candidates
               .filter((candidate) => candidate.status === "Pending")
               .map((student) => (
@@ -84,22 +73,18 @@ Get number of applicants, accepted applicants, and total applications
                   lastName={student.formData["0"]["Last Name"]}
                   age={" (" + student.formData["1"]["Age"] + ")"}
                   avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                  appliedFor={student.appliedFor}
                 />
               ))}
           </AntCol>
         </AntRow>
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
           <AntCol xs={24} sm={24} lg={16}>
-            <Header className="twentyEightFont mb-point-5">
-              Current Interns
-            </Header>
+            <Header className="twentyFont mb-point-5">Current Interns</Header>
             <PageFeedback />
           </AntCol>
-          {/* Only appears on big screens */}
           <AntCol xs={0} lg={8}>
-            <Header className="twentyEightFont mb-point-5">
-              To be Interviewed
-            </Header>
+            <Header className="twentyFont mb-point-5">To be Interviewed</Header>
             {candidates
               .filter((candidate) => candidate.status === "Review")
               .map((student) => (
@@ -108,6 +93,7 @@ Get number of applicants, accepted applicants, and total applications
                   lastName={student.formData["0"]["Last Name"]}
                   age={" (" + student.formData["1"]["Age"] + ")"}
                   avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                  appliedFor={student.appliedFor}
                 />
               ))}
           </AntCol>
@@ -119,4 +105,5 @@ Get number of applicants, accepted applicants, and total applications
     </PageContainer>
   );
 };
+
 export default MainPage;

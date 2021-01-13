@@ -1,0 +1,11 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+.review-applicants {
+    &-no-content-icon {
+        color: #bfbfbf;
+        @include font-size(48px);
+        margin-bottom: 2px;
+    }
+}
