@@ -20,6 +20,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
 
 import {
+  PageContainer,
   Header,
   FormContainer,
   FilterTag,
@@ -267,8 +268,8 @@ class InternshipDetails extends React.Component {
     return (
       <React.Fragment>
         <NavSearch title={title} searchBar={false} />
-        <div style={pageStyle}>
-          <div className="global-container px-8 py-2" style={{ width: "100%" }}>
+        <PageContainer>
+          <div className="px-8 py-2" style={{ width: "100%" }}>
             <Breadcrumb style={{ paddingBottom: "1em" }}>
               <Breadcrumb.Item className="twentyFont">
                 <Link to="/internship-listings">Internship Postings</Link>
@@ -295,7 +296,7 @@ class InternshipDetails extends React.Component {
               onFinish={this.onFinish}
             />
           </div>
-        </div>
+        </PageContainer>
       </React.Fragment>
     );
   }
