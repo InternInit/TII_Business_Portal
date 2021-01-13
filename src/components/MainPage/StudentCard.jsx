@@ -28,6 +28,10 @@ const StudentCard = (props) => {
 
           {/* Position */}
           <Row>
+            {/*
+@TODO
+Get position they applied for & get position for positions of accepted interns 
+ */}
             <Caption className="twelveFont" light style={{ marginTop: "0vh" }}>
               where did i apply??
             </Caption>
