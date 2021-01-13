@@ -30,7 +30,7 @@ const StatNum = styled.span`
 `;
 
 const PageListings = (props) => {
-  let { name, interns, accepted, total } = props;
+  let { name, interns, accepted } = props;
   return (
     <TabContainer className="px-3 py-1">
       {/**
@@ -70,7 +70,7 @@ const PageListings = (props) => {
 
         <AntCol xs={0} md={4} xl={3}>
           <AntRow justify="center">
-            <StatNum>{total}</StatNum>
+            <StatNum>{interns + accepted}</StatNum>
           </AntRow>
           <AntRow justify="center">
             <Caption light>Total</Caption>

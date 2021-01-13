@@ -38,12 +38,7 @@ class MainPage extends React.Component {
             <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
               <Header className="twentyFont mb-point-5"> Listings</Header>
               {listings.slice(0, 5).map((post) => (
-                <PageListings
-                  name={post.Title}
-                  interns={0}
-                  accepted={0}
-                  total={post.interns + post.interns}
-                />
+                <PageListings name={post.Title} interns={0} accepted={0} />
               ))}
             </AntCol>
             <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
