@@ -3,12 +3,12 @@ import "../../App.scss";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import axios from "axios";
 
-import { Button, Switch, Divider } from "antd";
+import { Button, Switch, Divider, Row as AntRow, Col as AntCol } from "antd";
+import { Header } from "../Styled/FundamentalComponents.jsx";
+import { AiOutlineUser } from "react-icons/ai";
 
 import InfoBar from "../General/InfoBar.jsx";
-import { Header } from "../Styled/FundamentalComponents";
 import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
 import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
@@ -143,23 +143,36 @@ class ReviewApplicants extends Component {
             align: "universal-center",
           }}
         />
-        {unreadCandidates.map((student, index) => (
-          <CandidateQuickviewTab
-            key={index}
-            id={student.Id}
-            name={
-              student.formData["0"]["First Name"] +
-              " " +
-              student.formData["0"]["Last Name"]
-            }
-            school={student.formData["1"]["Education"][0]}
-            GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
-            appliedFor={"React Front End Intern"}
-            onReview={() => this.handleReview(student.Id)}
-            onInterview={() => this.handleInterviewUnread(student.Id)}
-            onReject={() => this.handleReject(student.Id)}
-          />
-        ))}
+        {unreadCandidates.length > 0 ? (
+          unreadCandidates.map((student, index) => (
+            <CandidateQuickviewTab
+              key={index}
+              id={student.Id}
+              name={
+                student.formData["0"]["First Name"] +
+                " " +
+                student.formData["0"]["Last Name"]
+              }
+              school={student.formData["1"]["Education"][0]}
+              GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
+              appliedFor={"React Front End Intern"}
+              onReview={() => this.handleReview(student.Id)}
+              onInterview={() => this.handleInterviewUnread(student.Id)}
+              onReject={() => this.handleReject(student.Id)}
+            />
+          ))
+        ) : (
+          <div className="py-2-5 universal-center review-applicants-no-content-container">
+            <AntRow justify="center" align="middle">
+              <AiOutlineUser className="review-applicants-no-content-icon" />
+            </AntRow>
+            <AntRow justify="center" align="middle">
+              <Header className="twentyFourFont" color="#bfbfbf">
+                No Unread Applicants
+              </Header>
+            </AntRow>
+          </div>
+        )}
       </React.Fragment>
     ) : (
       <React.Fragment>
