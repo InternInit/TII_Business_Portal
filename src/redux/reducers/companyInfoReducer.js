@@ -68,7 +68,7 @@ const companyInfoReducer = (
         candidates: newCandidates
       }
     case "APPROVE_HOURS":
-      let students = state.interns;
+      let students = state.interns.slice();
       let studentIndex = _.findIndex(students, { Id: action.internId });
       let hoursIndex = _.findIndex(students[studentIndex].hours, { Id: action.hourId });
       students[studentIndex].hours[hoursIndex].isApproved = true;
