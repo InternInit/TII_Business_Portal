@@ -177,43 +177,58 @@ class ReviewApplicants extends Component {
     ) : (
       <React.Fragment>
         <Divider />
-        {unreadCandidates.map((student, index) => (
-          <CandidateDetailedviewTab
-            key={index}
-            id={student.Id}
-            /**
-             * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
-             * show up.
-             */
-            avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-            name={
-              student.formData["0"]["First Name"] +
-              " " +
-              student.formData["0"]["Last Name"]
-            }
-            city={student.formData["0"].City}
-            school={student.formData["1"]["Education"][0].Name}
-            schoolAddress={
-              student.formData["1"]["Education"][0].Address +
-              ", " +
-              student.formData["1"]["Education"][0].State
-            }
-            GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
-            age={student.formData["1"].Age}
-            workDate={
-              student.formData["0"]["Starting/Ending Dates"][0].split("T")[0] +
-              " - " +
-              student.formData["0"]["Starting/Ending Dates"][1].split("T")[0]
-            }
-            workDays={student.formData["0"]["Willing Work Days"]}
-            workTimes={student.formData["0"]["Willing Work Times"]}
-            activities={student.formData["3"].Extracurriculars}
-            courses={student.formData["3"].Courses}
-            onReview={() => this.handleReview(student.Id)}
-            onInterview={() => this.handleInterviewUnread(student.Id)}
-            onReject={() => this.handleReject(student.Id)}
-          />
-        ))}
+        {unreadCandidates.length > 0 ? (
+          unreadCandidates.map((student, index) => (
+            <CandidateDetailedviewTab
+              key={index}
+              id={student.Id}
+              /**
+               * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
+               * show up.
+               */
+              avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+              name={
+                student.formData["0"]["First Name"] +
+                " " +
+                student.formData["0"]["Last Name"]
+              }
+              city={student.formData["0"].City}
+              school={student.formData["1"]["Education"][0].Name}
+              schoolAddress={
+                student.formData["1"]["Education"][0].Address +
+                ", " +
+                student.formData["1"]["Education"][0].State
+              }
+              GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
+              age={student.formData["1"].Age}
+              workDate={
+                student.formData["0"]["Starting/Ending Dates"][0].split(
+                  "T"
+                )[0] +
+                " - " +
+                student.formData["0"]["Starting/Ending Dates"][1].split("T")[0]
+              }
+              workDays={student.formData["0"]["Willing Work Days"]}
+              workTimes={student.formData["0"]["Willing Work Times"]}
+              activities={student.formData["3"].Extracurriculars}
+              courses={student.formData["3"].Courses}
+              onReview={() => this.handleReview(student.Id)}
+              onInterview={() => this.handleInterviewUnread(student.Id)}
+              onReject={() => this.handleReject(student.Id)}
+            />
+          ))
+        ) : (
+          <div className="py-2-5 universal-center review-applicants-no-content-container">
+            <AntRow justify="center" align="middle">
+              <AiOutlineUser className="review-applicants-no-content-icon" />
+            </AntRow>
+            <AntRow justify="center" align="middle">
+              <Header className="twentyFourFont" color="#bfbfbf">
+                No Unread Applicants
+              </Header>
+            </AntRow>
+          </div>
+        )}
       </React.Fragment>
     );
   };
