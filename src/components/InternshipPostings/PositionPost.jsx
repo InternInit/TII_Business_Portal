@@ -90,7 +90,6 @@ class PositionPost extends Component {
                 name={post.Title}
                 interns="0"
                 id={post.Id}
-                industry={post.Industries}
               />
             ))
           ) : (
