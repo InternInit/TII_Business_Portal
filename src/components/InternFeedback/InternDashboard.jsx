@@ -28,7 +28,7 @@ const InternDashboard = (props) => {
       <AntRow justify="center" style={{ width: "100%" }}>
         <AntCol className="mt-1 pr-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
-            Attendance Sheet
+            Attendance Sheet (To Be Approved)
           </Header>
           {props.student.hours.filter((day) => !day.isApproved).length > 5
             ? props.student.hours
