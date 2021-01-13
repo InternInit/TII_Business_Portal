@@ -57,7 +57,7 @@ const AttendanceRecord = (props) => {
 
   return (
     <Row className="mt-1" justify="end">
-      <Col className="pr-2" sm={10} xs={24}>
+      <Col className="pr-2" sm={{span: 10, order: 1}} xs={{span: 24, order: 2}}>
         <Header bolded className="twentyTwoFont mb-point-25">
           To Be Approved
         </Header>
@@ -98,7 +98,7 @@ const AttendanceRecord = (props) => {
           />
         </Row>
       </Col>
-      <Col xl={14} sm={14} xs={24}>
+      <Col sm={{span: 14, order: 2}} xs={{span: 24, order: 1}}>
         <Header bolded className="twentyTwoFont">
           Attendance Record
         </Header>
