@@ -266,7 +266,7 @@ class ReviewApplicants extends Component {
             align: "universal-center",
           }}
         />
-        {reviewCandidates.map((student, index) => (
+        {reviewCandidates.length > 0 ? reviewCandidates.map((student, index) => (
           <CandidateQuickviewReviewTab
             key={index}
             id={student.Id}
@@ -282,7 +282,18 @@ class ReviewApplicants extends Component {
             onInterview={() => this.handleInterviewUnread(student.Id)}
             onReject={() => this.handleReject(student.Id)}
           />
-        ))}
+        )) : (
+          <div className="py-2-5 universal-center review-applicants-no-content-container">
+            <AntRow justify="center" align="middle">
+              <AiOutlineUser className="review-applicants-no-content-icon" />
+            </AntRow>
+            <AntRow justify="center" align="middle">
+              <Header className="twentyFourFont" color="#bfbfbf">
+                No Applicants to Review
+              </Header>
+            </AntRow>
+          </div>
+        )}
       </React.Fragment>
     ) : (
       <React.Fragment>
@@ -290,7 +301,7 @@ class ReviewApplicants extends Component {
           Marked for Review
         </Header>
         <Divider />
-        {reviewCandidates.map((student, index) => (
+        {reviewCandidates.length > 0 ? reviewCandidates.map((student, index) => (
           <CandidateDetailedviewReviewTab
             key={index}
             id={student.Id}
@@ -326,7 +337,18 @@ class ReviewApplicants extends Component {
             onInterview={() => this.handleInterviewUnread(student.Id)}
             onReject={() => this.handleReject(student.Id)}
           />
-        ))}
+        )) : (
+          <div className="py-2-5 universal-center review-applicants-no-content-container">
+            <AntRow justify="center" align="middle">
+              <AiOutlineUser className="review-applicants-no-content-icon" />
+            </AntRow>
+            <AntRow justify="center" align="middle">
+              <Header className="twentyFourFont" color="#bfbfbf">
+                No Applicants to Review
+              </Header>
+            </AntRow>
+          </div>
+        )}
       </React.Fragment>
     );
   };
