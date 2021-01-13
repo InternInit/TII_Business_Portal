@@ -44,7 +44,7 @@ const Applying = styled.span`
 `;
 
 const StudentCard = (props) => {
-  let { firstName, lastName, age, avatar } = props;
+  let { firstName, lastName, age, avatar, appliedFor } = props;
   return (
     <Container>
       <Avatar src={avatar} size={28} icon={<UserOutlined />} />
@@ -53,7 +53,7 @@ const StudentCard = (props) => {
           {firstName} {lastName}
           {age}
         </Name>
-        <Applying>Coffee Grinder</Applying>
+        <Applying>{props.appliedFor}</Applying>
       </Col>
     </Container>
   );

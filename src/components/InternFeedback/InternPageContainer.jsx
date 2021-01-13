@@ -51,26 +51,17 @@ class InternPageContainer extends Component {
           <Link to={`/my-interns/${student.Id}/dashboard`}>Dashboard</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/my-interns/${student.Id}/attendance`}
-          >
-            Attendance
-          </Link>
+          <Link to={`/my-interns/${student.Id}/attendance`}>Attendance</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/my-interns/${student.Id}/feedback`}
-          >
-            Feedback
-          </Link>
+          <Link to={`/my-interns/${student.Id}/feedback`}>Feedback</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/my-interns/${student.Id}/grades`}
-          >
-            Grades
-          </Link>
+          <Link to={`/my-interns/${student.Id}/grades`}>Grades</Link>
         </Menu.Item>
       </Menu>
     );
-  }
+  };
 
   findStudent = () => {
     console.log("trying to find");
@@ -116,7 +107,10 @@ class InternPageContainer extends Component {
                 className="mb-1 py-2 px-6 intern-dashboard-banner"
                 style={{ width: "100%" }}
               >
-                <Dropdown overlay={this.MobileMenu(student)} placement="bottomRight">
+                <Dropdown
+                  overlay={this.MobileMenu(student)}
+                  placement="bottomRight"
+                >
                   <AiOutlineMenu className="intern-dashboard-mobile-menu" />
                 </Dropdown>
                 <AntRow justify="center">
@@ -143,7 +137,7 @@ class InternPageContainer extends Component {
                         thin
                         style={{ marginTop: "-.5em", fontStyle: "italic" }}
                       >
-                        {"Placeholder Position"}
+                        {student.appliedFor}
                       </Caption>
                     </AntRow>
                     <AntRow className="mt-point-5">

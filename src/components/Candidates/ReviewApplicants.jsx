@@ -155,7 +155,7 @@ class ReviewApplicants extends Component {
               }
               school={student.formData["1"]["Education"][0]}
               GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
-              appliedFor={"React Front End Intern"}
+              appliedFor={student.appliedFor}
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
@@ -200,6 +200,7 @@ class ReviewApplicants extends Component {
                 student.formData["1"]["Education"][0].State
               }
               GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
+              appliedFor={student.appliedFor}
               age={student.formData["1"].Age}
               workDate={
                 student.formData["0"]["Starting/Ending Dates"][0].split(
@@ -278,7 +279,7 @@ class ReviewApplicants extends Component {
               }
               school={student.formData["1"]["Education"][0]}
               GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
-              appliedFor={"React Front End Intern"}
+              appliedFor={student.appliedFor}
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
@@ -326,6 +327,7 @@ class ReviewApplicants extends Component {
                 student.formData["1"]["Education"][0].State
               }
               GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
+              appliedFor={student.appliedFor}
               age={student.formData["1"].Age}
               workDate={
                 student.formData["0"]["Starting/Ending Dates"][0].split(

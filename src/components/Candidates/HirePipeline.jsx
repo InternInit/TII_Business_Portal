@@ -191,12 +191,16 @@ function HirePipeline(props) {
                                       <DraggingCard
                                         name={item.formData["0"]["First Name"]}
                                         date={
-                                          item.formData["0"]["Starting/Ending Dates Formatted"]
+                                          item.formData["0"][
+                                            "Starting/Ending Dates Formatted"
+                                          ]
                                         }
-                                        position={"Cheese grator"}
+                                        position={item.appliedFor}
                                         city={item.formData["0"].City}
                                         stateLocation={item.formData["0"].State}
-                                        updateCandidateStatus={props.updateCandidateStatus}
+                                        updateCandidateStatus={
+                                          props.updateCandidateStatus
+                                        }
                                         id={item.Id}
                                         avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
                                       />

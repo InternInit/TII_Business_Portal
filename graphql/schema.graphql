@@ -54,6 +54,7 @@ type InternAssoc {
   assocId: String!
   businessId: String
   internId: String
+  appliedFor: String
   feedback: [Feedback]
   grades: [Grade]
   hours: [Hour]
@@ -74,6 +75,7 @@ type InternConnection {
 type InternData {
   Id: String!
   version: Int
+  appliedFor: String
   formData: AWSJSON
   feedback: [Feedback]
   grades: [Grade]

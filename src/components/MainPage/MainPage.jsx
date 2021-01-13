@@ -53,6 +53,7 @@ class MainPage extends React.Component {
                     lastName={student.formData["0"]["Last Name"]}
                     age={" (" + student.formData["1"]["Age"] + ")"}
                     avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                    appliedFor={student.appliedFor}
                   />
                 ))}
             </AntCol>
@@ -68,6 +69,7 @@ class MainPage extends React.Component {
                     lastName={student.formData["0"]["Last Name"]}
                     age={" (" + student.formData["1"]["Age"] + ")"}
                     avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                    appliedFor={student.appliedFor}
                   />
                 ))}
             </AntCol>
@@ -89,6 +91,7 @@ class MainPage extends React.Component {
                     lastName={student.formData["0"]["Last Name"]}
                     age={" (" + student.formData["1"]["Age"] + ")"}
                     avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                    appliedFor={student.appliedFor}
                   />
                 ))}
             </AntCol>

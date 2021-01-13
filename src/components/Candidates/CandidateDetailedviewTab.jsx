@@ -70,7 +70,7 @@ const CandidateDetailedviewTab = (props) => {
         <AntCol span={9}>
           <AntRow>
             <Caption className="sixteenFont mb-point-5">
-              React Front End Intern
+              {props.appliedFor}
             </Caption>
           </AntRow>
           <AntRow>
@@ -141,8 +141,11 @@ const CandidateDetailedviewTab = (props) => {
 
       <AntRow gutter={[32, 0]} justify="space-between">
         <AntCol span={7}>
-        <Link to={`/applicants/${props.id}`} style={{ textDecoration: 'none', color: "inherit" }}>
-          <ActionButton size="large">Read Full Application</ActionButton>
+          <Link
+            to={`/applicants/${props.id}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <ActionButton size="large">Read Full Application</ActionButton>
           </Link>
         </AntCol>
         <AntCol span={7}>
