@@ -3,10 +3,6 @@
 @import "../node_modules/rfs/scss";
 
 .review-applicants {
-    &-no-content-container {
-        
-    }
-
     &-no-content-icon {
         color: #bfbfbf;
         @include font-size(48px);

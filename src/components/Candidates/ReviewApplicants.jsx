@@ -162,7 +162,7 @@ class ReviewApplicants extends Component {
             />
           ))
         ) : (
-          <div className="py-2-5 universal-center review-applicants-no-content-container">
+          <div className="py-2-5 universal-center ">
             <AntRow justify="center" align="middle">
               <AiOutlineUser className="review-applicants-no-content-icon" />
             </AntRow>
@@ -218,7 +218,7 @@ class ReviewApplicants extends Component {
             />
           ))
         ) : (
-          <div className="py-2-5 universal-center review-applicants-no-content-container">
+          <div className="py-2-5 universal-center ">
             <AntRow justify="center" align="middle">
               <AiOutlineUser className="review-applicants-no-content-icon" />
             </AntRow>
@@ -266,24 +266,26 @@ class ReviewApplicants extends Component {
             align: "universal-center",
           }}
         />
-        {reviewCandidates.length > 0 ? reviewCandidates.map((student, index) => (
-          <CandidateQuickviewReviewTab
-            key={index}
-            id={student.Id}
-            name={
-              student.formData["0"]["First Name"] +
-              " " +
-              student.formData["0"]["Last Name"]
-            }
-            school={student.formData["1"]["Education"][0]}
-            GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
-            appliedFor={"React Front End Intern"}
-            onReview={() => this.handleReview(student.Id)}
-            onInterview={() => this.handleInterviewUnread(student.Id)}
-            onReject={() => this.handleReject(student.Id)}
-          />
-        )) : (
-          <div className="py-2-5 universal-center review-applicants-no-content-container">
+        {reviewCandidates.length > 0 ? (
+          reviewCandidates.map((student, index) => (
+            <CandidateQuickviewReviewTab
+              key={index}
+              id={student.Id}
+              name={
+                student.formData["0"]["First Name"] +
+                " " +
+                student.formData["0"]["Last Name"]
+              }
+              school={student.formData["1"]["Education"][0]}
+              GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
+              appliedFor={"React Front End Intern"}
+              onReview={() => this.handleReview(student.Id)}
+              onInterview={() => this.handleInterviewUnread(student.Id)}
+              onReject={() => this.handleReject(student.Id)}
+            />
+          ))
+        ) : (
+          <div className="py-2-5 universal-center ">
             <AntRow justify="center" align="middle">
               <AiOutlineUser className="review-applicants-no-content-icon" />
             </AntRow>
@@ -301,44 +303,48 @@ class ReviewApplicants extends Component {
           Marked for Review
         </Header>
         <Divider />
-        {reviewCandidates.length > 0 ? reviewCandidates.map((student, index) => (
-          <CandidateDetailedviewReviewTab
-            key={index}
-            id={student.Id}
-            /**
-             * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
-             * show up.
-             */
-            avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-            name={
-              student.formData["0"]["First Name"] +
-              " " +
-              student.formData["0"]["Last Name"]
-            }
-            city={student.formData["0"].City}
-            school={student.formData["1"]["Education"][0].Name}
-            schoolAddress={
-              student.formData["1"]["Education"][0].Address +
-              ", " +
-              student.formData["1"]["Education"][0].State
-            }
-            GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
-            age={student.formData["1"].Age}
-            workDate={
-              student.formData["0"]["Starting/Ending Dates"][0].split("T")[0] +
-              " - " +
-              student.formData["0"]["Starting/Ending Dates"][1].split("T")[0]
-            }
-            workDays={student.formData["0"]["Willing Work Days"]}
-            workTimes={student.formData["0"]["Willing Work Times"]}
-            activities={student.formData["3"].Extracurriculars}
-            courses={student.formData["3"].Courses}
-            onReview={() => this.handleReview(student.Id)}
-            onInterview={() => this.handleInterviewUnread(student.Id)}
-            onReject={() => this.handleReject(student.Id)}
-          />
-        )) : (
-          <div className="py-2-5 universal-center review-applicants-no-content-container">
+        {reviewCandidates.length > 0 ? (
+          reviewCandidates.map((student, index) => (
+            <CandidateDetailedviewReviewTab
+              key={index}
+              id={student.Id}
+              /**
+               * All avatars follow this style path. If valid, avatar will show up. If not, the ANTD default will
+               * show up.
+               */
+              avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+              name={
+                student.formData["0"]["First Name"] +
+                " " +
+                student.formData["0"]["Last Name"]
+              }
+              city={student.formData["0"].City}
+              school={student.formData["1"]["Education"][0].Name}
+              schoolAddress={
+                student.formData["1"]["Education"][0].Address +
+                ", " +
+                student.formData["1"]["Education"][0].State
+              }
+              GPA={parseFloat(student.formData["0"]["Unweighted GPA"])}
+              age={student.formData["1"].Age}
+              workDate={
+                student.formData["0"]["Starting/Ending Dates"][0].split(
+                  "T"
+                )[0] +
+                " - " +
+                student.formData["0"]["Starting/Ending Dates"][1].split("T")[0]
+              }
+              workDays={student.formData["0"]["Willing Work Days"]}
+              workTimes={student.formData["0"]["Willing Work Times"]}
+              activities={student.formData["3"].Extracurriculars}
+              courses={student.formData["3"].Courses}
+              onReview={() => this.handleReview(student.Id)}
+              onInterview={() => this.handleInterviewUnread(student.Id)}
+              onReject={() => this.handleReject(student.Id)}
+            />
+          ))
+        ) : (
+          <div className="py-2-5 universal-center ">
             <AntRow justify="center" align="middle">
               <AiOutlineUser className="review-applicants-no-content-icon" />
             </AntRow>
