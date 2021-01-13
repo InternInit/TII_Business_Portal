@@ -83,7 +83,7 @@ class PositionPost extends Component {
             fieldFour={{ name: "Edit Details", sm: 6, lg: 6 }}
           />
 
-          {this.props.listings.length === 0 ? (
+          {this.props.listings.length !== 0 ? (
             this.props.listings.map((post, index) => (
               <PostingTab
                 status="Active"
