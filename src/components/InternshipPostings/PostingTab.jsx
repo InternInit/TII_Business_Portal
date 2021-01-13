@@ -19,7 +19,7 @@ const PostingTab = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("xs");
 
-  let { status, name, interns } = props;
+  let { status, name, interns, industry } = props;
   let statusColor = "";
 
   let { id } = props;
@@ -46,19 +46,23 @@ const PostingTab = (props) => {
           {isXs ? (
             <>
               <AntRow justify="center">
-                <Header className="twentyFont" bolded>{name}</Header>
+                <Header className="twentyFont" bolded>
+                  {name}
+                </Header>
               </AntRow>
               <AntRow className="mb-1-5" justify="center">
-                <Caption className="fourteenFont">Data Science</Caption>
+                <Caption className="fourteenFont">{industry}</Caption>
               </AntRow>
             </>
           ) : (
             <>
               <AntRow justify="start">
-                <Header className="eighteenFont" bolded>{name}</Header>
+                <Header className="eighteenFont" bolded>
+                  {name}
+                </Header>
               </AntRow>
               <AntRow justify="start">
-                <Caption className="fourteenFont">Data Science</Caption>
+                <Caption className="fourteenFont">{industry}</Caption>
               </AntRow>
             </>
           )}
