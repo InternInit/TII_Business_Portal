@@ -237,6 +237,7 @@ class App extends React.Component {
             }
             school {
               address
+              counselorName
               email
               name
               phone
