@@ -54,6 +54,7 @@ const BusinessNavBar = (props) => {
       <Menu
         theme="dark"
         defaultSelectedKeys={findPath()}
+        selectedKeys={findPath()}
         style={{ marginTop: "10vh" }}
       >
         <Menu.Item key="1">
