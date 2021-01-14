@@ -16,19 +16,14 @@ import {
 
 import axios from "axios";
 
-// const Header = styled.h1`
-//   font-weight: 500;
-//   color: #262626;
-// `;
-
 const MainPage = (props) => {
   const [state, setState] = useState({
     students: [],
     business: null,
   });
 
-  let { candidates, listings } = props;
-  console.log(candidates);
+  let { candidates, listings, interns } = props;
+  console.log(candidates)
 
   return (
     <PageContainer>
@@ -48,8 +43,9 @@ Get number of applicants, accepted applicants, and total applications
                 name={post.Title}
                 interns={420}
                 accepted={69}
-                total={"Total???"}
+                total={"Total?"}
                 industry={post.Industries}
+                id={post.Id}
               />
             ))}
           </AntCol>
@@ -58,23 +54,14 @@ Get number of applicants, accepted applicants, and total applications
           <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
             <Header className="twentyEightFont mb-point-5">
               Incoming Applicants
-            </Header>
-            {candidates
-              .filter((candidate) => candidate.status === "Pending")
-              .map((student) => (
-                <StudentCard
-                  firstName={student.formData["0"]["First Name"]}
-                  lastName={student.formData["0"]["Last Name"]}
-                  age={"," + student.formData["1"]["Age"] + ""}
-                  avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                />
-              ))}
-          </AntCol>
-
-          {/* Only appears on small screens */}
-          <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
-            <Header className="twentyEightFont mb-point-5">
-              To be Interviewed
+              {candidates.filter((candidate) => candidate.status === "Pending")
+                .length !== 0
+                ? " (" +
+                  candidates.filter(
+                    (candidate) => candidate.status === "Pending"
+                  ).length +
+                  ")"
+                : null}
             </Header>
             {candidates
               .filter((candidate) => candidate.status === "Pending")
@@ -87,21 +74,66 @@ Get number of applicants, accepted applicants, and total applications
                 />
               ))}
           </AntCol>
+
+          {/* Only appears on small screens */}
+          <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
+            <Header className="twentyEightFont mb-point-5">
+              To be Interviewed
+              {candidates.filter((candidate) =>
+                candidate.status.includes("Interview")
+              ).length !== 0
+                ? " (" +
+                  candidates.filter((candidate) =>
+                    candidate.status.includes("Interview")
+                  ).length +
+                  ")"
+                : null}
+            </Header>
+            {candidates
+              .filter((candidate) => candidate.status.includes("Interview"))
+              .map((student) => (
+                <StudentCard
+                  firstName={student.formData["0"]["First Name"]}
+                  lastName={student.formData["0"]["Last Name"]}
+                  age={" (" + student.formData["1"]["Age"] + ")"}
+                  avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                  id={student.Id}
+                />
+              ))}
+          </AntCol>
         </AntRow>
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
           <AntCol xs={24} sm={24} lg={16}>
             <Header className="twentyEightFont mb-point-5">
               Current Interns
             </Header>
-            <PageFeedback />
+            {interns.map((student) => (
+                <PageFeedback
+                  firstName={student.formData["0"]["First Name"]}
+                  lastName={student.formData["0"]["Last Name"]}
+                  school={student.school.name}
+                  avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                  position={"Professional Gamer"}
+                  id={student.Id}
+                />
+              ))}
           </AntCol>
           {/* Only appears on big screens */}
           <AntCol xs={0} lg={8}>
             <Header className="twentyEightFont mb-point-5">
               To be Interviewed
+              {candidates.filter((candidate) =>
+                candidate.status.includes("Interview")
+              ).length !== 0
+                ? " (" +
+                  candidates.filter((candidate) =>
+                    candidate.status.includes("Interview")
+                  ).length +
+                  ")"
+                : null}
             </Header>
             {candidates
-              .filter((candidate) => candidate.status === "Review")
+              .filter((candidate) => candidate.status.includes("Interview"))
               .map((student) => (
                 <StudentCard
                   firstName={student.formData["0"]["First Name"]}

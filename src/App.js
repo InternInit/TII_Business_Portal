@@ -336,6 +336,7 @@ class App extends React.Component {
                     <MainPage
                       candidates={this.props.companyInfo.candidates}
                       listings={this.props.listings}
+                      interns={this.props.companyInfo.interns}
                     />
                   )}
                 />

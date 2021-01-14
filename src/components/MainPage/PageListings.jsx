@@ -6,9 +6,14 @@ import {
   TabContainer,
 } from "../Styled/FundamentalComponents.jsx";
 
+import { Link } from "react-router-dom";
+
 const PageListings = (props) => {
-  let { name, interns, accepted, total, industry } = props;
+  let { name, interns, accepted, total, industry, id } = props;
   return (
+    <Link
+    to={`/internship-listings/${id}`}
+    >
     <TabContainer
       className="px-3 py-1 dashboard-tab"
     >
@@ -68,6 +73,8 @@ const PageListings = (props) => {
         </AntCol>
       </AntRow>
     </TabContainer>
+    </Link>
+    
   );
 };
 export default PageListings;

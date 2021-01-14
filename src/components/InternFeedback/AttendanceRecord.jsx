@@ -38,7 +38,6 @@ const AttendanceRecord = (props) => {
   moment.updateLocale("en", {
     weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   });
-
   return (
     <Row justify="end">
       <Col

@@ -12,8 +12,6 @@ import {
 import moment from "moment";
 
 const InternPastFeedback = (props) => {
-  // let filler =
-  //   "tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed";
   let { student } = props;
   let readMore = false;
 
@@ -25,10 +23,15 @@ const InternPastFeedback = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("xs");
 
+  const isSm = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("sm");
+
   const isLg = Object.entries(screens)
-  .filter((screen) => !!screen[1])
-  .map((breakpoint) => breakpoint[0])
-  .includes("lg");
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("lg");
 
   return (
     <Row>
@@ -39,7 +42,7 @@ const InternPastFeedback = (props) => {
 
         {student.feedback.map((data) => {
           return (
-            <TabContainer style={{marginBottom: "1em"}}>
+            <TabContainer style={{ marginBottom: "1em" }}>
               {/* Avatar Column */}
               {!isLg ? (
                 <Row className="px-1 py-2" gutter={16} wrap={false}>
@@ -57,25 +60,26 @@ const InternPastFeedback = (props) => {
                         </Header>
                       </Col>
 
-                      <Col 
-                      //style={{backgroundColor: "red"}}
+                      <Col
+                        //style={{backgroundColor: "red"}}
                         className="universal-middle"
                         sm={24}
                         m={24}
                       >
                         <Row justify="start">
-                        <Caption className="twelveFont" light>
-                          <div style={{padding: "0px 0px 6px 0px"}}>{moment(data.date).format("MM/DD/YYYY")}</div>
-                        </Caption>
+                          <Caption className="twelveFont" light>
+                            <div style={{ padding: "0px 0px 6px 0px" }}>
+                              {moment(data.date).format("MM/DD/YYYY")}
+                            </div>
+                          </Caption>
                         </Row>
-
                       </Col>
                     </Row>
 
                     {/* Feedback Row */}
                     <Row>
                       <Body className="fourteenFont universal-left">
-                        {data.comment.length < 200 ? (
+                        {!isSm && !isXs ? (
                           <div>
                             {(readMore = false)}
                             {data.comment}

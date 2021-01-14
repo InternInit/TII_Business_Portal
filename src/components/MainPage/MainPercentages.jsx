@@ -1,63 +1,71 @@
 import React from "react";
-import styled from "styled-components";
-import { Progress, Col as AntCol } from "antd";
-const Header = styled.h1`
-  font-weight: 500;
-  color: #262626;
-`;
-const BoxContainer = styled.div`
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 1px 1px 5px -4px;
+import { Progress, Col as AntCol, Tooltip, Row } from "antd";
+import { Header, TabContainer } from "../Styled/FundamentalComponents.jsx";
 
-  border: 1px solid #d8def3;
-  border-radius: 4px;
-`;
+const PercentageBox = (props) => {
+  let { header, percentage, color } = props;
+  let toolTipTitle;
 
-const MainPercentages = (props) => {
+  switch (header) {
+    case "Industry":
+      toolTipTitle = `${percentage}% of all students applied to your industry`;
+      break;
+    case "Company":
+      toolTipTitle = `You received ${percentage}% of all applications within your industry`;
+      break;
+    case "Accepted":
+      toolTipTitle = "Acceptance rate of your listing(s)";
+      break;
+    default:
+      toolTipTitle = null;
+      break;
+  }
+
+  return (
+    <TabContainer className="px-0 py-1 universal-center">
+      <Tooltip title={toolTipTitle} color="blue" placement="top">
+        <Progress
+          type="circle"
+          percent={percentage}
+          strokeColor={{ "0%": color, "100%": color }}
+          className="dashboard-progress"
+        />
+      </Tooltip>
+    </TabContainer>
+  );
+};
+
+const MainPercentages = () => {
   return (
     <>
       <AntCol xs={24} md={8}>
-        <PercentageBox
-          header="Applied to Industry"
-          percentage="2"
-          color="#F5222D"
-        />
+        <Row justify="center">
+          <Header className="twentyEightFont mb-point-5">
+            Applied to Industry
+          </Header>
+          <PercentageBox header="Industry" percentage="2" color="#F5222D" />
+        </Row>{" "}
+      </AntCol>
+
+      <AntCol xs={24} md={8}>
+        <Row justify="center">
+          <Header className="twentyEightFont mb-point-5">
+            Applied to Company
+          </Header>
+
+          <PercentageBox header="Company" percentage="24" color="#1890ff" />
+        </Row>
       </AntCol>
       <AntCol xs={24} md={8}>
-        <PercentageBox
-          header="Applied to Company"
-          percentage="24"
-          color="#1890ff"
-        />
-      </AntCol>
-      <AntCol xs={24} md={8}>
-        <PercentageBox
-          header="Percentage Accepted"
-          percentage="97"
-          color="#52C41A"
-        />
+        <Row justify="center">
+          <Header className="twentyEightFont mb-point-5">
+            Percentage Accepted
+          </Header>
+
+          <PercentageBox header="Accepted" percentage="97" color="#52C41A" />
+        </Row>
       </AntCol>
     </>
   );
 };
 export default MainPercentages;
-
-const PercentageBox = (props) => {
-  let { header, percentage, color } = props;
-
-  return (
-    <div>
-      <Header className="twentyFont mb-point-5">{header}</Header>
-      <BoxContainer className="py-2">
-        <Progress
-          type="circle"
-          percent={percentage}
-          strokeColor={{ "0%": color, "100%": color }}
-        />
-      </BoxContainer>
-    </div>
-  );
-};
