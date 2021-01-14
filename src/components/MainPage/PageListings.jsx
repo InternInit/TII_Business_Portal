@@ -64,7 +64,7 @@ const PageListings = (props) => {
         <AntCol xs={0} md={4} xl={3}>
           <AntRow justify="center">
             <Header bolded className="fourteenFont">
-              {total}
+              {interns + accepted}
             </Header>
           </AntRow>
           <AntRow justify="center">

@@ -9,10 +9,14 @@
       padding-right: 3em;
     }
     @include sm {
-        padding-left: 2em;
-        padding-right: 2em;
-      }
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+  }
+
+  &-no-content-icon {
+    color: #bfbfbf;
+    @include font-size(48px);
+    margin-bottom: 5px;
   }
 }
-
-

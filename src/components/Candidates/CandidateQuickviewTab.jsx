@@ -43,7 +43,10 @@ const CandidateQuickviewTab = (props) => {
   console.log(props);
 
   return (
-    <Link to={`/applicants/${props.id}`} style={{ textDecoration: 'none', color: "inherit" }}>
+    <Link
+      to={`/applicants/${props.id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       <TabContainer className="py-2 px-6 my-1 responsive-tab-container">
         {/**
          *

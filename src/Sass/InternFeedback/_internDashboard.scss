@@ -14,6 +14,24 @@
     min-width: 500px;
   }
 
+  &-mobile-menu {
+    position: absolute;
+    display: none;
+    right: 2em;
+    font-size: 28px;
+    color: #ffffff;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 80%;
+      transition: .3s ease;
+    }
+
+    @include md {
+      display: inline;
+    }
+  }
+
   &-navigation {
     min-height: 75px;
     min-width: 500px;
@@ -23,6 +41,12 @@
 
   &-banner-text {
     color: white;
+  }
+
+  &-banner-text-row {
+    @include md {
+      justify-content: center;
+    }
   }
 
   &-shortened-feedback {

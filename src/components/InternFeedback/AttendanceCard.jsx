@@ -5,7 +5,30 @@ import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
 import { Row as AntRow, Col as AntCol, Tooltip } from "antd";
 
+import { connect } from "react-redux";
+
+import { approveHours } from "../../redux/actions";
+
+const mapDispatchToProps = {
+  approveHours,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+  };
+};
+
 const AttendanceCard = (props) => {
+
+  const handleClick = () => {
+    /**
+     * @TODO
+     * Add graphql call to update database for approved id
+     */
+    props.approveHours(props.studentId, props.hoursId);
+  }
+
   return (
     <AntRow>
       <TabContainer className="py-1 pr-2 px-2 mb-point-5 universal-middle">
@@ -26,6 +49,7 @@ const AttendanceCard = (props) => {
                 <Icon
                   className="mx-point-5 intern-dashboard-attendance-approve"
                   icon={check}
+                  onClick={() => handleClick()}
                 />
               </Tooltip>
             )}
@@ -44,4 +68,4 @@ const AttendanceCard = (props) => {
   );
 };
 
-export default AttendanceCard;
+export default connect(mapStateToProps, mapDispatchToProps)(AttendanceCard);

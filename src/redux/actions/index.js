@@ -126,3 +126,11 @@ export const finishInternLoading = () => {
     type: "FINISH_INTERN_LOADING"
   };
 };
+
+export const approveHours = (internId, hourId) => {
+  return {
+    internId: internId,
+    hourId: hourId,
+    type: "APPROVE_HOURS"
+  };
+}

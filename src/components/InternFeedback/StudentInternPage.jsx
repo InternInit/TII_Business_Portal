@@ -10,7 +10,6 @@ import { Button, Row as AntRow, Col as AntCol } from "antd";
 
 import { connect } from "react-redux";
 
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,7 +34,7 @@ const mapStateToProps = (state) => {
 
 class InternFeedback extends Component {
   render() {
-    return (this.props.loadingStatuses.isInternLoading) ? (
+    return this.props.loadingStatuses.isInternLoading ? (
       <>
         <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
       </>
@@ -54,10 +53,30 @@ class InternFeedback extends Component {
 
             <InfoBar
               mobileHeader="Interns"
-              fieldOne={{ name: "Name", sm: 10, lg: 6, align: "universal-left" }}
-              fieldTwo={{ name: "School", sm: 5, lg: 8, align: "universal-left" }}
-              fieldThree={{ name: "Internship Type", sm: 4, lg: 4, align: "universal-left" }}
-              fieldFour={{ name: "Action", sm: 5, lg: 6, align: "universal-center" }}
+              fieldOne={{
+                name: "Name",
+                sm: 10,
+                lg: 6,
+                align: "universal-left",
+              }}
+              fieldTwo={{
+                name: "School",
+                sm: 5,
+                lg: 8,
+                align: "universal-left",
+              }}
+              fieldThree={{
+                name: "Internship Type",
+                sm: 4,
+                lg: 4,
+                align: "universal-left",
+              }}
+              fieldFour={{
+                name: "Action",
+                sm: 5,
+                lg: 6,
+                align: "universal-center",
+              }}
             />
 
             {this.props.companyInfo.interns.map((student) => (
@@ -67,7 +86,7 @@ class InternFeedback extends Component {
                 age={student.formData["1"]["Age"]}
                 type="Hybrid"
                 id={student.Id}
-                position="Position Placeholder"
+                position={student.appliedFor}
                 school={student.school ? student.school.name : "Placeholder"}
                 avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
               />
