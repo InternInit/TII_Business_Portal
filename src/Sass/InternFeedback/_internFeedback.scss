@@ -6,6 +6,7 @@
   &-container {
     position: relative;
     padding: 2em 3em;
+    padding-bottom: 1.5em;
 
     @include md {
       padding-left: 2em;
