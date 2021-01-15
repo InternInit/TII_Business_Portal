@@ -84,7 +84,7 @@ const StudentInternTab = (props) => {
             sm={5}
             lg={8}
           >
-            <Caption className="sixteenFont">{props.school.name}</Caption>
+            <Caption className="sixteenFont">{props.school}</Caption>
           </AntCol>
 
           <AntCol className="universal-left universal-middle" sm={4}>
