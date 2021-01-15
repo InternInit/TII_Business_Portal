@@ -282,14 +282,7 @@ class InternshipDetails extends React.Component {
             </Breadcrumb>
 
             <InternshipDetailForm
-              initialFilters={[
-                {
-                  "Filter By": "Age",
-                  CriteriaRestriction: "Minimum",
-                  Criteria: "12",
-                  Priority: "High",
-                },
-              ]}
+              initialFilters={[]}
               buttonText={buttonText}
               title={title}
               formRef={this.formRef}
