@@ -92,17 +92,37 @@ const StudentInternTab = (props) => {
           {/**Applicants */}
           <AntCol className="universal-middle" xs={0} sm={5} lg={6}>
             <AntRow justify="center" align="middle">
-              <Tooltip title="No Timesheets Due">
+              <Tooltip title={
+                  props.gradesDue > 0
+                    ? props.gradesDue === 1
+                      ? +"1 Timesheet Due"
+                      : props.gradesDue + " Timesheets Due"
+                    : "No Timesheets Due"
+                }>
                 <Link to={`/my-interns/${props.id}/attendance`}>
                   <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
                 </Link>
               </Tooltip>
-              <Tooltip title="No Recent Feedback">
+              <Tooltip
+                title={
+                  props.gradesDue > 0
+                    ? props.gradesDue + " Recent Student Feedback"
+                    : "No Recent Feedback"
+                }
+              >
                 <Link to={`/my-interns/${props.id}/feedback`}>
                   <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
                 </Link>
               </Tooltip>
-              <Tooltip title="No Grades Due">
+              <Tooltip
+                title={
+                  props.gradesDue > 0
+                    ? props.gradesDue === 1
+                      ? +"1 Grade Due"
+                      : props.gradesDue + " Grades Due"
+                    : "No Grades Due"
+                }
+              >
                 <Link to={`/my-interns/${props.id}/grades`}>
                   <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
                 </Link>
