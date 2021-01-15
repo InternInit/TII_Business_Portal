@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import FeedbackBox from "./FeedbackBox.jsx";
 import StudentInternTab from "./StudentInternTab.jsx";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "../General/InfoBar.jsx";
@@ -94,9 +93,6 @@ class InternFeedback extends Component {
                 avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
               />
             ))}
-
-            {/* <FeedbackBox style={{ marginTop: "12vh" }} />
-            <FeedbackBox style={{ marginTop: "12vh" }} /> */}
           </InnerContainer>
         </Container>
       </>
