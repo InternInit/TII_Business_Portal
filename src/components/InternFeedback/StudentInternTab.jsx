@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Row as AntRow,
-  Col as AntCol,
-  Grid,
-  Avatar,
-  Tooltip,
-} from "antd";
+import { Row as AntRow, Col as AntCol, Grid, Avatar, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import {
   TabContainer,
@@ -20,68 +13,6 @@ import "../../App.scss";
 
 const { useBreakpoint } = Grid;
 
-const states = {
-  Alabama: "AL",
-  Alaska: "AK",
-  "American Samoa": "AS",
-  Arizona: "AZ",
-  Arkansas: "AR",
-  California: "CA",
-  Colorado: "CO",
-  Connecticut: "CT",
-  Delaware: "DE",
-  "District Of Columbia": "DC",
-  "Federated States Of Micronesia": "FM",
-  Florida: "FL",
-  Georgia: "GA",
-  Guam: "GU",
-  Hawaii: "HI",
-  Idaho: "ID",
-  Illinois: "IL",
-  Indiana: "IN",
-  Iowa: "IA",
-  Kansas: "KS",
-  Kentucky: "KY",
-  Louisiana: "LA",
-  Maine: "ME",
-  "Marshall Islands": "MH",
-  Maryland: "MD",
-  Massachusetts: "MA",
-  Michigan: "MI",
-  Minnesota: "MN",
-  Mississippi: "MS",
-  Missouri: "MO",
-  Montana: "MT",
-  Nebraska: "NE",
-  Nevada: "NV",
-  "New Hampshire": "NH",
-  "New Jersey": "NJ",
-  "New Mexico": "NM",
-  "New York": "NY",
-  "North Carolina": "NC",
-  "North Dakota": "ND",
-  "Northern Mariana Islands": "MP",
-  Ohio: "OH",
-  Oklahoma: "OK",
-  Oregon: "OR",
-  Palau: "PW",
-  Pennsylvania: "PA",
-  "Puerto Rico": "PR",
-  "Rhode Island": "RI",
-  "South Carolina": "SC",
-  "South Dakota": "SD",
-  Tennessee: "TN",
-  Texas: "TX",
-  Utah: "UT",
-  Vermont: "VT",
-  "Virgin Islands": "VI",
-  Virginia: "VA",
-  Washington: "WA",
-  "West Virginia": "WV",
-  Wisconsin: "WI",
-  Wyoming: "WY",
-};
-
 const StudentInternTab = (props) => {
   //Breakpoint calculator for extrasmall screen sizes
   const screens = useBreakpoint();
@@ -91,7 +22,10 @@ const StudentInternTab = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("xs");
   return (
-    <Link to={`/my-interns/${props.id}/dashboard`} style={{ textDecoration: 'none', color: "inherit" }}>
+    <Link
+      to={`/my-interns/${props.id}/dashboard`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       <TabContainer className="mt-1-5 py-1-5 px-6 responsive-tab-container">
         {/**
          *
@@ -158,14 +92,20 @@ const StudentInternTab = (props) => {
           {/**Applicants */}
           <AntCol className="universal-middle" xs={0} sm={5} lg={6}>
             <AntRow justify="center" align="middle">
+              <Tooltip title="No Timesheets Due">
+                <Link to={`/my-interns/${props.id}/attendance`}>
+                  <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
+                </Link>
+              </Tooltip>
               <Tooltip title="No Recent Feedback">
-                <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
+                <Link to={`/my-interns/${props.id}/feedback`}>
+                  <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
+                </Link>
               </Tooltip>
               <Tooltip title="No Grades Due">
-                <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
-              </Tooltip>
-              <Tooltip title="No Timesheet Due">
-                <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
+                <Link to={`/my-interns/${props.id}/grades`}>
+                  <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
+                </Link>
               </Tooltip>
             </AntRow>
           </AntCol>
