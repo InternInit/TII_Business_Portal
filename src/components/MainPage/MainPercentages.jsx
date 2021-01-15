@@ -35,7 +35,8 @@ const PercentageBox = (props) => {
   );
 };
 
-const MainPercentages = () => {
+const MainPercentages = (props) => {
+  let {currentApplicantsReceived, internsTaken} = props;
   return (
     <>
       <AntCol xs={24} md={8}>
@@ -43,7 +44,7 @@ const MainPercentages = () => {
           <Header className="twentyEightFont mb-point-5">
             Applied to Industry
           </Header>
-          <PercentageBox header="Industry" percentage="2" color="#F5222D" />
+          <PercentageBox header="Industry" percentage="2" color="#722ed1" />
         </Row>{" "}
       </AntCol>
 
@@ -62,7 +63,7 @@ const MainPercentages = () => {
             Percentage Accepted
           </Header>
 
-          <PercentageBox header="Accepted" percentage="97" color="#52C41A" />
+          <PercentageBox header="Accepted" percentage={(internsTaken/(currentApplicantsReceived + internsTaken))*100} color="#52C41A" />
         </Row>
       </AntCol>
     </>
