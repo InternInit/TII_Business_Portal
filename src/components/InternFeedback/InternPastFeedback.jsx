@@ -35,16 +35,16 @@ const InternPastFeedback = (props) => {
 
   return (
     <Row className="mt-1">
-      <Col span={10}>
+      <Col xs={24} md={10}>
       </Col>
-      <Col span={14}>
+      <Col xs={24} md={14}>
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
 
         {student.feedback.map((data) => {
           return (
-            <TabContainer className="mb-1 px-3 py-2 responsive-tab-container" hoverable>
+            <TabContainer className="mb-1 student-intern-tab-container" hoverable>
               {/* Avatar Column */}
               {!isLg ? (
                 <Row gutter={16} wrap={false}>
