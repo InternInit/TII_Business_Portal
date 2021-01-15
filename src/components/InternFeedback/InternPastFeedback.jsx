@@ -34,25 +34,27 @@ const InternPastFeedback = (props) => {
     .includes("lg");
 
   return (
-    <Row>
-      <Col span={12} offset={12}>
-        <Header className="twentyEightFont" bolded>
+    <Row className="mt-1">
+      <Col span={10}>
+      </Col>
+      <Col span={14}>
+        <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
 
         {student.feedback.map((data) => {
           return (
-            <TabContainer style={{ marginBottom: "1em" }}>
+            <TabContainer className="mb-1 px-3 py-2 responsive-tab-container" hoverable>
               {/* Avatar Column */}
               {!isLg ? (
-                <Row className="px-1 py-2" gutter={16} wrap={false}>
+                <Row gutter={16} wrap={false}>
                   <Col flex="40px">
                     <Avatar src={student.image} size={40} />
                   </Col>
                   <Col flex="auto">
                     {/* Name & Date Row */}
                     <Row justify="space-between">
-                      <Col xl={20}>
+                      <Col span={24}>
                         <Header className="twentyFont">
                           {student.formData[0]["First Name"] +
                             " " +
@@ -63,8 +65,7 @@ const InternPastFeedback = (props) => {
                       <Col
                         //style={{backgroundColor: "red"}}
                         className="universal-middle"
-                        sm={24}
-                        m={24}
+                        span={24}
                       >
                         <Row justify="start">
                           <Caption className="twelveFont" light>
@@ -103,14 +104,14 @@ const InternPastFeedback = (props) => {
                   </Col>
                 </Row>
               ) : (
-                <Row className="px-3 py-2" gutter={16} wrap={false}>
+                <Row gutter={16} wrap={false}>
                   <Col flex="48px">
                     <Avatar src={student.image} size={48} />
                   </Col>{" "}
                   <Col flex="auto">
                     {/* Name & Date Row */}
                     <Row justify="space-between">
-                      <Col xl={20}>
+                      <Col>
                         <Header className="twentyTwoFont">
                           {student.formData[0]["First Name"] +
                             " " +
@@ -120,14 +121,12 @@ const InternPastFeedback = (props) => {
 
                       <Col
                         className="universal-middle"
-                        sm={24}
-                        m={24}
-                        lg={24}
-                        xl={4}
                       >
+                        <Row justify="end">
                         <Caption className="fourteenFont" light>
                           {moment(data.date).format("MM/DD/YYYY")}
                         </Caption>
+                        </Row>
                       </Col>
                     </Row>
 
