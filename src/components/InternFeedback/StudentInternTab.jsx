@@ -1,5 +1,12 @@
 import React from "react";
-import { Row as AntRow, Col as AntCol, Grid, Avatar, Tooltip } from "antd";
+import {
+  Row as AntRow,
+  Col as AntCol,
+  Grid,
+  Avatar,
+  Tooltip,
+  Badge,
+} from "antd";
 import { Link } from "react-router-dom";
 import {
   TabContainer,
@@ -92,15 +99,23 @@ const StudentInternTab = (props) => {
           {/**Applicants */}
           <AntCol className="universal-middle" xs={0} sm={5} lg={6}>
             <AntRow justify="center" align="middle">
-              <Tooltip title={
+              <Tooltip
+                title={
                   props.attendanceDue > 0
                     ? props.attendanceDue === 1
                       ? +"1 Timesheet Due"
                       : props.attendanceDue + " Timesheets Due"
                     : "No Timesheets Due"
-                }>
+                }
+              >
                 <Link to={`/my-interns/${props.id}/attendance`}>
-                  <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
+                  <Badge
+                    count={props.attendanceDue}
+                    offset={[-12, 5]}
+                    size="small"
+                  >
+                    <BiTime className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-timesheet" />
+                  </Badge>
                 </Link>
               </Tooltip>
               <Tooltip
@@ -111,7 +126,13 @@ const StudentInternTab = (props) => {
                 }
               >
                 <Link to={`/my-interns/${props.id}/feedback`}>
-                  <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
+                  <Badge
+                    count={props.feedbackDue}
+                    offset={[-12, 5]}
+                    size="small"
+                  >
+                    <BiMessageSquareDetail className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-feedback" />
+                  </Badge>
                 </Link>
               </Tooltip>
               <Tooltip
@@ -124,7 +145,9 @@ const StudentInternTab = (props) => {
                 }
               >
                 <Link to={`/my-interns/${props.id}/grades`}>
-                  <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
+                  <Badge count={props.gradesDue} offset={[-12, 5]} size="small">
+                    <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
+                  </Badge>
                 </Link>
               </Tooltip>
             </AntRow>
