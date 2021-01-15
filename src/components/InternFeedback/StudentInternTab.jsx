@@ -93,10 +93,10 @@ const StudentInternTab = (props) => {
           <AntCol className="universal-middle" xs={0} sm={5} lg={6}>
             <AntRow justify="center" align="middle">
               <Tooltip title={
-                  props.gradesDue > 0
-                    ? props.gradesDue === 1
+                  props.attendanceDue > 0
+                    ? props.attendanceDue === 1
                       ? +"1 Timesheet Due"
-                      : props.gradesDue + " Timesheets Due"
+                      : props.attendanceDue + " Timesheets Due"
                     : "No Timesheets Due"
                 }>
                 <Link to={`/my-interns/${props.id}/attendance`}>
@@ -105,8 +105,8 @@ const StudentInternTab = (props) => {
               </Tooltip>
               <Tooltip
                 title={
-                  props.gradesDue > 0
-                    ? props.gradesDue + " Recent Student Feedback"
+                  props.feedbackDue > 0
+                    ? props.feedbackDue + " Recent Student Feedback"
                     : "No Recent Feedback"
                 }
               >
