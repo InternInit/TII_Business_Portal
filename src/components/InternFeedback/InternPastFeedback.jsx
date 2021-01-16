@@ -32,7 +32,7 @@ const InternPastFeedback = (props) => {
 };
 
 const FeedbackTab = ({ data, student, feedback }) => {
-  const [readMore, toggleReadMore] = useState(false);
+  const [active, toggleActive] = useState(false);
 
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
@@ -54,7 +54,10 @@ const FeedbackTab = ({ data, student, feedback }) => {
 
   return (
     <>
-      <TabContainer className="mb-1 student-intern-tab-container" hoverable>
+      <TabContainer
+        className="mb-1 student-intern-tab-container"
+        hoverable
+      >
         <Row gutter={16} wrap={false}>
           <Col flex="40px">
             <Avatar src={student.image} size={40} />
@@ -111,11 +114,10 @@ const FeedbackTab = ({ data, student, feedback }) => {
 
             {/* Read more Button */}
             <Row justify="end">
-              {data.comment.length >= 200 && (
-                <Button type="link" onClick={() => toggleReadMore(!readMore)}>
-                  Read more
-                </Button>
-              )}
+              {(isMd && data.comment.length > 200) ||
+              ((isSm || isXs) && !isMd && data.comment.length > 100) ? (
+                <Button type="link">Read more</Button>
+              ) : null}
             </Row>
           </Col>
         </Row>
