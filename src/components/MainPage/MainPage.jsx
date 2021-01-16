@@ -16,18 +16,39 @@ import {
 
 import axios from "axios";
 
+const pageDots = {
+  height: "25px",
+  width: "25px",
+  borderRadius: "50%",
+  backgroundColor: "#d3d3d3",
+};
+
 const MainPage = (props) => {
-  const [state, setState] = useState({
-    students: [],
-    business: null,
-  });
+  const [page, setPage] = useState(
+0
+  );
+  const CARD_PER_PAGE = 3;
 
   let { candidates, listings, interns } = props;
-  console.log(candidates);
 
   const numberOfApplicants = (interviews, reviews) => {
     return interviews + reviews;
   };
+
+  const getDotCount = () => {
+
+    let dotCount = Math.round(
+      candidates.filter(
+        (candidate) =>
+          candidate.status.includes("Interview") ||
+          candidate.status.includes("Review")
+      ).length /
+        CARD_PER_PAGE +
+        0.49
+    );
+    return dotCount;
+  };
+  
 
   return (
     <PageContainer>
@@ -150,6 +171,7 @@ const MainPage = (props) => {
                 : null}
             </Header>
             {candidates
+              .slice(page, CARD_PER_PAGE)
               .filter(
                 (candidate) =>
                   candidate.status.includes("Interview") ||
@@ -166,6 +188,11 @@ const MainPage = (props) => {
                   type={student.status}
                 />
               ))}
+            <AntRow justify="center">
+              {candidates.slice(page, getDotCount()).map(() => (
+                <div className="dashboard-pagination"/>
+              ))}
+            </AntRow>
           </AntCol>
         </AntRow>
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
