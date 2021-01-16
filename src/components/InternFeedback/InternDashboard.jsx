@@ -19,9 +19,11 @@ import {
 import _ from "underscore";
 
 const ATTENDANCE_PER_PAGE = 5;
+const GRADES_PER_PAGE = 1;
 
 const InternDashboard = (props) => {
   const [page, changePage] = useState(0);
+  const [gradePage, changeGradePage] = useState(0);
 
   return (
     <>
@@ -100,11 +102,26 @@ const InternDashboard = (props) => {
             Employer Grades
           </Header>
           {sortReview(props.student.grades)
+          .slice(gradePage * GRADES_PER_PAGE, (gradePage + 1) * GRADES_PER_PAGE)
             .map((grade) => (
               <GradeCard review={grade} />
             ))}
+            <AntRow justify="center">
+            <Pagination
+              current={gradePage + 1}
+              total={
+                props.student.grades.filter((piece) => !piece.isFinished).length
+              }
+              showLessItems={true}
+              pageSize={GRADES_PER_PAGE}
+              onChange={(pageChange) => changeGradePage(pageChange - 1)}
+              hideOnSinglePage={true}
+              style={{ marginTop: "10px" }}
+            />
+          </AntRow>
         </AntCol>
       </AntRow>
+      
     </>
   );
 };
@@ -169,16 +186,6 @@ const sortReview = (review) => {
   );
 
   return sortedReviews;
-};
-
-const calculateDays = (oldDate, newDate) => {
-  let diff = Math.abs(oldDate - newDate) / (1000 * 3600 * 24);
-
-  if (diff >= 30) {
-    return { value: Math.round(diff / 30), unit: "months" };
-  }
-
-  return { value: Math.round(diff), unit: "days" };
 };
 
 const GradeCard = (props) => {
