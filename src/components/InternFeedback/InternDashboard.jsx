@@ -62,7 +62,9 @@ const InternDashboard = (props) => {
           <AntRow justify="center">
             <Pagination
               current={page + 1}
-              total={props.student.hours.filter(day => !day.isApproved).length}
+              total={
+                props.student.hours.filter((day) => !day.isApproved).length
+              }
               showLessItems={true}
               pageSize={ATTENDANCE_PER_PAGE}
               onChange={(pageChange) => changePage(pageChange - 1)}
@@ -97,11 +99,9 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          {sortReview(props.student.review)
-            .reverse()
-            .slice(0, 1)
-            .map((review) => (
-              <GradeCard review={review} />
+          {sortReview(props.student.grades)
+            .map((grade) => (
+              <GradeCard review={grade} />
             ))}
         </AntCol>
       </AntRow>
@@ -162,13 +162,13 @@ const StudentFeedbackCard = (props) => {
 };
 
 const sortReview = (review) => {
-  let sortedReviews = _.sortBy(review, (piece) => new Date(piece.date));
-  const today = new Date();
-  const filteredReviews = sortedReviews.filter(
-    (piece) => today - new Date(piece.date) < 21601553606
+  const filteredReviews = review.filter((piece) => !piece.isFinished);
+  const sortedReviews = _.sortBy(
+    filteredReviews,
+    (piece) => piece["Days Until dueDate"]
   );
 
-  return filteredReviews;
+  return sortedReviews;
 };
 
 const calculateDays = (oldDate, newDate) => {
@@ -183,17 +183,56 @@ const calculateDays = (oldDate, newDate) => {
 
 const GradeCard = (props) => {
   /**
-   * So... the way the current date system works is below:
-   * 1) I filter the dates by an arbitrary cut-off date before the current date
-   * 2) I then return that filtered list through sortReview
-   * 3) Any date that is BEFORE the current date is labeled overdue
-   * 4) All other dates are properly labeled
+   * NEW FIX ON DATE UPDATING SYSTEM
+   * - Currently it uses a pretty low tech if else chain. In the future, the if else 
+   *   should only set colors and units instead of the tags themselves. This will have
+   *   to do for now.
+   * 
+   * @TODO
+   *  - Joseph
+   *  - Fix the color and tag-setting system on dates
+   * 
    */
-  const today = new Date();
 
-  const [reviewDate, editReviewDate] = useState(
-    calculateDays(today, new Date(props.review.date))
-  );
+  const RenderTag = () => {
+    const daysUntil = props.review["Days Until dueDate"];
+    if (daysUntil < 0)
+      return (
+        <BorderlessTag className="px-1-5" color="#f5222d" background="#ffccc7">
+          Overdue
+        </BorderlessTag>
+      );
+    else if (daysUntil === 0)
+      return (
+        <BorderlessTag className="px-1-5" color="#fff2e8" background="#fa541c">
+          Due <strong>Today</strong>
+        </BorderlessTag>
+      );
+    else if (daysUntil < 5)
+      return (
+        <BorderlessTag className="px-1-5" color="#fa541c" background="#ffd8bf">
+          <span>
+            Due in <strong>{daysUntil}</strong> days
+          </span>
+        </BorderlessTag>
+      );
+    else if (daysUntil < 30)
+      return (
+        <BorderlessTag className="px-1-5" color="#52c41a" background="#d9f7be">
+          <span>
+            Due in <strong>{daysUntil}</strong> days
+          </span>
+        </BorderlessTag>
+      );
+    else
+      return (
+        <BorderlessTag className="px-1-5" color="#52c41a" background="#d9f7be">
+          <span>
+            Due in <strong>{Math.round(daysUntil / 30)}</strong> months
+          </span>
+        </BorderlessTag>
+      );
+  };
 
   return (
     <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
@@ -201,37 +240,7 @@ const GradeCard = (props) => {
         <AntCol>
           <Header className="twentyFont">Performance Review</Header>
         </AntCol>
-        <AntCol>
-          {today - new Date(props.review.date) > 0 ? (
-            <BorderlessTag
-              className="px-1-5"
-              color="#f5222d"
-              background="#ffccc7"
-            >
-              Overdue
-            </BorderlessTag>
-          ) : reviewDate.value < 5 && reviewDate.unit === "days" ? (
-            <BorderlessTag
-              className="px-1-5"
-              color="#fa541c"
-              background="#ffd8bf"
-            >
-              <span>
-                Due in <strong>{reviewDate.value}</strong> {reviewDate.unit}
-              </span>
-            </BorderlessTag>
-          ) : (
-            <BorderlessTag
-              className="px-1-5"
-              color="#52c41a"
-              background="#d9f7be"
-            >
-              <span>
-                Due in <strong>{reviewDate.value}</strong> {reviewDate.unit}
-              </span>
-            </BorderlessTag>
-          )}
-        </AntCol>
+        <AntCol>{RenderTag()}</AntCol>
       </AntRow>
       <AntRow className="py-1">
         <AntCol
