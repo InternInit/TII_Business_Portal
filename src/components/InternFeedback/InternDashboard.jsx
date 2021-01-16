@@ -12,10 +12,12 @@ import { Row as AntRow, Col as AntCol, Avatar, Button, Pagination } from "antd";
 import _ from "underscore";
 
 const ATTENDANCE_PER_PAGE = 5;
+const FEEDBACK_PER_PAGE = 2;
 const GRADES_PER_PAGE = 1;
 
 const InternDashboard = (props) => {
   const [page, changePage] = useState(0);
+  const [feedbackPage, changeFeedbackPage] = useState(0);
   const [gradePage, changeGradePage] = useState(0);
 
   return (
@@ -72,25 +74,32 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Recent Feedback
           </Header>
-          {props.student.feedback.length > 2
-            ? props.student.feedback
-                .splice(0, 2)
-                .map((feedback) => (
-                  <StudentFeedbackCard
-                    avatar={props.student.image ? props.student.image : false}
-                    name={props.student.formData[0]["First Name"]}
-                    lastInitial={props.student.formData[0]["Last Name"].substring(0,1)}
-                    feedback={feedback}
-                  />
-                ))
-            : props.student.feedback.map((feedback) => (
-                <StudentFeedbackCard
-                  avatar={props.student.image ? props.student.image : false}
-                  name={props.student.formData[0]["First Name"]}
-                  lastInitial={props.student.formData[0]["Last Name"].substring(0,1)}
-                  feedback={feedback}
-                />
-              ))}
+          {props.student.feedback
+            .filter((piece) => !piece.isRead)
+            .slice(
+              feedbackPage * FEEDBACK_PER_PAGE,
+              (feedbackPage + 1) * FEEDBACK_PER_PAGE
+            )
+            .map((feedback) => (
+              <StudentFeedbackCard
+                avatar={props.student.image ? props.student.image : false}
+                name={props.student.formData[0]["First Name"]}
+                feedback={feedback}
+              />
+            ))}
+          <AntRow justify="center">
+            <Pagination
+              current={feedbackPage + 1}
+              total={
+                props.student.feedback.filter((piece) => !piece.isRead).length
+              }
+              showLessItems={true}
+              pageSize={FEEDBACK_PER_PAGE}
+              onChange={(pageChange) => changeFeedbackPage(pageChange - 1)}
+              hideOnSinglePage={true}
+              style={{ marginTop: "10px" }}
+            />
+          </AntRow>
         </AntCol>
         <AntCol className="mt-1 pl-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
@@ -124,8 +133,8 @@ const InternDashboard = (props) => {
 };
 
 const StudentFeedbackCard = (props) => {
-  const ColorList = ['#f56a00', '#7265e6', '#13c2c2', '#00a2ae'];
-  
+  const ColorList = ["#f56a00", "#7265e6", "#13c2c2", "#00a2ae"];
+
   return (
     <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
       <AntRow>
@@ -133,8 +142,12 @@ const StudentFeedbackCard = (props) => {
           {props.avatar ? (
             <Avatar src={props.avatar} size={48} />
           ) : (
-            <Avatar size={48} gap={-4} style={{backgroundColor: ColorList[props.name.length % 4]}}>
-              {props.name.substring(0,1)}
+            <Avatar
+              size={48}
+              gap={-4}
+              style={{ backgroundColor: ColorList[props.name.length % 4] }}
+            >
+              {props.name.substring(0, 1)}
             </Avatar>
           )}
         </AntCol>
