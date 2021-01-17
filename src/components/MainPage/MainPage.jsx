@@ -103,7 +103,7 @@ const MainPage = (props) => {
                 <PageFeedback
                   firstName={student.formData["0"]["First Name"]}
                   lastName={student.formData["0"]["Last Name"]}
-                  school={student.school.name}
+                  school={student.school ? student.school.name : "Placeholder"}
                   avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
                   position={"Professional Gamer"}
                   id={student.Id}

@@ -85,11 +85,24 @@ class InternFeedback extends Component {
                 age={student.formData["1"]["Age"]}
                 type="Hybrid"
                 id={student.Id}
-                attendanceDue={student.hours.filter(hour => !hour.isApproved).length}
-                feedbackDue={student.feedback.filter(feedback => !feedback.isRead).length}
-                gradesDue={student.grades.filter(grade => !grade.isFinished).length}
+                attendanceDue={
+                  student.hours
+                    ? student.hours.filter((hour) => !hour.isApproved).length
+                    : 0
+                }
+                feedbackDue={
+                  student.feedback
+                    ? student.feedback.filter((feedback) => !feedback.isRead)
+                        .length
+                    : 0
+                }
+                gradesDue={
+                  student.grades
+                    ? student.grades.filter((grade) => !grade.isFinished).length
+                    : 0
+                }
                 position={student.appliedFor}
-                school={student.school.name}
+                school={student.school ? student.school.name : "Placeholder"}
                 avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
               />
             ))}
