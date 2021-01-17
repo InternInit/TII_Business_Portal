@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Row as AntRow, Col as AntCol, Pagination, Table } from "antd";
+import { Scrollbars } from "react-custom-scrollbars";
 
 import {
   Header,
@@ -62,7 +63,10 @@ const InternPastGrades = (props) => {
             Past Grades
           </Header>
           <GradeTable
-            grades={_.sortBy(props.student.grades.filter((grade) => grade.isFinished), "dueDate")}
+            grades={_.sortBy(
+              props.student.grades.filter((grade) => grade.isFinished),
+              "dueDate"
+            )}
           />
         </AntCol>
       </AntRow>
@@ -73,7 +77,7 @@ const InternPastGrades = (props) => {
 const GradeTable = (props) => {
   return (
     <>
-      <TabContainer style={{height: "467px"}}>
+      <TabContainer style={{ height: "83%", overflow: "hidden" }}>
         <AntRow
           justify="space-between"
           className="px-2 py-1 intern-past-grades-col-header"
@@ -85,9 +89,17 @@ const GradeTable = (props) => {
             <Header className="twentyFont">Grade</Header>
           </AntCol>
         </AntRow>
-        {props.grades.map((grade) => (
-          <GradeRow grade={grade} />
-        ))}
+        <Scrollbars autoHide={true}>
+          {props.grades.map((grade) => (
+            <GradeRow grade={grade} />
+          ))}
+          {props.grades.map((grade) => (
+            <GradeRow grade={grade} />
+          ))}
+          {props.grades.map((grade) => (
+            <GradeRow grade={grade} />
+          ))}
+        </Scrollbars>
       </TabContainer>
     </>
   );
