@@ -30,11 +30,25 @@
     width: 22px;
     border-radius: 50%;
     background-color: #d3d3d3;
-    margin: 0px 8px;
+    margin: 0px 6px;
 
     &:hover {
         transition-duration: 0.35s;
         cursor: pointer;
         background-color: #606060;
       }
+
+    &-current-page{
+        height: 22px;
+        width: 22px;
+        border-radius: 50%;
+        background-color: #606060;
+        margin: 0px 6px;
+    
+        &:hover {
+            transition-duration: 0.35s;
+            cursor: pointer;
+          }
+    }
+    
 }
