@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Row as AntRow, Col as AntCol, Pagination, Table } from "antd";
+import { Row as AntRow, Col as AntCol, Pagination, Collapse } from "antd";
 import { Scrollbars } from "react-custom-scrollbars";
 
 import {
@@ -13,7 +13,7 @@ import _ from "underscore";
 
 import GradeCard from "./GradeCard.jsx";
 
-const { Column, ColumnGroup } = Table;
+const { Panel } = Collapse;
 const GRADES_PER_PAGE = 1;
 
 const sortReview = (review) => {
@@ -90,15 +90,35 @@ const GradeTable = (props) => {
           </AntCol>
         </AntRow>
         <Scrollbars autoHide={true}>
-          {props.grades.map((grade) => (
-            <GradeRow grade={grade} />
-          ))}
-          {props.grades.map((grade) => (
-            <GradeRow grade={grade} />
-          ))}
-          {props.grades.map((grade) => (
-            <GradeRow grade={grade} />
-          ))}
+          <Collapse className="intern-past-grades-collapse" bordered={false}>
+            {props.grades.map((grade) => (
+              <Panel
+              className="intern-past-grades-collapse-panel"
+                header={
+                  <AntRow
+                    justify="space-between"
+                    className="intern-past-grades-grade-row"
+                  >
+                    <AntCol>
+                      <Caption className="sixteenFont">
+                        {grade.dueDateFormatted}
+                      </Caption>
+                    </AntCol>
+                    <AntCol>
+                      <Caption className="sixteenFont">
+                        {grade.assessment ? grade.assessment : "A"}
+                      </Caption>
+                    </AntCol>
+                  </AntRow>
+                }
+                showArrow={false}
+              >
+                <Caption className="sixteenFont intern-past-grades-collapse-panel-text">
+                  <Caption light>Additional Comments: </Caption>{grade.additionalComments}
+                </Caption>
+              </Panel>
+            ))}
+          </Collapse>
         </Scrollbars>
       </TabContainer>
     </>
@@ -111,18 +131,30 @@ const GradeRow = (props) => {
    * Convert Due Date to Date Completed
    */
   return (
-    <AntRow justify="space-between" className="intern-past-grades-grade-row">
-      <AntCol>
-        <Caption className="sixteenFont">
-          {props.grade.dueDateFormatted}
-        </Caption>
-      </AntCol>
-      <AntCol>
-        <Caption className="sixteenFont">
-          {props.grade.assessment ? props.grade.assessment : "A"}
-        </Caption>
-      </AntCol>
-    </AntRow>
+    <Panel
+      header={
+        <AntRow
+          justify="space-between"
+          className="intern-past-grades-grade-row"
+        >
+          <AntCol>
+            <Caption className="sixteenFont">
+              {props.grade.dueDateFormatted}
+            </Caption>
+          </AntCol>
+          <AntCol>
+            <Caption className="sixteenFont">
+              {props.grade.assessment ? props.grade.assessment : "A"}
+            </Caption>
+          </AntCol>
+        </AntRow>
+      }
+      showArrow={false}
+    >
+      <Caption className="sixteenFont">
+        {props.grade.additionalComments}
+      </Caption>
+    </Panel>
   );
 };
 
