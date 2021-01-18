@@ -14,6 +14,7 @@ import {
 } from "antd";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { BiTime } from "react-icons/bi";
 
 import { Header, TabContainer } from "../Styled/FundamentalComponents.jsx";
 import AttendanceCard from "./AttendanceCard.jsx";
@@ -64,35 +65,32 @@ const AttendanceRecord = (props) => {
         <Header bolded className="twentyTwoFont mb-point-25">
           To Be Approved
         </Header>
-        {props.student.hours.filter((day) => !day.isApproved).length > 5
-          ? props.student.hours
-              .filter((day) => !day.isApproved)
-              .slice(
-                page * ATTENDANCE_PER_PAGE,
-                (page + 1) * ATTENDANCE_PER_PAGE
-              )
-              .map((hour, index) => (
-                <AttendanceCard
-                  key={index}
-                  studentId={props.student.Id}
-                  hoursId={hour.Id}
-                  time={hour.time}
-                  date={hour.dateFormatted}
-                  review={true}
-                />
-              ))
-          : props.student.hours
-              .filter((day) => !day.isApproved)
-              .map((hour, index) => (
-                <AttendanceCard
-                  key={index}
-                  studentId={props.student.Id}
-                  hoursId={hour.Id}
-                  time={hour.time}
-                  date={hour.dateFormatted}
-                  review={true}
-                />
-              ))}
+        {props.student.hours.filter((day) => !day.isApproved).length > 0 ? (
+          props.student.hours
+            .filter((day) => !day.isApproved)
+            .slice(page * ATTENDANCE_PER_PAGE, (page + 1) * ATTENDANCE_PER_PAGE)
+            .map((hour, index) => (
+              <AttendanceCard
+                key={index}
+                studentId={props.student.Id}
+                hoursId={hour.Id}
+                time={hour.time}
+                date={hour.dateFormatted}
+                review={true}
+              />
+            ))
+        ) : (
+          <div className="py-2-5 universal-center ">
+            <Row justify="center" align="middle">
+              <BiTime className="internship-posting-no-content-icon" />
+            </Row>
+            <Row justify="center" align="middle">
+              <Header className="twentyFourFont" color="#bfbfbf">
+                No Hours to Approve
+              </Header>
+            </Row>
+          </div>
+        )}
         <Row justify="center">
           <Pagination
             current={page + 1}

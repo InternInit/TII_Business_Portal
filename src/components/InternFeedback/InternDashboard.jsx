@@ -31,33 +31,35 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Approve Hours
           </Header>
-          {props.student.hours.filter((day) => !day.isApproved).length > 0
-            ? props.student.hours
-                .filter((day) => !day.isApproved)
-                .slice(
-                  page * ATTENDANCE_PER_PAGE,
-                  (page + 1) * ATTENDANCE_PER_PAGE
-                )
-                .map((hour, index) => (
-                  <AttendanceCard
-                    key={index}
-                    studentId={props.student.Id}
-                    hoursId={hour.Id}
-                    time={hour.time}
-                    date={hour.dateFormatted}
-                    review={true}
-                  />
-                ))
-            : <div className="py-2-5 universal-center ">
-            <AntRow justify="center" align="middle">
-              <BiTime className="internship-posting-no-content-icon" />
-            </AntRow>
-            <AntRow justify="center" align="middle">
-              <Header className="twentyFourFont" color="#bfbfbf">
-                No Hours to Approve
-              </Header>
-            </AntRow>
-          </div>}
+          {props.student.hours.filter((day) => !day.isApproved).length > 0 ? (
+            props.student.hours
+              .filter((day) => !day.isApproved)
+              .slice(
+                page * ATTENDANCE_PER_PAGE,
+                (page + 1) * ATTENDANCE_PER_PAGE
+              )
+              .map((hour, index) => (
+                <AttendanceCard
+                  key={index}
+                  studentId={props.student.Id}
+                  hoursId={hour.Id}
+                  time={hour.time}
+                  date={hour.dateFormatted}
+                  review={true}
+                />
+              ))
+          ) : (
+            <div className="py-2-5 universal-center ">
+              <AntRow justify="center" align="middle">
+                <BiTime className="internship-posting-no-content-icon" />
+              </AntRow>
+              <AntRow justify="center" align="middle">
+                <Header className="twentyFourFont" color="#bfbfbf">
+                  No Hours to Approve
+                </Header>
+              </AntRow>
+            </div>
+          )}
         </AntCol>
         <AntCol className="mt-1 px-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
