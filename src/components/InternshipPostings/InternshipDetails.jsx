@@ -228,11 +228,25 @@ class InternshipDetails extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { isNewListing: true };
+    this.state = {
+      isNewListing: true,
+      filters: null,
+      loading: true,
+    };
   }
   formRef = React.createRef();
 
   componentDidMount() {
+    this.findListingData();
+  }
+
+  componentDidUpdate() {
+    if (this.state.filters == null) {
+      this.findListingData();
+    }
+  }
+
+  findListingData = () => {
     if (!this.props.loadingStatuses.isListingLoading) {
       if (!this.props.location.pathname.includes("add-listing")) {
         this.setState({ isNewListing: false });
@@ -246,11 +260,15 @@ class InternshipDetails extends React.Component {
             moment(listingData["Internship Dates"][1]),
           ];
         } catch (e) {}
-        this.formRef.current.setFieldsValue(listingData);
-        console.log(listingData);
+        this.setState({ filters: listingData.Filters }, () => {
+          console.log(this.state);
+          this.setState({ loading: false }, () => {
+            this.formRef.current.setFieldsValue(listingData);
+          });
+        });
       }
     }
-  }
+  };
 
   onFinish = (values, allFilters) => {
     console.log(values);
@@ -282,7 +300,9 @@ class InternshipDetails extends React.Component {
 
   render() {
     let { buttonText, title } = this.props;
-    return !this.props.loadingStatuses.isListingLoading ? (
+    return this.state.loading || this.props.loadingStatuses.isListingLoading ? (
+      <h1>Implement Loading Here</h1>
+    ) : (
       <React.Fragment>
         <NavSearch title={title} searchBar={false} />
         <PageContainer>
@@ -299,7 +319,7 @@ class InternshipDetails extends React.Component {
             </Breadcrumb>
 
             <InternshipDetailForm
-              initialFilters={[]}
+              initialFilters={this.state.filters}
               buttonText={buttonText}
               title={title}
               formRef={this.formRef}
@@ -308,8 +328,6 @@ class InternshipDetails extends React.Component {
           </div>
         </PageContainer>
       </React.Fragment>
-    ) : (
-      <h1>Implement Loading Here</h1>
     );
   }
 }
