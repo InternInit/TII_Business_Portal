@@ -29,9 +29,9 @@ const InternDashboard = (props) => {
       <AntRow justify="center" style={{ width: "100%" }}>
         <AntCol className="mt-1 pr-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
-            Attendance Sheet (To Be Approved)
+            Approve Hours
           </Header>
-          {props.student.hours.filter((day) => !day.isApproved).length > 5
+          {props.student.hours.filter((day) => !day.isApproved).length > 0
             ? props.student.hours
                 .filter((day) => !day.isApproved)
                 .slice(
@@ -48,36 +48,48 @@ const InternDashboard = (props) => {
                     review={true}
                   />
                 ))
-            : props.student.hours
-                .filter((day) => !day.isApproved)
-                .map((hour, index) => (
-                  <AttendanceCard
-                    key={index}
-                    studentId={props.student.Id}
-                    hoursId={hour.Id}
-                    time={hour.time}
-                    date={hour.dateFormatted}
-                    review={true}
-                  />
-                ))}
+            : <div className="py-2-5 universal-center ">
+            <AntRow justify="center" align="middle">
+              <BiTime className="internship-posting-no-content-icon" />
+            </AntRow>
+            <AntRow justify="center" align="middle">
+              <Header className="twentyFourFont" color="#bfbfbf">
+                No Hours to Approve
+              </Header>
+            </AntRow>
+          </div>}
         </AntCol>
         <AntCol className="mt-1 px-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
             Recent Feedback
           </Header>
-          {props.student.feedback
-            .filter((piece) => !piece.isRead)
-            .slice(
-              feedbackPage * FEEDBACK_PER_PAGE,
-              (feedbackPage + 1) * FEEDBACK_PER_PAGE
-            )
-            .map((feedback) => (
-              <StudentFeedbackCard
-                avatar={props.student.image ? props.student.image : false}
-                name={props.student.formData[0]["First Name"]}
-                feedback={feedback}
-              />
-            ))}
+          {props.student.feedback.filter((piece) => !piece.isRead).length >
+          0 ? (
+            props.student.feedback
+              .filter((piece) => !piece.isRead)
+              .slice(
+                feedbackPage * FEEDBACK_PER_PAGE,
+                (feedbackPage + 1) * FEEDBACK_PER_PAGE
+              )
+              .map((feedback) => (
+                <StudentFeedbackCard
+                  avatar={props.student.image ? props.student.image : false}
+                  name={props.student.formData[0]["First Name"]}
+                  feedback={feedback}
+                />
+              ))
+          ) : (
+            <div className="py-2-5 universal-center ">
+              <AntRow justify="center" align="middle">
+                <BiMessageSquareDetail className="internship-posting-no-content-icon" />
+              </AntRow>
+              <AntRow justify="center" align="middle">
+                <Header className="twentyFourFont" color="#bfbfbf">
+                  No Recent Feedback
+                </Header>
+              </AntRow>
+            </div>
+          )}
         </AntCol>
         <AntCol className="mt-1 pl-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
