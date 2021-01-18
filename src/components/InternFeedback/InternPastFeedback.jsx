@@ -16,18 +16,24 @@ const InternPastFeedback = (props) => {
   let readMore = false;
 
   return (
+    <>
     <Row className="mt-1">
-      <Col xs={24} md={10}></Col>
-      <Col xs={24} md={14}>
+        <Header className="twentyTwoFont mb-point-25" bolded>
+          Unread Feedback
+        </Header>
+        {student.feedback.filter(feedback => !feedback.isRead).map((data) => (
+          <FeedbackTab student={student} data={data} />
+        ))}
+    </Row>
+    <Row className="mt-1">
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-
-        {student.feedback.map((data) => (
+        {student.feedback.filter(feedback => feedback.isRead).map((data) => (
           <FeedbackTab student={student} data={data} />
         ))}
-      </Col>
     </Row>
+    </>
   );
 };
 
