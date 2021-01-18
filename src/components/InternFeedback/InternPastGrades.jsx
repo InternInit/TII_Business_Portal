@@ -77,7 +77,7 @@ const InternPastGrades = (props) => {
 const GradeTable = (props) => {
   return (
     <>
-      <TabContainer style={{ height: "83%", overflow: "hidden" }}>
+      <TabContainer style={{ height: "83%", overflow: "hidden", minHeight: "400px" }}>
         <AntRow
           justify="space-between"
           className="px-2 py-1 intern-past-grades-col-header"
@@ -89,7 +89,7 @@ const GradeTable = (props) => {
             <Header className="twentyFont">Grade</Header>
           </AntCol>
         </AntRow>
-        <Scrollbars autoHide={true}>
+        <Scrollbars>
           <Collapse className="intern-past-grades-collapse" bordered={false}>
             {props.grades.map((grade) => (
               <Panel
