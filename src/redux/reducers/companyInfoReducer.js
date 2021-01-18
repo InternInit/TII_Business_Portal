@@ -91,6 +91,18 @@ const companyInfoReducer = (
         ...state,
         interns: students
       }
+    case "SUBMIT_GRADE":
+      console.log("Submitting");
+      let gradeStudentIndex = _.findIndex(students, { Id: action.internId });
+      let gradeIndex = _.findIndex(students[gradeStudentIndex].grades, { Id: action.gradeId });
+      students[gradeStudentIndex].grades[gradeIndex].assessment = action.assessment;
+      students[gradeStudentIndex].grades[gradeIndex].additionalComments = action.additionalComments;
+      students[gradeStudentIndex].grades[gradeIndex].finishedDate = new Date();
+      students[gradeStudentIndex].grades[gradeIndex].isFinished = true;
+      return {
+        ...state,
+        interns: students
+      }
     default:
       return state;
   }

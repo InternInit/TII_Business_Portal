@@ -13,6 +13,20 @@ import {
   message
 } from "antd";
 
+import { connect } from "react-redux";
+import { submitGrade, rejectHours } from "../../redux/actions";
+
+const mapDispatchToProps = {
+  submitGrade,
+  rejectHours
+};
+
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+  };
+};
+
 const GradeCard = (props) => {
     /**
      * NEW FIX ON DATE UPDATING SYSTEM
@@ -66,7 +80,9 @@ const GradeCard = (props) => {
         );
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (values) => {
+      console.log(values);
+      props.submitGrade(props.studentId, props.review.Id, values.Grade, values["Additional Comments"]);
       message.success("Grade Submitted");
     }
   
@@ -84,7 +100,7 @@ const GradeCard = (props) => {
             style={{ borderBottom: "2px #91d5ff solid" }}
           ></AntCol>
         </AntRow>
-        <Form>
+        <Form name="gradeForm" onFinish={handleSubmit}>
           <AntRow>
             <Header className="sixteenFont">
               <span style={{ color: "#bfbfbf" }}>Type:</span> Grade
@@ -112,7 +128,7 @@ const GradeCard = (props) => {
           </AntRow>
           <AntRow gutter={[16, 0]} className="pt-point-5s" justify="end">
             <AntCol>
-              <Button type="primary" onClick={() => handleSubmit()}>Submit</Button>
+              <Button type="primary" htmlType="submit">Submit</Button>
             </AntCol>
           </AntRow>
         </Form>
@@ -120,4 +136,4 @@ const GradeCard = (props) => {
     );
   };
 
-  export default GradeCard;
+  export default connect(mapStateToProps, mapDispatchToProps)(GradeCard);

@@ -1,3 +1,5 @@
+import { add } from "lodash";
+
 export const updateName = (name) => {
   return {
     type: "UPDATE_NAME",
@@ -148,4 +150,14 @@ export const rejectHours = (internId, hourId) => {
     hourId: hourId,
     type: "REJECT_HOURS"
   };
+}
+
+export const submitGrade = (internId, gradeId, assessment, additionalComments) => {
+  return {
+    internId: internId,
+    gradeId: gradeId,
+    assessment: assessment,
+    additionalComments: additionalComments,
+    type: "SUBMIT_GRADE"
+  }
 }

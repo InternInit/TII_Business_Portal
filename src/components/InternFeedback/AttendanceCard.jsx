@@ -7,11 +7,12 @@ import { Row as AntRow, Col as AntCol, Tooltip, message } from "antd";
 
 import { connect } from "react-redux";
 
-import { approveHours, rejectHours } from "../../redux/actions";
+import { approveHours, rejectHours, submitGrade } from "../../redux/actions";
 
 const mapDispatchToProps = {
   approveHours,
-  rejectHours
+  rejectHours,
+  submitGrade
 };
 
 const mapStateToProps = (state) => {
@@ -28,6 +29,7 @@ const AttendanceCard = (props) => {
      * Add graphql call to update database for approved id
      */
     props.approveHours(props.studentId, props.hoursId);
+    props.submitGrade(props.studentId, props.hoursId, "A", "Nothign");
     message.success("Hours Approved");
   }
 
