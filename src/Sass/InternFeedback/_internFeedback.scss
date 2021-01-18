@@ -63,4 +63,23 @@
     top: calc(50% - 12px);
     color: #bfbfbf;
   }
+
+  &-unread-icon {
+    @include font-size(24px);
+
+    color: #bfbfbf;
+    margin-top: 2px;
+
+    &:hover {
+      color: #52c41a;
+      transition: .3s ease;
+    }
+  }
+  
+  &-read-icon {
+    @include font-size(24px);
+
+    color:  #52c41a;
+    margin-top: 2px;
+  }
 }

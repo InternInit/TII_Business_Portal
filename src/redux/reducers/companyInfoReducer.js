@@ -21,88 +21,110 @@ const companyInfoReducer = (
     case "UPDATE_NAME":
       return {
         ...state,
-        name: action.name
-      }
+        name: action.name,
+      };
     case "UPDATE_DESCRIPTION":
       return {
         ...state,
-        description: action.description
-      }
+        description: action.description,
+      };
     case "UPDATE_WEBSITE":
       return {
         ...state,
-        website: action.website
-      }
+        website: action.website,
+      };
     case "UPDATE_EMAIL":
       return {
         ...state,
-        email: action.email
-      }
+        email: action.email,
+      };
     case "UPDATE_PHONE_NUMBER":
       return {
         ...state,
-        phoneNumber: action.phoneNumber
-      }
+        phoneNumber: action.phoneNumber,
+      };
     case "UPDATE_AVATAR":
       return {
         ...state,
-        avatar: action.avatar
-      }
+        avatar: action.avatar,
+      };
     case "UPDATE_ID":
       return {
         ...state,
-        id: action.id
-      }
+        id: action.id,
+      };
     case "UPDATE_CANDIDATES":
       return {
         ...state,
-        candidates: action.candidates
-      }
+        candidates: action.candidates,
+      };
     case "UPDATE_INTERNS":
       return {
         ...state,
-        interns: action.interns
-      }
+        interns: action.interns,
+      };
     case "UPDATE_COMPANY_USERS":
       return {
         ...state,
-        users: action.users
-      }
+        users: action.users,
+      };
     case "UPDATE_CANDIDATE_STATUS":
       let newCandidates = state.candidates.slice();
       newCandidates[action.index].status = action.status;
       return {
         ...state,
-        candidates: newCandidates
-      }
+        candidates: newCandidates,
+      };
     case "APPROVE_HOURS":
       let studentIndex = _.findIndex(students, { Id: action.internId });
-      let hoursIndex = _.findIndex(students[studentIndex].hours, { Id: action.hourId });
+      let hoursIndex = _.findIndex(students[studentIndex].hours, {
+        Id: action.hourId,
+      });
       students[studentIndex].hours[hoursIndex].isApproved = true;
       return {
         ...state,
-        interns: students
-      }
+        interns: students,
+      };
     case "REJECT_HOURS":
       let rejectStudentIndex = _.findIndex(students, { Id: action.internId });
-      let rejectHoursIndex = _.findIndex(students[rejectStudentIndex].hours, { Id: action.hourId });
+      let rejectHoursIndex = _.findIndex(students[rejectStudentIndex].hours, {
+        Id: action.hourId,
+      });
       students[rejectStudentIndex].hours.splice(rejectHoursIndex, 1);
       return {
         ...state,
-        interns: students
-      }
+        interns: students,
+      };
     case "SUBMIT_GRADE":
-      console.log("Submitting");
       let gradeStudentIndex = _.findIndex(students, { Id: action.internId });
-      let gradeIndex = _.findIndex(students[gradeStudentIndex].grades, { Id: action.gradeId });
-      students[gradeStudentIndex].grades[gradeIndex].assessment = action.assessment;
-      students[gradeStudentIndex].grades[gradeIndex].additionalComments = action.additionalComments;
+      let gradeIndex = _.findIndex(students[gradeStudentIndex].grades, {
+        Id: action.gradeId,
+      });
+      students[gradeStudentIndex].grades[gradeIndex].assessment =
+        action.assessment;
+      students[gradeStudentIndex].grades[gradeIndex].additionalComments =
+        action.additionalComments;
       students[gradeStudentIndex].grades[gradeIndex].finishedDate = new Date();
       students[gradeStudentIndex].grades[gradeIndex].isFinished = true;
       return {
         ...state,
-        interns: students
-      }
+        interns: students,
+      };
+    case "MARK_FEEDBACK_READ":
+      let markFeedbackStudentIndex = _.findIndex(students, {
+        Id: action.internId,
+      });
+      let markFeedbackIndex = _.findIndex(
+        students[markFeedbackStudentIndex].feedback,
+        { Id: action.feedbackId }
+      );
+      students[markFeedbackStudentIndex].feedback[
+        markFeedbackIndex
+      ].isRead = true;
+      return {
+        ...state,
+        interns: students,
+      };
     default:
       return state;
   }

@@ -161,3 +161,11 @@ export const submitGrade = (internId, gradeId, assessment, additionalComments) =
     type: "SUBMIT_GRADE"
   }
 }
+
+export const markFeedbackRead = (internId, feedbackId) => {
+  return {
+    internId: internId,
+    feedbackId: feedbackId,
+    type: "MARK_FEEDBACK_READ"
+  }
+}

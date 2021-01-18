@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { Row, Col, Avatar, Button, Grid } from "antd";
+import { Row, Col, Avatar, Button, Grid, Tooltip } from "antd";
+import { BiCheckCircle } from "react-icons/bi";
 
 import {
   Header,
@@ -9,7 +10,20 @@ import {
   TabContainer,
 } from "../Styled/FundamentalComponents.jsx";
 
+import { connect } from "react-redux";
+import { markFeedbackRead } from "../../redux/actions";
+
 import moment from "moment";
+
+const mapDispatchToProps = {
+  markFeedbackRead,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+  };
+};
 
 const InternPastFeedback = (props) => {
   let { student } = props;
@@ -17,31 +31,43 @@ const InternPastFeedback = (props) => {
 
   return (
     <>
-    <Row className="mt-1">
+      <Row className="mt-1">
         <Header className="twentyTwoFont mb-point-25" bolded>
           Unread Feedback
         </Header>
-        {student.feedback.filter(feedback => !feedback.isRead).map((data) => (
-          <FeedbackTab student={student} data={data} />
-        ))}
-    </Row>
-    <Row className="mt-1">
+        {student.feedback
+          .filter((feedback) => !feedback.isRead)
+          .map((data) => (
+            <FeedbackTab
+              student={student}
+              data={data}
+              markFeedbackRead={props.markFeedbackRead}
+            />
+          ))}
+      </Row>
+      <Row className="mt-1">
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-        {student.feedback.filter(feedback => feedback.isRead).map((data) => (
-          <FeedbackTab student={student} data={data} />
-        ))}
-    </Row>
+        {student.feedback
+          .filter((feedback) => feedback.isRead)
+          .map((data) => (
+            <FeedbackTab student={student} data={data} />
+          ))}
+      </Row>
     </>
   );
 };
 
-const FeedbackTab = ({ data, student, feedback }) => {
+const FeedbackTab = ({ data, student, markFeedbackRead }) => {
   const [active, toggleActive] = useState(false);
 
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
+
+  const markRead = () => {
+    markFeedbackRead(student.Id, data.Id);
+  };
 
   const isXs = Object.entries(screens)
     .filter((screen) => !!screen[1])
@@ -60,10 +86,7 @@ const FeedbackTab = ({ data, student, feedback }) => {
 
   return (
     <>
-      <TabContainer
-        className="mb-1 student-intern-tab-container"
-        hoverable
-      >
+      <TabContainer className="mb-1 student-intern-tab-container" hoverable>
         <Row gutter={16} wrap={false}>
           <Col flex="40px">
             <Avatar src={student.image} size={40} />
@@ -126,10 +149,27 @@ const FeedbackTab = ({ data, student, feedback }) => {
               ) : null}
             </Row>
           </Col>
+          <Col>
+            {data.isRead ? (
+              <Tooltip title="Read">
+                <BiCheckCircle
+                  className="student-intern-tab-read-icon"
+                  onClick={markRead}
+                />
+              </Tooltip>
+            ) : (
+              <Tooltip title="Mark Read">
+                <BiCheckCircle
+                  className="student-intern-tab-unread-icon"
+                  onClick={markRead}
+                />
+              </Tooltip>
+            )}
+          </Col>
         </Row>
       </TabContainer>
     </>
   );
 };
 
-export default InternPastFeedback;
+export default connect(mapStateToProps, mapDispatchToProps)(InternPastFeedback);
