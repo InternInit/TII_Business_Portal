@@ -102,7 +102,7 @@ function HirePipeline(props) {
   const [columns, setColumns] = useState(columnsFromBackend);
   let markedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Review"
-  );
+  ); 
   let onlineInterviewCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Online Interview"
   );
