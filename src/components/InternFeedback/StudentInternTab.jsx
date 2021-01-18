@@ -7,6 +7,7 @@ import {
   Tooltip,
   Badge,
 } from "antd";
+import SmartAvatar from "../General/SmartAvatar";
 import { Link } from "react-router-dom";
 import {
   TabContainer,
@@ -43,7 +44,7 @@ const StudentInternTab = (props) => {
           <AntCol className="universal-middle" xs={24} sm={10} lg={6}>
             <AntRow>
               <AntCol>
-                <Avatar size={56} src={props.avatar} />
+                {props.avatar ? <Avatar size={56} src={props.avatar} /> : <SmartAvatar size={56} name={props.firstName} />}
               </AntCol>
               <AntCol offset={1}>
                 {isXs ? (

@@ -103,7 +103,11 @@ class InternFeedback extends Component {
                 }
                 position={student.appliedFor}
                 school={student.school ? student.school.name : "Placeholder"}
-                avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+                /**
+                 * @TODO
+                 * Replace with actual profile picture
+                 */
+                //avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
               />
             ))}
           </InnerContainer>
