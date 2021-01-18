@@ -421,7 +421,7 @@ const MainPage = (props) => {
             )}
           </AntCol>
         </AntRow>
-        <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
+        <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
           <AntCol xs={24} sm={24} lg={16}>
             {interns.length > CARD_PER_PAGE ? (
               <AntRow justify="center">
