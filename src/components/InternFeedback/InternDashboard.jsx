@@ -32,8 +32,10 @@ const InternDashboard = (props) => {
             Approve Hours
           </Header>
           {props.student.hours.filter((day) => !day.isApproved).length > 0 ? (
-            props.student.hours
-              .filter((day) => !day.isApproved)
+            _.sortBy(
+              props.student.hours.filter((day) => !day.isApproved),
+              "date"
+            )
               .slice(
                 page * ATTENDANCE_PER_PAGE,
                 (page + 1) * ATTENDANCE_PER_PAGE
@@ -67,8 +69,10 @@ const InternDashboard = (props) => {
           </Header>
           {props.student.feedback.filter((piece) => !piece.isRead).length >
           0 ? (
-            props.student.feedback
-              .filter((piece) => !piece.isRead)
+            _.sortBy(
+              props.student.feedback.filter((piece) => !piece.isRead),
+              "date"
+            )
               .slice(
                 feedbackPage * FEEDBACK_PER_PAGE,
                 (feedbackPage + 1) * FEEDBACK_PER_PAGE

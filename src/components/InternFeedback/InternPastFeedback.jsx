@@ -9,6 +9,7 @@ import {
   Caption,
   TabContainer,
 } from "../Styled/FundamentalComponents.jsx";
+import _ from "underscore";
 
 import { connect } from "react-redux";
 import { markFeedbackRead } from "../../redux/actions";
@@ -35,8 +36,8 @@ const InternPastFeedback = (props) => {
         <Header className="twentyTwoFont mb-point-25" bolded>
           Unread Feedback
         </Header>
-        {student.feedback
-          .filter((feedback) => !feedback.isRead)
+        {_.sortBy(student.feedback
+          .filter((feedback) => !feedback.isRead), "date")
           .map((data) => (
             <FeedbackTab
               student={student}
@@ -49,8 +50,8 @@ const InternPastFeedback = (props) => {
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-        {student.feedback
-          .filter((feedback) => feedback.isRead)
+        {_.sortBy(student.feedback
+          .filter((feedback) => feedback.isRead), "date")
           .map((data) => (
             <FeedbackTab student={student} data={data} />
           ))}

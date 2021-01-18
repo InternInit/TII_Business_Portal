@@ -19,6 +19,8 @@ import { BiTime } from "react-icons/bi";
 import { Header, TabContainer } from "../Styled/FundamentalComponents.jsx";
 import AttendanceCard from "./AttendanceCard.jsx";
 
+import _ from "underscore";
+
 import { Scrollbars } from "react-custom-scrollbars";
 
 import moment from "moment";
@@ -66,8 +68,10 @@ const AttendanceRecord = (props) => {
           To Be Approved
         </Header>
         {props.student.hours.filter((day) => !day.isApproved).length > 0 ? (
-          props.student.hours
-            .filter((day) => !day.isApproved)
+          _.sortBy(
+            props.student.hours.filter((day) => !day.isApproved),
+            "date"
+          )
             .slice(page * ATTENDANCE_PER_PAGE, (page + 1) * ATTENDANCE_PER_PAGE)
             .map((hour, index) => (
               <AttendanceCard
@@ -138,7 +142,10 @@ const AttendanceRecord = (props) => {
               )}
 
               <Row className="attendance-list-container">
-                {student.hours.map((data) => {
+                {_.sortBy(
+                  props.student.hours.filter((day) => day.isApproved),
+                  "date"
+                ).map((data) => {
                   return (
                     <Scrollbars autoHide={true} style={{ height: 50 }}>
                       {isMd ? (
@@ -241,7 +248,10 @@ const AttendanceRecord = (props) => {
                     let isSelected = false;
                     let datesWorked = [];
 
-                    student.hours.map((data) => {
+                    _.sortBy(
+                      props.student.hours.filter((day) => day.isApproved),
+                      "date"
+                    ).map((data) => {
                       //splits date string into separate variables
                       let dateWorked = moment(
                         moment(data.date).format("MM/DD/YYYY"),
