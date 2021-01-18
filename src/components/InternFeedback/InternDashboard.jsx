@@ -6,6 +6,7 @@ import {
   BorderlessTag,
   Body,
 } from "../Styled/FundamentalComponents.jsx";
+import SmartAvatar from "../General/SmartAvatar";
 import AttendanceCard from "./AttendanceCard.jsx";
 import GradeCard from "./GradeCard.jsx";
 import { Row as AntRow, Col as AntCol, Avatar, Button, Pagination } from "antd";
@@ -133,8 +134,6 @@ const InternDashboard = (props) => {
 };
 
 const StudentFeedbackCard = (props) => {
-  const ColorList = ["#f56a00", "#7265e6", "#13c2c2", "#00a2ae"];
-
   return (
     <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
       <AntRow>
@@ -142,13 +141,7 @@ const StudentFeedbackCard = (props) => {
           {props.avatar ? (
             <Avatar src={props.avatar} size={48} />
           ) : (
-            <Avatar
-              size={48}
-              gap={-4}
-              style={{ backgroundColor: ColorList[props.name.length % 4] }}
-            >
-              {props.name.substring(0, 1)}
-            </Avatar>
+            <SmartAvatar name={props.name} size={48} />
           )}
         </AntCol>
         <AntCol offset={1}>
