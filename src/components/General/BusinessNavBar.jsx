@@ -35,10 +35,8 @@ const BusinessNavBar = (props) => {
       return "2";
     } else if (location.pathname.includes("applicants")) {
       return "3";
-    } else if (location.pathname.includes("users")) {
-      return "5";
     } else {
-      return "6";
+      return "5";
     }
   };
 
@@ -85,12 +83,12 @@ const BusinessNavBar = (props) => {
           </Link>
         </Menu.Item>
 
-        <Menu.Item key="5">
+        {/**<Menu.Item key="5">
           <Link to="/users">
             <UserSwitchOutlined />
             <span>User Accounts</span>
           </Link>
-        </Menu.Item>
+  </Menu.Item>*/}
 
         <Menu.Item key="6">
           <Link to="/settings">

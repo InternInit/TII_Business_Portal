@@ -398,7 +398,7 @@ class App extends React.Component {
                 <Route path="/applicants" component={CandidatesContainer} />
                 <Route path="/settings" component={CompanyDetails} />
 
-                <ReactSwitch>
+                {/**<ReactSwitch>
                   <Route path="/users" exact component={() => 
                     <Employeepage
                       users={this.props.companyInfo.users}
@@ -414,7 +414,7 @@ class App extends React.Component {
                       />}
                   />
                   <Route path={`/users/:id`} exact component={UserDetails} />
-                </ReactSwitch>
+                    </ReactSwitch>*/}
               </div>
             </Content>
           </Layout>
