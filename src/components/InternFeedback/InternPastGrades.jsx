@@ -107,7 +107,7 @@ const GradeTable = (props) => {
           </AntCol>
         </AntRow>
         <Scrollbars>
-          <Collapse className="intern-past-grades-collapse" bordered={false}>
+          <Collapse className="intern-past-grades-collapse" bordered={false} accordion>
             {props.grades.map((grade) => (
               <Panel
                 className="intern-past-grades-collapse-panel"
