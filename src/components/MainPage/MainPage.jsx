@@ -116,7 +116,7 @@ const MainPage = (props) => {
       <InnerContainer className="py-2">
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
           <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
-            <Header className="twentyEightFont mb-point-5">
+            <Header className="twentyTwoFont mb-point-5">
               Listings
               {listings.length > CARD_PER_PAGE
                 ? " (" + listings.length + ")"
@@ -144,34 +144,11 @@ const MainPage = (props) => {
                       id={post.Id}
                     />
                   ))}
-                {listings.length > CARD_PER_PAGE ? (
-                  <AntRow justify="center">
-                    {getDotCount("Listings")}
-                    {pageIndex.listingPage.map((number) => (
-                      <div
-                        onClick={() => {
-                          setPage({
-                            listingPage: number,
-                            applicantPage: applicantPage,
-                            incomingPage: incomingPage,
-                            internPage: internPage,
-                          });
-                          listingPage = number;
-                        }}
-                        className={
-                          page.listingPage === number
-                            ? "dashboard-pagination-current-page"
-                            : "dashboard-pagination"
-                        }
-                      />
-                    ))}
-                  </AntRow>
-                ) : null}{" "}
               </>
             )}
           </AntCol>
           <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
-            <Header className="twentyEightFont mb-point-5">
+            <Header className="twentyTwoFont mb-point-5">
               Incoming Applications
               {candidates.filter((candidate) => candidate.status === "Pending")
                 .length > CARD_PER_PAGE
@@ -187,6 +164,10 @@ const MainPage = (props) => {
               <>
                 {candidates
                   .filter((candidate) => candidate.status === "Pending")
+                  .slice(
+                    page.incomingPage * CARD_PER_PAGE,
+                    (page.incomingPage + 1) * CARD_PER_PAGE
+                  )
                   .map((student) => (
                     <StudentCard
                       firstName={student.formData["0"]["First Name"]}
@@ -196,33 +177,9 @@ const MainPage = (props) => {
                       id={student.Id}
                       tag={false}
                       type={student.status}
+                      position={student.appliedFor}
                     />
                   ))}
-                {candidates.filter(
-                  (candidate) => candidate.status === "Pending"
-                ).length > CARD_PER_PAGE ? (
-                  <AntRow justify="center">
-                    {getDotCount("Incoming Applicants")}
-                    {pageIndex.incomingPage.map((number) => (
-                      <div
-                        onClick={() => {
-                          setPage({
-                            incomingPage: number,
-                            applicantPage: applicantPage,
-                            internPage: internPage,
-                            listingPage: listingPage,
-                          });
-                          incomingPage = number;
-                        }}
-                        className={
-                          page.incomingPage === number
-                            ? "dashboard-pagination-current-page"
-                            : "dashboard-pagination"
-                        }
-                      />
-                    ))}
-                  </AntRow>
-                ) : null}
               </>
             ) : (
               <NoResults
@@ -232,7 +189,7 @@ const MainPage = (props) => {
             )}
           </AntCol>
           <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
-            <Header className="twentyEightFont mb-point-5">
+            <Header className="twentyTwoFont mb-point-5">
               Applicants
               {candidates.filter(
                 (candidate) =>
@@ -276,38 +233,9 @@ const MainPage = (props) => {
                       id={student.Id}
                       tag={true}
                       type={student.status}
+                      position={student.appliedFor}
                     />
                   ))}
-
-                {candidates.filter(
-                  (candidate) =>
-                    candidate.status.includes("Interview") ||
-                    candidate.status.includes("Review")
-                ).length > CARD_PER_PAGE ? (
-                  isLg ? null : (
-                    <AntRow justify="center">
-                      {getDotCount("Applicants")}
-                      {pageIndex.applicantPage.map((number) => (
-                        <div
-                          onClick={() => {
-                            setPage({
-                              applicantPage: number,
-                              listingPage: listingPage,
-                              internPage: internPage,
-                              incomingPage: incomingPage,
-                            });
-                            applicantPage = number;
-                          }}
-                          className={
-                            page.applicantPage === number
-                              ? "dashboard-pagination-current-page"
-                              : "dashboard-pagination"
-                          }
-                        />
-                      ))}
-                    </AntRow>
-                  )
-                ) : null}
               </>
             ) : (
               <NoResults
@@ -317,9 +245,95 @@ const MainPage = (props) => {
             )}
           </AntCol>
         </AntRow>
+
+        <AntRow>
+          <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
+            {listings.length > CARD_PER_PAGE ? (
+              <AntRow justify="center">
+                {getDotCount("Listings")}
+                {pageIndex.listingPage.map((number) => (
+                  <div
+                    onClick={() => {
+                      setPage({
+                        listingPage: number,
+                        applicantPage: applicantPage,
+                        incomingPage: incomingPage,
+                        internPage: internPage,
+                      });
+                      listingPage = number;
+                    }}
+                    className={
+                      page.listingPage === number
+                        ? "dashboard-pagination-current-page"
+                        : "dashboard-pagination"
+                    }
+                  />
+                ))}
+              </AntRow>
+            ) : null}
+          </AntCol>
+          <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
+            {candidates.filter((candidate) => candidate.status === "Pending")
+              .length > CARD_PER_PAGE ? (
+              <AntRow justify="center">
+                {getDotCount("Incoming Applicants")}
+                {pageIndex.incomingPage.map((number) => (
+                  <div
+                    onClick={() => {
+                      setPage({
+                        incomingPage: number,
+                        applicantPage: applicantPage,
+                        internPage: internPage,
+                        listingPage: listingPage,
+                      });
+                      incomingPage = number;
+                    }}
+                    className={
+                      page.incomingPage === number
+                        ? "dashboard-pagination-current-page"
+                        : "dashboard-pagination"
+                    }
+                  />
+                ))}
+              </AntRow>
+            ) : null}
+          </AntCol>
+          <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
+            {candidates.filter(
+              (candidate) =>
+                candidate.status.includes("Interview") ||
+                candidate.status.includes("Review")
+            ).length > CARD_PER_PAGE ? (
+              isLg ? null : (
+                <AntRow justify="center">
+                  {getDotCount("Applicants")}
+                  {pageIndex.applicantPage.map((number) => (
+                    <div
+                      onClick={() => {
+                        setPage({
+                          applicantPage: number,
+                          listingPage: listingPage,
+                          internPage: internPage,
+                          incomingPage: incomingPage,
+                        });
+                        applicantPage = number;
+                      }}
+                      className={
+                        page.applicantPage === number
+                          ? "dashboard-pagination-current-page"
+                          : "dashboard-pagination"
+                      }
+                    />
+                  ))}
+                </AntRow>
+              )
+            ) : null}
+          </AntCol>
+        </AntRow>
+
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
           <AntCol xs={24} sm={24} lg={16}>
-            <Header className="twentyEightFont mb-point-5">
+            <Header className="twentyTwoFont mb-point-5">
               Current Interns
               {interns.length > CARD_PER_PAGE
                 ? " (" + interns.length + ")"
@@ -342,29 +356,6 @@ const MainPage = (props) => {
                       id={student.Id}
                     />
                   ))}
-                {interns.length > CARD_PER_PAGE ? (
-                  <AntRow justify="center">
-                    {getDotCount("Interns")}
-                    {pageIndex.internPage.map((number) => (
-                      <div
-                        onClick={() => {
-                          setPage({
-                            applicantPage: applicantPage,
-                            listingPage: listingPage,
-                            internPage: number,
-                            incomingPage: incomingPage,
-                          });
-                          internPage = number;
-                        }}
-                        className={
-                          page.internPage === number
-                            ? "dashboard-pagination-current-page"
-                            : "dashboard-pagination"
-                        }
-                      />
-                    ))}
-                  </AntRow>
-                ) : null}
               </>
             ) : (
               <NoResults
@@ -374,7 +365,7 @@ const MainPage = (props) => {
             )}
           </AntCol>
           <AntCol xs={0} lg={8}>
-            <Header className="twentyEightFont mb-point-5">
+            <Header className="twentyTwoFont mb-point-5">
               Applicants
               {candidates.filter(
                 (candidate) =>
@@ -418,35 +409,9 @@ const MainPage = (props) => {
                       id={student.Id}
                       tag={true}
                       type={student.status}
+                      position={student.appliedFor}
                     />
                   ))}
-                {candidates.filter(
-                  (candidate) =>
-                    candidate.status.includes("Interview") ||
-                    candidate.status.includes("Review")
-                ).length > CARD_PER_PAGE ? (
-                  <AntRow justify="center">
-                    {getDotCount("Applicants")}
-                    {pageIndex.applicantPage.map((number) => (
-                      <div
-                        onClick={() => {
-                          setPage({
-                            applicantPage: number,
-                            listingPage: listingPage,
-                            incomingPage: incomingPage,
-                            internPage: internPage,
-                          });
-                          applicantPage = number;
-                        }}
-                        className={
-                          page.applicantPage === number
-                            ? "dashboard-pagination-current-page"
-                            : "dashboard-pagination"
-                        }
-                      />
-                    ))}
-                  </AntRow>
-                ) : null}
               </>
             ) : (
               <NoResults
@@ -454,6 +419,62 @@ const MainPage = (props) => {
                 isListing={false}
               />
             )}
+          </AntCol>
+        </AntRow>
+        <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
+          <AntCol xs={24} sm={24} lg={16}>
+            {interns.length > CARD_PER_PAGE ? (
+              <AntRow justify="center">
+                {getDotCount("Interns")}
+                {pageIndex.internPage.map((number) => (
+                  <div
+                    onClick={() => {
+                      setPage({
+                        applicantPage: applicantPage,
+                        listingPage: listingPage,
+                        internPage: number,
+                        incomingPage: incomingPage,
+                      });
+                      internPage = number;
+                    }}
+                    className={
+                      page.internPage === number
+                        ? "dashboard-pagination-current-page"
+                        : "dashboard-pagination"
+                    }
+                  />
+                ))}
+              </AntRow>
+            ) : null}
+          </AntCol>
+          <AntCol xs={0} lg={8}>
+            {candidates.filter(
+              (candidate) =>
+                candidate.status.includes("Interview") ||
+                candidate.status.includes("Review")
+            ).length > CARD_PER_PAGE ? (
+              <AntRow justify="center">
+                {getDotCount("Applicants")}
+                {pageIndex.applicantPage.map((number) => (
+                  <div
+                    onClick={() => {
+                      setPage({
+                        applicantPage: number,
+                        listingPage: listingPage,
+                        incomingPage: incomingPage,
+                        internPage: internPage,
+                      });
+                      applicantPage = number;
+                    }}
+                    className={
+                      page.applicantPage === number
+                        ? "dashboard-pagination-current-page"
+                        : "dashboard-pagination"
+                    }
+                  />
+                ))}
+              </AntRow>
+            ) : null}
           </AntCol>
         </AntRow>
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
