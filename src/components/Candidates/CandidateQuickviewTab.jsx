@@ -94,7 +94,7 @@ const CandidateQuickviewTab = (props) => {
             </AntRow>
           </AntCol>
 
-          {/**Mark */}
+          {/**Mark*/}
           <AntCol className="universal-center" span={3}>
             <Tooltip title="Interview">
               <CheckIcon
