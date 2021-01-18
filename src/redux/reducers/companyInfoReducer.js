@@ -82,6 +82,15 @@ const companyInfoReducer = (
         ...state,
         interns: students
       }
+    case "REJECT_HOURS":
+      let rejectStudents = state.interns.slice();
+      let rejectStudentIndex = _.findIndex(rejectStudents, { Id: action.internId });
+      let rejectHoursIndex = _.findIndex(rejectStudents[rejectStudentIndex].hours, { Id: action.hourId });
+      rejectStudents[rejectStudentIndex].hours.splice(rejectHoursIndex, 1);
+      return {
+        ...state,
+        interns: rejectStudents
+      }
     default:
       return state;
   }

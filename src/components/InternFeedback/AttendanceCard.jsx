@@ -7,10 +7,11 @@ import { Row as AntRow, Col as AntCol, Tooltip } from "antd";
 
 import { connect } from "react-redux";
 
-import { approveHours } from "../../redux/actions";
+import { approveHours, rejectHours } from "../../redux/actions";
 
 const mapDispatchToProps = {
   approveHours,
+  rejectHours
 };
 
 const mapStateToProps = (state) => {
@@ -27,6 +28,15 @@ const AttendanceCard = (props) => {
      * Add graphql call to update database for approved id
      */
     props.approveHours(props.studentId, props.hoursId);
+  }
+
+  const handleReject = () => {
+    /**
+     * @TODO
+     * Add new field for rejected hours
+     * Add graphql call to update database for rejected id
+     */
+    props.rejectHours(props.studentId, props.hoursId);
   }
 
   return (
@@ -58,6 +68,7 @@ const AttendanceCard = (props) => {
                 <Icon
                   className="mx-point-5 intern-dashboard-attendance-reject"
                   icon={remove}
+                  onClick={() => handleReject()}
                 />
               </Tooltip>
             )}

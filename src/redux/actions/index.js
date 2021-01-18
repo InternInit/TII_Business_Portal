@@ -141,3 +141,11 @@ export const approveHours = (internId, hourId) => {
     type: "APPROVE_HOURS"
   };
 }
+
+export const rejectHours = (internId, hourId) => {
+  return {
+    internId: internId,
+    hourId: hourId,
+    type: "REJECT_HOURS"
+  };
+}
