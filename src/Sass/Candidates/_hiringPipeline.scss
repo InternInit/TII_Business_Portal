@@ -38,3 +38,13 @@
     transition: 0.3s ease;
   }
 }
+
+.dragging-card-add-tag-icon {
+  @include font-size(22px);
+  color: #bfbfbf;
+
+  &:hover {
+    color: #262626;
+    transition: .3s ease;
+  }
+}

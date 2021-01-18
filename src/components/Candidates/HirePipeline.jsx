@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row as AntRow, Col as AntCol } from "antd";
+import { Row as AntRow, Col as AntCol, Badge } from "antd";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
@@ -94,9 +94,9 @@ function HirePipeline(props) {
   const [columns, setColumns] = useState(columnsFromBackend);
   let markedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Review"
-  ); 
-  let interviewCandidates = props.candidates.filter(
-    (candidate) => candidate.status.includes("Interview")
+  );
+  let interviewCandidates = props.candidates.filter((candidate) =>
+    candidate.status.includes("Interview")
   );
   let acceptedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Accepted"
@@ -186,6 +186,7 @@ function HirePipeline(props) {
                                         position={item.appliedFor}
                                         city={item.formData["0"].City}
                                         stateLocation={item.formData["0"].State}
+                                        status={item.status}
                                         updateCandidateStatus={
                                           props.updateCandidateStatus
                                         }

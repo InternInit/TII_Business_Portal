@@ -1,22 +1,28 @@
 import React from "react";
 import { Button, Avatar, Row as AntRow, Col as AntCol } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { Link, withRouter } from "react-router-dom";
+import { GrAddCircle } from "react-icons/gr";
+import { Link } from "react-router-dom";
 import {
   TabContainer,
   Header,
   Caption,
 } from "../Styled/FundamentalComponents.jsx";
-import { BsThreeDotsVertical } from "react-icons/bs";
 
 class DraggingCard extends React.Component {
   render() {
-    let { name, date, city, stateLocation, position, avatar, id } = this.props;
+    let { name, date, city, position, avatar, id } = this.props;
     return (
       <TabContainer className="py-1-5 px-2 responsive-tab-container">
-        <Caption className="twelveFont dragging-card-date" light right>
+
+        <GrAddCircle className="dragging-card-add-tag-icon"/>
+        {/**
+         * Temporarily removing this to test a new add tag button
+         * 
+         * <Caption className="twelveFont dragging-card-date" light right>
           Applied on <br /> {date[0]}
-        </Caption>
+    </Caption>*/}
+
         {/**
          *
          * Row Containing Name + Avatar
@@ -46,7 +52,15 @@ class DraggingCard extends React.Component {
           </AntCol>
         </AntRow>
 
-        <AntRow className="mt-1 mb-1">
+        <AntRow className="mt-1">
+          <Caption className="fourteenFont mr-point-25" light left>
+            Applied on:
+          </Caption>
+          <AntCol>
+            <Caption className="fourteenFont">{date[0]}</Caption>
+          </AntCol>
+        </AntRow>
+        <AntRow className="mb-1">
           <AntCol>
             <Caption className="fourteenFont mr-point-25" light>
               Location:{" "}
@@ -60,24 +74,22 @@ class DraggingCard extends React.Component {
         <AntRow justify="space-between">
           <AntCol>
             <Link to={`/applicants/${this.props.id}`}>
-            <Button type="ghost" shape="round" style={{marginLeft: "-3px"}}>
-              Details
-            </Button>
+              <Button type="ghost" shape="round" style={{ marginLeft: "-3px" }}>
+                Details
+              </Button>
             </Link>
           </AntCol>
           <AntCol>
-            <Button type="danger" shape="round" style={{marginRight: "-7px"}} onClick={() => this.props.updateCandidateStatus(id, "Rejected")}>
+            <Button
+              type="danger"
+              shape="round"
+              style={{ marginRight: "-7px" }}
+              onClick={() => this.props.updateCandidateStatus(id, "Rejected")}
+            >
               Remove
             </Button>
           </AntCol>
         </AntRow>
-        {/*
-        <span className="fourteenFont dragging-card-button-read-application">
-          Read Application
-        </span>
-        <span className="fourteenFont dragging-card-button-remove">
-          Remove
-</span>*/}
 
         {/**
          *
