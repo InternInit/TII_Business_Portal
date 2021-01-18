@@ -3,7 +3,7 @@ import { Caption, TabContainer } from "../Styled/FundamentalComponents.jsx";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
-import { Row as AntRow, Col as AntCol, Tooltip } from "antd";
+import { Row as AntRow, Col as AntCol, Tooltip, message } from "antd";
 
 import { connect } from "react-redux";
 
@@ -28,6 +28,7 @@ const AttendanceCard = (props) => {
      * Add graphql call to update database for approved id
      */
     props.approveHours(props.studentId, props.hoursId);
+    message.success("Hours Approved");
   }
 
   const handleReject = () => {
@@ -37,6 +38,7 @@ const AttendanceCard = (props) => {
      * Add graphql call to update database for rejected id
      */
     props.rejectHours(props.studentId, props.hoursId);
+    message.error("Hours Rejected");
   }
 
   return (
