@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Row as AntRow, Col as AntCol, Pagination, Collapse } from "antd";
 import { Scrollbars } from "react-custom-scrollbars";
+import { BiCheckSquare } from "react-icons/bi";
 
 import {
   Header,
@@ -36,14 +37,28 @@ const InternPastGrades = (props) => {
           <Header bolded className="twentyTwoFont mb-point-25">
             Grade Student
           </Header>
-          {sortReview(props.student.grades)
-            .slice(
-              gradePage * GRADES_PER_PAGE,
-              (gradePage + 1) * GRADES_PER_PAGE
-            )
-            .map((grade) => (
-              <GradeCard review={grade} studentId={props.student.Id}/>
-            ))}
+          {props.student.grades.filter((piece) => !piece.isFinished).length >
+          0 ? (
+            sortReview(props.student.grades)
+              .slice(
+                gradePage * GRADES_PER_PAGE,
+                (gradePage + 1) * GRADES_PER_PAGE
+              )
+              .map((grade) => (
+                <GradeCard review={grade} studentId={props.student.Id} />
+              ))
+          ) : (
+            <div className="py-2-5 universal-center ">
+              <AntRow justify="center" align="middle">
+                <BiCheckSquare className="internship-posting-no-content-icon" />
+              </AntRow>
+              <AntRow justify="center" align="middle">
+                <Header className="twentyFourFont" color="#bfbfbf">
+                  No Grades Due
+                </Header>
+              </AntRow>
+            </div>
+          )}
           <AntRow justify="center">
             <Pagination
               current={gradePage + 1}
@@ -77,7 +92,9 @@ const InternPastGrades = (props) => {
 const GradeTable = (props) => {
   return (
     <>
-      <TabContainer style={{ height: "83%", overflow: "hidden", minHeight: "400px" }}>
+      <TabContainer
+        style={{ height: "83%", overflow: "hidden", minHeight: "430px" }}
+      >
         <AntRow
           justify="space-between"
           className="px-2 py-1 intern-past-grades-col-header"
@@ -93,7 +110,7 @@ const GradeTable = (props) => {
           <Collapse className="intern-past-grades-collapse" bordered={false}>
             {props.grades.map((grade) => (
               <Panel
-              className="intern-past-grades-collapse-panel"
+                className="intern-past-grades-collapse-panel"
                 header={
                   <AntRow
                     justify="space-between"
@@ -114,7 +131,8 @@ const GradeTable = (props) => {
                 showArrow={false}
               >
                 <Caption className="sixteenFont intern-past-grades-collapse-panel-text">
-                  <Caption light>Additional Comments: </Caption>{grade.additionalComments}
+                  <Caption light>Additional Comments: </Caption>
+                  {grade.additionalComments}
                 </Caption>
               </Panel>
             ))}
