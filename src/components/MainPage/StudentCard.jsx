@@ -69,7 +69,7 @@ const StudentCard = (props) => {
 
   const setColor = () => {
     switch (type) {
-      case "Online Interview":
+      case "Interview":
         textColor = colors.online.text;
         backgroundColor = colors.online.background;
         break;
@@ -78,10 +78,10 @@ const StudentCard = (props) => {
         backgroundColor = colors.review.background;
         break;
 
-      case "On-Site Interview":
-        textColor = colors.online.text;
-        backgroundColor = colors.online.background;
-        break;
+      // case "On-Site Interview":
+      //   textColor = colors.online.text;
+      //   backgroundColor = colors.online.background;
+      //   break;
       default:
         textColor = "#262626";
         backgroundColor = "#f5f5f5";

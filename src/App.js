@@ -35,6 +35,8 @@ import {
   finishCandidateLoading,
   startInternLoading,
   finishInternLoading,
+  startListingLoading,
+  finishListingLoading,
 } from "./redux/actions";
 
 //axios
@@ -95,6 +97,8 @@ const mapDispatchToProps = {
   finishCandidateLoading,
   startInternLoading,
   finishInternLoading,
+  startListingLoading,
+  finishListingLoading,
 };
 
 class App extends React.Component {
@@ -269,6 +273,7 @@ class App extends React.Component {
   };
 
   getListings = async () => {
+    this.props.startListingLoading();
     let token = await this.getJwt();
     console.log(this.props.companyInfo);
     const headers = {
@@ -287,7 +292,10 @@ class App extends React.Component {
           ? []
           : JSON.parse(response.data)
       );
-    });
+      this.props.finishListingLoading();
+    }).catch((error) => {
+      this.props.finishListingLoading();
+    })
   };
 
   getBusinessUsers = async () => {

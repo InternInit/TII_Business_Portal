@@ -136,6 +136,18 @@ export const finishInternLoading = () => {
   };
 };
 
+export const startListingLoading = () => {
+  return {
+    type: "START_LISTING_LOADING"
+  };
+};
+
+export const finishListingLoading = () => {
+  return {
+    type: "FINISH_LISTING_LOADING"
+  };
+};
+
 export const approveHours = (internId, hourId) => {
   return {
     internId: internId,

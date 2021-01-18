@@ -109,6 +109,32 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("lg");
 
+  const findNumApplicants = (listing, dataPoint) => {
+    let count = 0;
+
+    switch (dataPoint) {
+      case "Applicants":
+        for (let i = 0; i < candidates.length; i++){
+          if (candidates[i].appliedFor === listing){
+            count = count + 1;
+          }
+        };
+        break;
+      case "Accepted":
+        for (let i = 0; i < interns.length; i++){
+          if (interns[i].appliedFor === listings){
+            count = count + 1;
+          };
+        };
+        break;
+      default:
+        count = 0;
+        break;
+    };
+
+    return count;
+  };
+
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
@@ -137,9 +163,8 @@ const MainPage = (props) => {
                   .map((post) => (
                     <PageListings
                       name={post.Title}
-                      interns={420}
-                      accepted={69}
-                      total={"Total?"}
+                      interns={findNumApplicants(post.Title, "Applicants")}
+                      accepted={findNumApplicants(post.Title, "Accepted")}
                       industry={post.Industries}
                       id={post.Id}
                     />
@@ -350,7 +375,7 @@ const MainPage = (props) => {
                     <PageFeedback
                       firstName={student.formData["0"]["First Name"]}
                       lastName={student.formData["0"]["Last Name"]}
-                      //school={student.school.name}
+                      school={student.school.name}
                       avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
                       position={"Professional Gamer"}
                       id={student.Id}
