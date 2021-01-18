@@ -16,6 +16,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 import InternDashboard from "./InternDashboard.jsx";
 import InternPastFeedback from "./InternPastFeedback.jsx";
+import InternPastGrades from "./InternPastGrades.jsx";
 import AttendanceRecord from "./AttendanceRecord.jsx";
 
 import { Link, Route, Switch as ReactSwitch, Redirect } from "react-router-dom";
@@ -282,6 +283,11 @@ class InternPageContainer extends Component {
                 path={`/my-interns/:id/feedback`}
                 exact
                 component={() => <InternPastFeedback student={student} />}
+              />
+              <Route
+                path={`/my-interns/:id/grades`}
+                exact
+                component={() => <InternPastGrades student={student} />}
               />
               <Route path={`/my-interns/:id/attendance`} exact />
             </ReactSwitch>

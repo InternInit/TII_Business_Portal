@@ -1,0 +1,36 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+.intern-past-grades {
+  &-collapse {
+    .intern-past-grades-collapse-panel {
+      background-color: white;
+      padding: .25em 0em;
+
+      &:hover {
+        background-color: #fafafa;
+        transition: 0.3s ease;
+
+        .intern-past-grades-grade-row {
+          background-color: #fafafa;
+          transition: 0.3s ease;
+        }
+      }
+    }
+  }
+
+  &-collapse-panel-text {
+      padding: 0em 1.1em;
+  }
+
+  &-col-header {
+    border-radius: 10px 10px 0px 0px;
+    background-color: #f5f5f5;
+  }
+
+  &-grade-row {
+    padding: 0em 1.5em;
+    background-color: white;
+  }
+}
