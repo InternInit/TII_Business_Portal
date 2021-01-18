@@ -41,7 +41,7 @@ const MainPercentages = (props) => {
     <>
       <AntCol xs={24} md={8}>
         <Row justify="center">
-          <Header className="twentyEightFont mb-point-5">
+          <Header className="twentyTwoFont mb-point-5">
             Applied to Industry
           </Header>
           <PercentageBox header="Industry" percentage="2" color="#722ed1" />
@@ -50,7 +50,7 @@ const MainPercentages = (props) => {
 
       <AntCol xs={24} md={8}>
         <Row justify="center">
-          <Header className="twentyEightFont mb-point-5">
+          <Header className="twentyTwoFont mb-point-5">
             Applied to Company
           </Header>
 
@@ -59,7 +59,7 @@ const MainPercentages = (props) => {
       </AntCol>
       <AntCol xs={24} md={8}>
         <Row justify="center">
-          <Header className="twentyEightFont mb-point-5">
+          <Header className="twentyTwoFont mb-point-5">
             Percentage Accepted
           </Header>
 
