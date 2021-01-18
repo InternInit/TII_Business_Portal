@@ -7,6 +7,7 @@ import PageListings from "./PageListings.jsx";
 import PageFeedback from "./PageFeedback.jsx";
 import MainPercentages from "./MainPercentages.jsx";
 import StudentCard from "./StudentCard.jsx";
+import NoResults from "./NoResults.jsx";
 import NavSearch from "../General/NavSearch.jsx";
 import {
   PageContainer,
@@ -83,17 +84,15 @@ const MainPage = (props) => {
             CARD_PER_PAGE +
             0.49
         );
-        for (let i = 0; i < dotCount; i++){
+        for (let i = 0; i < dotCount; i++) {
           pageIndex.incomingPage.push(i);
-        };
+        }
         break;
       case "Interns":
-        dotCount = Math.round(
-          interns.length/CARD_PER_PAGE + 0.49
-        );
-        for (let i = 0; i < dotCount; i++){
+        dotCount = Math.round(interns.length / CARD_PER_PAGE + 0.49);
+        for (let i = 0; i < dotCount; i++) {
           pageIndex.internPage.push(i);
-        };
+        }
         break;
       default:
         break;
@@ -110,8 +109,6 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("lg");
 
-  console.log(page.listingPage, page.applicantPage);
-
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
@@ -125,44 +122,53 @@ const MainPage = (props) => {
                 ? " (" + listings.length + ")"
                 : null}
             </Header>
-            {listings
-              .slice(
-                page.listingPage * CARD_PER_PAGE,
-                (page.listingPage + 1) * CARD_PER_PAGE
-              )
-              .map((post) => (
-                <PageListings
-                  name={post.Title}
-                  interns={420}
-                  accepted={69}
-                  total={"Total?"}
-                  industry={post.Industries}
-                  id={post.Id}
-                />
-              ))}
-            {listings.length > CARD_PER_PAGE ? (
-              <AntRow justify="center">
-                {getDotCount("Listings")}
-                {pageIndex.listingPage.map((number) => (
-                  <div
-                    onClick={() =>
-                      {setPage({
-                        listingPage: number,
-                        applicantPage: applicantPage,
-                        incomingPage: incomingPage,
-                        internPage: internPage,
-                      });
-                      listingPage = number;}
-                    }
-                    className={
-                      page.listingPage === number
-                        ? "dashboard-pagination-current-page"
-                        : "dashboard-pagination"
-                    }
-                  />
-                ))}
-              </AntRow>
-            ) : null}
+            {listings.length === 0 ? (
+              <NoResults
+                message={"Oops, it looks like you don't have any listings"}
+                isListing={true}
+              />
+            ) : (
+              <>
+                {listings
+                  .slice(
+                    page.listingPage * CARD_PER_PAGE,
+                    (page.listingPage + 1) * CARD_PER_PAGE
+                  )
+                  .map((post) => (
+                    <PageListings
+                      name={post.Title}
+                      interns={420}
+                      accepted={69}
+                      total={"Total?"}
+                      industry={post.Industries}
+                      id={post.Id}
+                    />
+                  ))}
+                {listings.length > CARD_PER_PAGE ? (
+                  <AntRow justify="center">
+                    {getDotCount("Listings")}
+                    {pageIndex.listingPage.map((number) => (
+                      <div
+                        onClick={() => {
+                          setPage({
+                            listingPage: number,
+                            applicantPage: applicantPage,
+                            incomingPage: incomingPage,
+                            internPage: internPage,
+                          });
+                          listingPage = number;
+                        }}
+                        className={
+                          page.listingPage === number
+                            ? "dashboard-pagination-current-page"
+                            : "dashboard-pagination"
+                        }
+                      />
+                    ))}
+                  </AntRow>
+                ) : null}{" "}
+              </>
+            )}
           </AntCol>
           <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
             <Header className="twentyEightFont mb-point-5">
@@ -176,45 +182,54 @@ const MainPage = (props) => {
                   ")"
                 : null}
             </Header>
-            {candidates
-              .filter((candidate) => candidate.status === "Pending")
-              .map((student) => (
-                <StudentCard
-                  firstName={student.formData["0"]["First Name"]}
-                  lastName={student.formData["0"]["Last Name"]}
-                  age={" (" + student.formData["1"]["Age"] + ")"}
-                  avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                  id={student.Id}
-                  tag={false}
-                  type={student.status}
-                />
-              ))}
-            {
-              candidates
-              .filter((candidate) => candidate.status === "Pending").length > CARD_PER_PAGE ? (
-              <AntRow justify="center">
-                  {getDotCount("Incoming Applicants")}
-                  {pageIndex.incomingPage.map((number) => (
-                    <div
-                      onClick={() => {setPage({
-                        incomingPage: number,
-                        applicantPage: applicantPage,
-                        internPage: internPage, 
-                        listingPage: listingPage });
-                        incomingPage = number;}
-                      }
-                      className={
-                        page.incomingPage === number
-                          ? "dashboard-pagination-current-page"
-                          : "dashboard-pagination"
-                      }
+            {candidates.filter((candidate) => candidate.status === "Pending")
+              .length !== 0 ? (
+              <>
+                {candidates
+                  .filter((candidate) => candidate.status === "Pending")
+                  .map((student) => (
+                    <StudentCard
+                      firstName={student.formData["0"]["First Name"]}
+                      lastName={student.formData["0"]["Last Name"]}
+                      age={" (" + student.formData["1"]["Age"] + ")"}
+                      avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                      id={student.Id}
+                      tag={false}
+                      type={student.status}
                     />
                   ))}
-                </AntRow>
-
-              ) : (null)
-            }
-            
+                {candidates.filter(
+                  (candidate) => candidate.status === "Pending"
+                ).length > CARD_PER_PAGE ? (
+                  <AntRow justify="center">
+                    {getDotCount("Incoming Applicants")}
+                    {pageIndex.incomingPage.map((number) => (
+                      <div
+                        onClick={() => {
+                          setPage({
+                            incomingPage: number,
+                            applicantPage: applicantPage,
+                            internPage: internPage,
+                            listingPage: listingPage,
+                          });
+                          incomingPage = number;
+                        }}
+                        className={
+                          page.incomingPage === number
+                            ? "dashboard-pagination-current-page"
+                            : "dashboard-pagination"
+                        }
+                      />
+                    ))}
+                  </AntRow>
+                ) : null}
+              </>
+            ) : (
+              <NoResults
+                message={"You don't have any incoming applications"}
+                isListing={false}
+              />
+            )}
           </AntCol>
           <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
             <Header className="twentyEightFont mb-point-5">
@@ -236,100 +251,127 @@ const MainPage = (props) => {
                   ")"
                 : null}
             </Header>
-
-            {candidates
-              .filter(
-                (candidate) =>
-                  candidate.status.includes("Interview") ||
-                  candidate.status.includes("Review")
-              )
-              .slice(
-                page.applicantPage * CARD_PER_PAGE,
-                (page.applicantPage + 1) * CARD_PER_PAGE
-              )
-              .map((student) => (
-                <StudentCard
-                  firstName={student.formData["0"]["First Name"]}
-                  lastName={student.formData["0"]["Last Name"]}
-                  age={" (" + student.formData["1"]["Age"] + ")"}
-                  avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                  id={student.Id}
-                  tag={true}
-                  type={student.status}
-                />
-              ))}
-
             {candidates.filter(
               (candidate) =>
                 candidate.status.includes("Interview") ||
                 candidate.status.includes("Review")
-            ).length > CARD_PER_PAGE ? (
-              isLg ? null : (
-                <AntRow justify="center">
-                  {getDotCount("Applicants")}
-                  {pageIndex.applicantPage.map((number) => (
-                    <div
-                      onClick={() => {setPage({ 
-                        applicantPage: number, 
-                        listingPage: listingPage, 
-                        internPage: internPage, 
-                        incomingPage: incomingPage });
-                        applicantPage=number;}
-                      }
-                      className={
-                        page.applicantPage === number
-                          ? "dashboard-pagination-current-page"
-                          : "dashboard-pagination"
-                      }
+            ).length !== 0 ? (
+              <>
+                {candidates
+                  .filter(
+                    (candidate) =>
+                      candidate.status.includes("Interview") ||
+                      candidate.status.includes("Review")
+                  )
+                  .slice(
+                    page.applicantPage * CARD_PER_PAGE,
+                    (page.applicantPage + 1) * CARD_PER_PAGE
+                  )
+                  .map((student) => (
+                    <StudentCard
+                      firstName={student.formData["0"]["First Name"]}
+                      lastName={student.formData["0"]["Last Name"]}
+                      age={" (" + student.formData["1"]["Age"] + ")"}
+                      avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                      id={student.Id}
+                      tag={true}
+                      type={student.status}
                     />
                   ))}
-                </AntRow>
-              )
-            ) : null}
+
+                {candidates.filter(
+                  (candidate) =>
+                    candidate.status.includes("Interview") ||
+                    candidate.status.includes("Review")
+                ).length > CARD_PER_PAGE ? (
+                  isLg ? null : (
+                    <AntRow justify="center">
+                      {getDotCount("Applicants")}
+                      {pageIndex.applicantPage.map((number) => (
+                        <div
+                          onClick={() => {
+                            setPage({
+                              applicantPage: number,
+                              listingPage: listingPage,
+                              internPage: internPage,
+                              incomingPage: incomingPage,
+                            });
+                            applicantPage = number;
+                          }}
+                          className={
+                            page.applicantPage === number
+                              ? "dashboard-pagination-current-page"
+                              : "dashboard-pagination"
+                          }
+                        />
+                      ))}
+                    </AntRow>
+                  )
+                ) : null}
+              </>
+            ) : (
+              <NoResults
+                message={"Hooray! You've reviewed all of your applicants"}
+                isListing={false}
+              />
+            )}
           </AntCol>
         </AntRow>
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
           <AntCol xs={24} sm={24} lg={16}>
             <Header className="twentyEightFont mb-point-5">
               Current Interns
-              {interns.length > CARD_PER_PAGE ? (
-                " (" + interns.length + ")"
-              ) : (null)}
+              {interns.length > CARD_PER_PAGE
+                ? " (" + interns.length + ")"
+                : null}
             </Header>
-            {interns.slice(page.internPage * CARD_PER_PAGE, (page.internPage + 1) * CARD_PER_PAGE).map((student) => (
-              <PageFeedback
-                firstName={student.formData["0"]["First Name"]}
-                lastName={student.formData["0"]["Last Name"]}
-                //school={student.school.name}
-                avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                position={"Professional Gamer"}
-                id={student.Id}
-              />
-            ))}
-            {
-              interns.length > CARD_PER_PAGE ? 
-              ( 
-                <AntRow justify="center">
-                  {getDotCount("Interns")}
-                  {pageIndex.internPage.map((number) => (
-                    <div
-                      onClick={() => {setPage({ 
-                        applicantPage: applicantPage, 
-                        listingPage: listingPage, 
-                        internPage: number, 
-                        incomingPage: incomingPage });
-                        internPage=number;}
-                      }
-                      className={
-                        page.internPage === number
-                          ? "dashboard-pagination-current-page"
-                          : "dashboard-pagination"
-                      }
+            {interns.length !== 0 ? (
+              <>
+                {interns
+                  .slice(
+                    page.internPage * CARD_PER_PAGE,
+                    (page.internPage + 1) * CARD_PER_PAGE
+                  )
+                  .map((student) => (
+                    <PageFeedback
+                      firstName={student.formData["0"]["First Name"]}
+                      lastName={student.formData["0"]["Last Name"]}
+                      //school={student.school.name}
+                      avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                      position={"Professional Gamer"}
+                      id={student.Id}
                     />
                   ))}
-                </AntRow>
-              ) : null
-            }
+                {interns.length > CARD_PER_PAGE ? (
+                  <AntRow justify="center">
+                    {getDotCount("Interns")}
+                    {pageIndex.internPage.map((number) => (
+                      <div
+                        onClick={() => {
+                          setPage({
+                            applicantPage: applicantPage,
+                            listingPage: listingPage,
+                            internPage: number,
+                            incomingPage: incomingPage,
+                          });
+                          internPage = number;
+                        }}
+                        className={
+                          page.internPage === number
+                            ? "dashboard-pagination-current-page"
+                            : "dashboard-pagination"
+                        }
+                      />
+                    ))}
+                  </AntRow>
+                ) : null}
+              </>
+            ) : (
+              <NoResults
+                message={"You don't have any interns at the moment"}
+                isListing={false}
+              />
+            )}
           </AntCol>
           <AntCol xs={0} lg={8}>
             <Header className="twentyEightFont mb-point-5">
@@ -351,54 +393,67 @@ const MainPage = (props) => {
                   ")"
                 : null}
             </Header>
-            {candidates
-              .filter(
-                (candidate) =>
-                  candidate.status.includes("Interview") ||
-                  candidate.status.includes("Review")
-              )
-              .slice(
-                page.applicantPage * CARD_PER_PAGE,
-                (page.applicantPage + 1) * CARD_PER_PAGE
-              )
-              .map((student) => (
-                <StudentCard
-                  firstName={student.formData["0"]["First Name"]}
-                  lastName={student.formData["0"]["Last Name"]}
-                  age={" (" + student.formData["1"]["Age"] + ")"}
-                  avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                  id={student.Id}
-                  tag={true}
-                  type={student.status}
-                />
-              ))}
             {candidates.filter(
               (candidate) =>
                 candidate.status.includes("Interview") ||
                 candidate.status.includes("Review")
-            ).length > CARD_PER_PAGE ? (
-              <AntRow justify="center">
-                {getDotCount("Applicants")}
-                {pageIndex.applicantPage.map((number) => (
-                  <div
-                    onClick={() =>
-      {                setPage({
-                        applicantPage: number,
-                        listingPage: listingPage,
-                        incomingPage: incomingPage,
-                        internPage: internPage,
-                      });
-                      applicantPage = number;}
-                    }
-                    className={
-                      page.applicantPage === number
-                        ? "dashboard-pagination-current-page"
-                        : "dashboard-pagination"
-                    }
-                  />
-                ))}
-              </AntRow>
-            ) : null}
+            ).length !== 0 ? (
+              <>
+                {candidates
+                  .filter(
+                    (candidate) =>
+                      candidate.status.includes("Interview") ||
+                      candidate.status.includes("Review")
+                  )
+                  .slice(
+                    page.applicantPage * CARD_PER_PAGE,
+                    (page.applicantPage + 1) * CARD_PER_PAGE
+                  )
+                  .map((student) => (
+                    <StudentCard
+                      firstName={student.formData["0"]["First Name"]}
+                      lastName={student.formData["0"]["Last Name"]}
+                      age={" (" + student.formData["1"]["Age"] + ")"}
+                      avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                      id={student.Id}
+                      tag={true}
+                      type={student.status}
+                    />
+                  ))}
+                {candidates.filter(
+                  (candidate) =>
+                    candidate.status.includes("Interview") ||
+                    candidate.status.includes("Review")
+                ).length > CARD_PER_PAGE ? (
+                  <AntRow justify="center">
+                    {getDotCount("Applicants")}
+                    {pageIndex.applicantPage.map((number) => (
+                      <div
+                        onClick={() => {
+                          setPage({
+                            applicantPage: number,
+                            listingPage: listingPage,
+                            incomingPage: incomingPage,
+                            internPage: internPage,
+                          });
+                          applicantPage = number;
+                        }}
+                        className={
+                          page.applicantPage === number
+                            ? "dashboard-pagination-current-page"
+                            : "dashboard-pagination"
+                        }
+                      />
+                    ))}
+                  </AntRow>
+                ) : null}
+              </>
+            ) : (
+              <NoResults
+                message={"Hooray! You've reviewed all of your applicants"}
+                isListing={false}
+              />
+            )}
           </AntCol>
         </AntRow>
         <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
