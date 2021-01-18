@@ -166,7 +166,10 @@ const InternDashboard = (props) => {
 
 const StudentFeedbackCard = (props) => {
   return (
-    <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
+    <TabContainer
+      className="py-1-5 px-2 mb-point-5"
+      style={{ width: "100%", height: "44%" }}
+    >
       <AntRow>
         <AntCol>
           {props.avatar ? (
@@ -201,16 +204,12 @@ const StudentFeedbackCard = (props) => {
       </AntRow>
       <AntRow justify="start">
         <Body className="fourteenFont universal-left">
-          {props.feedback.comment.length < 200 ? (
-            <div>{props.feedback.comment}</div>
-          ) : (
-            <div
-              className="intern-dashboard-shortened-feedback"
-              style={{ height: "80px", overflow: "hidden" }}
-            >
-              {props.feedback.comment}
-            </div>
-          )}
+          <div
+            className="intern-dashboard-shortened-feedback"
+            style={{ height: "60px", overflow: "hidden" }}
+          >
+            {props.feedback.comment}
+          </div>
         </Body>
       </AntRow>
       <AntRow className="pt-point-5s" justify="end">
