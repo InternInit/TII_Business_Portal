@@ -15,6 +15,8 @@ const companyInfoReducer = (
   },
   action
 ) => {
+  let students = state.interns.slice();
+
   switch (action.type) {
     case "UPDATE_NAME":
       return {
@@ -74,7 +76,6 @@ const companyInfoReducer = (
         candidates: newCandidates
       }
     case "APPROVE_HOURS":
-      let students = state.interns.slice();
       let studentIndex = _.findIndex(students, { Id: action.internId });
       let hoursIndex = _.findIndex(students[studentIndex].hours, { Id: action.hourId });
       students[studentIndex].hours[hoursIndex].isApproved = true;
@@ -83,13 +84,12 @@ const companyInfoReducer = (
         interns: students
       }
     case "REJECT_HOURS":
-      let rejectStudents = state.interns.slice();
-      let rejectStudentIndex = _.findIndex(rejectStudents, { Id: action.internId });
-      let rejectHoursIndex = _.findIndex(rejectStudents[rejectStudentIndex].hours, { Id: action.hourId });
-      rejectStudents[rejectStudentIndex].hours.splice(rejectHoursIndex, 1);
+      let rejectStudentIndex = _.findIndex(students, { Id: action.internId });
+      let rejectHoursIndex = _.findIndex(students[rejectStudentIndex].hours, { Id: action.hourId });
+      students[rejectStudentIndex].hours.splice(rejectHoursIndex, 1);
       return {
         ...state,
-        interns: rejectStudents
+        interns: students
       }
     default:
       return state;

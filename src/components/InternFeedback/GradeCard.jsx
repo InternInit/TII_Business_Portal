@@ -10,6 +10,7 @@ import {
   Button,
   Form,
   Input,
+  message
 } from "antd";
 
 const GradeCard = (props) => {
@@ -64,6 +65,10 @@ const GradeCard = (props) => {
           </BorderlessTag>
         );
     };
+
+    const handleSubmit = () => {
+      message.success("Grade Submitted");
+    }
   
     return (
       <TabContainer className="py-1-5 px-2 mb-point-5" style={{ width: "100%" }}>
@@ -107,10 +112,7 @@ const GradeCard = (props) => {
           </AntRow>
           <AntRow gutter={[16, 0]} className="pt-point-5s" justify="end">
             <AntCol>
-              <Button type="default">More Details</Button>
-            </AntCol>
-            <AntCol>
-              <Button type="primary">Submit</Button>
+              <Button type="primary" onClick={() => handleSubmit()}>Submit</Button>
             </AntCol>
           </AntRow>
         </Form>
