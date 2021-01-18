@@ -12,6 +12,9 @@ import GradeCard from "./GradeCard.jsx";
 import { Row as AntRow, Col as AntCol, Avatar, Button, Pagination } from "antd";
 import _ from "underscore";
 
+// Icons
+import { BiMessageSquareDetail, BiTime, BiCheckSquare } from "react-icons/bi";
+
 const ATTENDANCE_PER_PAGE = 5;
 const FEEDBACK_PER_PAGE = 2;
 const GRADES_PER_PAGE = 1;
@@ -80,14 +83,28 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          {sortReview(props.student.grades)
-            .slice(
-              gradePage * GRADES_PER_PAGE,
-              (gradePage + 1) * GRADES_PER_PAGE
-            )
-            .map((grade) => (
-              <GradeCard review={grade} studentId={props.student.Id}/>
-            ))}
+          {props.student.grades.filter((piece) => !piece.isFinished).length >
+          0 ? (
+            sortReview(props.student.grades)
+              .slice(
+                gradePage * GRADES_PER_PAGE,
+                (gradePage + 1) * GRADES_PER_PAGE
+              )
+              .map((grade) => (
+                <GradeCard review={grade} studentId={props.student.Id} />
+              ))
+          ) : (
+            <div className="py-2-5 universal-center ">
+              <AntRow justify="center" align="middle">
+                <BiCheckSquare className="internship-posting-no-content-icon" />
+              </AntRow>
+              <AntRow justify="center" align="middle">
+                <Header className="twentyFourFont" color="#bfbfbf">
+                  No Grades Due
+                </Header>
+              </AntRow>
+            </div>
+          )}
         </AntCol>
       </AntRow>
       <AntRow justify="center" style={{ width: "100%" }}>
