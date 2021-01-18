@@ -62,6 +62,7 @@ const InternPastFeedback = (props) => {
 
 const FeedbackTab = ({ data, student, markFeedbackRead }) => {
   const [active, toggleActive] = useState(false);
+  const [show, setShow] = useState(false);
 
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
@@ -121,15 +122,14 @@ const FeedbackTab = ({ data, student, markFeedbackRead }) => {
             {/* Feedback Row */}
             <Row>
               <Body className="fourteenFont universal-left">
-                {isMd && data.comment.length > 200 ? (
+                {(isMd && (data.comment.length > 200)) && show === false ? (
                   <div
                     className="intern-dashboard-shortened-feedback"
                     style={{ overflow: "hidden", height: "80px" }}
                   >
-                    {data.comment.length}
                     {data.comment}
                   </div>
-                ) : (isSm || isXs) && !isMd && data.comment.length > 100 ? (
+                ) : ((isSm || isXs) && !isMd && (data.comment.length > 100)) && show === false ? (
                   <div
                     className="intern-dashboard-shortened-feedback"
                     style={{ overflow: "hidden", height: "80px" }}
@@ -146,7 +146,10 @@ const FeedbackTab = ({ data, student, markFeedbackRead }) => {
             <Row justify="end">
               {(isMd && data.comment.length > 200) ||
               ((isSm || isXs) && !isMd && data.comment.length > 100) ? (
-                <Button type="link">Read more</Button>
+                <Button type="link" onClick={() => setShow(!show)}>
+                  {!show ? ("Read more"
+                  ) : ("Read less")}
+                </Button>
               ) : null}
             </Row>
           </Col>
