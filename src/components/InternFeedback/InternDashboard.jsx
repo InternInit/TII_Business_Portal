@@ -12,6 +12,8 @@ import GradeCard from "./GradeCard.jsx";
 import { Row as AntRow, Col as AntCol, Avatar, Button, Pagination } from "antd";
 import _ from "underscore";
 
+import {Link} from "react-router-dom";
+
 // Icons
 import { BiMessageSquareDetail, BiTime, BiCheckSquare } from "react-icons/bi";
 
@@ -23,6 +25,8 @@ const InternDashboard = (props) => {
   const [page, changePage] = useState(0);
   const [feedbackPage, changeFeedbackPage] = useState(0);
   const [gradePage, changeGradePage] = useState(0);
+
+  console.log(props);
 
   return (
     <>
@@ -83,6 +87,7 @@ const InternDashboard = (props) => {
                   name={props.student.formData[0]["First Name"]}
                   feedback={feedback}
                   id={props.student.feedback.id}
+                  studentID={props.student.Id}
                 />
               ))
           ) : (
@@ -218,7 +223,10 @@ const StudentFeedbackCard = (props) => {
         </Body>
       </AntRow>
       <AntRow className="pt-point-5s" justify="end">
+        <Link to={`/my-interns/${props.studentID}/feedback`}>
         <Button type="link">Continue Reading</Button>
+
+        </Link>
       </AntRow>
     </TabContainer>
   );
