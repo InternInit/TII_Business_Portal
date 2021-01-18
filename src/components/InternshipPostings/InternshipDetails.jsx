@@ -27,6 +27,9 @@ import {
   RequiredAsterisk,
 } from "../Styled/FundamentalComponents";
 
+import { connect } from "react-redux";
+import { startListingLoading, finishListingLoading } from "../../redux/actions";
+
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -209,6 +212,18 @@ const FormProps = {
   },
 };
 
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses,
+  };
+};
+
+const mapDispatchToProps = {
+  startListingLoading,
+  finishListingLoading,
+};
+
 class InternshipDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -218,20 +233,22 @@ class InternshipDetails extends React.Component {
   formRef = React.createRef();
 
   componentDidMount() {
-    if (!this.props.location.pathname.includes("add-listing")) {
-      this.setState({ isNewListing: false });
-      console.log(this.props);
+    if (!this.props.loadingStatuses.isListingLoading) {
+      if (!this.props.location.pathname.includes("add-listing")) {
+        this.setState({ isNewListing: false });
 
-      let listingData = this.props.listings.filter(
-        (listing) => listing.Id === this.props.location.pathname.split("/")[2]
-      )[0];
-      try {
-        listingData["Internship Dates"] = [
-          moment(listingData["Internship Dates"][0]),
-          moment(listingData["Internship Dates"][1]),
-        ];
-      } catch (e) {}
-      this.formRef.current.setFieldsValue(listingData);
+        let listingData = this.props.listings.filter(
+          (listing) => listing.Id === this.props.location.pathname.split("/")[2]
+        )[0];
+        try {
+          listingData["Internship Dates"] = [
+            moment(listingData["Internship Dates"][0]),
+            moment(listingData["Internship Dates"][1]),
+          ];
+        } catch (e) {}
+        this.formRef.current.setFieldsValue(listingData);
+        console.log(listingData);
+      }
     }
   }
 
@@ -265,7 +282,7 @@ class InternshipDetails extends React.Component {
 
   render() {
     let { buttonText, title } = this.props;
-    return (
+    return !this.props.loadingStatuses.isListingLoading ? (
       <React.Fragment>
         <NavSearch title={title} searchBar={false} />
         <PageContainer>
@@ -291,6 +308,8 @@ class InternshipDetails extends React.Component {
           </div>
         </PageContainer>
       </React.Fragment>
+    ) : (
+      <h1>Implement Loading Here</h1>
     );
   }
 }
@@ -842,4 +861,6 @@ const InternshipDetailForm = ({
   );
 };
 
-export default withRouter(InternshipDetails);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(InternshipDetails)
+);

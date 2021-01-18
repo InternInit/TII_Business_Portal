@@ -2,6 +2,7 @@ const initialState = {
   isGlobalLoading: true,
   isCandidateLoading: true,
   isInternLoading: true,
+  isListingLoading: true,
 }
 
 const loadingsReducer = (state = initialState, action) => {
@@ -35,6 +36,16 @@ const loadingsReducer = (state = initialState, action) => {
         return {
           ...state,
           isInternLoading: false 
+        };
+      case "START_LISTING_LOADING":
+        return {
+          ...state,
+          isListingLoading: true
+        };
+      case "FINISH_LISTING_LOADING":
+        return {
+          ...state,
+          isListingLoading: false
         };
       default:
         return state;
