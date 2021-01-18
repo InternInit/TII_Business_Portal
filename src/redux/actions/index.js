@@ -61,6 +61,13 @@ export const updateInterns = (interns) => {
   }
 }
 
+export const updateCompanyUsers = (users) => {
+  return {
+    type: "UPDATE_COMPANY_USERS",
+    users,
+  }
+}
+
 export const updateReduxCandidateStatus = (index, status) => {
   return {
     type: "UPDATE_CANDIDATE_STATUS",

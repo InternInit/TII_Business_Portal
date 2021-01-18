@@ -10,7 +10,8 @@ const companyInfoReducer = (
     avatar: "",
     id: "",
     candidates: [],
-    interns: []
+    interns: [],
+    users: [],
   },
   action
 ) => {
@@ -59,6 +60,11 @@ const companyInfoReducer = (
       return {
         ...state,
         interns: action.interns
+      }
+    case "UPDATE_COMPANY_USERS":
+      return {
+        ...state,
+        users: action.users
       }
     case "UPDATE_CANDIDATE_STATUS":
       let newCandidates = state.candidates.slice();

@@ -18,6 +18,7 @@ import { connect } from "react-redux";
 import {
   updateCandidates,
   updateInterns,
+  updateCompanyUsers,
   updateName,
   updateDescription,
   updateWebsite,
@@ -77,6 +78,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   updateCandidates,
   updateInterns,
+  updateCompanyUsers,
   updateName,
   updateDescription,
   updateWebsite,
@@ -100,7 +102,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
     };
   }
 
@@ -300,7 +301,7 @@ class App extends React.Component {
     }
 
     axios.get("/api/list_users", headers).then((response) => {
-      this.setState({users:JSON.parse(response.data)})
+      this.props.updateCompanyUsers(JSON.parse(response.data));
       console.log(response.data)
     });
   }
@@ -400,7 +401,7 @@ class App extends React.Component {
                 <ReactSwitch>
                   <Route path="/users" exact component={() => 
                     <Employeepage
-                      users={this.state.users}
+                      users={this.props.companyInfo.users}
                     />} 
                   />
                   <Route
