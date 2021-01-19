@@ -40,11 +40,14 @@
 }
 
 .dragging-card-add-tag-icon {
-  @include font-size(22px);
+  position: absolute;
+  right: 0px;
+  
+  @include font-size(28px);
   color: #bfbfbf;
 
   &:hover {
-    color: #262626;
+    color: #434343;
     transition: .3s ease;
   }
 }

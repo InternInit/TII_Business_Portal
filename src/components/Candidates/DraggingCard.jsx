@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Avatar, Row as AntRow, Col as AntCol } from "antd";
+import { Button, Avatar, Row as AntRow, Col as AntCol, Tooltip } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { IoIosAddCircleOutline } from "react-icons/io";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import {
   TabContainer,
@@ -14,8 +14,6 @@ class DraggingCard extends React.Component {
     let { name, date, city, position, avatar, id } = this.props;
     return (
       <TabContainer className="py-1-5 px-2 responsive-tab-container">
-
-        {this.props.status.includes("Interview") ? <IoIosAddCircleOutline className="dragging-card-add-tag-icon"/> : null}
         {/**
          * Temporarily removing this to test a new add tag button
          * 
@@ -28,7 +26,7 @@ class DraggingCard extends React.Component {
          * Row Containing Name + Avatar
          *
          */}
-        <AntRow justify="start" align="middle">
+        <AntRow justify="start" align="middle" style={{ position: "relative" }}>
           <AntCol>
             <Avatar src={avatar} size={40} icon={<UserOutlined />} />
           </AntCol>
@@ -50,6 +48,11 @@ class DraggingCard extends React.Component {
               </Caption>
             </AntRow>
           </AntCol>
+          {this.props.status.includes("Interview") ? (
+            <Tooltip title="Categorize Interview">
+              <AiOutlinePlusCircle className="dragging-card-add-tag-icon" />
+            </Tooltip>
+          ) : null}
         </AntRow>
 
         <AntRow className="mt-1">
