@@ -159,7 +159,9 @@ class InternPageContainer extends Component {
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Name:</Caption>{" "}
-                          {student.school.counselorName}
+                          {student.school
+                            ? student.school.counselorName
+                            : "N/A"}
                         </Caption>
                       </AntCol>
                     </AntRow>
@@ -173,7 +175,7 @@ class InternPageContainer extends Component {
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Email:</Caption>{" "}
-                          {student.school.email}
+                          {student.school ? student.school.email : "N/A"}
                         </Caption>
                       </AntCol>
                     </AntRow>
@@ -181,13 +183,13 @@ class InternPageContainer extends Component {
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">School:</Caption>{" "}
-                          {student.school.name}
+                          {student.school ? student.school.name : "N/A"}
                         </Caption>
                       </AntCol>
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Phone:</Caption>{" "}
-                          {student.school.phone}
+                          {student.school ? student.school.phone : "N/A"}
                         </Caption>
                       </AntCol>
                     </AntRow>

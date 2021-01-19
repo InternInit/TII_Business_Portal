@@ -223,6 +223,7 @@ class App extends React.Component {
               isFinished
               type
             }
+            assocId
             formData
             appliedFor
             Id
@@ -403,7 +404,10 @@ class App extends React.Component {
                   path={`/my-interns/:id`}
                   component={InternPageContainer}
                 />
-                <Route path="/applicants" component={CandidatesContainer} />
+                <Route path="/applicants" component={() => (
+                  <CandidatesContainer
+                    getAccess={this.getAccess}
+                  />)} />
                 <Route path="/settings" component={CompanyDetails} />
 
                 {/**<ReactSwitch>
