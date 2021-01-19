@@ -68,6 +68,8 @@ const StudentInternPageSkeleton = (props) => {
         <StudentInternTabSkeleton />
         <StudentInternTabSkeleton />
         <StudentInternTabSkeleton />
+        <StudentInternTabSkeleton />
+        <StudentInternTabSkeleton />
       </InnerContainer>
     </Container>
   );
@@ -85,18 +87,17 @@ const StudentInternTabSkeleton = (props) => {
         <AntCol className="universal-middle" xs={24} sm={10} lg={6}>
           <AntRow>
             <AntCol>
-              <Skeleton.Avatar size={56} />
+              <Skeleton.Avatar size={56} active/>
             </AntCol>
             <AntCol flex="auto" offset={1}>
               <Skeleton
-                title={false}
-                paragraph={{rows: 1}}
+                paragraph={false}
                 className="student-intern-tab-skeleton-name"
                 active
               />
               <Skeleton
                 paragraph={false}
-                className="student-intern-tab-skeleton-name"
+                className="student-intern-tab-skeleton-position"
                 active
               />
             </AntCol>
@@ -110,11 +111,19 @@ const StudentInternTabSkeleton = (props) => {
           sm={5}
           lg={8}
         >
-          <Skeleton paragraph={false} />
+          <Skeleton
+                paragraph={false}
+                className="student-intern-tab-skeleton-school"
+                active
+              />
         </AntCol>
 
         <AntCol className="universal-left universal-middle" sm={4}>
-          <Skeleton.Input size="large" />
+        <Skeleton
+                paragraph={false}
+                className="student-intern-tab-skeleton-tag"
+                active
+              />
         </AntCol>
 
         {/**Applicants */}

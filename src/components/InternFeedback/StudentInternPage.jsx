@@ -37,7 +37,6 @@ class InternFeedback extends Component {
       <StudentInternPageSkeleton />
     ) : (
       <>
-      <StudentInternPageSkeleton />
         <Container className="global-container">
           <NavSearch title="My Interns" placeholder="Search Interns" />
           <InnerContainer className="mt-2 mb-4">
