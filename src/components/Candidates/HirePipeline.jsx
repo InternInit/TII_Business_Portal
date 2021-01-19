@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Row as AntRow, Col as AntCol } from "antd";
+import { Row as AntRow, Col as AntCol, Badge } from "antd";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { PageContainer, Header } from "../Styled/FundamentalComponents.jsx";
+import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
-import styled from "styled-components";
 
 const dragStyle = {
   backgroundColor: "#ebecf0",
@@ -31,12 +30,9 @@ const onDragEnd = (result, columns, setColumns, props) => {
       status = "Review";
       break;
     case 2:
-      status = "Online Interview";
+      status = "Interview";
       break;
     case 3:
-      status = "On-Site Interview";
-      break;
-    case 4:
       status = "Accepted";
       break;
     default:
@@ -81,18 +77,14 @@ const onDragEnd = (result, columns, setColumns, props) => {
 //Card Drop Zones
 const columnsFromBackend = {
   1: {
-    name: "Marked",
+    name: "Review",
     items: [],
   },
   2: {
-    name: "Online Interview",
+    name: "Interview",
     items: [],
   },
   3: {
-    name: "On-Site Interview",
-    items: [],
-  },
-  4: {
     name: "Accepted",
     items: [],
   },
@@ -103,11 +95,8 @@ function HirePipeline(props) {
   let markedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Review"
   );
-  let onlineInterviewCandidates = props.candidates.filter(
-    (candidate) => candidate.status === "Online Interview"
-  );
-  let onSiteInterviewCandidates = props.candidates.filter(
-    (candidate) => candidate.status === "On-Site Interview"
+  let interviewCandidates = props.candidates.filter((candidate) =>
+    candidate.status.includes("Interview")
   );
   let acceptedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Accepted"
@@ -117,9 +106,8 @@ function HirePipeline(props) {
     setColumns({
       ...columns,
       ["1"]: { ...columns["1"], items: markedCandidates },
-      ["2"]: { ...columns["2"], items: onlineInterviewCandidates },
-      ["3"]: { ...columns["3"], items: onSiteInterviewCandidates },
-      ["4"]: { ...columns["4"], items: acceptedCandidates },
+      ["2"]: { ...columns["2"], items: interviewCandidates },
+      ["3"]: { ...columns["3"], items: acceptedCandidates },
     });
   }, []);
 
@@ -130,7 +118,7 @@ function HirePipeline(props) {
      *
      */
     <div className="px-4 py-2" style={{ width: "100%" }}>
-      <AntRow gutter={[36, 0]} style={{ width: "100%", minWidth: "1450px" }}>
+      <AntRow gutter={[36, 0]} style={{ minWidth: "1200px" }}>
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
         >
@@ -141,7 +129,7 @@ function HirePipeline(props) {
                *Mapping of Columns (Already defined)
                *
                */
-              <AntCol span={6} key={columnId}>
+              <AntCol span={8} key={columnId}>
                 <div>
                   <Header className="twentyFont mb-point-25" subheading bolded>
                     {column.name}
@@ -198,6 +186,7 @@ function HirePipeline(props) {
                                         position={item.appliedFor}
                                         city={item.formData["0"].City}
                                         stateLocation={item.formData["0"].State}
+                                        status={item.status}
                                         updateCandidateStatus={
                                           props.updateCandidateStatus
                                         }

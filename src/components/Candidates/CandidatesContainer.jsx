@@ -106,7 +106,7 @@ class CandidatesContainer extends Component {
       <PageContainer
         style={
           this.findPath() === "manage-candidates"
-            ? { minWidth: "1500px", position: "relative" }
+            ? { minWidth: "1250px", position: "relative" }
             : null
         }
       >

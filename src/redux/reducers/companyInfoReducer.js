@@ -16,6 +16,7 @@ const companyInfoReducer = (
   action
 ) => {
   let students = state.interns.slice();
+  let candidates = state.candidates.slice();
 
   switch (action.type) {
     case "UPDATE_NAME":
@@ -125,6 +126,15 @@ const companyInfoReducer = (
         ...state,
         interns: students,
       };
+    case "ADD_INTERVIEW_TAG":
+      let interviewTagStudentIndex = _.findIndex(candidates, {
+        Id: action.candidateId,
+      });
+      candidates[interviewTagStudentIndex].status = action.tag;
+      return {
+        ...state,
+        candidates: candidates
+      }
     default:
       return state;
   }
