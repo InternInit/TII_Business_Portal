@@ -54,7 +54,7 @@ class DraggingCard extends React.Component {
         );
       case "In-Person Interview":
         return (
-          <BorderlessTag className="px-1-5 dragging-card-tag" background="#f6ffed" color="#52c41a">
+          <BorderlessTag className="px-1-5 dragging-card-tag" background="#fff2e8" color="#fa541c">
             In-Person
           </BorderlessTag>
         );
