@@ -109,7 +109,7 @@ const PostingTab = (props) => {
             <Button
               type="primary"
               style={{
-                width: "100%",
+                width: "90%",
               }}
             >
               <Link to={`/internship-listings/${id}`}>Details</Link>
