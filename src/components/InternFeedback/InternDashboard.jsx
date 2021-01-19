@@ -21,10 +21,13 @@ const ATTENDANCE_PER_PAGE = 5;
 const FEEDBACK_PER_PAGE = 2;
 const GRADES_PER_PAGE = 1;
 
+
 const InternDashboard = (props) => {
   const [page, changePage] = useState(0);
   const [feedbackPage, changeFeedbackPage] = useState(0);
   const [gradePage, changeGradePage] = useState(0);
+
+
 
   return (
     <>
@@ -80,15 +83,18 @@ const InternDashboard = (props) => {
                 (feedbackPage + 1) * FEEDBACK_PER_PAGE
               )
               .map((feedback) => (
+                <>
                 <StudentFeedbackCard
                   avatar={props.student.image ? props.student.image : false}
                   name={props.student.formData[0]["First Name"]}
                   feedback={feedback}
-                 // id={props.student.feedback.id}
+                  id={feedback.Id}
 
                   //temporary ghetto solution
                   studentID={props.student.Id}
                 />
+{                 console.log(feedback)
+}                </>
               ))
           ) : (
             <div className="py-2-5 universal-center ">
@@ -223,7 +229,7 @@ const StudentFeedbackCard = (props) => {
         </Body>
       </AntRow>
       <AntRow className="pt-point-5s" justify="end">
-        <Link to={`/my-interns/${props.studentID}/feedback`}>
+        <Link to={`/my-interns/${props.studentID}/feedback/${props.id}`}>
         <Button type="link">Continue Reading</Button>
 
         </Link>

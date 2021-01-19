@@ -29,9 +29,9 @@ const ATTENDANCE_PER_PAGE = 5;
 
 const AttendanceRecord = (props) => {
   const [state, setState] = useState({
-    date: moment.utc(),
-    dateList: moment.utc(),
-    toolTipDate: moment.utc(),
+    date: moment(),
+    dateList: moment(),
+    toolTipDate: moment(),
     toolTipHour: "",
   });
   const [page, changePage] = useState(0);
@@ -45,6 +45,13 @@ const AttendanceRecord = (props) => {
     .filter((screen) => !!screen[1])
     .map((breakpoint) => breakpoint[0])
     .includes("md");
+
+  console.log(
+    Object.entries(screens)
+      .filter((screen) => !!screen[1])
+      .map((breakpoint) => breakpoint[0])
+      .includes("lg")
+  );
 
   //Changes Day Names (dd -> ddd)
   moment.updateLocale("en", {
@@ -153,15 +160,15 @@ const AttendanceRecord = (props) => {
                               type="link"
                               onClick={() => {
                                 setState({
-                                  date: moment.utc(data.date).format("MM/DD/YYYY"),
-                                  dateList: moment.utc(data.date).format(
+                                  date: moment(data.date).format("MM/DD/YYYY"),
+                                  dateList: moment(data.date).format(
                                     "MM/DD/YYYY"
                                   ),
                                 });
                               }}
                             >
                               <Header className="student-attendance-list">
-                                {moment.utc(data.date).format("MM/DD/YYYY")}
+                                {moment(data.date).format("MM/DD/YYYY")}
                               </Header>
                             </Button>
 
@@ -185,8 +192,8 @@ const AttendanceRecord = (props) => {
                               type="link"
                               onClick={() => {
                                 setState({
-                                  date: moment.utc(data.date).format("MM/DD/YYYY"),
-                                  dateList: moment.utc(data.date).format(
+                                  date: moment(data.date).format("MM/DD/YYYY"),
+                                  dateList: moment(data.date).format(
                                     "MM/DD/YYYY"
                                   ),
                                 });
@@ -194,7 +201,7 @@ const AttendanceRecord = (props) => {
                             >
                               <Header className="student-attendance-list">
                                 <div style={{ fontSize: "16px" }}>
-                                  {moment.utc(data.date).format("MM/DD/YYYY")}
+                                  {moment(data.date).format("MM/DD/YYYY")}
                                 </div>
                               </Header>
                             </Button>
@@ -219,7 +226,7 @@ const AttendanceRecord = (props) => {
               <Calendar
                 fullscreen={false}
                 //sets date value being displayed
-                value={moment.utc(state.date)}
+                value={moment(state.date)}
                 //updates current date value if new date is selected
                 onSelect={(date) => {
                   setState({ date: date });
@@ -246,16 +253,16 @@ const AttendanceRecord = (props) => {
                       "date"
                     ).map((data) => {
                       //splits date string into separate variables
-                      let dateWorked = moment.utc(
-                        moment.utc(data.date).format("MM/DD/YYYY"),
+                      let dateWorked = moment(
+                        moment(data.date).format("MM/DD/YYYY"),
                         "MM/DD/YYYY"
                       ).date();
-                      let monthWorked = moment.utc(
-                        moment.utc(data.date).format("MM/DD/YYYY"),
+                      let monthWorked = moment(
+                        moment(data.date).format("MM/DD/YYYY"),
                         "MM/DD/YYYY"
                       ).month();
-                      let yearWorked = moment.utc(
-                        moment.utc(data.date).format("MM/DD/YYYY"),
+                      let yearWorked = moment(
+                        moment(data.date).format("MM/DD/YYYY"),
                         "MM/DD/YYYY"
                       ).year();
                       let hoursWorked = data.time;
@@ -286,15 +293,15 @@ const AttendanceRecord = (props) => {
                     }
 
                     //Date, month, year chosen from detailed list
-                    let selectedDate = moment.utc(
+                    let selectedDate = moment(
                       state.dateList,
                       "MM/DD/YYYY"
                     ).date();
-                    let selectedMonth = moment.utc(
+                    let selectedMonth = moment(
                       state.dateList,
                       "MM/DD/YYYY"
                     ).month();
-                    let selectedYear = moment.utc(
+                    let selectedYear = moment(
                       state.dateList,
                       "MM/DD/YYYY"
                     ).year();
@@ -353,8 +360,8 @@ const AttendanceRecord = (props) => {
                   //List of months, Jan–Dec
                   const monthOptions = [];
 
-                  const current = moment.utc().clone();
-                  const localeData = moment.utc().localeData();
+                  const current = moment().clone();
+                  const localeData = moment().localeData();
                   const months = [];
 
                   for (let i = 0; i < 12; i++) {
@@ -388,8 +395,8 @@ const AttendanceRecord = (props) => {
                             type="link"
                             onClick={() => {
                               setState({
-                                date: moment.utc(),
-                                dateList: moment.utc(),
+                                date: moment(),
+                                dateList: moment(),
                               });
                             }}
                           >
