@@ -70,6 +70,35 @@ class CandidatesContainer extends Component {
         console.log(index);
         this.props.updateReduxCandidateStatus(index, status);
       });
+
+    if (status === "Accepted") {
+      this.mutateCandidateAssoc(internId);
+    }
+  };
+
+  mutateCandidateAssoc = async (internId) => {
+    let candidate = this.props.companyInfo.candidates.find(
+      (candidate) => candidate.Id === internId
+    );
+
+    let access = await this.props.getAccess();
+    axios({
+      url: "/api/mutate_candidate_assoc",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: `mutation MyMutation {
+          updateInternAssoc(input: {assocId: "${candidate.assocId}", feedback: [], grades: [], hours: []}) {
+            assocId
+          }
+        }                 
+        `,
+      },
+    }).then((result) => {
+      console.log(result.data);
+    });
   };
 
   render() {
