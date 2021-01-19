@@ -118,7 +118,7 @@ function HirePipeline(props) {
      *
      */
     <div className="px-4 py-2" style={{ width: "100%" }}>
-      <AntRow gutter={[36, 0]} style={{ width: "100%", minWidth: "1200px" }}>
+      <AntRow gutter={[36, 0]} style={{ minWidth: "1200px" }}>
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
         >
