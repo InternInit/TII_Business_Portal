@@ -86,7 +86,9 @@ const InternDashboard = (props) => {
                   avatar={props.student.image ? props.student.image : false}
                   name={props.student.formData[0]["First Name"]}
                   feedback={feedback}
-                  id={props.student.feedback.id}
+                 // id={props.student.feedback.id}
+
+                  //temporary ghetto solution
                   studentID={props.student.Id}
                 />
               ))

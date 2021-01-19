@@ -105,14 +105,13 @@ const FeedbackTab = ({ data, student, markFeedbackRead }) => {
               </Col>
 
               <Col
-                //style={{backgroundColor: "red"}}
                 className="universal-middle"
                 span={24}
               >
                 <Row justify="start">
                   <Caption className="twelveFont" light>
                     <div style={{ padding: "0px 0px 6px 0px" }}>
-                      {moment(data.date).format("MM/DD/YYYY")}
+                      {moment.utc(data.date).format("MM/DD/YYYY")}
                     </div>
                   </Caption>
                 </Row>

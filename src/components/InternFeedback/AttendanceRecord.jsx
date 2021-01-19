@@ -29,9 +29,9 @@ const ATTENDANCE_PER_PAGE = 5;
 
 const AttendanceRecord = (props) => {
   const [state, setState] = useState({
-    date: moment(),
-    dateList: moment(),
-    toolTipDate: moment(),
+    date: moment.utc(),
+    dateList: moment.utc(),
+    toolTipDate: moment.utc(),
     toolTipHour: "",
   });
   const [page, changePage] = useState(0);
@@ -160,15 +160,15 @@ const AttendanceRecord = (props) => {
                               type="link"
                               onClick={() => {
                                 setState({
-                                  date: moment(data.date).format("MM/DD/YYYY"),
-                                  dateList: moment(data.date).format(
+                                  date: moment.utc(data.date).format("MM/DD/YYYY"),
+                                  dateList: moment.utc(data.date).format(
                                     "MM/DD/YYYY"
                                   ),
                                 });
                               }}
                             >
                               <Header className="student-attendance-list">
-                                {moment(data.date).format("MM/DD/YYYY")}
+                                {moment.utc(data.date).format("MM/DD/YYYY")}
                               </Header>
                             </Button>
 
@@ -192,8 +192,8 @@ const AttendanceRecord = (props) => {
                               type="link"
                               onClick={() => {
                                 setState({
-                                  date: moment(data.date).format("MM/DD/YYYY"),
-                                  dateList: moment(data.date).format(
+                                  date: moment.utc(data.date).format("MM/DD/YYYY"),
+                                  dateList: moment.utc(data.date).format(
                                     "MM/DD/YYYY"
                                   ),
                                 });
@@ -201,7 +201,7 @@ const AttendanceRecord = (props) => {
                             >
                               <Header className="student-attendance-list">
                                 <div style={{ fontSize: "16px" }}>
-                                  {moment(data.date).format("MM/DD/YYYY")}
+                                  {moment.utc(data.date).format("MM/DD/YYYY")}
                                 </div>
                               </Header>
                             </Button>
@@ -226,7 +226,7 @@ const AttendanceRecord = (props) => {
               <Calendar
                 fullscreen={false}
                 //sets date value being displayed
-                value={moment(state.date)}
+                value={moment.utc(state.date)}
                 //updates current date value if new date is selected
                 onSelect={(date) => {
                   setState({ date: date });
@@ -253,16 +253,16 @@ const AttendanceRecord = (props) => {
                       "date"
                     ).map((data) => {
                       //splits date string into separate variables
-                      let dateWorked = moment(
-                        moment(data.date).format("MM/DD/YYYY"),
+                      let dateWorked = moment.utc(
+                        moment.utc(data.date).format("MM/DD/YYYY"),
                         "MM/DD/YYYY"
                       ).date();
-                      let monthWorked = moment(
-                        moment(data.date).format("MM/DD/YYYY"),
+                      let monthWorked = moment.utc(
+                        moment.utc(data.date).format("MM/DD/YYYY"),
                         "MM/DD/YYYY"
                       ).month();
-                      let yearWorked = moment(
-                        moment(data.date).format("MM/DD/YYYY"),
+                      let yearWorked = moment.utc(
+                        moment.utc(data.date).format("MM/DD/YYYY"),
                         "MM/DD/YYYY"
                       ).year();
                       let hoursWorked = data.time;
@@ -293,15 +293,15 @@ const AttendanceRecord = (props) => {
                     }
 
                     //Date, month, year chosen from detailed list
-                    let selectedDate = moment(
+                    let selectedDate = moment.utc(
                       state.dateList,
                       "MM/DD/YYYY"
                     ).date();
-                    let selectedMonth = moment(
+                    let selectedMonth = moment.utc(
                       state.dateList,
                       "MM/DD/YYYY"
                     ).month();
-                    let selectedYear = moment(
+                    let selectedYear = moment.utc(
                       state.dateList,
                       "MM/DD/YYYY"
                     ).year();
@@ -360,8 +360,8 @@ const AttendanceRecord = (props) => {
                   //List of months, Jan–Dec
                   const monthOptions = [];
 
-                  const current = moment().clone();
-                  const localeData = moment().localeData();
+                  const current = moment.utc().clone();
+                  const localeData = moment.utc().localeData();
                   const months = [];
 
                   for (let i = 0; i < 12; i++) {
@@ -395,8 +395,8 @@ const AttendanceRecord = (props) => {
                             type="link"
                             onClick={() => {
                               setState({
-                                date: moment(),
-                                dateList: moment(),
+                                date: moment.utc(),
+                                dateList: moment.utc(),
                               });
                             }}
                           >
