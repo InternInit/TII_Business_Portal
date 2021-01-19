@@ -1,0 +1,8 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+.student-intern-tab-skeleton-name .ant-skeleton-content .ant-skeleton-paragraph > li  {
+    height: 24px;
+    width: 100px;
+}

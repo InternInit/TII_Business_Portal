@@ -62,7 +62,7 @@ const StudentCard = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-    const isLg = Object.entries(screens)
+  const isLg = Object.entries(screens)
     .filter((screen) => !!screen[1])
     .map((breakpoint) => breakpoint[0])
     .includes("lg");
@@ -89,9 +89,11 @@ const StudentCard = (props) => {
     }
   };
 
-  console.log(Object.entries(screens)
-  .filter((screen) => !!screen[1])
-  .map((breakpoint) => breakpoint[0]));
+  console.log(
+    Object.entries(screens)
+      .filter((screen) => !!screen[1])
+      .map((breakpoint) => breakpoint[0])
+  );
 
   return (
     <Link to={`/applicants/${id}`}>
@@ -110,11 +112,11 @@ const StudentCard = (props) => {
 
                 <div style={{ marginTop: "-3px" }}>
                   <Caption className="fourteenFont " light>
-{position}
+                    {position}
                   </Caption>
                 </div>
               </Col>
-              {tag && (isXl || isXs || (isMd && !isLg) ) ? (
+              {tag && (isXl || isXs || (isMd && !isLg)) ? (
                 <Col>
                   {setColor()}
                   <BorderlessTag
