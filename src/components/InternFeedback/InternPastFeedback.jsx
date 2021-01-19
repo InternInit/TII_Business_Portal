@@ -65,7 +65,7 @@ const InternPastFeedback = (props) => {
 };
 
 const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
-  const [active, toggleActive] = useState(false);
+  const [active, toggleActive] = useState(hasModal);
   const [show, setShow] = useState(false);
 
   const { useBreakpoint } = Grid;
@@ -81,12 +81,25 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
             location.pathname.lastIndexOf("/feedback/") + 10,
             location.pathname.length
           ))
-        : id = ""
+        : (id = "");
     }
     return id;
   };
 
-  // console.log(getFeedbackId());
+  console.log(data);
+
+  const findFeedback = () => {
+    let message;
+
+    switch (data.Id) {
+      case getFeedbackId():
+        message = data.comment;
+        break;
+      default:
+        break;
+    }
+    return message;
+  };
 
   const markRead = () => {
     markFeedbackRead(student.Id, data.Id);
@@ -109,7 +122,29 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
 
   return (
     <>
-      {/* <Modal>{data.comment}</Modal> */}
+      {findFeedback() ? (
+        <Modal
+          visible={active}
+          footer={
+            <Button
+              key="done"
+              type="primary"
+              onClick={() => {
+                toggleActive(false);
+                markRead();}}
+            >
+              Done
+            </Button>
+          }
+          onCancel={() => {
+            toggleActive(false);
+            markRead();
+          }}
+        >
+          {findFeedback()}
+        </Modal>
+      ) : null}
+
       <TabContainer className="mb-1 student-intern-tab-container" hoverable>
         <Row gutter={16} wrap={false}>
           <Col flex="40px">
