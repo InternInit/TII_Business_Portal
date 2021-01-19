@@ -31,7 +31,7 @@ const onDragEnd = (result, columns, setColumns, props) => {
   const { source, destination, draggableId } = result;
   let status;
   let studentIndex = _.findIndex(props.candidates, {Id: draggableId});
-
+ 
   if (props.candidates[studentIndex].status.includes("Interview")) {
     status = props.candidates[studentIndex].status;
   } else {
