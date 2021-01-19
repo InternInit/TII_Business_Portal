@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import NavSearch from "../General/NavSearch.jsx";
+import SmartAvatar from "../General/SmartAvatar";
 
 import {
   Header,
@@ -116,10 +117,18 @@ class InternPageContainer extends Component {
                 </Dropdown>
                 <AntRow justify="center">
                   <AntCol className="universal-middle">
-                    <Avatar
+                    <SmartAvatar
+                      size={150}
+                      name={student.formData["0"]["First Name"]}
+                      fontSize="fortyEightFont"
+                    />
+                    {/**
+                     * @TODO
+                     * Make it so that it can check if there's actually a profile pic for the user
+                     <Avatar
                       size={150}
                       src={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                    />
+                    />*/}
                   </AntCol>
                   <AntCol flex="auto" offset={1}>
                     <AntRow className="intern-dashboard-banner-text-row">

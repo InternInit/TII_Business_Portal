@@ -136,14 +136,6 @@ const courseLevels = [
 ];
 
 //CSS Constants
-const pageStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  float: "center",
-  backgroundColor: "#eceff9",
-};
-
 const buttonStyle = {
   display: "flex",
   justifyContent: "flex-end",
@@ -300,35 +292,69 @@ class InternshipDetails extends React.Component {
 
   render() {
     let { buttonText, title } = this.props;
-    return this.state.loading || this.props.loadingStatuses.isListingLoading ? (
-      <h1>Implement Loading Here</h1>
-    ) : (
-      <React.Fragment>
-        <NavSearch title={title} searchBar={false} />
-        <PageContainer>
-          <div className="px-8 py-2" style={{ width: "100%" }}>
-            <Breadcrumb style={{ paddingBottom: "1em" }}>
-              <Breadcrumb.Item className="twentyFont">
-                <Link to="/internship-listings">Internship Postings</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item className="twentyFont">
-                {this.props.location.pathname.includes("add-listing")
-                  ? "Create Posting"
-                  : "My Post"}
-              </Breadcrumb.Item>
-            </Breadcrumb>
 
-            <InternshipDetailForm
-              initialFilters={this.state.filters}
-              buttonText={buttonText}
-              title={title}
-              formRef={this.formRef}
-              onFinish={this.onFinish}
-            />
-          </div>
-        </PageContainer>
-      </React.Fragment>
-    );
+    console.log();
+
+    if (this.props.location.pathname.includes("add-listing")) {
+      return (
+        <React.Fragment>
+          <NavSearch title={title} searchBar={false} />
+          <PageContainer>
+            <div className="px-8 py-2" style={{ width: "100%" }}>
+              <Breadcrumb style={{ paddingBottom: "1em" }}>
+                <Breadcrumb.Item className="twentyFont">
+                  <Link to="/internship-listings">Internship Postings</Link>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="twentyFont">
+                  {this.props.location.pathname.includes("add-listing")
+                    ? "Create Posting"
+                    : "My Post"}
+                </Breadcrumb.Item>
+              </Breadcrumb>
+
+              <InternshipDetailForm
+                initialFilters={this.state.filters ? this.state.filters : []}
+                buttonText={buttonText}
+                title={title}
+                formRef={this.formRef}
+                onFinish={this.onFinish}
+              />
+            </div>
+          </PageContainer>
+        </React.Fragment>
+      );
+    } else {
+      return this.state.loading ||
+        this.props.loadingStatuses.isListingLoading ? (
+        <h1>Implement Loading Here</h1>
+      ) : (
+        <React.Fragment>
+          <NavSearch title={title} searchBar={false} />
+          <PageContainer>
+            <div className="px-8 py-2" style={{ width: "100%" }}>
+              <Breadcrumb style={{ paddingBottom: "1em" }}>
+                <Breadcrumb.Item className="twentyFont">
+                  <Link to="/internship-listings">Internship Postings</Link>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="twentyFont">
+                  {this.props.location.pathname.includes("add-listing")
+                    ? "Create Posting"
+                    : "My Post"}
+                </Breadcrumb.Item>
+              </Breadcrumb>
+
+              <InternshipDetailForm
+                initialFilters={this.state.filters ? this.state.filters : []}
+                buttonText={buttonText}
+                title={title}
+                formRef={this.formRef}
+                onFinish={this.onFinish}
+              />
+            </div>
+          </PageContainer>
+        </React.Fragment>
+      );
+    }
   }
 }
 
