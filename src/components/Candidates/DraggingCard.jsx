@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Avatar, Row as AntRow, Col as AntCol } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { GrAddCircle } from "react-icons/gr";
+import { IoIosAddCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import {
   TabContainer,
@@ -15,7 +15,7 @@ class DraggingCard extends React.Component {
     return (
       <TabContainer className="py-1-5 px-2 responsive-tab-container">
 
-        <GrAddCircle className="dragging-card-add-tag-icon"/>
+        {this.props.status.includes("Interview") ? <IoIosAddCircleOutline className="dragging-card-add-tag-icon"/> : null}
         {/**
          * Temporarily removing this to test a new add tag button
          * 
