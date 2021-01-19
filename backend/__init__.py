@@ -180,6 +180,13 @@ def update_student_status():
     req = requests.post(studentApiUrl, headers={"Authorization": headers.get("Authorization"), "InternId": headers.get("InternId")}, json= json.loads(body))
     return jsonify(req.text)
 
+@app.route('/api/mutate_candidate_assoc', methods=["POST"])
+def mutate_candidate_assoc():
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
 ##############################
 #
 #       USER MANAGEMENT
