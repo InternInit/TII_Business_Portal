@@ -26,8 +26,6 @@ const InternDashboard = (props) => {
   const [feedbackPage, changeFeedbackPage] = useState(0);
   const [gradePage, changeGradePage] = useState(0);
 
-  console.log(props);
-
   return (
     <>
       <AntRow justify="center" style={{ width: "100%" }}>

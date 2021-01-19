@@ -46,13 +46,6 @@ const AttendanceRecord = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-  console.log(
-    Object.entries(screens)
-      .filter((screen) => !!screen[1])
-      .map((breakpoint) => breakpoint[0])
-      .includes("lg")
-  );
-
   //Changes Day Names (dd -> ddd)
   moment.updateLocale("en", {
     weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],

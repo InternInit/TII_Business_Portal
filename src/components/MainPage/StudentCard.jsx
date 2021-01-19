@@ -89,9 +89,7 @@ const StudentCard = (props) => {
     }
   };
 
-  console.log(Object.entries(screens)
-  .filter((screen) => !!screen[1])
-  .map((breakpoint) => breakpoint[0]));
+
 
   return (
     <Link to={`/applicants/${id}`}>
