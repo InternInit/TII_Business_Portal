@@ -318,6 +318,7 @@ class InternshipDetails extends React.Component {
                 title={title}
                 formRef={this.formRef}
                 onFinish={this.onFinish}
+                isNewPosting={true}
               />
             </div>
           </PageContainer>
@@ -349,6 +350,7 @@ class InternshipDetails extends React.Component {
                 title={title}
                 formRef={this.formRef}
                 onFinish={this.onFinish}
+                isNewPosting={false}
               />
             </div>
           </PageContainer>
@@ -368,6 +370,7 @@ const InternshipDetailForm = ({
   onFinish,
   title,
   formRef,
+  isNewPosting
 }) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
@@ -590,7 +593,7 @@ const InternshipDetailForm = ({
         onFinish={(values) => onFinish(values, postFilters)}
       >
         <Header className="twentyEightFont universal-center mb-1" bolded>
-          Create an Internship Posting
+          {isNewPosting ? "Create an Internship Posting" : "Edit Your Internship Posting"}
         </Header>
 
         <Header className={headerClassNames} subheading>
