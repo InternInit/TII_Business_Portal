@@ -11,12 +11,17 @@ import {
   Tooltip,
   Grid,
   Pagination,
+  Empty,
 } from "antd";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { BiTime } from "react-icons/bi";
 
-import { Header, TabContainer } from "../Styled/FundamentalComponents.jsx";
+import {
+  Header,
+  TabContainer,
+  Caption,
+} from "../Styled/FundamentalComponents.jsx";
 import AttendanceCard from "./AttendanceCard.jsx";
 
 import _ from "underscore";
@@ -46,12 +51,6 @@ const AttendanceRecord = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-  console.log(
-    Object.entries(screens)
-      .filter((screen) => !!screen[1])
-      .map((breakpoint) => breakpoint[0])
-      .includes("lg")
-  );
 
   //Changes Day Names (dd -> ddd)
   moment.updateLocale("en", {
@@ -113,7 +112,15 @@ const AttendanceRecord = (props) => {
         </Header>
 
         <TabContainer className="mt-point-25 px-2 py-2">
-          <Row gutter={[16, 16]} justify="center" align="middle">
+          <Row
+            gutter={[16, 16]}
+            justify="center"
+            align={
+              props.student.hours.filter((day) => day.isApproved).length !== 0
+                ? "top"
+                : "middle"
+            }
+          >
             {/* attendance list */}
             <Col
               xs={24}
@@ -123,102 +130,129 @@ const AttendanceRecord = (props) => {
               xl={12}
               style={{ paddingLeft: "4px" }}
             >
-              {isMd ? (
-                <Row
-                  justify="space-between"
-                  style={{ paddingBottom: "12px", paddingRight: "23px" }}
-                >
-                  <Header className="twentyFont">Date</Header>
-                  <Header className="twentyFont">Hours Worked</Header>
-                </Row>
+              {props.student.hours.filter((day) => day.isApproved).length !==
+              0 ? (
+                <>
+                  {isMd ? (
+                    <Row
+                      justify="space-between"
+                      style={{ paddingBottom: "12px", paddingRight: "23px" }}
+                    >
+                      <Header className="twentyFont">Date</Header>
+                      <Header className="twentyFont">Hours Worked</Header>
+                    </Row>
+                  ) : (
+                    <Row
+                      justify="space-between"
+                      style={{ paddingBottom: "12px", paddingRight: "23px" }}
+                    >
+                      <Header className="twentyFont">Date</Header>
+                      <Header className="twentyFont">Hours Worked</Header>
+                    </Row>
+                  )}
+
+                  <Row className="attendance-list-container">
+                    {_.sortBy(
+                      props.student.hours.filter((day) => day.isApproved),
+                      "date"
+                    ).map((data) => {
+                      return (
+                        <Scrollbars autoHide={true} style={{ height: 50 }}>
+                          {isMd ? (
+                            <Col flex="auto">
+                              <Row
+                                className="attendance-list-row"
+                                align="middle"
+                                justify="space-between"
+                              >
+                                <Button
+                                  style={{ padding: "0px" }}
+                                  type="link"
+                                  onClick={() => {
+                                    setState({
+                                      date: moment(data.date).format(
+                                        "MM/DD/YYYY"
+                                      ),
+                                      dateList: moment(data.date).format(
+                                        "MM/DD/YYYY"
+                                      ),
+                                    });
+                                  }}
+                                >
+                                  <Header className="student-attendance-list">
+                                    {moment(data.date).format("MM/DD/YYYY")}
+                                  </Header>
+                                </Button>
+
+                                <Header
+                                  className="sixteenFont mr-point-5"
+                                  style={{ color: "#a0a0a0" }}
+                                >
+                                  {data.time}
+                                </Header>
+                              </Row>
+                            </Col>
+                          ) : (
+                            <Col flex="auto">
+                              <Row
+                                className="attendance-list-row"
+                                align="middle"
+                                justify="space-between"
+                              >
+                                <Button
+                                  style={{ padding: "0px" }}
+                                  type="link"
+                                  onClick={() => {
+                                    setState({
+                                      date: moment(data.date).format(
+                                        "MM/DD/YYYY"
+                                      ),
+                                      dateList: moment(data.date).format(
+                                        "MM/DD/YYYY"
+                                      ),
+                                    });
+                                  }}
+                                >
+                                  <Header className="student-attendance-list">
+                                    <div style={{ fontSize: "16px" }}>
+                                      {moment(data.date).format("MM/DD/YYYY")}
+                                    </div>
+                                  </Header>
+                                </Button>
+
+                                <Header
+                                  className="sixteenFont mr-point-5"
+                                  color="#a0a0a0"
+                                >
+                                  {data.time}
+                                </Header>
+                              </Row>
+                            </Col>
+                          )}
+                        </Scrollbars>
+                      );
+                    })}
+                  </Row>
+                </>
               ) : (
-                <Row
-                  justify="space-between"
-                  style={{ paddingBottom: "12px", paddingRight: "23px" }}
-                >
-                  <Header className="twentyFont">Date</Header>
-                  <Header className="twentyFont">Hours Worked</Header>
+                <Row justify="center" align="middle">
+                  <Empty
+                    description={
+                      <Caption className="eighteenFont" light>
+                        {student.formData["0"]["First Name"] +
+                          " " +
+                          student.formData["0"]["Last Name"]}{" "}
+                        doesn't have any approved hours{" "}
+                      </Caption>
+                    }
+                    image={
+                      Empty.PRESENTED_IMAGE_SIMPLE
+                      //"https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                    }
+                    //imageStyle={{ marginTop: "-14px", height: "60%" }}
+                  />
                 </Row>
               )}
-
-              <Row className="attendance-list-container">
-                {_.sortBy(
-                  props.student.hours.filter((day) => day.isApproved),
-                  "date"
-                ).map((data) => {
-                  return (
-                    <Scrollbars autoHide={true} style={{ height: 50 }}>
-                      {isMd ? (
-                        <Col span={24}>
-                          <Row
-                            className="attendance-list-row"
-                            align="middle"
-                            justify="space-between"
-                          >
-                            <Button
-                              style={{ padding: "0px" }}
-                              type="link"
-                              onClick={() => {
-                                setState({
-                                  date: moment(data.date).format("MM/DD/YYYY"),
-                                  dateList: moment(data.date).format(
-                                    "MM/DD/YYYY"
-                                  ),
-                                });
-                              }}
-                            >
-                              <Header className="student-attendance-list">
-                                {moment(data.date).format("MM/DD/YYYY")}
-                              </Header>
-                            </Button>
-
-                            <Header
-                              className="sixteenFont mr-point-5"
-                              style={{ color: "#a0a0a0" }}
-                            >
-                              {data.time}
-                            </Header>
-                          </Row>
-                        </Col>
-                      ) : (
-                        <Col span={24}>
-                          <Row
-                            className="attendance-list-row"
-                            align="middle"
-                            justify="space-between"
-                          >
-                            <Button
-                              style={{ padding: "0px" }}
-                              type="link"
-                              onClick={() => {
-                                setState({
-                                  date: moment(data.date).format("MM/DD/YYYY"),
-                                  dateList: moment(data.date).format(
-                                    "MM/DD/YYYY"
-                                  ),
-                                });
-                              }}
-                            >
-                              <Header className="student-attendance-list">
-                                <div style={{ fontSize: "16px" }}>
-                                  {moment(data.date).format("MM/DD/YYYY")}
-                                </div>
-                              </Header>
-                            </Button>
-
-                            <Header
-                              className="sixteenFont mr-point-5"
-                              color="#a0a0a0"
-                            >
-                              {data.time}
-                            </Header>
-                          </Row>
-                        </Col>
-                      )}
-                    </Scrollbars>
-                  );
-                })}
-              </Row>
             </Col>
 
             {/* Calendar */}

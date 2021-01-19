@@ -135,6 +135,8 @@ const MainPage = (props) => {
     return count;
   };
 
+  console.log(interns)
+
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
@@ -375,7 +377,7 @@ const MainPage = (props) => {
                     <PageFeedback
                       firstName={student.formData["0"]["First Name"]}
                       lastName={student.formData["0"]["Last Name"]}
-                      school={student.school.name}
+                      //school={student.school.name}
                       avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
                       position={student.appliedFor}
                       id={student.Id}
