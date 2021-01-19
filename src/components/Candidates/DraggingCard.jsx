@@ -17,13 +17,14 @@ import {
   TabContainer,
   Header,
   Caption,
+  BorderlessTag,
 } from "../Styled/FundamentalComponents.jsx";
 
 import { connect } from "react-redux";
 import { addInterviewTag } from "../../redux/actions";
 
 const mapDispatchToProps = {
-  addInterviewTag
+  addInterviewTag,
 };
 
 const mapStateToProps = (state) => {
@@ -33,17 +34,40 @@ const mapStateToProps = (state) => {
 };
 
 class DraggingCard extends React.Component {
-
   handleTag = (tag) => {
     this.props.addInterviewTag(this.props.id, tag);
-  }
+  };
+
+  renderTags = () => {
+    switch (this.props.status) {
+      case "Online Interview":
+        return (
+          <BorderlessTag className="px-1-5 dragging-card-tag" background="#e6f7ff" color="#1890ff">
+            Online
+          </BorderlessTag>
+        );
+      case "Phone Interview":
+        return (
+          <BorderlessTag className="px-1-5 dragging-card-tag" background="#f9f0ff" color="#722ed1">
+            Phone
+          </BorderlessTag>
+        );
+      case "In-Person Interview":
+        return (
+          <BorderlessTag className="px-1-5 dragging-card-tag" background="#f6ffed" color="#52c41a">
+            In-Person
+          </BorderlessTag>
+        );
+      default:
+        return <AiOutlinePlusCircle className="dragging-card-add-tag-icon" />;
+    }
+  };
 
   render() {
     let { name, date, city, position, avatar, id } = this.props;
     return (
       <>
         <TabContainer className="py-1-5 px-2 responsive-tab-container">
-          {this.props.status}
           {/**
          * Temporarily removing this to test a new add tag button
          * 
@@ -87,16 +111,28 @@ class DraggingCard extends React.Component {
                 <Dropdown
                   overlay={
                     <Menu>
-                      <Menu.Item onClick={() => this.handleTag("Online Interview")}>Online Interview</Menu.Item>
-                      <Menu.Item onClick={() => this.handleTag("Phone Interview")}>Phone Interview</Menu.Item>
-                      <Menu.Item onClick={() => this.handleTag("In-Person Interview")}>In-Person Interview</Menu.Item>
+                      <Menu.Item
+                        onClick={() => this.handleTag("Online Interview")}
+                      >
+                        Online Interview
+                      </Menu.Item>
+                      <Menu.Item
+                        onClick={() => this.handleTag("Phone Interview")}
+                      >
+                        Phone Interview
+                      </Menu.Item>
+                      <Menu.Item
+                        onClick={() => this.handleTag("In-Person Interview")}
+                      >
+                        In-Person Interview
+                      </Menu.Item>
                     </Menu>
                   }
                   placement="bottomRight"
                   arrow
                   trigger={["click"]}
                 >
-                  <AiOutlinePlusCircle className="dragging-card-add-tag-icon" />
+                  {this.renderTags()}
                 </Dropdown>
               </Tooltip>
             ) : null}
