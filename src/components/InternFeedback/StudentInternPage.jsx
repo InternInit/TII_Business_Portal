@@ -102,7 +102,7 @@ class InternFeedback extends Component {
                     : 0
                 }
                 position={student.appliedFor}
-                school={student.school ? student.school.name : "Placeholder"}
+                school={student.school ? student.school.name : "N/A"}
                 /**
                  * @TODO
                  * Replace with actual profile picture
