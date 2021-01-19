@@ -8,6 +8,7 @@ import {
   Modal,
   Dropdown,
   Menu,
+  message,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -18,12 +19,31 @@ import {
   Caption,
 } from "../Styled/FundamentalComponents.jsx";
 
+import { connect } from "react-redux";
+import { addInterviewTag } from "../../redux/actions";
+
+const mapDispatchToProps = {
+  addInterviewTag
+};
+
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+  };
+};
+
 class DraggingCard extends React.Component {
+
+  handleTag = (tag) => {
+    this.props.addInterviewTag(this.props.id, tag);
+  }
+
   render() {
     let { name, date, city, position, avatar, id } = this.props;
     return (
       <>
         <TabContainer className="py-1-5 px-2 responsive-tab-container">
+          {this.props.status}
           {/**
          * Temporarily removing this to test a new add tag button
          * 
@@ -67,9 +87,9 @@ class DraggingCard extends React.Component {
                 <Dropdown
                   overlay={
                     <Menu>
-                      <Menu.Item>Online Interview</Menu.Item>
-                      <Menu.Item>Phone Interview</Menu.Item>
-                      <Menu.Item>In-Person Interview</Menu.Item>
+                      <Menu.Item onClick={() => this.handleTag("Online Interview")}>Online Interview</Menu.Item>
+                      <Menu.Item onClick={() => this.handleTag("Phone Interview")}>Phone Interview</Menu.Item>
+                      <Menu.Item onClick={() => this.handleTag("In-Person Interview")}>In-Person Interview</Menu.Item>
                     </Menu>
                   }
                   placement="bottomRight"
@@ -135,4 +155,4 @@ class DraggingCard extends React.Component {
     );
   }
 }
-export default DraggingCard;
+export default connect(mapStateToProps, mapDispatchToProps)(DraggingCard);
