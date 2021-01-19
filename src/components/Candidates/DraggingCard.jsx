@@ -67,7 +67,7 @@ class DraggingCard extends React.Component {
     let { name, date, city, position, avatar, id } = this.props;
     return (
       <>
-        <TabContainer className="py-1-5 px-2 responsive-tab-container">
+        <TabContainer className="py-1-5 px-2 dragging-card-responsive-tab-container">
           {/**
          * Temporarily removing this to test a new add tag button
          * 
