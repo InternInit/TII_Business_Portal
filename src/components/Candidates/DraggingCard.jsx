@@ -23,6 +23,8 @@ import {
 import { connect } from "react-redux";
 import { addInterviewTag } from "../../redux/actions";
 
+import _ from "underscore";
+
 const mapDispatchToProps = {
   addInterviewTag,
 };
@@ -35,26 +37,39 @@ const mapStateToProps = (state) => {
 
 class DraggingCard extends React.Component {
   handleTag = (tag) => {
-    this.props.addInterviewTag(this.props.id, tag);
+    //this.props.addInterviewTag(this.props.id, tag);
+    this.props.updateCandidateStatus(this.props.id, tag);
   };
 
   renderTags = () => {
     switch (this.props.status) {
       case "Online Interview":
         return (
-          <BorderlessTag className="px-1-5 dragging-card-tag" background="#e6f7ff" color="#1890ff">
+          <BorderlessTag
+            className="px-1-5 dragging-card-tag"
+            background="#e6f7ff"
+            color="#1890ff"
+          >
             Online
           </BorderlessTag>
         );
       case "Phone Interview":
         return (
-          <BorderlessTag className="px-1-5 dragging-card-tag" background="#f9f0ff" color="#722ed1">
+          <BorderlessTag
+            className="px-1-5 dragging-card-tag"
+            background="#f9f0ff"
+            color="#722ed1"
+          >
             Phone
           </BorderlessTag>
         );
       case "In-Person Interview":
         return (
-          <BorderlessTag className="px-1-5 dragging-card-tag" background="#fff2e8" color="#fa541c">
+          <BorderlessTag
+            className="px-1-5 dragging-card-tag"
+            background="#fff2e8"
+            color="#fa541c"
+          >
             In-Person
           </BorderlessTag>
         );

@@ -181,11 +181,3 @@ export const markFeedbackRead = (internId, feedbackId) => {
     type: "MARK_FEEDBACK_READ"
   }
 }
-
-export const addInterviewTag = (candidateId, tag) => {
-  return {
-    candidateId: candidateId,
-    tag: tag,
-    type: "ADD_INTERVIEW_TAG"
-  }
-}
