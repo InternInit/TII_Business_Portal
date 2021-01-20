@@ -109,7 +109,7 @@ const InternDashboard = (props) => {
                 (gradePage + 1) * GRADES_PER_PAGE
               )
               .map((grade) => (
-                <GradeCard review={grade} studentId={props.student.Id} />
+                <GradeCard review={grade} studentId={props.student.Id} reset={true}/>
               ))
           ) : (
             <div className="py-2-5 universal-center ">
