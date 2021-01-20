@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Row as AntRow, Col as AntCol, Badge } from "antd";
+import { Row as AntRow, Col as AntCol } from "antd";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
+import _ from "underscore";
 
 const dragStyle = {
   backgroundColor: "#ebecf0",
@@ -22,22 +23,34 @@ const dragStyle = {
  */
 const onDragEnd = (result, columns, setColumns, props) => {
   if (!result.destination) return;
-  const { source, destination } = result;
 
-  let status = "Review";
-  switch (parseInt(destination.droppableId)) {
-    case 1:
-      status = "Review";
-      break;
-    case 2:
-      status = "Interview";
-      break;
-    case 3:
-      status = "Accepted";
-      break;
-    default:
-      status = "Review";
-    // code block
+  console.log("Result " + JSON.stringify(result));
+  console.log("Columns " + JSON.stringify(columns));
+  console.log("Props" + JSON.stringify(props));
+
+  const { source, destination, draggableId } = result;
+  let status;
+  let studentIndex = _.findIndex(props.candidates, {Id: draggableId});
+ 
+  if (props.candidates[studentIndex].status.includes("Interview")) {
+    status = props.candidates[studentIndex].status;
+  } else {
+    status = "Review";
+
+    switch (parseInt(destination.droppableId)) {
+      case 1:
+        status = "Review";
+        break;
+      case 2:
+        status = "Interview";
+        break;
+      case 3:
+        status = "Accepted";
+        break;
+      default:
+        status = "Review";
+      // code block
+    }
   }
   props.updateCandidateStatus(result.draggableId, status);
 
@@ -92,6 +105,11 @@ const columnsFromBackend = {
 
 function HirePipeline(props) {
   const [columns, setColumns] = useState(columnsFromBackend);
+
+  /**
+   * Filters through all the candidates to place them into
+   * the correct buckets
+   */
   let markedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Review"
   );

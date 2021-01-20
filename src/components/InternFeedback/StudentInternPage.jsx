@@ -4,7 +4,7 @@ import StudentInternTab from "./StudentInternTab.jsx";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "../General/InfoBar.jsx";
 import { InnerContainer } from "../Styled/FundamentalComponents";
-import { Link } from "react-router-dom";
+import StudentInternPageSkeleton from "./StudentInternPageSkeleton";
 import { Button, Row as AntRow, Col as AntCol } from "antd";
 
 import { connect } from "react-redux";
@@ -34,9 +34,7 @@ const mapStateToProps = (state) => {
 class InternFeedback extends Component {
   render() {
     return this.props.loadingStatuses.isInternLoading ? (
-      <>
-        <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
-      </>
+      <StudentInternPageSkeleton />
     ) : (
       <>
         <Container className="global-container">

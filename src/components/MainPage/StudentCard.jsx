@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, Row, Col, Grid } from "antd";
 import {
   Header,
@@ -12,9 +12,10 @@ import { UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const StudentCard = (props) => {
-  let { firstName, lastName, age, avatar, id, tag, type, position } = props;
-  let fullName = firstName + " " + lastName;
-  let colors = {
+  const { firstName, lastName, age, avatar, id, tag, type, position } = props;
+  const fullName = firstName + " " + lastName;
+
+  const colors = {
     review: {
       text: "#FA8C16",
       background: "#FFF7E6",
@@ -27,22 +28,34 @@ const StudentCard = (props) => {
       text: "#eb2f96",
       background: "#fff0f6",
     },
-    // review: {
-    //   text: "white",
-    //   background: "#fa8c16"
-    // },
-    // online: {
-    //   text: "white",
-    //   background: "#52c41a"
-    // },
-    // inPerson: {
-    //   text: "white",
-    //   background: "#1890ff"
-    // }
   };
 
-  let textColor;
-  let backgroundColor;
+  const setColor = () => {
+    switch (type) {
+      case "Online Interview":
+        return {
+          textColor: colors.online.text,
+          backgroundColor: colors.online.background,
+        };
+      case "Review":
+        return {
+          textColor: colors.review.text,
+          backgroundColor: colors.review.background,
+        };
+      case "On-Site Interview":
+        return {
+          textColor: colors.online.text,
+          backgroundColor: colors.online.background,
+        };
+      default:
+        return {
+          textColor: "#262626",
+          backgroundColor: "#f5f5f5",
+        };
+    }
+  };
+
+  const [styles, changeStyles] = useState(setColor());
 
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
@@ -62,7 +75,7 @@ const StudentCard = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-    const isLg = Object.entries(screens)
+  const isLg = Object.entries(screens)
     .filter((screen) => !!screen[1])
     .map((breakpoint) => breakpoint[0])
     .includes("lg");
@@ -111,18 +124,17 @@ const StudentCard = (props) => {
 
                 <div style={{ marginTop: "-3px" }}>
                   <Caption className="fourteenFont " light>
-{position}
+                    {position}
                   </Caption>
                 </div>
               </Col>
-              {tag && (isXl || isXs || (isMd && !isLg) ) ? (
+              {tag && (isXl || isXs || (isMd && !isLg)) ? (
                 <Col>
-                  {setColor()}
                   <BorderlessTag
                     style={{ marginRight: "-20px", marginTop: "0px" }}
                     className="px-1 py-0"
-                    background={backgroundColor}
-                    color={textColor}
+                    background={styles.backgroundColor}
+                    color={styles.textColor}
                   >
                     {type.includes("Interview") ? "Interview" : type}
                   </BorderlessTag>
