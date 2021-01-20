@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Header,
+  Caption,
   TabContainer,
   BorderlessTag,
 } from "../Styled/FundamentalComponents.jsx";
@@ -102,10 +103,11 @@ const GradeCard = (props) => {
       <AntRow justify="space-between">
         <AntCol>
           <Header className="twentyFont">Performance Review</Header>
+          <Caption className="fourteenFont" light thin>{props.review.dueDateFormatted}</Caption>
         </AntCol>
         <AntCol>{RenderTag()}</AntCol>
       </AntRow>
-      <AntRow className="py-1">
+      <AntRow className="pt-point-5 pb-1">
         <AntCol
           flex="40px"
           style={{ borderBottom: "2px #91d5ff solid" }}
@@ -119,7 +121,7 @@ const GradeCard = (props) => {
         </AntRow>
         <AntRow className="pt-point-5">
           <Form.Item name="Grade" key="grade" style={{ width: "100%" }}>
-            <Input />
+            <Input defaultValue={props.review.assessment} />
           </Form.Item>
         </AntRow>
         <AntRow>
@@ -133,6 +135,7 @@ const GradeCard = (props) => {
           >
             <Input.TextArea
               placeholder="Commendations, constructive criticism, message to school"
+              defaultValue={props.review.additionalComments}
               rows={6}
             />
           </Form.Item>
