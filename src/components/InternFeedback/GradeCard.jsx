@@ -121,7 +121,7 @@ const GradeCard = (props) => {
         </AntRow>
         <AntRow className="pt-point-5">
           <Form.Item name="Grade" key="grade" style={{ width: "100%" }}>
-            <Input />
+            <Input defaultValue={props.review.assessment} />
           </Form.Item>
         </AntRow>
         <AntRow>
@@ -135,6 +135,7 @@ const GradeCard = (props) => {
           >
             <Input.TextArea
               placeholder="Commendations, constructive criticism, message to school"
+              defaultValue={props.review.additionalComments}
               rows={6}
             />
           </Form.Item>
