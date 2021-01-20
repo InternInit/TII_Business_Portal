@@ -15,6 +15,7 @@ import {
 import {
   StudentCardSkeleton,
   DotSkeletonSpacer,
+  PageListingSkeleton,
 } from "./MainPageSkeletons.jsx";
 
 const MainPage = (props) => {
@@ -115,7 +116,13 @@ const MainPage = (props) => {
                 ? " (" + listings.length + ")"
                 : null}
             </Header>
-            {listings.length === 0 ? (
+            {props.loading.isListingLoading ? (
+              <>
+                <PageListingSkeleton />
+                <PageListingSkeleton />
+                <PageListingSkeleton />
+              </>
+            ) : listings.length === 0 ? (
               <NoResults
                 message={"Oops, it looks like you don't have any listings"}
                 isListing={true}
@@ -130,9 +137,16 @@ const MainPage = (props) => {
                   .map((post) => (
                     <PageListings
                       name={post.Title}
-                      interns={420}
-                      accepted={69}
-                      total={"Total?"}
+                      interns={
+                        props.candidates.filter(
+                          (candidate) => candidate.appliedFor === post.Title
+                        ).length
+                      }
+                      accepted={
+                        props.interns.filter(
+                          (intern) => intern.appliedFor === post.Title
+                        ).length
+                      }
                       industry={post.Industries}
                       id={post.Id}
                     />
@@ -436,7 +450,7 @@ const MainPage = (props) => {
             )}
           </AntCol>
         </AntRow>
-        
+
         <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
           <AntCol xs={24} sm={24} lg={16}>
             {props.loading.isInternLoading ? (
