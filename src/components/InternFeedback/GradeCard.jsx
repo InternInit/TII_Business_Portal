@@ -125,9 +125,6 @@ const GradeCard = (props) => {
         <AntRow>
           <Header className="sixteenFont">Additional Comments</Header>
         </AntRow>
-        <AntRow>
-          <Header className="sixteenFont">{props.review.Id}</Header>
-        </AntRow>
         <AntRow className="pt-point-5 pb-1">
           <Form.Item
             name="Additional Comments"
