@@ -109,7 +109,7 @@ const MainPage = (props) => {
 
       <InnerContainer className="py-2">
         <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "340px" }}>
-          <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
+          <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
             <Header className="twentyTwoFont mb-point-5">
               Listings
               {listings.length > CARD_PER_PAGE
@@ -154,7 +154,7 @@ const MainPage = (props) => {
               </>
             )}
           </AntCol>
-          <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
+          <AntCol xs={24} md={{ span: 12, order: 2 }} lg={10} xl={8}>
             <Header className="twentyTwoFont mb-point-5">
               Incoming Applications
               {candidates.filter((candidate) => candidate.status === "Pending")
@@ -201,7 +201,7 @@ const MainPage = (props) => {
               />
             )}
           </AntCol>
-          <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
+          <AntCol xs={24} md={{ span: 12, order: 2 }} lg={0}>
             <Header className="twentyTwoFont mb-point-5">
               Applicants
               {candidates.filter(
@@ -257,8 +257,8 @@ const MainPage = (props) => {
           </AntCol>
         </AntRow>
 
-        <AntRow>
-          <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
+        <AntRow gutter={[32, 16]} style={{ marginTop: "-20px" }}>
+          <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
             {props.loading.isListingLoading ? (
               <DotSkeletonSpacer />
             ) : listings.length > CARD_PER_PAGE ? (
@@ -285,7 +285,7 @@ const MainPage = (props) => {
               </AntRow>
             ) : null}
           </AntCol>
-          <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={8}>
+          <AntCol xs={24} md={{ span: 12, order: 2 }} lg={10} xl={8}>
             {props.loading.isCandidateLoading ? (
               <DotSkeletonSpacer />
             ) : candidates.filter((candidate) => candidate.status === "Pending")
@@ -313,7 +313,7 @@ const MainPage = (props) => {
               </AntRow>
             ) : null}
           </AntCol>
-          <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
+          <AntCol xs={24} md={{ span: 12, order: 2 }} lg={0}>
             {props.loading.isCandidateLoading ? (
               <DotSkeletonSpacer />
             ) : candidates.filter(
@@ -349,7 +349,7 @@ const MainPage = (props) => {
         </AntRow>
 
         <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "340px" }}>
-          <AntCol xs={24} sm={24} lg={16}>
+          <AntCol xs={24} lg={14} xl={16}>
             <Header className="twentyTwoFont mb-point-5">
               Current Interns
               {interns.length > CARD_PER_PAGE
@@ -387,7 +387,7 @@ const MainPage = (props) => {
               />
             )}
           </AntCol>
-          <AntCol xs={0} lg={8}>
+          <AntCol xs={0} lg={10} xl={8}>
             <Header className="twentyTwoFont mb-point-5">
               Applicants
               {candidates.filter(
@@ -452,7 +452,7 @@ const MainPage = (props) => {
         </AntRow>
 
         <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
-          <AntCol xs={24} sm={24} lg={16}>
+          <AntCol xs={24} lg={14} xl={16}>
             {props.loading.isInternLoading ? (
               <DotSkeletonSpacer />
             ) : interns.length > CARD_PER_PAGE ? (
@@ -479,7 +479,7 @@ const MainPage = (props) => {
               </AntRow>
             ) : null}
           </AntCol>
-          <AntCol xs={0} lg={8}>
+          <AntCol xs={0} lg={10} xl={8}>
             {props.loading.isCandidateLoading ? (
               <DotSkeletonSpacer />
             ) : candidates.filter(
