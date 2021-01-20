@@ -102,6 +102,10 @@ const MainPage = (props) => {
     .filter((screen) => !!screen[1])
     .map((breakpoint) => breakpoint[0])
     .includes("lg");
+  const isMd = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("md");
 
   return (
     <PageContainer>
@@ -154,7 +158,13 @@ const MainPage = (props) => {
               </>
             )}
           </AntCol>
-          <AntCol xs={24} md={{ span: 12, order: 2 }} lg={10} xl={8}>
+          <AntCol
+            xs={24}
+            md={{ span: 12, order: 2 }}
+            lg={10}
+            xl={8}
+            style={{ minHeight: "340px" }}
+          >
             <Header className="twentyTwoFont mb-point-5">
               Incoming Applications
               {candidates.filter((candidate) => candidate.status === "Pending")
@@ -200,8 +210,41 @@ const MainPage = (props) => {
                 isListing={false}
               />
             )}
+            {!isMd &&
+              (props.loading.isCandidateLoading ? (
+                <DotSkeletonSpacer />
+              ) : candidates.filter(
+                  (candidate) => candidate.status === "Pending"
+                ).length > CARD_PER_PAGE ? (
+                <AntRow justify="center">
+                  {getDotCount("Incoming Applicants")}
+                  {pageIndex.incomingPage.map((number) => (
+                    <div
+                      onClick={() => {
+                        setPage({
+                          incomingPage: number,
+                          applicantPage: applicantPage,
+                          internPage: internPage,
+                          listingPage: listingPage,
+                        });
+                        incomingPage = number;
+                      }}
+                      className={
+                        page.incomingPage === number
+                          ? "dashboard-pagination-current-page"
+                          : "dashboard-pagination"
+                      }
+                    />
+                  ))}
+                </AntRow>
+              ) : null)}
           </AntCol>
-          <AntCol xs={24} md={{ span: 12, order: 2 }} lg={0}>
+          <AntCol
+            xs={24}
+            md={{ span: 12, order: 2 }}
+            lg={0}
+            style={{ minHeight: "340px" }}
+          >
             <Header className="twentyTwoFont mb-point-5">
               Applicants
               {candidates.filter(
@@ -285,7 +328,7 @@ const MainPage = (props) => {
               </AntRow>
             ) : null}
           </AntCol>
-          <AntCol xs={24} md={{ span: 12, order: 2 }} lg={10} xl={8}>
+          <AntCol xs={0} md={{ span: 12, order: 2 }} lg={10} xl={8}>
             {props.loading.isCandidateLoading ? (
               <DotSkeletonSpacer />
             ) : candidates.filter((candidate) => candidate.status === "Pending")
