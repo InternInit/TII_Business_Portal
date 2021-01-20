@@ -74,6 +74,7 @@ const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
     listings: state.listings,
+    loadingStatuses: state.loadingStatuses
   };
 };
 
@@ -347,6 +348,7 @@ class App extends React.Component {
                     <MainPage
                       candidates={this.props.companyInfo.candidates}
                       listings={this.props.listings}
+                      loading={this.props.loadingStatuses}
                       interns={this.props.companyInfo.interns}
                     />
                   )}
