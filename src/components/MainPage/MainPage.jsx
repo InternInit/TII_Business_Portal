@@ -107,7 +107,7 @@ const MainPage = (props) => {
       <NavSearch title="Overview" searchBar={false} />
 
       <InnerContainer className="py-2">
-        <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
+        <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "340px" }}>
           <AntCol xs={24} sm={{ span: 24, order: 1 }} lg={16}>
             <Header className="twentyTwoFont mb-point-5">
               Listings
@@ -207,7 +207,7 @@ const MainPage = (props) => {
                   ")"
                 : null}
             </Header>
-            {!props.loading.isCandidateLoading ? (
+            {props.loading.isCandidateLoading ? (
               <>
                 <StudentCardSkeleton tag={true} />
                 <StudentCardSkeleton tag={true} />
@@ -275,7 +275,7 @@ const MainPage = (props) => {
             {props.loading.isCandidateLoading ? (
               <DotSkeletonSpacer />
             ) : candidates.filter((candidate) => candidate.status === "Pending")
-              .length > CARD_PER_PAGE ? (
+                .length > CARD_PER_PAGE ? (
               <AntRow justify="center">
                 {getDotCount("Incoming Applicants")}
                 {pageIndex.incomingPage.map((number) => (
@@ -300,11 +300,13 @@ const MainPage = (props) => {
             ) : null}
           </AntCol>
           <AntCol xs={24} sm={{ span: 12, order: 2 }} lg={0}>
-            {candidates.filter(
-              (candidate) =>
-                candidate.status.includes("Interview") ||
-                candidate.status.includes("Review")
-            ).length > CARD_PER_PAGE ? (
+            {props.loading.isCandidateLoading ? (
+              <DotSkeletonSpacer />
+            ) : candidates.filter(
+                (candidate) =>
+                  candidate.status.includes("Interview") ||
+                  candidate.status.includes("Review")
+              ).length > CARD_PER_PAGE ? (
               isLg ? null : (
                 <AntRow justify="center">
                   {getDotCount("Applicants")}
@@ -332,7 +334,7 @@ const MainPage = (props) => {
           </AntCol>
         </AntRow>
 
-        <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
+        <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "340px" }}>
           <AntCol xs={24} sm={24} lg={16}>
             <Header className="twentyTwoFont mb-point-5">
               Current Interns
@@ -434,9 +436,12 @@ const MainPage = (props) => {
             )}
           </AntCol>
         </AntRow>
+        
         <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
           <AntCol xs={24} sm={24} lg={16}>
-            {interns.length > CARD_PER_PAGE ? (
+            {props.loading.isInternLoading ? (
+              <DotSkeletonSpacer />
+            ) : interns.length > CARD_PER_PAGE ? (
               <AntRow justify="center">
                 {getDotCount("Interns")}
                 {pageIndex.internPage.map((number) => (
@@ -461,11 +466,13 @@ const MainPage = (props) => {
             ) : null}
           </AntCol>
           <AntCol xs={0} lg={8}>
-            {candidates.filter(
-              (candidate) =>
-                candidate.status.includes("Interview") ||
-                candidate.status.includes("Review")
-            ).length > CARD_PER_PAGE ? (
+            {props.loading.isCandidateLoading ? (
+              <DotSkeletonSpacer />
+            ) : candidates.filter(
+                (candidate) =>
+                  candidate.status.includes("Interview") ||
+                  candidate.status.includes("Review")
+              ).length > CARD_PER_PAGE ? (
               <AntRow justify="center">
                 {getDotCount("Applicants")}
                 {pageIndex.applicantPage.map((number) => (
@@ -490,7 +497,7 @@ const MainPage = (props) => {
             ) : null}
           </AntCol>
         </AntRow>
-        <AntRow gutter={[32, 16]} style={{ flex: 1 }}>
+        <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "250px" }}>
           <MainPercentages
             currentApplicantsReceived={candidates.length}
             internsTaken={interns.length}

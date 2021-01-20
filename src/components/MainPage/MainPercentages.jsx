@@ -22,7 +22,7 @@ const PercentageBox = (props) => {
   }
 
   return (
-    <TabContainer className="px-0 py-1 universal-center">
+    <TabContainer className="px-0 py-2 universal-center">
       <Tooltip title={toolTipTitle} color="blue" placement="top">
         <Progress
           type="circle"
