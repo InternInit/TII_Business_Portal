@@ -21,13 +21,8 @@ import {
 } from "../Styled/FundamentalComponents.jsx";
 
 import { connect } from "react-redux";
-import { addInterviewTag } from "../../redux/actions";
 
 import _ from "underscore";
-
-const mapDispatchToProps = {
-  addInterviewTag,
-};
 
 const mapStateToProps = (state) => {
   return {
@@ -206,4 +201,4 @@ class DraggingCard extends React.Component {
     );
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(DraggingCard);
+export default connect(mapStateToProps)(DraggingCard);
