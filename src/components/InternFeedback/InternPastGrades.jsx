@@ -130,49 +130,18 @@ const GradeTable = (props) => {
                 }
                 showArrow={false}
               >
-                <Caption className="sixteenFont intern-past-grades-collapse-panel-text">
+                <div className="intern-past-grades-collapse-panel-text">
+                <Caption className="sixteenFont">
                   <Caption light>Additional Comments: </Caption>
                   {grade.additionalComments}
                 </Caption>
+                </div>
               </Panel>
             ))}
           </Collapse>
         </Scrollbars>
       </TabContainer>
     </>
-  );
-};
-
-const GradeRow = (props) => {
-  /**
-   * @TODO
-   * Convert Due Date to Date Completed
-   */
-  return (
-    <Panel
-      header={
-        <AntRow
-          justify="space-between"
-          className="intern-past-grades-grade-row"
-        >
-          <AntCol>
-            <Caption className="sixteenFont">
-              {props.grade.dueDateFormatted}
-            </Caption>
-          </AntCol>
-          <AntCol>
-            <Caption className="sixteenFont">
-              {props.grade.assessment ? props.grade.assessment : "A"}
-            </Caption>
-          </AntCol>
-        </AntRow>
-      }
-      showArrow={false}
-    >
-      <Caption className="sixteenFont">
-        {props.grade.additionalComments}
-      </Caption>
-    </Panel>
   );
 };
 
