@@ -1,0 +1,75 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+@mixin center-skeleton($width) {
+    margin-left: calc(50% - .5*#{$width});
+}
+
+.quickview-tab-skeleton {
+    &-name .ant-skeleton-content .ant-skeleton-title  {
+        height: 24px;
+        width: 140px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+
+    &-school .ant-skeleton-content .ant-skeleton-title  {
+        height: 18px;
+        width: 130px;
+        margin-top: 0px;
+        margin-bottom: 5px;
+        @include center-skeleton(130px);
+    }
+    
+    &-location .ant-skeleton-content .ant-skeleton-title  {
+        height: 12px;
+        width: 170px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        @include center-skeleton(170px);
+    }
+    
+    &-gpa .ant-skeleton-content .ant-skeleton-title  {
+        height: 18px;
+        width: 30px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        @include center-skeleton(30px);
+    }
+    
+    &-applied-for .ant-skeleton-content .ant-skeleton-title  {
+        height: 18px;
+        width: 130px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        @include center-skeleton(130px);
+    }
+}
+
+.student-card-skeleton-position .ant-skeleton-content .ant-skeleton-title  {
+    height: 18px;
+    width: 120px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+}
+
+.student-card-skeleton-tag .ant-skeleton-content .ant-skeleton-title  {
+    height: 28px;
+    width: 80px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: -20px;
+}
+
+.page-listing-skeleton-data  .ant-skeleton-content .ant-skeleton-title {
+    position: relative;
+    height: 20px;
+    width: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    //bad solution, don't copy lol
+    margin-left: calc(50% - 10px);
+  }

@@ -5,10 +5,8 @@ import {
   Row as AntRow,
   Col as AntCol,
   Tooltip,
-  Modal,
   Dropdown,
-  Menu,
-  message,
+  Menu
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -21,8 +19,6 @@ import {
 } from "../Styled/FundamentalComponents.jsx";
 
 import { connect } from "react-redux";
-
-import _ from "underscore";
 
 const mapStateToProps = (state) => {
   return {

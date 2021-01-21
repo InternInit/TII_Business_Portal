@@ -1,14 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import "../../App.scss";
-import styled from "styled-components";
 import {
   BrowserRouter as Router,
-  Link,
   Route,
   Switch as ReactSwitch,
   Redirect,
   useRouteMatch as match,
-  useParams,
   withRouter,
 } from "react-router-dom";
 
@@ -34,6 +31,7 @@ import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses
   };
 };
 
@@ -43,6 +41,15 @@ const mapDispatchToProps = {
 };
 
 class CandidatesContainer extends Component {
+
+  componentWillUnmount() {
+    console.log("CandidateContainer unmounted");
+  }
+
+  componentDidMount() {
+    console.log("CandidateContainer mounted");
+  }
+
   findPath = () => {
     if (this.props.location.pathname.includes("manage-candidates")) {
       return "manage-candidates";
@@ -116,12 +123,12 @@ class CandidatesContainer extends Component {
             placeholder="Search Applicants"
             style={
               this.findPath() === "manage-candidates"
-                ? { minWidth: "1500px" }
+                ? { minWidth: "1250px" }
                 : null
             }
           />
         </AntRow>
-        <CandidatesNavbar defaultSelectedKey={this.findPath()} />
+        <CandidatesNavbar isReview={this.findPath() === "review-applicants"} />
         <ReactSwitch>
           <Route
             path="/applicants"
@@ -143,6 +150,7 @@ class CandidatesContainer extends Component {
             component={() => (
               <HirePipeline
                 candidates={this.props.companyInfo.candidates}
+                loading={this.props.loadingStatuses}
                 updateCandidateStatus={this.updateCandidateStatus}
               />
             )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Row as AntRow, Col as AntCol, Grid } from "antd";
 import PageListings from "./PageListings.jsx";
@@ -19,6 +19,7 @@ import {
 } from "./MainPageSkeletons.jsx";
 
 const MainPage = (props) => {
+
   const [page, setPage] = useState({
     applicantPage: 0,
     listingPage: 0,
