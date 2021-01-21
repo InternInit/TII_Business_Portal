@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row as AntRow, Col as AntCol, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import ClipLoader from "react-spinners/ClipLoader";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
@@ -104,8 +105,11 @@ const columnsFromBackend = {
   },
 };
 
-function HirePipeline(props) {
+const HirePipeline = React.memo((props) => {
   const [columns, setColumns] = useState(columnsFromBackend);
+  useEffect(() => {
+    console.log("HirePipeline Component Mounted");
+  })
 
   /**
    * Filters through all the candidates to place them into
@@ -161,17 +165,12 @@ function HirePipeline(props) {
                          *Drop Zone Columns for Student Cards
                          *
                          */
-                        <Spin
-                          indicator={
-                            <LoadingOutlined style={{ fontSize: 36 }} spin />
-                          }
-                          spinning={props.loading.isCandidateLoading}
-                        >
                           <div
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                             style={dragStyle}
                           >
+                            <ClipLoader size={36} loading={props.loading.isCandidateLoading} />
                             {/**
                              *
                              * Mapping of student cards and draggability
@@ -230,7 +229,6 @@ function HirePipeline(props) {
                             })}
                             {provided.placeholder}
                           </div>
-                        </Spin>
                       );
                     }}
                   </Droppable>
@@ -242,6 +240,15 @@ function HirePipeline(props) {
       </AntRow>
     </div>
   );
-}
+});
+
+const HirePipelineLoader = React.memo((props) => {
+
+  console.log("Rendered Loader");
+
+    return (
+      <ClipLoader size={36} loading={props.loading} />
+    )
+});
 
 export default HirePipeline;

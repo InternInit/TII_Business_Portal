@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../../App.scss";
-import styled from "styled-components";
 import {
   BrowserRouter as Router,
   Route,
@@ -42,6 +41,21 @@ const mapDispatchToProps = {
 };
 
 class CandidatesContainer extends Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps == this.props) {
+      return false;
+    }
+  }
+
+  componentWillUnmount() {
+    console.log("CandidateContainer unmounted");
+  }
+
+  componentDidMount() {
+    console.log("CandidateContainer mounted");
+  }
+
   findPath = () => {
     if (this.props.location.pathname.includes("manage-candidates")) {
       return "manage-candidates";
