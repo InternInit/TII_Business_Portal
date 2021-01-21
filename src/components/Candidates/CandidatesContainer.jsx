@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import { Row as AntRow, Col as AntCol } from "antd";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { connect } from "react-redux";
 import {
@@ -134,7 +135,7 @@ class CandidatesContainer extends Component {
             }
           />
         </AntRow>
-        <CandidatesNavbar defaultSelectedKey={this.findPath()} />
+        <CandidatesNavbar isReview={this.props.location.pathname.includes("review-applicants")} defaultSelectedKey={this.findPath()} />
         <ReactSwitch>
           <Route
             path="/applicants"

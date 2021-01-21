@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row as AntRow, Col as AntCol, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import ClipLoader from "react-spinners/ClipLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
@@ -109,7 +110,7 @@ const HirePipeline = React.memo((props) => {
   const [columns, setColumns] = useState(columnsFromBackend);
   useEffect(() => {
     console.log("HirePipeline Component Mounted");
-  })
+  }, [])
 
   /**
    * Filters through all the candidates to place them into
@@ -170,7 +171,7 @@ const HirePipeline = React.memo((props) => {
                             ref={provided.innerRef}
                             style={dragStyle}
                           >
-                            <ClipLoader size={36} loading={props.loading.isCandidateLoading} />
+                            <PulseLoader size={36} loading={props.loading.isCandidateLoading} />
                             {/**
                              *
                              * Mapping of student cards and draggability
