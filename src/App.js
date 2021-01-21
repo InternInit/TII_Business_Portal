@@ -215,33 +215,13 @@ class App extends React.Component {
       query: `
         query MyQuery {
           getInterns(businessId: "${this.props.companyInfo.id}") {
-            grades {
-              Id
-              additionalComments
-              assessment
-              dueDate
-              finishedDate
-              isFinished
-              type
-            }
+            grades
             assocId
             formData
             appliedFor
             Id
-            hours {
-              Id
-              date
-              dueDate
-              isApproved
-              time
-            }
-            feedback {
-              Id
-              comment
-              date
-              isFinished
-              isRead
-            }
+            hours
+            feedback
             school {
               address
               counselorName
