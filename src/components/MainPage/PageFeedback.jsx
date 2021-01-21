@@ -35,7 +35,7 @@ const PageFeedback = (props) => {
             <Row justify="space-between" align="middle">
               <Col>
                 <Row>
-                  <Header className="twentyFont" bolded>
+                  <Header className="eighteenFont" bolded>
                     {fullName}
                   </Header>
                 </Row>

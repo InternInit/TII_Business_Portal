@@ -87,7 +87,7 @@ const StudentInternTabSkeleton = (props) => {
         <AntCol className="universal-middle" xs={24} sm={10} lg={6}>
           <AntRow>
             <AntCol>
-              <Skeleton.Avatar size={56} active/>
+              <Skeleton.Avatar size={56} active />
             </AntCol>
             <AntCol flex="auto" offset={1}>
               <Skeleton
@@ -112,18 +112,18 @@ const StudentInternTabSkeleton = (props) => {
           lg={8}
         >
           <Skeleton
-                paragraph={false}
-                className="student-intern-tab-skeleton-school"
-                active
-              />
+            paragraph={false}
+            className="student-intern-tab-skeleton-school"
+            active
+          />
         </AntCol>
 
         <AntCol className="universal-left universal-middle" sm={4}>
-        <Skeleton
-                paragraph={false}
-                className="student-intern-tab-skeleton-tag"
-                active
-              />
+          <Skeleton
+            paragraph={false}
+            className="student-intern-tab-skeleton-tag"
+            active
+          />
         </AntCol>
 
         {/**Applicants */}

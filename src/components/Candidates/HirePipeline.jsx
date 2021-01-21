@@ -32,7 +32,7 @@ const onDragEnd = (result, columns, setColumns, props) => {
   let status;
   let studentIndex = _.findIndex(props.candidates, {Id: draggableId});
  
-  if (props.candidates[studentIndex].status.includes("Interview")) {
+  if (props.candidates[studentIndex].status.includes("Interview") && destination.droppableId === 2) {
     status = props.candidates[studentIndex].status;
   } else {
     status = "Review";
