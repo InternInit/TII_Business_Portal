@@ -27,17 +27,19 @@ const dragStyle = {
 const onDragEnd = (result, columns, setColumns, props) => {
   if (!result.destination) return;
 
-  console.log("Result " + JSON.stringify(result));
-  console.log("Columns " + JSON.stringify(columns));
-  console.log("Props" + JSON.stringify(props));
+  //console.log("Result " + JSON.stringify(result));
+  //console.log("Columns " + JSON.stringify(columns));
+  //console.log("Props" + JSON.stringify(props));
 
   const { source, destination, draggableId } = result;
   let status;
   let studentIndex = _.findIndex(props.candidates, {Id: draggableId});
- 
-  if (props.candidates[studentIndex].status.includes("Interview") && destination.droppableId === 2) {
+
+  if (props.candidates[studentIndex].status.includes("Interview") && destination.droppableId === "2") {
+    console.log("Keeping interview status");
     status = props.candidates[studentIndex].status;
   } else {
+    console.log("Removing interview status");
     status = "Review";
 
     switch (parseInt(destination.droppableId)) {
@@ -106,7 +108,7 @@ const columnsFromBackend = {
   },
 };
 
-const HirePipeline = React.memo((props) => {
+const HirePipeline = (props) => {
   const [columns, setColumns] = useState(columnsFromBackend);
   useEffect(() => {
     console.log("HirePipeline Component Mounted");
@@ -241,7 +243,7 @@ const HirePipeline = React.memo((props) => {
       </AntRow>
     </div>
   );
-});
+}
 
 const HirePipelineLoader = React.memo((props) => {
 
@@ -252,4 +254,4 @@ const HirePipelineLoader = React.memo((props) => {
     )
 });
 
-export default HirePipeline;
+export default React.memo(HirePipeline);

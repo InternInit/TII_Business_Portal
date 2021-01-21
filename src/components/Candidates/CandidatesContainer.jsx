@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import "../../App.scss";
 import {
   BrowserRouter as Router,
@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 
 import { Row as AntRow, Col as AntCol } from "antd";
-import ClipLoader from "react-spinners/ClipLoader";
 
 import { connect } from "react-redux";
 import {
@@ -42,12 +41,6 @@ const mapDispatchToProps = {
 };
 
 class CandidatesContainer extends Component {
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps == this.props) {
-      return false;
-    }
-  }
 
   componentWillUnmount() {
     console.log("CandidateContainer unmounted");
