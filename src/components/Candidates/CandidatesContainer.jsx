@@ -130,12 +130,12 @@ class CandidatesContainer extends Component {
             placeholder="Search Applicants"
             style={
               this.findPath() === "manage-candidates"
-                ? { minWidth: "1500px" }
+                ? { minWidth: "1250px" }
                 : null
             }
           />
         </AntRow>
-        <CandidatesNavbar isReview={this.props.location.pathname.includes("review-applicants")} defaultSelectedKey={this.findPath()} />
+        <CandidatesNavbar isReview={this.findPath() === "review-applicants"} />
         <ReactSwitch>
           <Route
             path="/applicants"

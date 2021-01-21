@@ -79,7 +79,7 @@ function CandidatesNavbar(props) {
             </AntCol>
             <AntCol className="ml-1" flex={{ xs: "150px", md: "230px" }}>
               <Link to="/applicants/manage-candidates">
-                <MenuItemWrapper className="mx-1" onClick={() => changeTabs(false)}>
+                <MenuItemWrapper className="mx-1" onClick={() => {changeTabs(false); }}>
                   <MenuItem className="twentyFourFont menu-item-font">
                     Manage Candidates
                   </MenuItem>
