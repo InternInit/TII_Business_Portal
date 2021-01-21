@@ -3,12 +3,10 @@ import "../../App.scss";
 import styled from "styled-components";
 import {
   BrowserRouter as Router,
-  Link,
   Route,
   Switch as ReactSwitch,
   Redirect,
   useRouteMatch as match,
-  useParams,
   withRouter,
 } from "react-router-dom";
 
@@ -34,6 +32,7 @@ import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses
   };
 };
 
@@ -143,6 +142,7 @@ class CandidatesContainer extends Component {
             component={() => (
               <HirePipeline
                 candidates={this.props.companyInfo.candidates}
+                loading={this.props.loadingStatuses}
                 updateCandidateStatus={this.updateCandidateStatus}
               />
             )}

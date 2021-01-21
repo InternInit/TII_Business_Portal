@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Row as AntRow, Col as AntCol } from "antd";
+import { Row as AntRow, Col as AntCol, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
@@ -30,8 +31,8 @@ const onDragEnd = (result, columns, setColumns, props) => {
 
   const { source, destination, draggableId } = result;
   let status;
-  let studentIndex = _.findIndex(props.candidates, {Id: draggableId});
- 
+  let studentIndex = _.findIndex(props.candidates, { Id: draggableId });
+
   if (props.candidates[studentIndex].status.includes("Interview")) {
     status = props.candidates[studentIndex].status;
   } else {
@@ -160,65 +161,76 @@ function HirePipeline(props) {
                          *Drop Zone Columns for Student Cards
                          *
                          */
-                        <div
-                          {...provided.droppableProps}
-                          ref={provided.innerRef}
-                          style={dragStyle}
+                        <Spin
+                          indicator={
+                            <LoadingOutlined style={{ fontSize: 36 }} spin />
+                          }
+                          spinning={props.loading.isCandidateLoading}
                         >
-                          {/**
-                           *
-                           * Mapping of student cards and draggability
-                           *
-                           */}
-                          {column.items.map((item, index) => {
-                            return (
-                              <Draggable
-                                key={item.Id}
-                                draggableId={item.Id.toString()}
-                                index={index}
-                              >
-                                {(provided) => {
-                                  return (
-                                    <div
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      style={{
-                                        userSelect: "none",
-                                        padding: 8,
-                                        ...provided.draggableProps.style,
-                                      }}
-                                    >
-                                      {/**
-                                       *
-                                       * Student Card
-                                       *
-                                       */}
-                                      <DraggingCard
-                                        name={item.formData["0"]["First Name"]}
-                                        date={
-                                          item.formData["0"][
-                                            "Starting/Ending Dates Formatted"
-                                          ]
-                                        }
-                                        position={item.appliedFor}
-                                        city={item.formData["0"].City}
-                                        stateLocation={item.formData["0"].State}
-                                        status={item.status}
-                                        updateCandidateStatus={
-                                          props.updateCandidateStatus
-                                        }
-                                        id={item.Id}
-                                        avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
-                                      />
-                                    </div>
-                                  );
-                                }}
-                              </Draggable>
-                            );
-                          })}
-                          {provided.placeholder}
-                        </div>
+                          <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            style={dragStyle}
+                          >
+                            {/**
+                             *
+                             * Mapping of student cards and draggability
+                             *
+                             */}
+                            {column.items.map((item, index) => {
+                              return (
+                                <Draggable
+                                  key={item.Id}
+                                  draggableId={item.Id.toString()}
+                                  index={index}
+                                >
+                                  {(provided) => {
+                                    return (
+                                      <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        style={{
+                                          userSelect: "none",
+                                          padding: 8,
+                                          ...provided.draggableProps.style,
+                                        }}
+                                      >
+                                        {/**
+                                         *
+                                         * Student Card
+                                         *
+                                         */}
+                                        <DraggingCard
+                                          name={
+                                            item.formData["0"]["First Name"]
+                                          }
+                                          date={
+                                            item.formData["0"][
+                                              "Starting/Ending Dates Formatted"
+                                            ]
+                                          }
+                                          position={item.appliedFor}
+                                          city={item.formData["0"].City}
+                                          stateLocation={
+                                            item.formData["0"].State
+                                          }
+                                          status={item.status}
+                                          updateCandidateStatus={
+                                            props.updateCandidateStatus
+                                          }
+                                          id={item.Id}
+                                          avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
+                                        />
+                                      </div>
+                                    );
+                                  }}
+                                </Draggable>
+                              );
+                            })}
+                            {provided.placeholder}
+                          </div>
+                        </Spin>
                       );
                     }}
                   </Droppable>
