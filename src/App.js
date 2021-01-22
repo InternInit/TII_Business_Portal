@@ -103,6 +103,7 @@ const mapDispatchToProps = {
 };
 
 class App extends React.Component {
+
   componentDidMount() {
     this.props.startGlobalLoading();
     this.auth();
@@ -382,8 +383,8 @@ class App extends React.Component {
                 />
                 <Route
                   path={`/my-interns/:id`}
-                  component={() => (
-                    <InternPageContainer key="internpagecontainer" />
+                  component={(props) => (
+                    <InternPageContainer {...props} key="internpagecontainer" />
                   )}
                 />
                 <Route

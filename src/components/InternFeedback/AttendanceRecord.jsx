@@ -67,9 +67,9 @@ const AttendanceRecord = (props) => {
         <Header bolded className="twentyTwoFont mb-point-25">
           To Be Approved
         </Header>
-        {props.student.hours.filter((day) => !day.isApproved).length > 0 ? (
+        {_.filter(props.student.hours, (day) => !day.isApproved).length > 0 ? (
           _.sortBy(
-            props.student.hours.filter((day) => !day.isApproved),
+            _.filter(props.student.hours, (day) => !day.isApproved),
             "date"
           )
             .slice(page * ATTENDANCE_PER_PAGE, (page + 1) * ATTENDANCE_PER_PAGE)
@@ -98,7 +98,9 @@ const AttendanceRecord = (props) => {
         <Row justify="center">
           <Pagination
             current={page + 1}
-            total={props.student.hours.filter((day) => !day.isApproved).length}
+            total={
+              _.filter(props.student.hours, (day) => !day.isApproved).length
+            }
             showLessItems={true}
             pageSize={ATTENDANCE_PER_PAGE}
             onChange={(pageChange) => changePage(pageChange - 1)}
@@ -143,7 +145,7 @@ const AttendanceRecord = (props) => {
 
               <Row className="attendance-list-container">
                 {_.sortBy(
-                  props.student.hours.filter((day) => day.isApproved),
+                  _.filter(props.student.hours, (day) => day.isApproved),
                   "date"
                 ).map((data) => {
                   return (
@@ -249,7 +251,7 @@ const AttendanceRecord = (props) => {
                     let datesWorked = [];
 
                     _.sortBy(
-                      props.student.hours.filter((day) => day.isApproved),
+                      _.filter(props.student.hours, (day) => day.isApproved),
                       "date"
                     ).map((data) => {
                       //splits date string into separate variables
