@@ -394,22 +394,18 @@ class App extends React.Component {
                   )}
                 />
                 <Route
-                  path={`/my-interns/:id`}
-                  component={(props) => (
-                    <InternPageContainer {...props} key="internpagecontainer" />
-                  )}
+                  path={`/my-interns/:id`} component={props => (
+                  <InternPageContainer
+                    {...props}
+                    getAccess={this.getAccess}
+                  />)}
                 />
-                <Route
-                  key="candidatescontainer"
-                  path="/applicants"
-                  component={() => (
-                    <CandidatesContainer getAccess={this.getAccess} />
-                  )}
-                />
-                <Route
-                  path="/settings"
-                  component={() => <CompanyDetails key="companydetails" />}
-                />
+                <Route path="/applicants" component={props => (
+                  <CandidatesContainer
+                    {...props}
+                    getAccess={this.getAccess}
+                  />)} />
+                <Route path="/settings" component={CompanyDetails} />
 
                 {/**<ReactSwitch>
                   <Route path="/users" exact component={() => 

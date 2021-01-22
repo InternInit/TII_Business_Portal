@@ -15,11 +15,34 @@ import {
 } from "antd";
 
 import { connect } from "react-redux";
-import { submitGrade, rejectHours } from "../../redux/actions";
+import { submitGrade } from "../../redux/actions";
+
+import axios from "axios";
+
+import _ from "underscore";
+
+import gql from "graphql-tag";
+import { print } from "graphql";
+
+// prettier-ignore
+const MUTATION = gql`
+mutation MyMutation ($grades:AWSJSON, $assocId:String!){
+  updateInternAssoc(input: {assocId: $assocId, grades: $grades}) {
+    grades {
+      Id
+      additionalComments
+      assessment
+      dueDate
+      finishedDate
+      isFinished
+      type
+    }
+  }
+}                 
+`
 
 const mapDispatchToProps = {
   submitGrade,
-  rejectHours,
 };
 
 const mapStateToProps = (state) => {
@@ -33,6 +56,10 @@ const GradeCard = (props) => {
 
   useEffect(() => {
     form.resetFields();
+    form.setFieldsValue({
+      Grade: props.review.assessment,
+      "Additional Comments": props.review.additionalComments,
+    });
   });
 
   /**
@@ -87,15 +114,71 @@ const GradeCard = (props) => {
       );
   };
 
+  const mutateGradeAssoc = async (values) => {
+    let access = await props.getAccess();
+
+    let gradeStudentIndex = _.findIndex(props.companyInfo.interns, {
+      Id: props.studentId,
+    });
+    let gradeIndex = _.findIndex(
+      props.companyInfo.interns[gradeStudentIndex].grades,
+      {
+        Id: props.review.Id,
+      }
+    );
+    console.log(gradeIndex);
+
+    let finishDate = new Date();
+    finishDate = finishDate.toISOString();
+    let newGrades = props.companyInfo.interns[gradeStudentIndex].grades.slice();
+
+    newGrades[gradeStudentIndex].assessment = values.Grade;
+    newGrades[gradeStudentIndex].additionalComments =
+      values["Additional Comments"];
+    newGrades[gradeStudentIndex].finishedDate = finishDate;
+    newGrades[gradeStudentIndex].isFinished = true;
+
+    newGrades.forEach((gradeObj) => {
+      delete gradeObj.dueDateFormatted;
+      delete gradeObj["Days Until dueDate"];
+
+      try {
+        delete gradeObj.finishedDateFormatted;
+        delete gradeObj["Days Until finishedDate"];
+      } catch (e) {}
+    });
+
+    /*
+    console.log(newGrades);
+    console.log(JSON.stringify(newGrades));
+    */
+    //return;
+
+    axios({
+      url: "/api/mutate_grades_assoc",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: print(MUTATION),
+        variables: {
+          assocId: props.companyInfo.interns[gradeStudentIndex].assocId,
+          grades: JSON.stringify(newGrades),
+        },
+      },
+    }).then((result) => {
+      console.log(result);
+
+      props.submitGrade(gradeStudentIndex, gradeIndex, result.data);
+
+      message.success("Grade Submitted");
+    });
+  };
+
   const handleSubmit = (values) => {
     console.log(values);
-    props.submitGrade(
-      props.studentId,
-      props.review.Id,
-      values.Grade,
-      values["Additional Comments"]
-    );
-    message.success("Grade Submitted");
+    mutateGradeAssoc(values);
   };
 
   return (
@@ -103,7 +186,9 @@ const GradeCard = (props) => {
       <AntRow justify="space-between">
         <AntCol>
           <Header className="twentyFont">Performance Review</Header>
-          <Caption className="fourteenFont" light thin>{props.review.dueDateFormatted}</Caption>
+          <Caption className="fourteenFont" light thin>
+            {props.review.dueDateFormatted}
+          </Caption>
         </AntCol>
         <AntCol>{RenderTag()}</AntCol>
       </AntRow>
@@ -121,7 +206,7 @@ const GradeCard = (props) => {
         </AntRow>
         <AntRow className="pt-point-5">
           <Form.Item name="Grade" key="grade" style={{ width: "100%" }}>
-            <Input defaultValue={props.review.assessment} />
+            <Input />
           </Form.Item>
         </AntRow>
         <AntRow>
@@ -135,7 +220,6 @@ const GradeCard = (props) => {
           >
             <Input.TextArea
               placeholder="Commendations, constructive criticism, message to school"
-              defaultValue={props.review.additionalComments}
               rows={6}
             />
           </Form.Item>

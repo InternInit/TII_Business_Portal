@@ -164,12 +164,11 @@ export const rejectHours = (internId, hourId) => {
   };
 }
 
-export const submitGrade = (internId, gradeId, assessment, additionalComments) => {
+export const submitGrade = (gradeStudentIndex, gradeIndex, gradeObject) => {
   return {
-    internId: internId,
-    gradeId: gradeId,
-    assessment: assessment,
-    additionalComments: additionalComments,
+    gradeStudentIndex: gradeStudentIndex,
+    gradeIndex: gradeIndex,
+    gradeObject: gradeObject,
     type: "SUBMIT_GRADE"
   }
 }

@@ -194,6 +194,18 @@ def mutate_candidate_assoc():
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     return json.dumps(resp_json)
+
+@app.route('/api/mutate_grades_assoc', methods=["POST"])
+def mutate_grades_assoc():
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    resp_json = json.loads(req.text)
+    grades = resp_json["data"]["updateInternAssoc"]["grades"]
+    new_grades = []
+    for grade in grades:
+        new_grades.append(datetime_resolver(grade))
+    return json.dumps(new_grades)
 ##############################
 #
 #       USER MANAGEMENT
