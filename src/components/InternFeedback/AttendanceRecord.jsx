@@ -11,12 +11,17 @@ import {
   Tooltip,
   Grid,
   Pagination,
+  Empty,
 } from "antd";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { BiTime } from "react-icons/bi";
 
-import { Header, TabContainer } from "../Styled/FundamentalComponents.jsx";
+import {
+  Header,
+  TabContainer,
+  Caption,
+} from "../Styled/FundamentalComponents.jsx";
 import AttendanceCard from "./AttendanceCard.jsx";
 
 import _ from "underscore";
@@ -46,13 +51,6 @@ const AttendanceRecord = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-  console.log(
-    Object.entries(screens)
-      .filter((screen) => !!screen[1])
-      .map((breakpoint) => breakpoint[0])
-      .includes("lg")
-  );
-
   //Changes Day Names (dd -> ddd)
   moment.updateLocale("en", {
     weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -67,9 +65,9 @@ const AttendanceRecord = (props) => {
         <Header bolded className="twentyTwoFont mb-point-25">
           To Be Approved
         </Header>
-        {props.student.hours.filter((day) => !day.isApproved).length > 0 ? (
+        {_.filter(props.student.hours, (day) => !day.isApproved).length > 0 ? (
           _.sortBy(
-            props.student.hours.filter((day) => !day.isApproved),
+            _.filter(props.student.hours, (day) => !day.isApproved),
             "date"
           )
             .slice(page * ATTENDANCE_PER_PAGE, (page + 1) * ATTENDANCE_PER_PAGE)
@@ -98,7 +96,9 @@ const AttendanceRecord = (props) => {
         <Row justify="center">
           <Pagination
             current={page + 1}
-            total={props.student.hours.filter((day) => !day.isApproved).length}
+            total={
+              _.filter(props.student.hours, (day) => !day.isApproved).length
+            }
             showLessItems={true}
             pageSize={ATTENDANCE_PER_PAGE}
             onChange={(pageChange) => changePage(pageChange - 1)}
@@ -113,7 +113,16 @@ const AttendanceRecord = (props) => {
         </Header>
 
         <TabContainer className="mt-point-25 px-2 py-2">
-          <Row gutter={[16, 16]} justify="center" align="middle">
+          <Row
+            gutter={[16, 16]}
+            justify="center"
+            align={
+              _.filter(props.student.hours, (day) => day.isApproved).length !==
+              0
+                ? "top"
+                : "middle"
+            }
+          >
             {/* attendance list */}
             <Col
               xs={24}
@@ -123,27 +132,133 @@ const AttendanceRecord = (props) => {
               xl={12}
               style={{ paddingLeft: "4px" }}
             >
-              {isMd ? (
-                <Row
-                  justify="space-between"
-                  style={{ paddingBottom: "12px", paddingRight: "23px" }}
-                >
-                  <Header className="twentyFont">Date</Header>
-                  <Header className="twentyFont">Hours Worked</Header>
-                </Row>
+              {_.filter(props.student.hours, (day) => day.isApproved).length !==
+              0 ? (
+                <>
+                  {isMd ? (
+                    <Row
+                      justify="space-between"
+                      style={{ paddingBottom: "12px", paddingRight: "23px" }}
+                    >
+                      <Header className="twentyFont">Date</Header>
+                      <Header className="twentyFont">Hours Worked</Header>
+                    </Row>
+                  ) : (
+                    <Row
+                      justify="space-between"
+                      style={{ paddingBottom: "12px", paddingRight: "23px" }}
+                    >
+                      <Header className="twentyFont">Date</Header>
+                      <Header className="twentyFont">Hours Worked</Header>
+                    </Row>
+                  )}
+
+                  <Row className="attendance-list-container">
+                    {_.sortBy(
+                      _.filter(props.student.hours, (day) => day.isApproved),
+                      "date"
+                    ).map((data) => {
+                      return (
+                        <Scrollbars autoHide={true} style={{ height: 50 }}>
+                          {isMd ? (
+                            <Col flex="auto">
+                              <Row
+                                className="attendance-list-row"
+                                align="middle"
+                                justify="space-between"
+                              >
+                                <Button
+                                  style={{ padding: "0px" }}
+                                  type="link"
+                                  onClick={() => {
+                                    setState({
+                                      date: moment(data.date).format(
+                                        "MM/DD/YYYY"
+                                      ),
+                                      dateList: moment(data.date).format(
+                                        "MM/DD/YYYY"
+                                      ),
+                                    });
+                                  }}
+                                >
+                                  <Header className="student-attendance-list">
+                                    {moment(data.date).format("MM/DD/YYYY")}
+                                  </Header>
+                                </Button>
+
+                                <Header
+                                  className="sixteenFont mr-point-5"
+                                  style={{ color: "#a0a0a0" }}
+                                >
+                                  {data.time}
+                                </Header>
+                              </Row>
+                            </Col>
+                          ) : (
+                            <Col flex="auto">
+                              <Row
+                                className="attendance-list-row"
+                                align="middle"
+                                justify="space-between"
+                              >
+                                <Button
+                                  style={{ padding: "0px" }}
+                                  type="link"
+                                  onClick={() => {
+                                    setState({
+                                      date: moment(data.date).format(
+                                        "MM/DD/YYYY"
+                                      ),
+                                      dateList: moment(data.date).format(
+                                        "MM/DD/YYYY"
+                                      ),
+                                    });
+                                  }}
+                                >
+                                  <Header className="student-attendance-list">
+                                    <div style={{ fontSize: "16px" }}>
+                                      {moment(data.date).format("MM/DD/YYYY")}
+                                    </div>
+                                  </Header>
+                                </Button>
+
+                                <Header
+                                  className="sixteenFont mr-point-5"
+                                  color="#a0a0a0"
+                                >
+                                  {data.time}
+                                </Header>
+                              </Row>
+                            </Col>
+                          )}
+                        </Scrollbars>
+                      );
+                    })}
+                  </Row>
+                </>
               ) : (
-                <Row
-                  justify="space-between"
-                  style={{ paddingBottom: "12px", paddingRight: "23px" }}
-                >
-                  <Header className="twentyFont">Date</Header>
-                  <Header className="twentyFont">Hours Worked</Header>
+                <Row justify="center" align="middle">
+                  <Empty
+                    description={
+                      <Caption className="eighteenFont" light>
+                        {student.formData["0"]["First Name"] +
+                          " " +
+                          student.formData["0"]["Last Name"]}{" "}
+                        doesn't have any approved hours{" "}
+                      </Caption>
+                    }
+                    image={
+                      Empty.PRESENTED_IMAGE_SIMPLE
+                      //"https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                    }
+                    //imageStyle={{ marginTop: "-14px", height: "60%" }}
+                  />
                 </Row>
               )}
 
               <Row className="attendance-list-container">
                 {_.sortBy(
-                  props.student.hours.filter((day) => day.isApproved),
+                  _.filter(props.student.hours, (day) => day.isApproved),
                   "date"
                 ).map((data) => {
                   return (
@@ -249,7 +364,7 @@ const AttendanceRecord = (props) => {
                     let datesWorked = [];
 
                     _.sortBy(
-                      props.student.hours.filter((day) => day.isApproved),
+                      _.filter(props.student.hours, (day) => day.isApproved),
                       "date"
                     ).map((data) => {
                       //splits date string into separate variables

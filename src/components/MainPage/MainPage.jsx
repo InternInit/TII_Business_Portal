@@ -19,7 +19,6 @@ import {
 } from "./MainPageSkeletons.jsx";
 
 const MainPage = (props) => {
-
   const [page, setPage] = useState({
     applicantPage: 0,
     listingPage: 0,
@@ -107,6 +106,8 @@ const MainPage = (props) => {
     .filter((screen) => !!screen[1])
     .map((breakpoint) => breakpoint[0])
     .includes("md");
+
+  console.log(interns)
 
   return (
     <PageContainer>
@@ -419,7 +420,7 @@ const MainPage = (props) => {
                       lastName={student.formData["0"]["Last Name"]}
                       //school={student.school.name}
                       avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                      position={"Professional Gamer"}
+                      position={student.appliedFor}
                       id={student.Id}
                     />
                   ))}
@@ -475,6 +476,7 @@ const MainPage = (props) => {
                   )
                   .map((student) => (
                     <StudentCard
+                      key={student.Id}
                       firstName={student.formData["0"]["First Name"]}
                       lastName={student.formData["0"]["Last Name"]}
                       age={" (" + student.formData["1"]["Age"] + ")"}

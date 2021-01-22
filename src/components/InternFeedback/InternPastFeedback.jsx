@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Row, Col, Avatar, Button, Grid, Tooltip } from "antd";
+import { Row, Col, Avatar, Button, Grid, Tooltip, Modal } from "antd";
 import { BiCheckCircle } from "react-icons/bi";
 
 import {
@@ -13,6 +13,8 @@ import _ from "underscore";
 
 import { connect } from "react-redux";
 import { markFeedbackRead } from "../../redux/actions";
+
+import { useLocation } from "react-router-dom";
 
 import moment from "moment";
 
@@ -27,8 +29,7 @@ const mapStateToProps = (state) => {
 };
 
 const InternPastFeedback = (props) => {
-  let { student } = props;
-  let readMore = false;
+  let { student, fromDashboard } = props;
 
   return (
     <>
@@ -36,35 +37,69 @@ const InternPastFeedback = (props) => {
         <Header className="twentyTwoFont mb-point-25" bolded>
           Unread Feedback
         </Header>
-        {_.sortBy(student.feedback
-          .filter((feedback) => !feedback.isRead), "date")
-          .map((data) => (
-            <FeedbackTab
-              student={student}
-              data={data}
-              markFeedbackRead={props.markFeedbackRead}
-            />
-          ))}
+        {_.sortBy(
+          _.filter(student.feedback, (feedback) => !feedback.isRead),
+          "date"
+        ).map((data) => (
+          <FeedbackTab
+            student={student}
+            data={data}
+            markFeedbackRead={props.markFeedbackRead}
+            hasModal={fromDashboard}
+          />
+        ))}
       </Row>
       <Row className="mt-1">
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-        {_.sortBy(student.feedback
-          .filter((feedback) => feedback.isRead), "date")
-          .map((data) => (
-            <FeedbackTab student={student} data={data} />
-          ))}
+        {_.sortBy(
+          _.filter(student.feedback, (feedback) => feedback.isRead),
+          "date"
+        ).map((data) => (
+          <FeedbackTab student={student} data={data} />
+        ))}
       </Row>
     </>
   );
 };
 
-const FeedbackTab = ({ data, student, markFeedbackRead }) => {
-  const [active, toggleActive] = useState(false);
+const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
+  const [active, toggleActive] = useState(hasModal);
+  const [show, setShow] = useState(false);
 
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
+
+  const location = useLocation();
+
+  const getFeedbackId = () => {
+    let id;
+    {
+      hasModal
+        ? (id = location.pathname.substring(
+            location.pathname.lastIndexOf("/feedback/") + 10,
+            location.pathname.length
+          ))
+        : (id = "");
+    }
+    return id;
+  };
+
+  console.log(data);
+
+  const findFeedback = () => {
+    let message;
+
+    switch (data.Id) {
+      case getFeedbackId():
+        message = data.comment;
+        break;
+      default:
+        break;
+    }
+    return message;
+  };
 
   const markRead = () => {
     markFeedbackRead(student.Id, data.Id);
@@ -87,6 +122,29 @@ const FeedbackTab = ({ data, student, markFeedbackRead }) => {
 
   return (
     <>
+      {findFeedback() ? (
+        <Modal
+          visible={active}
+          footer={
+            <Button
+              key="done"
+              type="primary"
+              onClick={() => {
+                toggleActive(false);
+                markRead();}}
+            >
+              Done
+            </Button>
+          }
+          onCancel={() => {
+            toggleActive(false);
+            markRead();
+          }}
+        >
+          {findFeedback()}
+        </Modal>
+      ) : null}
+
       <TabContainer className="mb-1 student-intern-tab-container" hoverable>
         <Row gutter={16} wrap={false}>
           <Col flex="40px">
@@ -103,15 +161,11 @@ const FeedbackTab = ({ data, student, markFeedbackRead }) => {
                 </Header>
               </Col>
 
-              <Col
-                //style={{backgroundColor: "red"}}
-                className="universal-middle"
-                span={24}
-              >
+              <Col className="universal-middle" span={24}>
                 <Row justify="start">
                   <Caption className="twelveFont" light>
                     <div style={{ padding: "0px 0px 6px 0px" }}>
-                      {moment(data.date).format("MM/DD/YYYY")}
+                      {moment.utc(data.date).format("MM/DD/YYYY")}
                     </div>
                   </Caption>
                 </Row>
@@ -121,15 +175,17 @@ const FeedbackTab = ({ data, student, markFeedbackRead }) => {
             {/* Feedback Row */}
             <Row>
               <Body className="fourteenFont universal-left">
-                {isMd && data.comment.length > 200 ? (
+                {isMd && data.comment.length > 200 && show === false ? (
                   <div
                     className="intern-dashboard-shortened-feedback"
                     style={{ overflow: "hidden", height: "80px" }}
                   >
-                    {data.comment.length}
                     {data.comment}
                   </div>
-                ) : (isSm || isXs) && !isMd && data.comment.length > 100 ? (
+                ) : (isSm || isXs) &&
+                  !isMd &&
+                  data.comment.length > 100 &&
+                  show === false ? (
                   <div
                     className="intern-dashboard-shortened-feedback"
                     style={{ overflow: "hidden", height: "80px" }}
@@ -146,7 +202,9 @@ const FeedbackTab = ({ data, student, markFeedbackRead }) => {
             <Row justify="end">
               {(isMd && data.comment.length > 200) ||
               ((isSm || isXs) && !isMd && data.comment.length > 100) ? (
-                <Button type="link">Read more</Button>
+                <Button type="link" onClick={() => setShow(!show)}>
+                  {!show ? "Read more" : "Read less"}
+                </Button>
               ) : null}
             </Row>
           </Col>
