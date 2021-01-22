@@ -30,14 +30,9 @@ import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 
 const mapStateToProps = (state) => {
   return {
-<<<<<<< HEAD
     companyId: state.companyInfo.id,
     candidates: state.companyInfo.candidates,
     loading: state.loadingStatuses.isCandidateLoading,
-=======
-    companyInfo: state.companyInfo,
-    loadingStatuses: state.loadingStatuses,
->>>>>>> master
   };
 };
 
@@ -46,7 +41,6 @@ const mapDispatchToProps = {
   updateReduxCandidateStatus,
 };
 
-<<<<<<< HEAD
 class CandidatesContainer extends PureComponent {
   constructor(props) {
     super(props);
@@ -56,9 +50,6 @@ class CandidatesContainer extends PureComponent {
     };
   }
 
-=======
-class CandidatesContainer extends Component {
->>>>>>> master
   componentWillUnmount() {
     console.log("CandidateContainer unmounted");
   }
@@ -97,15 +88,12 @@ class CandidatesContainer extends Component {
       .post("/api/update_student_status", { status: status }, headers)
       .then((response) => {
         console.log(JSON.parse(response.data));
-<<<<<<< HEAD
 
         let index = this.props.candidates.findIndex(
           (item, i) => item.Id === internId
         );
         console.log(index);
         this.props.updateReduxCandidateStatus(index, status);
-=======
->>>>>>> master
       });
 
     if (status === "Accepted") {
