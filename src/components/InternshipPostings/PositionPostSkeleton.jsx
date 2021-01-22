@@ -8,8 +8,7 @@ import {
   TabContainer,
   Caption,
 } from "../Styled/FundamentalComponents";
-
-import { Link } from "react-router-dom";
+import _ from "underscore";
 
 const { useBreakpoint } = Grid;
 
@@ -29,11 +28,9 @@ const PositionPostSkeleton = (props) => {
       <InnerContainer className="mt-2 mb-4">
         <AntRow gutter={[32, 16]}>
           <AntCol xs={24} md={8} lg={5}>
-            <Link to="/internship-listings/add-listing">
-              <Button type="default" style={ButtonStyle}>
-                <span className="sixteenFont">New Internship</span>
-              </Button>
-            </Link>
+            <Button type="default" style={ButtonStyle}>
+              <span className="sixteenFont">New Internship</span>
+            </Button>
           </AntCol>
           <AntCol xs={24} md={6} lg={4}>
             <Button type="text" style={ButtonStyle}>
@@ -51,8 +48,9 @@ const PositionPostSkeleton = (props) => {
           fieldThree={{ name: "Applicants", sm: 6, lg: 6 }}
           fieldFour={{ name: "Edit Details", sm: 6, lg: 6 }}
         />
-        <PostingTabSkeleton />
-        <PostingTabSkeleton />
+        {_.times(localStorage.getItem("NumListings"), () => (
+          <PostingTabSkeleton />
+        ))}
       </InnerContainer>
     </PageContainer>
   );
@@ -102,7 +100,7 @@ const PostingTabSkeleton = (props) => {
                 />
               </AntRow>
               <AntRow justify="start">
-              <Skeleton
+                <Skeleton
                   className="internship-posting-skeleton-industry"
                   paragraph={false}
                   active

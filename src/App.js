@@ -115,6 +115,9 @@ class App extends React.Component {
     if(localStorage.getItem("NumInterns") === null){
       localStorage.setItem("NumInterns", 3);
     }
+    if(localStorage.getItem("NumListings") === null){
+      localStorage.setItem("NumListings", 3);
+    }
   }
 
   componentDidMount() {
@@ -285,6 +288,7 @@ class App extends React.Component {
             ? []
             : JSON.parse(response.data)
         );
+        localStorage.setItem("NumListings", JSON.parse(response.data).length);
         this.props.finishListingLoading();
       })
       .catch((error) => {
