@@ -166,11 +166,11 @@ def get_student_candidates():
     new_interns = []
     
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
-    # That's what we get for using a 19 year old language.
+    # Thatgit s's what we get for using a 19 year old language.
     for intern in resp_json["data"]["getInterns"]:
         loaded_intern = intern
         if(loaded_intern["status"] == "Accepted"):
-            loaded_intern["grades"] = datetime_resolver(json.loads(loaded_intern["grades"]))
+            loaded_intern["grades"] = datetime_resolver(json.loads(intern["grades"]))
             loaded_intern["hours"] = datetime_resolver(json.loads(intern["hours"]))
             loaded_intern["feedback"] = datetime_resolver(json.loads(intern["feedback"]))
         
