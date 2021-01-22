@@ -310,9 +310,12 @@ class InternPageContainer extends Component {
                   />
                 )}
               />
-              <Route path={`/my-interns/:id/feedback/:id`} 
-                     exact
-                     component={() => <InternPastFeedback student={student} fromDashboard={true}/>}
+              <Route
+                path={`/my-interns/:id/feedback/:id`}
+                exact
+                component={() => (
+                  <InternPastFeedback student={student} fromDashboard={true} />
+                )}
               />
             </ReactSwitch>
           </InnerContainer>
