@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 
 const PageListings = (props) => {
-  let { name, interns, accepted, total, industry, id } = props;
+  let { name, interns, accepted, industry, id } = props;
   return (
     <Link to={`/internship-listings/${id}`}>
       <TabContainer className="px-3 py-1 dashboard-tab">
