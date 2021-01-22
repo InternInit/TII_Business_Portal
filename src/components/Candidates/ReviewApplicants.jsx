@@ -276,9 +276,9 @@ class ReviewApplicants extends Component {
         />
         {this.props.loadingStatuses.isCandidateLoading ? (
           <>
-            <CandidateQuickviewTabSkeleton review={true} />
-            <CandidateQuickviewTabSkeleton review={true} />
-            <CandidateQuickviewTabSkeleton review={true} />
+            {_.times(localStorage.getItem("NumReview"), () => (
+              <CandidateQuickviewTabSkeleton review={true} />
+            ))}
           </>
         ) : reviewCandidates.length > 0 ? (
           reviewCandidates.map((student, index) => (

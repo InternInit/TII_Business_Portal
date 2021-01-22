@@ -3,12 +3,12 @@ import styled from "styled-components";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "../General/InfoBar.jsx";
 import { InnerContainer, TabContainer } from "../Styled/FundamentalComponents";
-import { Link } from "react-router-dom";
-import { Button, Row as AntRow, Col as AntCol, Avatar, Skeleton } from "antd";
+import { Button, Row as AntRow, Col as AntCol, Skeleton } from "antd";
 
 import { BiMessageSquareDetail, BiTime, BiCheckSquare } from "react-icons/bi";
 import { AiOutlineRight } from "react-icons/ai";
-import StudentInternTab from "./StudentInternTab.jsx";
+
+import _ from "underscore";
 
 const Container = styled.div`
   display: flex;
@@ -65,11 +65,9 @@ const StudentInternPageSkeleton = (props) => {
             align: "universal-center",
           }}
         />
-        <StudentInternTabSkeleton />
-        <StudentInternTabSkeleton />
-        <StudentInternTabSkeleton />
-        <StudentInternTabSkeleton />
-        <StudentInternTabSkeleton />
+        {_.times(localStorage.getItem("NumInterns"), () => (
+          <StudentInternTabSkeleton />
+        ))}
       </InnerContainer>
     </Container>
   );
