@@ -10,6 +10,7 @@ import {
 import { UserOutlined } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
+import { reduce } from "underscore";
 
 const StudentCard = (props) => {
   const { firstName, lastName, age, avatar, id, tag, type, position } = props;
@@ -39,7 +40,8 @@ const StudentCard = (props) => {
         };
       case "Review":
         return {
-          textColor: colors.review.text,
+          textColor: "red",
+          //colors.review.text,
           backgroundColor: colors.review.background,
         };
       case "On-Site Interview":
@@ -47,6 +49,11 @@ const StudentCard = (props) => {
           textColor: colors.online.text,
           backgroundColor: colors.online.background,
         };
+        case "In-Person Interview":
+          return {
+            textColor: colors.online.text,
+            backgroundColor: colors.online.background,
+          };
       default:
         return {
           textColor: "#262626",
@@ -104,8 +111,6 @@ const StudentCard = (props) => {
   //       break;
   //   }
   // };
-
-
 
   return (
     <Link to={`/applicants/${id}`}>
