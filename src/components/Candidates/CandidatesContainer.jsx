@@ -30,8 +30,9 @@ import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
-    loadingStatuses: state.loadingStatuses
+    companyId: state.companyInfo.id ,
+    candidates: state.companyInfo.candidates,
+    loading: state.loadingStatuses.isCandidateLoading
   };
 };
 
@@ -62,7 +63,7 @@ class CandidatesContainer extends Component {
     const headers = {
       headers: {
         InternId: internId,
-        Authorization: "Bearer " + this.props.companyInfo.id,
+        Authorization: "Bearer " + this.props.companyId,
       },
     };
 
@@ -71,7 +72,7 @@ class CandidatesContainer extends Component {
       .then((response) => {
         console.log(JSON.parse(response.data));
 
-        let index = this.props.companyInfo.candidates.findIndex(
+        let index = this.props.candidates.findIndex(
           (item, i) => item.Id === internId
         );
         console.log(index);
@@ -84,7 +85,7 @@ class CandidatesContainer extends Component {
   };
 
   mutateCandidateAssoc = async (internId) => {
-    let candidate = this.props.companyInfo.candidates.find(
+    let candidate = this.props.candidates.find(
       (candidate) => candidate.Id === internId
     );
 
@@ -149,8 +150,8 @@ class CandidatesContainer extends Component {
             exact
             component={() => (
               <HirePipeline
-                candidates={this.props.companyInfo.candidates}
-                loading={this.props.loadingStatuses}
+                candidates={this.props.candidates}
+                loading={this.props.loading}
                 updateCandidateStatus={this.updateCandidateStatus}
               />
             )}

@@ -65,6 +65,7 @@ import Signup from "./components/LoginSignup/Signup";
 //import UserDetails from "./components/CompanyUsers/UserDetails";
 
 import "./App.scss";
+import { Component } from "react";
 
 Amplify.configure(awsconfig);
 
@@ -358,6 +359,7 @@ class App extends React.Component {
                     component={PositionPost}
                   />
                   <Route
+                    key="internshipdetailroute"
                     path={`/internship-listings/:id`}
                     exact
                     component={() => (
@@ -386,13 +388,7 @@ class App extends React.Component {
                     <InternPageContainer key="internpagecontainer" />
                   )}
                 />
-                <Route
-                  key="candidatescontainer"
-                  path="/applicants"
-                  component={() => (
-                    <CandidatesContainer getAccess={this.getAccess} />
-                  )}
-                />
+                <RouteTracker />
                 <Route
                   path="/settings"
                   component={() => <CompanyDetails key="companydetails" />}
@@ -420,6 +416,30 @@ class App extends React.Component {
           </Layout>
         </Router>
       </React.Fragment>
+    );
+  }
+}
+
+class RouteTracker extends React.Component {
+
+  componentDidMount() {
+    console.log("Route mounted");
+  }
+  componentWillUnmount() {
+    console.log("Route unmounted");
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    //console.log("Checking if an update should happen");
+  }
+
+  render() {
+    return (
+      <Route
+        key="candidatescontainer"
+        path="/applicants"
+        component={() => <CandidatesContainer getAccess={this.getAccess} />}
+      />
     );
   }
 }

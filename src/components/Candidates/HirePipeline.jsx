@@ -173,7 +173,7 @@ const HirePipeline = (props) => {
                             ref={provided.innerRef}
                             style={dragStyle}
                           >
-                            <PulseLoader size={36} loading={props.loading.isCandidateLoading} />
+                            <ClipLoader size={36} loading={props.loading} />
                             {/**
                              *
                              * Mapping of student cards and draggability
