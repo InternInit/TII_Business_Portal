@@ -31,7 +31,7 @@ import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
-    loadingStatuses: state.loadingStatuses
+    loadingStatuses: state.loadingStatuses,
   };
 };
 
@@ -41,7 +41,6 @@ const mapDispatchToProps = {
 };
 
 class CandidatesContainer extends Component {
-
   componentWillUnmount() {
     console.log("CandidateContainer unmounted");
   }
@@ -66,16 +65,16 @@ class CandidatesContainer extends Component {
       },
     };
 
+    let index = this.props.companyInfo.candidates.findIndex(
+      (item, i) => item.Id === internId
+    );
+    console.log(index);
+    this.props.updateReduxCandidateStatus(index, status);
+
     axios
       .post("/api/update_student_status", { status: status }, headers)
       .then((response) => {
         console.log(JSON.parse(response.data));
-
-        let index = this.props.companyInfo.candidates.findIndex(
-          (item, i) => item.Id === internId
-        );
-        console.log(index);
-        this.props.updateReduxCandidateStatus(index, status);
       });
 
     if (status === "Accepted") {
