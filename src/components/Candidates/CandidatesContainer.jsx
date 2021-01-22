@@ -41,7 +41,7 @@ const mapDispatchToProps = {
   updateReduxCandidateStatus,
 };
 
-class CandidatesContainer extends Component {
+class CandidatesContainer extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -60,16 +60,9 @@ class CandidatesContainer extends Component {
 
   componentDidUpdate() {
     console.log("CandidateContainer updating");
-    console.log("CandidateContainer new props: " + JSON.stringify(this.props));
-  }
-
-  //REMOVE
-  shouldComponentUpdate() {
-    return false;
   }
 
   findPath = () => {
-    console.log("Calling findPath");
     if (this.props.location.pathname.includes("manage-candidates")) {
       return "manage-candidates";
     } else {
@@ -166,16 +159,14 @@ class CandidatesContainer extends Component {
             )}
           />
           <Route
-            path="/applicants/manage-candidates"
-            exact
-            component={() => (
-              <HirePipeline
-                candidates={this.props.candidates}
-                loading={this.props.loading}
-                updateCandidateStatus={this.updateCandidateStatus}
-              />
-            )}
+        path="/applicants/manage-candidates"
+        exact
+        component={() => (
+          <HirePipeline
+            updateCandidateStatus={this.updateCandidateStatus}
           />
+        )}
+      />
           <Route path={`/applicants/:id`} component={() => <StudentInfo />} />
         </ReactSwitch>
       </PageContainer>

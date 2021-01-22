@@ -7,6 +7,15 @@ import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
 import _ from "underscore";
 
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  return {
+    candidates: state.companyInfo.candidates,
+    loading: state.loadingStatuses.isCandidateLoading,
+  };
+};
+
 const dragStyle = {
   backgroundColor: "#ebecf0",
   padding: 4,
@@ -114,7 +123,7 @@ const HirePipeline = (props) => {
 
     return () => {
       console.log("HirePipeline Component Unmounting");
-      //console.log("Props are " + JSON.stringify(props));
+      /**console.log(`Props are ${JSON.stringify(props)}`); */
     }
   });
 
@@ -249,4 +258,4 @@ const HirePipeline = (props) => {
   );
 }
 
-export default React.memo(HirePipeline);
+export default connect(mapStateToProps)(React.memo(HirePipeline));
