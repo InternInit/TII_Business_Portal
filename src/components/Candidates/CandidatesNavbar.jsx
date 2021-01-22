@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../App.scss";
 import { Row as AntRow, Col as AntCol } from "antd";
 import styled from "styled-components";
@@ -60,9 +60,12 @@ const SelectedMenuItemWrapper = styled.div`
 `;
 
 function CandidatesNavbar(props) {
+
+  const [isReview, changeTabs] = useState(props.isReview);
+
   return (
     <>
-      {props.defaultSelectedKey === "review-applicants" ? (
+      {isReview ? (
         <MenuContainer className="px-5 menu-container">
           <AntRow>
             <AntCol flex={{ xs: "150px", md: "230px" }}>
@@ -76,7 +79,7 @@ function CandidatesNavbar(props) {
             </AntCol>
             <AntCol className="ml-1" flex={{ xs: "150px", md: "230px" }}>
               <Link to="/applicants/manage-candidates">
-                <MenuItemWrapper className="mx-1">
+                <MenuItemWrapper className="mx-1" onClick={() => {changeTabs(false); }}>
                   <MenuItem className="twentyFourFont menu-item-font">
                     Manage Candidates
                   </MenuItem>
@@ -90,7 +93,7 @@ function CandidatesNavbar(props) {
           <AntRow>
             <AntCol flex="230px">
               <Link to="/applicants/review-applicants">
-                <MenuItemWrapper className="mx-1">
+                <MenuItemWrapper className="mx-1" onClick={() => changeTabs(true)}>
                   <MenuItem className="twentyFourFont">
                     Review Applicants
                   </MenuItem>

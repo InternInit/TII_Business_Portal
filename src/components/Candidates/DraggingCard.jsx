@@ -5,10 +5,8 @@ import {
   Row as AntRow,
   Col as AntCol,
   Tooltip,
-  Modal,
   Dropdown,
-  Menu,
-  message,
+  Menu
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -21,11 +19,6 @@ import {
 } from "../Styled/FundamentalComponents.jsx";
 
 import { connect } from "react-redux";
-import { addInterviewTag } from "../../redux/actions";
-
-const mapDispatchToProps = {
-  addInterviewTag,
-};
 
 const mapStateToProps = (state) => {
   return {
@@ -35,26 +28,39 @@ const mapStateToProps = (state) => {
 
 class DraggingCard extends React.Component {
   handleTag = (tag) => {
-    this.props.addInterviewTag(this.props.id, tag);
+    //this.props.addInterviewTag(this.props.id, tag);
+    this.props.updateCandidateStatus(this.props.id, tag);
   };
 
   renderTags = () => {
     switch (this.props.status) {
       case "Online Interview":
         return (
-          <BorderlessTag className="px-1-5 dragging-card-tag" background="#e6f7ff" color="#1890ff">
+          <BorderlessTag
+            className="px-1-5 dragging-card-tag"
+            background="#e6f7ff"
+            color="#1890ff"
+          >
             Online
           </BorderlessTag>
         );
       case "Phone Interview":
         return (
-          <BorderlessTag className="px-1-5 dragging-card-tag" background="#f9f0ff" color="#722ed1">
+          <BorderlessTag
+            className="px-1-5 dragging-card-tag"
+            background="#f9f0ff"
+            color="#722ed1"
+          >
             Phone
           </BorderlessTag>
         );
       case "In-Person Interview":
         return (
-          <BorderlessTag className="px-1-5 dragging-card-tag" background="#fff2e8" color="#fa541c">
+          <BorderlessTag
+            className="px-1-5 dragging-card-tag"
+            background="#fff2e8"
+            color="#fa541c"
+          >
             In-Person
           </BorderlessTag>
         );
@@ -191,4 +197,4 @@ class DraggingCard extends React.Component {
     );
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(DraggingCard);
+export default connect(mapStateToProps)(DraggingCard);

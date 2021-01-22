@@ -60,9 +60,9 @@ import StudentInternPage from "./components/InternFeedback/StudentInternPage.jsx
 import InternPageContainer from "./components/InternFeedback/InternPageContainer.jsx";
 import Login from "./components/LoginSignup/Login";
 import Signup from "./components/LoginSignup/Signup";
-import Employeepage from "./components/CompanyUsers/Employeepage";
-import CreateUser from "./components/CompanyUsers/CreateUser";
-import UserDetails from "./components/CompanyUsers/UserDetails";
+//import Employeepage from "./components/CompanyUsers/Employeepage";
+//import CreateUser from "./components/CompanyUsers/CreateUser";
+//import UserDetails from "./components/CompanyUsers/UserDetails";
 
 import "./App.scss";
 
@@ -74,6 +74,7 @@ const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
     listings: state.listings,
+    loadingStatuses: state.loadingStatuses,
   };
 };
 
@@ -102,13 +103,6 @@ const mapDispatchToProps = {
 };
 
 class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
   componentDidMount() {
     this.props.startGlobalLoading();
     this.auth();
@@ -136,14 +130,13 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log("Session Error: " + error);
-        
+
         if (window.location.href.split("/")[3] !== "login") {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
-
       });
-  }
+  };
 
   getJwt = () => {
     return new Promise((resolve, reject) => {
@@ -205,42 +198,22 @@ class App extends React.Component {
     this.props.startInternLoading();
     let access = await this.getAccess();
     axios({
-      url: '/api/get_student_candidates',
-      method: 'post',
+      url: "/api/get_student_candidates",
+      method: "post",
       headers: {
-        Authorization : access
+        Authorization: access,
       },
       data: {
-      query: `
+        query: `
         query MyQuery {
           getInterns(businessId: "${this.props.companyInfo.id}") {
-            grades {
-              Id
-              additionalComments
-              assessment
-              dueDate
-              finishedDate
-              isFinished
-              type
-            }
+            grades
             assocId
             formData
             appliedFor
             Id
-            hours {
-              Id
-              date
-              dueDate
-              isApproved
-              time
-            }
-            feedback {
-              Id
-              comment
-              date
-              isFinished
-              isRead
-            }
+            hours
+            feedback
             school {
               address
               counselorName
@@ -253,13 +226,13 @@ class App extends React.Component {
             version
           }
         }
-      `
-      }
+      `,
+      },
     }).then((result) => {
       console.log(result.data);
       let candidates = [];
       let interns = [];
-      result.data.forEach(candidate => {
+      result.data.forEach((candidate) => {
         if (candidate.status === "Accepted") {
           interns.push(candidate);
         } else {
@@ -284,19 +257,22 @@ class App extends React.Component {
     };
     console.log(headers.headers.Authorization);
 
-    axios.get("/api/get_internship_listings", headers).then((response) => {
-      console.log(response.data);
-      this.props.batchUpdateListings(
-        _.isEqual(JSON.parse(response.data), {
-          message: "Internal server error",
-        })
-          ? []
-          : JSON.parse(response.data)
-      );
-      this.props.finishListingLoading();
-    }).catch((error) => {
-      this.props.finishListingLoading();
-    })
+    axios
+      .get("/api/get_internship_listings", headers)
+      .then((response) => {
+        console.log(response.data);
+        this.props.batchUpdateListings(
+          _.isEqual(JSON.parse(response.data), {
+            message: "Internal server error",
+          })
+            ? []
+            : JSON.parse(response.data)
+        );
+        this.props.finishListingLoading();
+      })
+      .catch((error) => {
+        this.props.finishListingLoading();
+      });
   };
 
   getBusinessUsers = async () => {
@@ -305,36 +281,34 @@ class App extends React.Component {
     const headers = {
       headers: {
         Authorization: "Bearer " + token,
-        companyId: this.props.companyInfo.id
-      }
-    }
+        companyId: this.props.companyInfo.id,
+      },
+    };
 
     axios.get("/api/list_users", headers).then((response) => {
       this.props.updateCompanyUsers(JSON.parse(response.data));
-      console.log(response.data)
+      console.log(response.data);
     });
-  }
+  };
 
   render() {
     return (
       <React.Fragment>
         <Router>
-          <Route path="/login" exact component={() => (
-            <Login
-              auth={this.auth}
-            />)}
+          <Route
+            path="/login"
+            exact
+            component={() => <Login auth={this.auth} key="login" />}
           />
-          <Route path="/signup" exact component={() => (
-            <Signup
-              auth={this.auth}
-            />)} 
+          <Route
+            path="/signup"
+            exact
+            component={() => <Signup auth={this.auth} key="signup" />}
           />
 
           <Layout>
-            <Sider width={80} style={{zIndex: "100"}}>
-              <BusinessNavBar 
-                logout={this.logout}
-              />
+            <Sider width={80} style={{ zIndex: "100" }}>
+              <BusinessNavBar logout={this.logout} />
             </Sider>
             <Content>
               <div
@@ -345,8 +319,10 @@ class App extends React.Component {
                   exact
                   component={() => (
                     <MainPage
+                      key="mainpage"
                       candidates={this.props.companyInfo.candidates}
                       listings={this.props.listings}
+                      loading={this.props.loadingStatuses}
                       interns={this.props.companyInfo.interns}
                     />
                   )}
@@ -368,6 +344,7 @@ class App extends React.Component {
                     exact
                     component={() => (
                       <InternshipDetails
+                        key="newinternship"
                         buttonText="Add Post"
                         title="Create New Post"
                         addListing={this.props.addListing}
@@ -385,6 +362,7 @@ class App extends React.Component {
                     exact
                     component={() => (
                       <InternshipDetails
+                        key="internshipdetails"
                         buttonText="Save Changes"
                         title="Post Information"
                         listings={this.props.listings}
@@ -398,17 +376,27 @@ class App extends React.Component {
                 <Route
                   path="/my-interns"
                   exact
-                  component={StudentInternPage}
+                  component={() => (
+                    <StudentInternPage key="studentinternpage" />
+                  )}
                 />
                 <Route
                   path={`/my-interns/:id`}
-                  component={InternPageContainer}
+                  component={() => (
+                    <InternPageContainer key="internpagecontainer" />
+                  )}
                 />
-                <Route path="/applicants" component={() => (
-                  <CandidatesContainer
-                    getAccess={this.getAccess}
-                  />)} />
-                <Route path="/settings" component={CompanyDetails} />
+                <Route
+                  key="candidatescontainer"
+                  path="/applicants"
+                  component={() => (
+                    <CandidatesContainer getAccess={this.getAccess} />
+                  )}
+                />
+                <Route
+                  path="/settings"
+                  component={() => <CompanyDetails key="companydetails" />}
+                />
 
                 {/**<ReactSwitch>
                   <Route path="/users" exact component={() => 

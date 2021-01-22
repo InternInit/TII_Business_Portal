@@ -90,7 +90,7 @@ const BusinessNavBar = (props) => {
           </Link>
   </Menu.Item>*/}
 
-        <Menu.Item key="6">
+        <Menu.Item key="5">
           <Link to="/settings">
             <SettingOutlined />
             <span>Settings</span>

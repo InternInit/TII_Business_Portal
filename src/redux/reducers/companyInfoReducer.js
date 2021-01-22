@@ -105,7 +105,7 @@ const companyInfoReducer = (
         action.assessment;
       students[gradeStudentIndex].grades[gradeIndex].additionalComments =
         action.additionalComments;
-      students[gradeStudentIndex].grades[gradeIndex].finishedDate = new Date();
+      students[gradeStudentIndex].grades[gradeIndex].finishedDate = (new Date()).toISOString();
       students[gradeStudentIndex].grades[gradeIndex].isFinished = true;
       return {
         ...state,
@@ -126,15 +126,6 @@ const companyInfoReducer = (
         ...state,
         interns: students,
       };
-    case "ADD_INTERVIEW_TAG":
-      let interviewTagStudentIndex = _.findIndex(candidates, {
-        Id: action.candidateId,
-      });
-      candidates[interviewTagStudentIndex].status = action.tag;
-      return {
-        ...state,
-        candidates: candidates
-      }
     default:
       return state;
   }
