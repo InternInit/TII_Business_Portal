@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Row as AntRow, Col as AntCol, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import ClipLoader from "react-spinners/ClipLoader";
-import PulseLoader from "react-spinners/PulseLoader";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
@@ -112,7 +111,12 @@ const HirePipeline = (props) => {
   const [columns, setColumns] = useState(columnsFromBackend);
   useEffect(() => {
     console.log("HirePipeline Component Mounted");
-  }, [])
+
+    return () => {
+      console.log("HirePipeline Component Unmounting");
+      //console.log("Props are " + JSON.stringify(props));
+    }
+  });
 
   /**
    * Filters through all the candidates to place them into
@@ -244,14 +248,5 @@ const HirePipeline = (props) => {
     </div>
   );
 }
-
-const HirePipelineLoader = React.memo((props) => {
-
-  console.log("Rendered Loader");
-
-    return (
-      <ClipLoader size={36} loading={props.loading} />
-    )
-});
 
 export default React.memo(HirePipeline);

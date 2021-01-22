@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, PureComponent } from "react";
 
 //React Routing
 import {
@@ -420,7 +420,7 @@ class App extends React.Component {
   }
 }
 
-class RouteTracker extends React.Component {
+class RouteTracker extends PureComponent {
 
   componentDidMount() {
     console.log("Route mounted");
@@ -429,8 +429,8 @@ class RouteTracker extends React.Component {
     console.log("Route unmounted");
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    //console.log("Checking if an update should happen");
+  componentDidUpdate() {
+    console.log("Route updated");
   }
 
   render() {

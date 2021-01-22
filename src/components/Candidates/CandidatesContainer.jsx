@@ -30,9 +30,9 @@ import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 
 const mapStateToProps = (state) => {
   return {
-    companyId: state.companyInfo.id ,
+    companyId: state.companyInfo.id,
     candidates: state.companyInfo.candidates,
-    loading: state.loadingStatuses.isCandidateLoading
+    loading: state.loadingStatuses.isCandidateLoading,
   };
 };
 
@@ -42,6 +42,13 @@ const mapDispatchToProps = {
 };
 
 class CandidatesContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentPath: this.findPath(),
+    };
+  }
 
   componentWillUnmount() {
     console.log("CandidateContainer unmounted");
@@ -51,7 +58,18 @@ class CandidatesContainer extends Component {
     console.log("CandidateContainer mounted");
   }
 
+  componentDidUpdate() {
+    console.log("CandidateContainer updating");
+    console.log("CandidateContainer new props: " + JSON.stringify(this.props));
+  }
+
+  //REMOVE
+  shouldComponentUpdate() {
+    return false;
+  }
+
   findPath = () => {
+    console.log("Calling findPath");
     if (this.props.location.pathname.includes("manage-candidates")) {
       return "manage-candidates";
     } else {
@@ -113,7 +131,7 @@ class CandidatesContainer extends Component {
     return (
       <PageContainer
         style={
-          this.findPath() === "manage-candidates"
+          this.state.currentPath === "manage-candidates"
             ? { minWidth: "1250px", position: "relative" }
             : null
         }
@@ -123,13 +141,15 @@ class CandidatesContainer extends Component {
             title="Internship Candidates"
             placeholder="Search Applicants"
             style={
-              this.findPath() === "manage-candidates"
+              this.state.currentPath === "manage-candidates"
                 ? { minWidth: "1250px" }
                 : null
             }
           />
         </AntRow>
-        <CandidatesNavbar isReview={this.findPath() === "review-applicants"} />
+        <CandidatesNavbar
+          isReview={this.state.currentPath === "review-applicants"}
+        />
         <ReactSwitch>
           <Route
             path="/applicants"
