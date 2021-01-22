@@ -9,6 +9,8 @@ import { Button, Row as AntRow, Col as AntCol } from "antd";
 
 import { connect } from "react-redux";
 
+import _ from "underscore";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -85,18 +87,19 @@ class InternFeedback extends Component {
                 id={student.Id}
                 attendanceDue={
                   student.hours
-                    ? student.hours.filter((hour) => !hour.isApproved).length
+                    ? _.filter(student.hours, (hour) => !hour.isApproved).length
                     : 0
                 }
                 feedbackDue={
                   student.feedback
-                    ? student.feedback.filter((feedback) => !feedback.isRead)
+                    ? _.filter(student.feedback, (feedback) => !feedback.isRead)
                         .length
                     : 0
                 }
                 gradesDue={
                   student.grades
-                    ? student.grades.filter((grade) => !grade.isFinished).length
+                    ? _.filter(student.grades, (grade) => !grade.isFinished)
+                        .length
                     : 0
                 }
                 position={student.appliedFor}

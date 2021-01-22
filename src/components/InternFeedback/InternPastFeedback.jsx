@@ -38,7 +38,7 @@ const InternPastFeedback = (props) => {
           Unread Feedback
         </Header>
         {_.sortBy(
-          student.feedback.filter((feedback) => !feedback.isRead),
+          _.filter(student.feedback, (feedback) => !feedback.isRead),
           "date"
         ).map((data) => (
           <FeedbackTab
@@ -54,7 +54,7 @@ const InternPastFeedback = (props) => {
           Past Feedback
         </Header>
         {_.sortBy(
-          student.feedback.filter((feedback) => feedback.isRead),
+          _.filter(student.feedback, (feedback) => feedback.isRead),
           "date"
         ).map((data) => (
           <FeedbackTab student={student} data={data} />

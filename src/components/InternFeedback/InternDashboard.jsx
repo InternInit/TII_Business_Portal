@@ -36,9 +36,10 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Approve Hours
           </Header>
-          {props.student.hours.filter((day) => !day.isApproved).length > 0 ? (
+          {_.filter(props.student.hours, (day) => !day.isApproved).length >
+          0 ? (
             _.sortBy(
-              props.student.hours.filter((day) => !day.isApproved),
+              _.filter(props.student.hours, (day) => !day.isApproved),
               "date"
             )
               .slice(
@@ -72,10 +73,10 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Recent Feedback
           </Header>
-          {props.student.feedback.filter((piece) => !piece.isRead).length >
+          {_.filter(props.student.feedback, (piece) => !piece.isRead).length >
           0 ? (
             _.sortBy(
-              props.student.feedback.filter((piece) => !piece.isRead),
+              _.filter(props.student.feedback, (piece) => !piece.isRead),
               "date"
             )
               .slice(
@@ -113,7 +114,7 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          {props.student.grades.filter((piece) => !piece.isFinished).length >
+          {_.filter(props.student.grades, (piece) => !piece.isFinished).length >
           0 ? (
             sortReview(props.student.grades)
               .slice(
@@ -121,7 +122,11 @@ const InternDashboard = (props) => {
                 (gradePage + 1) * GRADES_PER_PAGE
               )
               .map((grade) => (
-                <GradeCard review={grade} studentId={props.student.Id} reset={true}/>
+                <GradeCard
+                  review={grade}
+                  studentId={props.student.Id}
+                  reset={true}
+                />
               ))
           ) : (
             <div className="py-2-5 universal-center ">
@@ -141,7 +146,9 @@ const InternDashboard = (props) => {
         <AntCol className="mt-point-25 pr-1 universal-center" span={8}>
           <Pagination
             current={page + 1}
-            total={props.student.hours.filter((day) => !day.isApproved).length}
+            total={
+              _.filter(props.student.hours, (day) => !day.isApproved).length
+            }
             showLessItems={true}
             pageSize={ATTENDANCE_PER_PAGE}
             onChange={(pageChange) => changePage(pageChange - 1)}
@@ -153,7 +160,7 @@ const InternDashboard = (props) => {
           <Pagination
             current={feedbackPage + 1}
             total={
-              props.student.feedback.filter((piece) => !piece.isRead).length
+              _.filter(props.student.feedback, (piece) => !piece.isRead).length
             }
             showLessItems={true}
             pageSize={FEEDBACK_PER_PAGE}
@@ -166,7 +173,8 @@ const InternDashboard = (props) => {
           <Pagination
             current={gradePage + 1}
             total={
-              props.student.grades.filter((piece) => !piece.isFinished).length
+              _.filter(props.student.grades, (piece) => !piece.isFinished)
+                .length
             }
             showLessItems={true}
             pageSize={GRADES_PER_PAGE}
@@ -239,7 +247,7 @@ const StudentFeedbackCard = (props) => {
 };
 
 const sortReview = (review) => {
-  const filteredReviews = review.filter((piece) => !piece.isFinished);
+  const filteredReviews = _.filter(review, (piece) => !piece.isFinished);
   const sortedReviews = _.sortBy(
     filteredReviews,
     (piece) => piece["Days Until dueDate"]
