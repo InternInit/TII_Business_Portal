@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { reduce } from "underscore";
 
 const StudentCard = (props) => {
-  const { firstName, lastName, age, avatar, id, tag, type, position } = props;
+  const { firstName, lastName, avatar, id, tag, type, position } = props;
   const fullName = firstName + " " + lastName;
 
   const colors = {
@@ -32,32 +32,18 @@ const StudentCard = (props) => {
   };
 
   const setColor = () => {
+    console.log(firstName+ " is " + type);
     switch (type) {
-      case "Online Interview":
-        return {
-          textColor: colors.online.text,
-          backgroundColor: colors.online.background,
-        };
       case "Review":
         return {
           textColor: "red",
           //colors.review.text,
           backgroundColor: colors.review.background,
         };
-      case "On-Site Interview":
+      default:
         return {
           textColor: colors.online.text,
           backgroundColor: colors.online.background,
-        };
-        case "In-Person Interview":
-          return {
-            textColor: colors.online.text,
-            backgroundColor: colors.online.background,
-          };
-      default:
-        return {
-          textColor: "#262626",
-          backgroundColor: "#f5f5f5",
         };
     }
   };

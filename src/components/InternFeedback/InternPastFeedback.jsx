@@ -38,14 +38,21 @@ const InternPastFeedback = (props) => {
           Unread Feedback
         </Header>
         {_.sortBy(
+<<<<<<< HEAD
           student.feedback.filter((feedback) => !feedback.isRead),
+=======
+          _.filter(student.feedback, (feedback) => !feedback.isRead),
+>>>>>>> master
           "date"
         ).map((data) => (
           <FeedbackTab
             student={student}
             data={data}
             markFeedbackRead={props.markFeedbackRead}
+<<<<<<< HEAD
             hasModal={fromDashboard}
+=======
+>>>>>>> master
           />
         ))}
       </Row>
@@ -54,7 +61,11 @@ const InternPastFeedback = (props) => {
           Past Feedback
         </Header>
         {_.sortBy(
+<<<<<<< HEAD
           student.feedback.filter((feedback) => feedback.isRead),
+=======
+          _.filter(student.feedback, (feedback) => feedback.isRead),
+>>>>>>> master
           "date"
         ).map((data) => (
           <FeedbackTab student={student} data={data} />

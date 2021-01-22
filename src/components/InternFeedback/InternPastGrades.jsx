@@ -18,7 +18,7 @@ const { Panel } = Collapse;
 const GRADES_PER_PAGE = 1;
 
 const sortReview = (review) => {
-  const filteredReviews = review.filter((piece) => !piece.isFinished);
+  const filteredReviews = _.filter(review, (piece) => !piece.isFinished);
   const sortedReviews = _.sortBy(
     filteredReviews,
     (piece) => piece["Days Until dueDate"]
@@ -37,7 +37,7 @@ const InternPastGrades = (props) => {
           <Header bolded className="twentyTwoFont mb-point-25">
             Grade Student
           </Header>
-          {props.student.grades.filter((piece) => !piece.isFinished).length >
+          {_.filter(props.student.grades, (piece) => !piece.isFinished).length >
           0 ? (
             sortReview(props.student.grades)
               .slice(
@@ -63,7 +63,8 @@ const InternPastGrades = (props) => {
             <Pagination
               current={gradePage + 1}
               total={
-                props.student.grades.filter((piece) => !piece.isFinished).length
+                _.filter(props.student.grades, (piece) => !piece.isFinished)
+                  .length
               }
               showLessItems={true}
               pageSize={GRADES_PER_PAGE}
@@ -79,7 +80,7 @@ const InternPastGrades = (props) => {
           </Header>
           <GradeTable
             grades={_.sortBy(
-              props.student.grades.filter((grade) => grade.isFinished),
+              _.filter(props.student.grades, (grade) => grade.isFinished),
               "dueDate"
             )}
           />
@@ -107,8 +108,12 @@ const GradeTable = (props) => {
           </AntCol>
         </AntRow>
         <Scrollbars>
-          <Collapse className="intern-past-grades-collapse" bordered={false} accordion>
-            {props.grades.map((grade) => (
+          <Collapse
+            className="intern-past-grades-collapse"
+            bordered={false}
+            accordion
+          >
+            {_.map(props.grades, (grade) => (
               <Panel
                 className="intern-past-grades-collapse-panel"
                 header={
@@ -131,10 +136,10 @@ const GradeTable = (props) => {
                 showArrow={false}
               >
                 <div className="intern-past-grades-collapse-panel-text">
-                <Caption className="sixteenFont">
-                  <Caption light>Additional Comments: </Caption>
-                  {grade.additionalComments}
-                </Caption>
+                  <Caption className="sixteenFont">
+                    <Caption light>Additional Comments: </Caption>
+                    {grade.additionalComments}
+                  </Caption>
                 </div>
               </Panel>
             ))}
