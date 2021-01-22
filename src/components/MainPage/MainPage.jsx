@@ -107,33 +107,7 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-  const findNumApplicants = (listing, dataPoint) => {
-    let count = 0;
-
-    switch (dataPoint) {
-      case "Applicants":
-        for (let i = 0; i < candidates.length; i++){
-          if (candidates[i].appliedFor === listing){
-            count = count + 1;
-          }
-        };
-        break;
-      case "Accepted":
-        for (let i = 0; i < interns.length; i++){
-          if (interns[i].appliedFor === listings){
-            count = count + 1;
-          };
-        };
-        break;
-      default:
-        count = 0;
-        break;
-    };
-
-    return count;
-  };
-
-  console.log(candidates)
+  console.log(interns)
 
   return (
     <PageContainer>

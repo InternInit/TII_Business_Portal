@@ -73,30 +73,11 @@ const StudentCard = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("lg");
 
-  // const setColor = () => {
-  //   switch (type) {
-  //     case "Online Interview" :
-  //       textColor = colors.online.text;
-  //       backgroundColor = colors.online.background;
-  //       break;
-  //     case "Review":
-  //       textColor = colors.review.text;
-  //       backgroundColor = colors.review.background;
-  //       break;
-  //     case "Phone Interview":
-  //       textColor = colors.online.text;
-  //       backgroundColor = colors.online.background;
-  //       break;
-  //     case "On-Site Interview":
-  //       textColor = colors.online.text;
-  //       backgroundColor = colors.online.background;
-  //       break;
-  //     default:
-  //       textColor = "#262626";
-  //       backgroundColor = "#f5f5f5";
-  //       break;
-  //   }
-  // };
+  console.log(
+    Object.entries(screens)
+      .filter((screen) => !!screen[1])
+      .map((breakpoint) => breakpoint[0])
+  );
 
   return (
     <Link to={`/applicants/${id}`}>
