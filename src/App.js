@@ -65,7 +65,6 @@ import Signup from "./components/LoginSignup/Signup";
 //import UserDetails from "./components/CompanyUsers/UserDetails";
 
 import "./App.scss";
-import { Component } from "react";
 
 Amplify.configure(awsconfig);
 
@@ -107,7 +106,10 @@ class App extends React.Component {
 
   constructor(props){
     super(props)
-    if(localStorage.getItem("NumCandidates") === null){
+    if(localStorage.getItem("NumReview") === null){
+      localStorage.setItem("NumCandidates", 3);
+    }
+    if(localStorage.getItem("NumInterview") === null){
       localStorage.setItem("NumCandidates", 3);
     }
     if(localStorage.getItem("NumInterns") === null){
@@ -252,7 +254,8 @@ class App extends React.Component {
         }
       });
       this.props.updateCandidates(candidates);
-      localStorage.setItem("NumCandidates", candidates.length);
+      localStorage.setItem("NumReview", candidates.filter(candidate => candidate.status === "Review").length);
+      localStorage.setItem("NumInterview", candidates.filter(candidate => candidate.status.includes("Interview")).length);
       this.props.updateInterns(interns);
       localStorage.setItem("NumInterns", interns.length);
       this.props.finishCandidateLoading();

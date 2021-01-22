@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { Button, Switch, Divider, Row as AntRow, Col as AntCol } from "antd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineUser } from "react-icons/ai";
+import _ from "underscore";
 
 import InfoBar from "../General/InfoBar.jsx";
 import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";

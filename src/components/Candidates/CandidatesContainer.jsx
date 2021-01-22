@@ -1,11 +1,9 @@
 import React, { Component, PureComponent } from "react";
 import "../../App.scss";
 import {
-  BrowserRouter as Router,
   Route,
   Switch as ReactSwitch,
   Redirect,
-  useRouteMatch as match,
   withRouter,
 } from "react-router-dom";
 
@@ -78,7 +76,7 @@ class CandidatesContainer extends PureComponent {
       },
     };
 
-    let index = this.props.companyInfo.candidates.findIndex(
+    let index = this.props.candidates.findIndex(
       (item, i) => item.Id === internId
     );
     console.log(index);
