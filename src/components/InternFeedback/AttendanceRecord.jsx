@@ -51,7 +51,6 @@ const AttendanceRecord = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-
   //Changes Day Names (dd -> ddd)
   moment.updateLocale("en", {
     weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -118,7 +117,8 @@ const AttendanceRecord = (props) => {
             gutter={[16, 16]}
             justify="center"
             align={
-              props.student.hours.filter((day) => day.isApproved).length !== 0
+              _.filter(props.student.hours, (day) => day.isApproved).length !==
+              0
                 ? "top"
                 : "middle"
             }
@@ -132,7 +132,7 @@ const AttendanceRecord = (props) => {
               xl={12}
               style={{ paddingLeft: "4px" }}
             >
-              {props.student.hours.filter((day) => day.isApproved).length !==
+              {_.filter(props.student.hours, (day) => day.isApproved).length !==
               0 ? (
                 <>
                   {isMd ? (
@@ -155,7 +155,7 @@ const AttendanceRecord = (props) => {
 
                   <Row className="attendance-list-container">
                     {_.sortBy(
-                      props.student.hours.filter((day) => day.isApproved),
+                      _.filter(props.student.hours, (day) => day.isApproved),
                       "date"
                     ).map((data) => {
                       return (
