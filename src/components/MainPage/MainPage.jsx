@@ -19,7 +19,6 @@ import {
 } from "./MainPageSkeletons.jsx";
 
 const MainPage = (props) => {
-
   const [page, setPage] = useState({
     applicantPage: 0,
     listingPage: 0,
@@ -475,6 +474,7 @@ const MainPage = (props) => {
                   )
                   .map((student) => (
                     <StudentCard
+                      key={student.Id}
                       firstName={student.formData["0"]["First Name"]}
                       lastName={student.formData["0"]["Last Name"]}
                       age={" (" + student.formData["1"]["Age"] + ")"}
