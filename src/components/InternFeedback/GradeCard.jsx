@@ -122,7 +122,7 @@ const GradeCard = (props) => {
     gradeObj.finishedDate = finishDate;
     gradeObj.isFinished = true;
 
-    Object.keys(newGrades).forEach(function(gradeKey) {
+    Object.keys(newGrades).forEach((gradeKey) => {
       delete newGrades[gradeKey].dueDateFormatted;
       delete newGrades[gradeKey]["Days Until dueDate"];
 
