@@ -28,15 +28,7 @@ import { print } from "graphql";
 const MUTATION = gql`
 mutation MyMutation ($grades:AWSJSON, $assocId:String!){
   updateInternAssoc(input: {assocId: $assocId, grades: $grades}) {
-    grades {
-      Id
-      additionalComments
-      assessment
-      dueDate
-      finishedDate
-      isFinished
-      type
-    }
+    grades
   }
 }                 
 `
@@ -47,7 +39,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
+    interns: state.interns.currentInterns,
   };
 };
 
@@ -108,7 +100,8 @@ const GradeCard = (props) => {
       return (
         <BorderlessTag className="px-1-5" color="#52c41a" background="#d9f7be">
           <span>
-            Due in <strong>{Math.round(daysUntil / 30)}</strong> months
+            Due in <strong>{Math.round(daysUntil / 30)}</strong>{" "}
+            {Math.round(daysUntil / 30) === 1 ? "month" : "months"}
           </span>
         </BorderlessTag>
       );
@@ -116,43 +109,30 @@ const GradeCard = (props) => {
 
   const mutateGradeAssoc = async (values) => {
     let access = await props.getAccess();
-
-    let gradeStudentIndex = _.findIndex(props.companyInfo.interns, {
-      Id: props.studentId,
-    });
-    let gradeIndex = _.findIndex(
-      props.companyInfo.interns[gradeStudentIndex].grades,
-      {
-        Id: props.review.Id,
-      }
-    );
-    console.log(gradeIndex);
+    let gradeId = props.review.Id;
+    let internIndex = _.findIndex(props.interns, { Id: props.studentId });
+    let newGrades = props.interns[internIndex].grades;
+    let gradeObj = newGrades[gradeId];
 
     let finishDate = new Date();
     finishDate = finishDate.toISOString();
-    let newGrades = props.companyInfo.interns[gradeStudentIndex].grades.slice();
 
-    newGrades[gradeStudentIndex].assessment = values.Grade;
-    newGrades[gradeStudentIndex].additionalComments =
-      values["Additional Comments"];
-    newGrades[gradeStudentIndex].finishedDate = finishDate;
-    newGrades[gradeStudentIndex].isFinished = true;
+    gradeObj.assessment = values.Grade;
+    gradeObj.additionalComments = values["Additional Comments"];
+    gradeObj.finishedDate = finishDate;
+    gradeObj.isFinished = true;
 
-    newGrades.forEach((gradeObj) => {
-      delete gradeObj.dueDateFormatted;
-      delete gradeObj["Days Until dueDate"];
+    Object.keys(newGrades).forEach(function(gradeKey) {
+      delete newGrades[gradeKey].dueDateFormatted;
+      delete newGrades[gradeKey]["Days Until dueDate"];
 
       try {
-        delete gradeObj.finishedDateFormatted;
-        delete gradeObj["Days Until finishedDate"];
+        delete newGrades[gradeKey].finishedDateFormatted;
+        delete newGrades[gradeKey]["Days Until finishedDate"];
       } catch (e) {}
     });
-
-    /*
-    console.log(newGrades);
-    console.log(JSON.stringify(newGrades));
-    */
-    //return;
+    //console.log(newGrades);
+    //console.log(JSON.stringify(newGrades));
 
     axios({
       url: "/api/mutate_grades_assoc",
@@ -163,17 +143,20 @@ const GradeCard = (props) => {
       data: {
         query: print(MUTATION),
         variables: {
-          assocId: props.companyInfo.interns[gradeStudentIndex].assocId,
+          assocId: props.interns[internIndex].assocId,
           grades: JSON.stringify(newGrades),
         },
       },
-    }).then((result) => {
-      console.log(result);
-
-      props.submitGrade(gradeStudentIndex, gradeIndex, result.data);
-
-      message.success("Grade Submitted");
-    });
+    })
+      .then((result) => {
+        console.log(result.data[gradeId]);
+        console.log(internIndex, gradeId, result.data[gradeId]);
+        props.submitGrade();
+        message.success("Grade Submitted");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleSubmit = (values) => {

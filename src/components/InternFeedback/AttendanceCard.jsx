@@ -16,12 +16,11 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
+    interns: state.interns.currentInterns,
   };
 };
 
 const AttendanceCard = (props) => {
-
   const handleClick = () => {
     /**
      * @TODO
@@ -29,7 +28,7 @@ const AttendanceCard = (props) => {
      */
     props.approveHours(props.studentId, props.hoursId);
     message.success("Hours Approved");
-  }
+  };
 
   const handleReject = () => {
     /**
@@ -39,7 +38,7 @@ const AttendanceCard = (props) => {
      */
     props.rejectHours(props.studentId, props.hoursId);
     message.error("Hours Rejected");
-  }
+  };
 
   return (
     <AntRow>

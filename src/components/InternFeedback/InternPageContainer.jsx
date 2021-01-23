@@ -27,7 +27,7 @@ import { startInternLoading, finishInternLoading } from "../../redux/actions";
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
+    interns: state.interns.currentInterns,
     loadingStatuses: state.loadingStatuses,
   };
 };
@@ -69,7 +69,8 @@ class InternPageContainer extends Component {
     console.log("trying to find");
     if (!this.props.loadingStatuses.isInternLoading) {
       const id = this.props.location.pathname.split("/");
-      const foundStudent = this.props.companyInfo.interns.find(
+      //console.log(this.props);
+      const foundStudent = this.props.interns.find(
         (student) => student.Id == id[2]
       );
       console.log(foundStudent);

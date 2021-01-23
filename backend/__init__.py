@@ -167,6 +167,7 @@ def get_student_candidates():
     
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
     # Thatgit s's what we get for using a 19 year old language.
+    print(resp_json)
     for intern in resp_json["data"]["getInterns"]:
         loaded_intern = intern
         if(loaded_intern["status"] == "Accepted"):
@@ -202,10 +203,9 @@ def mutate_grades_assoc():
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     grades = resp_json["data"]["updateInternAssoc"]["grades"]
-    new_grades = []
-    for grade in grades:
-        new_grades.append(datetime_resolver(grade))
-    return json.dumps(new_grades)
+    grades = json.loads(grades)
+    print(json.dumps(datetime_resolver(grades)))
+    return json.dumps(datetime_resolver(grades))
 ##############################
 #
 #       USER MANAGEMENT
