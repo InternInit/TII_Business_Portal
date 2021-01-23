@@ -104,6 +104,16 @@ const mapDispatchToProps = {
 
 class App extends React.Component {
 
+  constructor(props){
+    super(props)
+    if(localStorage.getItem("NumCandidates") === null){
+      localStorage.setItem("NumCandidates", 3);
+    }
+    if(localStorage.getItem("NumInterns") === null){
+      localStorage.setItem("NumInterns", 3);
+    }
+  }
+
   componentDidMount() {
     this.props.startGlobalLoading();
     this.auth();
@@ -241,7 +251,9 @@ class App extends React.Component {
         }
       });
       this.props.updateCandidates(candidates);
+      localStorage.setItem("NumCandidates", candidates.length);
       this.props.updateInterns(interns);
+      localStorage.setItem("NumInterns", interns.length);
       this.props.finishCandidateLoading();
       this.props.finishInternLoading();
     });
