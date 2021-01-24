@@ -35,6 +35,8 @@ import {
   finishCandidateLoading,
   startInternLoading,
   finishInternLoading,
+  startListingLoading,
+  finishListingLoading,
 } from "./redux/actions";
 
 //axios
@@ -58,9 +60,9 @@ import StudentInternPage from "./components/InternFeedback/StudentInternPage.jsx
 import InternPageContainer from "./components/InternFeedback/InternPageContainer.jsx";
 import Login from "./components/LoginSignup/Login";
 import Signup from "./components/LoginSignup/Signup";
-import Employeepage from "./components/CompanyUsers/Employeepage";
-import CreateUser from "./components/CompanyUsers/CreateUser";
-import UserDetails from "./components/CompanyUsers/UserDetails";
+//import Employeepage from "./components/CompanyUsers/Employeepage";
+//import CreateUser from "./components/CompanyUsers/CreateUser";
+//import UserDetails from "./components/CompanyUsers/UserDetails";
 
 import "./App.scss";
 
@@ -72,6 +74,8 @@ const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
     listings: state.listings,
+    loadingStatuses: state.loadingStatuses,
+    interns: state.interns.currentInterns,
   };
 };
 
@@ -95,14 +99,20 @@ const mapDispatchToProps = {
   finishCandidateLoading,
   startInternLoading,
   finishInternLoading,
+  startListingLoading,
+  finishListingLoading,
 };
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
+  constructor(props){
+    super(props)
+    if(localStorage.getItem("NumCandidates") === null){
+      localStorage.setItem("NumCandidates", 3);
+    }
+    if(localStorage.getItem("NumInterns") === null){
+      localStorage.setItem("NumInterns", 3);
+    }
   }
 
   componentDidMount() {
@@ -132,14 +142,13 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log("Session Error: " + error);
-        
+
         if (window.location.href.split("/")[3] !== "login") {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
-
       });
-  }
+  };
 
   getJwt = () => {
     return new Promise((resolve, reject) => {
@@ -200,42 +209,24 @@ class App extends React.Component {
     this.props.startCandidateLoading();
     this.props.startInternLoading();
     let access = await this.getAccess();
+    console.log(this.props);
     axios({
-      url: '/api/get_student_candidates',
-      method: 'post',
+      url: "/api/get_student_candidates",
+      method: "post",
       headers: {
-        Authorization : access
+        Authorization: access,
       },
       data: {
-      query: `
+        query: `
         query MyQuery {
           getInterns(businessId: "${this.props.companyInfo.id}") {
-            grades {
-              Id
-              additionalComments
-              assessment
-              dueDate
-              finishedDate
-              isFinished
-              type
-            }
+            grades
+            assocId
             formData
             appliedFor
             Id
-            hours {
-              Id
-              date
-              dueDate
-              isApproved
-              time
-            }
-            feedback {
-              Id
-              comment
-              date
-              isFinished
-              isRead
-            }
+            hours
+            feedback
             school {
               address
               counselorName
@@ -248,13 +239,13 @@ class App extends React.Component {
             version
           }
         }
-      `
-      }
+      `,
+      },
     }).then((result) => {
       console.log(result.data);
       let candidates = [];
       let interns = [];
-      result.data.forEach(candidate => {
+      result.data.forEach((candidate) => {
         if (candidate.status === "Accepted") {
           interns.push(candidate);
         } else {
@@ -262,13 +253,18 @@ class App extends React.Component {
         }
       });
       this.props.updateCandidates(candidates);
+      localStorage.setItem("NumCandidates", candidates.length);
       this.props.updateInterns(interns);
+      localStorage.setItem("NumInterns", interns.length);
       this.props.finishCandidateLoading();
       this.props.finishInternLoading();
+    }).catch((error) => {
+      console.log(error);
     });
   };
 
   getListings = async () => {
+    this.props.startListingLoading();
     let token = await this.getJwt();
     console.log(this.props.companyInfo);
     const headers = {
@@ -278,16 +274,22 @@ class App extends React.Component {
     };
     console.log(headers.headers.Authorization);
 
-    axios.get("/api/get_internship_listings", headers).then((response) => {
-      console.log(response.data);
-      this.props.batchUpdateListings(
-        _.isEqual(JSON.parse(response.data), {
-          message: "Internal server error",
-        })
-          ? []
-          : JSON.parse(response.data)
-      );
-    });
+    axios
+      .get("/api/get_internship_listings", headers)
+      .then((response) => {
+        console.log(response.data);
+        this.props.batchUpdateListings(
+          _.isEqual(JSON.parse(response.data), {
+            message: "Internal server error",
+          })
+            ? []
+            : JSON.parse(response.data)
+        );
+        this.props.finishListingLoading();
+      })
+      .catch((error) => {
+        this.props.finishListingLoading();
+      });
   };
 
   getBusinessUsers = async () => {
@@ -296,36 +298,34 @@ class App extends React.Component {
     const headers = {
       headers: {
         Authorization: "Bearer " + token,
-        companyId: this.props.companyInfo.id
-      }
-    }
+        companyId: this.props.companyInfo.id,
+      },
+    };
 
     axios.get("/api/list_users", headers).then((response) => {
       this.props.updateCompanyUsers(JSON.parse(response.data));
-      console.log(response.data)
+      console.log(response.data);
     });
-  }
+  };
 
   render() {
     return (
       <React.Fragment>
         <Router>
-          <Route path="/login" exact component={() => (
-            <Login
-              auth={this.auth}
-            />)}
+          <Route
+            path="/login"
+            exact
+            component={() => <Login auth={this.auth} key="login" />}
           />
-          <Route path="/signup" exact component={() => (
-            <Signup
-              auth={this.auth}
-            />)} 
+          <Route
+            path="/signup"
+            exact
+            component={() => <Signup auth={this.auth} key="signup" />}
           />
 
           <Layout>
-            <Sider width={80} style={{zIndex: "100"}}>
-              <BusinessNavBar 
-                logout={this.logout}
-              />
+            <Sider width={80} style={{ zIndex: "100" }}>
+              <BusinessNavBar logout={this.logout} />
             </Sider>
             <Content>
               <div
@@ -336,9 +336,11 @@ class App extends React.Component {
                   exact
                   component={() => (
                     <MainPage
+                      key="mainpage"
                       candidates={this.props.companyInfo.candidates}
                       listings={this.props.listings}
-                      interns={this.props.companyInfo.interns}
+                      loading={this.props.loadingStatuses}
+                      interns={this.props.interns}
                     />
                   )}
                 />
@@ -359,6 +361,7 @@ class App extends React.Component {
                     exact
                     component={() => (
                       <InternshipDetails
+                        key="newinternship"
                         buttonText="Add Post"
                         title="Create New Post"
                         addListing={this.props.addListing}
@@ -376,6 +379,7 @@ class App extends React.Component {
                     exact
                     component={() => (
                       <InternshipDetails
+                        key="internshipdetails"
                         buttonText="Save Changes"
                         title="Post Information"
                         listings={this.props.listings}
@@ -389,16 +393,25 @@ class App extends React.Component {
                 <Route
                   path="/my-interns"
                   exact
-                  component={StudentInternPage}
+                  component={() => (
+                    <StudentInternPage key="studentinternpage" />
+                  )}
                 />
                 <Route
-                  path={`/my-interns/:id`}
-                  component={InternPageContainer}
+                  path={`/my-interns/:id`} component={props => (
+                  <InternPageContainer
+                    {...props}
+                    getAccess={this.getAccess}
+                  />)}
                 />
-                <Route path="/applicants" component={CandidatesContainer} />
+                <Route path="/applicants" component={props => (
+                  <CandidatesContainer
+                    {...props}
+                    getAccess={this.getAccess}
+                  />)} />
                 <Route path="/settings" component={CompanyDetails} />
 
-                <ReactSwitch>
+                {/**<ReactSwitch>
                   <Route path="/users" exact component={() => 
                     <Employeepage
                       users={this.props.companyInfo.users}
@@ -414,7 +427,7 @@ class App extends React.Component {
                       />}
                   />
                   <Route path={`/users/:id`} exact component={UserDetails} />
-                </ReactSwitch>
+                    </ReactSwitch>*/}
               </div>
             </Content>
           </Layout>

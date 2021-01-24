@@ -16,7 +16,7 @@ import {
   TypeTag,
 } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineRight } from "react-icons/ai";
-import { BiMessageSquareDetail, BiTime, BiNotepad } from "react-icons/bi";
+import { BiMessageSquareDetail, BiTime, BiCheckSquare } from "react-icons/bi";
 import "../../App.scss";
 
 const { useBreakpoint } = Grid;
@@ -147,7 +147,7 @@ const StudentInternTab = (props) => {
               >
                 <Link to={`/my-interns/${props.id}/grades`}>
                   <Badge count={props.gradesDue} offset={[-12, 5]} size="small">
-                    <BiNotepad className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
+                    <BiCheckSquare className="thirtyTwoFont ml-point-25 mr-point-25 student-intern-tab-action-icon student-intern-tab-grades" />
                   </Badge>
                 </Link>
               </Tooltip>

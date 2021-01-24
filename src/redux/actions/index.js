@@ -1,3 +1,5 @@
+import { add } from "lodash";
+
 export const updateName = (name) => {
   return {
     type: "UPDATE_NAME",
@@ -134,10 +136,38 @@ export const finishInternLoading = () => {
   };
 };
 
-export const approveHours = (internId, hourId) => {
+export const startListingLoading = () => {
   return {
-    internId: internId,
-    hourId: hourId,
-    type: "APPROVE_HOURS"
+    type: "START_LISTING_LOADING"
   };
+};
+
+export const finishListingLoading = () => {
+  return {
+    type: "FINISH_LISTING_LOADING"
+  };
+};
+
+export const submitHour = (internIndex, hourObj) => {
+  return {
+    internIndex: internIndex,
+    hourObj: hourObj,
+    type: "SUBMIT_HOUR"
+  };
+}
+
+export const submitGrade = (internIndex, gradeObj) => {
+  return {
+    type: "SUBMIT_GRADE",
+    internIndex: internIndex,
+    gradeObj: gradeObj,
+  }
+}
+
+export const markFeedbackRead = (internIndex, feedbackObj) => {
+  return {
+    internIndex: internIndex,
+    feedbackObj: feedbackObj,
+    type: "MARK_FEEDBACK_READ"
+  }
 }

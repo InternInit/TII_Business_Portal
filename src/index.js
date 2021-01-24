@@ -6,14 +6,21 @@ import * as serviceWorker from "./serviceWorker";
 import "antd/dist/antd.css";
 import "./index.css";
 
-import { createStore } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
+import thunk from 'redux-thunk';
+
+const middleware = process.env.NODE_ENV !== 'production' ?
+  [require('redux-immutable-state-invariant').default(), thunk] :
+  [thunk];
+
+const composedEnhancers = compose(applyMiddleware(...middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 //REDUX STORE
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composedEnhancers
 );
 
 ReactDOM.render(

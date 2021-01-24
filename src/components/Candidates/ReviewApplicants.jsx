@@ -13,6 +13,7 @@ import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
 import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
 import CandidateDetailedviewReviewTab from "./CandidateDetailedviewReviewTab.jsx";
+import { CandidateQuickviewTabSkeleton } from "./CandidateSkeletons.jsx";
 
 //Ant Design Styles
 const AddFilterStyle = {
@@ -38,6 +39,7 @@ const ViewText = styled.span`
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses,
   };
 };
 
@@ -109,8 +111,6 @@ class ReviewApplicants extends Component {
         </div>
       </div>
     );
-
-    return null;
   }
 
   renderUnreadApplicants = () => {
@@ -143,7 +143,13 @@ class ReviewApplicants extends Component {
             align: "universal-center",
           }}
         />
-        {unreadCandidates.length > 0 ? (
+        {this.props.loadingStatuses.isCandidateLoading ? (
+          <>
+            <CandidateQuickviewTabSkeleton />
+            <CandidateQuickviewTabSkeleton />
+            <CandidateQuickviewTabSkeleton />
+          </>
+        ) : unreadCandidates.length > 0 ? (
           unreadCandidates.map((student, index) => (
             <CandidateQuickviewTab
               key={index}
@@ -267,7 +273,13 @@ class ReviewApplicants extends Component {
             align: "universal-center",
           }}
         />
-        {reviewCandidates.length > 0 ? (
+        {this.props.loadingStatuses.isCandidateLoading ? (
+          <>
+            <CandidateQuickviewTabSkeleton review={true} />
+            <CandidateQuickviewTabSkeleton review={true} />
+            <CandidateQuickviewTabSkeleton review={true} />
+          </>
+        ) : reviewCandidates.length > 0 ? (
           reviewCandidates.map((student, index) => (
             <CandidateQuickviewReviewTab
               key={index}

@@ -10,7 +10,6 @@ const companyInfoReducer = (
     avatar: "",
     id: "",
     candidates: [],
-    interns: [],
     users: [],
   },
   action
@@ -19,69 +18,55 @@ const companyInfoReducer = (
     case "UPDATE_NAME":
       return {
         ...state,
-        name: action.name
-      }
+        name: action.name,
+      };
     case "UPDATE_DESCRIPTION":
       return {
         ...state,
-        description: action.description
-      }
+        description: action.description,
+      };
     case "UPDATE_WEBSITE":
       return {
         ...state,
-        website: action.website
-      }
+        website: action.website,
+      };
     case "UPDATE_EMAIL":
       return {
         ...state,
-        email: action.email
-      }
+        email: action.email,
+      };
     case "UPDATE_PHONE_NUMBER":
       return {
         ...state,
-        phoneNumber: action.phoneNumber
-      }
+        phoneNumber: action.phoneNumber,
+      };
     case "UPDATE_AVATAR":
       return {
         ...state,
-        avatar: action.avatar
-      }
+        avatar: action.avatar,
+      };
     case "UPDATE_ID":
       return {
         ...state,
-        id: action.id
-      }
+        id: action.id,
+      };
     case "UPDATE_CANDIDATES":
       return {
         ...state,
-        candidates: action.candidates
-      }
-    case "UPDATE_INTERNS":
-      return {
-        ...state,
-        interns: action.interns
-      }
+        candidates: action.candidates,
+      };
     case "UPDATE_COMPANY_USERS":
       return {
         ...state,
-        users: action.users
-      }
+        users: action.users,
+      };
     case "UPDATE_CANDIDATE_STATUS":
       let newCandidates = state.candidates.slice();
       newCandidates[action.index].status = action.status;
       return {
         ...state,
-        candidates: newCandidates
-      }
-    case "APPROVE_HOURS":
-      let students = state.interns.slice();
-      let studentIndex = _.findIndex(students, { Id: action.internId });
-      let hoursIndex = _.findIndex(students[studentIndex].hours, { Id: action.hourId });
-      students[studentIndex].hours[hoursIndex].isApproved = true;
-      return {
-        ...state,
-        interns: students
-      }
+        candidates: newCandidates,
+      };
     default:
       return state;
   }

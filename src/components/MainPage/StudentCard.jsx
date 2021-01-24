@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, Row, Col, Grid } from "antd";
 import {
   Header,
@@ -10,116 +10,126 @@ import {
 import { UserOutlined } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
+import { reduce } from "underscore";
 
 const StudentCard = (props) => {
-  let { firstName, lastName, age, avatar, id, tag, type } = props;
-  let fullName = firstName + " " + lastName;
-  let colors = {
-    // review: {
-    //   text: "#FA8C16",
-    //   background: "#FFF7E6"
-    // },
-    // online: {
-    //   text: "#1890FF",
-    //   background: "#E6F7FF"
-    // },
-    // inPerson: {
-    //   text: "#eb2f96",
-    //   background: "#fff0f6"
-    // }
+  const { firstName, lastName, avatar, id, tag, type, position } = props;
+  const fullName = firstName + " " + lastName;
+
+  const colors = {
     review: {
-      text: "white",
-      background: "#fa8c16"
+      text: "#FA8C16",
+      background: "#FFF7E6",
     },
     online: {
-      text: "white",
-      background: "#52c41a"
+      text: "#1890FF",
+      background: "#E6F7FF",
     },
     inPerson: {
-      text: "white",
-      background: "#1890ff"
+      text: "#eb2f96",
+      background: "#fff0f6",
+    },
+  };
+
+  const setColor = () => {
+    console.log(firstName+ " is " + type);
+    switch (type) {
+      case "Review":
+        return {
+          textColor: "red",
+          //colors.review.text,
+          backgroundColor: colors.review.background,
+        };
+      default:
+        return {
+          textColor: colors.online.text,
+          backgroundColor: colors.online.background,
+        };
     }
   };
-  let textColor;
-  let backgroundColor;
+
+  const [styles, changeStyles] = useState(setColor());
 
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
 
-  const isSm = Object.entries(screens)
-  .filter((screen) => !!screen[1])
-  .map((breakpoint) => breakpoint[0])
-  .includes("sm");
+  const isXs = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("xs");
 
-  const setColor = () => {
-    switch (type) {
-      case "Online Interview":
-        textColor = colors.online.text;
-        backgroundColor = colors.online.background;
-        break;
-      case "Review":
-          textColor = colors.review.text;
-          backgroundColor = colors.review.background;
-        break;
-      
-      case "On-Site Interview":
-        textColor = colors.inPerson.text;
-        backgroundColor = colors.inPerson.background
-        break;
-      default:
-        textColor = "#262626";
-        backgroundColor = "#f5f5f5";
-        break;
-    };
-  };
+  const isXl = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("xl");
+
+  const isMd = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("md");
+
+  const isLg = Object.entries(screens)
+    .filter((screen) => !!screen[1])
+    .map((breakpoint) => breakpoint[0])
+    .includes("lg");
+
+  console.log(
+    Object.entries(screens)
+      .filter((screen) => !!screen[1])
+      .map((breakpoint) => breakpoint[0])
+  );
 
   return (
     <Link to={`/applicants/${id}`}>
       <TabContainer className="px-3 py-1 dashboard-tab">
         <Row align="middle" gutter={[16, 0]}>
           {/* Avatar */}
-          <Avatar src={avatar} size={38} icon={<UserOutlined />} />
+          <Avatar src={avatar} size={44} icon={<UserOutlined />} />
 
           <Col flex="auto">
             {/* Name */}
-            <Row justify="space-between">
+            <Row justify="space-between" align="middle">
               <Col>
                 <Header bolded className="eighteenFont">
                   {fullName}
                 </Header>
+
+                <div style={{ marginTop: "-3px" }}>
+                  <Caption className="fourteenFont " light>
+                    {position}
+                  </Caption>
+                </div>
               </Col>
-              {tag ? (
+              {tag && (isXl || isXs || (isMd && !isLg)) ? (
                 <Col>
-                {setColor()}
-                  <BorderlessTag style={{marginRight: "-20px"}} className="px-1 py-0" background={backgroundColor} color={textColor} >{type}</BorderlessTag>
+                  <BorderlessTag
+                    style={{ marginRight: "-20px", marginTop: "0px" }}
+                    className="px-1 py-0"
+                    background={styles.backgroundColor}
+                    color={styles.textColor}
+                  >
+                    {type.includes("Interview") ? "Interview" : type}
+                  </BorderlessTag>
                 </Col>
               ) : null}
             </Row>
 
             {/* Position */}
-            <Row>
-              {/*
+            {/*
               @TODO
               Get position they applied for & get position for positions of accepted interns 
               */}
-              {tag ? (
+            {/* {!isXl ? (
+              <Row>
                 <Caption
                   className="twelveFont"
                   light
-                  style={{ marginTop: "-5px" }}
+                  style={{ marginTop: "-3px" }}
                 >
                   where did i apply?
                 </Caption>
-              ) : (
-                <Caption
-                  className="twelveFont"
-                  light
-                  style={{ marginTop: "0vh" }}
-                >
-                  where did i apply?
-                </Caption>
-              )}
-            </Row>
+              </Row>
+            ) : null} */}
           </Col>
         </Row>
       </TabContainer>

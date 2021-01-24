@@ -1,0 +1,30 @@
+@import "../Globals/breakpoints";
+@import "../Globals/variables";
+@import "../node_modules/rfs/scss";
+
+.student-intern-tab-skeleton-name .ant-skeleton-content .ant-skeleton-title  {
+    height: 24px;
+    width: 150px;
+    margin-top: 0px;
+}
+
+.student-intern-tab-skeleton-position .ant-skeleton-content .ant-skeleton-title  {
+    height: 18px;
+    width: 120px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+.student-intern-tab-skeleton-school .ant-skeleton-content .ant-skeleton-title  {
+    height: 20px;
+    width: 75%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.student-intern-tab-skeleton-tag .ant-skeleton-content .ant-skeleton-title  {
+    height: 32px;
+    width: 120px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

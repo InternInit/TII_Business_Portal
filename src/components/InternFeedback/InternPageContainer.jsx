@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import NavSearch from "../General/NavSearch.jsx";
+import SmartAvatar from "../General/SmartAvatar";
 
 import {
   Header,
@@ -26,7 +27,7 @@ import { startInternLoading, finishInternLoading } from "../../redux/actions";
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
+    interns: state.interns.currentInterns,
     loadingStatuses: state.loadingStatuses,
   };
 };
@@ -68,7 +69,8 @@ class InternPageContainer extends Component {
     console.log("trying to find");
     if (!this.props.loadingStatuses.isInternLoading) {
       const id = this.props.location.pathname.split("/");
-      const foundStudent = this.props.companyInfo.interns.find(
+      //console.log(this.props);
+      const foundStudent = this.props.interns.find(
         (student) => student.Id == id[2]
       );
       console.log(foundStudent);
@@ -116,10 +118,18 @@ class InternPageContainer extends Component {
                 </Dropdown>
                 <AntRow justify="center">
                   <AntCol className="universal-middle">
-                    <Avatar
+                    <SmartAvatar
+                      size={150}
+                      name={student.formData["0"]["First Name"]}
+                      fontSize="fortyEightFont"
+                    />
+                    {/**
+                     * @TODO
+                     * Make it so that it can check if there's actually a profile pic for the user
+                     <Avatar
                       size={150}
                       src={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                    />
+                    />*/}
                   </AntCol>
                   <AntCol flex="auto" offset={1}>
                     <AntRow className="intern-dashboard-banner-text-row">
@@ -150,7 +160,9 @@ class InternPageContainer extends Component {
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Name:</Caption>{" "}
-                          {student.school.counselorName}
+                          {student.school
+                            ? student.school.counselorName
+                            : "N/A"}
                         </Caption>
                       </AntCol>
                     </AntRow>
@@ -164,7 +176,7 @@ class InternPageContainer extends Component {
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Email:</Caption>{" "}
-                          {student.school.email}
+                          {student.school ? student.school.email : "N/A"}
                         </Caption>
                       </AntCol>
                     </AntRow>
@@ -172,13 +184,13 @@ class InternPageContainer extends Component {
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">School:</Caption>{" "}
-                          {student.school.name}
+                          {student.school ? student.school.name : "N/A"}
                         </Caption>
                       </AntCol>
                       <AntCol xs={24} md={12}>
                         <Caption className="sixteenFont" color="white">
                           <Caption color="#C5D1D8">Counselor Phone:</Caption>{" "}
-                          {student.school.phone}
+                          {student.school ? student.school.phone : "N/A"}
                         </Caption>
                       </AntCol>
                     </AntRow>
@@ -272,24 +284,54 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/dashboard`}
                 exact
-                render={() => <InternDashboard student={student} />}
+                render={() => (
+                  <InternDashboard
+                    student={student}
+                    getAccess={this.props.getAccess}
+                  />
+                )}
               />
               <Route
                 path={`/my-interns/:id/attendance`}
                 exact
-                component={() => <AttendanceRecord student={student} />}
+                component={() => (
+                  <AttendanceRecord
+                    student={student}
+                    getAccess={this.props.getAccess}
+                  />
+                )}
               />
               <Route
                 path={`/my-interns/:id/feedback`}
                 exact
-                component={() => <InternPastFeedback student={student} />}
+                component={() => (
+                  <InternPastFeedback
+                    student={student}
+                    getAccess={this.props.getAccess}
+                  />
+                )}
               />
               <Route
                 path={`/my-interns/:id/grades`}
                 exact
-                component={() => <InternPastGrades student={student} />}
+                component={() => (
+                  <InternPastGrades
+                    student={student}
+                    getAccess={this.props.getAccess}
+                  />
+                )}
               />
-              <Route path={`/my-interns/:id/attendance`} exact />
+              <Route
+                path={`/my-interns/:id/feedback/:id`}
+                exact
+                component={() => (
+                  <InternPastFeedback
+                    student={student}
+                    fromDashboard={true}
+                    getAccess={this.props.getAccess}
+                  />
+                )}
+              />
             </ReactSwitch>
           </InnerContainer>
         </PageContainer>

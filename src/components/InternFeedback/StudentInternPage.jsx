@@ -4,10 +4,12 @@ import StudentInternTab from "./StudentInternTab.jsx";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "../General/InfoBar.jsx";
 import { InnerContainer } from "../Styled/FundamentalComponents";
-import { Link } from "react-router-dom";
+import StudentInternPageSkeleton from "./StudentInternPageSkeleton";
 import { Button, Row as AntRow, Col as AntCol } from "antd";
 
 import { connect } from "react-redux";
+
+import _ from "underscore";
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +28,7 @@ const ButtonStyle = {
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
+    interns: state.interns.currentInterns,
     loadingStatuses: state.loadingStatuses,
   };
 };
@@ -34,9 +36,7 @@ const mapStateToProps = (state) => {
 class InternFeedback extends Component {
   render() {
     return this.props.loadingStatuses.isInternLoading ? (
-      <>
-        <h1>IMPLEMENT SOME KIND ON LOADING SCREEN HERE</h1>
-      </>
+      <StudentInternPageSkeleton />
     ) : (
       <>
         <Container className="global-container">
@@ -78,7 +78,7 @@ class InternFeedback extends Component {
               }}
             />
 
-            {this.props.companyInfo.interns.map((student) => (
+            {this.props.interns.map((student) => (
               <StudentInternTab
                 firstName={student.formData["0"]["First Name"]}
                 lastName={student.formData["0"]["Last Name"]}
@@ -87,22 +87,23 @@ class InternFeedback extends Component {
                 id={student.Id}
                 attendanceDue={
                   student.hours
-                    ? student.hours.filter((hour) => !hour.isApproved).length
+                    ? _.filter(student.hours, (hour) => !hour.isApproved).length
                     : 0
                 }
                 feedbackDue={
                   student.feedback
-                    ? student.feedback.filter((feedback) => !feedback.isRead)
+                    ? _.filter(student.feedback, (feedback) => !feedback.isRead)
                         .length
                     : 0
                 }
                 gradesDue={
                   student.grades
-                    ? student.grades.filter((grade) => !grade.isFinished).length
+                    ? _.filter(student.grades, (grade) => !grade.isFinished)
+                        .length
                     : 0
                 }
                 position={student.appliedFor}
-                school={student.school ? student.school.name : "Placeholder"}
+                school={student.school ? student.school.name : "N/A"}
                 /**
                  * @TODO
                  * Replace with actual profile picture

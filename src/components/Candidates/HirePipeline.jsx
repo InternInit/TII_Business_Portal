@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Row as AntRow, Col as AntCol } from "antd";
+import { Row as AntRow, Col as AntCol, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import ClipLoader from "react-spinners/ClipLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { PageContainer, Header } from "../Styled/FundamentalComponents.jsx";
+import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
-import styled from "styled-components";
+import _ from "underscore";
 
 const dragStyle = {
   backgroundColor: "#ebecf0",
@@ -23,25 +26,36 @@ const dragStyle = {
  */
 const onDragEnd = (result, columns, setColumns, props) => {
   if (!result.destination) return;
-  const { source, destination } = result;
 
-  let status = "Review";
-  switch (parseInt(destination.droppableId)) {
-    case 1:
-      status = "Review";
-      break;
-    case 2:
-      status = "Online Interview";
-      break;
-    case 3:
-      status = "On-Site Interview";
-      break;
-    case 4:
-      status = "Accepted";
-      break;
-    default:
-      status = "Review";
-    // code block
+  //console.log("Result " + JSON.stringify(result));
+  //console.log("Columns " + JSON.stringify(columns));
+  //console.log("Props" + JSON.stringify(props));
+
+  const { source, destination, draggableId } = result;
+  let status;
+  let studentIndex = _.findIndex(props.candidates, {Id: draggableId});
+
+  if (props.candidates[studentIndex].status.includes("Interview") && destination.droppableId === "2") {
+    console.log("Keeping interview status");
+    status = props.candidates[studentIndex].status;
+  } else {
+    console.log("Removing interview status");
+    status = "Review";
+
+    switch (parseInt(destination.droppableId)) {
+      case 1:
+        status = "Review";
+        break;
+      case 2:
+        status = "Interview";
+        break;
+      case 3:
+        status = "Accepted";
+        break;
+      default:
+        status = "Review";
+      // code block
+    }
   }
   props.updateCandidateStatus(result.draggableId, status);
 
@@ -81,33 +95,34 @@ const onDragEnd = (result, columns, setColumns, props) => {
 //Card Drop Zones
 const columnsFromBackend = {
   1: {
-    name: "Marked",
+    name: "Review",
     items: [],
   },
   2: {
-    name: "Online Interview",
+    name: "Interview",
     items: [],
   },
   3: {
-    name: "On-Site Interview",
-    items: [],
-  },
-  4: {
     name: "Accepted",
     items: [],
   },
 };
 
-function HirePipeline(props) {
+const HirePipeline = (props) => {
   const [columns, setColumns] = useState(columnsFromBackend);
+  useEffect(() => {
+    console.log("HirePipeline Component Mounted");
+  }, [])
+
+  /**
+   * Filters through all the candidates to place them into
+   * the correct buckets
+   */
   let markedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Review"
   );
-  let onlineInterviewCandidates = props.candidates.filter(
-    (candidate) => candidate.status === "Online Interview"
-  );
-  let onSiteInterviewCandidates = props.candidates.filter(
-    (candidate) => candidate.status === "On-Site Interview"
+  let interviewCandidates = props.candidates.filter((candidate) =>
+    candidate.status.includes("Interview")
   );
   let acceptedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Accepted"
@@ -117,9 +132,8 @@ function HirePipeline(props) {
     setColumns({
       ...columns,
       ["1"]: { ...columns["1"], items: markedCandidates },
-      ["2"]: { ...columns["2"], items: onlineInterviewCandidates },
-      ["3"]: { ...columns["3"], items: onSiteInterviewCandidates },
-      ["4"]: { ...columns["4"], items: acceptedCandidates },
+      ["2"]: { ...columns["2"], items: interviewCandidates },
+      ["3"]: { ...columns["3"], items: acceptedCandidates },
     });
   }, []);
 
@@ -130,7 +144,7 @@ function HirePipeline(props) {
      *
      */
     <div className="px-4 py-2" style={{ width: "100%" }}>
-      <AntRow gutter={[36, 0]} style={{ width: "100%", minWidth: "1450px" }}>
+      <AntRow gutter={[36, 0]} style={{ minWidth: "1200px" }}>
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
         >
@@ -141,7 +155,7 @@ function HirePipeline(props) {
                *Mapping of Columns (Already defined)
                *
                */
-              <AntCol span={6} key={columnId}>
+              <AntCol span={8} key={columnId}>
                 <div>
                   <Header className="twentyFont mb-point-25" subheading bolded>
                     {column.name}
@@ -154,64 +168,70 @@ function HirePipeline(props) {
                          *Drop Zone Columns for Student Cards
                          *
                          */
-                        <div
-                          {...provided.droppableProps}
-                          ref={provided.innerRef}
-                          style={dragStyle}
-                        >
-                          {/**
-                           *
-                           * Mapping of student cards and draggability
-                           *
-                           */}
-                          {column.items.map((item, index) => {
-                            return (
-                              <Draggable
-                                key={item.Id}
-                                draggableId={item.Id.toString()}
-                                index={index}
-                              >
-                                {(provided) => {
-                                  return (
-                                    <div
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      style={{
-                                        userSelect: "none",
-                                        padding: 8,
-                                        ...provided.draggableProps.style,
-                                      }}
-                                    >
-                                      {/**
-                                       *
-                                       * Student Card
-                                       *
-                                       */}
-                                      <DraggingCard
-                                        name={item.formData["0"]["First Name"]}
-                                        date={
-                                          item.formData["0"][
-                                            "Starting/Ending Dates Formatted"
-                                          ]
-                                        }
-                                        position={item.appliedFor}
-                                        city={item.formData["0"].City}
-                                        stateLocation={item.formData["0"].State}
-                                        updateCandidateStatus={
-                                          props.updateCandidateStatus
-                                        }
-                                        id={item.Id}
-                                        avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
-                                      />
-                                    </div>
-                                  );
-                                }}
-                              </Draggable>
-                            );
-                          })}
-                          {provided.placeholder}
-                        </div>
+                          <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            style={dragStyle}
+                          >
+                            <PulseLoader size={36} loading={props.loading.isCandidateLoading} />
+                            {/**
+                             *
+                             * Mapping of student cards and draggability
+                             *
+                             */}
+                            {column.items.map((item, index) => {
+                              return (
+                                <Draggable
+                                  key={item.Id}
+                                  draggableId={item.Id.toString()}
+                                  index={index}
+                                >
+                                  {(provided) => {
+                                    return (
+                                      <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        style={{
+                                          userSelect: "none",
+                                          padding: 8,
+                                          ...provided.draggableProps.style,
+                                        }}
+                                      >
+                                        {/**
+                                         *
+                                         * Student Card
+                                         *
+                                         */}
+                                        <DraggingCard
+                                          name={
+                                            item.formData["0"]["First Name"]
+                                          }
+                                          date={
+                                            item.formData["0"][
+                                              "Starting/Ending Dates Formatted"
+                                            ]
+                                          }
+                                          position={item.appliedFor}
+                                          city={item.formData["0"].City}
+                                          stateLocation={
+                                            item.formData["0"].State
+                                          }
+                                          status={item.status}
+                                          updateCandidateStatus={
+                                            props.updateCandidateStatus
+                                          }
+                                          id={item.Id}
+                                          avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
+                                        />
+                                      </div>
+                                    );
+                                  }}
+                                </Draggable>
+                              );
+                            })}
+                            {provided.placeholder}
+                          </div>
                       );
                     }}
                   </Droppable>
@@ -225,4 +245,13 @@ function HirePipeline(props) {
   );
 }
 
-export default HirePipeline;
+const HirePipelineLoader = React.memo((props) => {
+
+  console.log("Rendered Loader");
+
+    return (
+      <ClipLoader size={36} loading={props.loading} />
+    )
+});
+
+export default React.memo(HirePipeline);

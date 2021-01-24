@@ -27,6 +27,9 @@ import {
   RequiredAsterisk,
 } from "../Styled/FundamentalComponents";
 
+import { connect } from "react-redux";
+import { startListingLoading, finishListingLoading } from "../../redux/actions";
+
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -133,14 +136,6 @@ const courseLevels = [
 ];
 
 //CSS Constants
-const pageStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  float: "center",
-  backgroundColor: "#eceff9",
-};
-
 const buttonStyle = {
   display: "flex",
   justifyContent: "flex-end",
@@ -209,31 +204,63 @@ const FormProps = {
   },
 };
 
+const mapStateToProps = (state) => {
+  return {
+    companyInfo: state.companyInfo,
+    loadingStatuses: state.loadingStatuses,
+  };
+};
+
+const mapDispatchToProps = {
+  startListingLoading,
+  finishListingLoading,
+};
+
 class InternshipDetails extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { isNewListing: true };
+    this.state = {
+      isNewListing: true,
+      filters: null,
+      loading: true,
+    };
   }
   formRef = React.createRef();
 
   componentDidMount() {
-    if (!this.props.location.pathname.includes("add-listing")) {
-      this.setState({ isNewListing: false });
-      console.log(this.props);
+    this.findListingData();
+  }
 
-      let listingData = this.props.listings.filter(
-        (listing) => listing.Id === this.props.location.pathname.split("/")[2]
-      )[0];
-      try {
-        listingData["Internship Dates"] = [
-          moment(listingData["Internship Dates"][0]),
-          moment(listingData["Internship Dates"][1]),
-        ];
-      } catch (e) {}
-      this.formRef.current.setFieldsValue(listingData);
+  componentDidUpdate() {
+    if (this.state.filters == null) {
+      this.findListingData();
     }
   }
+
+  findListingData = () => {
+    if (!this.props.loadingStatuses.isListingLoading) {
+      if (!this.props.location.pathname.includes("add-listing")) {
+        this.setState({ isNewListing: false });
+
+        let listingData = this.props.listings.filter(
+          (listing) => listing.Id === this.props.location.pathname.split("/")[2]
+        )[0];
+        try {
+          listingData["Internship Dates"] = [
+            moment(listingData["Internship Dates"][0]),
+            moment(listingData["Internship Dates"][1]),
+          ];
+        } catch (e) {}
+        this.setState({ filters: listingData.Filters }, () => {
+          console.log(this.state);
+          this.setState({ loading: false }, () => {
+            this.formRef.current.setFieldsValue(listingData);
+          });
+        });
+      }
+    }
+  };
 
   onFinish = (values, allFilters) => {
     console.log(values);
@@ -265,33 +292,71 @@ class InternshipDetails extends React.Component {
 
   render() {
     let { buttonText, title } = this.props;
-    return (
-      <React.Fragment>
-        <NavSearch title={title} searchBar={false} />
-        <PageContainer>
-          <div className="px-8 py-2" style={{ width: "100%" }}>
-            <Breadcrumb style={{ paddingBottom: "1em" }}>
-              <Breadcrumb.Item className="twentyFont">
-                <Link to="/internship-listings">Internship Postings</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item className="twentyFont">
-                {this.props.location.pathname.includes("add-listing")
-                  ? "Create Posting"
-                  : "My Post"}
-              </Breadcrumb.Item>
-            </Breadcrumb>
 
-            <InternshipDetailForm
-              initialFilters={[]}
-              buttonText={buttonText}
-              title={title}
-              formRef={this.formRef}
-              onFinish={this.onFinish}
-            />
-          </div>
-        </PageContainer>
-      </React.Fragment>
-    );
+    console.log();
+
+    if (this.props.location.pathname.includes("add-listing")) {
+      return (
+        <React.Fragment>
+          <NavSearch title={title} searchBar={false} />
+          <PageContainer>
+            <div className="px-8 py-2" style={{ width: "100%" }}>
+              <Breadcrumb style={{ paddingBottom: "1em" }}>
+                <Breadcrumb.Item className="twentyFont">
+                  <Link to="/internship-listings">Internship Postings</Link>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="twentyFont">
+                  {this.props.location.pathname.includes("add-listing")
+                    ? "Create Posting"
+                    : "My Post"}
+                </Breadcrumb.Item>
+              </Breadcrumb>
+
+              <InternshipDetailForm
+                initialFilters={this.state.filters ? this.state.filters : []}
+                buttonText={buttonText}
+                title={title}
+                formRef={this.formRef}
+                onFinish={this.onFinish}
+                isNewPosting={true}
+              />
+            </div>
+          </PageContainer>
+        </React.Fragment>
+      );
+    } else {
+      return this.state.loading ||
+        this.props.loadingStatuses.isListingLoading ? (
+        <h1>Implement Loading Here</h1>
+      ) : (
+        <React.Fragment>
+          <NavSearch title={title} searchBar={false} />
+          <PageContainer>
+            <div className="px-8 py-2" style={{ width: "100%" }}>
+              <Breadcrumb style={{ paddingBottom: "1em" }}>
+                <Breadcrumb.Item className="twentyFont">
+                  <Link to="/internship-listings">Internship Postings</Link>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="twentyFont">
+                  {this.props.location.pathname.includes("add-listing")
+                    ? "Create Posting"
+                    : "My Post"}
+                </Breadcrumb.Item>
+              </Breadcrumb>
+
+              <InternshipDetailForm
+                initialFilters={this.state.filters ? this.state.filters : []}
+                buttonText={buttonText}
+                title={title}
+                formRef={this.formRef}
+                onFinish={this.onFinish}
+                isNewPosting={false}
+              />
+            </div>
+          </PageContainer>
+        </React.Fragment>
+      );
+    }
   }
 }
 
@@ -305,6 +370,7 @@ const InternshipDetailForm = ({
   onFinish,
   title,
   formRef,
+  isNewPosting
 }) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
@@ -527,7 +593,7 @@ const InternshipDetailForm = ({
         onFinish={(values) => onFinish(values, postFilters)}
       >
         <Header className="twentyEightFont universal-center mb-1" bolded>
-          Create an Internship Posting
+          {isNewPosting ? "Create an Internship Posting" : "Edit Your Internship Posting"}
         </Header>
 
         <Header className={headerClassNames} subheading>
@@ -842,4 +908,6 @@ const InternshipDetailForm = ({
   );
 };
 
-export default withRouter(InternshipDetails);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(InternshipDetails)
+);
