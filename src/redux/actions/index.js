@@ -164,10 +164,10 @@ export const submitGrade = (internIndex, gradeObj) => {
   }
 }
 
-export const markFeedbackRead = (internId, feedbackId) => {
+export const markFeedbackRead = (internIndex, feedbackObj) => {
   return {
-    internId: internId,
-    feedbackId: feedbackId,
+    internIndex: internIndex,
+    feedbackObj: feedbackObj,
     type: "MARK_FEEDBACK_READ"
   }
 }

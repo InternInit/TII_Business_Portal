@@ -325,7 +325,11 @@ class InternPageContainer extends Component {
                 path={`/my-interns/:id/feedback/:id`}
                 exact
                 component={() => (
-                  <InternPastFeedback student={student} fromDashboard={true} />
+                  <InternPastFeedback
+                    student={student}
+                    fromDashboard={true}
+                    getAccess={this.props.getAccess}
+                  />
                 )}
               />
             </ReactSwitch>

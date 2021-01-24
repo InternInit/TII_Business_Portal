@@ -238,17 +238,17 @@ def mutate_hours_assoc():
 @app.route('/api/mutate_feedback_assoc', methods=["POST"])
 def mutate_feedback_assoc():
     query = json.loads(request.get_data().decode("utf-8"))
-    keys = ["dueDateFormatted", "Days Until dueDate", "finishedDateFormatted", "Days Until finishedDate"]
-    query["variables"]["grades"] = json.loads(query["variables"]["grades"])
-    delete_keys_from_dict(query["variables"]["grades"], keys)
-    query["variables"]["grades"] = json.dumps(query["variables"]["grades"])
+    keys = ["dateFormatted", "Days Until date"]
+    query["variables"]["feedback"] = json.loads(query["variables"]["feedback"])
+    delete_keys_from_dict(query["variables"]["feedback"], keys)
+    query["variables"]["feedback"] = json.dumps(query["variables"]["feedback"])
     
     headers = request.headers
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json=query)
     resp_json = json.loads(req.text)
-    grades = resp_json["data"]["updateInternAssoc"]["grades"]
-    grades = json.loads(grades)
-    return json.dumps(datetime_resolver(grades))
+    feedback = resp_json["data"]["updateInternAssoc"]["feedback"]
+    feedback = json.loads(feedback)
+    return json.dumps(datetime_resolver(feedback))
 
 
 ##############################
