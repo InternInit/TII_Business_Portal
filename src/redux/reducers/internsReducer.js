@@ -49,6 +49,26 @@ function internsReducer(state = initialState, action) {
                     }
                 })
             }
+        case "MARK_FEEDBACK_READ":
+            return {
+                ...state,
+                currentInterns: state.currentInterns.map((intern, index) => {
+                    if(index !== action.internIndex) {
+                        return intern
+                    }
+
+                    return {
+                        ...intern,
+                        feedback: {
+                            ...intern.feedback,
+                            [action.feedbackObj.Id]: {
+                                ...intern.feedback[action.feedbackObj.Id],
+                                ...action.feedbackObj
+                            }
+                        }
+                    }
+                })
+            }
         default:
             return state;
     }

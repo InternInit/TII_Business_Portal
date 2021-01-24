@@ -18,18 +18,67 @@ import { useLocation } from "react-router-dom";
 
 import moment from "moment";
 
+import axios from "axios";
+
+import gql from "graphql-tag";
+import { print } from "graphql";
+
+// prettier-ignore
+const MUTATION = gql`
+mutation MyMutation ($feedback:AWSJSON, $assocId:String!){
+  updateInternAssoc(input: {assocId: $assocId, feedback: $feedback}) {
+    feedback
+  }
+}                 
+`
+
 const mapDispatchToProps = {
   markFeedbackRead,
 };
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
+    interns: state.interns.currentInterns,
   };
 };
 
 const InternPastFeedback = (props) => {
   let { student, fromDashboard } = props;
+
+  const markRead = async (feedbackId) => {
+    //markFeedbackRead(student.Id, data.Id);
+    let access = await props.getAccess();
+
+    console.log(props);
+    let internIndex = _.findIndex(props.interns, { Id: student.Id });
+    let internOfInterest = { ...props.interns[internIndex] };
+    let newFeedback = { ...internOfInterest.feedback };
+    let feedbackObj = { ...newFeedback[feedbackId] };
+
+    feedbackObj.isRead = true;
+    newFeedback[feedbackId] = feedbackObj;
+    console.log(newFeedback);
+    axios({
+      url: "/api/mutate_feedback_assoc",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: print(MUTATION),
+        variables: {
+          assocId: internOfInterest.assocId,
+          feedback: JSON.stringify(newFeedback),
+        },
+      },
+    })
+      .then((result) => {
+        props.markFeedbackRead(internIndex, feedbackObj);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -46,6 +95,7 @@ const InternPastFeedback = (props) => {
             data={data}
             markFeedbackRead={props.markFeedbackRead}
             hasModal={fromDashboard}
+            markRead={markRead}
           />
         ))}
       </Row>
@@ -64,7 +114,14 @@ const InternPastFeedback = (props) => {
   );
 };
 
-const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
+const FeedbackTab = ({
+  data,
+  student,
+  markFeedbackRead,
+  hasModal,
+  getAccess,
+  markRead,
+}) => {
   const [active, toggleActive] = useState(hasModal);
   const [show, setShow] = useState(false);
 
@@ -73,7 +130,7 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
 
   const location = useLocation();
 
-  const getFeedbackId = () => {
+  const getFeedbackId = (props) => {
     let id;
     {
       hasModal
@@ -99,11 +156,6 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
         break;
     }
     return message;
-  };
-
-  const markRead = () => {
-    markFeedbackRead(student.Id, data.Id);
-    console.log("Marking READDDDD!!!");
   };
 
   const isXs = Object.entries(screens)
@@ -132,7 +184,7 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
               type="primary"
               onClick={() => {
                 toggleActive(false);
-                markRead();
+                markRead(data.Id);
               }}
             >
               Done
@@ -140,7 +192,7 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
           }
           onCancel={() => {
             toggleActive(false);
-            markRead();
+            markRead(data.Id);
           }}
         >
           {findFeedback()}
@@ -215,14 +267,18 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
               <Tooltip title="Read">
                 <BiCheckCircle
                   className="student-intern-tab-read-icon"
-                  onClick={markRead}
+                  onClick={() => {
+                    markRead(data.Id);
+                  }}
                 />
               </Tooltip>
             ) : (
               <Tooltip title="Mark Read">
                 <BiCheckCircle
                   className="student-intern-tab-unread-icon"
-                  onClick={markRead}
+                  onClick={() => {
+                    markRead(data.Id);
+                  }}
                 />
               </Tooltip>
             )}
