@@ -166,9 +166,6 @@ const GradeCard = (props) => {
             {props.review.dueDateFormatted}
           </Caption>
         </AntCol>
-        <AntCol>
-          <Header className="sixteenFont">{props.review.Id}</Header>
-        </AntCol>
         <AntCol>{RenderTag()}</AntCol>
       </AntRow>
       <AntRow className="pt-point-5 pb-1">
