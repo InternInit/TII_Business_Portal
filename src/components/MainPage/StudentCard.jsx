@@ -10,6 +10,7 @@ import {
 import { UserOutlined } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
+import { reduce } from "underscore";
 
 const StudentCard = (props) => {
   const { firstName, lastName, avatar, id, tag, type, position } = props;
@@ -35,7 +36,8 @@ const StudentCard = (props) => {
     switch (type) {
       case "Review":
         return {
-          textColor: colors.review.text,
+          textColor: "red",
+          //colors.review.text,
           backgroundColor: colors.review.background,
         };
       default:

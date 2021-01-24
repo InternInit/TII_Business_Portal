@@ -55,6 +55,8 @@ const AttendanceRecord = (props) => {
   moment.updateLocale("en", {
     weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   });
+
+  console.log(props.student.hours)
   return (
     <Row className="mt-1" justify="end">
       <Col
@@ -79,6 +81,7 @@ const AttendanceRecord = (props) => {
                 time={hour.time}
                 date={hour.dateFormatted}
                 review={true}
+                getAccess={props.getAccess}
               />
             ))
         ) : (
@@ -255,85 +258,6 @@ const AttendanceRecord = (props) => {
                   />
                 </Row>
               )}
-
-              <Row className="attendance-list-container">
-                {_.sortBy(
-                  _.filter(props.student.hours, (day) => day.isApproved),
-                  "date"
-                ).map((data) => {
-                  return (
-                    <Scrollbars autoHide={true} style={{ height: 50 }}>
-                      {isMd ? (
-                        <Col span={24}>
-                          <Row
-                            className="attendance-list-row"
-                            align="middle"
-                            justify="space-between"
-                          >
-                            <Button
-                              style={{ padding: "0px" }}
-                              type="link"
-                              onClick={() => {
-                                setState({
-                                  date: moment(data.date).format("MM/DD/YYYY"),
-                                  dateList: moment(data.date).format(
-                                    "MM/DD/YYYY"
-                                  ),
-                                });
-                              }}
-                            >
-                              <Header className="student-attendance-list">
-                                {moment(data.date).format("MM/DD/YYYY")}
-                              </Header>
-                            </Button>
-
-                            <Header
-                              className="sixteenFont mr-point-5"
-                              style={{ color: "#a0a0a0" }}
-                            >
-                              {data.time}
-                            </Header>
-                          </Row>
-                        </Col>
-                      ) : (
-                        <Col span={24}>
-                          <Row
-                            className="attendance-list-row"
-                            align="middle"
-                            justify="space-between"
-                          >
-                            <Button
-                              style={{ padding: "0px" }}
-                              type="link"
-                              onClick={() => {
-                                setState({
-                                  date: moment(data.date).format("MM/DD/YYYY"),
-                                  dateList: moment(data.date).format(
-                                    "MM/DD/YYYY"
-                                  ),
-                                });
-                              }}
-                            >
-                              <Header className="student-attendance-list">
-                                <div style={{ fontSize: "16px" }}>
-                                  {moment(data.date).format("MM/DD/YYYY")}
-                                </div>
-                              </Header>
-                            </Button>
-
-                            <Header
-                              className="sixteenFont mr-point-5"
-                              color="#a0a0a0"
-                            >
-                              {data.time}
-                            </Header>
-                          </Row>
-                        </Col>
-                      )}
-                    </Scrollbars>
-                  );
-                })}
-              </Row>
             </Col>
 
             {/* Calendar */}

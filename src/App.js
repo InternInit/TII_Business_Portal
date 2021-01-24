@@ -75,6 +75,7 @@ const mapStateToProps = (state) => {
     companyInfo: state.companyInfo,
     listings: state.listings,
     loadingStatuses: state.loadingStatuses,
+    interns: state.interns.currentInterns,
   };
 };
 
@@ -214,6 +215,7 @@ class App extends React.Component {
     this.props.startCandidateLoading();
     this.props.startInternLoading();
     let access = await this.getAccess();
+    console.log(this.props);
     axios({
       url: "/api/get_student_candidates",
       method: "post",
@@ -263,6 +265,8 @@ class App extends React.Component {
       localStorage.setItem("NumInterns", interns.length);
       this.props.finishCandidateLoading();
       this.props.finishInternLoading();
+    }).catch((error) => {
+      console.log(error);
     });
   };
 
@@ -344,7 +348,7 @@ class App extends React.Component {
                       candidates={this.props.companyInfo.candidates}
                       listings={this.props.listings}
                       loading={this.props.loadingStatuses}
-                      interns={this.props.companyInfo.interns}
+                      interns={this.props.interns}
                     />
                   )}
                 />
@@ -405,7 +409,11 @@ class App extends React.Component {
                 <Route
                   path={`/my-interns/:id`}
                   component={(props) => (
-                    <InternPageContainer {...props} key="internpagecontainer" />
+                    <InternPageContainer 
+                      {...props} 
+                      getAccess={this.getAccess}
+                      key="internpagecontainer" 
+                    />
                   )}
                 />
                 <RouteTracker />
@@ -413,6 +421,12 @@ class App extends React.Component {
                   path="/settings"
                   component={() => <CompanyDetails key="companydetails" />}
                 />
+                <Route path="/applicants" component={props => (
+                  <CandidatesContainer
+                    {...props}
+                    getAccess={this.getAccess}
+                  />)} />
+                <Route path="/settings" component={CompanyDetails} />
 
                 {/**<ReactSwitch>
                   <Route path="/users" exact component={() => 

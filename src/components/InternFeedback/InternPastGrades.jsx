@@ -45,7 +45,12 @@ const InternPastGrades = (props) => {
                 (gradePage + 1) * GRADES_PER_PAGE
               )
               .map((grade) => (
-                <GradeCard review={grade} studentId={props.student.Id} />
+                <GradeCard
+                  review={grade}
+                  studentId={props.student.Id}
+                  reset={true}
+                  getAccess={props.getAccess}
+                />
               ))
           ) : (
             <div className="py-2-5 universal-center ">
