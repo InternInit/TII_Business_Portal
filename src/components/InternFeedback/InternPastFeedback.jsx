@@ -86,7 +86,7 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
     return id;
   };
 
-  console.log(data);
+  //console.log(data);
 
   const findFeedback = () => {
     let message;
@@ -103,6 +103,7 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
 
   const markRead = () => {
     markFeedbackRead(student.Id, data.Id);
+    console.log("Marking READDDDD!!!");
   };
 
   const isXs = Object.entries(screens)
@@ -127,11 +128,12 @@ const FeedbackTab = ({ data, student, markFeedbackRead, hasModal }) => {
           visible={active}
           footer={
             <Button
-              key="done"
+              key="submit"
               type="primary"
               onClick={() => {
                 toggleActive(false);
-                markRead();}}
+                markRead();
+              }}
             >
               Done
             </Button>
