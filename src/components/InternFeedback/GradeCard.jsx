@@ -111,8 +111,9 @@ const GradeCard = (props) => {
     let access = await props.getAccess();
     let gradeId = props.review.Id;
     let internIndex = _.findIndex(props.interns, { Id: props.studentId });
-    let newGrades = props.interns[internIndex].grades;
-    let gradeObj = newGrades[gradeId];
+    let internOfInterest = { ...props.interns[internIndex] };
+    let newGrades = { ...internOfInterest.grades };
+    let gradeObj = { ...newGrades[gradeId] };
 
     let finishDate = new Date();
     finishDate = finishDate.toISOString();
@@ -122,16 +123,8 @@ const GradeCard = (props) => {
     gradeObj.finishedDate = finishDate;
     gradeObj.isFinished = true;
 
-    Object.keys(newGrades).forEach((gradeKey) => {
-      delete newGrades[gradeKey].dueDateFormatted;
-      delete newGrades[gradeKey]["Days Until dueDate"];
-
-      try {
-        delete newGrades[gradeKey].finishedDateFormatted;
-        delete newGrades[gradeKey]["Days Until finishedDate"];
-      } catch (e) {}
-    });
-    //console.log(newGrades);
+    newGrades[gradeId] = gradeObj;
+    console.log(newGrades);
     //console.log(JSON.stringify(newGrades));
 
     axios({
@@ -151,7 +144,7 @@ const GradeCard = (props) => {
       .then((result) => {
         console.log(result.data[gradeId]);
         console.log(internIndex, gradeId, result.data[gradeId]);
-        props.submitGrade();
+        props.submitGrade(internIndex, gradeObj);
         message.success("Grade Submitted");
       })
       .catch((error) => {
@@ -172,6 +165,9 @@ const GradeCard = (props) => {
           <Caption className="fourteenFont" light thin>
             {props.review.dueDateFormatted}
           </Caption>
+        </AntCol>
+        <AntCol>
+          <Header className="sixteenFont">{props.review.Id}</Header>
         </AntCol>
         <AntCol>{RenderTag()}</AntCol>
       </AntRow>

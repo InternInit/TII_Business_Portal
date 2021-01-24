@@ -3,6 +3,8 @@ from dateutil.parser import parse
 from datetime import datetime, date, time, timezone
 import json
 import requests
+from collections import MutableMapping
+from contextlib import suppress
 
 app = Flask(__name__)
 
@@ -167,7 +169,6 @@ def get_student_candidates():
     
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
     # Thatgit s's what we get for using a 19 year old language.
-    print(resp_json)
     for intern in resp_json["data"]["getInterns"]:
         loaded_intern = intern
         if(loaded_intern["status"] == "Accepted"):
@@ -196,15 +197,27 @@ def mutate_candidate_assoc():
     resp_json = json.loads(req.text)
     return json.dumps(resp_json)
 
+def delete_keys_from_dict(dictionary, keys):
+    for key in keys:
+        with suppress(KeyError):
+            del dictionary[key]
+    for value in dictionary.values():
+        if isinstance(value, MutableMapping):
+            delete_keys_from_dict(value, keys)
+                
 @app.route('/api/mutate_grades_assoc', methods=["POST"])
 def mutate_grades_assoc():
-    query = request.get_data().decode("utf-8")
+    query = json.loads(request.get_data().decode("utf-8"))
+    keys = ["dueDateFormatted", "Days Until dueDate", "finishedDateFormatted", "Days Until finishedDate"]
+    query["variables"]["grades"] = json.loads(query["variables"]["grades"])
+    delete_keys_from_dict(query["variables"]["grades"], keys)
+    query["variables"]["grades"] = json.dumps(query["variables"]["grades"])
+    
     headers = request.headers
-    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json=query)
     resp_json = json.loads(req.text)
     grades = resp_json["data"]["updateInternAssoc"]["grades"]
     grades = json.loads(grades)
-    print(json.dumps(datetime_resolver(grades)))
     return json.dumps(datetime_resolver(grades))
 ##############################
 #

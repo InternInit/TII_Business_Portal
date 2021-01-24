@@ -164,9 +164,11 @@ export const rejectHours = (internId, hourId) => {
   };
 }
 
-export const submitGrade = () => {
+export const submitGrade = (internIndex, gradeObj) => {
   return {
-    type: "SUBMIT_GRADE"
+    type: "SUBMIT_GRADE",
+    internIndex: internIndex,
+    gradeObj: gradeObj,
   }
 }
 
