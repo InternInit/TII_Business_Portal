@@ -148,19 +148,11 @@ export const finishListingLoading = () => {
   };
 };
 
-export const approveHours = (internId, hourId) => {
+export const submitHour = (internIndex, hourObj) => {
   return {
-    internId: internId,
-    hourId: hourId,
-    type: "APPROVE_HOURS"
-  };
-}
-
-export const rejectHours = (internId, hourId) => {
-  return {
-    internId: internId,
-    hourId: hourId,
-    type: "REJECT_HOURS"
+    internIndex: internIndex,
+    hourObj: hourObj,
+    type: "SUBMIT_HOUR"
   };
 }
 

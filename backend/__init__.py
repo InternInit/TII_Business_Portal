@@ -219,6 +219,38 @@ def mutate_grades_assoc():
     grades = resp_json["data"]["updateInternAssoc"]["grades"]
     grades = json.loads(grades)
     return json.dumps(datetime_resolver(grades))
+
+@app.route('/api/mutate_hours_assoc', methods=["POST"])
+def mutate_hours_assoc():
+    query = json.loads(request.get_data().decode("utf-8"))
+    keys = ["dueDateFormatted", "Days Until dueDate", "dateFormatted", "Days Until date"]
+    query["variables"]["hours"] = json.loads(query["variables"]["hours"])
+    delete_keys_from_dict(query["variables"]["hours"], keys)
+    query["variables"]["hours"] = json.dumps(query["variables"]["hours"])
+    
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json=query)
+    resp_json = json.loads(req.text)
+    hours = resp_json["data"]["updateInternAssoc"]["hours"]
+    hours = json.loads(hours)
+    return json.dumps(datetime_resolver(hours))
+
+@app.route('/api/mutate_feedback_assoc', methods=["POST"])
+def mutate_feedback_assoc():
+    query = json.loads(request.get_data().decode("utf-8"))
+    keys = ["dueDateFormatted", "Days Until dueDate", "finishedDateFormatted", "Days Until finishedDate"]
+    query["variables"]["grades"] = json.loads(query["variables"]["grades"])
+    delete_keys_from_dict(query["variables"]["grades"], keys)
+    query["variables"]["grades"] = json.dumps(query["variables"]["grades"])
+    
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json=query)
+    resp_json = json.loads(req.text)
+    grades = resp_json["data"]["updateInternAssoc"]["grades"]
+    grades = json.loads(grades)
+    return json.dumps(datetime_resolver(grades))
+
+
 ##############################
 #
 #       USER MANAGEMENT

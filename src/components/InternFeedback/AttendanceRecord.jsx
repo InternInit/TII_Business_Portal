@@ -79,6 +79,7 @@ const AttendanceRecord = (props) => {
                 time={hour.time}
                 date={hour.dateFormatted}
                 review={true}
+                getAccess={props.getAccess}
               />
             ))
         ) : (

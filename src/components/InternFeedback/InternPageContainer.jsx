@@ -294,12 +294,22 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/attendance`}
                 exact
-                component={() => <AttendanceRecord student={student} />}
+                component={() => (
+                  <AttendanceRecord
+                    student={student}
+                    getAccess={this.props.getAccess}
+                  />
+                )}
               />
               <Route
                 path={`/my-interns/:id/feedback`}
                 exact
-                component={() => <InternPastFeedback student={student} />}
+                component={() => (
+                  <InternPastFeedback
+                    student={student}
+                    getAccess={this.props.getAccess}
+                  />
+                )}
               />
               <Route
                 path={`/my-interns/:id/grades`}

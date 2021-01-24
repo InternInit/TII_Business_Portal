@@ -51,6 +51,7 @@ const InternDashboard = (props) => {
                   time={hour.time}
                   date={hour.dateFormatted}
                   review={true}
+                  getAccess={props.getAccess}
                 />
               ))
           ) : (
@@ -89,6 +90,7 @@ const InternDashboard = (props) => {
                     id={feedback.Id}
                     //temporary ghetto solution
                     studentID={props.student.Id}
+                    getAccess={props.getAccess}
                   />
                   {console.log(feedback)}{" "}
                 </>

@@ -29,6 +29,26 @@ function internsReducer(state = initialState, action) {
                     }
                 })
             }
+        case "SUBMIT_HOUR":
+            return {
+                ...state,
+                currentInterns: state.currentInterns.map((intern, index) => {
+                    if(index !== action.internIndex) {
+                        return intern
+                    }
+
+                    return {
+                        ...intern,
+                        hours: {
+                            ...intern.hours,
+                            [action.hourObj.Id]: {
+                                ...intern.hours[action.hourObj.Id],
+                                ...action.hourObj
+                            }
+                        }
+                    }
+                })
+            }
         default:
             return state;
     }
