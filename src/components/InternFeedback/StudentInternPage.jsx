@@ -28,7 +28,7 @@ const ButtonStyle = {
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
+    interns: state.interns.currentInterns,
     loadingStatuses: state.loadingStatuses,
   };
 };
@@ -78,7 +78,7 @@ class InternFeedback extends Component {
               }}
             />
 
-            {this.props.companyInfo.interns.map((student) => (
+            {this.props.interns.map((student) => (
               <StudentInternTab
                 firstName={student.formData["0"]["First Name"]}
                 lastName={student.formData["0"]["Last Name"]}

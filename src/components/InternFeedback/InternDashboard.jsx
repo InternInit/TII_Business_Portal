@@ -12,7 +12,7 @@ import GradeCard from "./GradeCard.jsx";
 import { Row as AntRow, Col as AntCol, Avatar, Button, Pagination } from "antd";
 import _ from "underscore";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Icons
 import { BiMessageSquareDetail, BiTime, BiCheckSquare } from "react-icons/bi";
@@ -21,13 +21,10 @@ const ATTENDANCE_PER_PAGE = 5;
 const FEEDBACK_PER_PAGE = 2;
 const GRADES_PER_PAGE = 1;
 
-
 const InternDashboard = (props) => {
   const [page, changePage] = useState(0);
   const [feedbackPage, changeFeedbackPage] = useState(0);
   const [gradePage, changeGradePage] = useState(0);
-
-
 
   return (
     <>
@@ -54,6 +51,7 @@ const InternDashboard = (props) => {
                   time={hour.time}
                   date={hour.dateFormatted}
                   review={true}
+                  getAccess={props.getAccess}
                 />
               ))
           ) : (
@@ -85,17 +83,17 @@ const InternDashboard = (props) => {
               )
               .map((feedback) => (
                 <>
-                <StudentFeedbackCard
-                  avatar={props.student.image ? props.student.image : false}
-                  name={props.student.formData[0]["First Name"]}
-                  feedback={feedback}
-                  id={feedback.Id}
-
-                  //temporary ghetto solution
-                  studentID={props.student.Id}
-                />
-{                 console.log(feedback)
-}                </>
+                  <StudentFeedbackCard
+                    avatar={props.student.image ? props.student.image : false}
+                    name={props.student.formData[0]["First Name"]}
+                    feedback={feedback}
+                    id={feedback.Id}
+                    //temporary ghetto solution
+                    studentID={props.student.Id}
+                    getAccess={props.getAccess}
+                  />
+                  {console.log(feedback)}{" "}
+                </>
               ))
           ) : (
             <div className="py-2-5 universal-center ">
@@ -126,6 +124,7 @@ const InternDashboard = (props) => {
                   review={grade}
                   studentId={props.student.Id}
                   reset={true}
+                  getAccess={props.getAccess}
                 />
               ))
           ) : (
@@ -238,8 +237,7 @@ const StudentFeedbackCard = (props) => {
       </AntRow>
       <AntRow className="pt-point-5s" justify="end">
         <Link to={`/my-interns/${props.studentID}/feedback/${props.id}`}>
-        <Button type="link">Continue Reading</Button>
-
+          <Button type="link">Continue Reading</Button>
         </Link>
       </AntRow>
     </TabContainer>

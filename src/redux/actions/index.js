@@ -148,29 +148,19 @@ export const finishListingLoading = () => {
   };
 };
 
-export const approveHours = (internId, hourId) => {
+export const submitHour = (internIndex, hourObj) => {
   return {
-    internId: internId,
-    hourId: hourId,
-    type: "APPROVE_HOURS"
+    internIndex: internIndex,
+    hourObj: hourObj,
+    type: "SUBMIT_HOUR"
   };
 }
 
-export const rejectHours = (internId, hourId) => {
+export const submitGrade = (internIndex, gradeObj) => {
   return {
-    internId: internId,
-    hourId: hourId,
-    type: "REJECT_HOURS"
-  };
-}
-
-export const submitGrade = (internId, gradeId, assessment, additionalComments) => {
-  return {
-    internId: internId,
-    gradeId: gradeId,
-    assessment: assessment,
-    additionalComments: additionalComments,
-    type: "SUBMIT_GRADE"
+    type: "SUBMIT_GRADE",
+    internIndex: internIndex,
+    gradeObj: gradeObj,
   }
 }
 
