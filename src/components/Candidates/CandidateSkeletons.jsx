@@ -295,26 +295,44 @@ export const CandidateDetailedviewSkeleton = (props) => {
         </AntCol>
       </AntRow>
 
-      <AntRow gutter={[32, 0]} justify="space-between">
-        <AntCol span={7}>
-          <ActionButton size="large">Read Full Application</ActionButton>
-        </AntCol>
-        <AntCol span={7}>
-          <ActionButton size="large" onClick={props.onReview}>
-            Review for Later
-          </ActionButton>
-        </AntCol>
-        <AntCol span={7}>
-          <ActionButton size="large" onClick={props.onInterview}>
-            Move to Interview
-          </ActionButton>
-        </AntCol>
-        <AntCol span={3}>
-          <Button size="large" type="danger" block onClick={props.onReject}>
-            Not a fit
-          </Button>
-        </AntCol>
-      </AntRow>
+      {props.review ? (
+        <AntRow gutter={[32, 0]} justify="space-between">
+          <AntCol span={10}>
+            <ActionButton size="large">Read Full Application</ActionButton>
+          </AntCol>
+          <AntCol span={10}>
+            <ActionButton size="large" onClick={props.onInterview}>
+              Move to Interview
+            </ActionButton>
+          </AntCol>
+          <AntCol span={4}>
+            <Button size="large" type="danger" block onClick={props.onReject}>
+              Not a fit
+            </Button>
+          </AntCol>
+        </AntRow>
+      ) : (
+        <AntRow gutter={[32, 0]} justify="space-between">
+          <AntCol span={7}>
+            <ActionButton size="large">Read Full Application</ActionButton>
+          </AntCol>
+          <AntCol span={7}>
+            <ActionButton size="large" onClick={props.onReview}>
+              Review for Later
+            </ActionButton>
+          </AntCol>
+          <AntCol span={7}>
+            <ActionButton size="large" onClick={props.onInterview}>
+              Move to Interview
+            </ActionButton>
+          </AntCol>
+          <AntCol span={3}>
+            <Button size="large" type="danger" block onClick={props.onReject}>
+              Not a fit
+            </Button>
+          </AntCol>
+        </AntRow>
+      )}
     </TabContainer>
   );
 };

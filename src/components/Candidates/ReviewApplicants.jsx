@@ -48,7 +48,7 @@ class ReviewApplicants extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quickview: false,
+      quickview: true,
       page: "1",
       review: true,
     };
@@ -323,7 +323,13 @@ class ReviewApplicants extends Component {
           Marked for Review
         </Header>
         <Divider />
-        {reviewCandidates.length > 0 ? (
+        {this.props.loadingStatuses.isCandidateLoading ? (
+          <>
+            {_.times(localStorage.getItem("NumReview"), () => (
+              <CandidateDetailedviewSkeleton review={true} />
+            ))}
+          </>
+        ) : reviewCandidates.length > 0 ? (
           reviewCandidates.map((student, index) => (
             <CandidateDetailedviewReviewTab
               key={index}
