@@ -245,7 +245,9 @@ class InternshipDetails extends React.Component {
         let listingData = this.props.listings.filter(
           (listing) => listing.Id === this.props.location.pathname.split("/")[2]
         )[0];
+        
         try {
+          // Reassign with spread operator to avoid using deep clones which aren't as time efficient
           listingData = {
             ...listingData,
             "Internship Dates": [
