@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row as AntRow, Col as AntCol, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import ClipLoader from "react-spinners/ClipLoader";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
@@ -37,9 +36,12 @@ const onDragEnd = (result, columns, setColumns, props) => {
 
   const { source, destination, draggableId } = result;
   let status;
-  let studentIndex = _.findIndex(props.candidates, {Id: draggableId});
+  let studentIndex = _.findIndex(props.candidates, { Id: draggableId });
 
-  if (props.candidates[studentIndex].status.includes("Interview") && destination.droppableId === "2") {
+  if (
+    props.candidates[studentIndex].status.includes("Interview") &&
+    destination.droppableId === "2"
+  ) {
     console.log("Keeping interview status");
     status = props.candidates[studentIndex].status;
   } else {
@@ -120,7 +122,7 @@ const HirePipeline = (props) => {
     return () => {
       console.log("HirePipeline Component Unmounting");
       /**console.log(`Props are ${JSON.stringify(props)}`); */
-    }
+    };
   });
 
   /**
@@ -177,12 +179,17 @@ const HirePipeline = (props) => {
                          *Drop Zone Columns for Student Cards
                          *
                          */
+                        <Spin
+                          indicator={
+                            <LoadingOutlined style={{ fontSize: 36 }} spin />
+                          }
+                          spinning={props.loading}
+                        >
                           <div
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                             style={dragStyle}
                           >
-                            <ClipLoader size={36} loading={props.loading} />
                             {/**
                              *
                              * Mapping of student cards and draggability
@@ -241,6 +248,7 @@ const HirePipeline = (props) => {
                             })}
                             {provided.placeholder}
                           </div>
+                        </Spin>
                       );
                     }}
                   </Droppable>
@@ -252,6 +260,6 @@ const HirePipeline = (props) => {
       </AntRow>
     </div>
   );
-}
+};
 
 export default connect(mapStateToProps)(React.memo(HirePipeline));

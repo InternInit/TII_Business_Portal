@@ -104,19 +104,18 @@ const mapDispatchToProps = {
 };
 
 class App extends React.Component {
-
-  constructor(props){
-    super(props)
-    if(localStorage.getItem("NumReview") === null){
+  constructor(props) {
+    super(props);
+    if (localStorage.getItem("NumReview") === null) {
       localStorage.setItem("NumCandidates", 3);
     }
-    if(localStorage.getItem("NumInterview") === null){
+    if (localStorage.getItem("NumInterview") === null) {
       localStorage.setItem("NumCandidates", 3);
     }
-    if(localStorage.getItem("NumInterns") === null){
+    if (localStorage.getItem("NumInterns") === null) {
       localStorage.setItem("NumInterns", 3);
     }
-    if(localStorage.getItem("NumListings") === null){
+    if (localStorage.getItem("NumListings") === null) {
       localStorage.setItem("NumListings", 3);
     }
     this.setupInterceptor();
@@ -131,16 +130,16 @@ class App extends React.Component {
     this.props.finishGlobalLoading();
   }
 
-  setupInterceptor(){
-    axios.interceptors.response.use(res => {
-      if(res.data.hasOwnProperty("errors")){
+  setupInterceptor() {
+    axios.interceptors.response.use((res) => {
+      if (res.data.hasOwnProperty("errors")) {
         console.log("has errors");
-        res.data.errors.forEach(error => {
-          if(error.errorType === "UnauthorizedException") {
+        res.data.errors.forEach((error) => {
+          if (error.errorType === "UnauthorizedException") {
             console.log("has errorss");
             this.logout();
           }
-        })
+        });
       }
       // Important: response interceptors **must** return the response.
       return res;
@@ -166,12 +165,11 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log("Session Error: " + error);
-        
+
         if (window.location.href.split("/")[3] !== "login") {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
-        
       });
   };
 
@@ -266,27 +264,37 @@ class App extends React.Component {
         }
       `,
       },
-    }).then((result) => {
-      console.log(result.data);
-      let candidates = [];
-      let interns = [];
-      result.data.forEach((candidate) => {
-        if (candidate.status === "Accepted") {
-          interns.push(candidate);
-        } else {
-          candidates.push(candidate);
-        }
+    })
+      .then((result) => {
+        console.log(result.data);
+        let candidates = [];
+        let interns = [];
+        result.data.forEach((candidate) => {
+          if (candidate.status === "Accepted") {
+            interns.push(candidate);
+          } else {
+            candidates.push(candidate);
+          }
+        });
+        this.props.updateCandidates(candidates);
+        localStorage.setItem(
+          "NumReview",
+          candidates.filter((candidate) => candidate.status === "Review").length
+        );
+        localStorage.setItem(
+          "NumInterview",
+          candidates.filter((candidate) =>
+            candidate.status.includes("Interview")
+          ).length
+        );
+        this.props.updateInterns(interns);
+        localStorage.setItem("NumInterns", interns.length);
+        this.props.finishCandidateLoading();
+        this.props.finishInternLoading();
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      this.props.updateCandidates(candidates);
-      localStorage.setItem("NumReview", candidates.filter(candidate => candidate.status === "Review").length);
-      localStorage.setItem("NumInterview", candidates.filter(candidate => candidate.status.includes("Interview")).length);
-      this.props.updateInterns(interns);
-      localStorage.setItem("NumInterns", interns.length);
-      this.props.finishCandidateLoading();
-      this.props.finishInternLoading();
-    }).catch((error) => {
-      console.log(error);
-    });
   };
 
   getListings = async () => {
@@ -303,7 +311,7 @@ class App extends React.Component {
     axios
       .get("/api/get_internship_listings", headers)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         this.props.batchUpdateListings(
           _.isEqual(JSON.parse(response.data), {
             message: "Internal server error",
@@ -428,10 +436,10 @@ class App extends React.Component {
                 <Route
                   path={`/my-interns/:id`}
                   component={(props) => (
-                    <InternPageContainer 
-                      {...props} 
+                    <InternPageContainer
+                      {...props}
                       getAccess={this.getAccess}
-                      key="internpagecontainer" 
+                      key="internpagecontainer"
                     />
                   )}
                 />
@@ -439,11 +447,7 @@ class App extends React.Component {
                   path="/settings"
                   component={() => <CompanyDetails key="companydetails" />}
                 />
-                <Route path="/applicants" component={props => (
-                  <CandidatesContainer
-                    {...props}
-                    getAccess={this.getAccess}
-                  />)} />
+                <RouteCandidates getAccess={this.getAccess} />
                 <Route path="/settings" component={CompanyDetails} />
 
                 {/**<ReactSwitch>
@@ -472,8 +476,7 @@ class App extends React.Component {
   }
 }
 
-class RouteTracker extends PureComponent {
-
+class RouteCandidates extends PureComponent {
   componentDidMount() {
     console.log("Route mounted");
   }
@@ -490,7 +493,9 @@ class RouteTracker extends PureComponent {
       <Route
         key="candidatescontainer"
         path="/applicants"
-        component={() => <CandidatesContainer getAccess={this.getAccess} />}
+        component={() => (
+          <CandidatesContainer getAccess={this.props.getAccess} />
+        )}
       />
     );
   }
