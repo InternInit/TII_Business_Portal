@@ -446,7 +446,6 @@ class App extends React.Component {
                   component={() => <CompanyDetails key="companydetails" />}
                 />
                 <RouteCandidates getAccess={this.getAccess} />
-                <Route path="/settings" component={CompanyDetails} />
 
                 {/**<ReactSwitch>
                   <Route path="/users" exact component={() => 
