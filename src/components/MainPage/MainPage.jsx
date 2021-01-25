@@ -18,6 +18,8 @@ import {
   PageListingSkeleton,
 } from "./MainPageSkeletons.jsx";
 
+import _ from "lodash";
+
 const MainPage = (props) => {
   const [page, setPage] = useState({
     applicantPage: 0,
@@ -122,9 +124,9 @@ const MainPage = (props) => {
             </Header>
             {props.loading.isListingLoading ? (
               <>
-                <PageListingSkeleton />
-                <PageListingSkeleton />
-                <PageListingSkeleton />
+                {_.times(localStorage.getItem("NumListings"), () => (
+                  <PageListingSkeleton />
+                ))}
               </>
             ) : listings.length === 0 ? (
               <NoResults
