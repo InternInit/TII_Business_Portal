@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import {
   Input,
@@ -7,7 +7,6 @@ import {
   Form,
   Row as AntRow,
   Col as AntCol,
-  Grid,
   Breadcrumb,
   PageHeader,
   DatePicker,
@@ -34,10 +33,10 @@ import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
+import _ from "lodash";
 
 const { TextArea } = Input;
 const { Option, OptGroup } = Select;
-const { useBreakpoint } = Grid;
 
 const industries = {
   Business: [
@@ -247,10 +246,13 @@ class InternshipDetails extends React.Component {
           (listing) => listing.Id === this.props.location.pathname.split("/")[2]
         )[0];
         try {
-          listingData["Internship Dates"] = [
-            moment(listingData["Internship Dates"][0]),
-            moment(listingData["Internship Dates"][1]),
-          ];
+          listingData = {
+            ...listingData,
+            "Internship Dates": [
+              moment(listingData["Internship Dates"][0]),
+              moment(listingData["Internship Dates"][1]),
+            ],
+          };
         } catch (e) {}
         this.setState({ filters: listingData.Filters }, () => {
           console.log(this.state);
@@ -370,7 +372,7 @@ const InternshipDetailForm = ({
   onFinish,
   title,
   formRef,
-  isNewPosting
+  isNewPosting,
 }) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
@@ -593,7 +595,9 @@ const InternshipDetailForm = ({
         onFinish={(values) => onFinish(values, postFilters)}
       >
         <Header className="twentyEightFont universal-center mb-1" bolded>
-          {isNewPosting ? "Create an Internship Posting" : "Edit Your Internship Posting"}
+          {isNewPosting
+            ? "Create an Internship Posting"
+            : "Edit Your Internship Posting"}
         </Header>
 
         <Header className={headerClassNames} subheading>
