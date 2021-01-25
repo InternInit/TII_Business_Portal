@@ -39,7 +39,7 @@ const mapDispatchToProps = {
   updateReduxCandidateStatus,
 };
 
-class CandidatesContainer extends PureComponent {
+class CandidatesContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -56,8 +56,12 @@ class CandidatesContainer extends PureComponent {
     console.log("CandidateContainer mounted");
   }
 
-  componentDidUpdate() {
-    console.log("CandidateContainer updating");
+  shouldComponentUpdate(nextProps, nextState) {
+    if ((nextProps.candidates === this.props.candidates || nextProps.companyId === this.props.companyId) && nextProps.loading) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   findPath = () => {

@@ -262,4 +262,4 @@ const HirePipeline = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(React.memo(HirePipeline));
+export default connect(mapStateToProps)(HirePipeline);
