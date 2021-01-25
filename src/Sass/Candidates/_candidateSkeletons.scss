@@ -48,6 +48,59 @@
     }
 }
 
+.detailedview-tab-skeleton {
+    &-name .ant-skeleton-content .ant-skeleton-title  {
+        height: 24px;
+        width: 150px;
+        margin-top: 0px;
+        margin-bottom: 8px;
+        padding: 0px;
+    }
+
+    &-city .ant-skeleton-content .ant-skeleton-title  {
+        height: 14px;
+        width: 100px;
+        margin-top: 0px;
+    }
+    
+    &-school .ant-skeleton-content .ant-skeleton-title  {
+        height: 22px;
+        width: 150px;
+        margin-top: 0px;
+        margin-bottom: 8px;
+        margin-left: auto;
+        padding: 0px;
+    }
+
+    &-school-address .ant-skeleton-content .ant-skeleton-title  {
+        height: 14px;
+        width: 200px;
+        margin-top: 0px;
+        margin-left: auto;
+    }
+    
+    &-label .ant-skeleton-content .ant-skeleton-title  {
+        height: 16px;
+        width: 90px;
+        margin-top: 0px;
+        margin-bottom: 1.4em;
+        margin-left: auto;
+    }
+    &-caption .ant-skeleton-content .ant-skeleton-title  {
+        height: 16px;
+        width: 250px;
+        margin-top: 0px;
+        margin-bottom: 1.4em;
+    }
+    
+    &-list .ant-skeleton-content .ant-skeleton-title  {
+        height: 16px;
+        width: 250px;
+        margin-top: 0px;
+        margin-bottom: .75em;
+    }
+}
+
 .student-card-skeleton-position .ant-skeleton-content .ant-skeleton-title  {
     height: 18px;
     width: 120px;

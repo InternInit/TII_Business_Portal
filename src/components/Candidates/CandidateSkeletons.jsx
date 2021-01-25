@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Tooltip, Row as AntRow, Col as AntCol, Skeleton } from "antd";
+import { Tooltip, Row as AntRow, Col as AntCol, Skeleton, Button } from "antd";
 import { Icon } from "react-icons-kit";
 import { box } from "react-icons-kit/iconic/box";
 import { check } from "react-icons-kit/fa/check";
@@ -36,8 +36,17 @@ const RemoveIcon = styled(Icon)`
   }
 `;
 
-export const CandidateQuickviewTabSkeleton = (props) => {
+const ActionButton = styled(Button)`
+  width: 100%;
 
+  :hover {
+    background-color: #1890ff;
+    color: white;
+    transition: 0.3s ease;
+  }
+`;
+
+export const CandidateQuickviewTabSkeleton = (props) => {
   return (
     <TabContainer className="py-2 px-6 my-1 responsive-tab-container">
       {/**
@@ -101,10 +110,12 @@ export const CandidateQuickviewTabSkeleton = (props) => {
             />
           </Tooltip>
           <Tooltip title="Review Later">
-            {!props.review && <ReviewIcon
-              icon={box}
-              style={{ marginLeft: "1vh", marginRight: "1vh" }}
-            />}
+            {!props.review && (
+              <ReviewIcon
+                icon={box}
+                style={{ marginLeft: "1vh", marginRight: "1vh" }}
+              />
+            )}
           </Tooltip>
           <Tooltip title="Remove">
             <RemoveIcon
@@ -119,6 +130,190 @@ export const CandidateQuickviewTabSkeleton = (props) => {
           className="click-more-icon"
           style={{ fontSize: "24px" }}
         />
+      </AntRow>
+    </TabContainer>
+  );
+};
+
+export const CandidateDetailedviewSkeleton = (props) => {
+  return (
+    <TabContainer className="py-3 px-6 my-1 responsive-tab-container">
+      <AntRow gutter={[16, 16]}>
+        <AntCol className="universal-left">
+          <Skeleton.Avatar size={48} />
+        </AntCol>
+        <AntCol flex="1">
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-name"
+            active
+          />
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-city"
+            active
+          />
+        </AntCol>
+        <AntCol className="universal-right" flex="1">
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-school"
+            active
+          />
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-school-address"
+            active
+          />
+        </AntCol>
+      </AntRow>
+      <AntRow gutter={[16, 16]}>
+        <AntCol span={3} style={{ textAlign: "right" }}>
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-label"
+            active
+          />
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-label"
+            active
+          />
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-label"
+            active
+          />
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-label"
+            active
+          />
+          <Skeleton
+            paragraph={false}
+            className="detailedview-tab-skeleton-label"
+            active
+          />
+        </AntCol>
+        <AntCol span={9}>
+          <AntRow>
+            <Skeleton
+              paragraph={false}
+              className="detailedview-tab-skeleton-caption"
+              active
+            />
+          </AntRow>
+          <AntRow>
+            <Skeleton
+              paragraph={false}
+              className="detailedview-tab-skeleton-caption"
+              active
+            />
+          </AntRow>
+          <AntRow>
+            <Skeleton
+              paragraph={false}
+              className="detailedview-tab-skeleton-caption"
+              active
+            />
+          </AntRow>
+          <AntRow>
+            <Skeleton
+              paragraph={false}
+              className="detailedview-tab-skeleton-caption"
+              active
+            />
+          </AntRow>
+          <AntRow>
+            <Skeleton
+              paragraph={false}
+              className="detailedview-tab-skeleton-caption"
+              active
+            />
+          </AntRow>
+        </AntCol>
+
+        {/**
+         * This col has been split into two rows to make the categorization
+         * easier to design without having to rely on complex margins and
+         * padding
+         */}
+        <AntCol span={12}>
+          <AntRow gutter={[16, 16]}>
+            <AntCol span={6} style={{ textAlign: "right" }}>
+              <Skeleton
+                paragraph={false}
+                className="detailedview-tab-skeleton-label"
+                active
+              />
+            </AntCol>
+            <AntCol span={18}>
+              <Skeleton
+                paragraph={false}
+                className="detailedview-tab-skeleton-list"
+                active
+              />
+              <Skeleton
+                paragraph={false}
+                className="detailedview-tab-skeleton-list"
+                active
+              />
+              <Skeleton
+                paragraph={false}
+                className="detailedview-tab-skeleton-list"
+                active
+              />
+            </AntCol>
+          </AntRow>
+
+          <AntRow gutter={[16, 16]}>
+            <AntCol span={6} style={{ textAlign: "right" }}>
+              <Skeleton
+                paragraph={false}
+                className="detailedview-tab-skeleton-label"
+                active
+              />
+            </AntCol>
+            <AntCol span={18}>
+              <Skeleton
+                paragraph={false}
+                className="detailedview-tab-skeleton-list"
+                active
+              />
+              <Skeleton
+                paragraph={false}
+                className="detailedview-tab-skeleton-list"
+                active
+              />
+              <Skeleton
+                paragraph={false}
+                className="detailedview-tab-skeleton-list"
+                active
+              />
+            </AntCol>
+          </AntRow>
+        </AntCol>
+      </AntRow>
+
+      <AntRow gutter={[32, 0]} justify="space-between">
+        <AntCol span={7}>
+          <ActionButton size="large">Read Full Application</ActionButton>
+        </AntCol>
+        <AntCol span={7}>
+          <ActionButton size="large" onClick={props.onReview}>
+            Review for Later
+          </ActionButton>
+        </AntCol>
+        <AntCol span={7}>
+          <ActionButton size="large" onClick={props.onInterview}>
+            Move to Interview
+          </ActionButton>
+        </AntCol>
+        <AntCol span={3}>
+          <Button size="large" type="danger" block onClick={props.onReject}>
+            Not a fit
+          </Button>
+        </AntCol>
       </AntRow>
     </TabContainer>
   );

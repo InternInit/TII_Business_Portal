@@ -57,7 +57,11 @@ class CandidatesContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if ((nextProps.candidates === this.props.candidates || nextProps.companyId === this.props.companyId) && nextProps.loading) {
+    if (
+      (nextProps.candidates === this.props.candidates ||
+        nextProps.companyId === this.props.companyId) &&
+      nextProps.loading
+    ) {
       return false;
     } else {
       return true;
