@@ -435,7 +435,6 @@ class App extends React.Component {
                     />
                   )}
                 />
-                <RouteTracker />
                 <Route
                   path="/settings"
                   component={() => <CompanyDetails key="companydetails" />}

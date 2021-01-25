@@ -35,10 +35,6 @@ const dragStyle = {
 const onDragEnd = (result, columns, setColumns, props) => {
   if (!result.destination) return;
 
-  //console.log("Result " + JSON.stringify(result));
-  //console.log("Columns " + JSON.stringify(columns));
-  //console.log("Props" + JSON.stringify(props));
-
   const { source, destination, draggableId } = result;
   let status;
   let studentIndex = _.findIndex(props.candidates, {Id: draggableId});

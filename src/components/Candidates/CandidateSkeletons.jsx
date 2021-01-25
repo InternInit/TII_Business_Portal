@@ -6,8 +6,7 @@ import { box } from "react-icons-kit/iconic/box";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { AiOutlineRight } from "react-icons/ai";
-import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
-import { Link } from "react-router-dom";
+import { TabContainer } from "../Styled/FundamentalComponents";
 
 const CheckIcon = styled(Icon)`
   color: #bfbfbf;

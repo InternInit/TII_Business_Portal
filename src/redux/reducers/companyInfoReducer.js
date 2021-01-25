@@ -1,4 +1,4 @@
-import _ from "underscore";
+import _ from "lodash";
 
 const companyInfoReducer = (
   state = {
@@ -61,7 +61,7 @@ const companyInfoReducer = (
         users: action.users,
       };
     case "UPDATE_CANDIDATE_STATUS":
-      let newCandidates = state.candidates.slice();
+      let newCandidates = _.cloneDeep(state.candidates);
       newCandidates[action.index].status = action.status;
       return {
         ...state,

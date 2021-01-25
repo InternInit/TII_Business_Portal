@@ -163,14 +163,14 @@ class CandidatesContainer extends PureComponent {
             )}
           />
           <Route
-        path="/applicants/manage-candidates"
-        exact
-        component={() => (
-          <HirePipeline
-            updateCandidateStatus={this.updateCandidateStatus}
+            path="/applicants/manage-candidates"
+            exact
+            component={() => (
+              <HirePipeline
+                updateCandidateStatus={this.updateCandidateStatus}
+              />
+            )}
           />
-        )}
-      />
           <Route path={`/applicants/:id`} component={() => <StudentInfo />} />
         </ReactSwitch>
       </PageContainer>
