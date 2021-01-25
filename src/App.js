@@ -409,20 +409,10 @@ class App extends React.Component {
                     exact
                     component={PositionPost}
                   />
-                  <Route
-                    key="internshipdetailroute"
-                    path={`/internship-listings/:id`}
-                    exact
-                    component={() => (
-                      <InternshipDetails
-                        key="internshipdetails"
-                        buttonText="Save Changes"
-                        title="Post Information"
-                        listings={this.props.listings}
-                        updateListing={this.props.updateListing}
-                        id={this.props.companyInfo.id}
-                      />
-                    )}
+                  <RouteInternshipDetailsId
+                    listings={this.props.listings}
+                    updateListing={this.props.updateListing}
+                    id={this.props.companyInfo.id}
                   />
                 </ReactSwitch>
 
@@ -477,17 +467,6 @@ class App extends React.Component {
 }
 
 class RouteCandidates extends PureComponent {
-  componentDidMount() {
-    console.log("Route mounted");
-  }
-  componentWillUnmount() {
-    console.log("Route unmounted");
-  }
-
-  componentDidUpdate() {
-    console.log("Route updated");
-  }
-
   render() {
     return (
       <Route
@@ -495,6 +474,26 @@ class RouteCandidates extends PureComponent {
         path="/applicants"
         component={() => (
           <CandidatesContainer getAccess={this.props.getAccess} />
+        )}
+      />
+    );
+  }
+}
+
+class RouteInternshipDetailsId extends PureComponent {
+  render() {
+    return (
+      <Route
+        key="internshipdetailroute"
+        path={`/internship-listings/:id`}
+        exact
+        component={() => (
+          <InternshipDetails
+            key="internshipdetails"
+            buttonText="Save Changes"
+            updateListing={this.props.updateListing}
+            id={this.props.id}
+          />
         )}
       />
     );

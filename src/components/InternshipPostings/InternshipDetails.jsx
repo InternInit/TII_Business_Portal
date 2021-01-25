@@ -14,8 +14,9 @@ import {
   InputNumber,
   Modal,
   Tooltip,
+  Spin,
 } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
 import NavSearch from "../General/NavSearch.jsx";
 
 import {
@@ -205,8 +206,8 @@ const FormProps = {
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
-    loadingStatuses: state.loadingStatuses,
+    listings: state.listings,
+    loading: state.loadingStatuses.isListingLoading,
   };
 };
 
@@ -229,6 +230,7 @@ class InternshipDetails extends React.Component {
 
   componentDidMount() {
     this.findListingData();
+    console.log("InternshipDetailsMounted");
   }
 
   componentDidUpdate() {
@@ -237,15 +239,25 @@ class InternshipDetails extends React.Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("Update Function Called");
+    if (nextProps.loading || nextState.loading) {
+      return false;
+    } else {
+      return true;
+    }
+
+  }
+
   findListingData = () => {
-    if (!this.props.loadingStatuses.isListingLoading) {
+    if (!this.props.loading) {
       if (!this.props.location.pathname.includes("add-listing")) {
         this.setState({ isNewListing: false });
 
         let listingData = this.props.listings.filter(
           (listing) => listing.Id === this.props.location.pathname.split("/")[2]
         )[0];
-        
+
         try {
           // Reassign with spread operator to avoid using deep clones which aren't as time efficient
           listingData = {
@@ -329,35 +341,39 @@ class InternshipDetails extends React.Component {
         </React.Fragment>
       );
     } else {
-      return this.state.loading ||
-        this.props.loadingStatuses.isListingLoading ? (
-        <h1>Implement Loading Here</h1>
-      ) : (
+      return (
         <React.Fragment>
           <NavSearch title={title} searchBar={false} />
-          <PageContainer>
-            <div className="px-8 py-2" style={{ width: "100%" }}>
-              <Breadcrumb style={{ paddingBottom: "1em" }}>
-                <Breadcrumb.Item className="twentyFont">
-                  <Link to="/internship-listings">Internship Postings</Link>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item className="twentyFont">
-                  {this.props.location.pathname.includes("add-listing")
-                    ? "Create Posting"
-                    : "My Post"}
-                </Breadcrumb.Item>
-              </Breadcrumb>
+          <Spin
+            indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />}
+            spinning={
+              this.state.loading || this.props.loading
+            }
+          >
+            <PageContainer>
+              <div className="px-8 py-2" style={{ width: "100%" }}>
+                <Breadcrumb style={{ paddingBottom: "1em" }}>
+                  <Breadcrumb.Item className="twentyFont">
+                    <Link to="/internship-listings">Internship Postings</Link>
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item className="twentyFont">
+                    {this.props.location.pathname.includes("add-listing")
+                      ? "Create Posting"
+                      : "My Post"}
+                  </Breadcrumb.Item>
+                </Breadcrumb>
 
-              <InternshipDetailForm
-                initialFilters={this.state.filters ? this.state.filters : []}
-                buttonText={buttonText}
-                title={title}
-                formRef={this.formRef}
-                onFinish={this.onFinish}
-                isNewPosting={false}
-              />
-            </div>
-          </PageContainer>
+                <InternshipDetailForm
+                  initialFilters={this.state.filters ? this.state.filters : []}
+                  buttonText={buttonText}
+                  title={title}
+                  formRef={this.formRef}
+                  onFinish={this.onFinish}
+                  isNewPosting={false}
+                />
+              </div>
+            </PageContainer>
+          </Spin>
         </React.Fragment>
       );
     }
