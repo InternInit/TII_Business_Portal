@@ -206,6 +206,7 @@ const FormProps = {
 
 const mapStateToProps = (state) => {
   return {
+    id: state.companyInfo.id,
     listings: state.listings,
     loading: state.loadingStatuses.isListingLoading,
   };
@@ -230,7 +231,11 @@ class InternshipDetails extends React.Component {
 
   componentDidMount() {
     this.findListingData();
-    console.log("InternshipDetailsMounted");
+    console.log("InternshipDetails Mounted");
+  }
+
+  componentWillUnmount() {
+    console.log("InternshipDetails Unmounted");
   }
 
   componentDidUpdate() {
@@ -240,8 +245,9 @@ class InternshipDetails extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("Update Function Called");
+    //console.log("InternshipDetails shouldComponentUpdate");
     if (nextProps.loading || nextState.loading) {
+      //console.log("Stopped render");
       return false;
     } else {
       return true;
@@ -269,7 +275,7 @@ class InternshipDetails extends React.Component {
           };
         } catch (e) {}
         this.setState({ filters: listingData.Filters }, () => {
-          console.log(this.state);
+          //console.log(this.state);
           this.setState({ loading: false }, () => {
             this.formRef.current.setFieldsValue(listingData);
           });
@@ -347,7 +353,7 @@ class InternshipDetails extends React.Component {
           <Spin
             indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />}
             spinning={
-              this.state.loading || this.props.loading
+              this.state.loading && this.props.loading
             }
           >
             <PageContainer>
