@@ -409,9 +409,18 @@ class App extends React.Component {
                     exact
                     component={PositionPost}
                   />
-                  <RouteInternshipDetailsId
-                    loading={this.props.loadingStatuses.isListingLoading}
-                    updateListing={this.props.updateListing}
+                  <Route
+                    key="internshipdetailroute"
+                    path={`/internship-listings/:id`}
+                    exact
+                    component={() => (
+                      <InternshipDetails
+                        title="Edit Posting"
+                        key="internshipdetails"
+                        buttonText="Save Changes"
+                        updateListing={this.props.updateListing}
+                      />
+                    )}
                   />
                 </ReactSwitch>
 
@@ -473,50 +482,6 @@ class RouteCandidates extends PureComponent {
         path="/applicants"
         component={() => (
           <CandidatesContainer getAccess={this.props.getAccess} />
-        )}
-      />
-    );
-  }
-}
-
-class RouteInternshipDetailsId extends React.Component {
-  componentDidUpdate(prevProps, prevState) {
-    Object.entries(this.props).forEach(
-      ([key, val]) =>
-        prevProps[key] !== val && console.log(`Prop '${key}' changed`)
-    );
-    if (this.state) {
-      Object.entries(this.state).forEach(
-        ([key, val]) =>
-          prevState[key] !== val && console.log(`State '${key}' changed`)
-      );
-    }
-
-    console.log(prevProps.computedMatch === this.props.computedMatch);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.loading) {
-      return false;
-    } else {
-      console.log("%c FINALLY LOADED IN!", "background: #222; color: #bada55");
-      return true;
-    }
-  }
-
-  render() {
-    return (
-      <Route
-        key="internshipdetailroute"
-        path={`/internship-listings/:id`}
-        exact
-        component={() => (
-          <InternshipDetails
-            title="Edit Posting"
-            key="internshipdetails"
-            buttonText="Save Changes"
-            updateListing={this.props.updateListing}
-          />
         )}
       />
     );
