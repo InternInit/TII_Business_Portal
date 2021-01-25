@@ -119,6 +119,7 @@ class App extends React.Component {
     if(localStorage.getItem("NumListings") === null){
       localStorage.setItem("NumListings", 3);
     }
+    this.setupInterceptor();
   }
 
   componentDidMount() {
@@ -128,6 +129,22 @@ class App extends React.Component {
     this.getListings();
     this.getBusinessUsers();
     this.props.finishGlobalLoading();
+  }
+
+  setupInterceptor(){
+    axios.interceptors.response.use(res => {
+      if(res.data.hasOwnProperty("errors")){
+        console.log("has errors");
+        res.data.errors.forEach(error => {
+          if(error.errorType === "UnauthorizedException") {
+            console.log("has errorss");
+            this.logout();
+          }
+        })
+      }
+      // Important: response interceptors **must** return the response.
+      return res;
+    });
   }
 
   inMemoryToken;
@@ -143,16 +160,18 @@ class App extends React.Component {
           access: session.accessToken.jwtToken,
         };
         console.log(this.inMemoryToken);
+        console.log(this.inMemoryToken.expiry);
         this.props.updateId(session.idToken.payload["custom:companyId"]);
         this.getBusinessInfo(session.idToken.payload);
       })
       .catch((error) => {
         console.log("Session Error: " + error);
-
+        
         if (window.location.href.split("/")[3] !== "login") {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
+        
       });
   };
 

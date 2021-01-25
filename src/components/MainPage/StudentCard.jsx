@@ -32,7 +32,7 @@ const StudentCard = (props) => {
   };
 
   const setColor = () => {
-    console.log(firstName+ " is " + type);
+    //console.log(firstName+ " is " + type);
     switch (type) {
       case "Review":
         return {
@@ -72,12 +72,13 @@ const StudentCard = (props) => {
     .filter((screen) => !!screen[1])
     .map((breakpoint) => breakpoint[0])
     .includes("lg");
-
+  /*
   console.log(
     Object.entries(screens)
       .filter((screen) => !!screen[1])
       .map((breakpoint) => breakpoint[0])
   );
+  */
 
   return (
     <Link to={`/applicants/${id}`}>

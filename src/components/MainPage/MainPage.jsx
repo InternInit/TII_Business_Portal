@@ -107,8 +107,6 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-  console.log(interns)
-
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
@@ -133,7 +131,6 @@ const MainPage = (props) => {
                 message={"Oops, it looks like you don't have any listings"}
                 isListing={true}
               />
-
             ) : (
               <>
                 {listings
