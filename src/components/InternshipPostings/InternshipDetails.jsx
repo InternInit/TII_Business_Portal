@@ -231,11 +231,6 @@ class InternshipDetails extends React.Component {
 
   componentDidMount() {
     this.findListingData();
-    console.log("InternshipDetails Mounted");
-  }
-
-  componentWillUnmount() {
-    console.log("InternshipDetails Unmounted");
   }
 
   componentDidUpdate() {
@@ -245,9 +240,7 @@ class InternshipDetails extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    //console.log("InternshipDetails shouldComponentUpdate");
     if (nextProps.loading || nextState.loading) {
-      //console.log("Stopped render");
       return false;
     } else {
       return true;
