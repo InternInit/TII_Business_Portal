@@ -191,7 +191,7 @@ const StudentFeedbackCard = (props) => {
   return (
     <TabContainer
       className="py-1-5 px-2 mb-point-5"
-      style={{ width: "100%", height: "44%" }}
+      style={{ width: "100%", minHeight: "44%" }}
     >
       <AntRow>
         <AntCol>
