@@ -33,7 +33,15 @@ const schema = new passwordValidator();
 
 const headerClassNames = "twentyFont mb-point-5";
 
-schema.is().min(8).has().uppercase().has().lowercase().has().digits();
+schema
+  .is()
+  .min(8)
+  .has()
+  .uppercase()
+  .has()
+  .lowercase()
+  .has()
+  .digits();
 
 const mapStateToProps = (state) => {
   return {
@@ -70,10 +78,28 @@ const formItemProps = {
     rules: validationRules(true, "name", "string"),
   },
   password: {
-    name: "Password",
-    key: "password",
+    name: "TemporaryPassword",
+    key: "temporaryPassword",
     required: true,
     rules: validationRules(true, "password", "string"),
+  },
+  role: {
+    name: "Role",
+    key: "role",
+    required: true,
+    rules: validationRules(true, "role", "string"),
+  },
+  listingAccess: {
+    name: "Listing Access",
+    key: "listingAccess",
+    required: true,
+    rules: validationRules(true, "listing access", "array"),
+  },
+  applicantActions: {
+    name: "Applicant Actions",
+    key: "applicantActions",
+    required: true,
+    rules: validationRules(true, "applicant action", "string"),
   },
 };
 
@@ -88,7 +114,7 @@ class CreateUser extends React.Component {
     if (value === "admin") {
       this.setState({ isAdmin: true });
       this.formRef.current.setFieldsValue({
-        "Applicant Actions": "full",
+        "Applicant Actions": "*",
         "Listing Access": _.pluck(this.props.listings, "Title"),
       });
     } else {
@@ -164,7 +190,7 @@ class CreateUser extends React.Component {
                 </AntRow>
 
                 <Header className={headerClassNames}>Role</Header>
-                <Form.Item name="Role" key="role">
+                <Form.Item {...formItemProps.role}>
                   <Select
                     placeholder="Choose Site Role"
                     size="large"
@@ -178,7 +204,7 @@ class CreateUser extends React.Component {
                 </Form.Item>
 
                 <Header className={headerClassNames}>Listing Access</Header>
-                <Form.Item name="Listing Access" key="listingAccess">
+                <Form.Item {...formItemProps.listingAccess}>
                   <Select
                     disabled={this.state.isAdmin}
                     placeholder="Pick Accessible Listings"
@@ -197,14 +223,14 @@ class CreateUser extends React.Component {
                   {this.state.applicantActionValue}
                 </Header>
                 <Header className={headerClassNames}>Applicant Actions</Header>
-                <Form.Item name="Applicant Actions" key="applicantActions">
+                <Form.Item {...formItemProps.applicantActions}>
                   <Select
                     disabled={this.state.isAdmin}
                     placeholder="Pick Applicant Actions"
                     size="large"
                   >
-                    <Option value="full">Full Access</Option>
-                    <Option value="read">Read only</Option>
+                    <Option value="*">Full Access</Option>
+                    <Option value="read-only">Read only</Option>
                   </Select>
                 </Form.Item>
                 <AntRow className="mt-3" justify="end">
@@ -221,15 +247,23 @@ class CreateUser extends React.Component {
   }
 
   handleSubmit = (values) => {
-    if (values["admin-state"] === true) {
+    if (values["Role"] === "admin") {
       values["custom:role"] = "Admin";
     } else {
-      values["custom:role"] = "User";
+      values["custom:role"] = "Application Reader";
     }
-    delete values["admin-state"];
+    delete values["Role"];
+
+    values["custom:applicantActions"] = values["Applicant Actions"]; // Assign new key
+    delete values["Applicant Actions"];
+
+    values["custom:listingAccess"] = values["Listing Access"]; // Assign new key
+    delete values["Listing Access"];
+
     values["custom:companyId"] = this.props.companyInfo.id;
     values["custom:company"] = this.props.companyInfo.name;
     console.log(values);
+    return;
     console.log(this.props.token.access);
 
     let headers = {

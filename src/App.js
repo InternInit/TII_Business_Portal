@@ -60,9 +60,9 @@ import StudentInternPage from "./components/InternFeedback/StudentInternPage.jsx
 import InternPageContainer from "./components/InternFeedback/InternPageContainer.jsx";
 import Login from "./components/LoginSignup/Login";
 import Signup from "./components/LoginSignup/Signup";
-//import Employeepage from "./components/CompanyUsers/Employeepage";
-//import CreateUser from "./components/CompanyUsers/CreateUser";
-//import UserDetails from "./components/CompanyUsers/UserDetails";
+import Employeepage from "./components/CompanyUsers/Employeepage";
+import CreateUser from "./components/CompanyUsers/CreateUser";
+import UserDetails from "./components/CompanyUsers/UserDetails";
 
 import "./App.scss";
 
@@ -447,7 +447,7 @@ class App extends React.Component {
                 />
                 <RouteCandidates getAccess={this.getAccess} />
 
-                {/**<ReactSwitch>
+                <ReactSwitch>
                   <Route path="/users" exact component={() => 
                     <Employeepage
                       users={this.props.companyInfo.users}
@@ -463,7 +463,7 @@ class App extends React.Component {
                       />}
                   />
                   <Route path={`/users/:id`} exact component={UserDetails} />
-                    </ReactSwitch>*/}
+                </ReactSwitch>
               </div>
             </Content>
           </Layout>

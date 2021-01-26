@@ -35,12 +35,15 @@ class CompanyAccount extends Component {
 
           <AntCol flex={1}>
             <AntRow justify="end" align="middle" gutter={[16, 0]}>
+              {/*
               <AntCol span={14}>
                 <Button size="large" type="default" block>
                   <Link to={`/users/${id}`}>Details</Link>
                 </Button>
+              
               </AntCol>
-              <AntCol span={10}>
+              */}
+              <AntCol span={14}>
                 <Button size="large" type="danger" block>
                   Remove
                 </Button>
