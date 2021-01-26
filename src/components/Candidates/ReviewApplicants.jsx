@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { Button, Switch, Divider, Row as AntRow, Col as AntCol } from "antd";
-import { Header } from "../Styled/FundamentalComponents.jsx";
+import { Header, InnerContainer } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineUser } from "react-icons/ai";
 import _ from "underscore";
 
@@ -14,28 +14,18 @@ import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
 import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
 import CandidateDetailedviewReviewTab from "./CandidateDetailedviewReviewTab.jsx";
-import { CandidateQuickviewTabSkeleton, CandidateDetailedviewSkeleton } from "./CandidateSkeletons.jsx";
+import {
+  CandidateQuickviewTabSkeleton,
+  CandidateDetailedviewSkeleton,
+} from "./CandidateSkeletons.jsx";
 
 //Ant Design Styles
 const AddFilterStyle = {
   width: "270px",
   height: "40px",
   fontFamily: "roboto",
-  marginTop: "33px",
   align: "inline-block",
 };
-
-const ViewText = styled.span`
-  font-family: roboto;
-  font-weight: 500;
-  font-size: 18px;
-  display: inline-block;
-  margin-right: 10px;
-  margin-left: 20px;
-  width: 120px;
-  color: black;
-  text-align: center;
-`;
 
 const mapStateToProps = (state) => {
   return {
@@ -77,40 +67,46 @@ class ReviewApplicants extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          display: "flex",
-          width: "90%",
-          flexDirection: "column",
-          margin: "auto",
-        }}
-      >
-        <div style={{ marginBottom: "4vh" }}>
-          <Button type="default" style={AddFilterStyle}>
-            <span className="sixteenFont">Sort By</span>
-          </Button>
+      <InnerContainer>
+        <AntRow className="pt-2" gutter={[32, 16]}>
+          <AntCol xs={24} md={8} lg={5}>
+            <Button type="default" style={AddFilterStyle}>
+              <span className="sixteenFont">Sort By</span>
+            </Button>
+          </AntCol>
+          <AntCol className="universal-middle" xs={24} md={6} lg={5}>
+            <AntRow align="middle">
+              <AntCol flex="120px">
+                {this.state.quickview ? (
+                  <Header className="eighteenFont" bolded>
+                    Quickview
+                  </Header>
+                ) : (
+                  <Header className="eighteenFont" bolded>
+                    Detailed View
+                  </Header>
+                )}
+              </AntCol>
+              <AntCol>
+                <Switch
+                  defaultChecked
+                  onChange={() =>
+                    this.setState({ quickview: !this.state.quickview })
+                  }
+                />
+              </AntCol>
+            </AntRow>
+          </AntCol>
+        </AntRow>
 
-          {this.state.quickview ? (
-            <ViewText>Quickview</ViewText>
-          ) : (
-            <ViewText>Detailed View</ViewText>
-          )}
+        <Header className="twentyEightFont mt-1 mb-point-75" bolded>
+          Unread Applicants
+        </Header>
 
-          <Switch
-            defaultChecked
-            onChange={() => this.setState({ quickview: !this.state.quickview })}
-            style={{ align: "inline-block" }}
-          />
+        {this.renderUnreadApplicants()}
 
-          <Header className="twentyEightFont mt-1 mb-point-75" bolded>
-            Unread Applicants
-          </Header>
-
-          {this.renderUnreadApplicants()}
-
-          {this.renderReviewApplicants()}
-        </div>
-      </div>
+        {this.renderReviewApplicants()}
+      </InnerContainer>
     );
   }
 

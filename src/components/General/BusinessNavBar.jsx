@@ -29,14 +29,19 @@ const BusinessNavBar = (props) => {
   const findPath = () => {
     if (location.pathname.includes("my-interns")) {
       return "4";
-    } else if (location.pathname.includes("dashboard") || location.pathname === "/") {
+    } else if (
+      location.pathname.includes("dashboard") ||
+      location.pathname === "/"
+    ) {
       return "1";
     } else if (location.pathname.includes("internship-listings")) {
       return "2";
     } else if (location.pathname.includes("applicants")) {
       return "3";
-    } else {
+    } else if (location.pathname.includes("users")) {
       return "5";
+    } else {
+      return "6";
     }
   };
 
@@ -83,14 +88,14 @@ const BusinessNavBar = (props) => {
           </Link>
         </Menu.Item>
 
-        {/**<Menu.Item key="5">
+        <Menu.Item key="5">
           <Link to="/users">
             <UserSwitchOutlined />
             <span>User Accounts</span>
           </Link>
-  </Menu.Item>*/}
+        </Menu.Item>
 
-        <Menu.Item key="5">
+        <Menu.Item key="6">
           <Link to="/settings">
             <SettingOutlined />
             <span>Settings</span>
