@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { Button, Switch, Divider, Row as AntRow, Col as AntCol } from "antd";
-import { Header } from "../Styled/FundamentalComponents.jsx";
+import { Header, InnerContainer } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineUser } from "react-icons/ai";
 import _ from "underscore";
 
@@ -77,13 +77,7 @@ class ReviewApplicants extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          display: "flex",
-          width: "90%",
-          flexDirection: "column",
-          margin: "auto",
-        }}
+      <InnerContainer
       >
         <div style={{ marginBottom: "4vh" }}>
           <Button type="default" style={AddFilterStyle}>
@@ -110,7 +104,7 @@ class ReviewApplicants extends Component {
 
           {this.renderReviewApplicants()}
         </div>
-      </div>
+      </InnerContainer>
     );
   }
 

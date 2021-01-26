@@ -33,8 +33,8 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Approve Hours
           </Header>
-          {(props.loading || props.functionLoading) && _.filter(props.student.hours, (day) => !day.isApproved).length >
-          0 ? (
+          {!props.loading &&
+          _.filter(props.student.hours, (day) => !day.isApproved).length > 0 ? (
             _.sortBy(
               _.filter(props.student.hours, (day) => !day.isApproved),
               "date"
@@ -71,8 +71,9 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Recent Feedback
           </Header>
-          {(props.loading || props.functionLoading) && _.filter(props.student.feedback, (piece) => !piece.isRead).length >
-          0 ? (
+          {!props.loading &&
+          _.filter(props.student.feedback, (piece) => !piece.isRead).length >
+            0 ? (
             _.sortBy(
               _.filter(props.student.feedback, (piece) => !piece.isRead),
               "date"
@@ -112,8 +113,9 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          {(props.loading || props.functionLoading) && _.filter(props.student.grades, (piece) => !piece.isFinished).length >
-          0 ? (
+          {!props.loading &&
+          _.filter(props.student.grades, (piece) => !piece.isFinished).length >
+            0 ? (
             sortReview(props.student.grades)
               .slice(
                 gradePage * GRADES_PER_PAGE,
@@ -143,44 +145,51 @@ const InternDashboard = (props) => {
       </AntRow>
       <AntRow justify="center" style={{ width: "100%" }}>
         <AntCol className="mt-point-25 pr-1 universal-center" span={8}>
-          {(props.loading || props.functionLoading) && <Pagination
-            current={page + 1}
-            total={
-              _.filter(props.student.hours, (day) => !day.isApproved).length
-            }
-            showLessItems={true}
-            pageSize={ATTENDANCE_PER_PAGE}
-            onChange={(pageChange) => changePage(pageChange - 1)}
-            hideOnSinglePage={true}
-            style={{ marginTop: "10px" }}
-          />}
+          {!props.loading && (
+            <Pagination
+              current={page + 1}
+              total={
+                _.filter(props.student.hours, (day) => !day.isApproved).length
+              }
+              showLessItems={true}
+              pageSize={ATTENDANCE_PER_PAGE}
+              onChange={(pageChange) => changePage(pageChange - 1)}
+              hideOnSinglePage={true}
+              style={{ marginTop: "10px" }}
+            />
+          )}
         </AntCol>
         <AntCol className="mt-point-25 px-1 universal-center" span={8}>
-          {(props.loading || props.functionLoading) && <Pagination
-            current={feedbackPage + 1}
-            total={
-              _.filter(props.student.feedback, (piece) => !piece.isRead).length
-            }
-            showLessItems={true}
-            pageSize={FEEDBACK_PER_PAGE}
-            onChange={(pageChange) => changeFeedbackPage(pageChange - 1)}
-            hideOnSinglePage={true}
-            style={{ marginTop: "10px" }}
-          />}
+          {!props.loading && (
+            <Pagination
+              current={feedbackPage + 1}
+              total={
+                _.filter(props.student.feedback, (piece) => !piece.isRead)
+                  .length
+              }
+              showLessItems={true}
+              pageSize={FEEDBACK_PER_PAGE}
+              onChange={(pageChange) => changeFeedbackPage(pageChange - 1)}
+              hideOnSinglePage={true}
+              style={{ marginTop: "10px" }}
+            />
+          )}
         </AntCol>
         <AntCol className="mt-point-25 pl-1 universal-center" span={8}>
-          {(props.loading || props.functionLoading) && <Pagination
-            current={gradePage + 1}
-            total={
-              _.filter(props.student.grades, (piece) => !piece.isFinished)
-                .length
-            }
-            showLessItems={true}
-            pageSize={GRADES_PER_PAGE}
-            onChange={(pageChange) => changeGradePage(pageChange - 1)}
-            hideOnSinglePage={true}
-            style={{ marginTop: "10px" }}
-          />}
+          {!props.loading && (
+            <Pagination
+              current={gradePage + 1}
+              total={
+                _.filter(props.student.grades, (piece) => !piece.isFinished)
+                  .length
+              }
+              showLessItems={true}
+              pageSize={GRADES_PER_PAGE}
+              onChange={(pageChange) => changeGradePage(pageChange - 1)}
+              hideOnSinglePage={true}
+              style={{ marginTop: "10px" }}
+            />
+          )}
         </AntCol>
       </AntRow>
     </>
