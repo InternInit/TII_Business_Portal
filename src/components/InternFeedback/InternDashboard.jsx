@@ -33,7 +33,7 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Approve Hours
           </Header>
-          {_.filter(props.student.hours, (day) => !day.isApproved).length >
+          {(props.loading || props.functionLoading) && _.filter(props.student.hours, (day) => !day.isApproved).length >
           0 ? (
             _.sortBy(
               _.filter(props.student.hours, (day) => !day.isApproved),
@@ -71,7 +71,7 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Recent Feedback
           </Header>
-          {_.filter(props.student.feedback, (piece) => !piece.isRead).length >
+          {(props.loading || props.functionLoading) && _.filter(props.student.feedback, (piece) => !piece.isRead).length >
           0 ? (
             _.sortBy(
               _.filter(props.student.feedback, (piece) => !piece.isRead),
@@ -112,7 +112,7 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          {_.filter(props.student.grades, (piece) => !piece.isFinished).length >
+          {(props.loading || props.functionLoading) && _.filter(props.student.grades, (piece) => !piece.isFinished).length >
           0 ? (
             sortReview(props.student.grades)
               .slice(
@@ -143,7 +143,7 @@ const InternDashboard = (props) => {
       </AntRow>
       <AntRow justify="center" style={{ width: "100%" }}>
         <AntCol className="mt-point-25 pr-1 universal-center" span={8}>
-          <Pagination
+          {(props.loading || props.functionLoading) && <Pagination
             current={page + 1}
             total={
               _.filter(props.student.hours, (day) => !day.isApproved).length
@@ -153,10 +153,10 @@ const InternDashboard = (props) => {
             onChange={(pageChange) => changePage(pageChange - 1)}
             hideOnSinglePage={true}
             style={{ marginTop: "10px" }}
-          />
+          />}
         </AntCol>
         <AntCol className="mt-point-25 px-1 universal-center" span={8}>
-          <Pagination
+          {(props.loading || props.functionLoading) && <Pagination
             current={feedbackPage + 1}
             total={
               _.filter(props.student.feedback, (piece) => !piece.isRead).length
@@ -166,10 +166,10 @@ const InternDashboard = (props) => {
             onChange={(pageChange) => changeFeedbackPage(pageChange - 1)}
             hideOnSinglePage={true}
             style={{ marginTop: "10px" }}
-          />
+          />}
         </AntCol>
         <AntCol className="mt-point-25 pl-1 universal-center" span={8}>
-          <Pagination
+          {(props.loading || props.functionLoading) && <Pagination
             current={gradePage + 1}
             total={
               _.filter(props.student.grades, (piece) => !piece.isFinished)
@@ -180,7 +180,7 @@ const InternDashboard = (props) => {
             onChange={(pageChange) => changeGradePage(pageChange - 1)}
             hideOnSinglePage={true}
             style={{ marginTop: "10px" }}
-          />
+          />}
         </AntCol>
       </AntRow>
     </>
