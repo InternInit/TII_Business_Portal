@@ -33,7 +33,7 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Approve Hours
           </Header>
-          {props.loading || props.functionLoading ? null : _.filter(
+          {props.loading ? null : _.filter(
               props.student.hours,
               (day) => !day.isApproved
             ).length > 0 ? (
@@ -73,7 +73,7 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Recent Feedback
           </Header>
-          {props.loading || props.functionLoading ? null : _.filter(
+          {props.loading ? null : _.filter(
               props.student.feedback,
               (piece) => !piece.isRead
             ).length > 0 ? (
@@ -116,7 +116,7 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          {props.loading || props.functionLoading ? null : _.filter(
+          {props.loading ? null : _.filter(
               props.student.grades,
               (piece) => !piece.isFinished
             ).length > 0 ? (
@@ -149,7 +149,7 @@ const InternDashboard = (props) => {
       </AntRow>
       <AntRow justify="center" style={{ width: "100%" }}>
         <AntCol className="mt-point-25 pr-1 universal-center" span={8}>
-          {props.loading || props.functionLoading ? null : (
+          {props.loading ? null : (
             <Pagination
               current={page + 1}
               total={
@@ -164,7 +164,7 @@ const InternDashboard = (props) => {
           )}
         </AntCol>
         <AntCol className="mt-point-25 px-1 universal-center" span={8}>
-          {props.loading || props.functionLoading ? null : (
+          {props.loading ? null : (
             <Pagination
               current={feedbackPage + 1}
               total={
@@ -180,7 +180,7 @@ const InternDashboard = (props) => {
           )}
         </AntCol>
         <AntCol className="mt-point-25 pl-1 universal-center" span={8}>
-          {props.loading || props.functionLoading ? null : (
+          {props.loading ? null : (
             <Pagination
               current={gradePage + 1}
               total={

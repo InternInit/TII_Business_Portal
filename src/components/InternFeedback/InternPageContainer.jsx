@@ -66,27 +66,6 @@ class InternPageContainer extends Component {
     );
   };
 
-  findStudent = () => {
-    console.log("trying to find");
-    if (!this.props.loadingStatuses.isInternLoading) {
-      const id = this.props.location.pathname.split("/");
-      //console.log(this.props);
-      const foundStudent = this.props.interns.find(
-        (student) => student.Id == id[2]
-      );
-      console.log(foundStudent);
-      this.setState({
-        student: foundStudent,
-        loading: false,
-      });
-    }
-  };
-
-  componentDidMount() {
-    this.findStudent();
-    console.log("Called Find Student and Mounted");
-  }
-
   componentDidUpdate() {
     if (this.state.student === null) {
       this.findStudent();
