@@ -12,9 +12,8 @@ import {
   InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
 
-import { Row as AntRow, Col as AntCol, Avatar, Dropdown, Menu } from "antd";
+import { Row as AntRow, Col as AntCol, Skeleton, Dropdown, Menu } from "antd";
 import { AiOutlineMenu } from "react-icons/ai";
-import TopLoader from "react-top-loader";
 
 import InternDashboard from "./InternDashboard.jsx";
 import InternPastFeedback from "./InternPastFeedback.jsx";
@@ -70,11 +69,9 @@ class InternPageContainer extends Component {
           <InnerContainer className="mt-3 mb-4">
             <AntRow style={{ width: "100%" }}>
               {this.props.isInternLoading ? (
-                <TabContainer
-                  className="mb-1 py-2 px-6 intern-dashboard-banner"
-                  style={{ width: "100%" }}
-                ></TabContainer>
+                <InternBannerSkeleton />
               ) : (
+                <>
                 <TabContainer
                   className="mb-1 py-2 px-6 intern-dashboard-banner"
                   style={{ width: "100%" }}
@@ -244,6 +241,7 @@ class InternPageContainer extends Component {
                     </AntCol>
                   </AntRow>
                 </TabContainer>
+                </>
               )}
             </AntRow>
 
@@ -320,6 +318,123 @@ class InternPageContainer extends Component {
     );
   }
 }
+
+const InternBannerSkeleton = (props) => {
+  return (
+    <TabContainer
+      className="mb-1 py-2 px-6 intern-dashboard-banner"
+      style={{ width: "100%" }}
+    >
+      <AntRow justify="center">
+        <AntCol>
+          <Skeleton.Avatar className="intern-banner-skeleton-avatar" size={150} active/>
+        </AntCol>
+        <AntCol flex="auto" offset={1}>
+          <AntRow className="intern-dashboard-banner-text-row">
+            <Skeleton
+              paragraph={false}
+              className="intern-banner-skeleton-name"
+              active
+            />
+          </AntRow>
+          <AntRow className="intern-dashboard-banner-text-row">
+            <Skeleton
+              paragraph={false}
+              className="intern-banner-skeleton-position"
+              active
+            />
+          </AntRow>
+          <AntRow className="mt-point-5">
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+          </AntRow>
+          <AntRow className="mt-point-5">
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+          </AntRow>
+          <AntRow className="mt-point-5">
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+          </AntRow>
+        </AntCol>
+      </AntRow>
+      <AntRow className="mt-1" gutter={[16, 0]}>
+        <AntCol xs={0} md={6} xl={4}>
+          <NavigationButton
+            block
+            shape="round"
+            size="large"
+          >
+            Dashboard
+          </NavigationButton>
+        </AntCol>
+        <AntCol xs={0} md={6} xl={4}>
+          <NavigationButton
+            block
+            shape="round"
+            size="large"
+          >
+            Attendance
+          </NavigationButton>
+        </AntCol>
+        <AntCol xs={0} md={6} xl={4}>
+          <NavigationButton
+            block
+            shape="round"
+            size="large"
+          >
+            Feedback
+          </NavigationButton>
+        </AntCol>
+        <AntCol xs={0} md={6} xl={4}>
+          <NavigationButton
+            block
+            shape="round"
+            size="large"
+          >
+            Grades
+          </NavigationButton>
+        </AntCol>
+      </AntRow>
+    </TabContainer>
+  );
+};
 
 export default connect(
   mapStateToProps,
