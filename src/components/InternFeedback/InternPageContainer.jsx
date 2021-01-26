@@ -29,7 +29,7 @@ import { startInternLoading, finishInternLoading } from "../../redux/actions";
 const mapStateToProps = (state) => {
   return {
     interns: state.interns.currentInterns,
-    loadingStatuses: state.loadingStatuses,
+    isInternLoading: state.loadingStatuses.isInternLoading,
   };
 };
 
@@ -69,7 +69,7 @@ class InternPageContainer extends Component {
           <NavSearch title="Intern Dashboard" />
           <InnerContainer className="mt-3 mb-4">
             <AntRow style={{ width: "100%" }}>
-              {this.props.loadingStatuses.isInternLoading ? (
+              {this.props.isInternLoading ? (
                 <TabContainer
                   className="mb-1 py-2 px-6 intern-dashboard-banner"
                   style={{ width: "100%" }}
@@ -251,14 +251,14 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id`}
                 exact
-                render={() => <Redirect to={`/my-interns/:id/dashboard`} />}
+                render={() => <Redirect to={`/my-interns/${this.props.match.params.id}/dashboard`} />}
               />
               <Route
                 path={`/my-interns/:id/dashboard`}
                 exact
                 render={() => (
                   <InternDashboard
-                    loading={this.props.loadingStatuses.isInternLoading}
+                    loading={this.props.isInternLoading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
