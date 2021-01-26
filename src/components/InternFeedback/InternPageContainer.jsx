@@ -39,14 +39,6 @@ const mapDispatchToProps = {
 };
 
 class InternPageContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      student: null,
-    };
-  }
-
   MobileMenu = (student) => {
     return (
       <Menu>
@@ -66,14 +58,7 @@ class InternPageContainer extends Component {
     );
   };
 
-  componentDidUpdate() {
-    if (this.state.student === null) {
-      this.findStudent();
-    }
-  }
-
   render() {
-    const { loading } = this.state;
     const student = this.props.interns.find(
       (student) => student.Id == this.props.location.pathname.split("/")[2]
     );
@@ -274,7 +259,6 @@ class InternPageContainer extends Component {
                 render={() => (
                   <InternDashboard
                     loading={this.props.loadingStatuses.isInternLoading}
-                    functionLoading={this.state.loading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
