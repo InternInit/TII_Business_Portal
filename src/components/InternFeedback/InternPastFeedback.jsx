@@ -143,7 +143,7 @@ const FeedbackTab = ({
     return id;
   };
 
-  //console.log(data);
+  console.log(data);
 
   const findFeedback = () => {
     let message;
@@ -156,6 +156,19 @@ const FeedbackTab = ({
         break;
     }
     return message;
+  };
+
+  const findDate = () => {
+    let date;
+
+    switch (data.Id) {
+      case getFeedbackId():
+        date = moment.utc(data.date).format("MM/DD");
+        break;
+      default:
+        break;
+    }
+    return date;
   };
 
   const isXs = Object.entries(screens)
@@ -194,6 +207,7 @@ const FeedbackTab = ({
             toggleActive(false);
             markRead(data.Id);
           }}
+          title={"On " + findDate() + ", " + student.formData[0]["First Name"]  + " wrote:"}
         >
           {findFeedback()}
         </Modal>
