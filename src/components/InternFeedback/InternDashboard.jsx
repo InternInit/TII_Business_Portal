@@ -10,6 +10,7 @@ import SmartAvatar from "../General/SmartAvatar";
 import AttendanceCard from "./AttendanceCard.jsx";
 import GradeCard from "./GradeCard.jsx";
 import { Row as AntRow, Col as AntCol, Avatar, Button, Pagination } from "antd";
+import QueueAnim from "rc-queue-anim";
 import _ from "underscore";
 
 import { Link } from "react-router-dom";
@@ -25,6 +26,11 @@ const InternDashboard = (props) => {
   const [page, changePage] = useState(0);
   const [feedbackPage, changeFeedbackPage] = useState(0);
   const [gradePage, changeGradePage] = useState(0);
+  const [yummer, addYummer] = useState(0);
+
+  useEffect(() => {
+    console.log("Re-rendered dashboard!");
+  }, [gradePage])
 
   return (
     <>
@@ -33,117 +39,125 @@ const InternDashboard = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Approve Hours
           </Header>
-          {props.loading ? null : _.filter(
-              props.student.hours,
-              (day) => !day.isApproved
-            ).length > 0 ? (
-            _.sortBy(
-              _.filter(props.student.hours, (day) => !day.isApproved),
-              "date"
-            )
-              .slice(
-                page * ATTENDANCE_PER_PAGE,
-                (page + 1) * ATTENDANCE_PER_PAGE
-              )
-              .map((hour, index) => (
-                <AttendanceCard
-                  key={index}
-                  studentId={props.student.Id}
-                  hoursId={hour.Id}
-                  time={hour.time}
-                  date={hour.dateFormatted}
-                  review={true}
-                  getAccess={props.getAccess}
-                />
-              ))
-          ) : (
-            <div className="py-2-5 universal-center ">
-              <AntRow justify="center" align="middle">
-                <BiTime className="internship-posting-no-content-icon" />
-              </AntRow>
-              <AntRow justify="center" align="middle">
-                <Header className="twentyFourFont" color="#bfbfbf">
-                  No Hours to Approve
-                </Header>
-              </AntRow>
-            </div>
+          {props.loading ? null : (
+            <QueueAnim>
+              {_.filter(props.student.hours, (day) => !day.isApproved).length >
+              0 ? (
+                _.sortBy(
+                  _.filter(props.student.hours, (day) => !day.isApproved),
+                  "date"
+                )
+                  .slice(
+                    page * ATTENDANCE_PER_PAGE,
+                    (page + 1) * ATTENDANCE_PER_PAGE
+                  )
+                  .map((hour, index) => (
+                    <AttendanceCard
+                      key={index}
+                      studentId={props.student.Id}
+                      hoursId={hour.Id}
+                      time={hour.time}
+                      date={hour.dateFormatted}
+                      review={true}
+                      getAccess={props.getAccess}
+                    />
+                  ))
+              ) : (
+                <div className="py-2-5 universal-center ">
+                  <AntRow justify="center" align="middle">
+                    <BiTime className="internship-posting-no-content-icon" />
+                  </AntRow>
+                  <AntRow justify="center" align="middle">
+                    <Header className="twentyFourFont" color="#bfbfbf">
+                      No Hours to Approve
+                    </Header>
+                  </AntRow>
+                </div>
+              )}
+            </QueueAnim>
           )}
         </AntCol>
         <AntCol className="mt-1 px-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
             Recent Feedback
           </Header>
-          {props.loading ? null : _.filter(
-              props.student.feedback,
-              (piece) => !piece.isRead
-            ).length > 0 ? (
-            _.sortBy(
-              _.filter(props.student.feedback, (piece) => !piece.isRead),
-              "date"
-            )
-              .slice(
-                feedbackPage * FEEDBACK_PER_PAGE,
-                (feedbackPage + 1) * FEEDBACK_PER_PAGE
-              )
-              .map((feedback) => (
-                <>
-                  <StudentFeedbackCard
-                    avatar={props.student.image ? props.student.image : false}
-                    name={props.student.formData[0]["First Name"]}
-                    feedback={feedback}
-                    id={feedback.Id}
-                    //temporary ghetto solution
-                    studentID={props.student.Id}
-                    getAccess={props.getAccess}
-                  />
-                  {console.log(feedback)}{" "}
-                </>
-              ))
-          ) : (
-            <div className="py-2-5 universal-center ">
-              <AntRow justify="center" align="middle">
-                <BiMessageSquareDetail className="internship-posting-no-content-icon" />
-              </AntRow>
-              <AntRow justify="center" align="middle">
-                <Header className="twentyFourFont" color="#bfbfbf">
-                  No Recent Feedback
-                </Header>
-              </AntRow>
-            </div>
+          {props.loading ? null : (
+            <QueueAnim>
+              {_.filter(props.student.feedback, (piece) => !piece.isRead)
+                .length > 0 ? (
+                _.sortBy(
+                  _.filter(props.student.feedback, (piece) => !piece.isRead),
+                  "date"
+                )
+                  .slice(
+                    feedbackPage * FEEDBACK_PER_PAGE,
+                    (feedbackPage + 1) * FEEDBACK_PER_PAGE
+                  )
+                  .map((feedback, index) => (
+                    <StudentFeedbackCard
+                      key={index}
+                      avatar={props.student.image ? props.student.image : false}
+                      name={props.student.formData[0]["First Name"]}
+                      feedback={feedback}
+                      id={feedback.Id}
+                      //temporary ghetto solution
+                      studentID={props.student.Id}
+                      getAccess={props.getAccess}
+                    />
+                  ))
+              ) : (
+                <div className="py-2-5 universal-center ">
+                  <AntRow justify="center" align="middle">
+                    <BiMessageSquareDetail className="internship-posting-no-content-icon" />
+                  </AntRow>
+                  <AntRow justify="center" align="middle">
+                    <Header className="twentyFourFont" color="#bfbfbf">
+                      No Recent Feedback
+                    </Header>
+                  </AntRow>
+                </div>
+              )}
+            </QueueAnim>
           )}
         </AntCol>
         <AntCol className="mt-1 pl-1" span={8}>
           <Header className="twentyTwoFont mb-point-25" bolded>
             Employer Grades
           </Header>
-          {props.loading ? null : _.filter(
-              props.student.grades,
-              (piece) => !piece.isFinished
-            ).length > 0 ? (
-            sortReview(props.student.grades)
-              .slice(
-                gradePage * GRADES_PER_PAGE,
-                (gradePage + 1) * GRADES_PER_PAGE
-              )
-              .map((grade) => (
-                <GradeCard
-                  review={grade}
-                  studentId={props.student.Id}
-                  reset={true}
-                  getAccess={props.getAccess}
-                />
-              ))
-          ) : (
-            <div className="py-2-5 universal-center ">
-              <AntRow justify="center" align="middle">
-                <BiCheckSquare className="internship-posting-no-content-icon" />
-              </AntRow>
-              <AntRow justify="center" align="middle">
-                <Header className="twentyFourFont" color="#bfbfbf">
-                  No Grades Due
-                </Header>
-              </AntRow>
-            </div>
+          {props.loading ? null : (
+            <QueueAnim
+              type={["right", "left"]}
+              ease={["easeOutQuart", "easeInOutQuart"]}
+            >
+              {_.filter(props.student.grades, (piece) => !piece.isFinished)
+                .length > 0 ? (
+                sortReview(props.student.grades)
+                  .slice(
+                    gradePage * GRADES_PER_PAGE,
+                    (gradePage + 1) * GRADES_PER_PAGE
+                  )
+                  .map((grade, index) => (
+                    <GradeCard
+                      key={index}
+                      review={grade}
+                      studentId={props.student.Id}
+                      reset={true}
+                      getAccess={props.getAccess}
+                    />
+                  ))
+              ) : (
+                <div className="py-2-5 universal-center ">
+                  <AntRow justify="center" align="middle">
+                    <BiCheckSquare className="internship-posting-no-content-icon" />
+                  </AntRow>
+                  <AntRow justify="center" align="middle">
+                    <Header className="twentyFourFont" color="#bfbfbf">
+                      No Grades Due
+                    </Header>
+                  </AntRow>
+                </div>
+              )}
+            </QueueAnim>
           )}
         </AntCol>
       </AntRow>
@@ -267,4 +281,4 @@ const sortReview = (review) => {
   return sortedReviews;
 };
 
-export default InternDashboard;
+export default React.memo(InternDashboard);

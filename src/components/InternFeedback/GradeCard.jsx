@@ -142,8 +142,8 @@ const GradeCard = (props) => {
       },
     })
       .then((result) => {
-        console.log(result.data[gradeId]);
-        console.log(internIndex, gradeId, result.data[gradeId]);
+        //console.log(result.data[gradeId]);
+        //console.log(internIndex, gradeId, result.data[gradeId]);
         props.submitGrade(internIndex, gradeObj);
         message.success("Grade Submitted");
       })
@@ -153,7 +153,7 @@ const GradeCard = (props) => {
   };
 
   const handleSubmit = (values) => {
-    console.log(values);
+    //console.log(values);
     mutateGradeAssoc(values);
   };
 

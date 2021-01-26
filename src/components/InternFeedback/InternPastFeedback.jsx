@@ -108,12 +108,12 @@ const InternPastFeedback = (props) => {
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-        {props.loading ? null : _.sortBy(
-          _.filter(student.feedback, (feedback) => feedback.isRead),
-          "date"
-        ).map((data) => (
-          <FeedbackTab student={student} data={data} />
-        ))}
+        {props.loading
+          ? null
+          : _.sortBy(
+              _.filter(student.feedback, (feedback) => feedback.isRead),
+              "date"
+            ).map((data) => <FeedbackTab student={student} data={data} />)}
       </Row>
     </>
   );
