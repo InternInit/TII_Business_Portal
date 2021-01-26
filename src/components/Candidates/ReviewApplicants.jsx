@@ -7,13 +7,14 @@ import { connect } from "react-redux";
 import { Button, Switch, Divider, Row as AntRow, Col as AntCol } from "antd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineUser } from "react-icons/ai";
+import _ from "underscore";
 
 import InfoBar from "../General/InfoBar.jsx";
 import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
 import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
 import CandidateDetailedviewReviewTab from "./CandidateDetailedviewReviewTab.jsx";
-import { CandidateQuickviewTabSkeleton } from "./CandidateSkeletons.jsx";
+import { CandidateQuickviewTabSkeleton, CandidateDetailedviewSkeleton } from "./CandidateSkeletons.jsx";
 
 //Ant Design Styles
 const AddFilterStyle = {
@@ -183,7 +184,13 @@ class ReviewApplicants extends Component {
     ) : (
       <React.Fragment>
         <Divider />
-        {unreadCandidates.length > 0 ? (
+        {this.props.loadingStatuses.isCandidateLoading ? (
+          <>
+            <CandidateDetailedviewSkeleton />
+            <CandidateDetailedviewSkeleton />
+            <CandidateDetailedviewSkeleton />
+          </>
+        ) : unreadCandidates.length > 0 ? (
           unreadCandidates.map((student, index) => (
             <CandidateDetailedviewTab
               key={index}
@@ -275,9 +282,9 @@ class ReviewApplicants extends Component {
         />
         {this.props.loadingStatuses.isCandidateLoading ? (
           <>
-            <CandidateQuickviewTabSkeleton review={true} />
-            <CandidateQuickviewTabSkeleton review={true} />
-            <CandidateQuickviewTabSkeleton review={true} />
+            {_.times(localStorage.getItem("NumReview"), () => (
+              <CandidateQuickviewTabSkeleton review={true} />
+            ))}
           </>
         ) : reviewCandidates.length > 0 ? (
           reviewCandidates.map((student, index) => (
@@ -316,7 +323,13 @@ class ReviewApplicants extends Component {
           Marked for Review
         </Header>
         <Divider />
-        {reviewCandidates.length > 0 ? (
+        {this.props.loadingStatuses.isCandidateLoading ? (
+          <>
+            {_.times(localStorage.getItem("NumReview"), () => (
+              <CandidateDetailedviewSkeleton review={true} />
+            ))}
+          </>
+        ) : reviewCandidates.length > 0 ? (
           reviewCandidates.map((student, index) => (
             <CandidateDetailedviewReviewTab
               key={index}

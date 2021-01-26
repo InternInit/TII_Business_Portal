@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, PureComponent } from "react";
 
 //React Routing
 import {
@@ -104,15 +104,21 @@ const mapDispatchToProps = {
 };
 
 class App extends React.Component {
-
-  constructor(props){
-    super(props)
-    if(localStorage.getItem("NumCandidates") === null){
+  constructor(props) {
+    super(props);
+    if (localStorage.getItem("NumReview") === null) {
       localStorage.setItem("NumCandidates", 3);
     }
-    if(localStorage.getItem("NumInterns") === null){
+    if (localStorage.getItem("NumInterview") === null) {
+      localStorage.setItem("NumCandidates", 3);
+    }
+    if (localStorage.getItem("NumInterns") === null) {
       localStorage.setItem("NumInterns", 3);
     }
+    if (localStorage.getItem("NumListings") === null) {
+      localStorage.setItem("NumListings", 3);
+    }
+    this.setupInterceptor();
   }
 
   componentDidMount() {
@@ -122,6 +128,22 @@ class App extends React.Component {
     this.getListings();
     this.getBusinessUsers();
     this.props.finishGlobalLoading();
+  }
+
+  setupInterceptor() {
+    axios.interceptors.response.use((res) => {
+      if (res.data.hasOwnProperty("errors")) {
+        console.log("has errors");
+        res.data.errors.forEach((error) => {
+          if (error.errorType === "UnauthorizedException") {
+            console.log("has errorss");
+            this.logout();
+          }
+        });
+      }
+      // Important: response interceptors **must** return the response.
+      return res;
+    });
   }
 
   inMemoryToken;
@@ -137,6 +159,7 @@ class App extends React.Component {
           access: session.accessToken.jwtToken,
         };
         console.log(this.inMemoryToken);
+        console.log(this.inMemoryToken.expiry);
         this.props.updateId(session.idToken.payload["custom:companyId"]);
         this.getBusinessInfo(session.idToken.payload);
       })
@@ -241,26 +264,37 @@ class App extends React.Component {
         }
       `,
       },
-    }).then((result) => {
-      console.log(result.data);
-      let candidates = [];
-      let interns = [];
-      result.data.forEach((candidate) => {
-        if (candidate.status === "Accepted") {
-          interns.push(candidate);
-        } else {
-          candidates.push(candidate);
-        }
+    })
+      .then((result) => {
+        console.log(result.data);
+        let candidates = [];
+        let interns = [];
+        result.data.forEach((candidate) => {
+          if (candidate.status === "Accepted") {
+            interns.push(candidate);
+          } else {
+            candidates.push(candidate);
+          }
+        });
+        this.props.updateCandidates(candidates);
+        localStorage.setItem(
+          "NumReview",
+          candidates.filter((candidate) => candidate.status === "Review").length
+        );
+        localStorage.setItem(
+          "NumInterview",
+          candidates.filter((candidate) =>
+            candidate.status.includes("Interview")
+          ).length
+        );
+        this.props.updateInterns(interns);
+        localStorage.setItem("NumInterns", interns.length);
+        this.props.finishCandidateLoading();
+        this.props.finishInternLoading();
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      this.props.updateCandidates(candidates);
-      localStorage.setItem("NumCandidates", candidates.length);
-      this.props.updateInterns(interns);
-      localStorage.setItem("NumInterns", interns.length);
-      this.props.finishCandidateLoading();
-      this.props.finishInternLoading();
-    }).catch((error) => {
-      console.log(error);
-    });
   };
 
   getListings = async () => {
@@ -277,7 +311,7 @@ class App extends React.Component {
     axios
       .get("/api/get_internship_listings", headers)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         this.props.batchUpdateListings(
           _.isEqual(JSON.parse(response.data), {
             message: "Internal server error",
@@ -285,6 +319,7 @@ class App extends React.Component {
             ? []
             : JSON.parse(response.data)
         );
+        localStorage.setItem("NumListings", JSON.parse(response.data).length);
         this.props.finishListingLoading();
       })
       .catch((error) => {
@@ -375,16 +410,15 @@ class App extends React.Component {
                     component={PositionPost}
                   />
                   <Route
+                    key="internshipdetailroute"
                     path={`/internship-listings/:id`}
                     exact
                     component={() => (
                       <InternshipDetails
+                        title="Edit Posting"
                         key="internshipdetails"
                         buttonText="Save Changes"
-                        title="Post Information"
-                        listings={this.props.listings}
                         updateListing={this.props.updateListing}
-                        id={this.props.companyInfo.id}
                       />
                     )}
                   />
@@ -398,18 +432,20 @@ class App extends React.Component {
                   )}
                 />
                 <Route
-                  path={`/my-interns/:id`} component={props => (
-                  <InternPageContainer
-                    {...props}
-                    getAccess={this.getAccess}
-                  />)}
+                  path={`/my-interns/:id`}
+                  component={(props) => (
+                    <InternPageContainer
+                      {...props}
+                      getAccess={this.getAccess}
+                      key="internpagecontainer"
+                    />
+                  )}
                 />
-                <Route path="/applicants" component={props => (
-                  <CandidatesContainer
-                    {...props}
-                    getAccess={this.getAccess}
-                  />)} />
-                <Route path="/settings" component={CompanyDetails} />
+                <Route
+                  path="/settings"
+                  component={() => <CompanyDetails key="companydetails" />}
+                />
+                <RouteCandidates getAccess={this.getAccess} />
 
                 <ReactSwitch>
                   <Route path="/users" exact component={() => 
@@ -433,6 +469,20 @@ class App extends React.Component {
           </Layout>
         </Router>
       </React.Fragment>
+    );
+  }
+}
+
+class RouteCandidates extends PureComponent {
+  render() {
+    return (
+      <Route
+        key="candidatescontainer"
+        path="/applicants"
+        component={() => (
+          <CandidatesContainer getAccess={this.props.getAccess} />
+        )}
+      />
     );
   }
 }

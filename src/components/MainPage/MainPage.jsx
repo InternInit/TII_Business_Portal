@@ -18,6 +18,8 @@ import {
   PageListingSkeleton,
 } from "./MainPageSkeletons.jsx";
 
+import _ from "lodash";
+
 const MainPage = (props) => {
   const [page, setPage] = useState({
     applicantPage: 0,
@@ -107,8 +109,6 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-  console.log(interns)
-
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
@@ -124,16 +124,15 @@ const MainPage = (props) => {
             </Header>
             {props.loading.isListingLoading ? (
               <>
-                <PageListingSkeleton />
-                <PageListingSkeleton />
-                <PageListingSkeleton />
+                {_.times(localStorage.getItem("NumListings"), () => (
+                  <PageListingSkeleton />
+                ))}
               </>
             ) : listings.length === 0 ? (
               <NoResults
                 message={"Oops, it looks like you don't have any listings"}
                 isListing={true}
               />
-
             ) : (
               <>
                 {listings

@@ -1,11 +1,9 @@
 import React, { Component, PureComponent } from "react";
 import "../../App.scss";
 import {
-  BrowserRouter as Router,
   Route,
   Switch as ReactSwitch,
   Redirect,
-  useRouteMatch as match,
   withRouter,
 } from "react-router-dom";
 
@@ -30,8 +28,9 @@ import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 
 const mapStateToProps = (state) => {
   return {
-    companyInfo: state.companyInfo,
-    loadingStatuses: state.loadingStatuses,
+    companyId: state.companyInfo.id,
+    candidates: state.companyInfo.candidates,
+    loading: state.loadingStatuses.isCandidateLoading,
   };
 };
 
@@ -41,12 +40,32 @@ const mapDispatchToProps = {
 };
 
 class CandidatesContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentPath: this.findPath(),
+    };
+  }
+
   componentWillUnmount() {
     console.log("CandidateContainer unmounted");
   }
 
   componentDidMount() {
     console.log("CandidateContainer mounted");
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      (nextProps.candidates === this.props.candidates ||
+        nextProps.companyId === this.props.companyId) &&
+      nextProps.loading
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   findPath = () => {
@@ -61,11 +80,11 @@ class CandidatesContainer extends Component {
     const headers = {
       headers: {
         InternId: internId,
-        Authorization: "Bearer " + this.props.companyInfo.id,
+        Authorization: "Bearer " + this.props.companyId,
       },
     };
 
-    let index = this.props.companyInfo.candidates.findIndex(
+    let index = this.props.candidates.findIndex(
       (item, i) => item.Id === internId
     );
     console.log(index);
@@ -75,6 +94,12 @@ class CandidatesContainer extends Component {
       .post("/api/update_student_status", { status: status }, headers)
       .then((response) => {
         console.log(JSON.parse(response.data));
+
+        let index = this.props.candidates.findIndex(
+          (item, i) => item.Id === internId
+        );
+        console.log(index);
+        this.props.updateReduxCandidateStatus(index, status);
       });
 
     if (status === "Accepted") {
@@ -83,7 +108,7 @@ class CandidatesContainer extends Component {
   };
 
   mutateCandidateAssoc = async (internId) => {
-    let candidate = this.props.companyInfo.candidates.find(
+    let candidate = this.props.candidates.find(
       (candidate) => candidate.Id === internId
     );
 
@@ -111,7 +136,7 @@ class CandidatesContainer extends Component {
     return (
       <PageContainer
         style={
-          this.findPath() === "manage-candidates"
+          this.state.currentPath === "manage-candidates"
             ? { minWidth: "1250px", position: "relative" }
             : null
         }
@@ -121,13 +146,15 @@ class CandidatesContainer extends Component {
             title="Internship Candidates"
             placeholder="Search Applicants"
             style={
-              this.findPath() === "manage-candidates"
+              this.state.currentPath === "manage-candidates"
                 ? { minWidth: "1250px" }
                 : null
             }
           />
         </AntRow>
-        <CandidatesNavbar isReview={this.findPath() === "review-applicants"} />
+        <CandidatesNavbar
+          isReview={this.state.currentPath === "review-applicants"}
+        />
         <ReactSwitch>
           <Route
             path="/applicants"
@@ -148,8 +175,6 @@ class CandidatesContainer extends Component {
             exact
             component={() => (
               <HirePipeline
-                candidates={this.props.companyInfo.candidates}
-                loading={this.props.loadingStatuses}
                 updateCandidateStatus={this.updateCandidateStatus}
               />
             )}

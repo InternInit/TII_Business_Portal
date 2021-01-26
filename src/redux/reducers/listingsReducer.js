@@ -1,13 +1,16 @@
+import _ from "lodash";
+
 const listingReducer = (state = [], action) => {
   switch (action.type) {
     case "BATCH_UPDATE_LISTINGS":
-      return action.listings;
+      console.log("Batch Update Listings");
+      return [...action.listings];
     case "ADD_LISTING":
       let newAddState = state.slice();
       newAddState.push(action.newListing);
       return newAddState;
     case "UPDATE_LISTING":
-      let newUpdateState = state.slice();
+      let newUpdateState = _.cloneDeep(state);
       let index = -1;
       newUpdateState.forEach((listing, i) => {
         if (listing.Id === action.id) {
