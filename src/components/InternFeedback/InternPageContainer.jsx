@@ -84,6 +84,7 @@ class InternPageContainer extends Component {
 
   componentDidMount() {
     this.findStudent();
+    console.log("Called Find Student and Mounted");
   }
 
   componentDidUpdate() {
