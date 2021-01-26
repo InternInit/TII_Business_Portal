@@ -14,7 +14,7 @@ import {
 
 import { connect } from "react-redux";
 
-import { submitHour } from "../../redux/actions";
+import { submitHour, deleteHour } from "../../redux/actions";
 
 import axios from "axios";
 
@@ -34,6 +34,7 @@ mutation MyMutation ($hours:AWSJSON, $assocId:String!){
 
 const mapDispatchToProps = {
   submitHour,
+  deleteHour,
 };
 
 const mapStateToProps = (state) => {
@@ -65,8 +66,11 @@ const AttendanceCard = (props) => {
     let hourObj = { ...newHours[hourId] };
 
     hourObj.isApproved = isApproved;
-
-    newHours[hourId] = hourObj;
+    if (hourObj.isApproved === false) {
+      delete newHours[hourId];
+    } else {
+      newHours[hourId] = hourObj;
+    }
 
     axios({
       url: "/api/mutate_hours_assoc",
@@ -83,7 +87,11 @@ const AttendanceCard = (props) => {
       },
     })
       .then((result) => {
-        props.submitHour(internIndex, hourObj);
+        if (hourObj.isApproved === false) {
+          props.deleteHour(internIndex, hourObj);
+        } else {
+          props.submitHour(internIndex, hourObj);
+        }
         console.log(result.data[hourId]);
       })
       .catch((error) => {

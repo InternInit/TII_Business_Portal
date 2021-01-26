@@ -156,6 +156,14 @@ export const submitHour = (internIndex, hourObj) => {
   };
 }
 
+export const deleteHour = (internIndex, hourObj) => {
+  return {
+    internIndex: internIndex,
+    hourObj: hourObj,
+    type: "DELETE_HOUR"
+  };
+}
+
 export const submitGrade = (internIndex, gradeObj) => {
   return {
     type: "SUBMIT_GRADE",
