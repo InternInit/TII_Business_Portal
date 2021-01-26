@@ -56,7 +56,6 @@ const AttendanceRecord = (props) => {
     weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   });
 
-  console.log(props.student.hours)
   return (
     <Row className="mt-1" justify="end">
       <Col
@@ -67,7 +66,7 @@ const AttendanceRecord = (props) => {
         <Header bolded className="twentyTwoFont mb-point-25">
           To Be Approved
         </Header>
-        {_.filter(props.student.hours, (day) => !day.isApproved).length > 0 ? (
+        {props.loading ? null : _.filter(props.student.hours, (day) => !day.isApproved).length > 0 ? (
           _.sortBy(
             _.filter(props.student.hours, (day) => !day.isApproved),
             "date"
@@ -97,7 +96,7 @@ const AttendanceRecord = (props) => {
           </div>
         )}
         <Row justify="center">
-          <Pagination
+          {props.loading ? null :<Pagination
             current={page + 1}
             total={
               _.filter(props.student.hours, (day) => !day.isApproved).length
@@ -107,7 +106,7 @@ const AttendanceRecord = (props) => {
             onChange={(pageChange) => changePage(pageChange - 1)}
             hideOnSinglePage={true}
             style={{ marginTop: "10px" }}
-          />
+          />}
         </Row>
       </Col>
       <Col sm={{ span: 14, order: 2 }} xs={{ span: 24, order: 1 }}>
@@ -115,7 +114,7 @@ const AttendanceRecord = (props) => {
           Attendance Record
         </Header>
 
-        <TabContainer className="mt-point-25 px-2 py-2">
+        {props.loading ? null : <TabContainer className="mt-point-25 px-2 py-2">
           <Row
             gutter={[16, 16]}
             justify="center"
@@ -496,7 +495,7 @@ const AttendanceRecord = (props) => {
               />
             </Col>
           </Row>
-        </TabContainer>
+        </TabContainer>}
       </Col>
     </Row>
   );

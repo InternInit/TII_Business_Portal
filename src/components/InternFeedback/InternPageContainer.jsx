@@ -251,7 +251,11 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id`}
                 exact
-                render={() => <Redirect to={`/my-interns/${this.props.match.params.id}/dashboard`} />}
+                render={() => (
+                  <Redirect
+                    to={`/my-interns/${this.props.match.params.id}/dashboard`}
+                  />
+                )}
               />
               <Route
                 path={`/my-interns/:id/dashboard`}
@@ -269,6 +273,7 @@ class InternPageContainer extends Component {
                 exact
                 component={() => (
                   <AttendanceRecord
+                    loading={this.props.isInternLoading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
@@ -279,6 +284,7 @@ class InternPageContainer extends Component {
                 exact
                 component={() => (
                   <InternPastFeedback
+                    loading={this.props.isInternLoading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
@@ -289,6 +295,7 @@ class InternPageContainer extends Component {
                 exact
                 component={() => (
                   <InternPastGrades
+                    loading={this.props.isInternLoading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
@@ -299,6 +306,7 @@ class InternPageContainer extends Component {
                 exact
                 component={() => (
                   <InternPastFeedback
+                    loading={this.props.isInternLoading}
                     student={student}
                     fromDashboard={true}
                     getAccess={this.props.getAccess}

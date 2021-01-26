@@ -82,28 +82,33 @@ const InternPastFeedback = (props) => {
 
   return (
     <>
-      <Row className="mt-1">
-        <Header className="twentyTwoFont mb-point-25" bolded>
-          Unread Feedback
-        </Header>
-        {_.sortBy(
-          _.filter(student.feedback, (feedback) => !feedback.isRead),
-          "date"
-        ).map((data) => (
-          <FeedbackTab
-            student={student}
-            data={data}
-            markFeedbackRead={props.markFeedbackRead}
-            hasModal={fromDashboard}
-            markRead={markRead}
-          />
-        ))}
-      </Row>
+      {props.loading ? null : _.filter(
+          student.feedback,
+          (feedback) => !feedback.isRead
+        ).length > 0 ? (
+        <Row className="mt-1">
+          <Header className="twentyTwoFont mb-point-25" bolded>
+            Unread Feedback
+          </Header>
+          {_.sortBy(
+            _.filter(student.feedback, (feedback) => !feedback.isRead),
+            "date"
+          ).map((data) => (
+            <FeedbackTab
+              student={student}
+              data={data}
+              markFeedbackRead={props.markFeedbackRead}
+              hasModal={fromDashboard}
+              markRead={markRead}
+            />
+          ))}
+        </Row>
+      ) : null}
       <Row className="mt-1">
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-        {_.sortBy(
+        {props.loading ? null : _.sortBy(
           _.filter(student.feedback, (feedback) => feedback.isRead),
           "date"
         ).map((data) => (
