@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Caption, TabContainer } from "../Styled/FundamentalComponents.jsx";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
-import { Row as AntRow, Col as AntCol, Tooltip, message } from "antd";
+import {
+  Row as AntRow,
+  Col as AntCol,
+  Tooltip,
+  message,
+  Modal,
+  Button,
+} from "antd";
 
 import { connect } from "react-redux";
 
@@ -36,16 +43,14 @@ const mapStateToProps = (state) => {
 };
 
 const AttendanceCard = (props) => {
+  const [isRejectModalVisible, setRejectModalVisible] = useState(false);
+
   const handleClick = () => {
     mutateHoursAssoc(true);
     message.success("Hours Approved");
   };
 
   const handleReject = () => {
-    /**
-     * @TODO
-     * Add new field for rejected hours
-     */
     mutateHoursAssoc(false);
     message.error("Hours Rejected");
   };
@@ -111,13 +116,37 @@ const AttendanceCard = (props) => {
               </Tooltip>
             )}
             {props.review && (
-              <Tooltip title="Reject">
-                <Icon
-                  className="mx-point-5 intern-dashboard-attendance-reject"
-                  icon={remove}
-                  onClick={() => handleReject()}
-                />
-              </Tooltip>
+              <>
+                <Tooltip title="Reject">
+                  <Icon
+                    className="mx-point-5 intern-dashboard-attendance-reject"
+                    icon={remove}
+                    onClick={() => setRejectModalVisible(true)}
+                  />
+                </Tooltip>
+                <Modal
+                  title="Reject Attendance"
+                  centered
+                  visible={isRejectModalVisible}
+                  footer={[
+                    <Button
+                      key="Cancel"
+                      onClick={() => setRejectModalVisible(false)}
+                    >
+                      Cancel
+                    </Button>,
+                    <Button
+                      key="Reject"
+                      type="danger"
+                      onClick={() => handleReject()}
+                    >
+                      Reject
+                    </Button>,
+                  ]}
+                >
+                  <p>Are you sure you want to reject this?</p>
+                </Modal>
+              </>
             )}
           </AntCol>
         </AntRow>
