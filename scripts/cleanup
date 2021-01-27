@@ -1,3 +1,7 @@
 #!/bin/bash
-rm -rf /home/bitnami/apps/react/htdocs/{,.[!.],..?}*
-rm -rf /home/bitnami/FLASKAPPS/backend/{,.[!.],..?}*
+rm -rf /home/bitnami/apps/business-portal/htdocs/{,.[!.],..?}*
+rm -rf /home/bitnami/FLASKAPPS/bp-backend/{,.[!.],..?}*
+
+source /home/bitnami/FLASKAPPS/env/activate
+pip install -r requirements.txt
+deactivate
