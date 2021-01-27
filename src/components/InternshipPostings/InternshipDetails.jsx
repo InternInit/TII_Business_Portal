@@ -17,7 +17,6 @@ import {
   Spin,
 } from "antd";
 import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
-import QueueAnim from "rc-queue-anim";
 import { Transition, config } from "react-spring/renderprops";
 
 import NavSearch from "../General/NavSearch.jsx";
