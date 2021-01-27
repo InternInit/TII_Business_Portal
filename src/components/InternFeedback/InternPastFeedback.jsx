@@ -22,6 +22,7 @@ import axios from "axios";
 
 import gql from "graphql-tag";
 import { print } from "graphql";
+import QueueAnim from "rc-queue-anim";
 
 // prettier-ignore
 const MUTATION = gql`
@@ -90,30 +91,35 @@ const InternPastFeedback = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Unread Feedback
           </Header>
-          {_.sortBy(
-            _.filter(student.feedback, (feedback) => !feedback.isRead),
-            "date"
-          ).map((data) => (
-            <FeedbackTab
-              student={student}
-              data={data}
-              markFeedbackRead={props.markFeedbackRead}
-              hasModal={fromDashboard}
-              markRead={markRead}
-            />
-          ))}
+          <QueueAnim>
+            {_.sortBy(
+              _.filter(student.feedback, (feedback) => !feedback.isRead),
+              "date"
+            ).map((data) => (
+              <FeedbackTab
+                key={data.Id}
+                student={student}
+                data={data}
+                markFeedbackRead={props.markFeedbackRead}
+                hasModal={fromDashboard}
+                markRead={markRead}
+              />
+            ))}
+          </QueueAnim>
         </Row>
       ) : null}
       <Row className="mt-1">
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-        {props.loading
-          ? null
-          : _.sortBy(
-              _.filter(student.feedback, (feedback) => feedback.isRead),
-              "date"
-            ).map((data) => <FeedbackTab student={student} data={data} />)}
+        <QueueAnim style={{width: "100%"}}>
+          {props.loading
+            ? null
+            : _.sortBy(
+                _.filter(student.feedback, (feedback) => feedback.isRead),
+                "date"
+              ).map((data) => <FeedbackTab student={student} data={data} />)}
+        </QueueAnim>
       </Row>
     </>
   );
@@ -141,26 +147,16 @@ const FeedbackTab = ({
     return id;
   };
 
-  const findFeedback = () => {
-    if (data.Id === getFeedbackId()) {
-      return data.comment;
-    } else {
-      return false;
-    }
-  };
+  /**
+   * Checks if getFeedbackId returns a viable Id.
+   * If ID, returns a comment
+   * If no ID, returns false
+   */
+  const findFeedback = () =>
+    data.Id === getFeedbackId() ? data.comment : false;
 
-  const findDate = () => {
-    let date;
-
-    switch (data.Id) {
-      case getFeedbackId():
-        date = moment.utc(data.date).format("MM/DD");
-        break;
-      default:
-        break;
-    }
-    return date;
-  };
+  const findDate = () =>
+    data.Id === getFeedbackId() ? moment.utc(data.date).format("MM/DD") : false;
 
   const isXs = Object.entries(screens)
     .filter((screen) => !!screen[1])
@@ -198,7 +194,13 @@ const FeedbackTab = ({
             toggleActive(false);
             markRead(data.Id);
           }}
-          title={"On " + findDate() + ", " + student.formData[0]["First Name"]  + " wrote:"}
+          title={
+            "On " +
+            findDate() +
+            ", " +
+            student.formData[0]["First Name"] +
+            " wrote:"
+          }
         >
           {findFeedback()}
         </Modal>
