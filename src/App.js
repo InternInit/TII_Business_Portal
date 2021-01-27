@@ -350,12 +350,12 @@ class App extends React.Component {
           <Route
             path="/login"
             exact
-            component={() => <Login auth={this.auth} key="login" />}
+            render={() => <Login auth={this.auth} key="login" />}
           />
           <Route
             path="/signup"
             exact
-            component={() => <Signup auth={this.auth} key="signup" />}
+            render={() => <Signup auth={this.auth} key="signup" />}
           />
 
           <Layout>
@@ -495,7 +495,7 @@ class RouteCandidates extends PureComponent {
       <Route
         key="candidatescontainer"
         path="/applicants"
-        component={() => (
+        render={() => (
           <CandidatesContainer getAccess={this.props.getAccess} />
         )}
       />
