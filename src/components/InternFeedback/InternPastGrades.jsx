@@ -37,8 +37,10 @@ const InternPastGrades = (props) => {
           <Header bolded className="twentyTwoFont mb-point-25">
             Grade Student
           </Header>
-          {_.filter(props.student.grades, (piece) => !piece.isFinished).length >
-          0 ? (
+          {props.loading ? null : _.filter(
+              props.student.grades,
+              (piece) => !piece.isFinished
+            ).length > 0 ? (
             sortReview(props.student.grades)
               .slice(
                 gradePage * GRADES_PER_PAGE,
@@ -65,30 +67,34 @@ const InternPastGrades = (props) => {
             </div>
           )}
           <AntRow justify="center">
-            <Pagination
-              current={gradePage + 1}
-              total={
-                _.filter(props.student.grades, (piece) => !piece.isFinished)
-                  .length
-              }
-              showLessItems={true}
-              pageSize={GRADES_PER_PAGE}
-              onChange={(pageChange) => changeGradePage(pageChange - 1)}
-              hideOnSinglePage={true}
-              style={{ marginTop: "10px" }}
-            />
+            {props.loading ? null : (
+              <Pagination
+                current={gradePage + 1}
+                total={
+                  _.filter(props.student.grades, (piece) => !piece.isFinished)
+                    .length
+                }
+                showLessItems={true}
+                pageSize={GRADES_PER_PAGE}
+                onChange={(pageChange) => changeGradePage(pageChange - 1)}
+                hideOnSinglePage={true}
+                style={{ marginTop: "10px" }}
+              />
+            )}
           </AntRow>
         </AntCol>
         <AntCol sm={14} xs={24}>
           <Header bolded className="twentyTwoFont mb-point-25">
             Past Grades
           </Header>
-          <GradeTable
-            grades={_.sortBy(
-              _.filter(props.student.grades, (grade) => grade.isFinished),
-              "dueDate"
-            )}
-          />
+          {props.loading ? null : (
+            <GradeTable
+              grades={_.sortBy(
+                _.filter(props.student.grades, (grade) => grade.isFinished),
+                "dueDate"
+              )}
+            />
+          )}
         </AntCol>
       </AntRow>
     </>

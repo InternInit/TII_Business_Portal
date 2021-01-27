@@ -12,9 +12,9 @@ import {
   InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
 
-import { Row as AntRow, Col as AntCol, Avatar, Dropdown, Menu } from "antd";
+import { Row as AntRow, Col as AntCol, Skeleton, Dropdown, Menu } from "antd";
+import QueueAnim from "rc-queue-anim";
 import { AiOutlineMenu } from "react-icons/ai";
-import TopLoader from "react-top-loader";
 
 import InternDashboard from "./InternDashboard.jsx";
 import InternPastFeedback from "./InternPastFeedback.jsx";
@@ -29,7 +29,7 @@ import { startInternLoading, finishInternLoading } from "../../redux/actions";
 const mapStateToProps = (state) => {
   return {
     interns: state.interns.currentInterns,
-    loadingStatuses: state.loadingStatuses,
+    isInternLoading: state.loadingStatuses.isInternLoading,
   };
 };
 
@@ -39,13 +39,6 @@ const mapDispatchToProps = {
 };
 
 class InternPageContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      student: null,
-    };
-  }
 
   MobileMenu = (student) => {
     return (
@@ -66,34 +59,7 @@ class InternPageContainer extends Component {
     );
   };
 
-  findStudent = () => {
-    console.log("trying to find");
-    if (!this.props.loadingStatuses.isInternLoading) {
-      const id = this.props.location.pathname.split("/");
-      //console.log(this.props);
-      const foundStudent = this.props.interns.find(
-        (student) => student.Id == id[2]
-      );
-      console.log(foundStudent);
-      this.setState({
-        student: foundStudent,
-        loading: false,
-      });
-    }
-  };
-
-  componentDidMount() {
-    this.findStudent();
-  }
-
-  componentDidUpdate() {
-    if (this.state.student === null) {
-      this.findStudent();
-    }
-  }
-
   render() {
-    const { loading } = this.state;
     const student = this.props.interns.find(
       (student) => student.Id == this.props.location.pathname.split("/")[2]
     );
@@ -104,181 +70,196 @@ class InternPageContainer extends Component {
           <NavSearch title="Intern Dashboard" />
           <InnerContainer className="mt-3 mb-4">
             <AntRow style={{ width: "100%" }}>
-              {this.props.loadingStatuses.isInternLoading ? (
-                <TabContainer
-                  className="mb-1 py-2 px-6 intern-dashboard-banner"
-                  style={{ width: "100%" }}
-                ></TabContainer>
+              {this.props.isInternLoading ? (
+                <InternBannerSkeleton />
               ) : (
-                <TabContainer
-                  className="mb-1 py-2 px-6 intern-dashboard-banner"
-                  style={{ width: "100%" }}
-                >
-                  <Dropdown
-                    overlay={this.MobileMenu(student)}
-                    placement="bottomRight"
-                  >
-                    <AiOutlineMenu className="intern-dashboard-mobile-menu" />
-                  </Dropdown>
-                  <AntRow justify="center">
-                    <AntCol className="universal-middle">
-                      <SmartAvatar
-                        size={150}
-                        name={student.formData["0"]["First Name"]}
-                        fontSize="fortyEightFont"
-                      />
-                      {/**
+                <>
+                    <TabContainer
+                      className="mb-1 py-2 px-6 intern-dashboard-banner"
+                      style={{ width: "100%" }}
+                    >
+                      <Dropdown
+                        overlay={this.MobileMenu(student)}
+                        placement="bottomRight"
+                      >
+                        <AiOutlineMenu className="intern-dashboard-mobile-menu" />
+                      </Dropdown>
+                      <AntRow justify="center">
+                        <AntCol className="universal-middle">
+                          <SmartAvatar
+                            size={150}
+                            name={student.formData["0"]["First Name"]}
+                            fontSize="fortyEightFont"
+                          />
+                          {/**
                      * @TODO
                      * Make it so that it can check if there's actually a profile pic for the user
                      <Avatar
                       size={150}
                       src={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
                     />*/}
-                    </AntCol>
-                    <AntCol flex="auto" offset={1}>
-                      <AntRow className="intern-dashboard-banner-text-row">
-                        <Header
-                          className="twentyEightFont intern-dashboard-banner-text"
-                          color="white"
-                        >
-                          {student.formData["0"]["First Name"]}{" "}
-                          {student.formData["0"]["Last Name"]}
-                        </Header>
+                        </AntCol>
+                        <AntCol flex="auto" offset={1}>
+                          <AntRow className="intern-dashboard-banner-text-row">
+                            <Header
+                              className="twentyEightFont intern-dashboard-banner-text"
+                              color="white"
+                            >
+                              {student.formData["0"]["First Name"]}{" "}
+                              {student.formData["0"]["Last Name"]}
+                            </Header>
+                          </AntRow>
+                          <AntRow className="intern-dashboard-banner-text-row">
+                            <Caption
+                              className="eighteenFont intern-dashboard-banner-text"
+                              color="white"
+                              thin
+                              style={{
+                                marginTop: "-.5em",
+                                fontStyle: "italic",
+                              }}
+                            >
+                              {student.appliedFor}
+                            </Caption>
+                          </AntRow>
+                          <AntRow className="mt-point-5">
+                            <AntCol xs={24} md={12}>
+                              <Caption className="sixteenFont" color="white">
+                                <Caption color="#C5D1D8">Phone:</Caption>{" "}
+                                6179311128
+                              </Caption>
+                            </AntCol>
+                            <AntCol xs={24} md={12}>
+                              <Caption className="sixteenFont" color="white">
+                                <Caption color="#C5D1D8">
+                                  Counselor Name:
+                                </Caption>{" "}
+                                {student.school
+                                  ? student.school.counselorName
+                                  : "N/A"}
+                              </Caption>
+                            </AntCol>
+                          </AntRow>
+                          <AntRow className="mt-point-5">
+                            <AntCol xs={24} md={12}>
+                              <Caption className="sixteenFont" color="white">
+                                <Caption color="#C5D1D8">Email:</Caption>{" "}
+                                {student.formData["0"].Email}
+                              </Caption>
+                            </AntCol>
+                            <AntCol xs={24} md={12}>
+                              <Caption className="sixteenFont" color="white">
+                                <Caption color="#C5D1D8">
+                                  Counselor Email:
+                                </Caption>{" "}
+                                {student.school ? student.school.email : "N/A"}
+                              </Caption>
+                            </AntCol>
+                          </AntRow>
+                          <AntRow className="mt-point-5">
+                            <AntCol xs={24} md={12}>
+                              <Caption className="sixteenFont" color="white">
+                                <Caption color="#C5D1D8">School:</Caption>{" "}
+                                {student.school ? student.school.name : "N/A"}
+                              </Caption>
+                            </AntCol>
+                            <AntCol xs={24} md={12}>
+                              <Caption className="sixteenFont" color="white">
+                                <Caption color="#C5D1D8">
+                                  Counselor Phone:
+                                </Caption>{" "}
+                                {student.school ? student.school.phone : "N/A"}
+                              </Caption>
+                            </AntCol>
+                          </AntRow>
+                        </AntCol>
                       </AntRow>
-                      <AntRow className="intern-dashboard-banner-text-row">
-                        <Caption
-                          className="eighteenFont intern-dashboard-banner-text"
-                          color="white"
-                          thin
-                          style={{ marginTop: "-.5em", fontStyle: "italic" }}
-                        >
-                          {student.appliedFor}
-                        </Caption>
+                      <AntRow className="mt-2" gutter={[16, 0]}>
+                        <AntCol xs={0} md={6} xl={4}>
+                          <Link to={`/my-interns/${student.Id}/dashboard`}>
+                            <NavigationButton
+                              block
+                              shape="round"
+                              size="large"
+                              active={this.props.location.pathname.includes(
+                                "dashboard"
+                              )}
+                              type={
+                                this.props.location.pathname.includes(
+                                  "dashboard"
+                                )
+                                  ? "primary"
+                                  : "default"
+                              }
+                            >
+                              Dashboard
+                            </NavigationButton>
+                          </Link>
+                        </AntCol>
+                        <AntCol xs={0} md={6} xl={4}>
+                          <Link to={`/my-interns/${student.Id}/attendance`}>
+                            <NavigationButton
+                              block
+                              shape="round"
+                              size="large"
+                              active={this.props.location.pathname.includes(
+                                "attendance"
+                              )}
+                              type={
+                                this.props.location.pathname.includes(
+                                  "attendance"
+                                )
+                                  ? "primary"
+                                  : "default"
+                              }
+                            >
+                              Attendance
+                            </NavigationButton>
+                          </Link>
+                        </AntCol>
+                        <AntCol xs={0} md={6} xl={4}>
+                          <Link to={`/my-interns/${student.Id}/feedback`}>
+                            <NavigationButton
+                              block
+                              shape="round"
+                              size="large"
+                              active={this.props.location.pathname.includes(
+                                "feedback"
+                              )}
+                              type={
+                                this.props.location.pathname.includes(
+                                  "feedback"
+                                )
+                                  ? "primary"
+                                  : "default"
+                              }
+                            >
+                              Feedback
+                            </NavigationButton>
+                          </Link>
+                        </AntCol>
+                        <AntCol xs={0} md={6} xl={4}>
+                          <Link to={`/my-interns/${student.Id}/grades`}>
+                            <NavigationButton
+                              block
+                              shape="round"
+                              size="large"
+                              active={this.props.location.pathname.includes(
+                                "grades"
+                              )}
+                              type={
+                                this.props.location.pathname.includes("grades")
+                                  ? "primary"
+                                  : "default"
+                              }
+                            >
+                              Grades
+                            </NavigationButton>
+                          </Link>
+                        </AntCol>
                       </AntRow>
-                      <AntRow className="mt-point-5">
-                        <AntCol xs={24} md={12}>
-                          <Caption className="sixteenFont" color="white">
-                            <Caption color="#C5D1D8">Phone:</Caption> 6179311128
-                          </Caption>
-                        </AntCol>
-                        <AntCol xs={24} md={12}>
-                          <Caption className="sixteenFont" color="white">
-                            <Caption color="#C5D1D8">Counselor Name:</Caption>{" "}
-                            {student.school
-                              ? student.school.counselorName
-                              : "N/A"}
-                          </Caption>
-                        </AntCol>
-                      </AntRow>
-                      <AntRow className="mt-point-5">
-                        <AntCol xs={24} md={12}>
-                          <Caption className="sixteenFont" color="white">
-                            <Caption color="#C5D1D8">Email:</Caption>{" "}
-                            {student.formData["0"].Email}
-                          </Caption>
-                        </AntCol>
-                        <AntCol xs={24} md={12}>
-                          <Caption className="sixteenFont" color="white">
-                            <Caption color="#C5D1D8">Counselor Email:</Caption>{" "}
-                            {student.school ? student.school.email : "N/A"}
-                          </Caption>
-                        </AntCol>
-                      </AntRow>
-                      <AntRow className="mt-point-5">
-                        <AntCol xs={24} md={12}>
-                          <Caption className="sixteenFont" color="white">
-                            <Caption color="#C5D1D8">School:</Caption>{" "}
-                            {student.school ? student.school.name : "N/A"}
-                          </Caption>
-                        </AntCol>
-                        <AntCol xs={24} md={12}>
-                          <Caption className="sixteenFont" color="white">
-                            <Caption color="#C5D1D8">Counselor Phone:</Caption>{" "}
-                            {student.school ? student.school.phone : "N/A"}
-                          </Caption>
-                        </AntCol>
-                      </AntRow>
-                    </AntCol>
-                  </AntRow>
-                  <AntRow className="mt-2" gutter={[16, 0]}>
-                    <AntCol xs={0} md={6} xl={4}>
-                      <Link to={`/my-interns/${student.Id}/dashboard`}>
-                        <NavigationButton
-                          block
-                          shape="round"
-                          size="large"
-                          active={this.props.location.pathname.includes(
-                            "dashboard"
-                          )}
-                          type={
-                            this.props.location.pathname.includes("dashboard")
-                              ? "primary"
-                              : "default"
-                          }
-                        >
-                          Dashboard
-                        </NavigationButton>
-                      </Link>
-                    </AntCol>
-                    <AntCol xs={0} md={6} xl={4}>
-                      <Link to={`/my-interns/${student.Id}/attendance`}>
-                        <NavigationButton
-                          block
-                          shape="round"
-                          size="large"
-                          active={this.props.location.pathname.includes(
-                            "attendance"
-                          )}
-                          type={
-                            this.props.location.pathname.includes("attendance")
-                              ? "primary"
-                              : "default"
-                          }
-                        >
-                          Attendance
-                        </NavigationButton>
-                      </Link>
-                    </AntCol>
-                    <AntCol xs={0} md={6} xl={4}>
-                      <Link to={`/my-interns/${student.Id}/feedback`}>
-                        <NavigationButton
-                          block
-                          shape="round"
-                          size="large"
-                          active={this.props.location.pathname.includes(
-                            "feedback"
-                          )}
-                          type={
-                            this.props.location.pathname.includes("feedback")
-                              ? "primary"
-                              : "default"
-                          }
-                        >
-                          Feedback
-                        </NavigationButton>
-                      </Link>
-                    </AntCol>
-                    <AntCol xs={0} md={6} xl={4}>
-                      <Link to={`/my-interns/${student.Id}/grades`}>
-                        <NavigationButton
-                          block
-                          shape="round"
-                          size="large"
-                          active={this.props.location.pathname.includes(
-                            "grades"
-                          )}
-                          type={
-                            this.props.location.pathname.includes("grades")
-                              ? "primary"
-                              : "default"
-                          }
-                        >
-                          Grades
-                        </NavigationButton>
-                      </Link>
-                    </AntCol>
-                  </AntRow>
-                </TabContainer>
+                    </TabContainer>
+                </>
               )}
             </AntRow>
 
@@ -286,15 +267,18 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id`}
                 exact
-                render={() => <Redirect to={`/my-interns/:id/dashboard`} />}
+                render={() => (
+                  <Redirect
+                    to={`/my-interns/${this.props.match.params.id}/dashboard`}
+                  />
+                )}
               />
               <Route
                 path={`/my-interns/:id/dashboard`}
                 exact
                 render={() => (
                   <InternDashboard
-                    loading={this.props.loadingStatuses.isInternLoading}
-                    functionLoading={this.state.loading}
+                    loading={this.props.isInternLoading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
@@ -303,8 +287,9 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/attendance`}
                 exact
-                component={() => (
+                render={() => (
                   <AttendanceRecord
+                    loading={this.props.isInternLoading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
@@ -313,8 +298,9 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/feedback`}
                 exact
-                component={() => (
+                render={() => (
                   <InternPastFeedback
+                    loading={this.props.isInternLoading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
@@ -323,8 +309,9 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/grades`}
                 exact
-                component={() => (
+                render={() => (
                   <InternPastGrades
+                    loading={this.props.isInternLoading}
                     student={student}
                     getAccess={this.props.getAccess}
                   />
@@ -333,8 +320,9 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/feedback/:id`}
                 exact
-                component={() => (
+                render={() => (
                   <InternPastFeedback
+                    loading={this.props.isInternLoading}
                     student={student}
                     fromDashboard={true}
                     getAccess={this.props.getAccess}
@@ -348,6 +336,111 @@ class InternPageContainer extends Component {
     );
   }
 }
+
+const InternBannerSkeleton = (props) => {
+  return (
+    <TabContainer
+      className="mb-1 py-2 px-6 intern-dashboard-banner"
+      style={{ width: "100%" }}
+    >
+      <AntRow justify="center">
+        <AntCol>
+          <Skeleton.Avatar
+            className="intern-banner-skeleton-avatar"
+            size={150}
+            active
+          />
+        </AntCol>
+        <AntCol flex="auto" offset={1}>
+          <AntRow className="intern-dashboard-banner-text-row">
+            <Skeleton
+              paragraph={false}
+              className="intern-banner-skeleton-name"
+              active
+            />
+          </AntRow>
+          <AntRow className="intern-dashboard-banner-text-row">
+            <Skeleton
+              paragraph={false}
+              className="intern-banner-skeleton-position"
+              active
+            />
+          </AntRow>
+          <AntRow className="mt-point-5">
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+          </AntRow>
+          <AntRow className="mt-point-5">
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+          </AntRow>
+          <AntRow className="mt-point-5">
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+            <AntCol xs={24} md={12}>
+              <Skeleton
+                paragraph={false}
+                className="intern-banner-skeleton-caption"
+                active
+              />
+            </AntCol>
+          </AntRow>
+        </AntCol>
+      </AntRow>
+      <AntRow className="mt-1" gutter={[16, 0]}>
+        <AntCol xs={0} md={6} xl={4}>
+          <NavigationButton block shape="round" size="large">
+            Dashboard
+          </NavigationButton>
+        </AntCol>
+        <AntCol xs={0} md={6} xl={4}>
+          <NavigationButton block shape="round" size="large">
+            Attendance
+          </NavigationButton>
+        </AntCol>
+        <AntCol xs={0} md={6} xl={4}>
+          <NavigationButton block shape="round" size="large">
+            Feedback
+          </NavigationButton>
+        </AntCol>
+        <AntCol xs={0} md={6} xl={4}>
+          <NavigationButton block shape="round" size="large">
+            Grades
+          </NavigationButton>
+        </AntCol>
+      </AntRow>
+    </TabContainer>
+  );
+};
 
 export default connect(
   mapStateToProps,

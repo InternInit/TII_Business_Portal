@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Row,
@@ -13,6 +11,7 @@ import {
   Pagination,
   Empty,
 } from "antd";
+import QueueAnim from "rc-queue-anim";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { BiTime } from "react-icons/bi";
@@ -33,6 +32,8 @@ import moment from "moment";
 const ATTENDANCE_PER_PAGE = 5;
 
 const AttendanceRecord = (props) => {
+  const { student } = props;
+
   const [state, setState] = useState({
     date: moment(),
     dateList: moment(),
@@ -41,7 +42,48 @@ const AttendanceRecord = (props) => {
   });
   const [page, changePage] = useState(0);
 
-  let { student } = props;
+  /**
+   * Approved hours in state is a dictionary to track which hours
+   * have been approved
+   */
+  const [approvedHours, changeApprovedHours] = useState({});
+  /**
+   * useEffect only runs when @props student changes, which on this page
+   * would only occur during a approval or denial.
+   *
+   * The useEffect loops through the hours and assigns each approved
+   * date to an hour in the dictionary in the following format:
+   *
+   *  mm/dd/yy: hours
+   *
+   * The value is used in dateFullCellRender
+   */
+  useEffect(() => {
+    let newHours = {};
+    if (student) {
+      _.filter(props.student.hours, (day) => day.isApproved).forEach((data) => {
+        //splits date string into separate variables
+        let dateWorked = moment(
+          moment(data.date).format("MM/DD/YYYY"),
+          "MM/DD/YYYY"
+        ).date();
+        let monthWorked = moment(
+          moment(data.date).format("MM/DD/YYYY"),
+          "MM/DD/YYYY"
+        ).month();
+        let yearWorked = moment(
+          moment(data.date).format("MM/DD/YYYY"),
+          "MM/DD/YYYY"
+        ).year();
+        let hoursWorked = data.time;
+
+        newHours[
+          monthWorked + "/" + dateWorked + "/" + yearWorked
+        ] = hoursWorked;
+      });
+    }
+    changeApprovedHours(newHours);
+  }, [student]);
 
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
@@ -56,7 +98,6 @@ const AttendanceRecord = (props) => {
     weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   });
 
-  console.log(props.student.hours)
   return (
     <Row className="mt-1" justify="end">
       <Col
@@ -67,23 +108,31 @@ const AttendanceRecord = (props) => {
         <Header bolded className="twentyTwoFont mb-point-25">
           To Be Approved
         </Header>
-        {_.filter(props.student.hours, (day) => !day.isApproved).length > 0 ? (
-          _.sortBy(
-            _.filter(props.student.hours, (day) => !day.isApproved),
-            "date"
-          )
-            .slice(page * ATTENDANCE_PER_PAGE, (page + 1) * ATTENDANCE_PER_PAGE)
-            .map((hour, index) => (
-              <AttendanceCard
-                key={index}
-                studentId={props.student.Id}
-                hoursId={hour.Id}
-                time={hour.time}
-                date={hour.dateFormatted}
-                review={true}
-                getAccess={props.getAccess}
-              />
-            ))
+        {props.loading ? null : _.filter(
+            props.student.hours,
+            (day) => !day.isApproved
+          ).length > 0 ? (
+          <QueueAnim>
+            {_.sortBy(
+              _.filter(props.student.hours, (day) => !day.isApproved),
+              "date"
+            )
+              .slice(
+                page * ATTENDANCE_PER_PAGE,
+                (page + 1) * ATTENDANCE_PER_PAGE
+              )
+              .map((hour, index) => (
+                <AttendanceCard
+                  key={index}
+                  studentId={props.student.Id}
+                  hoursId={hour.Id}
+                  time={hour.time}
+                  date={hour.dateFormatted}
+                  review={true}
+                  getAccess={props.getAccess}
+                />
+              ))}
+          </QueueAnim>
         ) : (
           <div className="py-2-5 universal-center ">
             <Row justify="center" align="middle">
@@ -97,17 +146,19 @@ const AttendanceRecord = (props) => {
           </div>
         )}
         <Row justify="center">
-          <Pagination
-            current={page + 1}
-            total={
-              _.filter(props.student.hours, (day) => !day.isApproved).length
-            }
-            showLessItems={true}
-            pageSize={ATTENDANCE_PER_PAGE}
-            onChange={(pageChange) => changePage(pageChange - 1)}
-            hideOnSinglePage={true}
-            style={{ marginTop: "10px" }}
-          />
+          {props.loading ? null : (
+            <Pagination
+              current={page + 1}
+              total={
+                _.filter(props.student.hours, (day) => !day.isApproved).length
+              }
+              showLessItems={true}
+              pageSize={ATTENDANCE_PER_PAGE}
+              onChange={(pageChange) => changePage(pageChange - 1)}
+              hideOnSinglePage={true}
+              style={{ marginTop: "10px" }}
+            />
+          )}
         </Row>
       </Col>
       <Col sm={{ span: 14, order: 2 }} xs={{ span: 24, order: 1 }}>
@@ -115,388 +166,368 @@ const AttendanceRecord = (props) => {
           Attendance Record
         </Header>
 
-        <TabContainer className="mt-point-25 px-2 py-2">
-          <Row
-            gutter={[16, 16]}
-            justify="center"
-            align={
-              _.filter(props.student.hours, (day) => day.isApproved).length !==
-              0
-                ? "top"
-                : "middle"
-            }
-          >
-            {/* attendance list */}
-            <Col
-              xs={24}
-              sm={24}
-              m={24}
-              lg={24}
-              xl={12}
-              style={{ paddingLeft: "4px" }}
-            >
-              {_.filter(props.student.hours, (day) => day.isApproved).length !==
-              0 ? (
-                <>
-                  {isMd ? (
-                    <Row
-                      justify="space-between"
-                      style={{ paddingBottom: "12px", paddingRight: "23px" }}
-                    >
-                      <Header className="twentyFont">Date</Header>
-                      <Header className="twentyFont">Hours Worked</Header>
-                    </Row>
+        {props.loading ? null : (
+          <QueueAnim>
+            <TabContainer key="approvedHours" className="mt-point-25 px-2 py-2">
+              <Row
+                gutter={[16, 16]}
+                justify="center"
+                align={
+                  _.filter(props.student.hours, (day) => day.isApproved)
+                    .length !== 0
+                    ? "top"
+                    : "middle"
+                }
+              >
+                {/* attendance list */}
+                <Col
+                  xs={24}
+                  sm={24}
+                  m={24}
+                  lg={24}
+                  xl={12}
+                  style={{ paddingLeft: "4px" }}
+                >
+                  {_.filter(props.student.hours, (day) => day.isApproved)
+                    .length !== 0 ? (
+                    <>
+                      {isMd ? (
+                        <Row
+                          justify="space-between"
+                          style={{
+                            paddingBottom: "12px",
+                            paddingRight: "23px",
+                          }}
+                        >
+                          <Header className="twentyFont">Date</Header>
+                          <Header className="twentyFont">Hours Worked</Header>
+                        </Row>
+                      ) : (
+                        <Row
+                          justify="space-between"
+                          style={{
+                            paddingBottom: "12px",
+                            paddingRight: "23px",
+                          }}
+                        >
+                          <Header className="twentyFont">Date</Header>
+                          <Header className="twentyFont">Hours Worked</Header>
+                        </Row>
+                      )}
+
+                      <Row className="attendance-list-container">
+                        {_.sortBy(
+                          _.filter(
+                            props.student.hours,
+                            (day) => day.isApproved
+                          ),
+                          "date"
+                        ).map((data) => {
+                          return (
+                            <Scrollbars autoHide={true} style={{ height: 50 }}>
+                              {isMd ? (
+                                <Col flex="auto">
+                                  <Row
+                                    className="attendance-list-row"
+                                    align="middle"
+                                    justify="space-between"
+                                  >
+                                    <Button
+                                      style={{ padding: "0px" }}
+                                      type="link"
+                                      onClick={() => {
+                                        setState({
+                                          date: moment(data.date).format(
+                                            "MM/DD/YYYY"
+                                          ),
+                                          dateList: moment(data.date).format(
+                                            "MM/DD/YYYY"
+                                          ),
+                                        });
+                                      }}
+                                    >
+                                      <Header className="student-attendance-list">
+                                        {moment(data.date).format("MM/DD/YYYY")}
+                                      </Header>
+                                    </Button>
+
+                                    <Header
+                                      className="sixteenFont mr-point-5"
+                                      style={{ color: "#a0a0a0" }}
+                                    >
+                                      {data.time}
+                                    </Header>
+                                  </Row>
+                                </Col>
+                              ) : (
+                                <Col flex="auto">
+                                  <Row
+                                    className="attendance-list-row"
+                                    align="middle"
+                                    justify="space-between"
+                                  >
+                                    <Button
+                                      style={{ padding: "0px" }}
+                                      type="link"
+                                      onClick={() => {
+                                        setState({
+                                          date: moment(data.date).format(
+                                            "MM/DD/YYYY"
+                                          ),
+                                          dateList: moment(data.date).format(
+                                            "MM/DD/YYYY"
+                                          ),
+                                        });
+                                      }}
+                                    >
+                                      <Header className="student-attendance-list">
+                                        <div style={{ fontSize: "16px" }}>
+                                          {moment(data.date).format(
+                                            "MM/DD/YYYY"
+                                          )}
+                                        </div>
+                                      </Header>
+                                    </Button>
+
+                                    <Header
+                                      className="sixteenFont mr-point-5"
+                                      color="#a0a0a0"
+                                    >
+                                      {data.time}
+                                    </Header>
+                                  </Row>
+                                </Col>
+                              )}
+                            </Scrollbars>
+                          );
+                        })}
+                      </Row>
+                    </>
                   ) : (
-                    <Row
-                      justify="space-between"
-                      style={{ paddingBottom: "12px", paddingRight: "23px" }}
-                    >
-                      <Header className="twentyFont">Date</Header>
-                      <Header className="twentyFont">Hours Worked</Header>
+                    <Row justify="center" align="middle">
+                      <Empty
+                        description={
+                          <Caption className="eighteenFont" light>
+                            {student.formData["0"]["First Name"] +
+                              " " +
+                              student.formData["0"]["Last Name"]}{" "}
+                            doesn't have any approved hours{" "}
+                          </Caption>
+                        }
+                        image={Empty.PRESENTED_IMAGE_SIMPLE}
+                      />
                     </Row>
                   )}
+                </Col>
 
-                  <Row className="attendance-list-container">
-                    {_.sortBy(
-                      _.filter(props.student.hours, (day) => day.isApproved),
-                      "date"
-                    ).map((data) => {
-                      return (
-                        <Scrollbars autoHide={true} style={{ height: 50 }}>
-                          {isMd ? (
-                            <Col flex="auto">
-                              <Row
-                                className="attendance-list-row"
-                                align="middle"
-                                justify="space-between"
-                              >
-                                <Button
-                                  style={{ padding: "0px" }}
-                                  type="link"
-                                  onClick={() => {
-                                    setState({
-                                      date: moment(data.date).format(
-                                        "MM/DD/YYYY"
-                                      ),
-                                      dateList: moment(data.date).format(
-                                        "MM/DD/YYYY"
-                                      ),
-                                    });
-                                  }}
-                                >
-                                  <Header className="student-attendance-list">
-                                    {moment(data.date).format("MM/DD/YYYY")}
-                                  </Header>
-                                </Button>
+                {/* Calendar */}
+                <Col lg={24} xl={12} className="attendance-calendar">
+                  <Calendar
+                    fullscreen={false}
+                    //sets date value being displayed
+                    value={moment(state.date)}
+                    //updates current date value if new date is selected
+                    onSelect={(date) => {
+                      setState({ date: date });
+                    }}
+                    //Fills calendar dates
+                    dateFullCellRender={(date) => {
+                      let style;
+                      let toolTipActive = false;
+                      let hoursWorked;
 
-                                <Header
-                                  className="sixteenFont mr-point-5"
-                                  style={{ color: "#a0a0a0" }}
-                                >
-                                  {data.time}
-                                </Header>
-                              </Row>
-                            </Col>
-                          ) : (
-                            <Col flex="auto">
-                              <Row
-                                className="attendance-list-row"
-                                align="middle"
-                                justify="space-between"
-                              >
-                                <Button
-                                  style={{ padding: "0px" }}
-                                  type="link"
-                                  onClick={() => {
-                                    setState({
-                                      date: moment(data.date).format(
-                                        "MM/DD/YYYY"
-                                      ),
-                                      dateList: moment(data.date).format(
-                                        "MM/DD/YYYY"
-                                      ),
-                                    });
-                                  }}
-                                >
-                                  <Header className="student-attendance-list">
-                                    <div style={{ fontSize: "16px" }}>
-                                      {moment(data.date).format("MM/DD/YYYY")}
-                                    </div>
-                                  </Header>
-                                </Button>
+                      //Date, month, year being displayed
+                      const day = date.date(); //mapped; 1-31
+                      const newMonth = date.month();
+                      const newYear = date.year();
 
-                                <Header
-                                  className="sixteenFont mr-point-5"
-                                  color="#a0a0a0"
-                                >
-                                  {data.time}
-                                </Header>
-                              </Row>
-                            </Col>
-                          )}
-                        </Scrollbars>
-                      );
-                    })}
-                  </Row>
-                </>
-              ) : (
-                <Row justify="center" align="middle">
-                  <Empty
-                    description={
-                      <Caption className="eighteenFont" light>
-                        {student.formData["0"]["First Name"] +
-                          " " +
-                          student.formData["0"]["Last Name"]}{" "}
-                        doesn't have any approved hours{" "}
-                      </Caption>
-                    }
-                    image={
-                      Empty.PRESENTED_IMAGE_SIMPLE
-                      //"https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-                    }
-                    //imageStyle={{ marginTop: "-14px", height: "60%" }}
-                  />
-                </Row>
-              )}
-            </Col>
+                      //Finds if they worked on a specific date
+                      const hasWorked = (dd, mm, yy) => {
+                        let dateType = false;
+                        let isSelected = false;
 
-            {/* Calendar */}
-            <Col lg={24} xl={12} className="attendance-calendar">
-              <Calendar
-                fullscreen={false}
-                //sets date value being displayed
-                value={moment(state.date)}
-                //updates current date value if new date is selected
-                onSelect={(date) => {
-                  setState({ date: date });
-                }}
-                //Fills calendar dates
-                dateFullCellRender={(date) => {
-                  let style;
-                  let toolTipActive = false;
-                  let hoursWorked;
+                        if (
+                          approvedHours[mm + "/" + dd + "/" + yy] !== undefined
+                        ) {
+                          hoursWorked = approvedHours[mm + "/" + dd + "/" + yy];
+                          dateType = true;
+                          isSelected = true;
+                          toolTipActive = true;
+                        } else {
+                          dateType = false;
+                        }
 
-                  //Date, month, year being displayed
-                  const day = date.date(); //mapped; 1-31
-                  const newMonth = date.month();
-                  const newYear = date.year();
+                        //Date, month, year chosen from detailed list
+                        let selectedDate = moment(
+                          state.dateList,
+                          "MM/DD/YYYY"
+                        ).date();
+                        let selectedMonth = moment(
+                          state.dateList,
+                          "MM/DD/YYYY"
+                        ).month();
+                        let selectedYear = moment(
+                          state.dateList,
+                          "MM/DD/YYYY"
+                        ).year();
 
-                  //Finds if they worked on a specific date
-                  const hasWorked = (dd, mm, yy) => {
-                    let dateType = false;
-                    let isSelected = false;
-                    let datesWorked = [];
+                        // more comparisons– date from list compared against dates being displayed in the calendar
+                        if (
+                          selectedDate === dd &&
+                          selectedMonth === mm &&
+                          selectedYear === yy &&
+                          isSelected
+                        ) {
+                          dateType = "fromList";
+                        }
 
-                    _.sortBy(
-                      _.filter(props.student.hours, (day) => day.isApproved),
-                      "date"
-                    ).map((data) => {
-                      //splits date string into separate variables
-                      let dateWorked = moment(
-                        moment(data.date).format("MM/DD/YYYY"),
-                        "MM/DD/YYYY"
-                      ).date();
-                      let monthWorked = moment(
-                        moment(data.date).format("MM/DD/YYYY"),
-                        "MM/DD/YYYY"
-                      ).month();
-                      let yearWorked = moment(
-                        moment(data.date).format("MM/DD/YYYY"),
-                        "MM/DD/YYYY"
-                      ).year();
-                      let hoursWorked = data.time;
+                        if (
+                          dd === new Date().getDate() &&
+                          mm === new Date().getMonth() &&
+                          yy === new Date().getFullYear()
+                        )
+                          dateType = "today";
 
-                      datesWorked.push({
-                        date: dateWorked,
-                        month: monthWorked,
-                        year: yearWorked,
-                        time: hoursWorked,
-                      });
-                    });
+                        return dateType;
+                      };
 
-                    //Compares dates to be displayed against dates worked
-                    for (let i = 0; i < datesWorked.length; i++) {
-                      if (
-                        dd === datesWorked[i].date &&
-                        mm === datesWorked[i].month &&
-                        yy === datesWorked[i].year
-                      ) {
-                        dateType = true;
-                        isSelected = true;
-                        toolTipActive = true;
-                        hoursWorked = datesWorked[i].time;
-                        break;
-                      } else {
-                        dateType = false;
+                      switch (hasWorked(day, newMonth, newYear)) {
+                        case "today":
+                          style = "attendance-date-current";
+                          break;
+                        case "fromList":
+                          style = "attendance-date-selected";
+                          break;
+                        case true:
+                          style = "attendance-date-worked";
+                          break;
+                        case false:
+                          style = "attendance-date-default";
+                          break;
+                        default:
+                          style = "attendance-date-default";
                       }
-                    }
 
-                    //Date, month, year chosen from detailed list
-                    let selectedDate = moment(
-                      state.dateList,
-                      "MM/DD/YYYY"
-                    ).date();
-                    let selectedMonth = moment(
-                      state.dateList,
-                      "MM/DD/YYYY"
-                    ).month();
-                    let selectedYear = moment(
-                      state.dateList,
-                      "MM/DD/YYYY"
-                    ).year();
+                      return (
+                        <div className={style}>
+                          <Tooltip
+                            title={toolTipActive ? hoursWorked + " Hours" : ""}
+                          >
+                            {day}
+                          </Tooltip>
+                        </div>
+                      );
+                    }}
+                    //Calendar header
+                    headerRender={({ value }) => {
+                      const start = 0;
+                      const end = 12;
 
-                    // more comparisons– date from list compared against dates being displayed in the calendar
-                    if (
-                      selectedDate === dd &&
-                      selectedMonth === mm &&
-                      selectedYear === yy &&
-                      isSelected
-                    ) {
-                      dateType = "fromList";
-                    }
+                      //List of months, Jan–Dec
+                      const monthOptions = [];
 
-                    if (
-                      dd === new Date().getDate() &&
-                      mm === new Date().getMonth() &&
-                      yy === new Date().getFullYear()
-                    )
-                      dateType = "today";
+                      const current = moment().clone();
+                      const localeData = moment().localeData();
+                      const months = [];
 
-                    return dateType;
-                  };
+                      for (let i = 0; i < 12; i++) {
+                        current.month(i);
+                        months.push(localeData.monthsShort(current));
+                      }
 
-                  switch (hasWorked(day, newMonth, newYear)) {
-                    case "today":
-                      style = "attendance-date-current";
-                      break;
-                    case "fromList":
-                      style = "attendance-date-selected";
-                      break;
-                    case true:
-                      style = "attendance-date-worked";
-                      break;
-                    case false:
-                      style = "attendance-date-default";
-                    default:
-                      style = "attendance-date-default";
-                  }
+                      for (let index = start; index < end; index++) {
+                        monthOptions.push(
+                          <Select.Option
+                            className="month-item"
+                            key={`${index}`}
+                          >
+                            {months[index]}
+                          </Select.Option>
+                        );
+                      }
 
-                  return (
-                    <div className={style}>
-                      <Tooltip
-                        title={toolTipActive ? hoursWorked + " Hours" : ""}
-                      >
-                        {day}
-                      </Tooltip>
-                    </div>
-                  );
-                }}
-                //Calendar header
-                headerRender={({ value }) => {
-                  const start = 0;
-                  const end = 12;
+                      // Displayed Month #, 0-11
+                      let month = value.month();
 
-                  //List of months, Jan–Dec
-                  const monthOptions = [];
+                      // Displayed Year
+                      let year = value.year();
 
-                  const current = moment().clone();
-                  const localeData = moment().localeData();
-                  const months = [];
-
-                  for (let i = 0; i < 12; i++) {
-                    current.month(i);
-                    months.push(localeData.monthsShort(current));
-                  }
-
-                  for (let index = start; index < end; index++) {
-                    monthOptions.push(
-                      <Select.Option className="month-item" key={`${index}`}>
-                        {months[index]}
-                      </Select.Option>
-                    );
-                  }
-
-                  // Displayed Month #, 0-11
-                  let month = value.month();
-
-                  // Displayed Year
-                  let year = value.year();
-
-                  //Return Button Function
-                  const monthChecker = (propsMonth, propsYear) => {
-                    if (
-                      propsMonth != new Date().getMonth() ||
-                      propsYear != new Date().getFullYear()
-                    ) {
+                      //Return Button Function
+                      const monthChecker = (propsMonth, propsYear) => {
+                        if (
+                          propsMonth != new Date().getMonth() ||
+                          propsYear != new Date().getFullYear()
+                        ) {
+                          return (
+                            <Row>
+                              <Button
+                                type="link"
+                                onClick={() => {
+                                  setState({
+                                    date: moment(),
+                                    dateList: moment(),
+                                  });
+                                }}
+                              >
+                                Today
+                              </Button>
+                            </Row>
+                          );
+                        } else {
+                          return;
+                        }
+                      };
+                      //returns new header
                       return (
                         <Row>
-                          <Button
-                            type="link"
-                            onClick={() => {
-                              setState({
-                                date: moment(),
-                                dateList: moment(),
-                              });
-                            }}
-                          >
-                            Today
-                          </Button>
+                          {/* Calendar Arrow Buttons + Month/Year Info */}
+                          <Col span={24}>
+                            <Row justify="center" align="middle">
+                              <Button
+                                size="large"
+                                type="link"
+                                icon={<LeftOutlined />}
+                                onClick={() => {
+                                  const currentMonth = month; //number 0-11
+                                  const desiredMonth = currentMonth - 1; //back 1 month
+
+                                  const newValue = value.clone();
+                                  newValue.month(desiredMonth); //get month data
+                                  setState({ date: newValue }); //display new month data
+                                }}
+                              />
+                              <Header className="eighteenFont">
+                                {monthOptions[month].props.children} {year}
+                              </Header>
+
+                              <Button
+                                icon={<RightOutlined />}
+                                className="fourteenFont"
+                                size="large"
+                                type="link"
+                                onClick={() => {
+                                  const currentMonth = month; //number 0-11
+                                  const desiredMonth = currentMonth + 1; //back forward month
+
+                                  const newValue = value.clone();
+                                  newValue.month(desiredMonth); //get month data
+                                  setState({ date: newValue }); //display new month data
+                                }}
+                              />
+                            </Row>
+                          </Col>
+
+                          {/* Return to Today Button */}
+                          <Row>{monthChecker(month, year)}</Row>
                         </Row>
                       );
-                    } else {
-                      return;
-                    }
-                  };
-
-                  //returns new header
-                  return (
-                    <Row>
-                      {/* Calendar Arrow Buttons + Month/Year Info */}
-                      <Col span={24}>
-                        <Row justify="center" align="middle">
-                          <Button
-                            size="large"
-                            type="link"
-                            icon={<LeftOutlined />}
-                            onClick={() => {
-                              const currentMonth = month; //number 0-11
-                              const desiredMonth = currentMonth - 1; //back 1 month
-
-                              const newValue = value.clone();
-                              newValue.month(desiredMonth); //get month data
-                              setState({ date: newValue }); //display new month data
-                            }}
-                          />
-                          <Header className="eighteenFont">
-                            {monthOptions[month].props.children} {year}
-                          </Header>
-
-                          <Button
-                            icon={<RightOutlined />}
-                            className="fourteenFont"
-                            size="large"
-                            type="link"
-                            onClick={() => {
-                              const currentMonth = month; //number 0-11
-                              const desiredMonth = currentMonth + 1; //back forward month
-
-                              const newValue = value.clone();
-                              newValue.month(desiredMonth); //get month data
-                              setState({ date: newValue }); //display new month data
-                            }}
-                          />
-                        </Row>
-                      </Col>
-
-                      {/* Return to Today Button */}
-                      <Row>{monthChecker(month, year)}</Row>
-                    </Row>
-                  );
-                }}
-              />
-            </Col>
-          </Row>
-        </TabContainer>
+                    }}
+                  />
+                </Col>
+              </Row>
+            </TabContainer>
+          </QueueAnim>
+        )}
       </Col>
     </Row>
   );
