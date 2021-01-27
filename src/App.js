@@ -12,6 +12,7 @@ import {
 
 //Ant Design
 import { Layout } from "antd";
+import QueueAnim from "rc-queue-anim";
 
 //Redux
 import { connect } from "react-redux";
@@ -419,7 +420,6 @@ class App extends React.Component {
                       <InternshipDetails
                         {...props}
                         title="Edit Posting"
-                        key="internshipdetails"
                         buttonText="Save Changes"
                         updateListing={this.props.updateListing}
                       />
@@ -495,9 +495,7 @@ class RouteCandidates extends PureComponent {
       <Route
         key="candidatescontainer"
         path="/applicants"
-        render={() => (
-          <CandidatesContainer getAccess={this.props.getAccess} />
-        )}
+        render={() => <CandidatesContainer getAccess={this.props.getAccess} />}
       />
     );
   }

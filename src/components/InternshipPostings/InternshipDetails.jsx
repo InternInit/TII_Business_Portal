@@ -17,8 +17,10 @@ import {
   Spin,
 } from "antd";
 import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
-import NavSearch from "../General/NavSearch.jsx";
+import QueueAnim from "rc-queue-anim";
+import { Transition, config } from "react-spring/renderprops";
 
+import NavSearch from "../General/NavSearch.jsx";
 import {
   PageContainer,
   Header,
@@ -239,15 +241,6 @@ class InternshipDetails extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.loading || nextState.loading) {
-      return false;
-    } else {
-      return true;
-    }
-
-  }
-
   findListingData = () => {
     if (!this.props.loading) {
       if (!this.props.location.pathname.includes("add-listing")) {
@@ -269,6 +262,7 @@ class InternshipDetails extends React.Component {
         } catch (e) {}
         this.setState({ filters: listingData.Filters }, () => {
           //console.log(this.state);
+          console.log("Form ref is " + JSON.stringify(this.formRef));
           this.setState({ loading: false }, () => {
             this.formRef.current.setFieldsValue(listingData);
           });
@@ -315,27 +309,43 @@ class InternshipDetails extends React.Component {
         <React.Fragment>
           <NavSearch title={title} searchBar={false} />
           <PageContainer>
-            <div className="px-8 py-2" style={{ width: "100%" }}>
-              <Breadcrumb style={{ paddingBottom: "1em" }}>
-                <Breadcrumb.Item className="twentyFont">
-                  <Link to="/internship-listings">Internship Postings</Link>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item className="twentyFont">
-                  {this.props.location.pathname.includes("add-listing")
-                    ? "Create Posting"
-                    : "My Post"}
-                </Breadcrumb.Item>
-              </Breadcrumb>
+            <Transition
+              items={this.props.location.pathname}
+              from={{ opacity: 0.5, transform: "translateY(20px)" }}
+              enter={{ opacity: 1, transform: "translateY(0px)" }}
+              leave={{ opacity: 1 }}
+              config={config.stiff}
+            >
+              {(location) => (props) => (
+                <div
+                  key="addInternship"
+                  className="px-8 py-2"
+                  style={{ ...props, width: "100%" }}
+                >
+                  <Breadcrumb style={{ paddingBottom: "1em" }}>
+                    <Breadcrumb.Item className="twentyFont">
+                      <Link to="/internship-listings">Internship Postings</Link>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item className="twentyFont">
+                      {this.props.location.pathname.includes("add-listing")
+                        ? "Create Posting"
+                        : "My Post"}
+                    </Breadcrumb.Item>
+                  </Breadcrumb>
 
-              <InternshipDetailForm
-                initialFilters={this.state.filters ? this.state.filters : []}
-                buttonText={buttonText}
-                title={title}
-                formRef={this.formRef}
-                onFinish={this.onFinish}
-                isNewPosting={true}
-              />
-            </div>
+                  <InternshipDetailForm
+                    initialFilters={
+                      this.state.filters ? this.state.filters : []
+                    }
+                    buttonText={buttonText}
+                    title={title}
+                    formRef={this.formRef}
+                    onFinish={this.onFinish}
+                    isNewPosting={true}
+                  />
+                </div>
+              )}
+            </Transition>
           </PageContainer>
         </React.Fragment>
       );
@@ -343,36 +353,50 @@ class InternshipDetails extends React.Component {
       return (
         <React.Fragment>
           <NavSearch title={title} searchBar={false} />
-          <Spin
-            indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />}
-            spinning={
-              this.state.loading && this.props.loading
-            }
-          >
-            <PageContainer>
-              <div className="px-8 py-2" style={{ width: "100%" }}>
-                <Breadcrumb style={{ paddingBottom: "1em" }}>
-                  <Breadcrumb.Item className="twentyFont">
-                    <Link to="/internship-listings">Internship Postings</Link>
-                  </Breadcrumb.Item>
-                  <Breadcrumb.Item className="twentyFont">
-                    {this.props.location.pathname.includes("add-listing")
-                      ? "Create Posting"
-                      : "My Post"}
-                  </Breadcrumb.Item>
-                </Breadcrumb>
-
-                <InternshipDetailForm
-                  initialFilters={this.state.filters ? this.state.filters : []}
-                  buttonText={buttonText}
-                  title={title}
-                  formRef={this.formRef}
-                  onFinish={this.onFinish}
-                  isNewPosting={false}
-                />
-              </div>
-            </PageContainer>
-          </Spin>
+          <PageContainer>
+            <Transition
+              items={this.props.location.pathname}
+              from={{ opacity: 0.5, transform: "translateY(20px)" }}
+              enter={{ opacity: 1, transform: "translateY(0px)" }}
+              leave={{ opacity: 1 }}
+              config={config.stiff}
+            >
+              {(location) => (props) => (
+                <div
+                  key="editInternship"
+                  className="px-8 py-2"
+                  style={{ ...props, width: "100%" }}
+                >
+                  <Breadcrumb style={{ paddingBottom: "1em" }}>
+                    <Breadcrumb.Item className="twentyFont">
+                      <Link to="/internship-listings">Internship Postings</Link>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item className="twentyFont">
+                      My Post
+                    </Breadcrumb.Item>
+                  </Breadcrumb>
+                  <Spin
+                    key="InternshipDetail"
+                    indicator={
+                      <LoadingOutlined style={{ fontSize: 36 }} spin />
+                    }
+                    spinning={this.state.loading && this.props.loading}
+                  >
+                    <InternshipDetailForm
+                      initialFilters={
+                        this.state.filters ? this.state.filters : []
+                      }
+                      buttonText={buttonText}
+                      title={title}
+                      formRef={this.formRef}
+                      onFinish={this.onFinish}
+                      isNewPosting={false}
+                    />
+                  </Spin>
+                </div>
+              )}
+            </Transition>
+          </PageContainer>
         </React.Fragment>
       );
     }
