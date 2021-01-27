@@ -40,14 +40,6 @@ const mapDispatchToProps = {
 
 class InternPageContainer extends Component {
 
-  componentDidMount() {
-    console.log("Page Container Mounted");
-  }
-
-  componentWillUnmount() {
-    console.log("Page Container Unmounted");
-  }
-  
   MobileMenu = (student) => {
     return (
       <Menu>
@@ -295,7 +287,7 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/attendance`}
                 exact
-                component={() => (
+                render={() => (
                   <AttendanceRecord
                     loading={this.props.isInternLoading}
                     student={student}
@@ -306,7 +298,7 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/feedback`}
                 exact
-                component={() => (
+                render={() => (
                   <InternPastFeedback
                     loading={this.props.isInternLoading}
                     student={student}
@@ -317,7 +309,7 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/grades`}
                 exact
-                component={() => (
+                render={() => (
                   <InternPastGrades
                     loading={this.props.isInternLoading}
                     student={student}
@@ -328,7 +320,7 @@ class InternPageContainer extends Component {
               <Route
                 path={`/my-interns/:id/feedback/:id`}
                 exact
-                component={() => (
+                render={() => (
                   <InternPastFeedback
                     loading={this.props.isInternLoading}
                     student={student}
