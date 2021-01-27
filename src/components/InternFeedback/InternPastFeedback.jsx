@@ -91,7 +91,7 @@ const InternPastFeedback = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Unread Feedback
           </Header>
-          <QueueAnim>
+          <QueueAnim style={{width: "100%"}}>
             {_.sortBy(
               _.filter(student.feedback, (feedback) => !feedback.isRead),
               "date"
