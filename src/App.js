@@ -500,7 +500,7 @@ class RouteInternDashboard extends React.Component {
     return (
       <Route
         path={`/my-interns/:id`}
-        component={(props) => (
+        render={(props) => (
           <InternPageContainer
             {...props}
             getAccess={this.props.getAccess}
