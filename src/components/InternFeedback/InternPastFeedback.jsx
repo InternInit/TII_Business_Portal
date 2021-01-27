@@ -135,25 +135,18 @@ const FeedbackTab = ({
 
   const location = useLocation();
 
-  const getFeedbackId = (props) => {
+  const getFeedbackId = () => {
     let id;
     hasModal ? (id = location.pathname.split("/")[4]) : (id = "");
     return id;
   };
 
-  //console.log(data);
-
   const findFeedback = () => {
-    let message;
-
-    switch (data.Id) {
-      case getFeedbackId():
-        message = data.comment;
-        break;
-      default:
-        break;
+    if (data.Id === getFeedbackId()) {
+      return data.comment;
+    } else {
+      return false;
     }
-    return message;
   };
 
   const isXs = Object.entries(screens)
