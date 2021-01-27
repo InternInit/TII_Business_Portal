@@ -137,14 +137,7 @@ const FeedbackTab = ({
 
   const getFeedbackId = (props) => {
     let id;
-    {
-      hasModal
-        ? (id = location.pathname.substring(
-            location.pathname.lastIndexOf("/feedback/") + 10,
-            location.pathname.length
-          ))
-        : (id = "");
-    }
+    hasModal ? (id = location.pathname.split("/")[4]) : (id = "");
     return id;
   };
 
