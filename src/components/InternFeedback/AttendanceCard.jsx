@@ -58,7 +58,6 @@ const AttendanceCard = (props) => {
 
   const mutateHoursAssoc = async (isApproved) => {
     let access = await props.getAccess();
-
     let hourId = props.hoursId;
     let internIndex = _.findIndex(props.interns, { Id: props.studentId });
     let internOfInterest = { ...props.interns[internIndex] };
@@ -92,7 +91,7 @@ const AttendanceCard = (props) => {
         } else {
           props.submitHour(internIndex, hourObj);
         }
-        console.log(result.data[hourId]);
+        //console.log(result.data[hourId]);
       })
       .catch((error) => {
         console.log(error);

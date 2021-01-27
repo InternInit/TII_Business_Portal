@@ -30,7 +30,7 @@ const InternDashboard = (props) => {
 
   useEffect(() => {
     console.log("Re-rendered dashboard!");
-  }, [gradePage])
+  }, [gradePage]);
 
   return (
     <>
@@ -125,10 +125,7 @@ const InternDashboard = (props) => {
             Employer Grades
           </Header>
           {props.loading ? null : (
-            <QueueAnim
-              type={["right", "left"]}
-              ease={["easeOutQuart", "easeInOutQuart"]}
-            >
+            <QueueAnim>
               {_.filter(props.student.grades, (piece) => !piece.isFinished)
                 .length > 0 ? (
                 sortReview(props.student.grades)

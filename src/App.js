@@ -431,16 +431,7 @@ class App extends React.Component {
                     <StudentInternPage key="studentinternpage" />
                   )}
                 />
-                <Route
-                  path={`/my-interns/:id`}
-                  component={(props) => (
-                    <InternPageContainer
-                      {...props}
-                      getAccess={this.getAccess}
-                      key="internpagecontainer"
-                    />
-                  )}
-                />
+                <RouteInternDashboard getAccess={this.getAccess} />
                 <Route
                   path="/settings"
                   component={() => <CompanyDetails key="companydetails" />}
@@ -448,19 +439,22 @@ class App extends React.Component {
                 <RouteCandidates getAccess={this.getAccess} />
 
                 <ReactSwitch>
-                  <Route path="/users" exact component={() => 
-                    <Employeepage
-                      users={this.props.companyInfo.users}
-                    />} 
+                  <Route
+                    path="/users"
+                    exact
+                    component={() => (
+                      <Employeepage users={this.props.companyInfo.users} />
+                    )}
                   />
                   <Route
                     path="/users/new-account"
                     exact
-                    component={() => 
+                    component={() => (
                       <CreateUser
                         companyInfo={this.props.companyInfo}
                         token={this.inMemoryToken}
-                      />}
+                      />
+                    )}
                   />
                   <Route path={`/users/:id`} exact component={UserDetails} />
                 </ReactSwitch>
@@ -481,6 +475,37 @@ class RouteCandidates extends PureComponent {
         path="/applicants"
         component={() => (
           <CandidatesContainer getAccess={this.props.getAccess} />
+        )}
+      />
+    );
+  }
+}
+
+class RouteInternDashboard extends React.Component {
+  componentDidMount() {
+    console.log("WrapperRoute mounted");
+  }
+
+  componentWillUnmount() {
+    console.log("WrapperRoute unmounted")
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("WrapperRoute updated")
+  }
+  
+  
+
+  render() {
+    return (
+      <Route
+        path={`/my-interns/:id`}
+        component={(props) => (
+          <InternPageContainer
+            {...props}
+            getAccess={this.props.getAccess}
+            key="internpagecontainer"
+          />
         )}
       />
     );
