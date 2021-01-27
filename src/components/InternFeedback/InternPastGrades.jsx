@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Row as AntRow, Col as AntCol, Pagination, Collapse } from "antd";
+import QueueAnim from "rc-queue-anim";
 import { Scrollbars } from "react-custom-scrollbars";
 import { BiCheckSquare } from "react-icons/bi";
 
@@ -37,35 +38,38 @@ const InternPastGrades = (props) => {
           <Header bolded className="twentyTwoFont mb-point-25">
             Grade Student
           </Header>
-          {props.loading ? null : _.filter(
-              props.student.grades,
-              (piece) => !piece.isFinished
-            ).length > 0 ? (
-            sortReview(props.student.grades)
-              .slice(
-                gradePage * GRADES_PER_PAGE,
-                (gradePage + 1) * GRADES_PER_PAGE
-              )
-              .map((grade) => (
-                <GradeCard
-                  review={grade}
-                  studentId={props.student.Id}
-                  reset={true}
-                  getAccess={props.getAccess}
-                />
-              ))
-          ) : (
-            <div className="py-2-5 universal-center ">
-              <AntRow justify="center" align="middle">
-                <BiCheckSquare className="internship-posting-no-content-icon" />
-              </AntRow>
-              <AntRow justify="center" align="middle">
-                <Header className="twentyFourFont" color="#bfbfbf">
-                  No Grades Due
-                </Header>
-              </AntRow>
-            </div>
-          )}
+          <QueueAnim>
+            {props.loading ? null : _.filter(
+                props.student.grades,
+                (piece) => !piece.isFinished
+              ).length > 0 ? (
+              sortReview(props.student.grades)
+                .slice(
+                  gradePage * GRADES_PER_PAGE,
+                  (gradePage + 1) * GRADES_PER_PAGE
+                )
+                .map((grade, index) => (
+                  <GradeCard
+                    key={index}
+                    review={grade}
+                    studentId={props.student.Id}
+                    reset={true}
+                    getAccess={props.getAccess}
+                  />
+                ))
+            ) : (
+              <div className="py-2-5 universal-center ">
+                <AntRow justify="center" align="middle">
+                  <BiCheckSquare className="internship-posting-no-content-icon" />
+                </AntRow>
+                <AntRow justify="center" align="middle">
+                  <Header className="twentyFourFont" color="#bfbfbf">
+                    No Grades Due
+                  </Header>
+                </AntRow>
+              </div>
+            )}
+          </QueueAnim>
           <AntRow justify="center">
             {props.loading ? null : (
               <Pagination
@@ -88,12 +92,15 @@ const InternPastGrades = (props) => {
             Past Grades
           </Header>
           {props.loading ? null : (
-            <GradeTable
-              grades={_.sortBy(
-                _.filter(props.student.grades, (grade) => grade.isFinished),
-                "dueDate"
-              )}
-            />
+            <QueueAnim>
+              <GradeTable
+                key="gradeTable"
+                grades={_.sortBy(
+                  _.filter(props.student.grades, (grade) => grade.isFinished),
+                  "dueDate"
+                )}
+              />
+            </QueueAnim>
           )}
         </AntCol>
       </AntRow>
@@ -105,7 +112,7 @@ const GradeTable = (props) => {
   return (
     <>
       <TabContainer
-        style={{ height: "83%", overflow: "hidden", minHeight: "430px" }}
+        style={{ overflow: "hidden", height: "450px" }}
       >
         <AntRow
           justify="space-between"
@@ -118,7 +125,7 @@ const GradeTable = (props) => {
             <Header className="twentyFont">Grade</Header>
           </AntCol>
         </AntRow>
-        <Scrollbars>
+        <Scrollbars style={{ width: "auto", height: "390px" }}>
           <Collapse
             className="intern-past-grades-collapse"
             bordered={false}
@@ -126,6 +133,7 @@ const GradeTable = (props) => {
           >
             {_.map(props.grades, (grade) => (
               <Panel
+                key={grade.Id}
                 className="intern-past-grades-collapse-panel"
                 header={
                   <AntRow
@@ -155,7 +163,7 @@ const GradeTable = (props) => {
               </Panel>
             ))}
           </Collapse>
-        </Scrollbars>
+          </Scrollbars>
       </TabContainer>
     </>
   );
