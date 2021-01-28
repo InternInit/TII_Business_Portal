@@ -5,12 +5,20 @@ import { Header } from "../Styled/FundamentalComponents";
 const SmartAvatar = (props) => {
   const ColorList = ["#f56a00", "#7265e6", "#13c2c2", "#00a2ae"];
 
-  return props.image ? (
+  return props.skeleton ? (
+    <div
+      className="student-info-avatar"
+      style={{ backgroundColor: "#f0f0f0" }}
+    ></div>
+  ) : props.image ? (
     <div
       className="student-info-avatar"
       style={{ backgroundColor: ColorList[props.name.length % 4] }}
     >
-      <Header className={props.fontSize ? props.fontSize : "sixteenFont"} color="white">
+      <Header
+        className={props.fontSize ? props.fontSize : "sixteenFont"}
+        color="white"
+      >
         {props.name.substring(0, 1)}
       </Header>
     </div>

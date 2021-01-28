@@ -21,6 +21,7 @@ import { FiUsers, FiMail } from "react-icons/fi";
 import { AiOutlineFileText } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import SmartAvatar from "../General/SmartAvatar";
+import { StudentInfoSkeleton } from "./CandidateSkeletons";
 
 const mapStateToProps = (state) => {
   return {
@@ -67,7 +68,7 @@ const StudentInfo = (props) => {
                   <AntCol className="px-2" sm={8} lg={6}>
                     <AntRow justify="center">
                       <SmartAvatar
-                      image={true}
+                        image={true}
                         fontSize={"sixtyFourFont"}
                         size={300}
                         name={student[0]["First Name"]}
@@ -437,7 +438,11 @@ const StudentInfo = (props) => {
       </AntRow>
     );
   } else {
-    return null;
+    return (
+      <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
+        <StudentInfoSkeleton />
+      </AntRow>
+    );
   }
 };
 

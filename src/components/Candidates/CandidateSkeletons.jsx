@@ -1,6 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Tooltip, Row as AntRow, Col as AntCol, Skeleton, Button } from "antd";
+import {
+  Tooltip,
+  Row as AntRow,
+  Col as AntCol,
+  Skeleton,
+  Button,
+  Breadcrumb,
+} from "antd";
 import { Icon } from "react-icons-kit";
 import { box } from "react-icons-kit/iconic/box";
 import { check } from "react-icons-kit/fa/check";
@@ -11,7 +18,13 @@ import { RiSuitcaseLine } from "react-icons/ri";
 import { GrDocumentText } from "react-icons/gr";
 import { BiBook } from "react-icons/bi";
 import { FiUsers } from "react-icons/fi";
-import { TabContainer } from "../Styled/FundamentalComponents";
+
+import {
+  TabContainer,
+  InnerContainer,
+  Header,
+} from "../Styled/FundamentalComponents";
+import SmartAvatar from "../General/SmartAvatar";
 
 const CheckIcon = styled(Icon)`
   color: #bfbfbf;
@@ -342,3 +355,286 @@ export const CandidateDetailedviewSkeleton = (props) => {
   );
 };
 
+export const StudentInfoSkeleton = (props) => {
+  return (
+    <InnerContainer key="studentInfoContainer" style={{ ...props }}>
+      <Breadcrumb style={{ paddingBottom: "1em" }}>
+        <Breadcrumb.Item className="twentyFont">
+          Review Applicants
+        </Breadcrumb.Item>
+        <Breadcrumb.Item className="twentyFont">
+          Student Application
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <TabContainer className="px-6 py-3 student-info-responsive-tab-container">
+        <AntRow gutter={[48, 0]}>
+          <AntCol className="px-2" sm={8} lg={6}>
+            <AntRow justify="center">
+              <SmartAvatar skeleton={true} />
+            </AntRow>
+            <AntRow justify="center">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-header"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+
+            <AntRow justify="center">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-header"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow className="mb-point-5">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-sidebar"
+                active
+              />
+            </AntRow>
+            <AntRow justify="center">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-header"
+                active
+              />
+            </AntRow>
+          </AntCol>
+          <AntCol sm={16} lg={18}>
+            <AntRow>
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-name"
+                active
+              />
+            </AntRow>
+            {/**
+             * @TODO
+             *  - Phase out negative margins
+             */}
+            <AntRow style={{ marginTop: "-5px" }}>
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-position"
+                active
+              />
+            </AntRow>
+            <AntRow className="pt-2 student-info-header" align="middle">
+              <RiSuitcaseLine className="student-info-icon" />
+              <Header className="twentyFourFont" color="#002766" bolded>
+                Internship Information
+              </Header>
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="pt-2 mb-1 student-info-header" align="middle">
+              <BiBook className="student-info-icon" />
+              <Header className="twentyFourFont" color="#002766" bolded>
+                Education
+              </Header>
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-tab"
+                active
+              />
+            </AntRow>
+            <AntRow className="pt-2 mb-1 student-info-header" align="middle">
+              <FaChalkboardTeacher className="student-info-icon" />
+              <Header className="twentyFourFont" color="#002766" bolded>
+                Relevant Courses
+              </Header>
+            </AntRow>
+            <AntRow>
+              <Header className="eighteenFont" color="#002766" bolded>
+                Course Title
+              </Header>
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-content"
+                active
+              />
+            </AntRow>
+            <AntRow className="pt-2 mb-1 student-info-header" align="middle">
+              <FaRegMap className="student-info-icon" />
+              <Header className="twentyFourFont" color="#002766" bolded>
+                Extracurricular Activities
+              </Header>
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-tab"
+                active
+              />
+            </AntRow>
+            <AntRow className="pt-2 mb-1 student-info-header" align="middle">
+              <GrDocumentText className="student-info-icon" />
+              <Header className="twentyFourFont" color="#002766" bolded>
+                Essays
+              </Header>
+            </AntRow>
+            <AntRow>
+              <Skeleton className="quickview-tab-skeleton-name" active />
+            </AntRow>
+            <AntRow>
+              <Skeleton className="quickview-tab-skeleton-name" active />
+            </AntRow>
+            <AntRow>
+              <Skeleton className="quickview-tab-skeleton-name" active />
+            </AntRow>
+            <AntRow className="pt-2 mb-1 student-info-header" align="middle">
+              <FiUsers className="student-info-icon" />
+              <Header className="twentyFourFont" color="#002766" bolded>
+                References
+              </Header>
+            </AntRow>
+            <AntRow className="mt-1">
+              <Skeleton
+                paragraph={false}
+                className="student-info-skeleton-tab"
+                active
+              />
+            </AntRow>
+          </AntCol>
+        </AntRow>
+      </TabContainer>
+    </InnerContainer>
+  );
+};
