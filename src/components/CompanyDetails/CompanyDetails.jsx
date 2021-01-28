@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import {
   Input,
@@ -33,10 +32,9 @@ import {
   PageContainer,
   InnerContainer,
   FormContainer,
-  TabContainer,
   Header,
 } from "../Styled/FundamentalComponents.jsx";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const { TextArea } = Input;
 const { Dragger } = Upload;
