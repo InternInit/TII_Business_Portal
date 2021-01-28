@@ -254,16 +254,16 @@ class CreateUser extends React.Component {
     }
     delete values["Role"];
 
-    values["custom:applicantActions"] = values["Applicant Actions"]; // Assign new key
+    values["custom:applicantActions"] = values["Applicant Actions"].toString(); // Assign new key
     delete values["Applicant Actions"];
 
-    values["custom:listingAccess"] = values["Listing Access"]; // Assign new key
+    values["custom:listingAccess"] = values["Listing Access"].toString(); // Assign new key
     delete values["Listing Access"];
 
     values["custom:companyId"] = this.props.companyInfo.id;
     values["custom:company"] = this.props.companyInfo.name;
     console.log(values);
-    return;
+
     console.log(this.props.token.access);
 
     let headers = {
