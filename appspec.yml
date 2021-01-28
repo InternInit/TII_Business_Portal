@@ -4,7 +4,7 @@ files:
   - source: /frontend
     destination: /home/bitnami/apps/business-portal/htdocs
   - source: /backend
-    destination: /home/bitnami/FLASKAPPS/bp-backend
+    destination: /home/bitnami/FLASKAPPS/bpBackend
 hooks:
   ApplicationStop:
     - location: scripts/stop_server
