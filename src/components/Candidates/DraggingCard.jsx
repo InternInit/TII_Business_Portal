@@ -6,7 +6,7 @@ import {
   Col as AntCol,
   Tooltip,
   Dropdown,
-  Menu
+  Menu,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -17,6 +17,8 @@ import {
   Caption,
   BorderlessTag,
 } from "../Styled/FundamentalComponents.jsx";
+
+import SmartAvatar from "../General/SmartAvatar";
 
 import { connect } from "react-redux";
 
@@ -92,7 +94,7 @@ class DraggingCard extends React.Component {
             style={{ position: "relative" }}
           >
             <AntCol>
-              <Avatar src={avatar} size={40} icon={<UserOutlined />} />
+              <SmartAvatar size={40} name={name} />
             </AntCol>
             <AntCol offset={1}>
               <AntRow>
