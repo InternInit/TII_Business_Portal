@@ -15,7 +15,9 @@ const middleware = process.env.NODE_ENV !== 'production' ?
   [require('redux-immutable-state-invariant').default(), thunk] :
   [thunk];
 
-const composedEnhancers = compose(applyMiddleware(...middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const composedEnhancers = process.env.NODE_ENV !== 'production' ? 
+  compose(applyMiddleware(...middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) : 
+  applyMiddleware(...middleware)
 
 //REDUX STORE
 const store = createStore(

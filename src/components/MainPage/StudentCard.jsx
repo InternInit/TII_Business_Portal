@@ -7,6 +7,8 @@ import {
   BorderlessTag,
 } from "../Styled/FundamentalComponents.jsx";
 
+import SmartAvatar from "../General/SmartAvatar";
+
 import { UserOutlined } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
@@ -84,9 +86,10 @@ const StudentCard = (props) => {
     <Link to={`/applicants/${id}`}>
       <TabContainer className="px-3 py-1 dashboard-tab">
         <Row align="middle" gutter={[16, 0]}>
-          {/* Avatar */}
+          {/* Old Avatar 
           <Avatar src={avatar} size={44} icon={<UserOutlined />} />
-
+          */}
+          <SmartAvatar size={44} name={firstName} />
           <Col flex="auto">
             {/* Name */}
             <Row justify="space-between" align="middle">

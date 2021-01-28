@@ -18,6 +18,7 @@ import { BiBook, BiBuildings, BiPhone } from "react-icons/bi";
 import { FiUsers, FiMail } from "react-icons/fi";
 import { AiOutlineFileText } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import SmartAvatar from "../General/SmartAvatar";
 
 const mapStateToProps = (state) => {
   return {
@@ -53,10 +54,10 @@ const StudentInfo = (props) => {
             <AntRow gutter={[48, 0]}>
               <AntCol className="px-2" sm={8} lg={6}>
                 <AntRow justify="center">
-                  <img
-                    className="student-info-avatar"
-                    alt="avatar"
-                    src={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${loadStudent.Id}/profile_picture`}
+                  <SmartAvatar
+                    fontSize={"sixtyFourFont"}
+                    size={300}
+                    name={student[0]["First Name"]}
                   />
                 </AntRow>
                 <AntRow justify="center">

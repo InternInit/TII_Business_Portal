@@ -8,6 +8,8 @@ import {
 
 import { Link } from "react-router-dom";
 
+import SmartAvatar from "../General/SmartAvatar";
+
 import { UserOutlined } from "@ant-design/icons";
 
 const PageFeedback = (props) => {
@@ -24,73 +26,73 @@ const PageFeedback = (props) => {
 
   return (
     <Link to={`/my-interns/${id}`}>
-    <TabContainer className="px-3 py-1 dashboard-tab">
-      {isMd ? (
-        <Row align="middle" gutter={[16, 0]}>
-          <Col>
-            <Avatar src={avatar} size={50} icon={UserOutlined} />
-          </Col>
+      <TabContainer className="px-3 py-1 dashboard-tab">
+        {isMd ? (
+          <Row align="middle" gutter={[16, 0]}>
+            <Col>
+              <SmartAvatar size={44} name={firstName} />
+            </Col>
 
-          <Col flex="auto">
-            <Row justify="space-between" align="middle">
-              <Col>
-                <Row>
-                  <Header className="eighteenFont" bolded>
-                    {fullName}
-                  </Header>
-                </Row>
-                <Row>
-                  <Caption
-                    className="fourteenFont"
-                    light
-                    style={{ marginTop: "-3px" }}
-                  >
-                    {position}
+            <Col flex="auto">
+              <Row justify="space-between" align="middle">
+                <Col>
+                  <Row>
+                    <Header className="eighteenFont" bolded>
+                      {fullName}
+                    </Header>
+                  </Row>
+                  <Row>
+                    <Caption
+                      className="fourteenFont"
+                      light
+                      style={{ marginTop: "-3px" }}
+                    >
+                      {position}
+                    </Caption>
+                  </Row>
+                </Col>
+                <Col>
+                  <Caption className="universal-center sixteenFont" light>
+                    {school}
                   </Caption>
-                </Row>
-              </Col>
-              <Col>
-                <Caption className="universal-center sixteenFont" light>
-                  {school}
-                </Caption>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      ) : (
-        <Row align="middle" gutter={[16, 0]}>
-          <Col>
-            <Avatar src={avatar} size={50} icon={UserOutlined} />
-          </Col>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        ) : (
+          <Row align="middle" gutter={[16, 0]}>
+            <Col>
+              <SmartAvatar size={44} name={firstName} />
+            </Col>
 
-          <Col flex="auto">
-            <Row justify="space-between" align="middle">
-              <Col>
-                <Row>
-                  <Header className="twentyFont" bolded>
-                    {fullName}
-                  </Header>
-                </Row>
-                <Row>
-                  <Caption
-                    className="fourteenFont"
-                    light
-                    style={{ marginTop: "-3px" }}
-                  >
-                    {position}
-                  </Caption>
-                </Row>
-              </Col>
-              <Col>
-                {/* <Caption className="universal-center sixteenFont" light>
+            <Col flex="auto">
+              <Row justify="space-between" align="middle">
+                <Col>
+                  <Row>
+                    <Header className="twentyFont" bolded>
+                      {fullName}
+                    </Header>
+                  </Row>
+                  <Row>
+                    <Caption
+                      className="fourteenFont"
+                      light
+                      style={{ marginTop: "-3px" }}
+                    >
+                      {position}
+                    </Caption>
+                  </Row>
+                </Col>
+                <Col>
+                  {/* <Caption className="universal-center sixteenFont" light>
                   {school}
                 </Caption> */}
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      )}
-    </TabContainer>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        )}
+      </TabContainer>
     </Link>
   );
 };
