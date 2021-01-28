@@ -67,6 +67,7 @@ const StudentInfo = (props) => {
                   <AntCol className="px-2" sm={8} lg={6}>
                     <AntRow justify="center">
                       <SmartAvatar
+                      image={true}
                         fontSize={"sixtyFourFont"}
                         size={300}
                         name={student[0]["First Name"]}
@@ -332,20 +333,6 @@ const StudentInfo = (props) => {
                         </Caption>
                       </AntCol>
                     </AntRow>
-                    {student[0]["Weighted GPA"] && (
-                      <AntRow className="mt-1">
-                        <AntCol sm={8} lg={4}>
-                          <Header className="sixteenFont" bolded>
-                            GPA (Weighted):
-                          </Header>
-                        </AntCol>
-                        <AntCol sm={16} lg={20}>
-                          <Caption className="sixteenFont" bolded>
-                            {student[0]["Weighted GPA"]}
-                          </Caption>
-                        </AntCol>
-                      </AntRow>
-                    )}
                     {student[1]["Education"].map((school) => (
                       <SchoolCard school={school} />
                     ))}

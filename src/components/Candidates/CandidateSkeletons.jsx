@@ -6,6 +6,11 @@ import { box } from "react-icons-kit/iconic/box";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { AiOutlineRight } from "react-icons/ai";
+import { FaChalkboardTeacher, FaRegMap } from "react-icons/fa";
+import { RiSuitcaseLine } from "react-icons/ri";
+import { GrDocumentText } from "react-icons/gr";
+import { BiBook } from "react-icons/bi";
+import { FiUsers } from "react-icons/fi";
 import { TabContainer } from "../Styled/FundamentalComponents";
 
 const CheckIcon = styled(Icon)`
@@ -336,3 +341,4 @@ export const CandidateDetailedviewSkeleton = (props) => {
     </TabContainer>
   );
 };
+
