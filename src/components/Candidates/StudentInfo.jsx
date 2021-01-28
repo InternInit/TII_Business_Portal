@@ -320,6 +320,32 @@ const StudentInfo = (props) => {
                         Education
                       </Header>
                     </AntRow>
+                    <AntRow className="mt-1 mb-point-75">
+                      <AntCol sm={8} lg={4}>
+                        <Header className="sixteenFont" bolded>
+                          Unweighted GPA:
+                        </Header>
+                      </AntCol>
+                      <AntCol sm={16} lg={20}>
+                        <Caption className="sixteenFont" bolded>
+                          {student[0]["Unweighted GPA"]}
+                        </Caption>
+                      </AntCol>
+                    </AntRow>
+                    {student[0]["Weighted GPA"] && (
+                      <AntRow className="mt-1">
+                        <AntCol sm={8} lg={4}>
+                          <Header className="sixteenFont" bolded>
+                            GPA (Weighted):
+                          </Header>
+                        </AntCol>
+                        <AntCol sm={16} lg={20}>
+                          <Caption className="sixteenFont" bolded>
+                            {student[0]["Weighted GPA"]}
+                          </Caption>
+                        </AntCol>
+                      </AntRow>
+                    )}
                     {student[1]["Education"].map((school) => (
                       <SchoolCard school={school} />
                     ))}
