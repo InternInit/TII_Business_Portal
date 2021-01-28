@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /frontend
-    destination: /home/bitnami/apps/business-portal/htdocs
+    destination: /home/bitnami/business-portal/htdocs
   - source: /backend
-    destination: /home/bitnami/FLASKAPPS/bpBackend
+    destination: /home/bitnami/bpBackend
 hooks:
   ApplicationStop:
     - location: scripts/stop_server
