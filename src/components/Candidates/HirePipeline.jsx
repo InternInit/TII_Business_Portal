@@ -165,109 +165,128 @@ const HirePipeline = (props) => {
       className="px-4 py-2"
       style={{ width: "100%" }}
     >
-      <AntRow gutter={[36, 0]} style={{ minWidth: "1200px" }}>
-        <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
-        >
-          {Object.entries(columns).map(([columnId, column], index) => {
-            return (
-              /**
-               *
-               *Mapping of Columns (Already defined)
-               *
-               */
-              <AntCol span={8} key={columnId}>
-                <div>
-                  <Header className="twentyFont mb-point-25" subheading bolded>
-                    {column.name}
-                  </Header>
-                  <Droppable droppableId={columnId} key={columnId}>
-                    {(provided, snapshot) => {
-                      return (
-                        /**
-                         *
-                         *Drop Zone Columns for Student Cards
-                         *
-                         */
-                        <Spin
-                          indicator={
-                            <LoadingOutlined style={{ fontSize: 36 }} spin />
-                          }
-                          spinning={props.loading}
-                        >
-                          <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            style={dragStyle}
-                          >
-                            {/**
+      <Transition
+        items={props.location.pathname}
+        from={{ opacity: 0.5, transform: "translateY(20px)" }}
+        enter={{ opacity: 1, transform: "translateY(0px)" }}
+        leave={{ opacity: 1 }}
+        config={config.stiff}
+      >
+        {(location) => (styling) => (
+          <AntRow gutter={[36, 0]} style={{ ...styling, minWidth: "1200px" }}>
+            <DragDropContext
+              onDragEnd={(result) =>
+                onDragEnd(result, columns, setColumns, props)
+              }
+            >
+              {Object.entries(columns).map(([columnId, column], index) => {
+                return (
+                  /**
+                   *
+                   *Mapping of Columns (Already defined)
+                   *
+                   */
+                  <AntCol span={8} key={columnId}>
+                    <div>
+                      <Header
+                        className="twentyFont mb-point-25"
+                        subheading
+                        bolded
+                      >
+                        {column.name}
+                      </Header>
+                      <Droppable droppableId={columnId} key={columnId}>
+                        {(provided, snapshot) => {
+                          return (
+                            /**
                              *
-                             * Mapping of student cards and draggability
+                             *Drop Zone Columns for Student Cards
                              *
-                             */}
-                            {column.items.map((item, index) => {
-                              return (
-                                <Draggable
-                                  key={item.Id}
-                                  draggableId={item.Id.toString()}
-                                  index={index}
-                                >
-                                  {(provided) => {
-                                    return (
-                                      <div
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        style={{
-                                          userSelect: "none",
-                                          padding: 8,
-                                          ...provided.draggableProps.style,
-                                        }}
-                                      >
-                                        {/**
-                                         *
-                                         * Student Card
-                                         *
-                                         */}
-                                        <DraggingCard
-                                          name={
-                                            item.formData["0"]["First Name"]
-                                          }
-                                          date={
-                                            item.formData["0"][
-                                              "Starting/Ending Dates Formatted"
-                                            ]
-                                          }
-                                          position={item.appliedFor}
-                                          city={item.formData["0"].City}
-                                          stateLocation={
-                                            item.formData["0"].State
-                                          }
-                                          status={item.status}
-                                          updateCandidateStatus={
-                                            props.updateCandidateStatus
-                                          }
-                                          id={item.Id}
-                                          avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
-                                        />
-                                      </div>
-                                    );
-                                  }}
-                                </Draggable>
-                              );
-                            })}
-                            {provided.placeholder}
-                          </div>
-                        </Spin>
-                      );
-                    }}
-                  </Droppable>
-                </div>
-              </AntCol>
-            );
-          })}
-        </DragDropContext>
-      </AntRow>
+                             */
+                            <Spin
+                              indicator={
+                                <LoadingOutlined
+                                  style={{ fontSize: 36 }}
+                                  spin
+                                />
+                              }
+                              spinning={props.loading}
+                            >
+                              <div
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                                style={dragStyle}
+                              >
+                                {/**
+                                 *
+                                 * Mapping of student cards and draggability
+                                 *
+                                 */}
+                                {column.items.map((item, index) => {
+                                  return (
+                                    <Draggable
+                                      key={item.Id}
+                                      draggableId={item.Id.toString()}
+                                      index={index}
+                                    >
+                                      {(provided) => {
+                                        return (
+                                          <div
+                                            ref={provided.innerRef}
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                            style={{
+                                              userSelect: "none",
+                                              padding: 8,
+                                              ...provided.draggableProps.style,
+                                            }}
+                                          >
+                                            {/**
+                                             *
+                                             * Student Card
+                                             *
+                                             */}
+                                            <DraggingCard
+                                              name={
+                                                item.formData["0"]["First Name"]
+                                              }
+                                              date={
+                                                item.formData["0"][
+                                                  "Starting/Ending Dates Formatted"
+                                                ]
+                                              }
+                                              position={item.appliedFor}
+                                              city={item.formData["0"].City}
+                                              stateLocation={
+                                                item.formData["0"].State
+                                              }
+                                              status={item.status}
+                                              updateCandidateStatus={
+                                                props.updateCandidateStatus
+                                              }
+                                              id={item.Id}
+                                              avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
+                                            />
+                                          </div>
+                                        );
+                                      }}
+                                    </Draggable>
+                                  );
+                                })}
+                                {provided.placeholder}
+                              </div>
+                            </Spin>
+                          );
+                        }}
+                      </Droppable>
+                    </div>
+                  </AntCol>
+                );
+              })}
+            </DragDropContext>
+          </AntRow>
+        )}
+      </Transition>
     </div>
   );
 };

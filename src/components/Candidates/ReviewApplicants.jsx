@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "../../App.scss";
-import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { Button, Switch, Divider, Row as AntRow, Col as AntCol } from "antd";
+import { Transition, config } from "react-spring/renderprops";
 import { Header, InnerContainer } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineUser } from "react-icons/ai";
 import _ from "underscore";
