@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo /opt/bitnami/ctlscript.sh stop
+sudo systemctl stop apache2

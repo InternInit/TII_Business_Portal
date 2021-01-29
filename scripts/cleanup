@@ -1,3 +1,5 @@
 #!/bin/bash
-rm -rf /home/bitnami/apps/business-portal/htdocs/{,.[!.],..?}*
-rm -rf /home/bitnami/FLASKAPPS/bpBackend/{,.[!.],..?}*
+rm -rf /var/www/business.interninit.com/*
+rm -rf /var/www/business.interninit.com/.[a-zA-Z_]*
+rm -rf /home/ubuntu/FLASKAPPS/backend/*
+rm -rf /home/ubuntu/FLASKAPPS/backend/.[a-zA-Z_]*
