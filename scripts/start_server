@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo /opt/bitnami/ctlscript.sh start
+sudo systemctl start apache2

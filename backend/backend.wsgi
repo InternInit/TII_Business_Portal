@@ -1,4 +1,4 @@
 import sys
-sys.path.insert(0,"/home/bitnami/FLASKAPPS/")
-sys.path.append("/home/bitnami/FLASKAPPS/env/lib/python3.5/site-packages")
-from bpBackend import app as application
+sys.path.insert(0,"/home/ubuntu/FLASKAPPS/")
+sys.path.append("/home/ubuntu/FLASKAPPS/env/lib/python3.8/site-packages")
+from backend import app as application

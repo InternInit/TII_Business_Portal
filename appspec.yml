@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /frontend
-    destination: /home/bitnami/business-portal/htdocs
+    destination: /var/www/business.interninit.com
   - source: /backend
-    destination: /home/bitnami/bpBackend
+    destination: /home/ubuntu/FLASKAPPS/backend
 hooks:
   ApplicationStop:
     - location: scripts/stop_server
