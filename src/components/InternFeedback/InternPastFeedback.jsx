@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Row, Col, Avatar, Button, Grid, Tooltip, Modal } from "antd";
 import { BiCheckCircle } from "react-icons/bi";
@@ -14,7 +14,7 @@ import _ from "underscore";
 import { connect } from "react-redux";
 import { markFeedbackRead } from "../../redux/actions";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, withRouter } from "react-router-dom";
 
 import moment from "moment";
 
@@ -44,7 +44,11 @@ const mapStateToProps = (state) => {
 };
 
 const InternPastFeedback = (props) => {
-  let { student, fromDashboard } = props;
+  let { student } = props;
+  const [active, toggleActive] = useState(
+    props.location.pathname.split("/").length === 5
+  );
+  const currentId = props.location.pathname.split("/")[4];
 
   const markRead = async (feedbackId) => {
     //markFeedbackRead(student.Id, data.Id);
@@ -83,6 +87,36 @@ const InternPastFeedback = (props) => {
 
   return (
     <>
+      {props.student && active && (
+        <Modal
+          visible={active}
+          footer={
+            <Button
+              key="submit"
+              type="primary"
+              onClick={() => {
+                toggleActive(false);
+                markRead(currentId);
+              }}
+            >
+              Done
+            </Button>
+          }
+          onCancel={() => {
+            toggleActive(false);
+            markRead(currentId);
+          }}
+          title={
+            "On " +
+            moment.utc(student.feedback[currentId].date).format("MM/DD") +
+            ", " +
+            student.formData[0]["First Name"] +
+            " wrote:"
+          }
+        >
+          {student.feedback[currentId].comment}
+        </Modal>
+      )}
       {props.loading ? null : _.filter(
           student.feedback,
           (feedback) => !feedback.isRead
@@ -91,7 +125,7 @@ const InternPastFeedback = (props) => {
           <Header className="twentyTwoFont mb-point-25" bolded>
             Unread Feedback
           </Header>
-          <QueueAnim style={{width: "100%"}}>
+          <QueueAnim style={{ width: "100%" }}>
             {_.sortBy(
               _.filter(student.feedback, (feedback) => !feedback.isRead),
               "date"
@@ -101,7 +135,11 @@ const InternPastFeedback = (props) => {
                 student={student}
                 data={data}
                 markFeedbackRead={props.markFeedbackRead}
-                hasModal={fromDashboard}
+                hasModal={
+                  props.location.pathname.split("/")[4] === data.Id
+                    ? true
+                    : false
+                }
                 markRead={markRead}
               />
             ))}
@@ -112,7 +150,7 @@ const InternPastFeedback = (props) => {
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-        <QueueAnim style={{width: "100%"}}>
+        <QueueAnim style={{ width: "100%" }}>
           {props.loading
             ? null
             : _.sortBy(
@@ -128,35 +166,12 @@ const InternPastFeedback = (props) => {
 const FeedbackTab = ({
   data,
   student,
-  markFeedbackRead,
-  hasModal,
-  getAccess,
   markRead,
 }) => {
-  const [active, toggleActive] = useState(hasModal);
   const [show, setShow] = useState(false);
 
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
-
-  const location = useLocation();
-
-  const getFeedbackId = () => {
-    let id;
-    hasModal ? (id = location.pathname.split("/")[4]) : (id = "");
-    return id;
-  };
-
-  /**
-   * Checks if getFeedbackId returns a viable Id.
-   * If ID, returns a comment
-   * If no ID, returns false
-   */
-  const findFeedback = () =>
-    data.Id === getFeedbackId() ? data.comment : false;
-
-  const findDate = () =>
-    data.Id === getFeedbackId() ? moment.utc(data.date).format("MM/DD") : false;
 
   const isXs = Object.entries(screens)
     .filter((screen) => !!screen[1])
@@ -175,37 +190,6 @@ const FeedbackTab = ({
 
   return (
     <>
-      {findFeedback() ? (
-        <Modal
-          visible={active}
-          footer={
-            <Button
-              key="submit"
-              type="primary"
-              onClick={() => {
-                toggleActive(false);
-                markRead(data.Id);
-              }}
-            >
-              Done
-            </Button>
-          }
-          onCancel={() => {
-            toggleActive(false);
-            markRead(data.Id);
-          }}
-          title={
-            "On " +
-            findDate() +
-            ", " +
-            student.formData[0]["First Name"] +
-            " wrote:"
-          }
-        >
-          {findFeedback()}
-        </Modal>
-      ) : null}
-
       <TabContainer className="mb-1 student-intern-tab-container" hoverable>
         <Row gutter={16} wrap={false}>
           <Col flex="40px">
@@ -296,4 +280,6 @@ const FeedbackTab = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InternPastFeedback);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(InternPastFeedback)
+);
