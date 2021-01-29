@@ -495,7 +495,9 @@ class RouteCandidates extends PureComponent {
       <Route
         key="candidatescontainer"
         path="/applicants"
-        render={() => <CandidatesContainer getAccess={this.props.getAccess} />}
+        render={(props) => (
+          <CandidatesContainer {...props} getAccess={this.props.getAccess} />
+        )}
       />
     );
   }

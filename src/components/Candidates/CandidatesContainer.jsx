@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import { Row as AntRow, Col as AntCol } from "antd";
+import { Transition, config } from "react-spring/renderprops";
 
 import { connect } from "react-redux";
 import {
@@ -164,7 +165,7 @@ class CandidatesContainer extends Component {
           <Route
             path="/applicants/review-applicants"
             exact
-            component={() => (
+            render={() => (
               <ReviewApplicants
                 updateCandidateStatus={this.updateCandidateStatus}
               />
@@ -173,13 +174,14 @@ class CandidatesContainer extends Component {
           <Route
             path="/applicants/manage-candidates"
             exact
-            component={() => (
+            render={(props) => (
               <HirePipeline
+              {...props}
                 updateCandidateStatus={this.updateCandidateStatus}
               />
             )}
           />
-          <Route path={`/applicants/:id`} component={() => <StudentInfo />} />
+          <Route path={`/applicants/:id`} render={() => <StudentInfo />} />
         </ReactSwitch>
       </PageContainer>
     );

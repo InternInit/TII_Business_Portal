@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { Row as AntRow, Col as AntCol, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import { Transition, config } from "react-spring/renderprops";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
@@ -116,37 +117,41 @@ const columnsFromBackend = {
 
 const HirePipeline = (props) => {
   const [columns, setColumns] = useState(columnsFromBackend);
-  useEffect(() => {
-    console.log("HirePipeline Component Mounted");
-
-    return () => {
-      console.log("HirePipeline Component Unmounting");
-      /**console.log(`Props are ${JSON.stringify(props)}`); */
-    };
-  });
-
   /**
-   * Filters through all the candidates to place them into
-   * the correct buckets
-   */
-  let markedCandidates = props.candidates.filter(
+  const [markedCandidates, changeMarkedCandidates] = useState(
+    props.candidates.filter((candidate) => candidate.status === "Review")
+  );
+  const [interviewCandidates, changeInterviewCandidates] = useState(
+    props.candidates.filter((candidate) =>
+      candidate.status.includes("Interview")
+    )
+  );
+  const [acceptedCandidates, changeAcceptedCandidates] = useState(
+    props.candidates.filter((candidate) => candidate.status === "Accepted")
+  ); */
+
+  const markedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Review"
   );
-  let interviewCandidates = props.candidates.filter((candidate) =>
+  const interviewCandidates = props.candidates.filter((candidate) =>
     candidate.status.includes("Interview")
   );
-  let acceptedCandidates = props.candidates.filter(
+  const acceptedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Accepted"
   );
 
   useEffect(() => {
-    setColumns({
+    setColumns((columns) => ({
       ...columns,
-      ["1"]: { ...columns["1"], items: markedCandidates },
-      ["2"]: { ...columns["2"], items: interviewCandidates },
-      ["3"]: { ...columns["3"], items: acceptedCandidates },
-    });
-  }, []);
+      1: { ...columns[1], items: markedCandidates },
+      2: { ...columns[2], items: interviewCandidates },
+      3: { ...columns[3], items: acceptedCandidates },
+    }));
+    console.log("UPDATED!");
+    console.log(markedCandidates);
+    console.log(interviewCandidates);
+    console.log(acceptedCandidates);
+  }, [props.candidates, props.loading]);
 
   return (
     /**
@@ -154,7 +159,12 @@ const HirePipeline = (props) => {
      *The page containing drag n drop
      *
      */
-    <div className="px-4 py-2" style={{ width: "100%" }}>
+
+    <div
+      key="hiringPipelineContainer"
+      className="px-4 py-2"
+      style={{ width: "100%" }}
+    >
       <AntRow gutter={[36, 0]} style={{ minWidth: "1200px" }}>
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
