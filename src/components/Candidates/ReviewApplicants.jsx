@@ -67,46 +67,56 @@ class ReviewApplicants extends Component {
 
   render() {
     return (
-      <InnerContainer>
-        <AntRow className="pt-2" gutter={[32, 16]}>
-          <AntCol xs={24} md={8} lg={5}>
-            <Button type="default" style={AddFilterStyle}>
-              <span className="sixteenFont">Sort By</span>
-            </Button>
-          </AntCol>
-          <AntCol className="universal-middle" xs={24} md={6} lg={5}>
-            <AntRow align="middle">
-              <AntCol flex="120px">
-                {this.state.quickview ? (
-                  <Header className="eighteenFont" bolded>
-                    Quickview
-                  </Header>
-                ) : (
-                  <Header className="eighteenFont" bolded>
-                    Detailed View
-                  </Header>
-                )}
+      <Transition
+        items={this.props.location.pathname}
+        from={{ opacity: 0.5, transform: "translateY(20px)" }}
+        enter={{ opacity: 1, transform: "translateY(0px)" }}
+        leave={{ opacity: 1 }}
+        config={config.stiff}
+      >
+        {(location) => (props) => (
+          <InnerContainer key="reviewApplicantsContainer" style={{ ...props }}>
+            <AntRow className="pt-2" gutter={[32, 16]}>
+              <AntCol xs={24} md={8} lg={5}>
+                <Button type="default" style={AddFilterStyle}>
+                  <span className="sixteenFont">Sort By</span>
+                </Button>
               </AntCol>
-              <AntCol>
-                <Switch
-                  defaultChecked
-                  onChange={() =>
-                    this.setState({ quickview: !this.state.quickview })
-                  }
-                />
+              <AntCol className="universal-middle" xs={24} md={6} lg={5}>
+                <AntRow align="middle">
+                  <AntCol flex="120px">
+                    {this.state.quickview ? (
+                      <Header className="eighteenFont" bolded>
+                        Quickview
+                      </Header>
+                    ) : (
+                      <Header className="eighteenFont" bolded>
+                        Detailed View
+                      </Header>
+                    )}
+                  </AntCol>
+                  <AntCol>
+                    <Switch
+                      defaultChecked
+                      onChange={() =>
+                        this.setState({ quickview: !this.state.quickview })
+                      }
+                    />
+                  </AntCol>
+                </AntRow>
               </AntCol>
             </AntRow>
-          </AntCol>
-        </AntRow>
 
-        <Header className="twentyEightFont mt-1 mb-point-75" bolded>
-          Unread Applicants
-        </Header>
+            <Header className="twentyEightFont mt-1 mb-point-75" bolded>
+              Unread Applicants
+            </Header>
 
-        {this.renderUnreadApplicants()}
+            {this.renderUnreadApplicants()}
 
-        {this.renderReviewApplicants()}
-      </InnerContainer>
+            {this.renderReviewApplicants()}
+          </InnerContainer>
+        )}
+      </Transition>
     );
   }
 
