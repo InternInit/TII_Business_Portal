@@ -65,23 +65,23 @@ const FormProps = {
   },
   name: {
     key: "name",
-    name: "Name",
+    name: "name",
   },
   Description: {
     key: "description",
-    name: "Description",
+    name: "description",
   },
   Website: {
     key: "website",
-    name: "Website",
+    name: "website",
   },
   EMail: {
     key: "email",
-    name: "E-Mail",
+    name: "email",
   },
   Phone: {
-    key: "phone",
-    name: "Phone Number",
+    key: "phoneNumber",
+    name: "phoneNumber",
   },
   Visual: {
     key: "visual",
@@ -112,7 +112,36 @@ const mapDispatchToProps = {
 };
 
 class CompanyDetails extends React.Component {
-  state = { business: null };
+  constructor(props) {
+    super(props);
+    this.formRef = React.createRef();
+    this.state = { business: null };
+  }
+
+  waitForRef = (ref) => {
+    return new Promise((resolve, reject) => {
+      function checkRef() {
+        if (ref.current === null) {
+          setTimeout(() => {
+            checkRef();
+          }, 10);
+        } else {
+          resolve(ref);
+        }
+      }
+      checkRef();
+    });
+  };
+
+  setFieldData = async () => {
+    let fetchedRef = await this.waitForRef(this.formRef);
+    console.log(this.props.companyInfo);
+    fetchedRef.current.setFieldsValue(this.props.companyInfo);
+  };
+  componentDidMount() {
+    let variable = null;
+    this.setFieldData();
+  }
 
   goToDashboard = () => {
     this.props.history.push("/dashboard");
@@ -157,12 +186,11 @@ class CompanyDetails extends React.Component {
                  * Company Name
                  *
                  */}
-                <Form {...FormProps.TotalForm}>
+                <Form {...FormProps.TotalForm} ref={this.formRef}>
                   <Header className={headerClassNames}>Company Name</Header>
                   <Form.Item {...FormProps.name}>
                     <Input
                       placeholder="Change Company Name"
-                      defaultValue={companyInfo.name}
                       size="large"
                       style={marginTop}
                     />
@@ -179,7 +207,6 @@ class CompanyDetails extends React.Component {
                   <Form.Item {...FormProps.Description}>
                     <TextArea
                       placeholder="Company Description"
-                      defaultValue={companyInfo.description}
                       autoSize={{ minRows: 5, maxRows: 10 }}
                       style={marginTop}
                     />
@@ -193,7 +220,6 @@ class CompanyDetails extends React.Component {
                   <Form.Item {...FormProps.Website}>
                     <Input
                       placeholder="https://www.interninit.com"
-                      defaultValue={companyInfo.website}
                       size="large"
                       style={marginTop}
                     />
@@ -209,7 +235,6 @@ class CompanyDetails extends React.Component {
                   <Form.Item {...FormProps.EMail}>
                     <Input
                       placeholder="company@email.com"
-                      defaultValue={companyInfo.email}
                       size="large"
                       style={marginTop}
                     />
@@ -225,7 +250,6 @@ class CompanyDetails extends React.Component {
                   <Form.Item {...FormProps.Phone}>
                     <Input
                       placeholder="123 456 7891"
-                      defaultValue={companyInfo.phoneNumber}
                       size="large"
                       style={marginTop}
                     />
@@ -307,9 +331,6 @@ class CompanyDetails extends React.Component {
         </InnerContainer>
       </PageContainer>
     );
-  }
-  componentDidMount() {
-    let variable = null;
   }
 
   handleSave = (values) => {
