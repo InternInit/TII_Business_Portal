@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { Row as AntRow, Col as AntCol, Grid } from "antd";
+import { Transition, config } from "react-spring/renderprops";
+
 import PageListings from "./PageListings.jsx";
 import PageFeedback from "./PageFeedback.jsx";
 import MainPercentages from "./MainPercentages.jsx";
@@ -113,456 +115,475 @@ const MainPage = (props) => {
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
 
-      <InnerContainer className="py-2">
-        <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "340px" }}>
-          <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
-            <Header className="twentyTwoFont mb-point-5">
-              Listings
-              {listings.length > CARD_PER_PAGE
-                ? " (" + listings.length + ")"
-                : null}
-            </Header>
-            {props.loading.isListingLoading ? (
-              <>
-                {_.times(localStorage.getItem("NumListings"), () => (
-                  <PageListingSkeleton />
-                ))}
-              </>
-            ) : listings.length === 0 ? (
-              <NoResults
-                message={"Oops, it looks like you don't have any listings"}
-                isListing={true}
-              />
-            ) : (
-              <>
-                {listings
-                  .slice(
-                    page.listingPage * CARD_PER_PAGE,
-                    (page.listingPage + 1) * CARD_PER_PAGE
-                  )
-                  .map((post) => (
-                    <PageListings
-                      name={post.Title}
-                      interns={
-                        props.candidates.filter(
-                          (candidate) => candidate.appliedFor === post.Title
-                        ).length
-                      }
-                      accepted={
-                        props.interns.filter(
-                          (intern) => intern.appliedFor === post.Title
-                        ).length
-                      }
-                      industry={post.Industries}
-                      id={post.Id}
-                    />
-                  ))}
-              </>
-            )}
-          </AntCol>
-          <AntCol
-            xs={24}
-            md={{ span: 12, order: 2 }}
-            lg={10}
-            xl={8}
-            style={{ minHeight: "340px" }}
+      <Transition
+        items={props.location.pathname}
+        from={{ opacity: 0.5, transform: "translateY(20px)" }}
+        enter={{ opacity: 1, transform: "translateY(0px)" }}
+        leave={{ opacity: 1 }}
+        config={config.stiff}
+      >
+        {(location) => (styling) => (
+          <InnerContainer
+            key="mainPageContainer"
+            className="py-2"
+            style={{ ...styling }}
           >
-            <Header className="twentyTwoFont mb-point-5">
-              Incoming Applications
-              {candidates.filter((candidate) => candidate.status === "Pending")
-                .length > CARD_PER_PAGE
-                ? " (" +
-                  candidates.filter(
+            <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "340px" }}>
+              <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
+                <Header className="twentyTwoFont mb-point-5">
+                  Listings
+                  {listings.length > CARD_PER_PAGE
+                    ? " (" + listings.length + ")"
+                    : null}
+                </Header>
+                {props.loading.isListingLoading ? (
+                  <>
+                    {_.times(localStorage.getItem("NumListings"), () => (
+                      <PageListingSkeleton />
+                    ))}
+                  </>
+                ) : listings.length === 0 ? (
+                  <NoResults
+                    message={"Oops, it looks like you don't have any listings"}
+                    isListing={true}
+                  />
+                ) : (
+                  <>
+                    {listings
+                      .slice(
+                        page.listingPage * CARD_PER_PAGE,
+                        (page.listingPage + 1) * CARD_PER_PAGE
+                      )
+                      .map((post) => (
+                        <PageListings
+                          name={post.Title}
+                          interns={
+                            props.candidates.filter(
+                              (candidate) => candidate.appliedFor === post.Title
+                            ).length
+                          }
+                          accepted={
+                            props.interns.filter(
+                              (intern) => intern.appliedFor === post.Title
+                            ).length
+                          }
+                          industry={post.Industries}
+                          id={post.Id}
+                        />
+                      ))}
+                  </>
+                )}
+              </AntCol>
+              <AntCol
+                xs={24}
+                md={{ span: 12, order: 2 }}
+                lg={10}
+                xl={8}
+                style={{ minHeight: "340px" }}
+              >
+                <Header className="twentyTwoFont mb-point-5">
+                  Incoming Applications
+                  {candidates.filter(
                     (candidate) => candidate.status === "Pending"
-                  ).length +
-                  ")"
-                : null}
-            </Header>
-            {props.loading.isCandidateLoading ? (
-              <>
-                <StudentCardSkeleton tag={false} />
-                <StudentCardSkeleton tag={false} />
-                <StudentCardSkeleton tag={false} />
-              </>
-            ) : candidates.filter((candidate) => candidate.status === "Pending")
-                .length !== 0 ? (
-              <>
-                {candidates
-                  .filter((candidate) => candidate.status === "Pending")
-                  .slice(
-                    page.incomingPage * CARD_PER_PAGE,
-                    (page.incomingPage + 1) * CARD_PER_PAGE
-                  )
-                  .map((student) => (
-                    <StudentCard
-                      firstName={student.formData["0"]["First Name"]}
-                      lastName={student.formData["0"]["Last Name"]}
-                      age={" (" + student.formData["1"]["Age"] + ")"}
-                      avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                      id={student.Id}
-                      tag={false}
-                      type={student.status}
-                      position={student.appliedFor}
-                    />
-                  ))}
-              </>
-            ) : (
-              <NoResults
-                message={"You don't have any incoming applications"}
-                isListing={false}
-              />
-            )}
-            {!isMd &&
-              (props.loading.isCandidateLoading ? (
-                <DotSkeletonSpacer />
-              ) : candidates.filter(
-                  (candidate) => candidate.status === "Pending"
-                ).length > CARD_PER_PAGE ? (
-                <AntRow justify="center">
-                  {getDotCount("Incoming Applicants")}
-                  {pageIndex.incomingPage.map((number) => (
-                    <div
-                      onClick={() => {
-                        setPage({
-                          incomingPage: number,
-                          applicantPage: applicantPage,
-                          internPage: internPage,
-                          listingPage: listingPage,
-                        });
-                        incomingPage = number;
-                      }}
-                      className={
-                        page.incomingPage === number
-                          ? "dashboard-pagination-current-page"
-                          : "dashboard-pagination"
-                      }
-                    />
-                  ))}
-                </AntRow>
-              ) : null)}
-          </AntCol>
-          <AntCol
-            xs={24}
-            md={{ span: 12, order: 2 }}
-            lg={0}
-            style={{ minHeight: "340px" }}
-          >
-            <Header className="twentyTwoFont mb-point-5">
-              Applicants
-              {candidates.filter(
-                (candidate) =>
-                  candidate.status.includes("Interview") ||
-                  candidate.status.includes("Review")
-              ).length > CARD_PER_PAGE
-                ? " (" +
-                  numberOfApplicants(
-                    candidates.filter((candidate) =>
-                      candidate.status.includes("Interview")
-                    ).length,
-                    candidates.filter((candidate) =>
-                      candidate.status.includes("Review")
-                    ).length
-                  ) +
-                  ")"
-                : null}
-            </Header>
-            {props.loading.isCandidateLoading ? (
-              <>
-                <StudentCardSkeleton tag={true} />
-                <StudentCardSkeleton tag={true} />
-                <StudentCardSkeleton tag={true} />
-              </>
-            ) : candidates.filter(
-                (candidate) => !candidate.status.includes("Pending")
-              ).length !== 0 ? (
-              candidates
-                .filter((candidate) => !candidate.status.includes("Pending"))
-                .slice(
-                  page.applicantPage * CARD_PER_PAGE,
-                  (page.applicantPage + 1) * CARD_PER_PAGE
-                )
-                .map((student) => (
-                  <StudentCard
-                    firstName={student.formData["0"]["First Name"]}
-                    lastName={student.formData["0"]["Last Name"]}
-                    age={" (" + student.formData["1"]["Age"] + ")"}
-                    avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                    id={student.Id}
-                    tag={true}
-                    type={student.status}
-                    position={student.appliedFor}
+                  ).length > CARD_PER_PAGE
+                    ? " (" +
+                      candidates.filter(
+                        (candidate) => candidate.status === "Pending"
+                      ).length +
+                      ")"
+                    : null}
+                </Header>
+                {props.loading.isCandidateLoading ? (
+                  <>
+                    <StudentCardSkeleton tag={false} />
+                    <StudentCardSkeleton tag={false} />
+                    <StudentCardSkeleton tag={false} />
+                  </>
+                ) : candidates.filter(
+                    (candidate) => candidate.status === "Pending"
+                  ).length !== 0 ? (
+                  <>
+                    {candidates
+                      .filter((candidate) => candidate.status === "Pending")
+                      .slice(
+                        page.incomingPage * CARD_PER_PAGE,
+                        (page.incomingPage + 1) * CARD_PER_PAGE
+                      )
+                      .map((student) => (
+                        <StudentCard
+                          firstName={student.formData["0"]["First Name"]}
+                          lastName={student.formData["0"]["Last Name"]}
+                          age={" (" + student.formData["1"]["Age"] + ")"}
+                          avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                          id={student.Id}
+                          tag={false}
+                          type={student.status}
+                          position={student.appliedFor}
+                        />
+                      ))}
+                  </>
+                ) : (
+                  <NoResults
+                    message={"You don't have any incoming applications"}
+                    isListing={false}
                   />
-                ))
-            ) : (
-              <NoResults
-                message={"Hooray! You've reviewed all of your applicants"}
-                isListing={false}
-              />
-            )}
-          </AntCol>
-        </AntRow>
-
-        <AntRow gutter={[32, 16]} style={{ marginTop: "-20px" }}>
-          <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
-            {props.loading.isListingLoading ? (
-              <DotSkeletonSpacer />
-            ) : listings.length > CARD_PER_PAGE ? (
-              <AntRow justify="center">
-                {getDotCount("Listings")}
-                {pageIndex.listingPage.map((number) => (
-                  <div
-                    onClick={() => {
-                      setPage({
-                        listingPage: number,
-                        applicantPage: applicantPage,
-                        incomingPage: incomingPage,
-                        internPage: internPage,
-                      });
-                      listingPage = number;
-                    }}
-                    className={
-                      page.listingPage === number
-                        ? "dashboard-pagination-current-page"
-                        : "dashboard-pagination"
-                    }
-                  />
-                ))}
-              </AntRow>
-            ) : null}
-          </AntCol>
-          <AntCol xs={0} md={{ span: 12, order: 2 }} lg={10} xl={8}>
-            {props.loading.isCandidateLoading ? (
-              <DotSkeletonSpacer />
-            ) : candidates.filter((candidate) => candidate.status === "Pending")
-                .length > CARD_PER_PAGE ? (
-              <AntRow justify="center">
-                {getDotCount("Incoming Applicants")}
-                {pageIndex.incomingPage.map((number) => (
-                  <div
-                    onClick={() => {
-                      setPage({
-                        incomingPage: number,
-                        applicantPage: applicantPage,
-                        internPage: internPage,
-                        listingPage: listingPage,
-                      });
-                      incomingPage = number;
-                    }}
-                    className={
-                      page.incomingPage === number
-                        ? "dashboard-pagination-current-page"
-                        : "dashboard-pagination"
-                    }
-                  />
-                ))}
-              </AntRow>
-            ) : null}
-          </AntCol>
-          <AntCol xs={24} md={{ span: 12, order: 2 }} lg={0}>
-            {props.loading.isCandidateLoading ? (
-              <DotSkeletonSpacer />
-            ) : candidates.filter(
-                (candidate) =>
-                  candidate.status.includes("Interview") ||
-                  candidate.status.includes("Review")
-              ).length > CARD_PER_PAGE ? (
-              isLg ? null : (
-                <AntRow justify="center">
-                  {getDotCount("Applicants")}
-                  {pageIndex.applicantPage.map((number) => (
-                    <div
-                      onClick={() => {
-                        setPage({
-                          applicantPage: number,
-                          listingPage: listingPage,
-                          internPage: internPage,
-                          incomingPage: incomingPage,
-                        });
-                        applicantPage = number;
-                      }}
-                      className={
-                        page.applicantPage === number
-                          ? "dashboard-pagination-current-page"
-                          : "dashboard-pagination"
-                      }
-                    />
-                  ))}
-                </AntRow>
-              )
-            ) : null}
-          </AntCol>
-        </AntRow>
-
-        <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "340px" }}>
-          <AntCol xs={24} lg={14} xl={16}>
-            <Header className="twentyTwoFont mb-point-5">
-              Current Interns
-              {interns.length > CARD_PER_PAGE
-                ? " (" + interns.length + ")"
-                : null}
-            </Header>
-            {props.loading.isInternLoading ? (
-              <>
-                <StudentCardSkeleton tag={false} />
-                <StudentCardSkeleton tag={false} />
-                <StudentCardSkeleton tag={false} />
-              </>
-            ) : interns.length !== 0 ? (
-              <>
-                {interns
-                  .slice(
-                    page.internPage * CARD_PER_PAGE,
-                    (page.internPage + 1) * CARD_PER_PAGE
-                  )
-                  .map((student) => (
-                    <PageFeedback
-                      firstName={student.formData["0"]["First Name"]}
-                      lastName={student.formData["0"]["Last Name"]}
-                      school={student.school.name}
-                      position={student.appliedFor}
-                      id={student.Id}
-                    />
-                  ))}
-              </>
-            ) : (
-              <NoResults
-                message={"You don't have any interns at the moment"}
-                isListing={false}
-              />
-            )}
-          </AntCol>
-          <AntCol xs={0} lg={10} xl={8}>
-            <Header className="twentyTwoFont mb-point-5">
-              Applicants
-              {candidates.filter(
-                (candidate) =>
-                  candidate.status.includes("Interview") ||
-                  candidate.status.includes("Review")
-              ).length > CARD_PER_PAGE
-                ? " (" +
-                  numberOfApplicants(
-                    candidates.filter((candidate) =>
-                      candidate.status.includes("Interview")
-                    ).length,
-                    candidates.filter((candidate) =>
-                      candidate.status.includes("Review")
-                    ).length
-                  ) +
-                  ")"
-                : null}
-            </Header>
-            {props.loading.isCandidateLoading ? (
-              <>
-                <StudentCardSkeleton tag={true} />
-                <StudentCardSkeleton tag={true} />
-                <StudentCardSkeleton tag={true} />
-              </>
-            ) : candidates.filter(
-                (candidate) =>
-                  candidate.status.includes("Interview") ||
-                  candidate.status.includes("Review")
-              ).length !== 0 ? (
-              <>
-                {candidates
-                  .filter(
+                )}
+                {!isMd &&
+                  (props.loading.isCandidateLoading ? (
+                    <DotSkeletonSpacer />
+                  ) : candidates.filter(
+                      (candidate) => candidate.status === "Pending"
+                    ).length > CARD_PER_PAGE ? (
+                    <AntRow justify="center">
+                      {getDotCount("Incoming Applicants")}
+                      {pageIndex.incomingPage.map((number) => (
+                        <div
+                          onClick={() => {
+                            setPage({
+                              incomingPage: number,
+                              applicantPage: applicantPage,
+                              internPage: internPage,
+                              listingPage: listingPage,
+                            });
+                            incomingPage = number;
+                          }}
+                          className={
+                            page.incomingPage === number
+                              ? "dashboard-pagination-current-page"
+                              : "dashboard-pagination"
+                          }
+                        />
+                      ))}
+                    </AntRow>
+                  ) : null)}
+              </AntCol>
+              <AntCol
+                xs={24}
+                md={{ span: 12, order: 2 }}
+                lg={0}
+                style={{ minHeight: "340px" }}
+              >
+                <Header className="twentyTwoFont mb-point-5">
+                  Applicants
+                  {candidates.filter(
                     (candidate) =>
                       candidate.status.includes("Interview") ||
                       candidate.status.includes("Review")
-                  )
-                  .slice(
-                    page.applicantPage * CARD_PER_PAGE,
-                    (page.applicantPage + 1) * CARD_PER_PAGE
-                  )
-                  .map((student) => (
-                    <StudentCard
-                      key={student.Id}
-                      firstName={student.formData["0"]["First Name"]}
-                      lastName={student.formData["0"]["Last Name"]}
-                      age={" (" + student.formData["1"]["Age"] + ")"}
-                      avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
-                      id={student.Id}
-                      tag={true}
-                      type={student.status}
-                      position={student.appliedFor}
-                    />
-                  ))}
-              </>
-            ) : (
-              <NoResults
-                message={"Hooray! You've reviewed all of your applicants"}
-                isListing={false}
-              />
-            )}
-          </AntCol>
-        </AntRow>
+                  ).length > CARD_PER_PAGE
+                    ? " (" +
+                      numberOfApplicants(
+                        candidates.filter((candidate) =>
+                          candidate.status.includes("Interview")
+                        ).length,
+                        candidates.filter((candidate) =>
+                          candidate.status.includes("Review")
+                        ).length
+                      ) +
+                      ")"
+                    : null}
+                </Header>
+                {props.loading.isCandidateLoading ? (
+                  <>
+                    <StudentCardSkeleton tag={true} />
+                    <StudentCardSkeleton tag={true} />
+                    <StudentCardSkeleton tag={true} />
+                  </>
+                ) : candidates.filter(
+                    (candidate) => !candidate.status.includes("Pending")
+                  ).length !== 0 ? (
+                  candidates
+                    .filter(
+                      (candidate) => !candidate.status.includes("Pending")
+                    )
+                    .slice(
+                      page.applicantPage * CARD_PER_PAGE,
+                      (page.applicantPage + 1) * CARD_PER_PAGE
+                    )
+                    .map((student) => (
+                      <StudentCard
+                        firstName={student.formData["0"]["First Name"]}
+                        lastName={student.formData["0"]["Last Name"]}
+                        age={" (" + student.formData["1"]["Age"] + ")"}
+                        avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                        id={student.Id}
+                        tag={true}
+                        type={student.status}
+                        position={student.appliedFor}
+                      />
+                    ))
+                ) : (
+                  <NoResults
+                    message={"Hooray! You've reviewed all of your applicants"}
+                    isListing={false}
+                  />
+                )}
+              </AntCol>
+            </AntRow>
 
-        <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
-          <AntCol xs={24} lg={14} xl={16}>
-            {props.loading.isInternLoading ? (
-              <DotSkeletonSpacer />
-            ) : interns.length > CARD_PER_PAGE ? (
-              <AntRow justify="center">
-                {getDotCount("Interns")}
-                {pageIndex.internPage.map((number) => (
-                  <div
-                    onClick={() => {
-                      setPage({
-                        applicantPage: applicantPage,
-                        listingPage: listingPage,
-                        internPage: number,
-                        incomingPage: incomingPage,
-                      });
-                      internPage = number;
-                    }}
-                    className={
-                      page.internPage === number
-                        ? "dashboard-pagination-current-page"
-                        : "dashboard-pagination"
-                    }
+            <AntRow gutter={[32, 16]} style={{ marginTop: "-20px" }}>
+              <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
+                {props.loading.isListingLoading ? (
+                  <DotSkeletonSpacer />
+                ) : listings.length > CARD_PER_PAGE ? (
+                  <AntRow justify="center">
+                    {() => getDotCount("Listings")}
+                    {pageIndex.listingPage.map((number) => (
+                      <div
+                        onClick={() => {
+                          setPage({
+                            listingPage: number,
+                            applicantPage: applicantPage,
+                            incomingPage: incomingPage,
+                            internPage: internPage,
+                          });
+                          listingPage = number;
+                        }}
+                        className={
+                          page.listingPage === number
+                            ? "dashboard-pagination-current-page"
+                            : "dashboard-pagination"
+                        }
+                      />
+                    ))}
+                  </AntRow>
+                ) : null}
+              </AntCol>
+              <AntCol xs={0} md={{ span: 12, order: 2 }} lg={10} xl={8}>
+                {props.loading.isCandidateLoading ? (
+                  <DotSkeletonSpacer />
+                ) : candidates.filter(
+                    (candidate) => candidate.status === "Pending"
+                  ).length > CARD_PER_PAGE ? (
+                  <AntRow justify="center">
+                    {() => getDotCount("Incoming Applicants")}
+                    {pageIndex.incomingPage.map((number) => (
+                      <div
+                        onClick={() => {
+                          setPage({
+                            incomingPage: number,
+                            applicantPage: applicantPage,
+                            internPage: internPage,
+                            listingPage: listingPage,
+                          });
+                          incomingPage = number;
+                        }}
+                        className={
+                          page.incomingPage === number
+                            ? "dashboard-pagination-current-page"
+                            : "dashboard-pagination"
+                        }
+                      />
+                    ))}
+                  </AntRow>
+                ) : null}
+              </AntCol>
+              <AntCol xs={24} md={{ span: 12, order: 2 }} lg={0}>
+                {props.loading.isCandidateLoading ? (
+                  <DotSkeletonSpacer />
+                ) : candidates.filter(
+                    (candidate) =>
+                      candidate.status.includes("Interview") ||
+                      candidate.status.includes("Review")
+                  ).length > CARD_PER_PAGE ? (
+                  isLg ? null : (
+                    <AntRow justify="center">
+                      {() => getDotCount("Applicants")}
+                      {pageIndex.applicantPage.map((number) => (
+                        <div
+                          onClick={() => {
+                            setPage({
+                              applicantPage: number,
+                              listingPage: listingPage,
+                              internPage: internPage,
+                              incomingPage: incomingPage,
+                            });
+                            applicantPage = number;
+                          }}
+                          className={
+                            page.applicantPage === number
+                              ? "dashboard-pagination-current-page"
+                              : "dashboard-pagination"
+                          }
+                        />
+                      ))}
+                    </AntRow>
+                  )
+                ) : null}
+              </AntCol>
+            </AntRow>
+
+            <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "340px" }}>
+              <AntCol xs={24} lg={14} xl={16}>
+                <Header className="twentyTwoFont mb-point-5">
+                  Current Interns
+                  {interns.length > CARD_PER_PAGE
+                    ? " (" + interns.length + ")"
+                    : null}
+                </Header>
+                {props.loading.isInternLoading ? (
+                  <>
+                    <StudentCardSkeleton tag={false} />
+                    <StudentCardSkeleton tag={false} />
+                    <StudentCardSkeleton tag={false} />
+                  </>
+                ) : interns.length !== 0 ? (
+                  <>
+                    {interns
+                      .slice(
+                        page.internPage * CARD_PER_PAGE,
+                        (page.internPage + 1) * CARD_PER_PAGE
+                      )
+                      .map((student) => (
+                        <PageFeedback
+                          firstName={student.formData["0"]["First Name"]}
+                          lastName={student.formData["0"]["Last Name"]}
+                          school={student.school.name}
+                          position={student.appliedFor}
+                          id={student.Id}
+                        />
+                      ))}
+                  </>
+                ) : (
+                  <NoResults
+                    message={"You don't have any interns at the moment"}
+                    isListing={false}
                   />
-                ))}
-              </AntRow>
-            ) : null}
-          </AntCol>
-          <AntCol xs={0} lg={10} xl={8}>
-            {props.loading.isCandidateLoading ? (
-              <DotSkeletonSpacer />
-            ) : candidates.filter(
-                (candidate) =>
-                  candidate.status.includes("Interview") ||
-                  candidate.status.includes("Review")
-              ).length > CARD_PER_PAGE ? (
-              <AntRow justify="center">
-                {getDotCount("Applicants")}
-                {pageIndex.applicantPage.map((number) => (
-                  <div
-                    onClick={() => {
-                      setPage({
-                        applicantPage: number,
-                        listingPage: listingPage,
-                        incomingPage: incomingPage,
-                        internPage: internPage,
-                      });
-                      applicantPage = number;
-                    }}
-                    className={
-                      page.applicantPage === number
-                        ? "dashboard-pagination-current-page"
-                        : "dashboard-pagination"
-                    }
+                )}
+              </AntCol>
+              <AntCol xs={0} lg={10} xl={8}>
+                <Header className="twentyTwoFont mb-point-5">
+                  Applicants
+                  {candidates.filter(
+                    (candidate) =>
+                      candidate.status.includes("Interview") ||
+                      candidate.status.includes("Review")
+                  ).length > CARD_PER_PAGE
+                    ? " (" +
+                      numberOfApplicants(
+                        candidates.filter((candidate) =>
+                          candidate.status.includes("Interview")
+                        ).length,
+                        candidates.filter((candidate) =>
+                          candidate.status.includes("Review")
+                        ).length
+                      ) +
+                      ")"
+                    : null}
+                </Header>
+                {props.loading.isCandidateLoading ? (
+                  <>
+                    <StudentCardSkeleton tag={true} />
+                    <StudentCardSkeleton tag={true} />
+                    <StudentCardSkeleton tag={true} />
+                  </>
+                ) : candidates.filter(
+                    (candidate) =>
+                      candidate.status.includes("Interview") ||
+                      candidate.status.includes("Review")
+                  ).length !== 0 ? (
+                  <>
+                    {candidates
+                      .filter(
+                        (candidate) =>
+                          candidate.status.includes("Interview") ||
+                          candidate.status.includes("Review")
+                      )
+                      .slice(
+                        page.applicantPage * CARD_PER_PAGE,
+                        (page.applicantPage + 1) * CARD_PER_PAGE
+                      )
+                      .map((student) => (
+                        <StudentCard
+                          key={student.Id}
+                          firstName={student.formData["0"]["First Name"]}
+                          lastName={student.formData["0"]["Last Name"]}
+                          age={" (" + student.formData["1"]["Age"] + ")"}
+                          avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${student.Id}/profile_picture`}
+                          id={student.Id}
+                          tag={true}
+                          type={student.status}
+                          position={student.appliedFor}
+                        />
+                      ))}
+                  </>
+                ) : (
+                  <NoResults
+                    message={"Hooray! You've reviewed all of your applicants"}
+                    isListing={false}
                   />
-                ))}
-              </AntRow>
-            ) : null}
-          </AntCol>
-        </AntRow>
-        <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "250px" }}>
-          <MainPercentages
-            currentApplicantsReceived={candidates.length}
-            internsTaken={interns.length}
-          />
-        </AntRow>
-      </InnerContainer>
+                )}
+              </AntCol>
+            </AntRow>
+
+            <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
+              <AntCol xs={24} lg={14} xl={16}>
+                {props.loading.isInternLoading ? (
+                  <DotSkeletonSpacer />
+                ) : interns.length > CARD_PER_PAGE ? (
+                  <AntRow justify="center">
+                    {getDotCount("Interns")}
+                    {pageIndex.internPage.map((number) => (
+                      <div
+                        onClick={() => {
+                          setPage({
+                            applicantPage: applicantPage,
+                            listingPage: listingPage,
+                            internPage: number,
+                            incomingPage: incomingPage,
+                          });
+                          internPage = number;
+                        }}
+                        className={
+                          page.internPage === number
+                            ? "dashboard-pagination-current-page"
+                            : "dashboard-pagination"
+                        }
+                      />
+                    ))}
+                  </AntRow>
+                ) : null}
+              </AntCol>
+              <AntCol xs={0} lg={10} xl={8}>
+                {props.loading.isCandidateLoading ? (
+                  <DotSkeletonSpacer />
+                ) : candidates.filter(
+                    (candidate) =>
+                      candidate.status.includes("Interview") ||
+                      candidate.status.includes("Review")
+                  ).length > CARD_PER_PAGE ? (
+                  <AntRow justify="center">
+                    {getDotCount("Applicants")}
+                    {pageIndex.applicantPage.map((number) => (
+                      <div
+                        onClick={() => {
+                          setPage({
+                            applicantPage: number,
+                            listingPage: listingPage,
+                            incomingPage: incomingPage,
+                            internPage: internPage,
+                          });
+                          applicantPage = number;
+                        }}
+                        className={
+                          page.applicantPage === number
+                            ? "dashboard-pagination-current-page"
+                            : "dashboard-pagination"
+                        }
+                      />
+                    ))}
+                  </AntRow>
+                ) : null}
+              </AntCol>
+            </AntRow>
+            <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "250px" }}>
+              <MainPercentages
+                currentApplicantsReceived={candidates.length}
+                internsTaken={interns.length}
+              />
+            </AntRow>
+          </InnerContainer>
+        )}
+      </Transition>
     </PageContainer>
   );
 };
