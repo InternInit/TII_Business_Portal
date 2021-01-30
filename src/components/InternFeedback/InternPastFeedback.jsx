@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Row, Col, Avatar, Button, Grid, Tooltip, Modal } from "antd";
 import { BiCheckCircle } from "react-icons/bi";
@@ -9,12 +9,13 @@ import {
   Caption,
   TabContainer,
 } from "../Styled/FundamentalComponents.jsx";
+import SmartAvatar from "../General/SmartAvatar";
 import _ from "underscore";
 
 import { connect } from "react-redux";
 import { markFeedbackRead } from "../../redux/actions";
 
-import { useLocation, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import moment from "moment";
 
@@ -193,7 +194,7 @@ const FeedbackTab = ({
       <TabContainer className="mb-1 student-intern-tab-container" hoverable>
         <Row gutter={16} wrap={false}>
           <Col flex="40px">
-            <Avatar src={student.image} size={40} />
+            <SmartAvatar name={student.formData[0]["First Name"]} size={40} />
           </Col>
           <Col flex="auto">
             {/* Name & Date Row */}

@@ -13,7 +13,6 @@ import {
 } from "../Styled/FundamentalComponents.jsx";
 
 import { Row as AntRow, Col as AntCol, Skeleton, Dropdown, Menu } from "antd";
-import QueueAnim from "rc-queue-anim";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import InternDashboard from "./InternDashboard.jsx";
