@@ -50,8 +50,17 @@ const MainPage = (props) => {
     return props1 + props2;
   };
 
+  useEffect(() => {
+    getDotCount("Incoming Applicants");
+    getDotCount("Applicants");
+    getDotCount("Interns");
+    getDotCount("Listings");
+  });
+
   const getDotCount = (prop) => {
     let dotCount;
+
+    console.log("Running getDotCount for: " + prop);
 
     switch (prop) {
       case "Applicants":
@@ -235,7 +244,6 @@ const MainPage = (props) => {
                       (candidate) => candidate.status === "Pending"
                     ).length > CARD_PER_PAGE ? (
                     <AntRow justify="center">
-                      {getDotCount("Incoming Applicants")}
                       {pageIndex.incomingPage.map((number) => (
                         <div
                           onClick={() => {
@@ -326,7 +334,6 @@ const MainPage = (props) => {
                   <DotSkeletonSpacer />
                 ) : listings.length > CARD_PER_PAGE ? (
                   <AntRow justify="center">
-                    {() => getDotCount("Listings")}
                     {pageIndex.listingPage.map((number) => (
                       <div
                         onClick={() => {
@@ -355,7 +362,6 @@ const MainPage = (props) => {
                     (candidate) => candidate.status === "Pending"
                   ).length > CARD_PER_PAGE ? (
                   <AntRow justify="center">
-                    {() => getDotCount("Incoming Applicants")}
                     {pageIndex.incomingPage.map((number) => (
                       <div
                         onClick={() => {
@@ -387,7 +393,6 @@ const MainPage = (props) => {
                   ).length > CARD_PER_PAGE ? (
                   isLg ? null : (
                     <AntRow justify="center">
-                      {() => getDotCount("Applicants")}
                       {pageIndex.applicantPage.map((number) => (
                         <div
                           onClick={() => {
@@ -521,7 +526,6 @@ const MainPage = (props) => {
                   <DotSkeletonSpacer />
                 ) : interns.length > CARD_PER_PAGE ? (
                   <AntRow justify="center">
-                    {getDotCount("Interns")}
                     {pageIndex.internPage.map((number) => (
                       <div
                         onClick={() => {
@@ -552,7 +556,6 @@ const MainPage = (props) => {
                       candidate.status.includes("Review")
                   ).length > CARD_PER_PAGE ? (
                   <AntRow justify="center">
-                    {getDotCount("Applicants")}
                     {pageIndex.applicantPage.map((number) => (
                       <div
                         onClick={() => {
