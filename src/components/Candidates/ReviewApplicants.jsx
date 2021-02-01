@@ -3,13 +3,21 @@ import "../../App.scss";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { Button, Switch, Divider, Row as AntRow, Col as AntCol } from "antd";
+import {
+  Button,
+  Switch,
+  Divider,
+  Row as AntRow,
+  Col as AntCol,
+  Dropdown,
+} from "antd";
 import { Transition, config } from "react-spring/renderprops";
 import { Header, InnerContainer } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineUser } from "react-icons/ai";
-import _ from "underscore";
+import _ from "lodash";
 
 import InfoBar from "../General/InfoBar.jsx";
+import SortByMenu from "../General/SortByMenu.jsx";
 import CandidateQuickviewTab from "./CandidateQuickviewTab.jsx";
 import CandidateQuickviewReviewTab from "./CandidateQuickviewReviewTab.jsx";
 import CandidateDetailedviewTab from "./CandidateDetailedviewTab.jsx";
@@ -41,6 +49,7 @@ class ReviewApplicants extends Component {
       quickview: true,
       page: "1",
       review: true,
+      sortType: "",
     };
   }
 
@@ -65,6 +74,31 @@ class ReviewApplicants extends Component {
     this.props.updateCandidateStatus(internId, "Rejected");
   };
 
+  setSort = (val) => {
+    switch (val) {
+      case "First Name":
+        this.setState({ sortType: "formData[0]['First Name']" });
+        break;
+      case "Last Name":
+        this.setState({ sortType: "formData[0]['Last Name']" });
+        break;
+      case "School":
+        this.setState({ sortType: "formData[1]['Education'][0].Name" });
+        break;
+      case "Position":
+        this.setState({ sortType: "appliedFor" });
+        break;
+      case "GPA":
+        this.setState({ sortType: "formData[0]['Unweighted GPA']" });
+        break;
+      default:
+        this.setState({ sortType: "formData[0]['First Name']" });
+        break;
+    }
+
+    return;
+  };
+
   render() {
     return (
       <Transition
@@ -77,12 +111,22 @@ class ReviewApplicants extends Component {
         {(location) => (props) => (
           <InnerContainer key="reviewApplicantsContainer" style={{ ...props }}>
             <AntRow className="pt-2" gutter={[32, 16]}>
-              <AntCol xs={24} md={8} lg={5}>
-                <Button type="default" style={AddFilterStyle}>
-                  <span className="sixteenFont">Sort By</span>
-                </Button>
+              <AntCol flex="270px">
+                <Dropdown
+                  overlay={
+                    <SortByMenu
+                      gpa={true}
+                      setSort={(val) => this.setSort(val)}
+                    />
+                  }
+                  trigger={["click"]}
+                >
+                  <Button type="default" style={AddFilterStyle}>
+                    <span className="sixteenFont">Sort By</span>
+                  </Button>
+                </Dropdown>
               </AntCol>
-              <AntCol className="universal-middle" xs={24} md={6} lg={5}>
+              <AntCol className="universal-middle" flex="auto">
                 <AntRow align="middle">
                   <AntCol flex="120px">
                     {this.state.quickview ? (
@@ -122,8 +166,9 @@ class ReviewApplicants extends Component {
 
   renderUnreadApplicants = () => {
     let { candidates } = this.props.companyInfo;
-    let unreadCandidates = candidates.filter(
-      (candidate) => candidate.status === "Pending"
+    let unreadCandidates = _.orderBy(
+      candidates.filter((candidate) => candidate.status === "Pending"),
+      this.state.sortType
     );
     return this.state.quickview ? (
       <React.Fragment>
@@ -255,8 +300,9 @@ class ReviewApplicants extends Component {
 
   renderReviewApplicants = () => {
     let { candidates } = this.props.companyInfo;
-    let reviewCandidates = candidates.filter(
-      (candidate) => candidate.status === "Review"
+    let reviewCandidates = _.orderBy(
+      candidates.filter((candidate) => candidate.status === "Review"),
+      this.state.sortType
     );
     return this.state.quickview ? (
       <React.Fragment>

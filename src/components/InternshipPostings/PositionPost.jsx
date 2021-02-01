@@ -83,11 +83,11 @@ class PositionPost extends Component {
                       </Button>
                     </Link>
                   </AntCol>
-                  <AntCol xs={24} md={6} lg={4}>
+                  {/**<AntCol xs={24} md={6} lg={4}>
                     <Button type="text" style={ButtonStyle}>
                       <span className="sixteenFont">Sort By</span>
                     </Button>
-                  </AntCol>
+            </AntCol>*/}
                 </AntRow>
                 {/**
                  * Info Bar
