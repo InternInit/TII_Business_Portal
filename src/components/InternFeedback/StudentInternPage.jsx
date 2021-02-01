@@ -3,14 +3,15 @@ import styled from "styled-components";
 import StudentInternTab from "./StudentInternTab.jsx";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "../General/InfoBar.jsx";
+import SortByMenu from "../General/SortByMenu.jsx";
 import { InnerContainer } from "../Styled/FundamentalComponents";
 import { StudentInternTabSkeleton } from "./StudentInternPageSkeleton";
-import { Button, Row as AntRow, Col as AntCol } from "antd";
+import { Button, Row as AntRow, Col as AntCol, Dropdown } from "antd";
 import { Transition, config } from "react-spring/renderprops";
 
 import { connect } from "react-redux";
 
-import _ from "underscore";
+import _ from "lodash";
 
 const Container = styled.div`
   display: flex;
@@ -35,6 +36,32 @@ const mapStateToProps = (state) => {
 };
 
 class InternFeedback extends Component {
+  state = {
+    sortType: "",
+  };
+
+  setSort = (val) => {
+    switch (val) {
+      case "First Name":
+        this.setState({ sortType: "formData[0]['First Name']" });
+        break;
+      case "Last Name":
+        this.setState({ sortType: "formData[0]['Last Name']" });
+        break;
+      case "School":
+        this.setState({ sortType: "school.name" });
+        break;
+      case "Position":
+        this.setState({ sortType: "appliedFor" });
+        break;
+      default:
+        this.setState({ sortType: "formData[0]['First Name']" });
+        break;
+    }
+
+    return;
+  };
+
   render() {
     return (
       <>
@@ -60,9 +87,19 @@ class InternFeedback extends Component {
               >
                 <AntRow gutter={[32, 16]}>
                   <AntCol xs={24} md={8} lg={5}>
-                    <Button type="default" style={ButtonStyle}>
-                      <span className="sixteenFont">Sort By</span>
-                    </Button>
+                    <Dropdown
+                      overlay={
+                        <SortByMenu
+                          gpa={false}
+                          setSort={(val) => this.setSort(val)}
+                        />
+                      }
+                      trigger={["click"]}
+                    >
+                      <Button type="default" style={ButtonStyle}>
+                        <span className="sixteenFont">Sort By</span>
+                      </Button>
+                    </Dropdown>
                   </AntCol>
                 </AntRow>
 
@@ -98,46 +135,48 @@ class InternFeedback extends Component {
                   ? _.times(localStorage.getItem("NumInterns"), () => (
                       <StudentInternTabSkeleton />
                     ))
-                  : this.props.interns.map((student) => (
-                      <StudentInternTab
-                        firstName={student.formData["0"]["First Name"]}
-                        lastName={student.formData["0"]["Last Name"]}
-                        age={student.formData["1"]["Age"]}
-                        type="Hybrid"
-                        id={student.Id}
-                        attendanceDue={
-                          student.hours
-                            ? _.filter(
-                                student.hours,
-                                (hour) => !hour.isApproved
-                              ).length
-                            : 0
-                        }
-                        feedbackDue={
-                          student.feedback
-                            ? _.filter(
-                                student.feedback,
-                                (feedback) => !feedback.isRead
-                              ).length
-                            : 0
-                        }
-                        gradesDue={
-                          student.grades
-                            ? _.filter(
-                                student.grades,
-                                (grade) => !grade.isFinished
-                              ).length
-                            : 0
-                        }
-                        position={student.appliedFor}
-                        school={student.school ? student.school.name : "N/A"}
-                        /**
-                         * @TODO
-                         * Replace with actual profile picture
-                         */
-                        //avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
-                      />
-                    ))}
+                  : _.orderBy(this.props.interns, this.state.sortType).map(
+                      (student) => (
+                        <StudentInternTab
+                          firstName={student.formData["0"]["First Name"]}
+                          lastName={student.formData["0"]["Last Name"]}
+                          age={student.formData["1"]["Age"]}
+                          type="Hybrid"
+                          id={student.Id}
+                          attendanceDue={
+                            student.hours
+                              ? _.filter(
+                                  student.hours,
+                                  (hour) => !hour.isApproved
+                                ).length
+                              : 0
+                          }
+                          feedbackDue={
+                            student.feedback
+                              ? _.filter(
+                                  student.feedback,
+                                  (feedback) => !feedback.isRead
+                                ).length
+                              : 0
+                          }
+                          gradesDue={
+                            student.grades
+                              ? _.filter(
+                                  student.grades,
+                                  (grade) => !grade.isFinished
+                                ).length
+                              : 0
+                          }
+                          position={student.appliedFor}
+                          school={student.school ? student.school.name : "N/A"}
+                          /**
+                           * @TODO
+                           * Replace with actual profile picture
+                           */
+                          //avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+                        />
+                      )
+                    )}
               </InnerContainer>
             )}
           </Transition>
