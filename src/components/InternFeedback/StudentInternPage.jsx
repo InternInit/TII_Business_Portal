@@ -40,7 +40,12 @@ class InternFeedback extends Component {
     ) : (
       <>
         <Container className="global-container">
-          <NavSearch title="My Interns" placeholder="Search Interns" />
+          <NavSearch
+            title="My Interns"
+            placeholder="Search Interns"
+            //@TODO implement functionality
+            searchBar={false}
+          />
           <InnerContainer className="mt-2 mb-4">
             <AntRow gutter={[32, 16]}>
               <AntCol xs={24} md={8} lg={5}>

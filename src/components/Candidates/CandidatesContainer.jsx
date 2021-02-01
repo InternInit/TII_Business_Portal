@@ -146,6 +146,8 @@ class CandidatesContainer extends Component {
           <NavSearch
             title="Internship Candidates"
             placeholder="Search Applicants"
+            //@TODO implement functionality
+            searchBar={false}
             style={
               this.state.currentPath === "manage-candidates"
                 ? { minWidth: "1250px" }

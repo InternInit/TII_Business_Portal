@@ -65,7 +65,11 @@ class InternPageContainer extends Component {
     return (
       <>
         <PageContainer>
-          <NavSearch title="Intern Dashboard" />
+          <NavSearch
+            title="Intern Dashboard"
+            //@TODO implement functionality
+            searchBar={false}
+          />
           <InnerContainer className="mt-3 mb-4">
             <AntRow style={{ width: "100%" }}>
               {this.props.isInternLoading ? (

@@ -22,13 +22,18 @@ class Employeepage extends Component {
   render() {
     return (
       <PageContainer className="global-container">
-        <NavSearch title="Company User Accounts" placeholder="Search Users" />
+        <NavSearch
+          title="Company User Accounts"
+          placeholder="Search Users"
+          //@TODO implement functionality
+          searchBar={false}
+        />
         <InnerContainer className="py-2">
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={8} lg={5}>
               <Link to="/users/new-account">
                 <Button type="default" style={ButtonStyle}>
-                <span className="sixteenFont">Add User Account</span>
+                  <span className="sixteenFont">Add User Account</span>
                 </Button>
               </Link>
             </AntCol>

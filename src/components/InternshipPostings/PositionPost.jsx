@@ -58,6 +58,8 @@ class PositionPost extends Component {
           <NavSearch
             title="My Internship Postings"
             placeholder="Search Postings"
+            //@TODO implement functionality
+            searchBar={false}
           />
 
           <Transition
