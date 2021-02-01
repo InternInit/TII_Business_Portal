@@ -1,19 +1,10 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Button, Row as AntRow, Col as AntCol } from "antd";
+import { Button, Row as AntRow, Col as AntCol, Skeleton } from "antd";
 import {
   TabContainer,
   Header,
   Caption,
 } from "../Styled/FundamentalComponents.jsx";
-
-import { Link } from "react-router-dom";
-
-const ButtonText = styled.span`
-  font-family: roboto;
-  color: #13c2c2;
-  font-size: 18px;
-`;
 
 class CompanyAccount extends Component {
   render() {
@@ -55,4 +46,35 @@ class CompanyAccount extends Component {
     );
   }
 }
+
+export const CompanyAccountSkeleton = (props) => {
+  return (
+    <TabContainer className="py-2 px-6 mb-1 responsive-tab-container" hoverable>
+      <AntRow justify="space-between" align="middle">
+        <AntCol flex={4}>
+          <Skeleton
+            paragraph={false}
+            className="student-intern-tab-skeleton-name"
+            active
+          />
+          <Skeleton
+            paragraph={false}
+            className="student-intern-tab-skeleton-position"
+            active
+          />
+        </AntCol>
+
+        <AntCol flex={1}>
+          <AntRow justify="end" align="middle" gutter={[16, 0]}>
+            <AntCol span={14}>
+              <Button size="large" type="danger" block>
+                Remove
+              </Button>
+            </AntCol>
+          </AntRow>
+        </AntCol>
+      </AntRow>
+    </TabContainer>
+  );
+};
 export default CompanyAccount;

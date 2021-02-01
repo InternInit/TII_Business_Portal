@@ -119,6 +119,9 @@ class App extends React.Component {
     if (localStorage.getItem("NumListings") === null) {
       localStorage.setItem("NumListings", 3);
     }
+    if (localStorage.getItem("NumUsers") === null) {
+      localStorage.setItem("NumUsers", 3);
+    }
     this.setupInterceptor();
   }
 
@@ -340,6 +343,7 @@ class App extends React.Component {
 
     axios.get("/api/list_users", headers).then((response) => {
       this.props.updateCompanyUsers(JSON.parse(response.data));
+      localStorage.setItem("NumUsers", this.props.companyInfo.users.length);
       console.log(response.data);
     });
   };
@@ -459,6 +463,7 @@ class App extends React.Component {
                     render={(props) => (
                       <Employeepage
                         {...props}
+                        loading={this.props.loadingStatuses.isCandidateLoading}
                         users={this.props.companyInfo.users}
                       />
                     )}

@@ -3,13 +3,14 @@ import { Button, Row as AntRow, Col as AntCol } from "antd";
 import { Transition, config } from "react-spring/renderprops";
 import NavSearch from "../General/NavSearch.jsx";
 
-import CompanyAccount from "./CompanyAccount";
+import CompanyAccount, { CompanyAccountSkeleton } from "./CompanyAccount";
 import {
   PageContainer,
   InnerContainer,
 } from "../Styled/FundamentalComponents.jsx";
 
 import { Link } from "react-router-dom";
+import _ from "underscore";
 
 const ButtonStyle = {
   width: "100%",
@@ -50,13 +51,21 @@ class Employeepage extends Component {
                   </Link>
                 </AntCol>
               </AntRow>
-              {this.props.users.map((user, index) => (
-                <CompanyAccount
-                  name={user.name}
-                  role={user["custom:role"]}
-                  id={user.sub}
-                />
-              ))}
+              {this.props.loading ? (
+                <>
+                  {_.times(localStorage.getItem("NumUsers"), () => (
+                    <CompanyAccountSkeleton />
+                  ))}
+                </>
+              ) : (
+                this.props.users.map((user, index) => (
+                  <CompanyAccount
+                    name={user.name}
+                    role={user["custom:role"]}
+                    id={user.sub}
+                  />
+                ))
+              )}
             </InnerContainer>
           )}
         </Transition>
