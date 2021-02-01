@@ -50,13 +50,6 @@ const MainPage = (props) => {
     return props1 + props2;
   };
 
-  useEffect(() => {
-    getDotCount("Incoming Applicants");
-    getDotCount("Applicants");
-    getDotCount("Interns");
-    getDotCount("Listings");
-  });
-
   const getDotCount = (prop) => {
     let dotCount;
 
@@ -73,6 +66,7 @@ const MainPage = (props) => {
             CARD_PER_PAGE +
             0.49
         );
+        pageIndex.applicantPage = [];
         for (let i = 0; i < dotCount; i++) {
           pageIndex.applicantPage.push(i);
         }
@@ -80,6 +74,7 @@ const MainPage = (props) => {
 
       case "Listings":
         dotCount = Math.round(listings.length / CARD_PER_PAGE + 0.49);
+        pageIndex.listingPage = [];
         for (let i = 0; i < dotCount; i++) {
           pageIndex.listingPage.push(i);
         }
@@ -91,12 +86,14 @@ const MainPage = (props) => {
             CARD_PER_PAGE +
             0.49
         );
+        pageIndex.incomingPage = [];
         for (let i = 0; i < dotCount; i++) {
           pageIndex.incomingPage.push(i);
         }
         break;
       case "Interns":
         dotCount = Math.round(interns.length / CARD_PER_PAGE + 0.49);
+        pageIndex.internPage = [];
         for (let i = 0; i < dotCount; i++) {
           pageIndex.internPage.push(i);
         }
@@ -120,6 +117,8 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
+
+    console.log(pageIndex);
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
@@ -237,6 +236,7 @@ const MainPage = (props) => {
                     isListing={false}
                   />
                 )}
+                {getDotCount("Incoming Applicants")}
                 {!isMd &&
                   (props.loading.isCandidateLoading ? (
                     <DotSkeletonSpacer />
@@ -330,6 +330,7 @@ const MainPage = (props) => {
 
             <AntRow gutter={[32, 16]} style={{ marginTop: "-20px" }}>
               <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
+              {getDotCount("Listings")}
                 {props.loading.isListingLoading ? (
                   <DotSkeletonSpacer />
                 ) : listings.length > CARD_PER_PAGE ? (
@@ -356,6 +357,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={0} md={{ span: 12, order: 2 }} lg={10} xl={8}>
+              {getDotCount("Incoming Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(
@@ -384,6 +386,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={24} md={{ span: 12, order: 2 }} lg={0}>
+              {getDotCount("Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(
@@ -397,10 +400,8 @@ const MainPage = (props) => {
                         <div
                           onClick={() => {
                             setPage({
+                              ...page,
                               applicantPage: number,
-                              listingPage: listingPage,
-                              internPage: internPage,
-                              incomingPage: incomingPage,
                             });
                             applicantPage = number;
                           }}
@@ -522,6 +523,7 @@ const MainPage = (props) => {
 
             <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
               <AntCol xs={24} lg={14} xl={16}>
+              {getDotCount("Interns")}
                 {props.loading.isInternLoading ? (
                   <DotSkeletonSpacer />
                 ) : interns.length > CARD_PER_PAGE ? (
@@ -548,6 +550,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={0} lg={10} xl={8}>
+              {getDotCount("Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(
@@ -560,10 +563,8 @@ const MainPage = (props) => {
                       <div
                         onClick={() => {
                           setPage({
+                            ...page,
                             applicantPage: number,
-                            listingPage: listingPage,
-                            incomingPage: incomingPage,
-                            internPage: internPage,
                           });
                           applicantPage = number;
                         }}
@@ -578,6 +579,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
             </AntRow>
+
             <AntRow gutter={[32, 16]} style={{ flex: 1, minHeight: "250px" }}>
               <MainPercentages
                 currentApplicantsReceived={candidates.length}
