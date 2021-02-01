@@ -159,21 +159,20 @@ const HirePipeline = (props) => {
      *The page containing drag n drop
      *
      */
-
-    <div
-      key="hiringPipelineContainer"
-      className="px-4 py-2"
-      style={{ width: "100%" }}
+    <Transition
+      items={props.location.pathname}
+      from={{ opacity: 0.5, transform: "translateY(20px)" }}
+      enter={{ opacity: 1, transform: "none" }}
+      leave={{ opacity: 1 }}
+      config={config.stiff}
     >
-      <Transition
-        items={props.location.pathname}
-        from={{ opacity: 0.5, transform: "translateY(20px)" }}
-        enter={{ opacity: 1, transform: "translateY(0px)" }}
-        leave={{ opacity: 1 }}
-        config={config.stiff}
-      >
-        {(location) => (styling) => (
-          <AntRow gutter={[36, 0]} style={{ ...styling, minWidth: "1200px" }}>
+      {(location) => (styling) => (
+        <div
+          key="hiringPipelineContainer"
+          className="px-4 py-2"
+          style={{ ...styling, width: "100%" }}
+        >
+          <AntRow gutter={[36, 0]} style={{ minWidth: "1200px" }}>
             <DragDropContext
               onDragEnd={(result) =>
                 onDragEnd(result, columns, setColumns, props)
@@ -285,9 +284,9 @@ const HirePipeline = (props) => {
               })}
             </DragDropContext>
           </AntRow>
-        )}
-      </Transition>
-    </div>
+        </div>
+      )}
+    </Transition>
   );
 };
 
