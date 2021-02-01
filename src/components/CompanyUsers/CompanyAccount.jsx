@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Row as AntRow, Col as AntCol, Skeleton } from "antd";
+import { Button, Row as AntRow, Col as AntCol, Modal, Skeleton } from "antd";
 import {
   TabContainer,
   Header,
@@ -7,9 +7,13 @@ import {
 } from "../Styled/FundamentalComponents.jsx";
 
 class CompanyAccount extends Component {
+  state = {
+    removeModal: false,
+  };
+
   render() {
-    let { id } = this.props;
     return (
+      <>
       <TabContainer
         className="py-2 px-6 mb-1 responsive-tab-container"
         hoverable
@@ -35,7 +39,12 @@ class CompanyAccount extends Component {
               </AntCol>
               */}
               <AntCol span={14}>
-                <Button size="large" type="danger" block>
+                <Button
+                  size="large"
+                  type="danger"
+                  onClick={() => this.setState({ removeModal: true })}
+                  block
+                >
                   Remove
                 </Button>
               </AntCol>
@@ -43,6 +52,30 @@ class CompanyAccount extends Component {
           </AntCol>
         </AntRow>
       </TabContainer>
+      <Modal
+                  title="Remove User"
+                  centered
+                  visible={this.state.removeModal}
+                  onCancel={() => this.setState({ removeModal: false })}
+                  footer={[
+                    <Button
+                      key="Cancel"
+                      onClick={() => this.setState({ removeModal: false })}
+                    >
+                      Cancel
+                    </Button>,
+                    <Button
+                      key="Reject"
+                      type="danger"
+                      onClick={() => this.setState({ removeModal: false })}
+                    >
+                      Remove
+                    </Button>,
+                  ]}
+                >
+                  <p>Are you sure you want to remove {this.props.name}'s account?</p>
+                </Modal>
+      </>
     );
   }
 }
