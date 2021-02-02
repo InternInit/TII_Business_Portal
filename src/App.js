@@ -352,142 +352,146 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Router>
-          <Route
-            path="/login"
-            exact
-            render={() => <Login auth={this.auth} key="login" />}
-          />
-          <Route
-            path="/signup"
-            exact
-            render={() => <Signup auth={this.auth} key="signup" />}
-          />
+          <ReactSwitch>
+            <Route
+              path="/login"
+              exact
+              render={() => <Login auth={this.auth} key="login" />}
+            />
+            <Route
+              path="/signup"
+              exact
+              render={() => <Signup auth={this.auth} key="signup" />}
+            />
 
-          <Layout>
-            <Sider width={80} style={{ zIndex: "100" }}>
-              <BusinessNavBar logout={this.logout} />
-            </Sider>
-            <Content>
-              <div
-                style={{}} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */
-              >
-                <Route
-                  path="/dashboard"
-                  exact
-                  render={(props) => (
-                    <MainPage
-                      {...props}
-                      key="mainpage"
-                      candidates={this.props.companyInfo.candidates}
-                      listings={this.props.listings}
-                      loading={this.props.loadingStatuses}
-                      interns={this.props.interns}
+            <Layout>
+              <Sider width={80} style={{ zIndex: "100" }}>
+                <BusinessNavBar logout={this.logout} />
+              </Sider>
+              <Content>
+                <div
+                  style={{}} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */
+                >
+                  <Route
+                    path="/dashboard"
+                    exact
+                    render={(props) => (
+                      <MainPage
+                        {...props}
+                        key="mainpage"
+                        candidates={this.props.companyInfo.candidates}
+                        listings={this.props.listings}
+                        loading={this.props.loadingStatuses}
+                        interns={this.props.interns}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/"
+                    exact
+                    render={(props) => {
+                      return (
+                        (this.authParam = props.location.search),
+                        (<Redirect to="/dashboard" />)
+                      );
+                    }}
+                  />
+
+                  <ReactSwitch>
+                    <Route
+                      path="/internship-listings/add-listing"
+                      exact
+                      render={(props) => (
+                        <InternshipDetails
+                          {...props}
+                          key="newinternship"
+                          buttonText="Add Post"
+                          title="Create New Post"
+                          addListing={this.props.addListing}
+                          id={this.props.companyInfo.id}
+                        />
+                      )}
                     />
-                  )}
-                />
-                <Route
-                  path="/"
-                  exact
-                  render={(props) => {
-                    return (
-                      (this.authParam = props.location.search),
-                      (<Redirect to="/dashboard" />)
-                    );
-                  }}
-                />
-
-                <ReactSwitch>
-                  <Route
-                    path="/internship-listings/add-listing"
-                    exact
-                    render={(props) => (
-                      <InternshipDetails
-                        {...props}
-                        key="newinternship"
-                        buttonText="Add Post"
-                        title="Create New Post"
-                        addListing={this.props.addListing}
-                        id={this.props.companyInfo.id}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/internship-listings"
-                    exact
-                    render={(props) => <PositionPost {...props} />}
-                  />
-                  <Route
-                    key="internshipdetailroute"
-                    path={`/internship-listings/:id`}
-                    exact
-                    render={(props) => (
-                      <InternshipDetails
-                        {...props}
-                        title="Edit Posting"
-                        buttonText="Save Changes"
-                        updateListing={this.props.updateListing}
-                      />
-                    )}
-                  />
-                </ReactSwitch>
-
-                <Route
-                  path="/my-interns"
-                  exact
-                  render={(props) => (
-                    <StudentInternPage {...props} key="studentinternpage" />
-                  )}
-                />
-                <Route
-                  path={`/my-interns/:id`}
-                  render={(props) => (
-                    <InternPageContainer
-                      {...props}
-                      getAccess={this.getAccess}
-                      key="internpagecontainer"
+                    <Route
+                      path="/internship-listings"
+                      exact
+                      render={(props) => <PositionPost {...props} />}
                     />
-                  )}
-                />
-                <Route
-                  path="/settings"
-                  render={(props) => (
-                    <CompanyDetails {...props} key="companydetails" />
-                  )}
-                />
-                <RouteCandidates getAccess={this.getAccess} />
+                    <Route
+                      key="internshipdetailroute"
+                      path={`/internship-listings/:id`}
+                      exact
+                      render={(props) => (
+                        <InternshipDetails
+                          {...props}
+                          title="Edit Posting"
+                          buttonText="Save Changes"
+                          updateListing={this.props.updateListing}
+                        />
+                      )}
+                    />
+                  </ReactSwitch>
 
-                <ReactSwitch>
                   <Route
-                    path="/users"
+                    path="/my-interns"
                     exact
                     render={(props) => (
-                      <Employeepage
+                      <StudentInternPage {...props} key="studentinternpage" />
+                    )}
+                  />
+                  <Route
+                    path={`/my-interns/:id`}
+                    render={(props) => (
+                      <InternPageContainer
                         {...props}
-                        loading={this.props.loadingStatuses.isCandidateLoading}
-                        users={this.props.companyInfo.users}
+                        getAccess={this.getAccess}
+                        key="internpagecontainer"
                       />
                     )}
                   />
                   <Route
-                    path="/users/new-account"
-                    exact
+                    path="/settings"
                     render={(props) => (
-                      <CreateUser
-                        {...props}
-                        companyInfo={this.props.companyInfo}
-                        token={this.inMemoryToken}
-                      />
+                      <CompanyDetails {...props} key="companydetails" />
                     )}
                   />
-                  <Route
-                    path={`/users/:id`}
-                    exact
-                    render={(props) => <UserDetails {...props} />}
-                  />
-                </ReactSwitch>
-              </div>
-            </Content>
-          </Layout>
+                  <RouteCandidates getAccess={this.getAccess} />
+
+                  <ReactSwitch>
+                    <Route
+                      path="/users"
+                      exact
+                      render={(props) => (
+                        <Employeepage
+                          {...props}
+                          loading={
+                            this.props.loadingStatuses.isCandidateLoading
+                          }
+                          users={this.props.companyInfo.users}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/users/new-account"
+                      exact
+                      render={(props) => (
+                        <CreateUser
+                          {...props}
+                          companyInfo={this.props.companyInfo}
+                          token={this.inMemoryToken}
+                        />
+                      )}
+                    />
+                    <Route
+                      path={`/users/:id`}
+                      exact
+                      render={(props) => <UserDetails {...props} />}
+                    />
+                  </ReactSwitch>
+                </div>
+              </Content>
+            </Layout>
+          </ReactSwitch>
         </Router>
       </React.Fragment>
     );
