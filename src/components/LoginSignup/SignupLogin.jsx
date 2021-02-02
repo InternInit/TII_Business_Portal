@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 400px;
   height: auto;
    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
+  border-radius: 10px;
 
   padding-bottom: 24px;
 
@@ -60,4 +60,12 @@ export const Banner = styled.div`
 
   display:flex;
   justify-content:center;
+`;
+
+export const ImageText = styled.span`
+font-weight: ${(props) => (props.bolded ? "700" : "400")};
+line-height: 120%;
+font-family: Open Sans;
+color: ${(props) =>
+  props.subheading ? "#262626" : props.color ? props.color : "#000000"};
 `;
