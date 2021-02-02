@@ -14,6 +14,7 @@ import {
 import { Label, ImageText } from "./SignupLogin";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import { ReactComponent as LoginSignupIcon } from "../../Assets/LoginSignupImage.svg";
+import { Transition, config } from "react-spring/renderprops";
 
 import { Link } from "react-router-dom";
 
@@ -216,126 +217,154 @@ class LogIn extends React.Component {
     );
     return (
       <AntRow style={{ height: "100vh" }}>
-        <AntCol className="universal-middle px-8 py-4" xs={{span: 24, order: 2}} md={{span: 10, order: 1}}>
-          <AntRow justify="center" align="middle">
-            <Header className="thirtySixFont" bolded>
-              Company Login
-            </Header>
-          </AntRow>
-          <AntRow>
-            <Form onFinish={this.handleSubmit} style={{ width: "100%" }}>
-              <Label style={{ marginTop: "24px" }}>Username</Label>
-              <Form.Item name="username">
-                <Input size="large" />
-              </Form.Item>
-              <Label>Password</Label>
-              <Form.Item name="password">
-                <Input.Password size="large" />
-              </Form.Item>
-              <ForgotPass onClick={this.showForgotPassModal}>
-                Forgot Password
-              </ForgotPass>
-              <Modal
-                title="Forgot Password"
-                visible={this.state.forgotPassVisible}
-                onOk={() => this.handleForgotPassOk(this.forgotPassRef)}
-                onCancel={this.handleForgotPassCancel}
-              >
-                <ForgotPassForm
-                  formRef={this.forgotPassRef}
-                  emailSent={this.state.emailSent}
-                />
-              </Modal>
-              <AntRow justify="center">
-                <Button
-                  className="my-2 profile-button-style"
-                  type="primary"
-                  htmlType="submit"
-                  size="large"
-                  style={{width: "60%", minWidth: "100px"}}
-                >
-                  Log In
-                </Button>
+        <Transition
+          items={this.props.location.pathname}
+          from={{ opacity: 0.5, transform: "translateX(-20px)" }}
+          enter={{ opacity: 1, transform: "translateX(0px)" }}
+          leave={{ opacity: 0 }}
+          config={config.stiff}
+        >
+          {(location) => (props) => (
+            <AntCol
+              key="logIncontainer"
+              className="universal-middle px-8 py-4"
+              xs={{ span: 24, order: 2 }}
+              md={{ span: 10, order: 1 }}
+              style={{ ...props }}
+            >
+              <AntRow justify="center" align="middle">
+                <Header className="thirtySixFont" bolded>
+                  Company Login
+                </Header>
               </AntRow>
-              <Modal
-                title="Change Password"
-                visible={this.state.newPassVisible}
-                onOk={() => this.handleNewPassOk(this.newPassRef)}
-                onCancel={this.handleNewPassCancel}
-              >
-                <Form ref={this.newPassRef}>
-                  <Label>New Password</Label>
-                  <Popover
-                    placement="right"
-                    title="Password Policy"
-                    content={passwordPolicyContent}
-                    trigger="focus"
-                  >
-                    <Form.Item
-                      name="new-pass"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter your password",
-                        },
-                        ({ getFieldValue }) => ({
-                          validator(rule, value) {
-                            let errors = schema.validate(value, {
-                              list: true,
-                            });
-
-                            function getValidationMessage(errors) {
-                              for (let i = 0; i < errors.length; i++) {
-                                if (errors[i] === "min") {
-                                  return "Password length should be at least 8 characters";
-                                } else if (errors[i] === "lowercase") {
-                                  return "Password should contain lowercase letters";
-                                } else if (errors[i] === "uppercase") {
-                                  return "Password should contain uppercase letters";
-                                } else if (errors[i] === "digits") {
-                                  return "Password should contain digits";
-                                } else if (errors[i] === "symbols") {
-                                  return "Password should contain symbols";
-                                }
-                              }
-                            }
-
-                            if (
-                              typeof getValidationMessage(errors) == "undefined"
-                            ) {
-                              return Promise.resolve();
-                            }
-
-                            return Promise.reject(getValidationMessage(errors));
-                          },
-                        }),
-                      ]}
-                    >
-                      <Input.Password />
-                    </Form.Item>
-                  </Popover>
-                  <Label>Confirm Pass</Label>
-                  <Form.Item
-                    {...formItemProps.confirmPassword}
-                    name="conf-pass"
-                  >
-                    <Input.Password />
+              <AntRow>
+                <Form onFinish={this.handleSubmit} style={{ width: "100%" }}>
+                  <Label style={{ marginTop: "24px" }}>Username</Label>
+                  <Form.Item name="username">
+                    <Input size="large" />
                   </Form.Item>
+                  <Label>Password</Label>
+                  <Form.Item name="password">
+                    <Input.Password size="large" />
+                  </Form.Item>
+                  <ForgotPass onClick={this.showForgotPassModal}>
+                    Forgot Password
+                  </ForgotPass>
+                  <Modal
+                    title="Forgot Password"
+                    visible={this.state.forgotPassVisible}
+                    onOk={() => this.handleForgotPassOk(this.forgotPassRef)}
+                    onCancel={this.handleForgotPassCancel}
+                  >
+                    <ForgotPassForm
+                      formRef={this.forgotPassRef}
+                      emailSent={this.state.emailSent}
+                    />
+                  </Modal>
+                  <AntRow justify="center">
+                    <Button
+                      className="my-2 profile-button-style"
+                      type="primary"
+                      htmlType="submit"
+                      size="large"
+                      style={{ width: "60%", minWidth: "100px" }}
+                    >
+                      Log In
+                    </Button>
+                  </AntRow>
+                  <Modal
+                    title="Change Password"
+                    visible={this.state.newPassVisible}
+                    onOk={() => this.handleNewPassOk(this.newPassRef)}
+                    onCancel={this.handleNewPassCancel}
+                  >
+                    <Form ref={this.newPassRef}>
+                      <Label>New Password</Label>
+                      <Popover
+                        placement="right"
+                        title="Password Policy"
+                        content={passwordPolicyContent}
+                        trigger="focus"
+                      >
+                        <Form.Item
+                          name="new-pass"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please enter your password",
+                            },
+                            ({ getFieldValue }) => ({
+                              validator(rule, value) {
+                                let errors = schema.validate(value, {
+                                  list: true,
+                                });
+
+                                function getValidationMessage(errors) {
+                                  for (let i = 0; i < errors.length; i++) {
+                                    if (errors[i] === "min") {
+                                      return "Password length should be at least 8 characters";
+                                    } else if (errors[i] === "lowercase") {
+                                      return "Password should contain lowercase letters";
+                                    } else if (errors[i] === "uppercase") {
+                                      return "Password should contain uppercase letters";
+                                    } else if (errors[i] === "digits") {
+                                      return "Password should contain digits";
+                                    } else if (errors[i] === "symbols") {
+                                      return "Password should contain symbols";
+                                    }
+                                  }
+                                }
+
+                                if (
+                                  typeof getValidationMessage(errors) ==
+                                  "undefined"
+                                ) {
+                                  return Promise.resolve();
+                                }
+
+                                return Promise.reject(
+                                  getValidationMessage(errors)
+                                );
+                              },
+                            }),
+                          ]}
+                        >
+                          <Input.Password />
+                        </Form.Item>
+                      </Popover>
+                      <Label>Confirm Pass</Label>
+                      <Form.Item
+                        {...formItemProps.confirmPassword}
+                        name="conf-pass"
+                      >
+                        <Input.Password />
+                      </Form.Item>
+                    </Form>
+                  </Modal>
+                  <Label className="my-1">
+                    Don't have an account?
+                    <Link to="/signup"> Sign up here</Link>
+                  </Label>
                 </Form>
-              </Modal>
-              <Label className="my-1">
-                Don't have an account?
-                <Link to="/signup"> Sign up here</Link>
-              </Label>
-            </Form>
-          </AntRow>
-        </AntCol>
-        <AntCol xs={{span: 24, order: 1}} md={{span: 14, order: 2}} style={{ backgroundColor: "#bbe1fa" }}>
-          <AntRow className="universal-middle py-4" style={{height: "100%"}}>
+              </AntRow>
+            </AntCol>
+          )}
+        </Transition>
+        <AntCol
+          xs={{ span: 24, order: 1 }}
+          md={{ span: 14, order: 2 }}
+          style={{ backgroundColor: "#bbe1fa" }}
+        >
+          <AntRow className="universal-middle py-4" style={{ height: "100%" }}>
             <AntCol span={24}>
               <AntRow>
                 <LoginSignupIcon
-                  style={{ width: "80%", height: "auto", marginTop: "-10%", marginLeft: "3%" }}
+                  style={{
+                    width: "80%",
+                    height: "auto",
+                    marginTop: "-10%",
+                    marginLeft: "3%",
+                  }}
                 />
               </AntRow>
               <AntRow>
