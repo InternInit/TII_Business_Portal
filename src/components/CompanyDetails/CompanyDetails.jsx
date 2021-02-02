@@ -229,9 +229,7 @@ class CompanyDetails extends React.Component {
                    * E-Mail
                    *
                    */}
-                  <Header className={headerClassNames}>
-                    Company Description
-                  </Header>
+                  <Header className={headerClassNames}>Company Email</Header>
                   <Form.Item {...FormProps.EMail}>
                     <Input
                       placeholder="company@email.com"
@@ -245,7 +243,7 @@ class CompanyDetails extends React.Component {
                    *
                    */}
                   <Header className={headerClassNames}>
-                    Company Description
+                    Company Phone Number
                   </Header>
                   <Form.Item {...FormProps.Phone}>
                     <Input
