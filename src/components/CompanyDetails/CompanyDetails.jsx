@@ -36,14 +36,32 @@ import {
 } from "../Styled/FundamentalComponents.jsx";
 import { Link } from "react-router-dom";
 
+import gql from "graphql-tag";
+import { print } from "graphql";
+
+import axios from "axios";
+
+// prettier-ignore
+const MUTATION = gql`
+mutation MyMutation ($Id:String!, $description:String, $email:String, $name:String, $phoneNumber:String, $website:String){
+  updateBusinessInfoTest(input: {Id:$Id, description:$description, email:$email, name:$name, phoneNumber:$phoneNumber, website:$website}) {
+    Id
+    description
+    email
+    name
+    phoneNumber
+    website
+  }
+}                 
+`
+
 const { TextArea } = Input;
 const { Dragger } = Upload;
 
 //CSS Constants
 const buttonStyle = {
   display: "flex",
-  justifyContent: "flex-end",
-  marginTop: "6vh",
+  justifyContent: "center",
   marginBottom: "6vh",
 };
 
@@ -148,8 +166,6 @@ class CompanyDetails extends React.Component {
   };
 
   render() {
-    let { companyInfo } = this.props;
-
     return (
       <PageContainer>
         <NavSearch title="Company Information" searchBar={false} />
@@ -186,7 +202,11 @@ class CompanyDetails extends React.Component {
                  * Company Name
                  *
                  */}
-                <Form {...FormProps.TotalForm} ref={this.formRef}>
+                <Form
+                  {...FormProps.TotalForm}
+                  ref={this.formRef}
+                  onFinish={this.handleSave}
+                >
                   <Header className={headerClassNames}>Company Name</Header>
                   <Form.Item {...FormProps.name}>
                     <Input
@@ -229,9 +249,7 @@ class CompanyDetails extends React.Component {
                    * E-Mail
                    *
                    */}
-                  <Header className={headerClassNames}>
-                    Company Description
-                  </Header>
+                  <Header className={headerClassNames}>Company Email</Header>
                   <Form.Item {...FormProps.EMail}>
                     <Input
                       placeholder="company@email.com"
@@ -245,7 +263,7 @@ class CompanyDetails extends React.Component {
                    *
                    */}
                   <Header className={headerClassNames}>
-                    Company Description
+                    Company Phone Number
                   </Header>
                   <Form.Item {...FormProps.Phone}>
                     <Input
@@ -308,23 +326,24 @@ class CompanyDetails extends React.Component {
                       </AntCol>
                     </AntRow>
                   </div>
+                  {/**
+                   *
+                   * Save Changes Button
+                   *
+                   */}
+                  <div style={buttonStyle}>
+                    <Form.Item>
+                      <Button
+                        type="primary"
+                        size="large"
+                        style={{ width: "36vh" }}
+                        htmlType="submit"
+                      >
+                        Save Changes
+                      </Button>
+                    </Form.Item>
+                  </div>
                 </Form>
-
-                {/**
-                 *
-                 * Save Changes Button
-                 *
-                 */}
-                <div style={buttonStyle}>
-                  <Button
-                    type="primary"
-                    size="large"
-                    style={{ width: "36vh" }}
-                    htmlType="submit"
-                  >
-                    Save Changes
-                  </Button>
-                </div>
               </FormContainer>
             )}
           </Transition>
@@ -333,8 +352,41 @@ class CompanyDetails extends React.Component {
     );
   }
 
-  handleSave = (values) => {
+  handleSave = async (values) => {
     console.log("This is the finished form", values);
+    let access = await this.props.getAccess();
+
+    axios({
+      url: "/api/mutate_business_info",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: print(MUTATION),
+        variables: {
+          Id: this.props.companyInfo.id,
+          description: values.description,
+          email: values.email,
+          name: values.name,
+          phoneNumber: values.phoneNumber,
+          website: values.website,
+        },
+      },
+    })
+      .then((result) => {
+        //console.log(result.data[gradeId]);
+        //console.log(internIndex, gradeId, result.data[gradeId]);
+        let data = result.data.data.updateBusinessInfoTest;
+        this.props.updateName(data.name);
+        this.props.updateDescription(data.description);
+        this.props.updateWebsite(data.website);
+        this.props.updateEmail(data.email);
+        this.props.updatePhoneNumber(data.phoneNumber);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 }
 
