@@ -137,7 +137,7 @@ class App extends React.Component {
   setupInterceptor() {
     axios.interceptors.response.use((res) => {
       if (res.data.hasOwnProperty("errors")) {
-        console.log("has errors");
+        console.log("Request had error " + res.data.errors[0].errorType);
         res.data.errors.forEach((error) => {
           if (error.errorType === "UnauthorizedException") {
             console.log("has errorss");
@@ -235,7 +235,7 @@ class App extends React.Component {
             description
             email
             name
-            phonenumber
+            phoneNumber
             website
           }
         }
@@ -250,7 +250,7 @@ class App extends React.Component {
         );
         this.props.updateWebsite(data.website);
         this.props.updateEmail(data.email);
-        this.props.updatePhoneNumber(data.phonenumber);
+        this.props.updatePhoneNumber(data.phoneNumber);
         this.props.updateAvatar(
           "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
         );
@@ -480,7 +480,7 @@ class App extends React.Component {
                   <Route
                     path="/settings"
                     render={(props) => (
-                      <CompanyDetails {...props} key="companydetails" />
+                      <CompanyDetails {...props} getAccess={this.getAccess} companyInfo={this.props.companyInfo} key="companydetails" />
                     )}
                   />
                   <RouteCandidates getAccess={this.getAccess} />

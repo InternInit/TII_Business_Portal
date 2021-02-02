@@ -116,6 +116,14 @@ def get_business_info():
     resp_json = json.loads(req.text)
     return json.dumps(resp_json)
 
+@app.route('/api/mutate_business_info', methods=["POST"])
+def mutate_business_info():
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
+
 #################################
 #
 #      INTERNSHIP LISTINGS
