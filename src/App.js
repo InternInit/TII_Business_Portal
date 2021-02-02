@@ -219,17 +219,45 @@ class App extends React.Component {
     }
   };
 
-  getBusinessInfo = (payload) => {
-    this.props.updateName(payload["custom:company"]);
-    this.props.updateDescription(
-      "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
-    );
-    this.props.updateWebsite("google.nl");
-    this.props.updateEmail("apechell0@cafepress.com");
-    this.props.updatePhoneNumber("810-591-4366");
-    this.props.updateAvatar(
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
-    );
+  getBusinessInfo = async () => {
+    let access = await this.getAccess();
+    axios({
+      url: "/api/get_business_info",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: `
+        query MyQuery {
+          getBusinessInfoTest(Id: "${this.props.companyInfo.id}") {
+            Id
+            description
+            email
+            name
+            phonenumber
+            website
+          }
+        }
+      `,
+      },
+    })
+      .then((result) => {
+        let data = result.data.data.getBusinessInfoTest
+        this.props.updateName(data.name);
+        this.props.updateDescription(
+          data.description
+        );
+        this.props.updateWebsite(data.website);
+        this.props.updateEmail(data.email);
+        this.props.updatePhoneNumber(data.phonenumber);
+        this.props.updateAvatar(
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   getFullCandidates = async () => {
