@@ -31,6 +31,7 @@
     "react-spring": "^8.0.27",
     "react-top-loader": "^1.0.0",
     "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "rfs": "^9.0.3",
     "styled-components": "^5.1.1",
