@@ -56,7 +56,7 @@ const PositionPostSkeleton = (props) => {
   );
 };
 
-const PostingTabSkeleton = (props) => {
+export const PostingTabSkeleton = (props) => {
   const screens = useBreakpoint();
 
   const isXs = Object.entries(screens)
@@ -168,4 +168,5 @@ const PostingTabSkeleton = (props) => {
     </TabContainer>
   );
 };
+
 export default PositionPostSkeleton;

@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Caption, TabContainer } from "../Styled/FundamentalComponents.jsx";
 import { check } from "react-icons-kit/fa/check";
 import { remove } from "react-icons-kit/fa/remove";
 import { Icon } from "react-icons-kit";
-import { Row as AntRow, Col as AntCol, Tooltip, message } from "antd";
+import {
+  Row as AntRow,
+  Col as AntCol,
+  Tooltip,
+  message,
+  Modal,
+  Button,
+} from "antd";
 
 import { connect } from "react-redux";
 
-import { submitHour } from "../../redux/actions";
+import { submitHour, deleteHour } from "../../redux/actions";
 
 import axios from "axios";
 
@@ -27,6 +34,7 @@ mutation MyMutation ($hours:AWSJSON, $assocId:String!){
 
 const mapDispatchToProps = {
   submitHour,
+  deleteHour,
 };
 
 const mapStateToProps = (state) => {
@@ -36,23 +44,20 @@ const mapStateToProps = (state) => {
 };
 
 const AttendanceCard = (props) => {
+  const [isRejectModalVisible, setRejectModalVisible] = useState(false);
+
   const handleClick = () => {
     mutateHoursAssoc(true);
     message.success("Hours Approved");
   };
 
   const handleReject = () => {
-    /**
-     * @TODO
-     * Add new field for rejected hours
-     */
     mutateHoursAssoc(false);
     message.error("Hours Rejected");
   };
 
   const mutateHoursAssoc = async (isApproved) => {
     let access = await props.getAccess();
-
     let hourId = props.hoursId;
     let internIndex = _.findIndex(props.interns, { Id: props.studentId });
     let internOfInterest = { ...props.interns[internIndex] };
@@ -60,8 +65,11 @@ const AttendanceCard = (props) => {
     let hourObj = { ...newHours[hourId] };
 
     hourObj.isApproved = isApproved;
-
-    newHours[hourId] = hourObj;
+    if (hourObj.isApproved === false) {
+      delete newHours[hourId];
+    } else {
+      newHours[hourId] = hourObj;
+    }
 
     axios({
       url: "/api/mutate_hours_assoc",
@@ -78,8 +86,12 @@ const AttendanceCard = (props) => {
       },
     })
       .then((result) => {
-        props.submitHour(internIndex, hourObj);
-        console.log(result.data[hourId]);
+        if (hourObj.isApproved === false) {
+          props.deleteHour(internIndex, hourObj);
+        } else {
+          props.submitHour(internIndex, hourObj);
+        }
+        //console.log(result.data[hourId]);
       })
       .catch((error) => {
         console.log(error);
@@ -111,13 +123,37 @@ const AttendanceCard = (props) => {
               </Tooltip>
             )}
             {props.review && (
-              <Tooltip title="Reject">
-                <Icon
-                  className="mx-point-5 intern-dashboard-attendance-reject"
-                  icon={remove}
-                  onClick={() => handleReject()}
-                />
-              </Tooltip>
+              <>
+                <Tooltip title="Reject">
+                  <Icon
+                    className="mx-point-5 intern-dashboard-attendance-reject"
+                    icon={remove}
+                    onClick={() => setRejectModalVisible(true)}
+                  />
+                </Tooltip>
+                <Modal
+                  title="Reject Attendance"
+                  centered
+                  visible={isRejectModalVisible}
+                  footer={[
+                    <Button
+                      key="Cancel"
+                      onClick={() => setRejectModalVisible(false)}
+                    >
+                      Cancel
+                    </Button>,
+                    <Button
+                      key="Reject"
+                      type="danger"
+                      onClick={() => handleReject()}
+                    >
+                      Reject
+                    </Button>,
+                  ]}
+                >
+                  <p>Are you sure you want to reject this?</p>
+                </Modal>
+              </>
             )}
           </AntCol>
         </AntRow>

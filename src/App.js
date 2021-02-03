@@ -12,6 +12,7 @@ import {
 
 //Ant Design
 import { Layout } from "antd";
+import QueueAnim from "rc-queue-anim";
 
 //Redux
 import { connect } from "react-redux";
@@ -118,6 +119,9 @@ class App extends React.Component {
     if (localStorage.getItem("NumListings") === null) {
       localStorage.setItem("NumListings", 3);
     }
+    if (localStorage.getItem("NumUsers") === null) {
+      localStorage.setItem("NumUsers", 3);
+    }
     this.setupInterceptor();
   }
 
@@ -133,7 +137,7 @@ class App extends React.Component {
   setupInterceptor() {
     axios.interceptors.response.use((res) => {
       if (res.data.hasOwnProperty("errors")) {
-        console.log("has errors");
+        console.log("Request had error " + res.data.errors[0].errorType);
         res.data.errors.forEach((error) => {
           if (error.errorType === "UnauthorizedException") {
             console.log("has errorss");
@@ -215,17 +219,45 @@ class App extends React.Component {
     }
   };
 
-  getBusinessInfo = (payload) => {
-    this.props.updateName(payload["custom:company"]);
-    this.props.updateDescription(
-      "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
-    );
-    this.props.updateWebsite("google.nl");
-    this.props.updateEmail("apechell0@cafepress.com");
-    this.props.updatePhoneNumber("810-591-4366");
-    this.props.updateAvatar(
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
-    );
+  getBusinessInfo = async () => {
+    let access = await this.getAccess();
+    axios({
+      url: "/api/get_business_info",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: `
+        query MyQuery {
+          getBusinessInfoTest(Id: "${this.props.companyInfo.id}") {
+            Id
+            description
+            email
+            name
+            phoneNumber
+            website
+          }
+        }
+      `,
+      },
+    })
+      .then((result) => {
+        let data = result.data.data.getBusinessInfoTest
+        this.props.updateName(data.name);
+        this.props.updateDescription(
+          data.description
+        );
+        this.props.updateWebsite(data.website);
+        this.props.updateEmail(data.email);
+        this.props.updatePhoneNumber(data.phoneNumber);
+        this.props.updateAvatar(
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   getFullCandidates = async () => {
@@ -339,6 +371,7 @@ class App extends React.Component {
 
     axios.get("/api/list_users", headers).then((response) => {
       this.props.updateCompanyUsers(JSON.parse(response.data));
+      localStorage.setItem("NumUsers", this.props.companyInfo.users.length);
       console.log(response.data);
     });
   };
@@ -347,126 +380,146 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Router>
-          <Route
-            path="/login"
-            exact
-            component={() => <Login auth={this.auth} key="login" />}
-          />
-          <Route
-            path="/signup"
-            exact
-            component={() => <Signup auth={this.auth} key="signup" />}
-          />
+          <ReactSwitch>
+            <Route
+              path="/login"
+              exact
+              render={() => <Login auth={this.auth} key="login" />}
+            />
+            <Route
+              path="/signup"
+              exact
+              render={() => <Signup auth={this.auth} key="signup" />}
+            />
 
-          <Layout>
-            <Sider width={80} style={{ zIndex: "100" }}>
-              <BusinessNavBar logout={this.logout} />
-            </Sider>
-            <Content>
-              <div
-                style={{}} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */
-              >
-                <Route
-                  path="/dashboard"
-                  exact
-                  component={() => (
-                    <MainPage
-                      key="mainpage"
-                      candidates={this.props.companyInfo.candidates}
-                      listings={this.props.listings}
-                      loading={this.props.loadingStatuses}
-                      interns={this.props.interns}
-                    />
-                  )}
-                />
-                <Route
-                  path="/"
-                  exact
-                  render={(props) => {
-                    return (
-                      (this.authParam = props.location.search),
-                      (<Redirect to="/dashboard" />)
-                    );
-                  }}
-                />
-
-                <ReactSwitch>
+            <Layout>
+              <Sider width={80} style={{ zIndex: "100" }}>
+                <BusinessNavBar logout={this.logout} />
+              </Sider>
+              <Content>
+                <div
+                  style={{}} /** <===== GHETTO SOLUTION (Prevents Overlap of Page and Navbar) */
+                >
                   <Route
-                    path="/internship-listings/add-listing"
+                    path="/dashboard"
                     exact
-                    component={() => (
-                      <InternshipDetails
-                        key="newinternship"
-                        buttonText="Add Post"
-                        title="Create New Post"
-                        addListing={this.props.addListing}
-                        id={this.props.companyInfo.id}
+                    render={(props) => (
+                      <MainPage
+                        {...props}
+                        key="mainpage"
+                        candidates={this.props.companyInfo.candidates}
+                        listings={this.props.listings}
+                        loading={this.props.loadingStatuses}
+                        interns={this.props.interns}
                       />
                     )}
                   />
                   <Route
-                    path="/internship-listings"
+                    path="/"
                     exact
-                    component={PositionPost}
+                    render={(props) => {
+                      return (
+                        (this.authParam = props.location.search),
+                        (<Redirect to="/dashboard" />)
+                      );
+                    }}
+                  />
+
+                  <ReactSwitch>
+                    <Route
+                      path="/internship-listings/add-listing"
+                      exact
+                      render={(props) => (
+                        <InternshipDetails
+                          {...props}
+                          key="newinternship"
+                          buttonText="Add Post"
+                          title="Create New Post"
+                          addListing={this.props.addListing}
+                          id={this.props.companyInfo.id}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/internship-listings"
+                      exact
+                      render={(props) => <PositionPost {...props} />}
+                    />
+                    <Route
+                      key="internshipdetailroute"
+                      path={`/internship-listings/:id`}
+                      exact
+                      render={(props) => (
+                        <InternshipDetails
+                          {...props}
+                          title="Edit Posting"
+                          buttonText="Save Changes"
+                          updateListing={this.props.updateListing}
+                        />
+                      )}
+                    />
+                  </ReactSwitch>
+
+                  <Route
+                    path="/my-interns"
+                    exact
+                    render={(props) => (
+                      <StudentInternPage {...props} key="studentinternpage" />
+                    )}
                   />
                   <Route
-                    key="internshipdetailroute"
-                    path={`/internship-listings/:id`}
-                    exact
-                    component={() => (
-                      <InternshipDetails
-                        title="Edit Posting"
-                        key="internshipdetails"
-                        buttonText="Save Changes"
-                        updateListing={this.props.updateListing}
+                    path={`/my-interns/:id`}
+                    render={(props) => (
+                      <InternPageContainer
+                        {...props}
+                        getAccess={this.getAccess}
+                        key="internpagecontainer"
                       />
                     )}
                   />
-                </ReactSwitch>
-
-                <Route
-                  path="/my-interns"
-                  exact
-                  component={() => (
-                    <StudentInternPage key="studentinternpage" />
-                  )}
-                />
-                <Route
-                  path={`/my-interns/:id`}
-                  component={(props) => (
-                    <InternPageContainer
-                      {...props}
-                      getAccess={this.getAccess}
-                      key="internpagecontainer"
-                    />
-                  )}
-                />
-                <Route
-                  path="/settings"
-                  component={() => <CompanyDetails key="companydetails" />}
-                />
-                <RouteCandidates getAccess={this.getAccess} />
-
-                <ReactSwitch>
-                  <Route path="/users" exact component={() => 
-                    <Employeepage
-                      users={this.props.companyInfo.users}
-                    />} 
-                  />
                   <Route
-                    path="/users/new-account"
-                    exact
-                    component={() => 
-                      <CreateUser
-                        companyInfo={this.props.companyInfo}
-                        token={this.inMemoryToken}
-                      />}
+                    path="/settings"
+                    render={(props) => (
+                      <CompanyDetails {...props} getAccess={this.getAccess} companyInfo={this.props.companyInfo} key="companydetails" />
+                    )}
                   />
-                  <Route path={`/users/:id`} exact component={UserDetails} />
-                </ReactSwitch>
-              </div>
-            </Content>
-          </Layout>
+                  <RouteCandidates getAccess={this.getAccess} />
+
+                  <ReactSwitch>
+                    <Route
+                      path="/users"
+                      exact
+                      render={(props) => (
+                        <Employeepage
+                          {...props}
+                          loading={
+                            this.props.loadingStatuses.isCandidateLoading
+                          }
+                          users={this.props.companyInfo.users}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/users/new-account"
+                      exact
+                      render={(props) => (
+                        <CreateUser
+                          {...props}
+                          companyInfo={this.props.companyInfo}
+                          token={this.inMemoryToken}
+                        />
+                      )}
+                    />
+                    <Route
+                      path={`/users/:id`}
+                      exact
+                      render={(props) => <UserDetails {...props} />}
+                    />
+                  </ReactSwitch>
+                </div>
+              </Content>
+            </Layout>
+          </ReactSwitch>
         </Router>
       </React.Fragment>
     );
@@ -479,8 +532,8 @@ class RouteCandidates extends PureComponent {
       <Route
         key="candidatescontainer"
         path="/applicants"
-        component={() => (
-          <CandidatesContainer getAccess={this.props.getAccess} />
+        render={(props) => (
+          <CandidatesContainer {...props} getAccess={this.props.getAccess} />
         )}
       />
     );

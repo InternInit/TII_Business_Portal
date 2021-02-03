@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { Row as AntRow, Col as AntCol, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import { Transition, config } from "react-spring/renderprops";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Header } from "../Styled/FundamentalComponents.jsx";
 import DraggingCard from "./DraggingCard.jsx";
@@ -116,37 +117,41 @@ const columnsFromBackend = {
 
 const HirePipeline = (props) => {
   const [columns, setColumns] = useState(columnsFromBackend);
-  useEffect(() => {
-    console.log("HirePipeline Component Mounted");
-
-    return () => {
-      console.log("HirePipeline Component Unmounting");
-      /**console.log(`Props are ${JSON.stringify(props)}`); */
-    };
-  });
-
   /**
-   * Filters through all the candidates to place them into
-   * the correct buckets
-   */
-  let markedCandidates = props.candidates.filter(
+  const [markedCandidates, changeMarkedCandidates] = useState(
+    props.candidates.filter((candidate) => candidate.status === "Review")
+  );
+  const [interviewCandidates, changeInterviewCandidates] = useState(
+    props.candidates.filter((candidate) =>
+      candidate.status.includes("Interview")
+    )
+  );
+  const [acceptedCandidates, changeAcceptedCandidates] = useState(
+    props.candidates.filter((candidate) => candidate.status === "Accepted")
+  ); */
+
+  const markedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Review"
   );
-  let interviewCandidates = props.candidates.filter((candidate) =>
+  const interviewCandidates = props.candidates.filter((candidate) =>
     candidate.status.includes("Interview")
   );
-  let acceptedCandidates = props.candidates.filter(
+  const acceptedCandidates = props.candidates.filter(
     (candidate) => candidate.status === "Accepted"
   );
 
   useEffect(() => {
-    setColumns({
+    setColumns((columns) => ({
       ...columns,
-      ["1"]: { ...columns["1"], items: markedCandidates },
-      ["2"]: { ...columns["2"], items: interviewCandidates },
-      ["3"]: { ...columns["3"], items: acceptedCandidates },
-    });
-  }, []);
+      1: { ...columns[1], items: markedCandidates },
+      2: { ...columns[2], items: interviewCandidates },
+      3: { ...columns[3], items: acceptedCandidates },
+    }));
+    console.log("UPDATED!");
+    console.log(markedCandidates);
+    console.log(interviewCandidates);
+    console.log(acceptedCandidates);
+  }, [props.candidates, props.loading]);
 
   return (
     /**
@@ -154,111 +159,134 @@ const HirePipeline = (props) => {
      *The page containing drag n drop
      *
      */
-    <div className="px-4 py-2" style={{ width: "100%" }}>
-      <AntRow gutter={[36, 0]} style={{ minWidth: "1200px" }}>
-        <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, columns, setColumns, props)}
+    <Transition
+      items={props.location.pathname}
+      from={{ opacity: 0.5, transform: "translateY(20px)" }}
+      enter={{ opacity: 1, transform: "none" }}
+      leave={{ opacity: 1 }}
+      config={config.stiff}
+    >
+      {(location) => (styling) => (
+        <div
+          key="hiringPipelineContainer"
+          className="px-4 py-2"
+          style={{ ...styling, width: "100%" }}
         >
-          {Object.entries(columns).map(([columnId, column], index) => {
-            return (
-              /**
-               *
-               *Mapping of Columns (Already defined)
-               *
-               */
-              <AntCol span={8} key={columnId}>
-                <div>
-                  <Header className="twentyFont mb-point-25" subheading bolded>
-                    {column.name}
-                  </Header>
-                  <Droppable droppableId={columnId} key={columnId}>
-                    {(provided, snapshot) => {
-                      return (
-                        /**
-                         *
-                         *Drop Zone Columns for Student Cards
-                         *
-                         */
-                        <Spin
-                          indicator={
-                            <LoadingOutlined style={{ fontSize: 36 }} spin />
-                          }
-                          spinning={props.loading}
-                        >
-                          <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            style={dragStyle}
-                          >
-                            {/**
+          <AntRow gutter={[36, 0]} style={{ minWidth: "1200px" }}>
+            <DragDropContext
+              onDragEnd={(result) =>
+                onDragEnd(result, columns, setColumns, props)
+              }
+            >
+              {Object.entries(columns).map(([columnId, column], index) => {
+                return (
+                  /**
+                   *
+                   *Mapping of Columns (Already defined)
+                   *
+                   */
+                  <AntCol span={8} key={columnId}>
+                    <div>
+                      <Header
+                        className="twentyFont mb-point-25"
+                        subheading
+                        bolded
+                      >
+                        {column.name}
+                      </Header>
+                      <Droppable droppableId={columnId} key={columnId}>
+                        {(provided, snapshot) => {
+                          return (
+                            /**
                              *
-                             * Mapping of student cards and draggability
+                             *Drop Zone Columns for Student Cards
                              *
-                             */}
-                            {column.items.map((item, index) => {
-                              return (
-                                <Draggable
-                                  key={item.Id}
-                                  draggableId={item.Id.toString()}
-                                  index={index}
-                                >
-                                  {(provided) => {
-                                    return (
-                                      <div
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        style={{
-                                          userSelect: "none",
-                                          padding: 8,
-                                          ...provided.draggableProps.style,
-                                        }}
-                                      >
-                                        {/**
-                                         *
-                                         * Student Card
-                                         *
-                                         */}
-                                        <DraggingCard
-                                          name={
-                                            item.formData["0"]["First Name"]
-                                          }
-                                          date={
-                                            item.formData["0"][
-                                              "Starting/Ending Dates Formatted"
-                                            ]
-                                          }
-                                          position={item.appliedFor}
-                                          city={item.formData["0"].City}
-                                          stateLocation={
-                                            item.formData["0"].State
-                                          }
-                                          status={item.status}
-                                          updateCandidateStatus={
-                                            props.updateCandidateStatus
-                                          }
-                                          id={item.Id}
-                                          avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
-                                        />
-                                      </div>
-                                    );
-                                  }}
-                                </Draggable>
-                              );
-                            })}
-                            {provided.placeholder}
-                          </div>
-                        </Spin>
-                      );
-                    }}
-                  </Droppable>
-                </div>
-              </AntCol>
-            );
-          })}
-        </DragDropContext>
-      </AntRow>
-    </div>
+                             */
+                            <Spin
+                              indicator={
+                                <LoadingOutlined
+                                  style={{ fontSize: 36 }}
+                                  spin
+                                />
+                              }
+                              spinning={props.loading}
+                            >
+                              <div
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                                style={dragStyle}
+                              >
+                                {/**
+                                 *
+                                 * Mapping of student cards and draggability
+                                 *
+                                 */}
+                                {column.items.map((item, index) => {
+                                  return (
+                                    <Draggable
+                                      key={item.Id}
+                                      draggableId={item.Id.toString()}
+                                      index={index}
+                                    >
+                                      {(provided) => {
+                                        return (
+                                          <div
+                                            ref={provided.innerRef}
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                            style={{
+                                              userSelect: "none",
+                                              padding: 8,
+                                              ...provided.draggableProps.style,
+                                            }}
+                                          >
+                                            {/**
+                                             *
+                                             * Student Card
+                                             *
+                                             */}
+                                            <DraggingCard
+                                              name={
+                                                item.formData["0"]["First Name"]
+                                              }
+                                              date={
+                                                item.formData["0"][
+                                                  "Starting/Ending Dates Formatted"
+                                                ]
+                                              }
+                                              position={item.appliedFor}
+                                              city={item.formData["0"].City}
+                                              stateLocation={
+                                                item.formData["0"].State
+                                              }
+                                              status={item.status}
+                                              updateCandidateStatus={
+                                                props.updateCandidateStatus
+                                              }
+                                              id={item.Id}
+                                              avatar={`http://tii-intern-media.s3-website-us-east-1.amazonaws.com/${item.Id}/profile_picture`}
+                                            />
+                                          </div>
+                                        );
+                                      }}
+                                    </Draggable>
+                                  );
+                                })}
+                                {provided.placeholder}
+                              </div>
+                            </Spin>
+                          );
+                        }}
+                      </Droppable>
+                    </div>
+                  </AntCol>
+                );
+              })}
+            </DragDropContext>
+          </AntRow>
+        </div>
+      )}
+    </Transition>
   );
 };
 

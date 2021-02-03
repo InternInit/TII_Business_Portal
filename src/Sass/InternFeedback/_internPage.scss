@@ -28,3 +28,32 @@
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
+.intern-banner-skeleton {
+    &-avatar {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    &-name .ant-skeleton-content .ant-skeleton-title {
+        height: 28px;
+        width: 160px;
+        margin-top: 0px;
+        margin-bottom: 8px;
+        padding: 0px;
+    }
+
+    &-position .ant-skeleton-content .ant-skeleton-title {
+        height: 18px;
+        width: 140px;
+        margin-top: 0px;
+        margin-bottom: 1.05em;
+    }
+    
+    &-caption .ant-skeleton-content .ant-skeleton-title {
+        height: 16px;
+        width: 300px;
+        margin-top: 0px;
+        margin-bottom: .7em;
+    }
+}

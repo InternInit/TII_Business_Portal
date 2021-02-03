@@ -49,6 +49,28 @@ function internsReducer(state = initialState, action) {
                     }
                 })
             }
+        case "DELETE_HOUR":
+            return {
+                ...state,
+                currentInterns: state.currentInterns.map((intern, index) => {
+                    if(index !== action.internIndex) {
+                        return intern
+                    }
+
+                    const newHourInterns = {
+                        ...intern,
+                        hours: {
+                            ...intern.hours
+                        }
+                    }
+
+                    delete newHourInterns.hours[action.hourObj.Id];
+
+                    return newHourInterns;
+                
+            })
+        }
+    
         case "MARK_FEEDBACK_READ":
             return {
                 ...state,

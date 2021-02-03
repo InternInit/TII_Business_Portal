@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Col as AntCol, Row as AntRow, Avatar } from "antd";
 import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
 import { Link } from "react-router-dom";
+import SmartAvatar from "../General/SmartAvatar";
 
 const ActionButton = styled(Button)`
   width: 100%;
@@ -19,11 +20,7 @@ const CandidateDetailedviewTab = (props) => {
     <TabContainer className="py-3 px-6 my-1 responsive-tab-container">
       <AntRow gutter={[16, 16]}>
         <AntCol className="universal-left">
-          <Avatar
-            stlye={{ backgroundColor: "#fa541c" }}
-            size={48}
-            src={props.avatar}
-          />
+          <SmartAvatar size={48} name={props.name} />
         </AntCol>
         <AntCol flex="1">
           <Header

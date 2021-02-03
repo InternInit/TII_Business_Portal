@@ -108,20 +108,21 @@ def formdata_datetime_resolver(formData):
 def home():
     return "Hello World"
 
-@app.route('/api/get_business_data', methods=["GET"])
-def get_business_data():
-    return "business data"
+@app.route('/api/get_business_info', methods=["POST"])
+def get_business_info():
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
 
-@app.route('/api/update_business_interns', methods = ["PUT", "POST"])
-def update_business_interns():
-    return "updated business interns"
-
-@app.route('/api/update_business_listings', methods = ["PUT", "POST"])
-def update_business_lisitings():
-    return "updated business listings"
-
-
-
+@app.route('/api/mutate_business_info', methods=["POST"])
+def mutate_business_info():
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
 
 #################################
 #

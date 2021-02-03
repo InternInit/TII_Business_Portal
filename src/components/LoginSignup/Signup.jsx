@@ -3,12 +3,17 @@ import {
   Input,
   Button,
   Form,
-  Popover,
   notification,
   Modal,
+  Popover,
   Checkbox,
+  Row as AntRow,
+  Col as AntCol,
 } from "antd";
-import { Container, Background, Label, Banner } from "./SignupLogin";
+import { Label, ImageText } from "./SignupLogin";
+import { Header } from "../Styled/FundamentalComponents.jsx";
+import { ReactComponent as LoginSignupIcon } from "../../Assets/LoginSignupImage.svg";
+import { Transition, config } from "react-spring/renderprops";
 
 import { Link } from "react-router-dom";
 
@@ -126,147 +131,205 @@ class SignUp extends React.Component {
     );
 
     return (
-      <Background>
-        <Container>
-          <Banner style={{ marginTop: "0px", width: "100%" }}>
-            New Company Account
-          </Banner>
-          <div style={{ width: "70%" }}>
-            <Form onFinish={this.handleSubmit} ref={this.formRef}>
-              <Label style={{ marginTop: "24px" }}>Username</Label>
-              <Form.Item {...formItemProps.username} name="username">
-                <Input />
-              </Form.Item>
-
-              <Label>Name</Label>
-              <Form.Item {...formItemProps.name} name="name">
-                <Input />
-              </Form.Item>
-
-              <Label>E-Mail</Label>
-              <Form.Item {...formItemProps.email} name="email">
-                <Input />
-              </Form.Item>
-
-              <Label>Company Name</Label>
-              <Form.Item {...formItemProps.companyName} name="companyName">
-                <Input />
-              </Form.Item>
-
-              <Label>Password</Label>
-              <Popover
-                placement="right"
-                title={title}
-                content={passwordPolicyContent}
-                trigger="focus"
-              >
-                <Form.Item
-                  {...formItemProps.password}
-                  name="password"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please enter your password",
-                    },
-                    ({ getFieldValue }) => ({
-                      validator(rule, value) {
-                        let errors = schema.validate(value, { list: true });
-
-                        function getValidationMessage(errors) {
-                          for (let i = 0; i < errors.length; i++) {
-                            if (errors[i] === "min") {
-                              return "Password length should be at least 8 characters";
-                            } else if (errors[i] === "lowercase") {
-                              return "Password should contain lowercase letters";
-                            } else if (errors[i] === "uppercase") {
-                              return "Password should contain uppercase letters";
-                            } else if (errors[i] === "digits") {
-                              return "Password should contain digits";
-                            } else if (errors[i] === "symbols") {
-                              return "Password should contain symbols";
-                            }
-                          }
-                        }
-
-                        if (
-                          typeof getValidationMessage(errors) == "undefined"
-                        ) {
-                          return Promise.resolve();
-                        }
-
-                        return Promise.reject(getValidationMessage(errors));
-                      },
-                    }),
-                  ]}
+      <AntRow style={{ height: "100vh" }}>
+        <Transition
+          items={this.props.location.pathname}
+          from={{ opacity: 0.5, transform: "translateX(-20px)" }}
+          enter={{ opacity: 1, transform: "translateX(0px)" }}
+          leave={{ opacity: 0 }}
+          config={config.stiff}
+        >
+          {(location) => (props) => (
+            <AntCol
+              key="signUpContainer"
+              className="universal-middle px-8 py-4"
+              xs={{ span: 24, order: 2 }}
+              md={{ span: 10, order: 1 }}
+              style={{ ...props }}
+            >
+              <AntRow justify="center" align="middle">
+                <Header className="thirtySixFont" bolded>
+                  New Company Account
+                </Header>
+              </AntRow>
+              <AntRow>
+                <Form
+                  onFinish={this.handleSubmit}
+                  ref={this.formRef}
+                  style={{ width: "100%" }}
                 >
-                  <Input.Password />
-                </Form.Item>
-              </Popover>
-              <Label>Confirm Password</Label>
-              <Form.Item
-                {...formItemProps.confirmPassword}
-                name="confirm-password"
-              >
-                <Input.Password />
-              </Form.Item>
+                  <Label style={{ marginTop: "24px" }}>Username</Label>
+                  <Form.Item {...formItemProps.username} name="username">
+                    <Input size="large" />
+                  </Form.Item>
 
-              <Form.Item
-                rules={[
-                  {
-                    validator: (_, value) =>
-                      value
-                        ? Promise.resolve()
-                        : Promise.reject(
-                            "Please read the Terms and Conditions and Privacy Agreement"
-                          ),
-                  },
-                ]}
-                name="termsAndConditions"
-                valuePropName="checked"
-                onChange={this.onChecked}
-                style={{ textAlign: "left" }}
-              >
-                <Checkbox autoFocus={true}>
-                  I agree to the{" "}
-                  <a
-                    href="https://interninit.com/student-terms-and-conditions/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Terms and Conditions
-                  </a>{" "}
-                  and{" "}
-                  <a
-                    href="https://interninit.com/student-privacy-agreement/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {" "}
-                    Privacy Agreement{" "}
-                  </a>
-                </Checkbox>
-              </Form.Item>
-              <Button
-                className="profile-button-style"
-                type="primary"
-                htmlType="submit"
-                style={{
-                  width: "100%",
+                  <Label>Name</Label>
+                  <Form.Item {...formItemProps.name} name="name">
+                    <Input size="large" />
+                  </Form.Item>
 
-                  display: "flex",
-                  justifySelf: "center",
-                  justifyContent: "center",
-                }}
-              >
-                Sign Up
-              </Button>
-              <Label style={{ marginTop: "10%" }}>
-                Already have an account?
-                <Link to="/login"> Log in here</Link>
-              </Label>
-            </Form>
-          </div>
-        </Container>
+                  <Label>E-Mail</Label>
+                  <Form.Item {...formItemProps.email} name="email">
+                    <Input size="large" />
+                  </Form.Item>
+
+                  <Label>Company Name</Label>
+                  <Form.Item {...formItemProps.companyName} name="companyName">
+                    <Input size="large" />
+                  </Form.Item>
+
+                  <Label>Password</Label>
+                  <Popover
+                    placement="right"
+                    title={title}
+                    content={passwordPolicyContent}
+                    trigger="focus"
+                  >
+                    <Form.Item
+                      {...formItemProps.password}
+                      name="password"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please enter your password",
+                        },
+                        ({ getFieldValue }) => ({
+                          validator(rule, value) {
+                            let errors = schema.validate(value, { list: true });
+
+                            function getValidationMessage(errors) {
+                              for (let i = 0; i < errors.length; i++) {
+                                if (errors[i] === "min") {
+                                  return "Password length should be at least 8 characters";
+                                } else if (errors[i] === "lowercase") {
+                                  return "Password should contain lowercase letters";
+                                } else if (errors[i] === "uppercase") {
+                                  return "Password should contain uppercase letters";
+                                } else if (errors[i] === "digits") {
+                                  return "Password should contain digits";
+                                } else if (errors[i] === "symbols") {
+                                  return "Password should contain symbols";
+                                }
+                              }
+                            }
+
+                            if (
+                              typeof getValidationMessage(errors) == "undefined"
+                            ) {
+                              return Promise.resolve();
+                            }
+
+                            return Promise.reject(getValidationMessage(errors));
+                          },
+                        }),
+                      ]}
+                    >
+                      <Input.Password size="large" />
+                    </Form.Item>
+                  </Popover>
+                  <Label>Confirm Password</Label>
+                  <Form.Item
+                    {...formItemProps.confirmPassword}
+                    name="confirm-password"
+                  >
+                    <Input.Password size="large" />
+                  </Form.Item>
+
+                  <Form.Item
+                    rules={[
+                      {
+                        validator: (_, value) =>
+                          value
+                            ? Promise.resolve()
+                            : Promise.reject(
+                                "Please read the Terms and Conditions and Privacy Agreement"
+                              ),
+                      },
+                    ]}
+                    name="termsAndConditions"
+                    valuePropName="checked"
+                    onChange={this.onChecked}
+                    style={{ textAlign: "left" }}
+                  >
+                    <Checkbox autoFocus={true}>
+                      I agree to the{" "}
+                      <a
+                        href="https://interninit.com/student-terms-and-conditions/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Terms and Conditions
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        href="https://interninit.com/student-privacy-agreement/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        Privacy Agreement{" "}
+                      </a>
+                    </Checkbox>
+                  </Form.Item>
+                  <AntRow justify="center">
+                    <Button
+                      className="profile-button-style"
+                      type="primary"
+                      htmlType="submit"
+                      size="large"
+                      style={{ width: "60%", minWidth: "150px" }}
+                    >
+                      Sign Up
+                    </Button>
+                  </AntRow>
+                  <Label style={{ marginTop: "10%" }}>
+                    Already have an account?
+                    <Link to="/login"> Log in here</Link>
+                  </Label>
+                </Form>
+              </AntRow>
+            </AntCol>
+          )}
+        </Transition>
+        <AntCol
+          xs={{ span: 24, order: 1 }}
+          md={{ span: 14, order: 2 }}
+          style={{ backgroundColor: "#bbe1fa" }}
+        >
+          <AntRow className="universal-middle py-4" style={{ height: "100%" }}>
+            <AntCol span={24}>
+              <AntRow>
+                <LoginSignupIcon
+                  style={{
+                    width: "80%",
+                    height: "auto",
+                    marginTop: "-10%",
+                    marginLeft: "3%",
+                  }}
+                />
+              </AntRow>
+              <AntRow>
+                <ImageText
+                  className="fortyEightFont"
+                  color="#1b262c"
+                  bolded
+                  style={{ marginTop: "-5%", marginLeft: "16%" }}
+                >
+                  Find Your Perfect <br /> Intern.
+                </ImageText>
+              </AntRow>
+              <AntRow>
+                <Header
+                  className="twentyFont"
+                  color="#1b262c"
+                  style={{ marginLeft: "16%" }}
+                >
+                  Customized high school recruiting. At scale.
+                </Header>
+              </AntRow>
+            </AntCol>
+          </AntRow>
+        </AntCol>
         <Modal
           title="Email Confirmation"
           visible={this.state.emailConfirmationVisible}
@@ -278,7 +341,7 @@ class SignUp extends React.Component {
             formRef={this.emailFormRef}
           />
         </Modal>
-      </Background>
+      </AntRow>
     );
   }
 

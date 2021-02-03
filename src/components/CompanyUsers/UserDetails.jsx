@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 import {
-    Input,
     Button,
     Form,
-    Popover,
     Divider,
     Switch
 } from "antd";
+import { Transition, config } from "react-spring/renderprops";
 import {
     Label,
 } from "../LoginSignup/SignupLogin";

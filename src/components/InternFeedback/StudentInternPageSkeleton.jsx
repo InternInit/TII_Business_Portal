@@ -73,7 +73,7 @@ const StudentInternPageSkeleton = (props) => {
   );
 };
 
-const StudentInternTabSkeleton = (props) => {
+export const StudentInternTabSkeleton = (props) => {
   return (
     <TabContainer className="mt-1-5 py-1-5 px-6 responsive-tab-container">
       {/**

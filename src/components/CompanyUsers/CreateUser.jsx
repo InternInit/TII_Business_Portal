@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import NavSearch from "../General/NavSearch.jsx";
 
@@ -13,6 +12,7 @@ import {
   Select,
   Row as AntRow,
 } from "antd";
+import { Transition, config } from "react-spring/renderprops";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import {
   PageContainer,
@@ -33,15 +33,7 @@ const schema = new passwordValidator();
 
 const headerClassNames = "twentyFont mb-point-5";
 
-schema
-  .is()
-  .min(8)
-  .has()
-  .uppercase()
-  .has()
-  .lowercase()
-  .has()
-  .digits();
+schema.is().min(8).has().uppercase().has().lowercase().has().digits();
 
 const mapStateToProps = (state) => {
   return {
@@ -128,119 +120,137 @@ class CreateUser extends React.Component {
       <React.Fragment>
         <PageContainer>
           <NavSearch title="Create Company Account" searchBar={false} />
-          <div className="px-8 py-2" style={{ width: "100%" }}>
-            <Breadcrumb style={{ paddingBottom: "1em" }}>
-              <Breadcrumb.Item className="twentyFont">
-                <Link to="/users">Users</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item className="twentyFont">
-                Create User
-              </Breadcrumb.Item>
-            </Breadcrumb>
-            <FormContainer style={{ paddingBottom: "2em" }}>
-              <PageHeader
-                className="rm-lg"
-                onBack={() => this.props.history.push("/users")}
-                style={{ position: "absolute", left: "3.5em", top: "1em" }}
-                title={
-                  <Link
-                    to="/users"
-                    style={{ fontWeight: "normal", color: "#262626" }}
-                  >
-                    Back to Users
-                  </Link>
-                }
-              />
-              <Form onFinish={this.handleSubmit} ref={this.formRef}>
-                <Header
-                  className="twentyEightFont universal-center mb-1"
-                  bolded
-                >
-                  Create a New User
-                </Header>
-                <Header className={headerClassNames}>Username</Header>
-                <Form.Item {...formItemProps.username}>
-                  <Input size="large" placeholder="Username" />
-                </Form.Item>
-                <Header className={headerClassNames}>Name</Header>
-                <Form.Item {...formItemProps.name}>
-                  <Input size="large" placeholder="Name" />
-                </Form.Item>
-                <Header className={headerClassNames}>Email</Header>
-                <Form.Item {...formItemProps.email}>
-                  <Input size="large" placeholder="Email" />
-                </Form.Item>
-                <Header className={headerClassNames}>Temporary Password</Header>
-                <Form.Item {...formItemProps.password}>
-                  <Input.Password
-                    size="large"
-                    placeholder="Temporary Password"
-                    iconRender={(visible) =>
-                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+          <Transition
+            items={this.props.location.pathname}
+            from={{ opacity: 0.5, transform: "translateY(20px)" }}
+            enter={{ opacity: 1, transform: "translateY(0px)" }}
+            leave={{ opacity: 1 }}
+            config={config.stiff}
+          >
+            {(location) => (props) => (
+              <div
+                key="createUserContainer"
+                className="px-8 py-2"
+                style={{ ...props, width: "100%" }}
+              >
+                <Breadcrumb style={{ paddingBottom: "1em" }}>
+                  <Breadcrumb.Item className="twentyFont">
+                    <Link to="/users">Users</Link>
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item className="twentyFont">
+                    Create User
+                  </Breadcrumb.Item>
+                </Breadcrumb>
+                <FormContainer style={{ paddingBottom: "2em" }}>
+                  <PageHeader
+                    className="rm-lg"
+                    onBack={() => this.props.history.push("/users")}
+                    style={{ position: "absolute", left: "3.5em", top: "1em" }}
+                    title={
+                      <Link
+                        to="/users"
+                        style={{ fontWeight: "normal", color: "#262626" }}
+                      >
+                        Back to Users
+                      </Link>
                     }
                   />
-                </Form.Item>
-
-                <AntRow align="middle">
-                  <Divider>
-                    <Header className="twentyFourFont" bolded>
-                      Permissions
+                  <Form onFinish={this.handleSubmit} ref={this.formRef}>
+                    <Header
+                      className="twentyEightFont universal-center mb-1"
+                      bolded
+                    >
+                      Create a New User
                     </Header>
-                  </Divider>
-                </AntRow>
+                    <Header className={headerClassNames}>Username</Header>
+                    <Form.Item {...formItemProps.username}>
+                      <Input size="large" placeholder="Username" />
+                    </Form.Item>
+                    <Header className={headerClassNames}>Name</Header>
+                    <Form.Item {...formItemProps.name}>
+                      <Input size="large" placeholder="Name" />
+                    </Form.Item>
+                    <Header className={headerClassNames}>Email</Header>
+                    <Form.Item {...formItemProps.email}>
+                      <Input size="large" placeholder="Email" />
+                    </Form.Item>
+                    <Header className={headerClassNames}>
+                      Temporary Password
+                    </Header>
+                    <Form.Item {...formItemProps.password}>
+                      <Input.Password
+                        size="large"
+                        placeholder="Temporary Password"
+                        iconRender={(visible) =>
+                          visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                        }
+                      />
+                    </Form.Item>
 
-                <Header className={headerClassNames}>Role</Header>
-                <Form.Item {...formItemProps.role}>
-                  <Select
-                    placeholder="Choose Site Role"
-                    size="large"
-                    onChange={(value) => this.toggleAdmin(value)}
-                  >
-                    <Option value="admin">Administrator</Option>
-                    <Option value="applicationReader">
-                      Application Reader
-                    </Option>
-                  </Select>
-                </Form.Item>
+                    <AntRow align="middle">
+                      <Divider>
+                        <Header className="twentyFourFont" bolded>
+                          Permissions
+                        </Header>
+                      </Divider>
+                    </AntRow>
 
-                <Header className={headerClassNames}>Listing Access</Header>
-                <Form.Item {...formItemProps.listingAccess}>
-                  <Select
-                    disabled={this.state.isAdmin}
-                    placeholder="Pick Accessible Listings"
-                    size="large"
-                    mode="multiple"
-                  >
-                    {this.props.listings.map((listing, index) => (
-                      <Option value={listing.Title} key={index}>
-                        {listing.Title}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
+                    <Header className={headerClassNames}>Role</Header>
+                    <Form.Item {...formItemProps.role}>
+                      <Select
+                        placeholder="Choose Site Role"
+                        size="large"
+                        onChange={(value) => this.toggleAdmin(value)}
+                      >
+                        <Option value="admin">Administrator</Option>
+                        <Option value="applicationReader">
+                          Application Reader
+                        </Option>
+                      </Select>
+                    </Form.Item>
 
-                <Header className={headerClassNames}>
-                  {this.state.applicantActionValue}
-                </Header>
-                <Header className={headerClassNames}>Applicant Actions</Header>
-                <Form.Item {...formItemProps.applicantActions}>
-                  <Select
-                    disabled={this.state.isAdmin}
-                    placeholder="Pick Applicant Actions"
-                    size="large"
-                  >
-                    <Option value="*">Full Access</Option>
-                    <Option value="read-only">Read only</Option>
-                  </Select>
-                </Form.Item>
-                <AntRow className="mt-3" justify="end">
-                  <Button type="primary" size="large" htmlType="submit">
-                    Create Account
-                  </Button>
-                </AntRow>
-              </Form>
-            </FormContainer>
-          </div>
+                    <Header className={headerClassNames}>Listing Access</Header>
+                    <Form.Item {...formItemProps.listingAccess}>
+                      <Select
+                        disabled={this.state.isAdmin}
+                        placeholder="Pick Accessible Listings"
+                        size="large"
+                        mode="multiple"
+                      >
+                        {this.props.listings.map((listing, index) => (
+                          <Option value={listing.Title} key={index}>
+                            {listing.Title}
+                          </Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+
+                    <Header className={headerClassNames}>
+                      {this.state.applicantActionValue}
+                    </Header>
+                    <Header className={headerClassNames}>
+                      Applicant Actions
+                    </Header>
+                    <Form.Item {...formItemProps.applicantActions}>
+                      <Select
+                        disabled={this.state.isAdmin}
+                        placeholder="Pick Applicant Actions"
+                        size="large"
+                      >
+                        <Option value="*">Full Access</Option>
+                        <Option value="read-only">Read only</Option>
+                      </Select>
+                    </Form.Item>
+                    <AntRow className="mt-3" justify="end">
+                      <Button type="primary" size="large" htmlType="submit">
+                        Create Account
+                      </Button>
+                    </AntRow>
+                  </Form>
+                </FormContainer>
+              </div>
+            )}
+          </Transition>
         </PageContainer>
       </React.Fragment>
     );
@@ -254,16 +264,16 @@ class CreateUser extends React.Component {
     }
     delete values["Role"];
 
-    values["custom:applicantActions"] = values["Applicant Actions"]; // Assign new key
+    values["custom:applicantActions"] = values["Applicant Actions"].toString(); // Assign new key
     delete values["Applicant Actions"];
 
-    values["custom:listingAccess"] = values["Listing Access"]; // Assign new key
+    values["custom:listingAccess"] = values["Listing Access"].toString(); // Assign new key
     delete values["Listing Access"];
 
     values["custom:companyId"] = this.props.companyInfo.id;
     values["custom:company"] = this.props.companyInfo.name;
     console.log(values);
-    return;
+
     console.log(this.props.token.access);
 
     let headers = {
