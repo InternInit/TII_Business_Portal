@@ -128,7 +128,7 @@ class InternPageContainer extends Component {
                           <AntCol xs={24} md={12}>
                             <Caption className="sixteenFont" color="white">
                               <Caption color="#C5D1D8">Phone:</Caption>{" "}
-                              6179311128
+                              {student.formData["0"]["Phone Number"]}
                             </Caption>
                           </AntCol>
                           <AntCol xs={24} md={12}>
