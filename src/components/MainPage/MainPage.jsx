@@ -117,8 +117,7 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-
-    console.log(pageIndex);
+  console.log(pageIndex);
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
@@ -330,7 +329,7 @@ const MainPage = (props) => {
 
             <AntRow gutter={[32, 16]} style={{ marginTop: "-20px" }}>
               <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
-              {getDotCount("Listings")}
+                {getDotCount("Listings")}
                 {props.loading.isListingLoading ? (
                   <DotSkeletonSpacer />
                 ) : listings.length > CARD_PER_PAGE ? (
@@ -357,7 +356,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={0} md={{ span: 12, order: 2 }} lg={10} xl={8}>
-              {getDotCount("Incoming Applicants")}
+                {getDotCount("Incoming Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(
@@ -386,7 +385,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={24} md={{ span: 12, order: 2 }} lg={0}>
-              {getDotCount("Applicants")}
+                {getDotCount("Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(
@@ -443,7 +442,7 @@ const MainPage = (props) => {
                         <PageFeedback
                           firstName={student.formData["0"]["First Name"]}
                           lastName={student.formData["0"]["Last Name"]}
-                          school={student.school.name}
+                          school={student.school ? student.school.name : "N/A"}
                           position={student.appliedFor}
                           id={student.Id}
                         />
@@ -523,7 +522,7 @@ const MainPage = (props) => {
 
             <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
               <AntCol xs={24} lg={14} xl={16}>
-              {getDotCount("Interns")}
+                {getDotCount("Interns")}
                 {props.loading.isInternLoading ? (
                   <DotSkeletonSpacer />
                 ) : interns.length > CARD_PER_PAGE ? (
@@ -550,7 +549,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={0} lg={10} xl={8}>
-              {getDotCount("Applicants")}
+                {getDotCount("Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(
