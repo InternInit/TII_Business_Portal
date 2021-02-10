@@ -69,6 +69,16 @@ import "./App.scss";
 
 Amplify.configure(awsconfig);
 
+if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  console.log("Development");
+} else {
+  console.log = noop;
+  console.warn = noop;
+  console.error = noop;
+}
+
+function noop() {}
+
 const { Content, Sider } = Layout;
 
 const mapStateToProps = (state) => {
