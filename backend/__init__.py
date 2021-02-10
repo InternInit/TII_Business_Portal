@@ -174,9 +174,20 @@ def get_student_candidates():
         for intern in resp_json["data"]["getInterns"]:
             loaded_intern = intern
             if(loaded_intern["status"] == "Accepted"):
-                loaded_intern["grades"] = datetime_resolver(json.loads(intern["grades"]))
-                loaded_intern["hours"] = datetime_resolver(json.loads(intern["hours"]))
-                loaded_intern["feedback"] = datetime_resolver(json.loads(intern["feedback"]))
+                if(loaded_intern["grades"] is not None):
+                    loaded_intern["grades"] = datetime_resolver(json.loads(intern["grades"]))
+                else:
+                    loaded_intern["grades"] = {}
+                    
+                if(loaded_intern["hours"] is not None):
+                    loaded_intern["hours"] = datetime_resolver(json.loads(intern["hours"]))
+                else:
+                    loaded_intern["hours"] = {};
+
+                if(loaded_intern["feedback"] is not None):
+                    loaded_intern["feedback"] = datetime_resolver(json.loads(intern["feedback"]))
+                else:
+                    loaded_intern["feedback"] = {}
             
             new_intern = datetime_resolver(loaded_intern)
             new_intern["formData"] = formdata_datetime_resolver(json.loads(new_intern["formData"]))
@@ -197,6 +208,8 @@ def update_student_status():
 def mutate_candidate_assoc():
     query = request.get_data().decode("utf-8")
     headers = request.headers
+    print(json.dumps(query))
+    
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     return json.dumps(resp_json)

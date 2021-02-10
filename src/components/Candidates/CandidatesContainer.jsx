@@ -27,6 +27,18 @@ import StudentInfo from "./StudentInfo.jsx";
 
 import { PageContainer } from "../Styled/FundamentalComponents.jsx";
 
+import gql from "graphql-tag";
+import { print } from "graphql";
+
+// prettier-ignore
+const MUTATION = gql`
+mutation MyMutation ($assocId:String!){
+  updateInternAssoc(input: {assocId: $assocId, feedback: {}, grades: {}, hours: {}}) {
+    assocId
+  }
+}                 
+`
+
 const mapStateToProps = (state) => {
   return {
     companyId: state.companyInfo.id,
@@ -121,12 +133,10 @@ class CandidatesContainer extends Component {
         Authorization: access,
       },
       data: {
-        query: `mutation MyMutation {
-          updateInternAssoc(input: {assocId: "${candidate.assocId}", feedback: [], grades: [], hours: []}) {
-            assocId
-          }
-        }                 
-        `,
+        query: print(MUTATION),
+        variables: {
+          assocId: candidate.assocId,
+        },
       },
     }).then((result) => {
       console.log(result.data);
@@ -178,7 +188,7 @@ class CandidatesContainer extends Component {
             exact
             render={(props) => (
               <HirePipeline
-              {...props}
+                {...props}
                 updateCandidateStatus={this.updateCandidateStatus}
               />
             )}
