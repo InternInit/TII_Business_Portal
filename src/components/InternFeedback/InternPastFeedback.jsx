@@ -162,7 +162,7 @@ const InternPastFeedback = (props) => {
                 ).map((data) => <FeedbackTab student={student} data={data} />)}
           </QueueAnim>
         ) : (
-          <div className="py-2-5 universal-center ">
+          <div className="py-5 universal-center ">
             <Row justify="center" align="middle">
               <BiMessageSquareDetail className="internship-posting-no-content-icon" />
             </Row>
