@@ -27,12 +27,10 @@ const composedEnhancers = process.env.NODE_ENV !== 'production' ?
   compose(applyMiddleware(...middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) : 
   applyMiddleware(...middleware)
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-
 
 //REDUX STORE
 const store = createStore(
-  persistedReducer,
+  rootReducer,
   composedEnhancers
 );
 
@@ -41,11 +39,9 @@ const persistor = persistStore(store)
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

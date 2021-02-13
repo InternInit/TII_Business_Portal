@@ -146,15 +146,7 @@ class App extends React.Component {
 
   setupInterceptor() {
     axios.interceptors.response.use((res) => {
-      if (res.data.hasOwnProperty("errors")) {
-        console.log("Request had error " + res.data.errors[0].errorType);
-        res.data.errors.forEach((error) => {
-          if (error.errorType === "UnauthorizedException") {
-            console.log("has errorss");
-            this.logout();
-          }
-        });
-      }
+      console.log(res)
       // Important: response interceptors **must** return the response.
       return res;
     });
@@ -336,6 +328,8 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log(error);
+        this.props.finishCandidateLoading();
+        this.props.finishInternLoading();
       });
   };
 

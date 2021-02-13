@@ -108,6 +108,10 @@ def formdata_datetime_resolver(formData):
 def home():
     return "Hello World"
 
+
+###
+### GRAPHQL
+###
 @app.route('/api/get_business_info', methods=["POST"])
 def get_business_info():
     query = request.get_data().decode("utf-8")
@@ -123,6 +127,7 @@ def mutate_business_info():
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     return json.dumps(resp_json)
+
 
 #################################
 #
@@ -167,7 +172,14 @@ def get_student_candidates():
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     new_interns = []
-    
+
+    if("errors" in resp_json):
+        response = make_response(
+            jsonify(
+                {"message": "error", "severity": "danger"}
+            ),
+            500)
+        return response
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
     # Thatgit s's what we get for using a 19 year old language.
     try:
@@ -195,7 +207,7 @@ def get_student_candidates():
             new_interns.append(new_intern)
         return json.dumps(new_interns)
     except KeyError:
-        return resp_json
+        return json.dumps(resp_json)
 
 @app.route('/api/update_student_status', methods=["POST"])
 def update_student_status():

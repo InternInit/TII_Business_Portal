@@ -53,7 +53,7 @@ const MainPage = (props) => {
   const getDotCount = (prop) => {
     let dotCount;
 
-    console.log("Running getDotCount for: " + prop);
+    //console.log("Running getDotCount for: " + prop);
 
     switch (prop) {
       case "Applicants":
@@ -117,7 +117,7 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-  console.log(pageIndex);
+  //console.log(pageIndex);
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
