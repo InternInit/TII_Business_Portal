@@ -127,17 +127,19 @@ class PositionPost extends Component {
                       </Header>
                     </AntRow>
                     <AntRow className="mt-1" justify="center" align="middle">
-                      <Button
-                        size="large"
-                        type="primary"
-                        style={{
-                          width: "10%",
-                          minWidth: "125px",
-                          boxShadow: "1px 1px 5px 0px #bfbfbf",
-                        }}
-                      >
-                        Get Started
-                      </Button>
+                      <Link to="/internship-listings/add-listing">
+                        <Button
+                          size="large"
+                          type="primary"
+                          style={{
+                            width: "10%",
+                            minWidth: "125px",
+                            boxShadow: "1px 1px 5px 0px #bfbfbf",
+                          }}
+                        >
+                          Get Started
+                        </Button>
+                      </Link>
                     </AntRow>
                   </div>
                 )}
