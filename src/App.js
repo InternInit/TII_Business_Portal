@@ -355,7 +355,7 @@ class App extends React.Component {
             ? []
             : JSON.parse(response.data)
         );
-        localStorage.setItem("NumListings", JSON.parse(response.data).length);
+        localStorage.setItem("NumListings", (JSON.parse(response.data).length) ? JSON.parse(response.data).length : 3);
         this.props.finishListingLoading();
       })
       .catch((error) => {

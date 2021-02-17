@@ -34,9 +34,6 @@ const store = createStore(
   composedEnhancers
 );
 
-const persistor = persistStore(store)
-
-
 ReactDOM.render(
   <Provider store={store}>
       <React.StrictMode>

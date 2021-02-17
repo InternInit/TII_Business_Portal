@@ -295,6 +295,9 @@ class InternshipDetails extends React.Component {
       .post("/api/update_internship_listings", values, headers)
       .then((response) => {
         console.log(JSON.parse(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
