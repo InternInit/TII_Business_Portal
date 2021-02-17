@@ -38,6 +38,14 @@ mutation MyMutation ($assocId:String!){
   }
 }                 
 `
+//prettier-ignore
+const STATUS_MUTATION = gql`
+  mutation MyStatusMutation($assocId: String!, $status: String!) {
+    updateInternAssoc(input: { assocId: $assocId, status: $status }) {
+      internId
+    }
+  }
+`
 
 const mapStateToProps = (state) => {
   return {
@@ -89,13 +97,10 @@ class CandidatesContainer extends Component {
     }
   };
 
-  updateCandidateStatus = (internId, status) => {
-    const headers = {
-      headers: {
-        InternId: internId,
-        Authorization: "Bearer " + this.props.companyId,
-      },
-    };
+  updateCandidateStatus = async (internId, status) => {
+    let candidate = this.props.candidates.find(
+      (candidate) => candidate.Id === internId
+    );
 
     let index = this.props.candidates.findIndex(
       (item, i) => item.Id === internId
@@ -103,16 +108,26 @@ class CandidatesContainer extends Component {
     console.log(index);
     this.props.updateReduxCandidateStatus(index, status);
 
-    axios
-      .post("/api/update_student_status", { status: status }, headers)
+    let access = await this.props.getAccess();
+    axios({
+      url: "/api/mutate_candidate_assoc",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: print(STATUS_MUTATION),
+        variables: {
+          assocId: candidate.assocId,
+          status: status,
+        },
+      },
+    })
       .then((response) => {
-        console.log(JSON.parse(response.data));
-
-        let index = this.props.candidates.findIndex(
-          (item, i) => item.Id === internId
-        );
-        console.log(index);
-        this.props.updateReduxCandidateStatus(index, status);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
       });
 
     if (status === "Accepted") {
