@@ -232,7 +232,7 @@ class App extends React.Component {
       data: {
         query: `
         query MyQuery {
-          getBusinessInfoTest(Id: "${this.props.companyInfo.id}") {
+          getBusinessInfo(Id: "${this.props.companyInfo.id}") {
             Id
             description
             email
@@ -245,7 +245,8 @@ class App extends React.Component {
       },
     })
       .then((result) => {
-        let data = result.data.data.getBusinessInfoTest
+        let data = result.data.data.getBusinessInfo
+        console.log(data);
         this.props.updateName(data.name);
         this.props.updateDescription(
           data.description
