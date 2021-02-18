@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Input,
@@ -254,51 +254,14 @@ class InternshipDetails extends React.Component {
 
     this.state = {
       isNewListing: true,
-      filters: null,
       loading: true,
     };
   }
   formRef = React.createRef();
 
   componentDidMount() {
-    this.findListingData();
+    //    this.findListingData();
   }
-
-  componentDidUpdate() {
-    if (this.state.filters == null) {
-      this.findListingData();
-    }
-  }
-
-  findListingData = () => {
-    if (!this.props.loading) {
-      if (!this.props.location.pathname.includes("add-listing")) {
-        this.setState({ isNewListing: false });
-
-        let listingData = this.props.listings.filter(
-          (listing) => listing.Id === this.props.location.pathname.split("/")[2]
-        )[0];
-
-        try {
-          // Reassign with spread operator to avoid using deep clones which aren't as time efficient
-          listingData = {
-            ...listingData,
-            internshipDates: [
-              moment(listingData.internshipDates[0]),
-              moment(listingData.internshipDates[1]),
-            ],
-          };
-        } catch (e) {}
-        this.setState({ filters: listingData.filters }, () => {
-          //console.log(this.state);
-          console.log("Form ref is " + JSON.stringify(this.formRef));
-          this.setState({ loading: false }, () => {
-            this.formRef.current.setFieldsValue(listingData);
-          });
-        });
-      }
-    }
-  };
 
   onFinish = async (values, allFilters) => {
     values.filters = allFilters;
@@ -378,6 +341,7 @@ class InternshipDetails extends React.Component {
                     formRef={this.formRef}
                     onFinish={this.onFinish}
                     isNewPosting={true}
+                    listings={this.props.listings}
                   />
                 </div>
               )}
@@ -427,6 +391,8 @@ class InternshipDetails extends React.Component {
                       formRef={this.formRef}
                       onFinish={this.onFinish}
                       isNewPosting={false}
+                      listings={this.props.listings}
+                      location={this.props.location}
                     />
                   </Spin>
                 </div>
@@ -450,6 +416,8 @@ const InternshipDetailForm = ({
   title,
   formRef,
   isNewPosting,
+  listings,
+  location,
 }) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
@@ -465,6 +433,32 @@ const InternshipDetailForm = ({
 
   //Hash table/Set of used options so that they won't re-appear
   const [trackFilled, updateFilled] = useState(new Set());
+
+  useEffect(() => {
+    findListingData();
+  });
+
+  const findListingData = () => {
+    if (!isNewPosting && listings.length !== 0) {
+      let listingData = listings.filter(
+        (listing) => listing.Id === location.pathname.split("/")[2]
+      )[0];
+
+      try {
+        // Reassign with spread operator to avoid using deep clones which aren't as time efficient
+        listingData = {
+          ...listingData,
+          internshipDates: [
+            moment(listingData.internshipDates[0]),
+            moment(listingData.internshipDates[1]),
+          ],
+        };
+      } catch (e) {}
+      //console.log(listingData);
+      modifyPostFilters(listingData.filters);
+      form.setFieldsValue(listingData);
+    }
+  };
 
   /**
    * Rerenders different inputs based on what criterias
@@ -668,7 +662,7 @@ const InternshipDetailForm = ({
        */}
       <Form
         {...FormProps.TotalForm}
-        ref={formRef}
+        form={form}
         onFinish={(values) => onFinish(values, postFilters)}
       >
         <Header className="twentyEightFont universal-center mb-1" bolded>
