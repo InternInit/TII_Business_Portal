@@ -157,6 +157,10 @@ class App extends React.Component {
       localStorage.setItem("NumUsers", 3);
     }
     this.setupInterceptor();
+
+    this.state = {
+      isBusinessInfoLoading: true
+    }
   }
 
   componentDidMount() {
@@ -290,6 +294,7 @@ class App extends React.Component {
         this.props.updateAvatar(
           "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
         );
+        this.setState({isBusinessInfoLoading: false});
       })
       .catch((error) => {
         console.log(error);
@@ -518,7 +523,13 @@ class App extends React.Component {
                   <Route
                     path="/settings"
                     render={(props) => (
-                      <CompanyDetails {...props} getAccess={this.getAccess} companyInfo={this.props.companyInfo} key="companydetails" />
+                      <CompanyDetails 
+                        {...props} 
+                        getAccess={this.getAccess} 
+                        companyInfo={this.props.companyInfo} 
+                        key="companydetails" 
+                        isLoading={this.state.isBusinessInfoLoading}
+                      />
                     )}
                   />
                   <RouteCandidates getAccess={this.getAccess} />
