@@ -110,10 +110,10 @@ class PositionPost extends Component {
                   this.props.listings.map((post, index) => (
                     <PostingTab
                       status="Active"
-                      name={post.Title}
+                      name={post.title}
                       interns="0"
                       id={post.Id}
-                      industry={post.Industries}
+                      industry={post.industries}
                     />
                   ))
                 ) : (

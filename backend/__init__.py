@@ -135,11 +135,13 @@ def mutate_business_info():
 #
 #################################
 
-@app.route("/api/get_internship_listings", methods=["GET"])
+@app.route("/api/get_internship_listings", methods=["POST"])
 def get_internship_listings():
+    query = request.get_data().decode("utf-8")
     headers = request.headers
-    req = requests.get(listingsApiUrl, headers={"Authorization": headers.get("Authorization")})
-    return jsonify(req.text)
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json = json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
 
 @app.route("/api/remove_internship_listing", methods=["DELETE"])
 def remove_internship_listing():
@@ -147,10 +149,13 @@ def remove_internship_listing():
 
 @app.route("/api/update_internship_listings", methods = ["PUT", "POST"])
 def update_internship_listings():
-    body = request.get_data().decode("utf-8")
+    query = request.get_data().decode("utf-8")
+
+    print(query)
     headers = request.headers
-    req = requests.post(listingsApiUrl, headers={"Authorization": headers.get("Authorization"), "ListingId": headers.get("ListingId")}, json = json.loads(body))
-    return jsonify(req.text)
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json = json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
 
 
 

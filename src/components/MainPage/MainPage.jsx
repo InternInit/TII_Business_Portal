@@ -163,18 +163,18 @@ const MainPage = (props) => {
                       )
                       .map((post) => (
                         <PageListings
-                          name={post.Title}
+                          name={post.title}
                           interns={
                             props.candidates.filter(
-                              (candidate) => candidate.appliedFor === post.Title
+                              (candidate) => candidate.appliedFor === post.title
                             ).length
                           }
                           accepted={
                             props.interns.filter(
-                              (intern) => intern.appliedFor === post.Title
+                              (intern) => intern.appliedFor === post.title
                             ).length
                           }
-                          industry={post.Industries}
+                          industry={post.industries}
                           id={post.Id}
                         />
                       ))}

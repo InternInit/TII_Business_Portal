@@ -37,6 +37,29 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import _ from "lodash";
 
+import gql from "graphql-tag";
+import { print } from "graphql";
+
+// prettier-ignore
+const MUTATION = gql`
+mutation MyMutation ($Id:String!, $listings:AWSJSON){
+  updateBusinessInfo(input: {Id: $Id, listings: $listings}) {
+    listings {
+      Id
+      additionalInfo
+      address
+      availableWorkDays
+      availableWorkTimes
+      description
+      filters
+      industries
+      internshipDates
+      title
+    }
+  }
+}
+`
+
 const { TextArea } = Input;
 const { Option, OptGroup } = Select;
 
@@ -163,27 +186,27 @@ const FormProps = {
   },
   Title: {
     key: "title",
-    name: "Title",
+    name: "title",
     rules: validationRules(true, "listing title", "string"),
   },
   Description: {
     key: "description",
-    name: "Description",
+    name: "description",
     rules: validationRules(true, "listing description", "string"),
   },
   Address: {
     key: "address",
-    name: "Address",
+    name: "address",
     rules: validationRules(true, "listing location", "string"),
   },
   Industries: {
     key: "industries",
-    name: "Industries",
+    name: "industries",
     rules: validationRules(true, "relevant industries", "string"),
   },
   InternshipDates: {
     key: "internshipDates",
-    name: "Internship Dates",
+    name: "internshipDates",
     rules: [
       {
         required: true,
@@ -193,15 +216,15 @@ const FormProps = {
   },
   AvailableWorkDays: {
     key: "availableWorkDays",
-    name: "Available Work Days",
+    name: "availableWorkDays",
   },
   AvailableWorkTimes: {
     key: "availableWorkTimes",
-    name: "Available Work Times",
+    name: "availableWorkTimes",
   },
   AdditionalInfo: {
     key: "additionalInfo",
-    name: "Additional Info",
+    name: "additionalInfo",
   },
 };
 
@@ -253,13 +276,13 @@ class InternshipDetails extends React.Component {
           // Reassign with spread operator to avoid using deep clones which aren't as time efficient
           listingData = {
             ...listingData,
-            "Internship Dates": [
-              moment(listingData["Internship Dates"][0]),
-              moment(listingData["Internship Dates"][1]),
+            internshipDates: [
+              moment(listingData.internshipDates[0]),
+              moment(listingData.internshipDates[1]),
             ],
           };
         } catch (e) {}
-        this.setState({ filters: listingData.Filters }, () => {
+        this.setState({ filters: listingData.filters }, () => {
           //console.log(this.state);
           console.log("Form ref is " + JSON.stringify(this.formRef));
           this.setState({ loading: false }, () => {
@@ -270,35 +293,36 @@ class InternshipDetails extends React.Component {
     }
   };
 
-  onFinish = (values, allFilters) => {
+  onFinish = async (values, allFilters) => {
+    values.filters = allFilters;
     console.log(values);
-    console.log(allFilters);
-    values.Filters = allFilters;
 
     if (this.state.isNewListing === true) {
       let uuid = uuidv4();
       values.Id = uuid;
-      this.props.addListing(JSON.parse(values));
+      this.props.addListing(values);
     } else {
       values.Id = this.props.location.pathname.split("/")[2];
       this.props.updateListing(values.Id, values);
     }
+    let access = await this.props.getAccess();
 
-    const headers = {
+    axios({
+      url: "/api/update_internship_listings",
+      method: "post",
       headers: {
-        Authorization: "Bearer " + this.props.id,
-        ListingId: values.Id,
+        Authorization: access,
       },
-    };
-
-    axios
-      .post("/api/update_internship_listings", values, headers)
-      .then((response) => {
-        console.log(JSON.parse(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      data: {
+        query: print(MUTATION),
+        variables: {
+          Id: this.props.id,
+          listings: JSON.stringify(this.props.listings),
+        },
+      },
+    }).then((result) => {
+      console.log(result.data);
+    });
   };
 
   render() {
