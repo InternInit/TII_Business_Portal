@@ -141,6 +141,11 @@ def get_internship_listings():
     headers = request.headers
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json = json.loads(query))
     resp_json = json.loads(req.text)
+    listings = resp_json["data"]["getBusinessInfo"]["listings"]
+
+    for listing in listings:
+        for filter_ind in range(len(listing["filters"])):
+            listing["filters"][filter_ind] = json.loads(listing["filters"][filter_ind])
     return json.dumps(resp_json)
 
 @app.route("/api/remove_internship_listing", methods=["DELETE"])

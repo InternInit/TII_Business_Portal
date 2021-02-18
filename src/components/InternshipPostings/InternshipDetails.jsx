@@ -54,6 +54,7 @@ mutation MyMutation ($Id:String!, $listings:AWSJSON){
       filters
       industries
       internshipDates
+      isPaid
       title
     }
   }
@@ -226,6 +227,12 @@ const FormProps = {
     key: "additionalInfo",
     name: "additionalInfo",
   },
+  IsPaid: {
+    key: "isPaid",
+    name: "isPaid",
+    valuePropName: "checked",
+    defaultChecked: false,
+  },
 };
 
 const mapStateToProps = (state) => {
@@ -295,6 +302,9 @@ class InternshipDetails extends React.Component {
 
   onFinish = async (values, allFilters) => {
     values.filters = allFilters;
+    if (typeof values.isPaid === undefined) {
+      values.isPaid = false;
+    }
     console.log(values);
 
     if (this.state.isNewListing === true) {
@@ -796,7 +806,7 @@ const InternshipDetailForm = ({
             <Header className="twentyFont mb-point-5 mt-point-5" subheading>
               Paid or Unpaid? <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
-            <Form.Item>
+            <Form.Item {...FormProps.IsPaid}>
               <Checkbox size="large">
                 <span className="sixteenFont">This Internship is Paid</span>
               </Checkbox>
