@@ -89,7 +89,11 @@ const CandidateQuickviewTab = (props) => {
           <AntCol span={6}>
             <AntRow className="universal-center">
               <Header className="sixteenFont" color="#722ed1">
-                {props.appliedFor}
+                {
+                  props.listings.find(
+                    (listing) => listing.Id === props.appliedFor
+                  ).title
+                }
               </Header>
             </AntRow>
           </AntCol>

@@ -217,6 +217,7 @@ class ReviewApplicants extends Component {
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
+              listings={this.props.listings}
             />
           ))
         ) : (
@@ -280,6 +281,7 @@ class ReviewApplicants extends Component {
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
+              listings={this.props.listings}
             />
           ))
         ) : (
@@ -354,6 +356,7 @@ class ReviewApplicants extends Component {
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
+              listings={this.props.listings}
             />
           ))
         ) : (
@@ -420,6 +423,7 @@ class ReviewApplicants extends Component {
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
+              listings={this.props.listings}
             />
           ))
         ) : (

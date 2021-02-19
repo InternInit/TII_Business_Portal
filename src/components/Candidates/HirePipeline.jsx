@@ -254,7 +254,13 @@ const HirePipeline = (props) => {
                                                   "Starting/Ending Dates Formatted"
                                                 ]
                                               }
-                                              position={item.appliedFor}
+                                              position={
+                                                props.listings.find(
+                                                  (listing) =>
+                                                    listing.Id ===
+                                                    item.appliedFor
+                                                ).title
+                                              }
                                               city={item.formData["0"].City}
                                               stateLocation={
                                                 item.formData["0"].State

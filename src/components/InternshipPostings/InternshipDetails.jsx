@@ -261,6 +261,7 @@ class InternshipDetails extends React.Component {
 
   componentDidMount() {
     //    this.findListingData();
+    console.log(this.props);
   }
 
   onFinish = async (values, allFilters) => {
@@ -295,6 +296,26 @@ class InternshipDetails extends React.Component {
       },
     }).then((result) => {
       console.log(result.data);
+
+      if (this.state.isNewListing) {
+        //Time to generate the fake students for each listing
+        axios({
+          url: "/api/new_listing_trigger",
+          method: "post",
+          headers: {},
+          data: {
+            business_id: this.props.id,
+            listing_id: values.Id,
+            num_students: 5,
+          },
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     });
   };
 

@@ -26,6 +26,7 @@ import { StudentInfoSkeleton } from "./CandidateSkeletons";
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    listings: state.listings,
     loadingStatuses: state.loadingStatuses,
   };
 };
@@ -51,8 +52,8 @@ const StudentInfo = (props) => {
           leave={{ opacity: 1 }}
           config={config.stiff}
         >
-          {(location) => (props) => (
-            <InnerContainer key="studentInfoContainer" style={{ ...props }}>
+          {(location) => (styling) => (
+            <InnerContainer key="studentInfoContainer" style={{ ...styling }}>
               <Breadcrumb style={{ paddingBottom: "1em" }}>
                 <Breadcrumb.Item className="twentyFont">
                   <Link to="/applicants/review-applicants">
@@ -215,8 +216,10 @@ const StudentInfo = (props) => {
                     <AntRow style={{ marginTop: "-5px" }}>
                       <Caption className="twentyFont" light thin>
                         {loadStudent.appliedFor
-                          ? loadStudent.appliedFor
-                          : "Social Media Intern Placeholder"}
+                          ? props.listings.find(
+                              (listing) => listing.Id === loadStudent.appliedFor
+                            ).title
+                          : "N/A"}
                       </Caption>
                     </AntRow>
                     <AntRow className="pt-2 student-info-header" align="middle">

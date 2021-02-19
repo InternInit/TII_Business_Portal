@@ -225,7 +225,11 @@ const MainPage = (props) => {
                           id={student.Id}
                           tag={false}
                           type={student.status}
-                          position={student.appliedFor}
+                          position={
+                            props.listings.find(
+                              (listing) => listing.Id === student.appliedFor
+                            ).title
+                          }
                         />
                       ))}
                   </>
@@ -315,7 +319,11 @@ const MainPage = (props) => {
                         id={student.Id}
                         tag={true}
                         type={student.status}
-                        position={student.appliedFor}
+                        position={
+                          props.listings.find(
+                            (listing) => listing.Id === student.appliedFor
+                          ).title
+                        }
                       />
                     ))
                 ) : (
@@ -443,7 +451,11 @@ const MainPage = (props) => {
                           firstName={student.formData["0"]["First Name"]}
                           lastName={student.formData["0"]["Last Name"]}
                           school={student.school ? student.school.name : "N/A"}
-                          position={student.appliedFor}
+                          position={
+                            props.listings.find(
+                              (listing) => listing.Id === student.appliedFor
+                            ).title
+                          }
                           id={student.Id}
                         />
                       ))}
@@ -507,7 +519,11 @@ const MainPage = (props) => {
                           id={student.Id}
                           tag={true}
                           type={student.status}
-                          position={student.appliedFor}
+                          position={
+                            props.listings.find(
+                              (listing) => listing.Id === student.appliedFor
+                            ).title
+                          }
                         />
                       ))}
                   </>

@@ -52,6 +52,7 @@ const mapStateToProps = (state) => {
     companyId: state.companyInfo.id,
     candidates: state.companyInfo.candidates,
     loading: state.loadingStatuses.isCandidateLoading,
+    listings: state.listings,
   };
 };
 
@@ -195,6 +196,7 @@ class CandidatesContainer extends Component {
             render={() => (
               <ReviewApplicants
                 updateCandidateStatus={this.updateCandidateStatus}
+                listings={this.props.listings}
               />
             )}
           />
@@ -205,6 +207,7 @@ class CandidatesContainer extends Component {
               <HirePipeline
                 {...props}
                 updateCandidateStatus={this.updateCandidateStatus}
+                listings={this.props.listings}
               />
             )}
           />

@@ -10,16 +10,19 @@ app = Flask(__name__)
 
 studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/students"
 listingsApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/listings"
+listingTriggerApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/student"
 authApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/auth/"
 graphQLApiEndpoint = "https://4gxyw7jvnvgbrpgiaxvmgwqydy.appsync-api.us-east-1.amazonaws.com/graphql"
 
 if(app.config.get("ENV") == "development"):
     studentApiUrl = studentApiUrl.format(stage="dev")
     listingsApiUrl = listingsApiUrl.format(stage="dev")
+    listingTriggerApiUrl = listingTriggerApiUrl.format(stage="dev")
     authApiUrl = authApiUrl.format(stage="dev")
 elif(app.config.get("ENV") == "production"):
     studentApiUrl = studentApiUrl.format(stage="prod")
     listingsApiUrl = listingsApiUrl.format(stage="prod")
+    listingTriggerApiUrl = listingTriggerApiUrl.format(stage="prod")
     authApiUrl = authApiUrl.format(stage="prod")
 
 def determine_date_offset(dt_string):
@@ -289,6 +292,12 @@ def mutate_feedback_assoc():
     feedback = json.loads(feedback)
     return json.dumps(datetime_resolver(feedback))
 
+@app.route("/api/new_listing_trigger", methods=["POST"])
+def new_listing_trigger():
+    body = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(listingTriggerApiUrl, json = json.loads(body))
+    return jsonify(req.text)
 
 ##############################
 #
