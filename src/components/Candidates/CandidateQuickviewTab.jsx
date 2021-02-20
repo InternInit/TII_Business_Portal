@@ -40,8 +40,6 @@ const RemoveIcon = styled(Icon)`
 const CandidateQuickviewTab = (props) => {
   let { name, school, industry } = props;
 
-  console.log(props);
-
   return (
     <Link
       to={`/applicants/${props.id}`}
