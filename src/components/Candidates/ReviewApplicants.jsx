@@ -111,7 +111,7 @@ class ReviewApplicants extends Component {
         {(location) => (props) => (
           <InnerContainer key="reviewApplicantsContainer" style={{ ...props }}>
             <AntRow className="pt-2" gutter={[32, 16]}>
-              <AntCol flex="270px">
+              <AntCol flex="270px" >
                 <Dropdown
                   overlay={
                     <SortByMenu

@@ -344,13 +344,14 @@ class App extends React.Component {
       .then(async (result) => {
         let candidates = [];
         let interns = [];
-        
+        let fetchedData = [];
+
         if(result.data.nextToken !== null){
           let pagData = await this.getPaginatedCandidates(result.data.nextToken);
-          result.data.newInterns.concat(pagData);
+          fetchedData = result.data.newInterns.concat(pagData);
         }
         
-        result.data.newInterns.forEach((candidate) => {
+        fetchedData.forEach((candidate) => {
           if (candidate.status === "Accepted") {
             interns.push(candidate);
           } else {

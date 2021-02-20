@@ -77,7 +77,7 @@ class PositionPost extends Component {
                 style={{ ...props }}
               >
                 <AntRow gutter={[32, 16]}>
-                  <AntCol xs={24} md={8} lg={5}>
+                  <AntCol xs={24} md={8} lg={5} className="mb-1">
                     <Link to="/internship-listings/add-listing">
                       <Button type="default" style={ButtonStyle}>
                         <span className="sixteenFont">New Internship</span>

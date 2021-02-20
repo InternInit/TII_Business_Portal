@@ -27,7 +27,7 @@ const PositionPostSkeleton = (props) => {
 
       <InnerContainer className="mt-2 mb-4">
         <AntRow gutter={[32, 16]}>
-          <AntCol xs={24} md={8} lg={5}>
+          <AntCol xs={24} md={8} lg={5} className="mb-1">
             <Button type="default" style={ButtonStyle}>
               <span className="sixteenFont">New Internship</span>
             </Button>

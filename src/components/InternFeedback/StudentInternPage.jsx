@@ -88,7 +88,7 @@ class InternFeedback extends Component {
                 style={{ ...props }}
               >
                 <AntRow gutter={[32, 16]}>
-                  <AntCol xs={24} md={8} lg={5}>
+                  <AntCol xs={24} md={8} lg={5} className="mb-1">
                     <Dropdown
                       overlay={
                         <SortByMenu
