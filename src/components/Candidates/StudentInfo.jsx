@@ -563,7 +563,7 @@ const ReferenceCard = (props) => {
               </Header>
             </AntRow>
             <AntRow>
-              <Caption className="fourteenFont" light thin>
+              <Caption className="fourteenFont" light thin left>
                 {props.reference.Title}
               </Caption>
             </AntRow>
