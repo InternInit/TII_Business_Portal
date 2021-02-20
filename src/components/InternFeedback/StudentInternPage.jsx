@@ -4,7 +4,7 @@ import StudentInternTab from "./StudentInternTab.jsx";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "../General/InfoBar.jsx";
 import SortByMenu from "../General/SortByMenu.jsx";
-import { InnerContainer, Header } from "../Styled/FundamentalComponents";
+import { InnerContainer, Header, PageContainer } from "../Styled/FundamentalComponents";
 import { StudentInternTabSkeleton } from "./StudentInternPageSkeleton";
 import { Button, Row as AntRow, Col as AntCol, Dropdown } from "antd";
 import { AiOutlineContacts } from "react-icons/ai";
@@ -67,7 +67,7 @@ class InternFeedback extends Component {
   render() {
     return (
       <>
-        <Container className="global-container">
+        <PageContainer>
           <NavSearch
             title="My Interns"
             placeholder="Search Interns"
@@ -199,7 +199,7 @@ class InternFeedback extends Component {
               </InnerContainer>
             )}
           </Transition>
-        </Container>
+        </PageContainer>
       </>
     );
   }

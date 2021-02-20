@@ -180,11 +180,7 @@ const MainPage = (props) => {
                   </>
                 )}
               </AntCol>
-              <AntCol
-                xs={24}
-                md={{ span: 12, order: 2 }}
-                lg={10}
-                xl={8}
+              <AntCol xs={24} md={{ span: 12, order: 2 }} lg={10} xl={8}
                 style={{ minHeight: "340px" }}
               >
                 <Header className="twentyTwoFont mb-point-5">
