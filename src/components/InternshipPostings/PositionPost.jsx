@@ -10,7 +10,7 @@ import {
   Header,
 } from "../Styled/FundamentalComponents";
 import { AiOutlineDatabase } from "react-icons/ai";
-import { Transition, config } from "react-spring/renderprops";
+import { Transition, config, animated } from "react-spring/renderprops";
 
 import { Link } from "react-router-dom";
 
@@ -44,6 +44,8 @@ const mapDispatchToProps = {
   batchUpdateListings,
 };
 
+const AnimatedInner = animated(InnerContainer);
+
 class PositionPost extends Component {
   constructor(props) {
     super(props);
@@ -65,11 +67,19 @@ class PositionPost extends Component {
             searchBar={false}
           />
 
-          
-              <InnerContainer
+          <Transition
+            native
+            items={this.props.location.pathname}
+            from={{ opacity: 0.5, transform: "translateY(20px)" }}
+            enter={{ opacity: 1, transform: "translateY(0px)" }}
+            leave={{ opacity: 1 }}
+            config={config.stiff}
+          >
+            {(location) => (props) => (
+              <AnimatedInner
                 key="positionPostContainer"
                 className="mt-2 mb-4"
-                //style={{ ...props }}
+                style={{ ...props }}
               >
                 <AntRow gutter={[32, 16]}>
                   <AntCol xs={24} md={8} lg={5} className="mb-1">
@@ -144,8 +154,9 @@ class PositionPost extends Component {
                     </AntRow>
                   </div>
                 )}
-              </InnerContainer>
-            
+              </AnimatedInner>
+            )}
+          </Transition>
         </PageContainer>
       </>
     );
