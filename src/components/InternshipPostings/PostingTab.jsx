@@ -1,8 +1,11 @@
-import React, { Component, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Button, Row as AntRow, Col as AntCol, Grid } from "antd";
 import { Link } from "react-router-dom";
 import { TabContainer, Header, Caption } from "../Styled/FundamentalComponents";
+import { AiOutlineClose } from "react-icons/ai";
+import { BiTrash } from "react-icons/bi";
+import { IoIosClose } from "react-icons/io";
 
 const { useBreakpoint } = Grid;
 
@@ -109,14 +112,28 @@ const PostingTab = (props) => {
             <Button
               type="primary"
               style={{
-                width: "90%",
+                width: "80%",
+                minWidth: "150px",
               }}
             >
               <Link to={`/internship-listings/${id}`}>Details</Link>
             </Button>
           )}
+          {/**<Button
+            className="posting-tab-remove"
+            danger
+            shape="circle"
+            type="primary"
+            icon={
+              <BiTrash
+                className="twentyTwoFont"
+                style={{ position: "relative", top: "1px" }}
+              />
+            }
+          />*/}
         </AntCol>
       </AntRow>
+      <IoIosClose className="posting-tab-cancel" />
     </TabContainer>
   );
 };

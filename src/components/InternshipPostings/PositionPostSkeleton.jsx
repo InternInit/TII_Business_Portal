@@ -157,7 +157,7 @@ export const PostingTabSkeleton = (props) => {
             <Button
               type="primary"
               style={{
-                width: "90%",
+                width: "80%",
               }}
             >
               Details

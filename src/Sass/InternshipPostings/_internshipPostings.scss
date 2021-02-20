@@ -55,3 +55,25 @@
     margin-left: calc(50% - 10px);
   }
 }
+
+.posting-tab {
+  &-cancel {
+    font-size: 36px;
+
+    color: #bfbfbf;
+    position: absolute;
+    left: .6em;
+    top: calc(50% - 18px);
+
+    &:hover {
+      color: #ff7875;
+      cursor: pointer;
+      transition: .3s ease;
+    }
+  }
+
+  &-remove {
+    position: absolute;
+    right: 0px;
+  }
+}
