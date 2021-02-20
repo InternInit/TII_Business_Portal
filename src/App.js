@@ -348,6 +348,8 @@ class App extends React.Component {
 
         if(result.data.nextToken !== null){
           let pagData = await this.getPaginatedCandidates(result.data.nextToken);
+          console.log(pagData.length);
+          console.log(result.data.newInterns.length);
           fetchedData = result.data.newInterns.concat(pagData);
         }
         

@@ -36,7 +36,7 @@ const PercentageBox = (props) => {
 };
 
 const MainPercentages = (props) => {
-  let {currentApplicantsReceived, internsTaken} = props;
+  let { currentApplicantsReceived, internsTaken } = props;
   return (
     <>
       <AntCol xs={24} md={8}>
@@ -63,7 +63,22 @@ const MainPercentages = (props) => {
             Percentage Accepted
           </Header>
 
-          <PercentageBox header="Accepted" percentage={(internsTaken/(currentApplicantsReceived + internsTaken))*100} color="#52C41A" />
+          <PercentageBox
+            header="Accepted"
+            percentage={
+              Number.isNaN(
+                (internsTaken / (currentApplicantsReceived + internsTaken)) *
+                  100
+              )
+                ? 0
+                : (
+                    (internsTaken /
+                      (currentApplicantsReceived + internsTaken)) *
+                    100
+                  ).toFixed(2)
+            }
+            color="#52C41A"
+          />
         </Row>
       </AntCol>
     </>
