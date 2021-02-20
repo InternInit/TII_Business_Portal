@@ -32,6 +32,7 @@ const MainPage = (props) => {
 
   const CARD_PER_PAGE = 3;
 
+  //list of page numbers, 0–n 
   let pageIndex = {
     applicantPage: [],
     listingPage: [],
@@ -39,10 +40,10 @@ const MainPage = (props) => {
     internPage: [],
   };
 
-  let applicantPage = 0;
-  let listingPage = 0;
-  let incomingPage = 0;
-  let internPage = 0;
+  // let applicantPage = 0;
+  // let listingPage = 0;
+  // let incomingPage = 0;
+  // let internPage = 0;
 
   let { candidates, listings, interns } = props;
 
@@ -51,9 +52,9 @@ const MainPage = (props) => {
   };
 
   const getDotCount = (prop) => {
-    let dotCount;
 
-    //console.log("Running getDotCount for: " + prop);
+    //how many dots each section should have
+    let dotCount;
 
     switch (prop) {
       case "Applicants":
@@ -101,8 +102,6 @@ const MainPage = (props) => {
       default:
         break;
     }
-
-    // return dotCount;
   };
 
   const { useBreakpoint } = Grid;
@@ -251,12 +250,11 @@ const MainPage = (props) => {
                         <div
                           onClick={() => {
                             setPage({
+                              ...page,
                               incomingPage: number,
-                              applicantPage: applicantPage,
-                              internPage: internPage,
-                              listingPage: listingPage,
+                              
                             });
-                            incomingPage = number;
+                            // incomingPage = number;
                           }}
                           className={
                             page.incomingPage === number
@@ -327,17 +325,22 @@ const MainPage = (props) => {
                       />
                     ))
                 ) : (
+
                   <NoResults
                     message={"Hooray! You've reviewed all of your applicants"}
                     isListing={false}
                   />
+
                 )}
               </AntCol>
             </AntRow>
-
             <AntRow gutter={[32, 16]} style={{ marginTop: "-20px" }}>
               <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
+                {/* 
+                  populates pageIndex
+                */}
                 {getDotCount("Listings")}
+
                 {props.loading.isListingLoading ? (
                   <DotSkeletonSpacer />
                 ) : listings.length > CARD_PER_PAGE ? (
@@ -346,12 +349,10 @@ const MainPage = (props) => {
                       <div
                         onClick={() => {
                           setPage({
+                            ...page,
                             listingPage: number,
-                            applicantPage: applicantPage,
-                            incomingPage: incomingPage,
-                            internPage: internPage,
                           });
-                          listingPage = number;
+                          // listingPage = number;
                         }}
                         className={
                           page.listingPage === number
@@ -375,12 +376,13 @@ const MainPage = (props) => {
                       <div
                         onClick={() => {
                           setPage({
+                            ...page,
                             incomingPage: number,
-                            applicantPage: applicantPage,
-                            internPage: internPage,
-                            listingPage: listingPage,
+                            // applicantPage: applicantPage,
+                            // internPage: internPage,
+                            // listingPage: listingPage,
                           });
-                          incomingPage = number;
+                          // incomingPage = number;
                         }}
                         className={
                           page.incomingPage === number
@@ -410,7 +412,7 @@ const MainPage = (props) => {
                               ...page,
                               applicantPage: number,
                             });
-                            applicantPage = number;
+                            // applicantPage = number;
                           }}
                           className={
                             page.applicantPage === number
@@ -547,12 +549,10 @@ const MainPage = (props) => {
                       <div
                         onClick={() => {
                           setPage({
-                            applicantPage: applicantPage,
-                            listingPage: listingPage,
+                            ...page,
                             internPage: number,
-                            incomingPage: incomingPage,
                           });
-                          internPage = number;
+                          // internPage = number;
                         }}
                         className={
                           page.internPage === number
@@ -581,7 +581,7 @@ const MainPage = (props) => {
                             ...page,
                             applicantPage: number,
                           });
-                          applicantPage = number;
+                          // applicantPage = number;
                         }}
                         className={
                           page.applicantPage === number
