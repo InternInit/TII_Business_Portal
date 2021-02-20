@@ -166,12 +166,12 @@ const MainPage = (props) => {
                           name={post.title}
                           interns={
                             props.candidates.filter(
-                              (candidate) => candidate.appliedFor === post.title
+                              (candidate) => candidate.appliedFor === post.Id
                             ).length
                           }
                           accepted={
                             props.interns.filter(
-                              (intern) => intern.appliedFor === post.title
+                              (intern) => intern.appliedFor === post.Id
                             ).length
                           }
                           industry={post.industries}
