@@ -35,6 +35,7 @@ const mapStateToProps = (state) => {
   return {
     listings: state.listings,
     loadingStatuses: state.loadingStatuses,
+    candidates: state.companyInfo.candidates,
   };
 };
 
@@ -100,7 +101,8 @@ class PositionPost extends Component {
                   fieldFour={{ name: "Edit Details", sm: 6, lg: 6 }}
                 />
 
-                {this.props.loadingStatuses.isListingLoading ? (
+                {this.props.loadingStatuses.isListingLoading ||
+                this.props.loadingStatuses.isCandidateLoading ? (
                   <>
                     {_.times(localStorage.getItem("NumListings"), () => (
                       <PostingTabSkeleton />
@@ -111,7 +113,11 @@ class PositionPost extends Component {
                     <PostingTab
                       status="Active"
                       name={post.title}
-                      interns="0"
+                      interns={
+                        this.props.candidates.filter(
+                          (candidate) => candidate.appliedFor === post.Id
+                        ).length
+                      }
                       id={post.Id}
                       industry={post.industries}
                     />
