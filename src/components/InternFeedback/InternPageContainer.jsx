@@ -29,6 +29,8 @@ const mapStateToProps = (state) => {
   return {
     interns: state.interns.currentInterns,
     isInternLoading: state.loadingStatuses.isInternLoading,
+    isListingLoading: state.loadingStatuses.isListingLoading,
+    listings: state.listings,
   };
 };
 
@@ -72,7 +74,7 @@ class InternPageContainer extends Component {
           />
           <InnerContainer className="mt-3 mb-4">
             <AntRow style={{ width: "100%" }}>
-              {this.props.isInternLoading ? (
+              {this.props.isInternLoading || this.props.isListingLoading ? (
                 <InternBannerSkeleton />
               ) : (
                 <>
@@ -121,7 +123,11 @@ class InternPageContainer extends Component {
                               fontStyle: "italic",
                             }}
                           >
-                            {student.appliedFor}
+                            {
+                              this.props.listings.find(
+                                (listing) => listing.Id === student.appliedFor
+                              ).title
+                            }
                           </Caption>
                         </AntRow>
                         <AntRow className="mt-point-5">

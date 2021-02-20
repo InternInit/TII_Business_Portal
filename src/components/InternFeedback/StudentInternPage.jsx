@@ -31,6 +31,7 @@ const ButtonStyle = {
 const mapStateToProps = (state) => {
   return {
     interns: state.interns.currentInterns,
+    listings: state.listings,
     loadingStatuses: state.loadingStatuses,
   };
 };
@@ -167,7 +168,11 @@ class InternFeedback extends Component {
                                 ).length
                               : 0
                           }
-                          position={student.appliedFor}
+                          position={
+                            this.props.listings.find(
+                              (listing) => listing.Id === student.appliedFor
+                            ).title
+                          }
                           school={student.school ? student.school.name : "N/A"}
                           /**
                            * @TODO
