@@ -4,9 +4,10 @@ import StudentInternTab from "./StudentInternTab.jsx";
 import NavSearch from "../General/NavSearch.jsx";
 import InfoBar from "../General/InfoBar.jsx";
 import SortByMenu from "../General/SortByMenu.jsx";
-import { InnerContainer } from "../Styled/FundamentalComponents";
+import { InnerContainer, Header } from "../Styled/FundamentalComponents";
 import { StudentInternTabSkeleton } from "./StudentInternPageSkeleton";
 import { Button, Row as AntRow, Col as AntCol, Dropdown } from "antd";
+import { AiOutlineContacts } from "react-icons/ai";
 import { Transition, config } from "react-spring/renderprops";
 
 import { connect } from "react-redux";
@@ -132,56 +133,69 @@ class InternFeedback extends Component {
                   }}
                 />
 
-                {this.props.loadingStatuses.isInternLoading
-                  ? _.times(localStorage.getItem("NumInterns"), () => (
-                      <StudentInternTabSkeleton />
-                    ))
-                  : _.orderBy(this.props.interns, this.state.sortType).map(
-                      (student) => (
-                        <StudentInternTab
-                          firstName={student.formData["0"]["First Name"]}
-                          lastName={student.formData["0"]["Last Name"]}
-                          age={student.formData["1"]["Age"]}
-                          type="Hybrid"
-                          id={student.Id}
-                          attendanceDue={
-                            student.hours
-                              ? _.filter(
-                                  student.hours,
-                                  (hour) => !hour.isApproved
-                                ).length
-                              : 0
-                          }
-                          feedbackDue={
-                            student.feedback
-                              ? _.filter(
-                                  student.feedback,
-                                  (feedback) => !feedback.isRead
-                                ).length
-                              : 0
-                          }
-                          gradesDue={
-                            student.grades
-                              ? _.filter(
-                                  student.grades,
-                                  (grade) => !grade.isFinished
-                                ).length
-                              : 0
-                          }
-                          position={
-                            this.props.listings.find(
-                              (listing) => listing.Id === student.appliedFor
-                            ).title
-                          }
-                          school={student.school ? student.school.name : "N/A"}
-                          /**
-                           * @TODO
-                           * Replace with actual profile picture
-                           */
-                          //avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
-                        />
-                      )
-                    )}
+                {this.props.loadingStatuses.isInternLoading ? (
+                  _.times(localStorage.getItem("NumInterns"), () => (
+                    <StudentInternTabSkeleton />
+                  ))
+                ) : this.props.interns.length < 1 ? (
+                  <>
+                    <AntRow className="pt-3" justify="center" align="middle">
+                      <AiOutlineContacts className="internship-posting-no-content-icon" />
+                    </AntRow>
+                    <AntRow justify="center" align="middle">
+                      <Header className="twentyFourFont" color="#bfbfbf">
+                        No Interns Right Now
+                      </Header>
+                    </AntRow>
+                  </>
+                ) : (
+                  _.orderBy(this.props.interns, this.state.sortType).map(
+                    (student) => (
+                      <StudentInternTab
+                        firstName={student.formData["0"]["First Name"]}
+                        lastName={student.formData["0"]["Last Name"]}
+                        age={student.formData["1"]["Age"]}
+                        type="Hybrid"
+                        id={student.Id}
+                        attendanceDue={
+                          student.hours
+                            ? _.filter(
+                                student.hours,
+                                (hour) => !hour.isApproved
+                              ).length
+                            : 0
+                        }
+                        feedbackDue={
+                          student.feedback
+                            ? _.filter(
+                                student.feedback,
+                                (feedback) => !feedback.isRead
+                              ).length
+                            : 0
+                        }
+                        gradesDue={
+                          student.grades
+                            ? _.filter(
+                                student.grades,
+                                (grade) => !grade.isFinished
+                              ).length
+                            : 0
+                        }
+                        position={
+                          this.props.listings.find(
+                            (listing) => listing.Id === student.appliedFor
+                          ).title
+                        }
+                        school={student.school ? student.school.name : "N/A"}
+                        /**
+                         * @TODO
+                         * Replace with actual profile picture
+                         */
+                        //avatar={`https://tii-intern-media.s3.amazonaws.com/${student.Id}/profile_picture`}
+                      />
+                    )
+                  )
+                )}
               </InnerContainer>
             )}
           </Transition>
