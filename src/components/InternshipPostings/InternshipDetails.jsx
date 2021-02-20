@@ -260,7 +260,9 @@ class InternshipDetails extends React.Component {
   formRef = React.createRef();
 
   componentDidMount() {
-    //    this.findListingData();
+    if (!this.props.location.pathname.includes("add-listing")) {
+      this.setState({ isNewListing: false });
+    }
     console.log(this.props);
   }
 
@@ -271,7 +273,7 @@ class InternshipDetails extends React.Component {
     }
     console.log(values);
 
-    if (this.state.isNewListing === true) {
+    if (this.state.isNewListing) {
       let uuid = uuidv4();
       values.Id = uuid;
       this.props.addListing(values);
