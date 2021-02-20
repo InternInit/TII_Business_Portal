@@ -473,7 +473,7 @@ class App extends React.Component {
       console.log(response.data);
       let listings = response.data.data.getBusinessInfo.listings;
       this.props.batchUpdateListings(listings);
-      localStorage.setItem("NumListings", (listings.length) ? listings.length : 3);
+      localStorage.setItem("NumListings", (listings.length) ? (listings.length <= 3 ? listings.length : 3) : 3);
       this.props.finishListingLoading();
     }).catch((error) => {
       console.log(error);
