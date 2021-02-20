@@ -185,7 +185,7 @@ def get_student_candidates():
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     new_interns = []
-
+    print(json.dumps(resp_json, indent=True))
     if("errors" in resp_json):
         response = make_response(
             jsonify(
