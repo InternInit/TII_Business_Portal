@@ -52,6 +52,8 @@ class PositionPost extends Component {
     };
   }
 
+  helloWorld = "";
+
   render() {
     return (
       <>
@@ -63,18 +65,11 @@ class PositionPost extends Component {
             searchBar={false}
           />
 
-          <Transition
-            items={this.props.location.pathname}
-            from={{ opacity: 0.5, transform: "translateY(20px)" }}
-            enter={{ opacity: 1, transform: "translateY(0px)" }}
-            leave={{ opacity: 1 }}
-            config={config.stiff}
-          >
-            {(location) => (props) => (
+          
               <InnerContainer
                 key="positionPostContainer"
                 className="mt-2 mb-4"
-                style={{ ...props }}
+                //style={{ ...props }}
               >
                 <AntRow gutter={[32, 16]}>
                   <AntCol xs={24} md={8} lg={5} className="mb-1">
@@ -150,8 +145,7 @@ class PositionPost extends Component {
                   </div>
                 )}
               </InnerContainer>
-            )}
-          </Transition>
+            
         </PageContainer>
       </>
     );

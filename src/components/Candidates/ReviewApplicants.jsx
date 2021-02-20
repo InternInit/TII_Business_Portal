@@ -11,7 +11,7 @@ import {
   Col as AntCol,
   Dropdown,
 } from "antd";
-import { Transition, config } from "react-spring/renderprops";
+import { Transition, config, animated } from "react-spring/renderprops";
 import { Header, InnerContainer } from "../Styled/FundamentalComponents.jsx";
 import { AiOutlineUser } from "react-icons/ai";
 import _ from "lodash";
@@ -41,6 +41,8 @@ const mapStateToProps = (state) => {
     loadingStatuses: state.loadingStatuses,
   };
 };
+
+const AnimatedInner = animated(InnerContainer);
 
 class ReviewApplicants extends Component {
   constructor(props) {
@@ -102,6 +104,7 @@ class ReviewApplicants extends Component {
   render() {
     return (
       <Transition
+        native
         items={this.props.location.pathname}
         from={{ opacity: 0.5, transform: "translateY(20px)" }}
         enter={{ opacity: 1, transform: "translateY(0px)" }}
@@ -109,9 +112,9 @@ class ReviewApplicants extends Component {
         config={config.stiff}
       >
         {(location) => (props) => (
-          <InnerContainer key="reviewApplicantsContainer" style={{ ...props }}>
+          <AnimatedInner key="reviewApplicantsContainer" style={{ ...props }}>
             <AntRow className="pt-2" gutter={[32, 16]}>
-              <AntCol flex="270px" >
+              <AntCol flex="270px">
                 <Dropdown
                   overlay={
                     <SortByMenu
@@ -158,7 +161,7 @@ class ReviewApplicants extends Component {
             {this.renderUnreadApplicants()}
 
             {this.renderReviewApplicants()}
-          </InnerContainer>
+          </AnimatedInner>
         )}
       </Transition>
     );
