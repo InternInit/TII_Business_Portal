@@ -42,7 +42,7 @@ class Employeepage extends Component {
               className="py-2"
               style={{ ...props }}
             >
-              <AntRow gutter={[32, 16]}>
+              <AntRow gutter={[32, 16]} className="mb-1">
                 <AntCol xs={24} md={8} lg={5}>
                   <Link to="/users/new-account">
                     <Button type="default" style={ButtonStyle}>

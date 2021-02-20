@@ -15,6 +15,7 @@ import {
   Modal,
   Tooltip,
   Spin,
+  message,
 } from "antd";
 import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Transition, config } from "react-spring/renderprops";
@@ -277,9 +278,11 @@ class InternshipDetails extends React.Component {
       let uuid = uuidv4();
       values.Id = uuid;
       this.props.addListing(values);
+      message.success("Your new listing has been created!");
     } else {
       values.Id = this.props.location.pathname.split("/")[2];
       this.props.updateListing(values.Id, values);
+      message.success("Your listing has been updated");
     }
     let access = await this.props.getAccess();
 
@@ -298,6 +301,8 @@ class InternshipDetails extends React.Component {
       },
     }).then((result) => {
       console.log(result.data);
+
+      this.props.history.push("/internship-listings");
 
       if (this.state.isNewListing) {
         //Time to generate the fake students for each listing

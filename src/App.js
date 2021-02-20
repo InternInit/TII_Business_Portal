@@ -316,39 +316,48 @@ class App extends React.Component {
         query: `
         query MyQuery {
           getInterns(businessId: "${this.props.companyInfo.id}") {
-            grades
-            assocId
-            formData
-            appliedFor
-            Id
-            hours
-            feedback
-            school {
-              address
-              counselorName
-              email
-              name
-              phone
-              state
+            items {
+              Id
+              appliedFor
+              assocId
+              feedback
+              formData
+              grades
+              hours
+              school {
+                address
+                counselorName
+                email
+                name
+                phone
+                state
+              }
+              status
+              version
             }
-            status
-            version
+            nextToken
           }
         }
       `,
       },
     })
-      .then((result) => {
-        console.log(result.data);
+      .then(async (result) => {
         let candidates = [];
         let interns = [];
-        result.data.forEach((candidate) => {
+        
+        if(result.data.nextToken !== null){
+          let pagData = await this.getPaginatedCandidates(result.data.nextToken);
+          result.data.newInterns.concat(pagData);
+        }
+        
+        result.data.newInterns.forEach((candidate) => {
           if (candidate.status === "Accepted") {
             interns.push(candidate);
           } else {
             candidates.push(candidate);
           }
         });
+
         this.props.updateCandidates(candidates);
         localStorage.setItem(
           "NumReview",
@@ -372,6 +381,80 @@ class App extends React.Component {
       });
   };
 
+  getPaginatedCandidates = async (nextToken) => {
+    const query = `
+    query MyQuery {
+      getInterns(businessId: "${this.props.companyInfo.id}") {
+        items {
+          Id
+          appliedFor
+          assocId
+          feedback
+          formData
+          grades
+          hours
+          school {
+            address
+            counselorName
+            email
+            name
+            phone
+            state
+          }
+          status
+          version
+        }
+        nextToken
+      }
+    }
+  `
+    const access = await this.getAccess();
+    const response = await axios({
+      url: "/api/get_student_candidates",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: `
+        query MyQuery {
+          getInterns(businessId: "${this.props.companyInfo.id}", nextToken: "${nextToken}") {
+            items {
+              Id
+              appliedFor
+              assocId
+              feedback
+              formData
+              grades
+              hours
+              school {
+                address
+                counselorName
+                email
+                name
+                phone
+                state
+              }
+              status
+              version
+            }
+            nextToken
+          }
+        }
+      `,
+      },
+    })
+    
+    const data = response.data.newInterns;
+    nextToken = response.data.nextToken;
+
+    if(nextToken !== null){
+      return data.concat(await this.getPaginatedCandidates(nextToken))
+    } else {
+      return data
+    }
+  }
+
   getListings = async () => {
     this.props.startListingLoading();
     
@@ -392,7 +475,7 @@ class App extends React.Component {
       console.log(response.data);
       let listings = response.data.data.getBusinessInfo.listings;
       this.props.batchUpdateListings(listings);
-      localStorage.setItem("NumListings", (listings.length) ? listings.length : 3);
+      localStorage.setItem("NumListings", (listings.length) ? (listings.length <= 3 ? listings.length : 3) : 3);
       this.props.finishListingLoading();
     }).catch((error) => {
       console.log(error);

@@ -185,7 +185,7 @@ def get_student_candidates():
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     new_interns = []
-
+    print(json.dumps(resp_json, indent=True))
     if("errors" in resp_json):
         response = make_response(
             jsonify(
@@ -193,10 +193,11 @@ def get_student_candidates():
             ),
             500)
         return response
+    
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
     # Thatgit s's what we get for using a 19 year old language.
     try:
-        for intern in resp_json["data"]["getInterns"]:
+        for intern in resp_json["data"]["getInterns"]["items"]:
             loaded_intern = intern
             if(loaded_intern["status"] == "Accepted"):
                 if(loaded_intern["grades"] is not None):
@@ -218,7 +219,11 @@ def get_student_candidates():
             new_intern["formData"] = formdata_datetime_resolver(json.loads(new_intern["formData"]))
 
             new_interns.append(new_intern)
-        return json.dumps(new_interns)
+        data_to_return = {
+            "newInterns": new_interns,
+            "nextToken": resp_json["data"]["getInterns"]["nextToken"]
+        }
+        return json.dumps(data_to_return)
     except KeyError:
         return json.dumps(resp_json)
 
