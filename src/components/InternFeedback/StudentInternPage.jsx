@@ -8,7 +8,7 @@ import { InnerContainer, Header, PageContainer } from "../Styled/FundamentalComp
 import { StudentInternTabSkeleton } from "./StudentInternPageSkeleton";
 import { Button, Row as AntRow, Col as AntCol, Dropdown } from "antd";
 import { AiOutlineContacts } from "react-icons/ai";
-import { Transition, config } from "react-spring/renderprops";
+import { Transition, config, animated } from "react-spring/renderprops";
 
 import { connect } from "react-redux";
 
@@ -36,6 +36,8 @@ const mapStateToProps = (state) => {
     loadingStatuses: state.loadingStatuses,
   };
 };
+
+const AnimatedInner = animated(InnerContainer);
 
 class InternFeedback extends Component {
   state = {
@@ -75,6 +77,7 @@ class InternFeedback extends Component {
             searchBar={false}
           />
           <Transition
+          native
             items={this.props.location.pathname}
             from={{ opacity: 0.5, transform: "translateY(20px)" }}
             enter={{ opacity: 1, transform: "translateY(0px)" }}
@@ -82,7 +85,7 @@ class InternFeedback extends Component {
             config={config.stiff}
           >
             {(location) => (props) => (
-              <InnerContainer
+              <AnimatedInner
                 key="studentInternPageContainer"
                 className="mt-2 mb-4"
                 style={{ ...props }}
@@ -196,7 +199,7 @@ class InternFeedback extends Component {
                     )
                   )
                 )}
-              </InnerContainer>
+              </AnimatedInner>
             )}
           </Transition>
         </PageContainer>
