@@ -67,7 +67,11 @@ const CandidateDetailedviewTab = (props) => {
         <AntCol span={9}>
           <AntRow>
             <Caption className="sixteenFont mb-point-5">
-              {props.appliedFor}
+              {
+                props.listings.find(
+                  (listing) => listing.Id === props.appliedFor
+                ).title
+              }
             </Caption>
           </AntRow>
           <AntRow>

@@ -110,10 +110,10 @@ class PositionPost extends Component {
                   this.props.listings.map((post, index) => (
                     <PostingTab
                       status="Active"
-                      name={post.Title}
+                      name={post.title}
                       interns="0"
                       id={post.Id}
-                      industry={post.Industries}
+                      industry={post.industries}
                     />
                   ))
                 ) : (
@@ -127,17 +127,19 @@ class PositionPost extends Component {
                       </Header>
                     </AntRow>
                     <AntRow className="mt-1" justify="center" align="middle">
-                      <Button
-                        size="large"
-                        type="primary"
-                        style={{
-                          width: "10%",
-                          minWidth: "125px",
-                          boxShadow: "1px 1px 5px 0px #bfbfbf",
-                        }}
-                      >
-                        Get Started
-                      </Button>
+                      <Link to="/internship-listings/add-listing">
+                        <Button
+                          size="large"
+                          type="primary"
+                          style={{
+                            width: "10%",
+                            minWidth: "125px",
+                            boxShadow: "1px 1px 5px 0px #bfbfbf",
+                          }}
+                        >
+                          Get Started
+                        </Button>
+                      </Link>
                     </AntRow>
                   </div>
                 )}

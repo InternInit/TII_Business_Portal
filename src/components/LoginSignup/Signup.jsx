@@ -32,7 +32,15 @@ const passwordValidator = require("password-validator");
 
 const schema = new passwordValidator();
 
-schema.is().min(8).has().uppercase().has().lowercase().has().digits();
+schema
+  .is()
+  .min(8)
+  .has()
+  .uppercase()
+  .has()
+  .lowercase()
+  .has()
+  .digits();
 
 const validationRules = (required, inputName, type, pattern) => [
   {
@@ -348,6 +356,7 @@ class SignUp extends React.Component {
   handleSubmit = async (values) => {
     let { username, password, email, companyName, name } = values;
     this.setState({ email: email, username: username, password: password });
+
     try {
       const user = await Auth.signUp({
         username,

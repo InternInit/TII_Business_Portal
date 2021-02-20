@@ -10,16 +10,19 @@ app = Flask(__name__)
 
 studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/students"
 listingsApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/listings"
+listingTriggerApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/student"
 authApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/auth/"
 graphQLApiEndpoint = "https://4gxyw7jvnvgbrpgiaxvmgwqydy.appsync-api.us-east-1.amazonaws.com/graphql"
 
 if(app.config.get("ENV") == "development"):
     studentApiUrl = studentApiUrl.format(stage="dev")
     listingsApiUrl = listingsApiUrl.format(stage="dev")
+    listingTriggerApiUrl = listingTriggerApiUrl.format(stage="dev")
     authApiUrl = authApiUrl.format(stage="dev")
 elif(app.config.get("ENV") == "production"):
     studentApiUrl = studentApiUrl.format(stage="prod")
     listingsApiUrl = listingsApiUrl.format(stage="prod")
+    listingTriggerApiUrl = listingTriggerApiUrl.format(stage="prod")
     authApiUrl = authApiUrl.format(stage="prod")
 
 def determine_date_offset(dt_string):
@@ -108,19 +111,25 @@ def formdata_datetime_resolver(formData):
 def home():
     return "Hello World"
 
-@app.route('/api/get_business_data', methods=["GET"])
-def get_business_data():
-    return "business data"
 
-@app.route('/api/update_business_interns', methods = ["PUT", "POST"])
-def update_business_interns():
-    return "updated business interns"
+###
+### GRAPHQL
+###
+@app.route('/api/get_business_info', methods=["POST"])
+def get_business_info():
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
 
-@app.route('/api/update_business_listings', methods = ["PUT", "POST"])
-def update_business_lisitings():
-    return "updated business listings"
-
-
+@app.route('/api/mutate_business_info', methods=["POST"])
+def mutate_business_info():
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
 
 
 #################################
@@ -129,11 +138,18 @@ def update_business_lisitings():
 #
 #################################
 
-@app.route("/api/get_internship_listings", methods=["GET"])
+@app.route("/api/get_internship_listings", methods=["POST"])
 def get_internship_listings():
+    query = request.get_data().decode("utf-8")
     headers = request.headers
-    req = requests.get(listingsApiUrl, headers={"Authorization": headers.get("Authorization")})
-    return jsonify(req.text)
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json = json.loads(query))
+    resp_json = json.loads(req.text)
+    listings = resp_json["data"]["getBusinessInfo"]["listings"]
+
+    for listing in listings:
+        for filter_ind in range(len(listing["filters"])):
+            listing["filters"][filter_ind] = json.loads(listing["filters"][filter_ind])
+    return json.dumps(resp_json)
 
 @app.route("/api/remove_internship_listing", methods=["DELETE"])
 def remove_internship_listing():
@@ -141,10 +157,13 @@ def remove_internship_listing():
 
 @app.route("/api/update_internship_listings", methods = ["PUT", "POST"])
 def update_internship_listings():
-    body = request.get_data().decode("utf-8")
+    query = request.get_data().decode("utf-8")
+
+    print(query)
     headers = request.headers
-    req = requests.post(listingsApiUrl, headers={"Authorization": headers.get("Authorization"), "ListingId": headers.get("ListingId")}, json = json.loads(body))
-    return jsonify(req.text)
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json = json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
 
 
 
@@ -166,16 +185,34 @@ def get_student_candidates():
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     new_interns = []
-    
+
+    if("errors" in resp_json):
+        response = make_response(
+            jsonify(
+                {"message": "error", "severity": "danger"}
+            ),
+            500)
+        return response
     # Yeah Velocity was acting up so I'm gonna resolve datetime strings in Flask for now.
     # Thatgit s's what we get for using a 19 year old language.
     try:
         for intern in resp_json["data"]["getInterns"]:
             loaded_intern = intern
             if(loaded_intern["status"] == "Accepted"):
-                loaded_intern["grades"] = datetime_resolver(json.loads(intern["grades"]))
-                loaded_intern["hours"] = datetime_resolver(json.loads(intern["hours"]))
-                loaded_intern["feedback"] = datetime_resolver(json.loads(intern["feedback"]))
+                if(loaded_intern["grades"] is not None):
+                    loaded_intern["grades"] = datetime_resolver(json.loads(intern["grades"]))
+                else:
+                    loaded_intern["grades"] = {}
+                    
+                if(loaded_intern["hours"] is not None):
+                    loaded_intern["hours"] = datetime_resolver(json.loads(intern["hours"]))
+                else:
+                    loaded_intern["hours"] = {};
+
+                if(loaded_intern["feedback"] is not None):
+                    loaded_intern["feedback"] = datetime_resolver(json.loads(intern["feedback"]))
+                else:
+                    loaded_intern["feedback"] = {}
             
             new_intern = datetime_resolver(loaded_intern)
             new_intern["formData"] = formdata_datetime_resolver(json.loads(new_intern["formData"]))
@@ -183,7 +220,7 @@ def get_student_candidates():
             new_interns.append(new_intern)
         return json.dumps(new_interns)
     except KeyError:
-        return resp_json
+        return json.dumps(resp_json)
 
 @app.route('/api/update_student_status', methods=["POST"])
 def update_student_status():
@@ -196,6 +233,8 @@ def update_student_status():
 def mutate_candidate_assoc():
     query = request.get_data().decode("utf-8")
     headers = request.headers
+    print(json.dumps(query))
+    
     req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json= json.loads(query))
     resp_json = json.loads(req.text)
     return json.dumps(resp_json)
@@ -253,6 +292,12 @@ def mutate_feedback_assoc():
     feedback = json.loads(feedback)
     return json.dumps(datetime_resolver(feedback))
 
+@app.route("/api/new_listing_trigger", methods=["POST"])
+def new_listing_trigger():
+    body = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(listingTriggerApiUrl, json = json.loads(body))
+    return jsonify(req.text)
 
 ##############################
 #

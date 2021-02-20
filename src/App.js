@@ -67,7 +67,41 @@ import UserDetails from "./components/CompanyUsers/UserDetails";
 
 import "./App.scss";
 
+import gql from "graphql-tag";
+import { print } from "graphql";
+
+// prettier-ignore
+const LISTING_QUERY = gql`
+query MyQuery($Id: String!) {
+  getBusinessInfo(Id: $Id) {
+    listings {
+      Id
+      additionalInfo
+      address
+      availableWorkDays
+      availableWorkTimes
+      description
+      filters
+      industries
+      internshipDates
+      isPaid
+      title
+    }
+  }
+}                
+`
+
 Amplify.configure(awsconfig);
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  console.log("Development");
+} else {
+  console.log = noop;
+  console.warn = noop;
+  console.error = noop;
+}
+
+function noop() {}
 
 const { Content, Sider } = Layout;
 
@@ -123,6 +157,10 @@ class App extends React.Component {
       localStorage.setItem("NumUsers", 3);
     }
     this.setupInterceptor();
+
+    this.state = {
+      isBusinessInfoLoading: true
+    }
   }
 
   componentDidMount() {
@@ -136,15 +174,16 @@ class App extends React.Component {
 
   setupInterceptor() {
     axios.interceptors.response.use((res) => {
-      if (res.data.hasOwnProperty("errors")) {
-        console.log("has errors");
+      if(res.data.hasOwnProperty("error")){
+        let error = res.data.error
+      } else if (res.data.hasOwnProperty("errors")) {
         res.data.errors.forEach((error) => {
-          if (error.errorType === "UnauthorizedException") {
-            console.log("has errorss");
+          if(error.errorType === "UnauthorizedException") {
             this.logout();
           }
-        });
+        })
       }
+      //console.log(res)
       // Important: response interceptors **must** return the response.
       return res;
     });
@@ -219,17 +258,47 @@ class App extends React.Component {
     }
   };
 
-  getBusinessInfo = (payload) => {
-    this.props.updateName(payload["custom:company"]);
-    this.props.updateDescription(
-      "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
-    );
-    this.props.updateWebsite("google.nl");
-    this.props.updateEmail("apechell0@cafepress.com");
-    this.props.updatePhoneNumber("810-591-4366");
-    this.props.updateAvatar(
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
-    );
+  getBusinessInfo = async () => {
+    let access = await this.getAccess();
+    axios({
+      url: "/api/get_business_info",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: `
+        query MyQuery {
+          getBusinessInfo(Id: "${this.props.companyInfo.id}") {
+            Id
+            description
+            email
+            name
+            phoneNumber
+            website
+          }
+        }
+      `,
+      },
+    })
+      .then((result) => {
+        let data = result.data.data.getBusinessInfo
+        console.log(data);
+        this.props.updateName(data.name);
+        this.props.updateDescription(
+          data.description
+        );
+        this.props.updateWebsite(data.website);
+        this.props.updateEmail(data.email);
+        this.props.updatePhoneNumber(data.phoneNumber);
+        this.props.updateAvatar(
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
+        );
+        this.setState({isBusinessInfoLoading: false});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   getFullCandidates = async () => {
@@ -298,37 +367,37 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log(error);
+        this.props.finishCandidateLoading();
+        this.props.finishInternLoading();
       });
   };
 
   getListings = async () => {
     this.props.startListingLoading();
-    let token = await this.getJwt();
-    console.log(this.props.companyInfo);
-    const headers = {
+    
+    let access = await this.getAccess();
+    axios({
+      url: "/api/get_internship_listings",
+      method: "post",
       headers: {
-        Authorization: `Bearer ${this.props.companyInfo.id}`,
+        Authorization: access,
       },
-    };
-    console.log(headers.headers.Authorization);
-
-    axios
-      .get("/api/get_internship_listings", headers)
-      .then((response) => {
-        //console.log(response.data);
-        this.props.batchUpdateListings(
-          _.isEqual(JSON.parse(response.data), {
-            message: "Internal server error",
-          })
-            ? []
-            : JSON.parse(response.data)
-        );
-        localStorage.setItem("NumListings", JSON.parse(response.data).length);
-        this.props.finishListingLoading();
-      })
-      .catch((error) => {
-        this.props.finishListingLoading();
-      });
+      data: {
+        query: print(LISTING_QUERY),
+        variables: {
+          Id: this.props.companyInfo.id,
+        },
+      },
+    }).then((response) => {
+      console.log(response.data);
+      let listings = response.data.data.getBusinessInfo.listings;
+      this.props.batchUpdateListings(listings);
+      localStorage.setItem("NumListings", (listings.length) ? listings.length : 3);
+      this.props.finishListingLoading();
+    }).catch((error) => {
+      console.log(error);
+      this.props.finishListingLoading();
+    });
   };
 
   getBusinessUsers = async () => {
@@ -409,6 +478,7 @@ class App extends React.Component {
                           title="Create New Post"
                           addListing={this.props.addListing}
                           id={this.props.companyInfo.id}
+                          getAccess={this.getAccess}
                         />
                       )}
                     />
@@ -427,6 +497,7 @@ class App extends React.Component {
                           title="Edit Posting"
                           buttonText="Save Changes"
                           updateListing={this.props.updateListing}
+                          getAccess={this.getAccess}
                         />
                       )}
                     />
@@ -452,7 +523,13 @@ class App extends React.Component {
                   <Route
                     path="/settings"
                     render={(props) => (
-                      <CompanyDetails {...props} key="companydetails" />
+                      <CompanyDetails 
+                        {...props} 
+                        getAccess={this.getAccess} 
+                        companyInfo={this.props.companyInfo} 
+                        key="companydetails" 
+                        isLoading={this.state.isBusinessInfoLoading}
+                      />
                     )}
                   />
                   <RouteCandidates getAccess={this.getAccess} />

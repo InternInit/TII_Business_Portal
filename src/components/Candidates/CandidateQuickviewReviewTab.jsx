@@ -30,9 +30,6 @@ const RemoveIcon = styled(Icon)`
 
 const CandidateQuickviewTab = (props) => {
   let { name, school } = props;
-
-  console.log(props);
-
   return (
     <Link
       to={`/applicants/${props.id}`}
@@ -80,7 +77,11 @@ const CandidateQuickviewTab = (props) => {
           <AntCol span={6}>
             <AntRow className="universal-center">
               <Header className="sixteenFont" color="#722ed1">
-                {props.appliedFor}
+                {
+                  props.listings.find(
+                    (listing) => listing.Id === props.appliedFor
+                  ).title
+                }
               </Header>
             </AntRow>
           </AntCol>

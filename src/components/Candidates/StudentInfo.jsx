@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Row as AntRow, Col as AntCol, Breadcrumb } from "antd";
 import { Transition, config } from "react-spring/renderprops";
 
@@ -22,10 +22,12 @@ import { AiOutlineFileText } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import SmartAvatar from "../General/SmartAvatar";
 import { StudentInfoSkeleton } from "./CandidateSkeletons";
+import Password from "antd/lib/input/Password";
 
 const mapStateToProps = (state) => {
   return {
     companyInfo: state.companyInfo,
+    listings: state.listings,
     loadingStatuses: state.loadingStatuses,
   };
 };
@@ -36,11 +38,33 @@ const StudentInfo = (props) => {
   const [loadStudent, changeStudent] = useState(
     _.find(props.companyInfo.candidates, (student) => student.Id === id)
   );
+  const [isLoading, setLoading] = useState(true);
 
-  if (!props.loadingStatuses.isCandidateLoading) {
+  useEffect(() => {
+    changeStudent(
+      _.find(props.companyInfo.candidates, (student) => student.Id === id)
+    );
+    setLoading(false);
+  });
+
+  if (
+    props.loadingStatuses.isCandidateLoading ||
+    props.loadingStatuses.isListingLoading ||
+    isLoading
+  ) {
     //Loading logic is now handled with redux ^^^
-
-    const student = loadStudent.formData;
+    return (
+      <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
+        <StudentInfoSkeleton />
+      </AntRow>
+    );
+  } else {
+    //We use up some memory here but it avoid the weird timegap where state is undef.
+    //TODO: Revisit and evaluate state bug here.
+    const student = _.find(
+      props.companyInfo.candidates,
+      (student) => student.Id === id
+    ).formData;
 
     return (
       <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
@@ -51,8 +75,8 @@ const StudentInfo = (props) => {
           leave={{ opacity: 1 }}
           config={config.stiff}
         >
-          {(location) => (props) => (
-            <InnerContainer key="studentInfoContainer" style={{ ...props }}>
+          {(location) => (styling) => (
+            <InnerContainer key="studentInfoContainer" style={{ ...styling }}>
               <Breadcrumb style={{ paddingBottom: "1em" }}>
                 <Breadcrumb.Item className="twentyFont">
                   <Link to="/applicants/review-applicants">
@@ -215,8 +239,10 @@ const StudentInfo = (props) => {
                     <AntRow style={{ marginTop: "-5px" }}>
                       <Caption className="twentyFont" light thin>
                         {loadStudent.appliedFor
-                          ? loadStudent.appliedFor
-                          : "Social Media Intern Placeholder"}
+                          ? props.listings.find(
+                              (listing) => listing.Id === loadStudent.appliedFor
+                            ).title
+                          : "N/A"}
                       </Caption>
                     </AntRow>
                     <AntRow className="pt-2 student-info-header" align="middle">
@@ -294,8 +320,11 @@ const StudentInfo = (props) => {
                       <AntCol sm={16} lg={20}>
                         <Caption className="sixteenFont" bolded>
                           {loadStudent.appliedFor
-                            ? loadStudent.appliedFor
-                            : "Placeholder"}
+                            ? props.listings.find(
+                                (listing) =>
+                                  listing.Id === loadStudent.appliedFor
+                              ).title
+                            : "N/A"}
                         </Caption>
                       </AntCol>
                     </AntRow>
@@ -435,12 +464,6 @@ const StudentInfo = (props) => {
             </InnerContainer>
           )}
         </Transition>
-      </AntRow>
-    );
-  } else {
-    return (
-      <AntRow className="py-2" justify="center" style={{ width: "100%" }}>
-        <StudentInfoSkeleton />
       </AntRow>
     );
   }

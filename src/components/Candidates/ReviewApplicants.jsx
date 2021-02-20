@@ -195,7 +195,8 @@ class ReviewApplicants extends Component {
             align: "universal-center",
           }}
         />
-        {this.props.loadingStatuses.isCandidateLoading ? (
+        {this.props.loadingStatuses.isCandidateLoading ||
+        this.props.loadingStatuses.isListingLoading ? (
           <>
             <CandidateQuickviewTabSkeleton />
             <CandidateQuickviewTabSkeleton />
@@ -217,6 +218,7 @@ class ReviewApplicants extends Component {
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
+              listings={this.props.listings}
             />
           ))
         ) : (
@@ -235,7 +237,8 @@ class ReviewApplicants extends Component {
     ) : (
       <React.Fragment>
         <Divider />
-        {this.props.loadingStatuses.isCandidateLoading ? (
+        {this.props.loadingStatuses.isCandidateLoading ||
+        this.props.loadingStatuses.isListingLoading ? (
           <>
             <CandidateDetailedviewSkeleton />
             <CandidateDetailedviewSkeleton />
@@ -280,6 +283,7 @@ class ReviewApplicants extends Component {
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
+              listings={this.props.listings}
             />
           ))
         ) : (
@@ -332,7 +336,8 @@ class ReviewApplicants extends Component {
             align: "universal-center",
           }}
         />
-        {this.props.loadingStatuses.isCandidateLoading ? (
+        {this.props.loadingStatuses.isCandidateLoading ||
+        this.props.loadingStatuses.isListingLoading ? (
           <>
             {_.times(localStorage.getItem("NumReview"), () => (
               <CandidateQuickviewTabSkeleton review={true} />
@@ -354,6 +359,7 @@ class ReviewApplicants extends Component {
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
+              listings={this.props.listings}
             />
           ))
         ) : (
@@ -375,7 +381,8 @@ class ReviewApplicants extends Component {
           Marked for Review
         </Header>
         <Divider />
-        {this.props.loadingStatuses.isCandidateLoading ? (
+        {this.props.loadingStatuses.isCandidateLoading ||
+        this.props.loadingStatuses.isListingLoading ? (
           <>
             {_.times(localStorage.getItem("NumReview"), () => (
               <CandidateDetailedviewSkeleton review={true} />
@@ -420,6 +427,7 @@ class ReviewApplicants extends Component {
               onReview={() => this.handleReview(student.Id)}
               onInterview={() => this.handleInterviewUnread(student.Id)}
               onReject={() => this.handleReject(student.Id)}
+              listings={this.props.listings}
             />
           ))
         ) : (

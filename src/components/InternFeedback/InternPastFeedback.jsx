@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Row, Col, Avatar, Button, Grid, Tooltip, Modal } from "antd";
-import { BiCheckCircle } from "react-icons/bi";
+import { BiCheckCircle, BiMessageSquareDetail } from "react-icons/bi";
 
 import {
   Header,
@@ -151,24 +151,34 @@ const InternPastFeedback = (props) => {
         <Header className="twentyTwoFont mb-point-25" bolded>
           Past Feedback
         </Header>
-        <QueueAnim style={{ width: "100%" }}>
-          {props.loading
-            ? null
-            : _.sortBy(
-                _.filter(student.feedback, (feedback) => feedback.isRead),
-                "date"
-              ).map((data) => <FeedbackTab student={student} data={data} />)}
-        </QueueAnim>
+        {_.filter(student.feedback, (feedback) => feedback.isRead).length >
+        0 ? (
+          <QueueAnim style={{ width: "100%" }}>
+            {props.loading
+              ? null
+              : _.sortBy(
+                  _.filter(student.feedback, (feedback) => feedback.isRead),
+                  "date"
+                ).map((data) => <FeedbackTab student={student} data={data} />)}
+          </QueueAnim>
+        ) : (
+          <div className="py-5 universal-center ">
+            <Row justify="center" align="middle">
+              <BiMessageSquareDetail className="internship-posting-no-content-icon" />
+            </Row>
+            <Row justify="center" align="middle">
+              <Header className="twentyFourFont" color="#bfbfbf">
+                No Recent Feedback
+              </Header>
+            </Row>
+          </div>
+        )}
       </Row>
     </>
   );
 };
 
-const FeedbackTab = ({
-  data,
-  student,
-  markRead,
-}) => {
+const FeedbackTab = ({ data, student, markRead }) => {
   const [show, setShow] = useState(false);
 
   const { useBreakpoint } = Grid;

@@ -53,7 +53,7 @@ const MainPage = (props) => {
   const getDotCount = (prop) => {
     let dotCount;
 
-    console.log("Running getDotCount for: " + prop);
+    //console.log("Running getDotCount for: " + prop);
 
     switch (prop) {
       case "Applicants":
@@ -117,8 +117,7 @@ const MainPage = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("md");
 
-
-    console.log(pageIndex);
+  //console.log(pageIndex);
   return (
     <PageContainer>
       <NavSearch title="Overview" searchBar={false} />
@@ -164,18 +163,18 @@ const MainPage = (props) => {
                       )
                       .map((post) => (
                         <PageListings
-                          name={post.Title}
+                          name={post.title}
                           interns={
                             props.candidates.filter(
-                              (candidate) => candidate.appliedFor === post.Title
+                              (candidate) => candidate.appliedFor === post.Id
                             ).length
                           }
                           accepted={
                             props.interns.filter(
-                              (intern) => intern.appliedFor === post.Title
+                              (intern) => intern.appliedFor === post.Id
                             ).length
                           }
-                          industry={post.Industries}
+                          industry={post.industries}
                           id={post.Id}
                         />
                       ))}
@@ -226,7 +225,11 @@ const MainPage = (props) => {
                           id={student.Id}
                           tag={false}
                           type={student.status}
-                          position={student.appliedFor}
+                          position={
+                            props.listings.find(
+                              (listing) => listing.Id === student.appliedFor
+                            ).title
+                          }
                         />
                       ))}
                   </>
@@ -316,7 +319,11 @@ const MainPage = (props) => {
                         id={student.Id}
                         tag={true}
                         type={student.status}
-                        position={student.appliedFor}
+                        position={
+                          props.listings.find(
+                            (listing) => listing.Id === student.appliedFor
+                          ).title
+                        }
                       />
                     ))
                 ) : (
@@ -330,7 +337,7 @@ const MainPage = (props) => {
 
             <AntRow gutter={[32, 16]} style={{ marginTop: "-20px" }}>
               <AntCol xs={24} md={{ span: 24, order: 1 }} lg={14} xl={16}>
-              {getDotCount("Listings")}
+                {getDotCount("Listings")}
                 {props.loading.isListingLoading ? (
                   <DotSkeletonSpacer />
                 ) : listings.length > CARD_PER_PAGE ? (
@@ -357,7 +364,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={0} md={{ span: 12, order: 2 }} lg={10} xl={8}>
-              {getDotCount("Incoming Applicants")}
+                {getDotCount("Incoming Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(
@@ -386,7 +393,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={24} md={{ span: 12, order: 2 }} lg={0}>
-              {getDotCount("Applicants")}
+                {getDotCount("Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(
@@ -443,8 +450,12 @@ const MainPage = (props) => {
                         <PageFeedback
                           firstName={student.formData["0"]["First Name"]}
                           lastName={student.formData["0"]["Last Name"]}
-                          school={student.school.name}
-                          position={student.appliedFor}
+                          school={student.school ? student.school.name : "N/A"}
+                          position={
+                            props.listings.find(
+                              (listing) => listing.Id === student.appliedFor
+                            ).title
+                          }
                           id={student.Id}
                         />
                       ))}
@@ -508,7 +519,11 @@ const MainPage = (props) => {
                           id={student.Id}
                           tag={true}
                           type={student.status}
-                          position={student.appliedFor}
+                          position={
+                            props.listings.find(
+                              (listing) => listing.Id === student.appliedFor
+                            ).title
+                          }
                         />
                       ))}
                   </>
@@ -523,7 +538,7 @@ const MainPage = (props) => {
 
             <AntRow gutter={[32, 16]} style={{ flex: 1, marginTop: "-20px" }}>
               <AntCol xs={24} lg={14} xl={16}>
-              {getDotCount("Interns")}
+                {getDotCount("Interns")}
                 {props.loading.isInternLoading ? (
                   <DotSkeletonSpacer />
                 ) : interns.length > CARD_PER_PAGE ? (
@@ -550,7 +565,7 @@ const MainPage = (props) => {
                 ) : null}
               </AntCol>
               <AntCol xs={0} lg={10} xl={8}>
-              {getDotCount("Applicants")}
+                {getDotCount("Applicants")}
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : candidates.filter(

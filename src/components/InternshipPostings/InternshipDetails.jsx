@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Input,
@@ -36,6 +36,30 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import _ from "lodash";
+
+import gql from "graphql-tag";
+import { print } from "graphql";
+
+// prettier-ignore
+const MUTATION = gql`
+mutation MyMutation ($Id:String!, $listings:AWSJSON){
+  updateBusinessInfo(input: {Id: $Id, listings: $listings}) {
+    listings {
+      Id
+      additionalInfo
+      address
+      availableWorkDays
+      availableWorkTimes
+      description
+      filters
+      industries
+      internshipDates
+      isPaid
+      title
+    }
+  }
+}
+`
 
 const { TextArea } = Input;
 const { Option, OptGroup } = Select;
@@ -163,27 +187,27 @@ const FormProps = {
   },
   Title: {
     key: "title",
-    name: "Title",
+    name: "title",
     rules: validationRules(true, "listing title", "string"),
   },
   Description: {
     key: "description",
-    name: "Description",
+    name: "description",
     rules: validationRules(true, "listing description", "string"),
   },
   Address: {
     key: "address",
-    name: "Address",
+    name: "address",
     rules: validationRules(true, "listing location", "string"),
   },
   Industries: {
     key: "industries",
-    name: "Industries",
+    name: "industries",
     rules: validationRules(true, "relevant industries", "string"),
   },
   InternshipDates: {
     key: "internshipDates",
-    name: "Internship Dates",
+    name: "internshipDates",
     rules: [
       {
         required: true,
@@ -193,15 +217,21 @@ const FormProps = {
   },
   AvailableWorkDays: {
     key: "availableWorkDays",
-    name: "Available Work Days",
+    name: "availableWorkDays",
   },
   AvailableWorkTimes: {
     key: "availableWorkTimes",
-    name: "Available Work Times",
+    name: "availableWorkTimes",
   },
   AdditionalInfo: {
     key: "additionalInfo",
-    name: "Additional Info",
+    name: "additionalInfo",
+  },
+  IsPaid: {
+    key: "isPaid",
+    name: "isPaid",
+    valuePropName: "checked",
+    defaultChecked: false,
   },
 };
 
@@ -224,78 +254,71 @@ class InternshipDetails extends React.Component {
 
     this.state = {
       isNewListing: true,
-      filters: null,
       loading: true,
     };
   }
   formRef = React.createRef();
 
   componentDidMount() {
-    this.findListingData();
+    if (!this.props.location.pathname.includes("add-listing")) {
+      this.setState({ isNewListing: false });
+    }
+    console.log(this.props);
   }
 
-  componentDidUpdate() {
-    if (this.state.filters == null) {
-      this.findListingData();
+  onFinish = async (values, allFilters) => {
+    values.filters = allFilters;
+    if (typeof values.isPaid === undefined) {
+      values.isPaid = false;
     }
-  }
-
-  findListingData = () => {
-    if (!this.props.loading) {
-      if (!this.props.location.pathname.includes("add-listing")) {
-        this.setState({ isNewListing: false });
-
-        let listingData = this.props.listings.filter(
-          (listing) => listing.Id === this.props.location.pathname.split("/")[2]
-        )[0];
-
-        try {
-          // Reassign with spread operator to avoid using deep clones which aren't as time efficient
-          listingData = {
-            ...listingData,
-            "Internship Dates": [
-              moment(listingData["Internship Dates"][0]),
-              moment(listingData["Internship Dates"][1]),
-            ],
-          };
-        } catch (e) {}
-        this.setState({ filters: listingData.Filters }, () => {
-          //console.log(this.state);
-          console.log("Form ref is " + JSON.stringify(this.formRef));
-          this.setState({ loading: false }, () => {
-            this.formRef.current.setFieldsValue(listingData);
-          });
-        });
-      }
-    }
-  };
-
-  onFinish = (values, allFilters) => {
     console.log(values);
-    console.log(allFilters);
-    values.Filters = allFilters;
 
-    if (this.state.isNewListing === true) {
+    if (this.state.isNewListing) {
       let uuid = uuidv4();
       values.Id = uuid;
-      this.props.addListing(JSON.parse(values));
+      this.props.addListing(values);
     } else {
       values.Id = this.props.location.pathname.split("/")[2];
       this.props.updateListing(values.Id, values);
     }
+    let access = await this.props.getAccess();
 
-    const headers = {
+    axios({
+      url: "/api/update_internship_listings",
+      method: "post",
       headers: {
-        Authorization: "Bearer " + this.props.id,
-        ListingId: values.Id,
+        Authorization: access,
       },
-    };
+      data: {
+        query: print(MUTATION),
+        variables: {
+          Id: this.props.id,
+          listings: JSON.stringify(this.props.listings),
+        },
+      },
+    }).then((result) => {
+      console.log(result.data);
 
-    axios
-      .post("/api/update_internship_listings", values, headers)
-      .then((response) => {
-        console.log(JSON.parse(response.data));
-      });
+      if (this.state.isNewListing) {
+        //Time to generate the fake students for each listing
+        axios({
+          url: "/api/new_listing_trigger",
+          method: "post",
+          headers: {},
+          data: {
+            business_id: this.props.id,
+            listing_id: values.Id,
+            num_students: 5,
+          },
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
   };
 
   render() {
@@ -341,6 +364,7 @@ class InternshipDetails extends React.Component {
                     formRef={this.formRef}
                     onFinish={this.onFinish}
                     isNewPosting={true}
+                    listings={this.props.listings}
                   />
                 </div>
               )}
@@ -390,6 +414,8 @@ class InternshipDetails extends React.Component {
                       formRef={this.formRef}
                       onFinish={this.onFinish}
                       isNewPosting={false}
+                      listings={this.props.listings}
+                      location={this.props.location}
                     />
                   </Spin>
                 </div>
@@ -413,6 +439,8 @@ const InternshipDetailForm = ({
   title,
   formRef,
   isNewPosting,
+  listings,
+  location,
 }) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
@@ -428,6 +456,32 @@ const InternshipDetailForm = ({
 
   //Hash table/Set of used options so that they won't re-appear
   const [trackFilled, updateFilled] = useState(new Set());
+
+  useEffect(() => {
+    findListingData();
+  });
+
+  const findListingData = () => {
+    if (!isNewPosting && listings.length !== 0) {
+      let listingData = listings.filter(
+        (listing) => listing.Id === location.pathname.split("/")[2]
+      )[0];
+
+      try {
+        // Reassign with spread operator to avoid using deep clones which aren't as time efficient
+        listingData = {
+          ...listingData,
+          internshipDates: [
+            moment(listingData.internshipDates[0]),
+            moment(listingData.internshipDates[1]),
+          ],
+        };
+      } catch (e) {}
+      //console.log(listingData);
+      modifyPostFilters(listingData.filters);
+      form.setFieldsValue(listingData);
+    }
+  };
 
   /**
    * Rerenders different inputs based on what criterias
@@ -631,7 +685,7 @@ const InternshipDetailForm = ({
        */}
       <Form
         {...FormProps.TotalForm}
-        ref={formRef}
+        form={form}
         onFinish={(values) => onFinish(values, postFilters)}
       >
         <Header className="twentyEightFont universal-center mb-1" bolded>
@@ -769,7 +823,7 @@ const InternshipDetailForm = ({
             <Header className="twentyFont mb-point-5 mt-point-5" subheading>
               Paid or Unpaid? <RequiredAsterisk>*</RequiredAsterisk>
             </Header>
-            <Form.Item>
+            <Form.Item {...FormProps.IsPaid}>
               <Checkbox size="large">
                 <span className="sixteenFont">This Internship is Paid</span>
               </Checkbox>
