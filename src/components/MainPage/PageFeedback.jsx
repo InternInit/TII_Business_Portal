@@ -69,7 +69,7 @@ const PageFeedback = (props) => {
               <Row justify="space-between" align="middle">
                 <Col>
                   <Row>
-                    <Header className="twentyFont" bolded>
+                    <Header className="eighteenFont" bolded>
                       {fullName}
                     </Header>
                   </Row>
@@ -82,11 +82,6 @@ const PageFeedback = (props) => {
                       {position}
                     </Caption>
                   </Row>
-                </Col>
-                <Col>
-                  {/* <Caption className="universal-center sixteenFont" light>
-                  {school}
-                </Caption> */}
                 </Col>
               </Row>
             </Col>
