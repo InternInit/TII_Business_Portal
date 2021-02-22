@@ -34,7 +34,6 @@ const StudentCard = (props) => {
   };
 
   const setColor = () => {
-    //console.log(firstName+ " is " + type);
     switch (type) {
       case "Review":
         return {
@@ -86,9 +85,6 @@ const StudentCard = (props) => {
     <Link to={`/applicants/${id}`}>
       <TabContainer className="px-3 py-1 dashboard-tab">
         <Row align="middle" gutter={[16, 0]}>
-          {/* Old Avatar 
-          <Avatar src={avatar} size={44} icon={<UserOutlined />} />
-          */}
           <SmartAvatar size={44} name={firstName} />
           <Col flex="auto">
             {/* Name */}
