@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Row as AntRow, Col as AntCol, Grid, Pagination } from "antd";
-import { Transition, config } from "react-spring/renderprops";
+import { Transition, config, animated } from "react-spring/renderprops";
 
 import PageListings from "./PageListings.jsx";
 import PageFeedback from "./PageFeedback.jsx";
@@ -24,6 +24,7 @@ import _ from "lodash";
 
 const MainPage = (props) => {
   let { candidates, listings, interns } = props;
+  const AnimatedInner = animated(InnerContainer);
 
   //current page of the pagination
   const [page, setPage] = useState({
@@ -121,6 +122,7 @@ const MainPage = (props) => {
       <NavSearch title="Overview" searchBar={false} />
 
       <Transition
+        native
         items={props.location.pathname}
         from={{ opacity: 0.5, transform: "translateY(20px)" }}
         enter={{ opacity: 1, transform: "translateY(0px)" }}
@@ -128,7 +130,7 @@ const MainPage = (props) => {
         config={config.stiff}
       >
         {(location) => (styling) => (
-          <InnerContainer
+          <AnimatedInner
             key="mainPageContainer"
             className="py-2"
             style={{ ...styling }}
@@ -588,24 +590,23 @@ const MainPage = (props) => {
                     </AntRow>
                   ) : (
                     <AntRow justify="center">
-                    {pageIndex.incomingPage.map((number) => (
-                      <div
-                        onClick={() => {
-                          setPage({
-                            ...page,
-                            incomingPage: number,
-                          });
-                        }}
-                        className={
-                          page.incomingPage === number
-                            ? "dashboard-pagination-current-page"
-                            : "dashboard-pagination"
-                        }
-                      />
-                    ))}
-                  </AntRow>
+                      {pageIndex.incomingPage.map((number) => (
+                        <div
+                          onClick={() => {
+                            setPage({
+                              ...page,
+                              incomingPage: number,
+                            });
+                          }}
+                          className={
+                            page.incomingPage === number
+                              ? "dashboard-pagination-current-page"
+                              : "dashboard-pagination"
+                          }
+                        />
+                      ))}
+                    </AntRow>
                   )
-
                 ) : null}
               </AntCol>
               <AntCol xs={0} md={{ span: 12, order: 2 }} lg={0}>
@@ -613,26 +614,25 @@ const MainPage = (props) => {
                 {props.loading.isCandidateLoading ? (
                   <DotSkeletonSpacer />
                 ) : state.applicants.length > CARD_PER_PAGE ? (
-                  isLg ? null : (
-                    state.applicants.length > CARD_PER_PAGE * 3 ? (
-                      <AntRow justify="center">
-                        <Pagination
-                          pageSize={CARD_PER_PAGE}
-                          total={state.applicants.length}
-                          defaultCurrent={1}
-                          current={page.applicantPage + 1}
-                          showSizeChanger={false}
-                          onChange={(newPage) => {
-                            setPage({
-                              ...page,
-                              applicantPage: newPage - 1,
-                            });
-                          }}
-                          showLessItems={true}
-                        />
-                      </AntRow>
-                    ) : (
-                      <AntRow justify="center">
+                  isLg ? null : state.applicants.length > CARD_PER_PAGE * 3 ? (
+                    <AntRow justify="center">
+                      <Pagination
+                        pageSize={CARD_PER_PAGE}
+                        total={state.applicants.length}
+                        defaultCurrent={1}
+                        current={page.applicantPage + 1}
+                        showSizeChanger={false}
+                        onChange={(newPage) => {
+                          setPage({
+                            ...page,
+                            applicantPage: newPage - 1,
+                          });
+                        }}
+                        showLessItems={true}
+                      />
+                    </AntRow>
+                  ) : (
+                    <AntRow justify="center">
                       {pageIndex.applicantPage.map((number) => (
                         <div
                           onClick={() => {
@@ -649,7 +649,6 @@ const MainPage = (props) => {
                         />
                       ))}
                     </AntRow>
-                    )
                   )
                 ) : null}
               </AntCol>
@@ -660,20 +659,20 @@ const MainPage = (props) => {
                 ) : interns.length > CARD_PER_PAGE ? (
                   interns.length > CARD_PER_PAGE * 3 ? (
                     <AntRow justify="center">
-                        <Pagination
-                          pageSize={CARD_PER_PAGE}
-                          total={interns.length}
-                          defaultCurrent={1}
-                          current={page.internPage + 1}
-                          showSizeChanger={false}
-                          onChange={(newPage) => {
-                            setPage({
-                              ...page,
-                              internPage: newPage - 1,
-                            });
-                          }}
-                        />
-                      </AntRow>
+                      <Pagination
+                        pageSize={CARD_PER_PAGE}
+                        total={interns.length}
+                        defaultCurrent={1}
+                        current={page.internPage + 1}
+                        showSizeChanger={false}
+                        onChange={(newPage) => {
+                          setPage({
+                            ...page,
+                            internPage: newPage - 1,
+                          });
+                        }}
+                      />
+                    </AntRow>
                   ) : (
                     <AntRow justify="center">
                       {pageIndex.internPage.map((number) => (
@@ -702,21 +701,21 @@ const MainPage = (props) => {
                 ) : state.applicants.length > CARD_PER_PAGE ? (
                   state.applicants.length > CARD_PER_PAGE * 3 ? (
                     <AntRow justify="center">
-                        <Pagination
-                          pageSize={CARD_PER_PAGE}
-                          total={state.applicants.length}
-                          defaultCurrent={1}
-                          current={page.applicantPage + 1}
-                          showSizeChanger={false}
-                          onChange={(newPage) => {
-                            setPage({
-                              ...page,
-                              applicantPage: newPage - 1,
-                            });
-                          }}
-                          showLessItems={true}
-                        />
-                      </AntRow>
+                      <Pagination
+                        pageSize={CARD_PER_PAGE}
+                        total={state.applicants.length}
+                        defaultCurrent={1}
+                        current={page.applicantPage + 1}
+                        showSizeChanger={false}
+                        onChange={(newPage) => {
+                          setPage({
+                            ...page,
+                            applicantPage: newPage - 1,
+                          });
+                        }}
+                        showLessItems={true}
+                      />
+                    </AntRow>
                   ) : (
                     <AntRow justify="center">
                       {pageIndex.applicantPage.map((number) => (
@@ -804,49 +803,48 @@ const MainPage = (props) => {
                   style={{ flex: 1, marginTop: "-20px" }}
                 >
                   <AntCol xs={24} md={{ span: 0, order: 2 }} lg={0}>
-                  {getDotCount("Applicants")}
-                {props.loading.isCandidateLoading ? (
-                  <DotSkeletonSpacer />
-                ) : state.applicants.length > CARD_PER_PAGE ? (
-                  isLg ? null : (
-                    state.applicants.length > CARD_PER_PAGE * 3 ? (
-                      <AntRow justify="center">
-                        <Pagination
-                          pageSize={CARD_PER_PAGE}
-                          total={state.applicants.length}
-                          defaultCurrent={1}
-                          current={page.applicantPage + 1}
-                          showSizeChanger={false}
-                          onChange={(newPage) => {
-                            setPage({
-                              ...page,
-                              applicantPage: newPage - 1,
-                            });
-                          }}
-                          showLessItems={true}
-                        />
-                      </AntRow>
-                    ) : (
-                      <AntRow justify="center">
-                      {pageIndex.applicantPage.map((number) => (
-                        <div
-                          onClick={() => {
-                            setPage({
-                              ...page,
-                              applicantPage: number,
-                            });
-                          }}
-                          className={
-                            page.applicantPage === number
-                              ? "dashboard-pagination-current-page"
-                              : "dashboard-pagination"
-                          }
-                        />
-                      ))}
-                    </AntRow>
-                    )
-                  )
-                ) : null}
+                    {getDotCount("Applicants")}
+                    {props.loading.isCandidateLoading ? (
+                      <DotSkeletonSpacer />
+                    ) : state.applicants.length > CARD_PER_PAGE ? (
+                      isLg ? null : state.applicants.length >
+                        CARD_PER_PAGE * 3 ? (
+                        <AntRow justify="center">
+                          <Pagination
+                            pageSize={CARD_PER_PAGE}
+                            total={state.applicants.length}
+                            defaultCurrent={1}
+                            current={page.applicantPage + 1}
+                            showSizeChanger={false}
+                            onChange={(newPage) => {
+                              setPage({
+                                ...page,
+                                applicantPage: newPage - 1,
+                              });
+                            }}
+                            showLessItems={true}
+                          />
+                        </AntRow>
+                      ) : (
+                        <AntRow justify="center">
+                          {pageIndex.applicantPage.map((number) => (
+                            <div
+                              onClick={() => {
+                                setPage({
+                                  ...page,
+                                  applicantPage: number,
+                                });
+                              }}
+                              className={
+                                page.applicantPage === number
+                                  ? "dashboard-pagination-current-page"
+                                  : "dashboard-pagination"
+                              }
+                            />
+                          ))}
+                        </AntRow>
+                      )
+                    ) : null}
                   </AntCol>
                 </AntRow>
               </>
@@ -917,40 +915,40 @@ const MainPage = (props) => {
                       <DotSkeletonSpacer />
                     ) : interns.length > CARD_PER_PAGE ? (
                       interns.length > CARD_PER_PAGE * 3 ? (
-                      <AntRow justify="center">
-                        <Pagination
-                          pageSize={CARD_PER_PAGE}
-                          total={interns.length}
-                          defaultCurrent={1}
-                          current={page.internPage + 1}
-                          showSizeChanger={false}
-                          onChange={(newPage) => {
-                            setPage({
-                              ...page,
-                              internPage: newPage - 1,
-                            });
-                          }}
-                          showLessItems={true}
-                        />
-                      </AntRow>
-                      ) : (
                         <AntRow justify="center">
-                        {pageIndex.internPage.map((number) => (
-                          <div
-                            onClick={() => {
+                          <Pagination
+                            pageSize={CARD_PER_PAGE}
+                            total={interns.length}
+                            defaultCurrent={1}
+                            current={page.internPage + 1}
+                            showSizeChanger={false}
+                            onChange={(newPage) => {
                               setPage({
                                 ...page,
-                                internPage: number,
+                                internPage: newPage - 1,
                               });
                             }}
-                            className={
-                              page.internPage === number
-                                ? "dashboard-pagination-current-page"
-                                : "dashboard-pagination"
-                            }
+                            showLessItems={true}
                           />
-                        ))}
-                      </AntRow>
+                        </AntRow>
+                      ) : (
+                        <AntRow justify="center">
+                          {pageIndex.internPage.map((number) => (
+                            <div
+                              onClick={() => {
+                                setPage({
+                                  ...page,
+                                  internPage: number,
+                                });
+                              }}
+                              className={
+                                page.internPage === number
+                                  ? "dashboard-pagination-current-page"
+                                  : "dashboard-pagination"
+                              }
+                            />
+                          ))}
+                        </AntRow>
                       )
                     ) : null}
                   </AntCol>
@@ -963,7 +961,7 @@ const MainPage = (props) => {
                 internsTaken={interns.length}
               />
             </AntRow>
-          </InnerContainer>
+          </AnimatedInner>
         )}
       </Transition>
     </PageContainer>
