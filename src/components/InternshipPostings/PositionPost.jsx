@@ -78,10 +78,11 @@ class PositionPost extends Component {
     };
   }
 
-  removeListing = (id) => {
+  removeListing = async (id) => {
     let newListings = this.props.listings.filter(
       (listing) => listing.Id !== id
     );
+    let access = this.props.getAccess();
 
     this.props.batchUpdateListings(newListings);
 

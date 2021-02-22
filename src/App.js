@@ -571,7 +571,7 @@ class App extends React.Component {
                     <Route
                       path="/internship-listings"
                       exact
-                      render={(props) => <PositionPost {...props} />}
+                      render={(props) => <PositionPost {...props} getAccess={this.getAccess}/>}
                     />
                     <Route
                       key="internshipdetailroute"
