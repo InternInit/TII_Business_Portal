@@ -10,6 +10,9 @@ $screen-lg-min: 992px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
 
+//Extra large devices
+$screen-xxl-min: 1600px;
+
 @mixin sm {
     @media (max-width: #{$screen-sm-min}) {
         @content;
@@ -33,6 +36,42 @@ $screen-xl-min: 1200px;
  // Extra large devices
  @mixin xl {
     @media (max-width: #{$screen-xl-min}) {
+        @content;
+    }
+ }
+
+ //Removals only between breakpoints
+
+ @mixin smOnly {
+    @media (max-width: #{$screen-sm-min}) {
+        @content;
+    }
+ }
+ 
+ // Medium devices
+ @mixin mdOnly {
+    @media (min-width: #{$screen-sm-min}) and (max-width: #{$screen-md-min}) {
+        @content;
+    }
+ }
+ 
+ // Large devices
+ @mixin lgOnly {
+    @media (min-width: #{$screen-md-min}) and (max-width: #{$screen-lg-min}) {
+        @content;
+    }
+ }
+ 
+ // Extra large devices
+ @mixin xlOnly {
+    @media (min-width: #{$screen-lg-min}) and (max-width: #{$screen-xl-min}) {
+        @content;
+    }
+ }
+ 
+ //Extra extra large
+ @mixin xxlOnly {
+    @media (min-width: #{$screen-xxl-min}) {
         @content;
     }
  }

@@ -48,6 +48,7 @@ const MainPage = (props) => {
           candidate.status.includes("Review")
       ),
     });
+    console.log("UseEffect ran!!!!");
   }, [candidates]);
 
   const CARD_PER_PAGE = 3;
@@ -67,11 +68,7 @@ const MainPage = (props) => {
     switch (prop) {
       case "Applicants":
         dotCount = Math.round(
-          candidates.filter(
-            (candidate) =>
-              candidate.status.includes("Interview") ||
-              candidate.status.includes("Review")
-          ).length /
+          state.applicants.length /
             CARD_PER_PAGE +
             0.49
         );
@@ -90,7 +87,7 @@ const MainPage = (props) => {
         break;
       case "Incoming Applicants":
         dotCount = Math.round(
-          candidates.filter((candidate) => candidate.status === "Pending")
+          state.incomingApplicants
             .length /
             CARD_PER_PAGE +
             0.49

@@ -65,6 +65,32 @@ a:hover {
   }
 }
 
+.rm-o-sm {
+  @include smOnly {
+    display: none;
+  }
+}
+.rm-o-md {
+  @include mdOnly {
+    display: none;
+  }
+}
+.rm-o-lg {
+  @include lgOnly {
+    display: none;
+  }
+}
+.rm-o-xl {
+  @include xlOnly {
+    display: none;
+  }
+}
+.rm-o-xxl {
+  @include xxlOnly {
+    display: none;
+  }
+}
+
 .global-container {
   background-color: $gray-1;
   height: 100vh;
