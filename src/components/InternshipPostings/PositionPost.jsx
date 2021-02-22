@@ -21,6 +21,30 @@ import _ from "underscore";
 import { connect } from "react-redux";
 import { addListing, batchUpdateListings } from "../../redux/actions";
 
+import gql from "graphql-tag";
+import { print } from "graphql";
+
+// prettier-ignore
+const MUTATION = gql`
+mutation MyMutation ($Id:String!, $listings:AWSJSON){
+  updateBusinessInfo(input: {Id: $Id, listings: $listings}) {
+    listings {
+      Id
+      additionalInfo
+      address
+      availableWorkDays
+      availableWorkTimes
+      description
+      filters
+      industries
+      internshipDates
+      isPaid
+      title
+    }
+  }
+}
+`
+
 //CSS Constants
 
 //Ant Design Styles
@@ -54,7 +78,37 @@ class PositionPost extends Component {
     };
   }
 
-  helloWorld = "";
+  removeListing = (id) => {
+    let newListings = this.props.listings.filter(
+      (listing) => listing.Id !== id
+    );
+
+    this.props.batchUpdateListings(newListings);
+
+    axios({
+      url: "/api/update_internship_listings",
+      method: "post",
+      headers: {
+        Authorization: access,
+      },
+      data: {
+        query: print(MUTATION),
+        variables: {
+          Id: id,
+          listings: JSON.stringify(newListings),
+        },
+      },
+    })
+      .then((result) => {
+        let newCandidates = this.props.candidates.filter(
+          (candidate) => candidate.appliedFor !== id
+        );
+        let newInterns = this.props.candidates.filter(
+          (candidate) => candidate.appliedFor !== id
+        );
+      })
+      .catch((error) => {});
+  };
 
   render() {
     return (
@@ -125,6 +179,7 @@ class PositionPost extends Component {
                       }
                       id={post.Id}
                       industry={post.industries}
+                      removeListing={this.removeListing}
                     />
                   ))
                 ) : (

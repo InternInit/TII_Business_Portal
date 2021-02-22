@@ -22,10 +22,8 @@ const PostingTab = (props) => {
     .map((breakpoint) => breakpoint[0])
     .includes("xs");
 
-  let { status, name, interns, industry } = props;
+  let { status, name, interns, industry, id } = props;
   let statusColor = "";
-
-  let { id } = props;
 
   switch (status) {
     case "Active":
@@ -133,7 +131,10 @@ const PostingTab = (props) => {
           />*/}
         </AntCol>
       </AntRow>
-      <IoIosClose className="posting-tab-cancel" />
+      <IoIosClose
+        onClick={() => props.removeListing(id)}
+        className="posting-tab-cancel"
+      />
     </TabContainer>
   );
 };
