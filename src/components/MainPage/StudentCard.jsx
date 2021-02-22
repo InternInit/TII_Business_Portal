@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Row, Col, Grid } from "antd";
+import { Row, Col, Grid } from "antd";
 import {
   Header,
   Caption,
@@ -9,10 +9,7 @@ import {
 
 import SmartAvatar from "../General/SmartAvatar";
 
-import { UserOutlined } from "@ant-design/icons";
-
 import { Link } from "react-router-dom";
-import { reduce } from "underscore";
 
 const StudentCard = (props) => {
   const { firstName, lastName, avatar, id, tag, type, position } = props;
@@ -100,7 +97,7 @@ const StudentCard = (props) => {
                   </Caption>
                 </div>
               </Col>
-              {tag && (isXl || isXs || (isMd && !isLg)) ? (
+              {tag && (
                 <Col>
                   <BorderlessTag
                     style={{ marginRight: "-20px", marginTop: "0px" }}
@@ -111,7 +108,7 @@ const StudentCard = (props) => {
                     {type.includes("Interview") ? "Interview" : type}
                   </BorderlessTag>
                 </Col>
-              ) : null}
+              )}
             </Row>
 
             {/* Position */}
