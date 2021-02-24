@@ -22,9 +22,10 @@ import {
 
 import _ from "lodash";
 
+const AnimatedInner = animated(InnerContainer);
+
 const MainPage = (props) => {
   let { candidates, listings, interns } = props;
-  const AnimatedInner = animated(InnerContainer);
 
   //current page of the pagination
   const [page, setPage] = useState({
