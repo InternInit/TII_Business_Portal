@@ -234,6 +234,10 @@ const FormProps = {
     valuePropName: "checked",
     defaultChecked: false,
   },
+  InternshipType: {
+    key: "internshipType",
+    name: "internshipType",
+  },
 };
 
 const mapStateToProps = (state) => {
@@ -823,18 +827,25 @@ const InternshipDetailForm = ({
           />
         </Form.Item>
 
-        <AntRow gutter={[32, 16]}>
-          <AntCol>
-            <Header className="twentyFont mb-point-5 mt-point-5" subheading>
-              Paid or Unpaid? <RequiredAsterisk>*</RequiredAsterisk>
-            </Header>
-            <Form.Item {...FormProps.IsPaid}>
-              <Checkbox size="large">
-                <span className="sixteenFont">This Internship is Paid</span>
-              </Checkbox>
-            </Form.Item>
-          </AntCol>
-        </AntRow>
+        <Header className="twentyFont mb-point-5 mt-point-5" subheading>
+          Paid or Unpaid? <RequiredAsterisk>*</RequiredAsterisk>
+        </Header>
+        <Form.Item {...FormProps.IsPaid}>
+          <Checkbox size="large">
+            <span className="sixteenFont">This Internship is Paid</span>
+          </Checkbox>
+        </Form.Item>
+
+        <Header className="twentyFont mb-point-5 mt-point-5" subheading>
+          Internship Type <RequiredAsterisk>*</RequiredAsterisk>
+        </Header>
+        <Form.Item {...FormProps.InternshipType}>
+          <Select size="large" style={{width: "30%"}}>
+            <Option value="Virtual">Virtual</Option>
+            <Option value="In-Person">In-Person</Option>
+            <Option value="Hybrid">Hybrid</Option>
+          </Select>
+        </Form.Item>
 
         <AntRow gutter={[16, 16]}>
           <AntCol span={24}>
