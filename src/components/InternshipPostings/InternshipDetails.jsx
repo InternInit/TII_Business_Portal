@@ -453,6 +453,7 @@ const InternshipDetailForm = ({
 }) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
+  const [tagForm] = Form.useForm();
 
   //Modal Toggle
   const [isModalOn, toggleModal] = useState(false);
@@ -630,7 +631,7 @@ const InternshipDetailForm = ({
   //Runs when the user adds a new filter
   const modalFinish = (values) => {
     console.log(values);
-    form.resetFields();
+    tagForm.resetFields();
 
     /**
      * If the user made a filter submission based on Extracurriculars
@@ -918,12 +919,12 @@ const InternshipDetailForm = ({
         <Modal
           width="45%"
           onCancel={() => {
-            form.resetFields();
+            tagForm.resetFields();
             toggleModal(false);
             toggleCriteria({ ...isCriteriaOn, on: false });
           }}
           onOk={() => {
-            form.submit();
+            tagForm.submit();
             toggleModal(false);
             toggleCriteria({ ...isCriteriaOn, on: false });
           }}
@@ -933,7 +934,7 @@ const InternshipDetailForm = ({
           className="px-4 py-2 universal-center"
         >
           <Header className="twentyFourFont mb-2"> Edit Filter </Header>
-          <Form name="edit-filters" form={form} onFinish={modalFinish}>
+          <Form name="edit-filters" form={tagForm} onFinish={modalFinish}>
             <AntRow gutter={[32, 16]}>
               <AntCol xs={24} lg={6} xl={5}>
                 <Header className="twentyFont universal-left" subheading>
@@ -949,7 +950,7 @@ const InternshipDetailForm = ({
                         on: true,
                         criteria: value,
                       });
-                      form.resetFields([
+                      tagForm.resetFields([
                         "Criteria",
                         "Priority",
                         "CriteriaRestriction",
