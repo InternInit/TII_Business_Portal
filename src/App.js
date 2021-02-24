@@ -338,13 +338,14 @@ class App extends React.Component {
       .then(async (result) => {
         let candidates = [];
         let interns = [];
-        let fetchedData = [];
+        let fetchedData = result.data.newInterns
+
 
         if(result.data.nextToken !== null){
           let pagData = await this.getPaginatedCandidates(result.data.nextToken);
           console.log(pagData.length);
           console.log(result.data.newInterns.length);
-          fetchedData = result.data.newInterns.concat(pagData);
+          fetchedData = fetchedData.concat(pagData);
         }
         
         fetchedData.forEach((candidate) => {

@@ -260,6 +260,7 @@ class InternshipDetails extends React.Component {
     this.state = {
       isNewListing: true,
       loading: true,
+      buttonLoading: false,
     };
   }
   formRef = React.createRef();
@@ -272,6 +273,7 @@ class InternshipDetails extends React.Component {
   }
 
   onFinish = async (values, allFilters) => {
+    this.setState({ buttonLoading: true });
     values.filters = allFilters;
     if (typeof values.isPaid === undefined) {
       values.isPaid = false;
@@ -305,7 +307,7 @@ class InternshipDetails extends React.Component {
       },
     }).then((result) => {
       console.log(result.data);
-
+      this.setState({ buttonLoading: false });
       this.props.history.push("/internship-listings");
 
       if (this.state.isNewListing) {
@@ -374,6 +376,7 @@ class InternshipDetails extends React.Component {
                     onFinish={this.onFinish}
                     isNewPosting={true}
                     listings={this.props.listings}
+                    buttonLoading={this.state.buttonLoading}
                   />
                 </div>
               )}
@@ -450,6 +453,7 @@ const InternshipDetailForm = ({
   isNewPosting,
   listings,
   location,
+  buttonLoading,
 }) => {
   //Form Ref for the modal
   const [form] = Form.useForm();
@@ -841,7 +845,7 @@ const InternshipDetailForm = ({
           Internship Type <RequiredAsterisk>*</RequiredAsterisk>
         </Header>
         <Form.Item {...FormProps.InternshipType}>
-          <Select size="large" style={{width: "30%"}}>
+          <Select size="large" style={{ width: "30%" }}>
             <Option value="Virtual">Virtual</Option>
             <Option value="In-Person">In-Person</Option>
             <Option value="Hybrid">Hybrid</Option>
@@ -1014,6 +1018,7 @@ const InternshipDetailForm = ({
             size="large"
             style={{ width: "36vh" }}
             htmlType="submit"
+            loading={buttonLoading}
           >
             {buttonText}
           </Button>
