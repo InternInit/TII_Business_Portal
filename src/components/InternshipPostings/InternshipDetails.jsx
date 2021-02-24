@@ -469,7 +469,7 @@ const InternshipDetailForm = ({
 
   useEffect(() => {
     findListingData();
-  });
+  }, []);
 
   const findListingData = () => {
     if (!isNewPosting && listings.length !== 0) {
@@ -648,7 +648,7 @@ const InternshipDetailForm = ({
     }
 
     //Adds the filter
-    modifyPostFilters(() => [...postFilters, values]);
+    modifyPostFilters([...postFilters, values]);
   };
 
   const removeItem = (removalIndex) => {
