@@ -180,7 +180,7 @@ class App extends React.Component {
       } else if (res.data.hasOwnProperty("errors")) {
         res.data.errors.forEach((error) => {
           if(error.errorType === "UnauthorizedException") {
-            this.logout();
+            console.log("UE Ex");
           }
         })
       }

@@ -244,6 +244,16 @@ def mutate_candidate_assoc():
     resp_json = json.loads(req.text)
     return json.dumps(resp_json)
 
+@app.route("/api/batch_delete_intern_assocs", methods=["POST"])
+def batch_delete_intern_assocs():
+    query = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(graphQLApiEndpoint, headers={"Authorization": headers.get("Authorization")}, json = json.loads(query))
+    resp_json = json.loads(req.text)
+    return json.dumps(resp_json)
+
+
+
 def delete_keys_from_dict(dictionary, keys):
     for key in keys:
         with suppress(KeyError):

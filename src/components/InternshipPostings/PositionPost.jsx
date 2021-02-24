@@ -45,6 +45,14 @@ mutation MyMutation ($Id:String!, $listings:AWSJSON){
 }
 `
 
+const DELETE_ASSOCS_MUTATION = gql`
+  mutation MyMutation($assocIds: [String]!) {
+    batchDeleteInternAssoc(input: { assocIds: $assocIds }) {
+      internId
+    }
+  }
+`;
+
 //CSS Constants
 
 //Ant Design Styles
@@ -60,6 +68,8 @@ const mapStateToProps = (state) => {
     listings: state.listings,
     loadingStatuses: state.loadingStatuses,
     candidates: state.companyInfo.candidates,
+    interns: state.interns.currentInterns,
+    companyInfo: state.companyInfo,
   };
 };
 
@@ -82,7 +92,7 @@ class PositionPost extends Component {
     let newListings = this.props.listings.filter(
       (listing) => listing.Id !== id
     );
-    let access = this.props.getAccess();
+    let access = await this.props.getAccess();
 
     this.props.batchUpdateListings(newListings);
 
@@ -95,20 +105,50 @@ class PositionPost extends Component {
       data: {
         query: print(MUTATION),
         variables: {
-          Id: id,
+          Id: this.props.companyInfo.id,
           listings: JSON.stringify(newListings),
         },
       },
     })
       .then((result) => {
-        let newCandidates = this.props.candidates.filter(
-          (candidate) => candidate.appliedFor !== id
+        console.log(result.data);
+        let candidatesToRemove = this.props.candidates.filter(
+          (candidate) => candidate.appliedFor === id
         );
-        let newInterns = this.props.candidates.filter(
-          (candidate) => candidate.appliedFor !== id
+        let internsToRemove = this.props.interns.filter(
+          (intern) => intern.appliedFor === id
         );
+        let assocIds = [];
+
+        candidatesToRemove.forEach((candidate) =>
+          assocIds.push(candidate.assocId)
+        );
+
+        internsToRemove.forEach((intern) => assocIds.push(intern.assocId));
+        console.log(assocIds);
+        axios({
+          url: "/api/batch_delete_intern_assocs",
+          method: "post",
+          headers: {
+            Authorization: access,
+          },
+          data: {
+            query: print(DELETE_ASSOCS_MUTATION),
+            variables: {
+              assocIds: assocIds,
+            },
+          },
+        })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -162,7 +202,8 @@ class PositionPost extends Component {
                 />
 
                 {this.props.loadingStatuses.isListingLoading ||
-                this.props.loadingStatuses.isCandidateLoading ? (
+                this.props.loadingStatuses.isCandidateLoading ||
+                this.props.loadingStatuses.isInternLoading ? (
                   <>
                     {_.times(localStorage.getItem("NumListings"), () => (
                       <PostingTabSkeleton />
