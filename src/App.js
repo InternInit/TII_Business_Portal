@@ -84,6 +84,7 @@ query MyQuery($Id: String!) {
       filters
       industries
       internshipDates
+      internshipType
       isPaid
       title
     }
