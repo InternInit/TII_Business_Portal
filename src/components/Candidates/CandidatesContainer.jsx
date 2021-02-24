@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import {
   updateCandidates,
   updateReduxCandidateStatus,
+  updateInterns,
 } from "../../redux/actions";
 
 //axios
@@ -53,11 +54,13 @@ const mapStateToProps = (state) => {
     candidates: state.companyInfo.candidates,
     loading: state.loadingStatuses.isCandidateLoading,
     listings: state.listings,
+    interns: state.interns.currentInterns,
   };
 };
 
 const mapDispatchToProps = {
   updateCandidates,
+  updateInterns,
   updateReduxCandidateStatus,
 };
 
@@ -133,6 +136,16 @@ class CandidatesContainer extends Component {
 
     if (status === "Accepted") {
       this.mutateCandidateAssoc(internId);
+      axios({
+        url: "/api/gen_fake_assocs",
+        method: "post",
+        headers: {},
+        data: {
+          assoc_id: candidate.assocId,
+        },
+      }).then((response) => {
+        console.log(response);
+      });
     }
   };
 
@@ -156,6 +169,11 @@ class CandidatesContainer extends Component {
       },
     }).then((result) => {
       console.log(result.data);
+      let newCandidates = this.props.candidates.filter(
+        (eachCandidate) => eachCandidate.Id !== candidate.Id
+      );
+      this.props.updateCandidates(newCandidates);
+      this.props.updateInterns([...this.props.interns, candidate]);
     });
   };
 

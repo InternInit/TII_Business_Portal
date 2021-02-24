@@ -25,6 +25,8 @@ elif(app.config.get("ENV") == "production"):
     listingTriggerApiUrl = listingTriggerApiUrl.format(stage="prod")
     authApiUrl = authApiUrl.format(stage="prod")
 
+studentAssocApiUrl = listingTriggerApiUrl+"-assoc"
+
 def determine_date_offset(dt_string):
     dt = parse(dt_string)
     if(dt.tzinfo is not None):
@@ -312,6 +314,13 @@ def new_listing_trigger():
     body = request.get_data().decode("utf-8")
     headers = request.headers
     req = requests.post(listingTriggerApiUrl, json = json.loads(body))
+    return jsonify(req.text)
+
+@app.route("/api/gen_fake_assocs", methods=["POST"])
+def gen_fake_assocs():
+    body = request.get_data().decode("utf-8")
+    headers = request.headers
+    req = requests.post(studentAssocApiUrl, json = json.loads(body))
     return jsonify(req.text)
 
 ##############################
