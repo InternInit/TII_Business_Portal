@@ -216,36 +216,30 @@ class App extends React.Component {
       });
   };
 
-  getJwt = () => {
+  getJwt = async () => {
     return new Promise((resolve, reject) => {
-      let app = this;
-      function checkToken() {
-        if (app.inMemoryToken === undefined) {
-          setTimeout(() => {
-            checkToken();
-          }, 10);
-        } else {
-          resolve(app.inMemoryToken.token);
-        }
-      }
-      checkToken();
-    });
+      Auth.currentSession()
+        .then((session) => {
+          resolve(session.idToken.jwtToken);
+        })
+        .catch((error) => {
+          console.log("IdToken Session Error: " + error);
+          reject(error);
+        });
+    })
   };
 
-  getAccess = () => {
+  getAccess = async () => {
     return new Promise((resolve, reject) => {
-      let app = this;
-      function checkToken() {
-        if (app.inMemoryToken === undefined) {
-          setTimeout(() => {
-            checkToken();
-          }, 10);
-        } else {
-          resolve(app.inMemoryToken.access);
-        }
-      }
-      checkToken();
-    });
+      Auth.currentSession()
+        .then((session) => {
+          resolve(session.accessToken.jwtToken);
+        })
+        .catch((error) => {
+          console.log("IdToken Session Error: " + error);
+          reject(error);
+        });
+    })
   };
 
   logout = async () => {
