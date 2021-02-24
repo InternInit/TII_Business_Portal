@@ -473,7 +473,7 @@ const InternshipDetailForm = ({
 
   useEffect(() => {
     findListingData();
-  }, []);
+  }, [listings]);
 
   const findListingData = () => {
     if (!isNewPosting && listings.length !== 0) {
