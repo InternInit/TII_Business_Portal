@@ -21,7 +21,6 @@ import {
 } from "./MainPageSkeletons.jsx";
 
 import _ from "lodash";
-
 const AnimatedInner = animated(InnerContainer);
 
 const MainPage = (props) => {
