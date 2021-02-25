@@ -561,13 +561,14 @@ class App extends React.Component {
                           addListing={this.props.addListing}
                           id={this.props.companyInfo.id}
                           getAccess={this.getAccess}
+                          getFullCandidates={this.getFullCandidates}
                         />
                       )}
                     />
                     <Route
                       path="/internship-listings"
                       exact
-                      render={(props) => <PositionPost {...props} getAccess={this.getAccess}/>}
+                      render={(props) => <PositionPost {...props} getAccess={this.getAccess} getFullCandidates={this.getFullCandidates}/>}
                     />
                     <Route
                       key="internshipdetailroute"
@@ -580,6 +581,7 @@ class App extends React.Component {
                           buttonText="Save Changes"
                           updateListing={this.props.updateListing}
                           getAccess={this.getAccess}
+                          getFullCandidates={this.getFullCandidates}
                         />
                       )}
                     />

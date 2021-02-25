@@ -324,6 +324,10 @@ class InternshipDetails extends React.Component {
         })
           .then((response) => {
             console.log(response);
+            setTimeout(() => {
+              this.props.getFullCandidates();
+              message.success("Some interns have applied to your listing");
+            }, 5000);
           })
           .catch((error) => {
             console.log(error);

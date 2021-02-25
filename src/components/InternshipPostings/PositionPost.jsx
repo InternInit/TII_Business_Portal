@@ -141,6 +141,9 @@ class PositionPost extends Component {
         })
           .then((response) => {
             console.log(response.data);
+            setTimeout(() => {
+              this.props.getFullCandidates();
+            }, 3000);
           })
           .catch((error) => {
             console.log(error);
