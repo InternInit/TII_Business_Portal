@@ -33,7 +33,7 @@ const DescriptionText = styled.p`
   color: #1f1f1f;
 `;
 
-const HelpText = styled.p`
+const HelpText = styled.a`
   text-align: center;
 `;
 
@@ -53,8 +53,9 @@ export default function EmailConfirmation(props) {
           <Input placeholder="Enter Code" />
         </Form.Item>
       </Form>
-      <HelpText>Send me another code.</HelpText>
-
+      <HelpText onClick={props.resendConfirmCode}>
+        Send me another code.
+      </HelpText>
     </ModalContainer>
   );
 }

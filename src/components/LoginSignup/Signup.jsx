@@ -4,6 +4,7 @@ import {
   Button,
   Form,
   notification,
+  message,
   Modal,
   Popover,
   Checkbox,
@@ -347,6 +348,7 @@ class SignUp extends React.Component {
           <EmailConfirmation
             email={this.state.email}
             formRef={this.emailFormRef}
+            resendConfirmCode={this.resendConfirmCode}
           />
         </Modal>
       </AntRow>
@@ -375,6 +377,13 @@ class SignUp extends React.Component {
       console.log("error signing up:", error);
       openUnsuccessfulNotification("Signup Error", error.message);
     }
+  };
+
+  resendConfirmCode = async () => {
+    let { username } = this.state;
+    console.log(username);
+    const user = await Auth.resendSignUp(username);
+    message.success("We sent you a new confirmation code!");
   };
 
   handleOk = async (e) => {
