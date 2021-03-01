@@ -113,7 +113,6 @@ const filters = [
   "Extracurriculars",
   "GPA (Unweighted)",
   "Grade",
-  "Virtual or In Person",
 ];
 
 const activityCategories = [
@@ -237,6 +236,7 @@ const FormProps = {
   InternshipType: {
     key: "internshipType",
     name: "internshipType",
+    rules: validationRules(true, "internship type", "string"),
   },
 };
 
@@ -614,22 +614,6 @@ const InternshipDetailForm = ({
               </Form.Item>
             </AntCol>
           </AntRow>
-        );
-      case "Virtual or In Person":
-        return (
-          <Form.Item name="Criteria" key="criteria">
-            <Select
-              size="large"
-              className="universal-left"
-              style={{ width: "100%" }}
-            >
-              <Option value="virtual">Virtual</Option>
-              <Option value="in-person">In Person</Option>
-              <Option value="both-virtual-and-in-person">
-                Both Options Available
-              </Option>
-            </Select>
-          </Form.Item>
         );
       default:
         return null;

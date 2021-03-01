@@ -19,7 +19,18 @@ import _ from "underscore";
 
 //Redux
 import { connect } from "react-redux";
-import { addListing, batchUpdateListings } from "../../redux/actions";
+import {
+  addListing,
+  batchUpdateListings,
+  startListingLoading,
+  finishListingLoading,
+  startCandidateLoading,
+  startInternLoading,
+  finishCandidateLoading,
+  finishInternLoading,
+  updateCandidates,
+  updateInterns,
+} from "../../redux/actions";
 
 import gql from "graphql-tag";
 import { print } from "graphql";
@@ -76,6 +87,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   addListing,
   batchUpdateListings,
+  startListingLoading,
+  finishListingLoading,
+  updateCandidates,
+  updateInterns,
+  startCandidateLoading,
+  startInternLoading,
+  finishCandidateLoading,
+  finishInternLoading,
 };
 
 const AnimatedInner = animated(InnerContainer);
@@ -89,6 +108,7 @@ class PositionPost extends Component {
   }
 
   removeListing = async (id) => {
+    this.props.startListingLoading();
     let newListings = this.props.listings.filter(
       (listing) => listing.Id !== id
     );
@@ -111,13 +131,28 @@ class PositionPost extends Component {
       },
     })
       .then((result) => {
+        this.props.startCandidateLoading();
+        this.props.startInternLoading();
         console.log(result.data);
         let candidatesToRemove = this.props.candidates.filter(
           (candidate) => candidate.appliedFor === id
         );
+        //Ik this is terrible, its just a stopgap
+        //Fix after demo @Tejas
+        let newReduxCand = this.props.candidates.filter(
+          (candidate) => candidate.appliedFor !== id
+        );
+        this.props.updateCandidates(newReduxCand);
         let internsToRemove = this.props.interns.filter(
           (intern) => intern.appliedFor === id
         );
+        let newReduxInt = this.props.interns.filter(
+          (intern) => intern.appliedFor !== id
+        );
+        this.props.updateInterns(newReduxInt);
+        this.props.finishCandidateLoading();
+        this.props.finishInternLoading();
+
         let assocIds = [];
 
         candidatesToRemove.forEach((candidate) =>
@@ -126,6 +161,8 @@ class PositionPost extends Component {
 
         internsToRemove.forEach((intern) => assocIds.push(intern.assocId));
         console.log(assocIds);
+        //this.props.startCandidateLoading();
+        //this.props.startInternLoading();
         axios({
           url: "/api/batch_delete_intern_assocs",
           method: "post",
@@ -141,9 +178,14 @@ class PositionPost extends Component {
         })
           .then((response) => {
             console.log(response.data);
+            /*
             setTimeout(() => {
               this.props.getFullCandidates();
-            }, 3000);
+              this.props.finishCandidateLoading();
+              this.props.finishInternLoading();
+            }, 1000);
+            */
+            this.props.finishListingLoading();
           })
           .catch((error) => {
             console.log(error);
