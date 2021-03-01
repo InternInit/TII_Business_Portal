@@ -29,7 +29,15 @@ const passwordValidator = require("password-validator");
 
 const schema = new passwordValidator();
 
-schema.is().min(8).has().uppercase().has().lowercase().has().digits();
+schema
+  .is()
+  .min(8)
+  .has()
+  .uppercase()
+  .has()
+  .lowercase()
+  .has()
+  .digits();
 
 const validationRules = (required, inputName, type, pattern) => [
   {
@@ -415,6 +423,7 @@ class LogIn extends React.Component {
         );
 
         this.props.auth();
+        this.props.startupProcedure();
         this.props.history.push("/dashboard");
       }
     } catch (error) {

@@ -167,6 +167,10 @@ class App extends React.Component {
   componentDidMount() {
     this.props.startGlobalLoading();
     this.auth();
+    this.startupProcedure();
+  }
+
+  startupProcedure = () => {
     this.getFullCandidates();
     this.getListings();
     this.getBusinessUsers();
@@ -507,12 +511,12 @@ class App extends React.Component {
             <Route
               path="/login"
               exact
-              render={() => <Login auth={this.auth} key="login" />}
+              render={() => <Login auth={this.auth} key="login" startupProcedure={this.startupProcedure}/>}
             />
             <Route
               path="/signup"
               exact
-              render={() => <Signup auth={this.auth} key="signup" />}
+              render={() => <Signup auth={this.auth} key="signup" startupProcedure={this.startupProcedure}/>}
             />
 
             <Layout>

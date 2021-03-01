@@ -400,6 +400,7 @@ class SignUp extends React.Component {
         emailConfirmationVisible: false,
       });
       this.props.auth();
+      this.props.startupProcedure();
       this.props.history.push("/dashboard");
     } catch (error) {
       console.log(error);
