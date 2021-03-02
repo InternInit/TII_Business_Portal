@@ -127,7 +127,7 @@ const AttendanceRecord = (props) => {
                   studentId={props.student.Id}
                   hoursId={hour.Id}
                   time={hour.time}
-                  date={hour.dateFormatted}
+                  date={moment(hour.date).format("MMM DD, YYYY")}
                   review={true}
                   getAccess={props.getAccess}
                 />
