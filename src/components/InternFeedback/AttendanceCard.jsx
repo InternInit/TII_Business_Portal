@@ -52,6 +52,7 @@ const AttendanceCard = (props) => {
   };
 
   const handleReject = () => {
+    setRejectModalVisible(false);
     mutateHoursAssoc(false);
     message.error("Hours Rejected");
   };
@@ -135,6 +136,7 @@ const AttendanceCard = (props) => {
                   title="Reject Attendance"
                   centered
                   visible={isRejectModalVisible}
+                  onCancel={() => setRejectModalVisible(false)}
                   footer={[
                     <Button
                       key="Cancel"
