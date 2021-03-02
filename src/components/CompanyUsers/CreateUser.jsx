@@ -218,8 +218,8 @@ class CreateUser extends React.Component {
                         mode="multiple"
                       >
                         {this.props.listings.map((listing, index) => (
-                          <Option value={listing.Title} key={index}>
-                            {listing.Title}
+                          <Option value={listing.title} key={index}>
+                            {listing.title}
                           </Option>
                         ))}
                       </Select>
