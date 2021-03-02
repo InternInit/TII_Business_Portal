@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Row as AntRow, Col as AntCol, Breadcrumb } from "antd";
+import { Row as AntRow, Col as AntCol, Breadcrumb, PageHeader } from "antd";
 import { Transition, config } from "react-spring/renderprops";
-
 import {
   InnerContainer,
   TabContainer,
@@ -16,13 +15,12 @@ import { connect } from "react-redux";
 import { FaChalkboardTeacher, FaRegMap } from "react-icons/fa";
 import { RiSuitcaseLine } from "react-icons/ri";
 import { GrDocumentText } from "react-icons/gr";
-import { BiBook, BiBuildings, BiPhone } from "react-icons/bi";
 import { FiUsers, FiMail } from "react-icons/fi";
 import { AiOutlineFileText } from "react-icons/ai";
+import { BiBook, BiBuildings, BiPhone } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import SmartAvatar from "../General/SmartAvatar";
 import { StudentInfoSkeleton } from "./CandidateSkeletons";
-import Password from "antd/lib/input/Password";
 
 const mapStateToProps = (state) => {
   return {
@@ -77,16 +75,16 @@ const StudentInfo = (props) => {
         >
           {(location) => (styling) => (
             <InnerContainer key="studentInfoContainer" style={{ ...styling }}>
-              <Breadcrumb style={{ paddingBottom: "1em" }}>
-                <Breadcrumb.Item className="twentyFont">
-                  <Link to="/applicants/review-applicants">
-                    Review Applicants
-                  </Link>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item className="twentyFont">
-                  {student[0]["First Name"]}'s Application
-                </Breadcrumb.Item>
-              </Breadcrumb>
+              <PageHeader
+                onBack={() => window.history.back()}
+                title={
+                  <Header className="twentyFont">
+                    {student[0]["First Name"]} {student[0]["Last Name"]}'s
+                    Application
+                  </Header>
+                }
+                style={{ padding: "0px", paddingBottom: ".5em", marginLeft: "5px" }}
+              />
               <TabContainer className="px-6 py-3 student-info-responsive-tab-container">
                 <AntRow gutter={[48, 0]}>
                   <AntCol className="px-2" sm={8} lg={6}>

@@ -6,7 +6,7 @@ import {
   Col as AntCol,
   Skeleton,
   Button,
-  Breadcrumb,
+  PageHeader,
 } from "antd";
 import { Icon } from "react-icons-kit";
 import { box } from "react-icons-kit/iconic/box";
@@ -358,14 +358,11 @@ export const CandidateDetailedviewSkeleton = (props) => {
 export const StudentInfoSkeleton = (props) => {
   return (
     <InnerContainer key="studentInfoContainer" style={{ ...props }}>
-      <Breadcrumb style={{ paddingBottom: "1em" }}>
-        <Breadcrumb.Item className="twentyFont">
-          Review Applicants
-        </Breadcrumb.Item>
-        <Breadcrumb.Item className="twentyFont">
-          Student Application
-        </Breadcrumb.Item>
-      </Breadcrumb>
+      <PageHeader
+        onBack={() => window.history.back()}
+        title={<Header className="twentyFont">Student Application</Header>}
+        style={{ padding: "0px", paddingBottom: ".5em", marginLeft: "5px" }}
+      />
       <TabContainer className="px-6 py-3 student-info-responsive-tab-container">
         <AntRow gutter={[48, 0]}>
           <AntCol className="px-2" sm={8} lg={6}>
