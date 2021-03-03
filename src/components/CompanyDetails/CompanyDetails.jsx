@@ -251,7 +251,7 @@ class CompanyDetails extends React.Component {
                     </Header>
                     <Form.Item {...FormProps.Website}>
                       <Input
-                        placeholder="https://www.interninit.com"
+                        placeholder="https://www.company.com"
                         size="large"
                         style={marginTop}
                       />
