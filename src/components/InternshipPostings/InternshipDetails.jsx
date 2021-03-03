@@ -511,7 +511,11 @@ const InternshipDetailForm = ({
         return (
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={12}>
-              <Form.Item name="CriteriaRestriction" key="criteriaRestriction">
+              <Form.Item
+                name="CriteriaRestriction"
+                key="criteriaRestriction"
+                rules={[{ required: true }]}
+              >
                 <Select
                   size="large"
                   className="universal-left"
@@ -523,7 +527,11 @@ const InternshipDetailForm = ({
               </Form.Item>
             </AntCol>
             <AntCol xs={24} md={12}>
-              <Form.Item name="Criteria" key="criteria">
+              <Form.Item
+                name="Criteria"
+                key="criteria"
+                rules={[{ required: true }]}
+              >
                 <InputNumber
                   size="large"
                   style={{ width: "100%" }}
@@ -541,6 +549,7 @@ const InternshipDetailForm = ({
             key="criteria"
             className="universal-left"
             extra="What types of courses would you want applicants to have participated in"
+            rules={[{ required: true }]}
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
               {courseLevels.map((course) => (
@@ -558,6 +567,7 @@ const InternshipDetailForm = ({
             key="criteria"
             className="universal-left"
             extra="What extracurricular activities would you want applicants to have participated in"
+            rules={[{ required: true }]}
           >
             <Select mode="multiple" tokenSeparators={[" "]} size="large">
               {activityCategories.map((activity) => (
@@ -575,6 +585,7 @@ const InternshipDetailForm = ({
             key="criteria"
             className="universal-left"
             extra="Minimum GPA"
+            rules={[{ required: true }]}
           >
             <InputNumber
               size="large"
@@ -588,7 +599,11 @@ const InternshipDetailForm = ({
         return (
           <AntRow gutter={[32, 16]}>
             <AntCol xs={24} md={12}>
-              <Form.Item name="CriteriaRestriction" key="criteriaRestriction">
+              <Form.Item
+                name="CriteriaRestriction"
+                key="criteriaRestriction"
+                rules={[{ required: true }]}
+              >
                 <Select
                   size="large"
                   className="universal-left"
@@ -600,7 +615,11 @@ const InternshipDetailForm = ({
               </Form.Item>
             </AntCol>
             <AntCol xs={24} md={12}>
-              <Form.Item name="Criteria" key="criteria">
+              <Form.Item
+                name="Criteria"
+                key="criteria"
+                rules={[{ required: true }]}
+              >
                 <Select
                   size="large"
                   className="universal-left"
@@ -934,7 +953,11 @@ const InternshipDetailForm = ({
                 </Header>
               </AntCol>
               <AntCol xs={24} lg={18} xl={19}>
-                <Form.Item name="Filter By" key="filterBy">
+                <Form.Item
+                  name="Filter By"
+                  key="filterBy"
+                  rules={[{ required: true }]}
+                >
                   <Select
                     onChange={(value) => {
                       toggleCriteria({
@@ -979,7 +1002,11 @@ const InternshipDetailForm = ({
                   </Header>
                 </AntCol>
                 <AntCol xs={24} lg={18} xl={19}>
-                  <Form.Item name="Priority" key="priority">
+                  <Form.Item
+                    name="Priority"
+                    key="priority"
+                    rules={[{ required: true }]}
+                  >
                     <Select
                       className="universal-left"
                       size="large"
