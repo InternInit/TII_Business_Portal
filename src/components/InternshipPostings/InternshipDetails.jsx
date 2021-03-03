@@ -16,6 +16,7 @@ import {
   Tooltip,
   Spin,
   message,
+  notification,
 } from "antd";
 import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Transition, config } from "react-spring/renderprops";
@@ -641,7 +642,7 @@ const InternshipDetailForm = ({
 
   //Runs when the user adds a new filter
   const modalFinish = (values) => {
-    console.log(values);
+    //TODO: replace with better solution
     tagForm.resetFields();
 
     /**
@@ -935,9 +936,24 @@ const InternshipDetailForm = ({
             toggleCriteria({ ...isCriteriaOn, on: false });
           }}
           onOk={() => {
+            //TODO: replace with better solution
+            let isReady = true;
             tagForm.submit();
-            toggleModal(false);
-            toggleCriteria({ ...isCriteriaOn, on: false });
+            _.forEach(tagForm.getFieldsValue(), (field) => {
+              if (field === undefined) {
+                isReady = false;
+              }
+            });
+            if (isReady) {
+              toggleModal(false);
+              toggleCriteria({ ...isCriteriaOn, on: false });
+            } else {
+              notification["error"]({
+                message: "Not Complete",
+                description:
+                  "You have not filled out all the necessary fields.",
+              });
+            }
           }}
           okText="Create"
           okButtonProps={{ htmlType: "submit" }}
