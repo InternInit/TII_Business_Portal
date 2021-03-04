@@ -9,6 +9,7 @@ import {
   Col as AntCol,
   PageHeader,
   Spin,
+  message
 } from "antd";
 import { InboxOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Transition, config } from "react-spring/renderprops";
@@ -34,6 +35,7 @@ import {
   InnerContainer,
   FormContainer,
   Header,
+  RequiredAsterisk
 } from "../Styled/FundamentalComponents.jsx";
 import { Link } from "react-router-dom";
 
@@ -217,7 +219,10 @@ class CompanyDetails extends React.Component {
                     ref={this.formRef}
                     onFinish={this.handleSave}
                   >
-                    <Header className={headerClassNames}>Company Name</Header>
+                    <Header className={headerClassNames}>Company Name
+                    {/* <RequiredAsterisk> *</RequiredAsterisk> */}
+
+                    </Header>
                     <Form.Item {...FormProps.name}>
                       <Input
                         placeholder="Change Company Name"
@@ -232,6 +237,7 @@ class CompanyDetails extends React.Component {
                      */}
                     <Header className={headerClassNames}>
                       Company Description
+
                     </Header>
                     {/* <InfoHeader>Company Description</InfoHeader> */}
                     <Form.Item {...FormProps.Description}>
@@ -248,6 +254,8 @@ class CompanyDetails extends React.Component {
                      */}
                     <Header className={headerClassNames}>
                       Company Website
+                      {/* <RequiredAsterisk> *</RequiredAsterisk> */}
+
                     </Header>
                     <Form.Item {...FormProps.Website}>
                       <Input
@@ -261,7 +269,9 @@ class CompanyDetails extends React.Component {
                      * E-Mail
                      *
                      */}
-                    <Header className={headerClassNames}>Company Email</Header>
+                    <Header className={headerClassNames}>Company Email
+                    {/* <RequiredAsterisk> *</RequiredAsterisk> */}
+</Header>
                     <Form.Item {...FormProps.EMail}>
                       <Input
                         placeholder="company@email.com"
@@ -276,6 +286,8 @@ class CompanyDetails extends React.Component {
                      */}
                     <Header className={headerClassNames}>
                       Company Phone Number
+                      {/* <RequiredAsterisk> *</RequiredAsterisk> */}
+
                     </Header>
                     <Form.Item {...FormProps.Phone}>
                       <Input
@@ -350,6 +362,7 @@ class CompanyDetails extends React.Component {
                           size="large"
                           style={{ width: "36vh" }}
                           htmlType="submit"
+                          onClick={() => message.success("Updated Company Details")}
                         >
                           Save Changes
                         </Button>

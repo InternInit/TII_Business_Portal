@@ -18,6 +18,7 @@ import {
   PageContainer,
   FormContainer,
   Header,
+  RequiredAsterisk
 } from "../Styled/FundamentalComponents.jsx";
 
 import { withRouter, Link } from "react-router-dom";
@@ -162,20 +163,30 @@ class CreateUser extends React.Component {
                     >
                       Create a New User
                     </Header>
-                    <Header className={headerClassNames}>Username</Header>
+                    <Header className={headerClassNames}>
+                      Username
+                      <RequiredAsterisk> *</RequiredAsterisk>
+                      </Header>
                     <Form.Item {...formItemProps.username}>
                       <Input size="large" placeholder="Username" />
                     </Form.Item>
-                    <Header className={headerClassNames}>Name</Header>
+                    <Header className={headerClassNames}>
+                      Name
+                      <RequiredAsterisk> *</RequiredAsterisk>
+                      </Header>
                     <Form.Item {...formItemProps.name}>
                       <Input size="large" placeholder="Name" />
                     </Form.Item>
-                    <Header className={headerClassNames}>Email</Header>
+                    <Header className={headerClassNames}>
+                      Email
+                      <RequiredAsterisk> *</RequiredAsterisk>
+                      </Header>
                     <Form.Item {...formItemProps.email}>
                       <Input size="large" placeholder="Email" />
                     </Form.Item>
                     <Header className={headerClassNames}>
                       Temporary Password
+                      <RequiredAsterisk> *</RequiredAsterisk>
                     </Header>
                     <Form.Item {...formItemProps.password}>
                       <Input.Password
@@ -195,7 +206,9 @@ class CreateUser extends React.Component {
                       </Divider>
                     </AntRow>
 
-                    <Header className={headerClassNames}>Role</Header>
+                    <Header className={headerClassNames}>Role
+                    <RequiredAsterisk> *</RequiredAsterisk>
+                    </Header>
                     <Form.Item {...formItemProps.role}>
                       <Select
                         placeholder="Choose Site Role"
@@ -209,7 +222,9 @@ class CreateUser extends React.Component {
                       </Select>
                     </Form.Item>
 
-                    <Header className={headerClassNames}>Listing Access</Header>
+                    <Header className={headerClassNames}>Listing Access
+                    <RequiredAsterisk> *</RequiredAsterisk>
+                    </Header>
                     <Form.Item {...formItemProps.listingAccess}>
                       <Select
                         disabled={this.state.isAdmin}
@@ -230,6 +245,7 @@ class CreateUser extends React.Component {
                     </Header>
                     <Header className={headerClassNames}>
                       Applicant Actions
+                      <RequiredAsterisk> *</RequiredAsterisk>
                     </Header>
                     <Form.Item {...formItemProps.applicantActions}>
                       <Select
