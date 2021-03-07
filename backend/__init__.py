@@ -12,18 +12,19 @@ studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/
 listingsApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/listings"
 listingTriggerApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/student"
 authApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/auth/"
-graphQLApiEndpoint = "https://4gxyw7jvnvgbrpgiaxvmgwqydy.appsync-api.us-east-1.amazonaws.com/graphql"
 
 if(app.config.get("ENV") == "development"):
     studentApiUrl = studentApiUrl.format(stage="dev")
     listingsApiUrl = listingsApiUrl.format(stage="dev")
     listingTriggerApiUrl = listingTriggerApiUrl.format(stage="dev")
     authApiUrl = authApiUrl.format(stage="dev")
+    graphQLApiEndpoint = "https://4gxyw7jvnvgbrpgiaxvmgwqydy.appsync-api.us-east-1.amazonaws.com/graphql"
 elif(app.config.get("ENV") == "production"):
     studentApiUrl = studentApiUrl.format(stage="prod")
     listingsApiUrl = listingsApiUrl.format(stage="prod")
     listingTriggerApiUrl = listingTriggerApiUrl.format(stage="prod")
     authApiUrl = authApiUrl.format(stage="prod")
+    graphQLApiEndpoint = "https://qrii52at6ncozhhsup7xlnr5ce.appsync-api.us-east-1.amazonaws.com/graphql"
 
 studentAssocApiUrl = listingTriggerApiUrl+"-assoc"
 
