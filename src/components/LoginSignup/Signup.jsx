@@ -12,7 +12,7 @@ import {
   Col as AntCol,
 } from "antd";
 import { Label, ImageText } from "./SignupLogin";
-import { Header } from "../Styled/FundamentalComponents.jsx";
+import { Header, RequiredAsterisk } from "../Styled/FundamentalComponents.jsx";
 import { ReactComponent as LoginSignupIcon } from "../../Assets/LoginSignupImage.svg";
 import { Transition, config } from "react-spring/renderprops";
 
@@ -167,27 +167,45 @@ class SignUp extends React.Component {
                   ref={this.formRef}
                   style={{ width: "100%" }}
                 >
-                  <Label style={{ marginTop: "24px" }}>Username</Label>
+                  <Label style={{ marginTop: "24px" }}>Username
+                  <RequiredAsterisk> *</RequiredAsterisk>
+                  </Label>
                   <Form.Item {...formItemProps.username} name="username">
                     <Input size="large" />
                   </Form.Item>
 
-                  <Label>Name</Label>
+                  <Label>Name
+                  <RequiredAsterisk> *</RequiredAsterisk>
+
+
+                  </Label>
                   <Form.Item {...formItemProps.name} name="name">
                     <Input size="large" />
                   </Form.Item>
 
-                  <Label>E-Mail</Label>
+                  <Label>E-Mail
+                  <RequiredAsterisk> *</RequiredAsterisk>
+
+
+                  </Label>
                   <Form.Item {...formItemProps.email} name="email">
                     <Input size="large" />
                   </Form.Item>
 
-                  <Label>Company Name</Label>
+                  <Label>Company Name
+                  <RequiredAsterisk> *</RequiredAsterisk>
+
+
+                  </Label>
                   <Form.Item {...formItemProps.companyName} name="companyName">
                     <Input size="large" />
                   </Form.Item>
 
-                  <Label>Password</Label>
+                  <Label>Password
+                  <RequiredAsterisk> *</RequiredAsterisk>
+
+
+                  </Label>
                   <Popover
                     placement="right"
                     title={title}

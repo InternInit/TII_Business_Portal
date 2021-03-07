@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import "../../App.scss";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -173,6 +173,11 @@ class ReviewApplicants extends Component {
       candidates.filter((candidate) => candidate.status === "Pending"),
       this.state.sortType
     );
+
+    if (this.state.sortType === "formData[0]['Unweighted GPA']"){
+      unreadCandidates.reverse();
+    }
+
     return this.state.quickview ? (
       <React.Fragment>
         <InfoBar
@@ -311,6 +316,11 @@ class ReviewApplicants extends Component {
       candidates.filter((candidate) => candidate.status === "Review"),
       this.state.sortType
     );
+
+    if (this.state.sortType === "formData[0]['Unweighted GPA']"){
+      reviewCandidates.reverse();
+    }
+
     return this.state.quickview ? (
       <React.Fragment>
         <Header className="twentyEightFont mt-2 mb-point-75" bolded>

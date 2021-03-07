@@ -841,12 +841,17 @@ const InternshipDetailForm = ({
         </Form.Item>
 
         <Header className="twentyFont mb-point-5 mt-point-5" subheading>
-          Paid or Unpaid? <RequiredAsterisk>*</RequiredAsterisk>
+          Is this Internship Paid or Unpaid? <RequiredAsterisk>*</RequiredAsterisk>
         </Header>
         <Form.Item {...FormProps.IsPaid}>
-          <Checkbox size="large">
-            <span className="sixteenFont">This Internship is Paid</span>
-          </Checkbox>
+            <Checkbox size="large">
+              <span className="sixteenFont">Paid</span>
+            </Checkbox>
+        </Form.Item>
+        <Form.Item style={{marginTop: "-26px"}}>
+            <Checkbox size="large">
+              <span className="sixteenFont">Unpaid</span>
+            </Checkbox>
         </Form.Item>
 
         <Header className="twentyFont mb-point-5 mt-point-5" subheading>

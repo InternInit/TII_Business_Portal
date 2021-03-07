@@ -325,7 +325,7 @@ export const CandidateDetailedviewSkeleton = (props) => {
           </AntCol>
           <AntCol span={4}>
             <Button size="large" type="danger" block onClick={props.onReject}>
-              Not a fit
+              Remove
             </Button>
           </AntCol>
         </AntRow>
@@ -346,7 +346,7 @@ export const CandidateDetailedviewSkeleton = (props) => {
           </AntCol>
           <AntCol span={3}>
             <Button size="large" type="danger" block onClick={props.onReject}>
-              Not a fit
+              Remove
             </Button>
           </AntCol>
         </AntRow>

@@ -269,9 +269,14 @@ const FeedbackTab = ({ data, student, markRead }) => {
               <Tooltip title="Read">
                 <BiCheckCircle
                   className="student-intern-tab-read-icon"
-                  onClick={() => {
-                    markRead(data.Id);
-                  }}
+                  // * TODO *
+                  // Add feature when clicked, it marks "Unread"
+
+
+
+                  // onClick={() => {
+                  //   markRead(data.Id);
+                  // }}
                 />
               </Tooltip>
             ) : (

@@ -156,7 +156,7 @@ const CandidateDetailedviewTab = (props) => {
         </AntCol>
         <AntCol span={4}>
           <Button size="large" type="danger" block onClick={props.onReject}>
-            Not a fit
+            Remove
           </Button>
         </AntCol>
       </AntRow>
