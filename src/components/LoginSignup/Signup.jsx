@@ -167,44 +167,41 @@ class SignUp extends React.Component {
                   ref={this.formRef}
                   style={{ width: "100%" }}
                 >
-                  <Label style={{ marginTop: "24px" }}>Username
-                  <RequiredAsterisk> *</RequiredAsterisk>
+                  <Label style={{ marginTop: "24px" }}>
+                    Username
+                    <RequiredAsterisk> *</RequiredAsterisk>
                   </Label>
                   <Form.Item {...formItemProps.username} name="username">
                     <Input size="large" />
                   </Form.Item>
 
-                  <Label>Name
-                  <RequiredAsterisk> *</RequiredAsterisk>
-
-
+                  <Label>
+                    Name
+                    <RequiredAsterisk> *</RequiredAsterisk>
                   </Label>
                   <Form.Item {...formItemProps.name} name="name">
                     <Input size="large" />
                   </Form.Item>
 
-                  <Label>E-Mail
-                  <RequiredAsterisk> *</RequiredAsterisk>
-
-
+                  <Label>
+                    E-Mail
+                    <RequiredAsterisk> *</RequiredAsterisk>
                   </Label>
                   <Form.Item {...formItemProps.email} name="email">
                     <Input size="large" />
                   </Form.Item>
 
-                  <Label>Company Name
-                  <RequiredAsterisk> *</RequiredAsterisk>
-
-
+                  <Label>
+                    Company Name
+                    <RequiredAsterisk> *</RequiredAsterisk>
                   </Label>
                   <Form.Item {...formItemProps.companyName} name="companyName">
                     <Input size="large" />
                   </Form.Item>
 
-                  <Label>Password
-                  <RequiredAsterisk> *</RequiredAsterisk>
-
-
+                  <Label>
+                    Password
+                    <RequiredAsterisk> *</RequiredAsterisk>
                   </Label>
                   <Popover
                     placement="right"
@@ -377,17 +374,31 @@ class SignUp extends React.Component {
     let { username, password, email, companyName, name } = values;
     this.setState({ email: email, username: username, password: password });
 
+    let attributes = {};
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+      attributes = {
+        email,
+        name,
+        "custom:company": companyName,
+        "custom:companyId": uuidv4(),
+        "custom:role": "Admin",
+      };
+    } else {
+      attributes = {
+        email,
+        name,
+        "custom:company": companyName,
+        "custom:companyId": uuidv4(),
+        "custom:role": "Admin",
+        "custom:env": "prod",
+      };
+    }
+
     try {
       const user = await Auth.signUp({
         username,
         password,
-        attributes: {
-          email,
-          name,
-          "custom:company": companyName,
-          "custom:companyId": uuidv4(),
-          "custom:role": "Admin",
-        },
+        attributes: attributes,
       });
       this.setState({ emailConfirmationVisible: true });
       console.log(user);
