@@ -142,6 +142,7 @@ class CandidatesContainer extends Component {
         headers: {},
         data: {
           assoc_id: candidate.assocId,
+          env: process.env.NODE_ENV === "development" ? "dev" : "prod",
         },
       }).then((response) => {
         console.log(response);
