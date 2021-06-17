@@ -70,6 +70,9 @@ import "./App.scss";
 import gql from "graphql-tag";
 import { print } from "graphql";
 
+import cognitoConfig from "./config/cognito-config.json";
+
+
 // prettier-ignore
 const LISTING_QUERY = gql`
 query MyQuery($Id: String!) {
@@ -92,7 +95,19 @@ query MyQuery($Id: String!) {
 }                
 `
 
-Amplify.configure(awsconfig);
+Amplify.configure({
+  Auth: {
+
+      // REQUIRED - Amazon Cognito Region
+      region: cognitoConfig.Region,
+
+      //Amazon Cognito User Pool ID
+      userPoolId: cognitoConfig.Id,
+
+      //Amazon Cognito Web Client ID (26-char alphanumeric string)
+      userPoolWebClientId: cognitoConfig.Client.ClientId,
+  }
+});
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   console.log("Development");
