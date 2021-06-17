@@ -375,24 +375,13 @@ class SignUp extends React.Component {
     this.setState({ email: email, username: username, password: password });
 
     let attributes = {};
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-      attributes = {
-        email,
-        name,
-        "custom:company": companyName,
-        "custom:companyId": uuidv4(),
-        "custom:role": "Admin",
-      };
-    } else {
-      attributes = {
-        email,
-        name,
-        "custom:company": companyName,
-        "custom:companyId": uuidv4(),
-        "custom:role": "Admin",
-        "custom:env": "prod",
-      };
-    }
+    attributes = {
+      email,
+      name,
+      "custom:company": companyName,
+      "custom:companyId": uuidv4(),
+      "custom:role": "Admin",
+    };
 
     try {
       const user = await Auth.signUp({
