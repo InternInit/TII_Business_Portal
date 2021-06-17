@@ -8,25 +8,14 @@ from contextlib import suppress
 
 app = Flask(__name__)
 
-studentApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/students"
-listingsApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/cache/listings"
-listingTriggerApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/student"
-authApiUrl = "https://wnbssomd26.execute-api.us-east-1.amazonaws.com/{stage}/auth/"
+app.config.from_json("./config/network-config.json")
+baseGQLApiUrl = app.config["GQL_API_ENDPOINT"]
+baseRestApiUrl = app.config["REST_API_ENDPOINT"]
 
-if(app.config.get("ENV") == "development"):
-    studentApiUrl = studentApiUrl.format(stage="dev")
-    listingsApiUrl = listingsApiUrl.format(stage="dev")
-    listingTriggerApiUrl = listingTriggerApiUrl.format(stage="dev")
-    authApiUrl = authApiUrl.format(stage="dev")
-    graphQLApiEndpoint = "https://4gxyw7jvnvgbrpgiaxvmgwqydy.appsync-api.us-east-1.amazonaws.com/graphql"
-elif(app.config.get("ENV") == "production"):
-    studentApiUrl = studentApiUrl.format(stage="prod")
-    listingsApiUrl = listingsApiUrl.format(stage="prod")
-    listingTriggerApiUrl = listingTriggerApiUrl.format(stage="prod")
-    authApiUrl = authApiUrl.format(stage="prod")
-    graphQLApiEndpoint = "https://qrii52at6ncozhhsup7xlnr5ce.appsync-api.us-east-1.amazonaws.com/graphql"
+authApiUrl = baseRestApiUrl +  "auth"
 
-studentAssocApiUrl = listingTriggerApiUrl+"-assoc"
+graphQLApiEndpoint = baseGQLApiUrl
+
 
 def determine_date_offset(dt_string):
     dt = parse(dt_string)
@@ -230,13 +219,6 @@ def get_student_candidates():
     except KeyError:
         return json.dumps(resp_json)
 
-@app.route('/api/update_student_status', methods=["POST"])
-def update_student_status():
-    body = request.get_data().decode("utf-8")
-    headers = request.headers
-    req = requests.post(studentApiUrl, headers={"Authorization": headers.get("Authorization"), "InternId": headers.get("InternId")}, json= json.loads(body))
-    return jsonify(req.text)
-
 @app.route('/api/mutate_candidate_assoc', methods=["POST"])
 def mutate_candidate_assoc():
     query = request.get_data().decode("utf-8")
@@ -309,20 +291,6 @@ def mutate_feedback_assoc():
     feedback = resp_json["data"]["updateInternAssoc"]["feedback"]
     feedback = json.loads(feedback)
     return json.dumps(datetime_resolver(feedback))
-
-@app.route("/api/new_listing_trigger", methods=["POST"])
-def new_listing_trigger():
-    body = request.get_data().decode("utf-8")
-    headers = request.headers
-    req = requests.post(listingTriggerApiUrl, json = json.loads(body))
-    return jsonify(req.text)
-
-@app.route("/api/gen_fake_assocs", methods=["POST"])
-def gen_fake_assocs():
-    body = request.get_data().decode("utf-8")
-    headers = request.headers
-    req = requests.post(studentAssocApiUrl, json = json.loads(body))
-    return jsonify(req.text)
 
 ##############################
 #

@@ -133,7 +133,7 @@ class CandidatesContainer extends Component {
       .catch((error) => {
         console.log(error);
       });
-
+    /*
     if (status === "Accepted") {
       this.mutateCandidateAssoc(internId);
       axios({
@@ -148,6 +148,7 @@ class CandidatesContainer extends Component {
         console.log(response);
       });
     }
+    */
   };
 
   mutateCandidateAssoc = async (internId) => {

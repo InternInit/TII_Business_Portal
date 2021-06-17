@@ -311,6 +311,7 @@ class InternshipDetails extends React.Component {
       this.setState({ buttonLoading: false });
       this.props.history.push("/internship-listings");
 
+      /*
       if (this.state.isNewListing) {
         //Time to generate the fake students for each listing
         axios({
@@ -335,6 +336,7 @@ class InternshipDetails extends React.Component {
             console.log(error);
           });
       }
+      */
     });
   };
 

@@ -10,6 +10,8 @@ phases:
     commands:
       - echo Installing dependencies...
       - npm install
+      - cp $CODEBUILD_SRC_DIR_S3SourceArtifact/cognito-config.json ./src/config/cognito-config.json
+      - cp $CODEBUILD_SRC_DIR_S3SourceArtifact/network-config.json ./backend/config/network-config.json
   build:
     commands:
       - echo Building...
@@ -23,6 +25,7 @@ phases:
       - cp ./requirements.txt ./fullbuild/backend/requirements.txt
       - cp ./appspec.yml ./fullbuild/appspec.yml
       - cp -a ./scripts ./fullbuild/scripts
+      - cp -a ./apache ./fullbuild/apache
 artifacts:
   files:
     - "**/*"
