@@ -305,9 +305,6 @@ class App extends React.Component {
         this.props.updateWebsite(data.website);
         this.props.updateEmail(data.email);
         this.props.updatePhoneNumber(data.phoneNumber);
-        this.props.updateAvatar(
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8coQTo1rlE96O3Ljd9bx0CObBpUE6nLDyww&usqp=CAU"
-        );
         this.setState({isBusinessInfoLoading: false});
       })
       .catch((error) => {
@@ -514,7 +511,10 @@ class App extends React.Component {
     axios.get("/api/list_users", headers).then((response) => {
       this.props.updateCompanyUsers(JSON.parse(response.data));
       localStorage.setItem("NumUsers", this.props.companyInfo.users.length);
-      console.log(response.data);
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+      localStorage.setItem("NumUsers", 3);
     });
   };
 

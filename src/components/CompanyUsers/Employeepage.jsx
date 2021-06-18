@@ -45,9 +45,12 @@ class Employeepage extends Component {
               <AntRow gutter={[32, 16]} className="mb-1">
                 <AntCol xs={24} md={8} lg={5}>
                   <Link to="/users/new-account">
+                    {/*
+                    //TODO: Re-enable when fully featured
                     <Button type="default" style={ButtonStyle}>
                       <span className="sixteenFont">Add User Account</span>
                     </Button>
+                    */}
                   </Link>
                 </AntCol>
               </AntRow>

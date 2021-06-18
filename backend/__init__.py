@@ -302,13 +302,14 @@ def mutate_feedback_assoc():
 def admin_create_user():
     body = request.get_data().decode("utf-8")
     headers = request.headers
-    req = requests.post(authApiUrl+"adminCreateUser", headers={"Authorization": headers.get("Authorization")}, json = json.loads(body))
+    req = requests.post(authApiUrl+"/adminCreateUser", headers={"Authorization": headers.get("Authorization")}, json = json.loads(body))
     return jsonify(req.text)
 
 @app.route('/api/list_users', methods=["GET"])
 def list_users():
     headers = request.headers
-    req = requests.get(authApiUrl+"listUsers", headers={"Authorization": headers.get("Authorization"), "companyId": headers.get("companyId")})
+    req = requests.get(authApiUrl+"/listUsers", headers={"Authorization": headers.get("Authorization"), "companyId": headers.get("companyId")})
+    print(req.text)
     return jsonify(req.text)
 
 
