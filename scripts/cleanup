@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -d "/var/www/apply.interninit.com" ]; then
+if [ -d "/var/www/business.interninit.com" ]; then
     rm -rf /var/www/business.interninit.com/*
     rm -rf /var/www/business.interninit.com/.[a-zA-Z_]*
 fi
