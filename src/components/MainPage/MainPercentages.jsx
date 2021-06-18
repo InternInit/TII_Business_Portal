@@ -44,7 +44,7 @@ const MainPercentages = (props) => {
           <Header className="twentyTwoFont mb-point-5">
             Applied to Industry
           </Header>
-          <PercentageBox header="Industry" percentage="2" color="#722ed1" />
+          <PercentageBox header="Industry" percentage={0} color="#722ed1" />
         </Row>{" "}
       </AntCol>
 
@@ -54,7 +54,7 @@ const MainPercentages = (props) => {
             Applied to Company
           </Header>
 
-          <PercentageBox header="Company" percentage="24" color="#1890ff" />
+          <PercentageBox header="Company" percentage={0} color="#1890ff" />
         </Row>
       </AntCol>
       <AntCol xs={24} md={8}>
