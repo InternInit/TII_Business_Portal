@@ -110,7 +110,7 @@ Amplify.configure({
 });
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  console.log("Development");
+  console.log("In Development");
 } else {
   //console.log = noop;
   //console.warn = noop;
