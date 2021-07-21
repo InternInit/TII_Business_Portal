@@ -16,6 +16,8 @@ import { Header } from "../Styled/FundamentalComponents.jsx";
 import { ReactComponent as LoginSignupIcon } from "../../Assets/LoginSignupImage.svg";
 import { Transition, config } from "react-spring/renderprops";
 
+import EmailConfirmation from "./EmailConfirmation.jsx";
+
 import { Link } from "react-router-dom";
 
 import { Auth } from "aws-amplify";
@@ -201,11 +203,13 @@ class LogIn extends React.Component {
       emailSent: false,
       username: "",
       user: "",
+      emailConfirmationVisible: false,
     };
   }
 
   forgotPassRef = React.createRef();
   newPassRef = React.createRef();
+  emailFormRef = React.createRef();
 
   componentDidMount() {
     console.log(this.props);
@@ -397,6 +401,18 @@ class LogIn extends React.Component {
             </AntCol>
           </AntRow>
         </AntCol>
+        <Modal
+          title="Email Confirmation"
+          visible={this.state.emailConfirmationVisible}
+          onOk={this.handleConfirmOk}
+          onCancel={this.handleConfirmCancel}
+        >
+          <EmailConfirmation
+            email={this.state.email}
+            formRef={this.emailFormRef}
+            resendConfirmCode={this.resendConfirmCode}
+          />
+        </Modal>
       </AntRow>
     );
   }
@@ -428,7 +444,17 @@ class LogIn extends React.Component {
       }
     } catch (error) {
       console.log("error signing in:", error);
-      openUnsuccessfulNotification("Login Error", error.message);
+      if(error.code === "UserNotConfirmedException") {
+        //Open up confirmation modal
+        const user = await Auth.resendSignUp(username);
+        this.setState({
+          emailConfirmationVisible: true,
+          username: username,
+          password: password,
+        });
+      } else {
+        openUnsuccessfulNotification("Login Error", error.message);
+      }
     }
   };
 
@@ -536,6 +562,52 @@ class LogIn extends React.Component {
     console.log(e);
     this.setState({
       newPassVisible: false,
+    });
+  };
+
+  resendConfirmCode = async () => {
+    let { username } = this.state;
+    console.log(username);
+    const user = await Auth.resendSignUp(username);
+    message.success("We sent you a new confirmation code!");
+  };
+
+  handleConfirmOk = async (e) => {
+    const values = await this.emailFormRef.current.getFieldsValue();
+    const code = values.confirmationCode;
+    console.log(values.confirmationCode);
+    const username = this.state.username;
+    try {
+      const callback = await Auth.confirmSignUp(username, code);
+      console.log(callback);
+      
+      Auth.signOut()
+        .then(() => console.log("Signed Out"))
+        .catch(() => console.log("Could Not Sign Out"));
+
+      //const user = await Auth.signIn(username, password);
+      this.setState({
+        emailConfirmationVisible: false,
+      });
+      openSuccessfulNotification(
+        "Success",
+        "Your account has been confirmed, please login again."
+      );
+      
+      this.props.history.push("/login");
+    } catch (error) {
+      console.log(error);
+      openUnsuccessfulNotification(
+        "Confirmation Code Error",
+        "Sorry, we couldnt confirm that code."
+      );
+    }
+  };
+
+  handleConfirmCancel = (e) => {
+    console.log(e);
+    this.setState({
+      emailConfirmationVisible: false,
     });
   };
 }

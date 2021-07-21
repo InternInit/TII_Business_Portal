@@ -46,7 +46,7 @@ export default function EmailConfirmation(props) {
       <ModalHeading>Thanks for Signing Up!</ModalHeading>
       <Divider orientation="center" />
       <DescriptionText>
-        We just sent a confirmation code over to {props.email}
+        We just sent a confirmation code over to {props.email === undefined ? "your email address." : props.email}
       </DescriptionText>
       <Form ref={props.formRef}>
         <Form.Item name="confirmationCode">
