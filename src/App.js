@@ -48,7 +48,6 @@ import _ from "lodash";
 
 //Amplify
 import Amplify, { Auth } from "aws-amplify";
-import awsconfig from "./aws-exports";
 
 //Components
 import MainPage from "./components/MainPage/MainPage.jsx";
@@ -69,8 +68,6 @@ import "./App.scss";
 
 import gql from "graphql-tag";
 import { print } from "graphql";
-
-import cognitoConfig from "./config/cognito-config.json";
 
 
 // prettier-ignore
@@ -94,20 +91,6 @@ query MyQuery($Id: String!) {
   }
 }                
 `
-
-Amplify.configure({
-  Auth: {
-
-      // REQUIRED - Amazon Cognito Region
-      region: cognitoConfig.Region,
-
-      //Amazon Cognito User Pool ID
-      userPoolId: cognitoConfig.Id,
-
-      //Amazon Cognito Web Client ID (26-char alphanumeric string)
-      userPoolWebClientId: cognitoConfig.Client.ClientId,
-  }
-});
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   console.log("In Development");
@@ -212,7 +195,7 @@ class App extends React.Component {
   inMemoryToken;
 
   auth = async () => {
-    Auth.currentSession()
+    /*Auth.currentSession()
       .then((session) => {
         console.log(session);
         this.inMemoryToken = {
@@ -233,7 +216,8 @@ class App extends React.Component {
           window.location.href =
             window.location.href.split("/").slice(0, 3).join("/") + "/login";
         }
-      });
+      });*/
+      
   };
 
   getJwt = async () => {
@@ -273,7 +257,7 @@ class App extends React.Component {
   };
 
   getBusinessInfo = async () => {
-    let access = await this.getAccess();
+    /*let access = await this.getAccess();
     axios({
       url: "/api/get_business_info",
       method: "post",
@@ -298,24 +282,29 @@ class App extends React.Component {
       .then((result) => {
         let data = result.data.data.getBusinessInfo
         console.log(data);
-        this.props.updateName(data.name);
-        this.props.updateDescription(
-          data.description
-        );
-        this.props.updateWebsite(data.website);
-        this.props.updateEmail(data.email);
-        this.props.updatePhoneNumber(data.phoneNumber);
-        this.setState({isBusinessInfoLoading: false});
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        */
+    let data = {
+      name: "Tesla Inc.",
+      description: "Tesla was founded in 2003 by a group of engineers who wanted to prove that people didn\'t need to compromise to drive electric – that electric vehicles can be better, quicker and more fun to drive than gasoline cars. Today, Tesla builds not only all-electric vehicles but also infinitely scalable clean energy generation and storage products. Tesla believes the faster the world stops relying on fossil fuels and moves towards a zero-emission future, the better.",
+      website: "https://tesla.com",
+      email: "tesla@email.com",
+      phoneNumber: "(555)-555-5555",
+    }
+    this.props.updateName(data.name);
+    this.props.updateDescription(
+      data.description
+    );
+    this.props.updateWebsite(data.website);
+    this.props.updateEmail(data.email);
+    this.props.updatePhoneNumber(data.phoneNumber);
+    this.setState({isBusinessInfoLoading: false});
+  
   };
 
   getFullCandidates = async () => {
     this.props.startCandidateLoading();
     this.props.startInternLoading();
-    let access = await this.getAccess();
+    /*let access = await this.getAccess();
     console.log(this.props);
     axios({
       url: "/api/get_student_candidates",
@@ -364,36 +353,33 @@ class App extends React.Component {
           console.log(result.data.newInterns.length);
           fetchedData = fetchedData.concat(pagData);
         }
-        
-        fetchedData.forEach((candidate) => {
-          if (candidate.status === "Accepted") {
-            interns.push(candidate);
-          } else {
-            candidates.push(candidate);
-          }
-        });
+    */
+    let fetchedData = [];
+        /*
+    fetchedData.forEach((candidate) => {
+      if (candidate.status === "Accepted") {
+        interns.push(candidate);
+      } else {
+        candidates.push(candidate);
+      }
+    });
 
-        this.props.updateCandidates(candidates);
-        localStorage.setItem(
-          "NumReview",
-          candidates.filter((candidate) => candidate.status === "Review").length
-        );
-        localStorage.setItem(
-          "NumInterview",
-          candidates.filter((candidate) =>
-            candidate.status.includes("Interview")
-          ).length
-        );
-        this.props.updateInterns(interns);
-        localStorage.setItem("NumInterns", interns.length);
-        this.props.finishCandidateLoading();
-        this.props.finishInternLoading();
-      })
-      .catch((error) => {
-        console.log(error);
-        this.props.finishCandidateLoading();
-        this.props.finishInternLoading();
-      });
+    this.props.updateCandidates(candidates);
+    localStorage.setItem(
+      "NumReview",
+      candidates.filter((candidate) => candidate.status === "Review").length
+    );
+    localStorage.setItem(
+      "NumInterview",
+      candidates.filter((candidate) =>
+        candidate.status.includes("Interview")
+      ).length
+    );
+    this.props.updateInterns(interns);
+    localStorage.setItem("NumInterns", interns.length);
+    */
+    this.props.finishCandidateLoading();
+    this.props.finishInternLoading();
   };
 
   getPaginatedCandidates = async (nextToken) => {
@@ -473,7 +459,7 @@ class App extends React.Component {
   getListings = async () => {
     this.props.startListingLoading();
     
-    let access = await this.getAccess();
+    /*let access = await this.getAccess();
     axios({
       url: "/api/get_internship_listings",
       method: "post",
@@ -487,15 +473,12 @@ class App extends React.Component {
         },
       },
     }).then((response) => {
-      console.log(response.data);
-      let listings = response.data.data.getBusinessInfo.listings;
-      this.props.batchUpdateListings(listings);
-      localStorage.setItem("NumListings", (listings.length) ? (listings.length <= 3 ? listings.length : 3) : 3);
-      this.props.finishListingLoading();
-    }).catch((error) => {
-      console.log(error);
-      this.props.finishListingLoading();
-    });
+      */
+    let listings = [];
+    this.props.batchUpdateListings(listings);
+    localStorage.setItem("NumListings", (listings.length) ? (listings.length <= 3 ? listings.length : 3) : 3);
+    this.props.finishListingLoading();
+
   };
 
   getBusinessUsers = async () => {
