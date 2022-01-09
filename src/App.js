@@ -169,6 +169,7 @@ class App extends React.Component {
   }
 
   startupProcedure = () => {
+    this.getBusinessInfo();
     this.getFullCandidates();
     this.getListings();
     this.getBusinessUsers();
@@ -474,7 +475,51 @@ class App extends React.Component {
       },
     }).then((response) => {
       */
-    let listings = [];
+    let listings = [
+      {
+        "Id": "fe991fc2-03d9-4cc8-a262-5dc735559e14",
+        "additionalInfo": "",
+        "address": "Austin, TX",
+        availableWorkDays: ["Monday", "Tuesday"],
+        availableWorkTimes: ["Mornings", "Afternoons"],
+        description: "A Javascript Internship",
+        filters: [],
+        industries: "Finance",
+        internshipType: "Hybrid",
+        isPaid: true,
+        title: "Javascript Intern"
+      },
+      {
+        "Id": "05b7c551-1680-41fa-a2d8-9f24ddcb0bb2",
+        "additionalInfo": "",
+        "address": "Houston, TX",
+        availableWorkDays: ["Monday", "Wednesday"],
+        availableWorkTimes: ["Mornings", "Afternoons", "Evenings"],
+        description: "A Java Internship",
+        filters: [],
+        industries: "Accounting",
+        internshipType: "Online",
+        isPaid: true,
+        title: "Java Intern"
+      }
+    ];
+
+    /*
+    listings {
+      Id
+      additionalInfo
+      address
+      availableWorkDays
+      availableWorkTimes
+      description
+      filters
+      industries
+      internshipDates
+      internshipType
+      isPaid
+      title
+    }
+    */
     this.props.batchUpdateListings(listings);
     localStorage.setItem("NumListings", (listings.length) ? (listings.length <= 3 ? listings.length : 3) : 3);
     this.props.finishListingLoading();
