@@ -357,15 +357,14 @@ class App extends React.Component {
           fetchedData = fetchedData.concat(pagData);
         }
     */
-    let candidates = importedCandidates;
+    let candidates = [];
     let interns = [];
-    let fetchedData = [
-            
-    ];
+    let fetchedData = importedCandidates;
     
     fetchedData.forEach((candidate) => {
       if (candidate.status === "Accepted") {
         interns.push(candidate);
+        console.log(candidate);
       } else {
         candidates.push(candidate);
       }
