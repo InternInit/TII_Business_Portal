@@ -2,7 +2,7 @@ import React, { useEffect, useState, PureComponent } from "react";
 
 //React Routing
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Link,
   Route,
   Switch as ReactSwitch,
