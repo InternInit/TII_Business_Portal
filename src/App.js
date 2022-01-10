@@ -69,6 +69,8 @@ import "./App.scss";
 import gql from "graphql-tag";
 import { print } from "graphql";
 
+import importedCandidates from "./candidates.json"
+
 
 // prettier-ignore
 const LISTING_QUERY = gql`
@@ -355,8 +357,12 @@ class App extends React.Component {
           fetchedData = fetchedData.concat(pagData);
         }
     */
-    let fetchedData = [];
-        /*
+    let candidates = importedCandidates;
+    let interns = [];
+    let fetchedData = [
+            
+    ];
+    
     fetchedData.forEach((candidate) => {
       if (candidate.status === "Accepted") {
         interns.push(candidate);
@@ -376,9 +382,10 @@ class App extends React.Component {
         candidate.status.includes("Interview")
       ).length
     );
+    
     this.props.updateInterns(interns);
     localStorage.setItem("NumInterns", interns.length);
-    */
+    
     this.props.finishCandidateLoading();
     this.props.finishInternLoading();
   };
