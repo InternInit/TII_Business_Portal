@@ -1,6 +1,7 @@
 import React from "react";
 import { Progress, Col as AntCol, Tooltip, Row } from "antd";
 import { Header, TabContainer } from "../Styled/FundamentalComponents.jsx";
+import { random } from "lodash";
 
 const PercentageBox = (props) => {
   let { header, percentage, color } = props;
@@ -37,6 +38,7 @@ const PercentageBox = (props) => {
 
 const MainPercentages = (props) => {
   let { currentApplicantsReceived, internsTaken } = props;
+  let a2i = Math.round(Math.random(20,100) * 100);
   return (
     <>
       <AntCol xs={24} md={8}>
@@ -44,7 +46,7 @@ const MainPercentages = (props) => {
           <Header className="twentyTwoFont mb-point-5">
             Applied to Industry
           </Header>
-          <PercentageBox header="Industry" percentage={0} color="#722ed1" />
+          <PercentageBox header="Industry" percentage={a2i} color="#722ed1" />
         </Row>{" "}
       </AntCol>
 
@@ -54,7 +56,7 @@ const MainPercentages = (props) => {
             Applied to Company
           </Header>
 
-          <PercentageBox header="Company" percentage={0} color="#1890ff" />
+          <PercentageBox header="Company" percentage={100-a2i} color="#1890ff" />
         </Row>
       </AntCol>
       <AntCol xs={24} md={8}>
